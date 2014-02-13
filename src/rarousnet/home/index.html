@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="cs">
+    <head>
+        <meta charset="utf-8">
+        <title>Aleš Roubíček</title>
+        <meta name="Author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
+        <meta name="Copyright" content="&copy; 2004 - 2014 Aleš Roubíček. Creative Commons 3.0">
+        <meta name="Description" content="Aleš Roubíček vývojář webových aplikací.">
+        <meta name="Robots" content="no-index, follow">
+        <link rel="bookmark" href="http://rarous.net/" title="rarouš.net">
+        <link rel="canonical" href="http://rarous.net/">
+        <link rel="openid2.provider" href="https://www.google.com/accounts/o8/ud?source=profiles" />
+        <link rel="openid2.local_id" href="https://profiles.google.com/rarous" />
+        <link rel="alternate" type="application/rss+xml" href="http://feeds2.feedburner.com/rarous-weblog" title="rarouš.weblog - články">
+        <link rel="alternate" type="application/rss+xml" href="http://feeds2.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře">
+        <link rel="stylesheet" href="/assets/css/hp.css">
+    </head>
+    <body>
+        <div id="top">
+    <div class="wai">
+        <a href="http://www.ippi.cz/klavesove-zkratky/neni-mapa-stranek.html" accesskey="1" tabindex="1">Klávesové zkratky na tomto webu</a>
+        <a href="#kontakt" accesskey="0" tabindex="2">Na obsah stránky</a>
+    </div>
+    <div class="header">
+      <img alt="rarouš.net" src="/assets/css/rarous-net.png" id="logo" />
+    </div>
+    <div class="content">
+      <div id="kontakt" class="column vcard">
+        <img alt="foto: avatar" src="https://s.gravatar.com/avatar/428a9c6e5b151e618d4db288105bc5f3?s=160" id="avatar" class="photo thumbnail" width="160" height="160" />
+        <h1 class="fn">Aleš Roubíček</h1>
+        <p class="job title">vývojář webových aplikací</p>
+        <dl>
+          <dt>Narozen:</dt>
+          <dd class="bday"><abbr class="value" title="1984-06-15T00:00:00Z">15.&thinsp;června&thinsp;1984</abbr></dd>
+          <dt>E-mail:</dt>
+          <dd><a class="email gmail talk" href="mailto:ales&#64;roubicek.name" title="E-mail, Jabber, Live ID">ales&#64;<!-- -->roubicek.name</a></dd>
+          <dt>Telefon:</dt>
+          <dd class="tel t-mobile"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
+          <dt>Banka:</dt>
+          <dd class="bank kb">51-2308010247/0100</dd>
+          <dt>Jabber:</dt>
+          <dd><a href="xmpp:rarous@gmail.com" class="url jabber">rarous@gmail.com</a></dd>
+        </dl>
+        <p>Adresa:</p>
+        <div class="adr">
+          <div class="street-address">Druzcov 52</div>
+          <span class="postal-code">463 52</span>,
+          <span class="locality">Osečná</span>
+          <div class="country-name">Česká republika</div>
+        </div>
+        <p class="geo">
+          <abbr class="latitude" title="50.7234">50°43'24.24"N</abbr>;
+          <abbr class="longitude" title="14.9296">14°55'46.56"E</abbr>
+        </p>
+        <p><a class="btn" href="http://www.linkedin.com/in/rarous" title="Zobrazit můj profil na LinkedIn">Profil LinkedIn</a>
+          <a class="btn" href="/webdesign/" title="Zobrazit portfolio služeb">Portfolio</a></p>
+        <hr class="hidden" />
+      </div>
+      <div class="column">
+        <div class="box weblog">
+          <h2><a href="http://rarous.net/weblog/">rarouš.weblog<span class="image"></span></a></h2>
+          @foreach (Article item in ViewBag.WeblogArticles) {
+          <div class="hentry">
+            <h3 class="entry-title"><a href="@item.Url" rel="bookmark">@item.Title</a></h3>
+            <p class="published"><span class="value" title="@item.DatePublished.ToString("s")Z">@item.DatePublished.ToString("HH.mm") &ndash; @item.DatePublished.ToString("dd. MMMM yyyy")</span></p>
+            <p class="entry-summary">@item.Description</p>
+          </div>
+          }
+          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous-weblog" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
+          <hr class="hidden" />
+        </div>
+      </div>
+      <div class="column">
+        <div class="box twitter">
+          <h2><a href="http://twitter.com/rarous" rel="me">twitter<span class="image"></span></a></h2>
+          <p>@ViewBag.TwitterQuote</p>
+          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous/twitter" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
+          <hr class="hidden" />
+        </div>
+
+        <div class="box picasa">
+          <h2><a href="http://picasaweb.google.com/rarous" rel="me">picasa.webalbums<span class="image"></span></a></h2>
+          @foreach (var album in ViewBag.PicasaAlbums) {
+          <div class="photo">
+            <a href="@album.Href"><img alt="album: @album.Title" src="@album.ThumbnailUrl" class="thumbnail" title="@album.Title" width="160" height="160" /></a>
+            <strong>@album.Title</strong>
+          </div>
+          }
+          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous/gallery" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
+          <hr class="hidden" />
+        </div>
+
+        <div class="box lastfm">
+          <h2><a href="http://www.last.fm/user/rarous/" rel="me">last.fm<span class="image"></span></a></h2>
+          <table class="list">
+            @foreach (var track in ViewBag.LastFmMusic) {
+            <tr><td>@track.Title</td><td>@ToWords(track.DatePlayed)</td></tr>
+            }
+          </table>
+          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous/lastfm" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
+          <hr class="hidden" />
+        </div>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="footer">
+      <div class="box projects">
+        <h2>Projekty</h2>
+        <ul>
+          <li><a href="http://www.coderetreat.cz/">CodeRetreat CZ</a></li>
+        </ul>
+        <hr class="hidden" />
+      </div>
+      <div class="box projects">
+        <h2>Sociální sítě</h2>
+        <ul>
+          <li><a href="http://www.linkedin.com/in/rarous" rel="me">LinkedIn</a></li>
+          <li><a href="http://twitter.com/alesroubicek" rel="me">Twitter</a></li>
+          <li><a href="http://www.last.fm/user/rarous/" rel="me">Last.fm</a></li>
+          <li><a href="http://delicious.com/rarous" rel="me">Delicious</a></li>
+          <li><a href="http://picasaweb.google.com/rarous" rel="me">Picasa</a></li>
+          <li><a href="http://www.slideshare.net/rarous" rel="me">SlideShare</a></li>
+          <li><a href="http://www.youtube.com/profile?user=rarous" rel="me">YouTube</a></li>
+          <li><a href="http://www.github.com/rarous" rel="me">github</a></li>
+          <li><a href="http://www.technorati.com/blogs/www.rarous.net" rel="me">Technorati</a></li>
+          <li><a href="http://www.myspace.com/alessiobusta" rel="me">MySpace</a></li>
+          <li><a href="http://www.idj.cz/alessiobusta" rel="me">iDJ</a></li>
+        </ul>
+        <hr class="hidden" />
+      </div>
+      <div class="box tirage">
+        <h2>Tiráž</h2>
+        <ul>
+          <li>
+            <a href="http://www.codeplex.com/texynet/" title="Texty jsou převáděny pomocí Texy.net"><img alt="Texy.net" src="/content/img/texy-net.png" /></a>
+          </li>
+          <li class="creative-commons"><a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license" title="Share alike license" xml:lang="en">Creative Commons</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+        <script>
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-90726-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </body>
+</html>

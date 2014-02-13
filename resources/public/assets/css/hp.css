@@ -1,0 +1,115 @@
+@import "wai.css";
+
+html{font-size:12px}
+body{font:1em 'Segoe UI','Trebuchet MS','Geneva CE',lucida,sans-serif;color:#666;background:#EFEFEF url("bg.png") -34px 0 no-repeat;padding:0;margin:0}
+
+h3{font:1.8em Georgia,'New York CE',utopia,serif;letter-spacing:-1px;margin:.462em .462em 0}
+h3 a{color:#006;text-decoration:none}
+h3 a:visited{color:#666}
+h3 a:hover{color:Blue;text-decoration:underline}
+p{font-size:1em;margin:.83em}
+
+a img{border:0}
+
+address{font-style:normal}
+
+.hidden{display:none}
+
+.content .column{float:left;width:31em;min-width:15em;border:1px solid #CCC;background:#FFF;margin:0 .416em .6em}
+.content .column.wide{width:62.66em}
+.content .vcard{margin-left:3.5em;width:15em}
+
+.published{font:.8em 'Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:1px;margin:.36em 1.04em .6em}
+.entry-summary{font:1.083em/1.4 Cambria,Georgia,'New York CE',utopia,serif;margin:0 .769em 1.8em;}
+
+.thumbnail{border:1px solid #CCC;background:url("thumb-bg.png") no-repeat;padding:1px 3px 3px 1px;margin:.6em .6em 0}
+
+.list{line-height:1.66;margin:.6em;list-style-type:none;padding:0}
+table.list{width:96%;border-collapse:collapse}
+table.list td{vertical-align:top}
+table.list td+td{text-align:right;width:10em;}
+ul.list li{padding:0}
+ul.list li a:link,ul.list li a:visited{color:#666;text-decoration:none}
+ul.list li a:hover{color:#00F;text-decoration:underline}
+
+.box{position:relative;}
+.box h2{color:#FFF;background:#999;font-size:1.4em;font-weight:normal;margin:0;padding:2px 8px;height:30px}
+.box h2 a{color:#FFF;text-decoration:none}
+.box h2 .image{background:url(headings.png) no-repeat;display:block;position:absolute;z-index:5;top:0;left:0;width:100%;height:34px}
+.box h2 a .image{cursor:pointer}
+.box .syndication{position:absolute;z-index:10;top:7px;right:10px}
+.box .syndication img{background:transparent !important;border:0 !important}
+
+.search{background:#FFF;border:1px solid #CCC;border-top:0;border-right:0;padding:.6em 1.4em 1em;margin:0;position:absolute;top:5px;right:0}
+.search fieldset{border:1px solid #929292;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;margin:0;padding:1px}
+.search legend{display:none}
+.search h2,.search label{position:absolute;top:-1000px}
+.search input{border:0;margin:0;vertical-align:middle}
+.search input[type~="text"]{line-height:1.3;width:9em}
+
+.content .box{clear:both;}
+
+.footer{color:#EFEFEF;position:relative}
+.footer a{color:#CCC;text-decoration:none}
+.footer a:hover{color:#FFF;text-decoration:underline}
+.footer a img{border:0}
+.footer .ads{background:url(gray-52.png);position:absolute;left:0;bottom:0;width:100%;font-size:.9em;line-height:2.2;text-indent:1.8em}
+.footer .ads p{margin:0}
+.footer .ads a{color:#CC0}
+.footer .box{color:#CCC;border:1px solid transparent;float:left;clear:none;width:15em;margin:0 .416em 0 0}
+.footer .box+.box{margin-left:.416em}
+.footer .box h2{background:transparent;color:#CCC;font:2.16em Calibri,sans-serif;font-weight:200; margin:0 0 .3em;padding:0}
+.footer .box ul{background:#666;font-size:1.166em;list-style-type:none;margin:.3em 0;padding:.714em;min-height:21em}
+
+.footer .box.tirage ul{background:url(tbg.png);color:#DEE5EC;font:500 1.33em/1.63 Calibri,sans-serif}
+.footer .box.tirage ul li[class]{padding-left:26px;background:url(tbtn.png) 0 2px no-repeat}
+.footer .box.tirage ul li.live-search{}
+.footer .box.tirage ul li.microformats{background-position:0 -26px}
+.footer .box.tirage ul li.w3-standards{background-position:0 -52px}
+.footer .box.tirage ul li.creative-commons{background-position:0 -76px}
+.footer .box.tirage ul li.clicky{background-position:0 -104px}
+.footer .box.tirage a{color:#DEE5EC}
+
+.weblog h2{background:#8FA2BA}
+.weblog h2 .image{}
+.music h2{background:#666}
+.music h2 .image{background-position:0 -34px}
+.twitter h2{background:#94E4E8}
+.twitter h2 .image{background-position:0 -68px}
+.picasa h2{background:#12A952}
+.picasa h2 .image{background-position:0 -102px}
+.reader h2{background:#266EC6}
+.reader h2 .image{background-position:0 -170px}
+.lastfm h2{background:#D9004A}
+.lastfm h2 .image{background-position:0 -136px}
+.projects h2{background:#5B7083}
+.projects h2 .image{background-position:0 -238px}
+.references h2{background:#0062AB}
+.references h2 .image{background-position:0 -204px}
+
+
+.picasa .photo{float:left;text-align:center;width:50%;min-width:170px;margin:.6em 0}
+.reference,.project{clear:both;padding:1em 0}
+.reference+.reference,.project+.project{border-top:1px dashed #E5E5E5}
+.reference .entry-content{min-height:130px}
+.reference h3,.project h3{font-size:2em;font-weight:normal;margin-top:0;margin-left:.32em;float:left}
+.reference p,.project p{clear:left}
+.preview{float:right;border:1px solid #CCC;padding:2px;margin:0 .4em}
+
+#top{border:2px solid #333;border-right:0;border-left:0;padding:1px 0;min-width:83.5em}
+#top>.header{border-top:2px solid #F09;height:6.33em;clear:both}
+#top>.footer{border-bottom:2px solid #F09;background:#666 url(fbg.png) repeat-x top left;min-height:8em;clear:both;margin-top:1.4em;padding-left:3.5em;}
+#top>.content{min-height:20em;clear:both}
+
+#logo{position:relative;top:2.33em;left:4.4166em}
+
+#kontakt {padding-bottom:.4em}
+#kontakt h1{color:#999;font:2.166em Candara,"Trebuchet MS","Geneva CE",lucida,sans-serif;text-align:center;margin:0}
+#kontakt dl,#kontakt p,#kontakt div.adr{margin:1.2em .833em .5em;padding:0}
+#kontakt p.job{font:1.166em Calibri,sans-serif;text-align:center;margin:0}
+#kontakt dt{float:left;margin:0;padding:0}
+#kontakt dd{clear:right;text-indent:.46em;margin:0;padding:0}
+#kontakt div.adr{margin-top:.1em;margin-bottom:1.2em;font-style:italic}
+#kontakt a.btn{background:url(btn.png) -1px -1px;color:#666;font:1.5em Calibri,sans-serif;border:1px solid #CCC;text-decoration:none;display:block;padding:.4em .4em .4em 1.444em}
+#kontakt a.btn:hover{background-position:-1px -42px;}
+#kontakt a.btn+a.btn{margin-top:-1px;}
