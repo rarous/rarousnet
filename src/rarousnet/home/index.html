@@ -59,13 +59,13 @@
       <div class="column">
         <div class="box weblog">
           <h2><a href="http://rarous.net/weblog/">rarouš.weblog<span class="image"></span></a></h2>
-          @foreach (Article item in ViewBag.WeblogArticles) {
+
           <div class="hentry">
-            <h3 class="entry-title"><a href="@item.Url" rel="bookmark">@item.Title</a></h3>
+            <h3 class="entry-title"><a href="" rel="bookmark"></a></h3>
             <p class="published"><span class="value" title="@item.DatePublished.ToString("s")Z">@item.DatePublished.ToString("HH.mm") &ndash; @item.DatePublished.ToString("dd. MMMM yyyy")</span></p>
             <p class="entry-summary">@item.Description</p>
           </div>
-          }
+
           <div class="syndication"><a href="http://feeds2.feedburner.com/rarous-weblog" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
           <hr class="hidden" />
         </div>

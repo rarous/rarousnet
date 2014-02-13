@@ -1,21 +1,18 @@
 (ns rarousnet.home.handler
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+  (:use net.cgrand.enlive-html)
+  (:require [compojure.core :refer [defroutes GET]]
             [clojure.java.io :as io]
-            [ring.util.response :as resp]
-            [enliven.html :as h :refer [static-template content class append prepend style]]
-            [enliven.html.jsoup :as jsoup]))
+            [ring.util.response :as resp]))
 
-(defn template [name]
-  (jsoup/parse (slurp (io/resource (str "home/" name ".html")))))
+(deftemplate home-template "home/index.html" [])
 
-(defn home-view []
-  (h/static-template
-    (template "index")))
+(defn view [template]
+    (apply str (template)))
 
 (defn home []
   (resp/charset {:status 200
                  :headers {"Content-Type" "text/html"}
-                 :body (home-view)} "UTF-8"))
+                 :body (view home-template)} "UTF-8"))
 
 (defroutes routes
   (GET "/" [] (home)))

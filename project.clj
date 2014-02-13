@@ -10,7 +10,7 @@
                  [ring-basic-authentication "1.0.1"]
                  [environ "0.2.1"]
                  [com.cemerick/drawbridge "0.0.6"]
-                 [enliven "0.1.0-SNAPSHOT"]]
+                 [enlive "1.1.5"]]
   :min-lein-version "2.0.0"
   :plugins [[environ/environ.lein "0.2.1"]]
   :hooks [environ.leiningen.hooks]
