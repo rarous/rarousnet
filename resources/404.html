@@ -10,9 +10,18 @@
       margin: 3em auto;
 	}
   </style>
+  <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-90726-1']);
+      _gaq.push(['_trackPageview','/http404/?url=' + document.location.pathname + document.location.search + '&ref=' + document.referrer]);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+  </script>
 </head>
 <body>
-  <!-- TODO: replace this with something that matches your app style -->
   <h1>Page Not Found</h1>
   <p>There's no page at the address you requested. If you entered it
     by hand, check for typos. If you followed a link or a bookmark,
