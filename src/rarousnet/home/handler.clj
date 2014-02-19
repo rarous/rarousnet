@@ -2,7 +2,7 @@
   (:use net.cgrand.enlive-html)
   (:require [compojure.core :refer [defroutes GET]]
             [clojure.java.io :as io]
-            [ring.util.response :as resp]))
+            [ring.util.response :refer [charset]]))
 
 (deftemplate home-template "home/index.html" [])
 
@@ -10,9 +10,10 @@
     (apply str (template)))
 
 (defn home []
-  (resp/charset {:status 200
-                 :headers {"Content-Type" "text/html"}
-                 :body (view home-template)} "UTF-8"))
+  (-> {:status 200
+       :headers {"Content-Type" "text/html"}
+       :body (view home-template)}
+      (charset "UTF-8")))
 
 (defroutes routes
   (GET "/" [] (home)))
