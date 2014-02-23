@@ -1,0 +1,315 @@
+[{:html
+  "<p>Dříve jsem udělal ještě asi desítku webů, které už buďto nejsou aktuální, nebo neexistují vůbec. Namátkou stránky mikroregionů Podještědí a Podralsko, webový magazín k3, stránky pěveckého sboru Canzonetta, stránky osady Druzcov…</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T14:26:11.553-00:00",
+  :raw
+  "Dříve jsem udělal ještě asi desítku webů, které už buďto nejsou aktuální, nebo neexistují vůbec. Namátkou stránky mikroregionů Podještědí a Podralsko, webový magazín k3, stránky pěveckého sboru Canzonetta, stránky osady Druzcov… ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Starší a zmizelé",
+  :published #inst "2008-09-28T14:26:11.540-00:00",
+  :url "starsi-a-zmizele",
+  :id 307,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<p>Aplikace na vedení skladu elektro materiálu a pro správu revizí strojů pro firmu Benteler Automotive. Postaveno na platformě ASP.NET 1.1.</p> <p>Realizace: srpen 2004, únor 2005</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T14:27:15.990-00:00",
+  :raw
+  "Aplikace na vedení skladu elektro materiálu a pro správu revizí strojů pro firmu Benteler Automotive. Postaveno na platformě ASP.NET 1.1. Realizace: srpen 2004, únor 2005 ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Sklad a Správa revizí",
+  :published #inst "2008-09-28T14:27:15.993-00:00",
+  :url "sklad-a-sprava-revizi",
+  :id 308,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<p>Systém na vedení rozhodčích řízení a exekucí. Ve spolupráci s Ondrou Peřinou postaveno na platformě ASP.NET 1.1.</p> <p>Realizace: červen – srpen 2004</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:51:23.740-00:00",
+  :raw
+  "Systém na vedení rozhodčích řízení a exekucí. Ve spolupráci s Ondrou Peřinou postaveno na platformě ASP.NET 1.1. Realizace: červen – srpen 2004 ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Honesta WebApplication",
+  :published #inst "2008-09-28T14:27:45.073-00:00",
+  :url "honesta-webapplication",
+  :id 309,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://www.inkasni.cz/\"><img src=\"/img/reference/inkasni.jpg\" class=\"preview\" alt=\"Inkasní družstvo\" width=\"400\" height=\"130\" /></a></div> <p>Kompletní tvorba webové prezentace Inkasního družstva.</p> <p>Realizace: leden 2005</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:14:44.123-00:00",
+  :raw
+  "[*/img/reference/inkasni.jpg 400x130 .(Inkasní družstvo)[preview]*]:[inkasni] Kompletní tvorba webové prezentace Inkasního družstva. Realizace: leden 2005 [inkasni]: http://www.inkasni.cz/ ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Inkasní družstvo",
+  :published #inst "2008-09-28T14:28:57.980-00:00",
+  :url "inkasni-druzstvo",
+  :id 310,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://www.pbsoftware.cz/\"><img src=\"/img/reference/pbs.jpg\" class=\"preview\" alt=\"PB software\" width=\"400\" height=\"130\" /></a></div> <p>Tvorba grafického návrhu a nakódování šablony stránek firmy PB software a tvorba aplikace Projektor.</p> <p>Realizace: květen 2005</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:14:35.263-00:00",
+  :raw
+  "[*/img/reference/pbs.jpg 400x130 .(PB software)[preview]*]:[pbsoftware] Tvorba grafického návrhu a nakódování šablony stránek firmy PB software a tvorba aplikace Projektor. Realizace: květen 2005 [pbsoftware]: http://www.pbsoftware.cz/ ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "PB software",
+  :published #inst "2008-09-28T14:31:04.090-00:00",
+  :url "pb-software",
+  :id 311,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://ggdag.euweb.cz/\"><img src=\"/img/reference/ggdag.jpg\" class=\"preview\" alt=\"Gigi D’Agostino czech fan pages\" width=\"400\" height=\"130\" /></a></div> <p>Kompletní tvorba fanouškovských stránek italského DJ a producenta Gigiho D’Agostina. Redakční systém Textpattern a Picasa Gallery.</p> <p>Realizace: únor – květen 2005</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:50:08.287-00:00",
+  :raw
+  "[*/img/reference/ggdag.jpg 400x130 .(Gigi D’Agostino czech fan pages)[preview]*]:[ggdag] Kompletní tvorba fanouškovských stránek italského DJ a producenta Gigiho D’Agostina. Redakční systém Textpattern a Picasa Gallery. Realizace: únor - květen 2005 [ggdag]: http://ggdag.euweb.cz/ ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Gigi D’Agostino CZFP",
+  :published #inst "2008-09-28T14:32:29.687-00:00",
+  :url "gigi-d’agostino-czech-fan-pages",
+  :id 312,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://mikemaly.net/\"><img src=\"/img/reference/mike.jpg\" class=\"preview\" alt=\"MikeMaly.net\" width=\"400\" height=\"130\" /></a></div> <p>Kompletní tvorba stránek kamaráda Michala Malého. Redakční systém Gryphoon a Picasa Gallery.</p> <p>Realizace: listopad 2005</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:14:10.810-00:00",
+  :raw
+  "[*/img/reference/mike.jpg 400x130 .(MikeMaly.net)[preview]*]:[mike] Kompletní tvorba stránek kamaráda Michala Malého. Redakční systém Gryphoon a Picasa Gallery. Realizace: listopad 2005 [mike]: http://mikemaly.net/ ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "MikeMaly.net",
+  :published #inst "2008-09-28T14:33:17.467-00:00",
+  :url "mikemaly-net",
+  :id 313,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://www.osecna.info/\"><img src=\"/img/reference/osecna.jpg\" class=\"preview\" alt=\"Osečná.info\" width=\"400\" height=\"130\" /></a></div> <p>Kompletní tvorba stránek města Osečná. Stránky splňují požadavky na přístupnost. Redakční systém Gryphoon a Picasa Gallery.</p> <p>Realizace: únor 2006</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:14:03.280-00:00",
+  :raw
+  "[*/img/reference/osecna.jpg 400x130 .(Osečná.info)[preview]*]:[osecna] Kompletní tvorba stránek města Osečná. Stránky splňují požadavky na přístupnost. Redakční systém Gryphoon a Picasa Gallery. Realizace: únor 2006 [osecna]: http://www.osecna.info/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Osečná.info",
+  :published #inst "2008-09-28T14:34:15.267-00:00",
+  :url "osecna-info",
+  :id 314,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://www.pisky-sute.cz/\"><img src=\"/img/reference/pisky.jpg\" class=\"preview\" alt=\"Písky-sutě.cz\" width=\"400\" height=\"130\" /></a></div> <p>Kompletní tvorba stránek firmy Milan Gonda, která se zabývá svozem a likvidací stavebního odpadu v Praze.</p> <p>Realizace: únor 2007</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:13:54.717-00:00",
+  :raw
+  "[*/img/reference/pisky.jpg 400x130 .(Písky-sutě.cz)[preview]*]:[pisky] Kompletní tvorba stránek firmy Milan Gonda, která se zabývá svozem a likvidací stavebního odpadu v Praze. Realizace: únor 2007 [pisky]: http://www.pisky-sute.cz/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Písky-sutě.cz",
+  :published #inst "2008-09-28T14:36:57.347-00:00",
+  :url "pisky-sute-cz",
+  :id 315,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://obchody.atlas.cz/\"><img src=\"/img/reference/obchody.jpg\" class=\"preview\" alt=\"Obchody.Atlas.cz\" width=\"400\" height=\"130\" /></a></div> <p>Vertikální katalog internetových obchodů, jedna z prvních aplikací postavená na novém katalogovém frameworku.</p> <p>Realizace: červen 2007</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:13:43.433-00:00",
+  :raw
+  "[*/img/reference/obchody.jpg 400x130 .(Obchody.Atlas.cz)[preview]*]:[obchody] Vertikální katalog internetových obchodů, jedna z prvních aplikací postavená na novém katalogovém frameworku. Realizace: červen 2007 [obchody]: http://obchody.atlas.cz/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Obchody.Atlas.cz",
+  :published #inst "2008-09-28T14:37:50.283-00:00",
+  :url "obchody-atlas-cz",
+  :id 316,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://katalog.atlas.cz/\"><img src=\"/img/reference/katalog.jpg\" class=\"preview\" alt=\"Atlas firem\" width=\"400\" height=\"130\" /></a></div> <p>Velký katalog portálu Atlas.cz byl dlouhodobým projektem spojeným s novým katalogovým řešením, administrací odkazů, registrací firem, prodejní aplikací a komponentovým frameworkem na snadnou tvorbu listingových webů. Součástí realizace bylo i propojení se službou AMapy.cz. Autorem grafického návrhu je Pavel Trnka.</p> <p>Realizace: leden 2007 – červen 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:13:34.607-00:00",
+  :raw
+  "[*/img/reference/katalog.jpg 400x130 .(Atlas firem)[preview]*]:[katalog] Velký katalog portálu Atlas.cz byl dlouhodobým projektem spojeným s novým katalogovým řešením, administrací odkazů, registrací firem, prodejní aplikací a komponentovým frameworkem na snadnou tvorbu listingových webů. Součástí realizace bylo i propojení se službou AMapy.cz. Autorem grafického návrhu je Pavel Trnka. Realizace: leden 2007 – červen 2008 [katalog]: http://katalog.atlas.cz/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Atlas firem",
+  :published #inst "2008-09-28T14:40:27.970-00:00",
+  :url "atlas-firem",
+  :id 317,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><img src=\"/img/reference/vanoce.jpg\" class=\"preview\" alt=\"Vánoční speciál\" width=\"400\" height=\"130\" /></div> <p>Součástí Vánočního speciálu byl katalog tipů na dárky pro členy rodiny, na jehož realizaci jsem se podílel. Autorem grafického návrhu je Jan Boruta.</p> <p>Realizace: říjen 2007</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:13:25.763-00:00",
+  :raw
+  "[*/img/reference/vanoce.jpg 400x130 .(Vánoční speciál)[preview]*] Součástí Vánočního speciálu byl katalog tipů na dárky pro členy rodiny, na jehož realizaci jsem se podílel. Autorem grafického návrhu je Jan Boruta. Realizace: říjen 2007 ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Vánoční speciál",
+  :published #inst "2008-09-28T14:41:47.410-00:00",
+  :url "vanocni-special",
+  :id 318,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><img src=\"/img/reference/valentyn.jpg\" class=\"preview\" alt=\"Valentýnský speciál\" width=\"400\" height=\"130\" /></div> <p>Součástí Valentýnského speciálu byl katalog tipů na dárky pro partnery, na jehož realizaci jsem se podílel. Autorem grafického návrhu je Jan Boruta.</p> <p>Realizace: únor 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:13:16.013-00:00",
+  :raw
+  "[*/img/reference/valentyn.jpg 400x130 .(Valentýnský speciál)[preview]*] Součástí Valentýnského speciálu byl katalog tipů na dárky pro partnery, na jehož realizaci jsem se podílel. Autorem grafického návrhu je Jan Boruta. Realizace: únor 2008",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Valentýnský speciál",
+  :published #inst "2008-09-28T14:42:31.080-00:00",
+  :url "valentynsky-special",
+  :id 319,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://www.spunt.cz/\"><img src=\"/img/reference/spunt.jpg\" class=\"preview\" alt=\"Špunt.cz\" width=\"400\" height=\"130\" /></a></div> <p>Jedním z mých posledních projektů v portálu Atlas.cz byl magazín pro rodiče Špunt. Součástí byl vertikální katalog firem a katalog letních táborů, na jejichž realizaci jsem se podílel. Autorem grafického návrhu je Pavel Trnka, službu kompletoval Lukáš Mačí.</p> <p>Realizace: srpen 2007, únor 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:13:07.043-00:00",
+  :raw
+  "[*/img/reference/spunt.jpg 400x130 .(Špunt.cz)[preview]*]:[spunt] Jedním z mých posledních projektů v portálu Atlas.cz byl magazín pro rodiče Špunt. Součástí byl vertikální katalog firem a katalog letních táborů, na jejichž realizaci jsem se podílel. Autorem grafického návrhu je Pavel Trnka, službu kompletoval Lukáš Mačí. Realizace: srpen 2007, únor 2008 [spunt]: http://www.spunt.cz/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Špunt.cz",
+  :published #inst "2008-09-28T14:44:24.803-00:00",
+  :url "spunt-cz",
+  :id 320,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://rarous.net/\"><img src=\"/img/reference/rarous.jpg\" class=\"preview\" alt=\"rarouš.net\" width=\"400\" height=\"130\" /></a></div> <p>Nová sociální verze mojí homepage. Jednotlivé boxy jsou agregovány z různých webových služeb. Implementace mikroformátů.</p> <p>Realizace: únor 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:12:58.387-00:00",
+  :raw
+  "[*/img/reference/rarous.jpg 400x130 .(rarouš.net)[preview]*]:[rarous] Nová sociální verze mojí homepage. Jednotlivé boxy jsou agregovány z různých webových služeb. Implementace mikroformátů. Realizace: únor 2008 [rarous]: http://rarous.net/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "rarouš.net",
+  :published #inst "2008-09-28T14:45:12.960-00:00",
+  :url "rarous-net",
+  :id 321,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://rarous.net/weblog/\"><img src=\"/img/reference/weblog.jpg\" class=\"preview\" alt=\"rarouš.weblog\" width=\"400\" height=\"130\" /></a></div> <p>Nová verze mého blogu, tentokráte trochu v grunge style, s implementací mikroformátů a odlehčení kódu od WebForms. Redakční systém Gryphoon.</p> <p>Realizace: červen 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:12:48.857-00:00",
+  :raw
+  "[*/img/reference/weblog.jpg 400x130 .(rarouš.weblog)[preview]*]:[rarous.weblog] Nová verze mého blogu, tentokráte trochu v grunge style, s implementací mikroformátů a odlehčení kódu od WebForms. Redakční systém Gryphoon. Realizace: červen 2008 [rarous.weblog]: http://rarous.net/weblog/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "rarouš.weblog",
+  :published #inst "2008-09-28T14:46:32.180-00:00",
+  :url "rarous-weblog",
+  :id 322,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://exik.com/\"><img src=\"/img/reference/exik.jpg\" class=\"preview\" alt=\"Exik.com\" width=\"400\" height=\"130\" /></a></div> <p>Nakódování šablony portfolia grafika Pavla Trnky.</p> <p>Realizace: červenec 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:12:36.027-00:00",
+  :raw
+  "[*/img/reference/exik.jpg 400x130 .(Exik.com)[preview]*]:[exik] Nakódování šablony portfolia grafika Pavla Trnky. Realizace: červenec 2008 [exik]: http://exik.com/ ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Exik.com",
+  :published #inst "2008-09-28T14:47:12.320-00:00",
+  :url "exik-com",
+  :id 323,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><img src=\"/img/reference/twareg.intranet.jpg\" class=\"preview\" alt=\"twareg.intranet\" width=\"400\" height=\"130\" /></div> <p>Jedním z prvních projektů, na kterém jsem v Twaregu dělal, je intranet postavený na ASP.NET MVC. Autorem grafického návrhu je Jan Boruta.</p> <p>Realizace: září 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:12:19.920-00:00",
+  :raw
+  "[*/img/reference/twareg.intranet.jpg 400x130 .(twareg.intranet)[preview]*] Jedním z prvních projektů, na kterém jsem v Twaregu dělal, je intranet postavený na ASP.NET MVC. Autorem grafického návrhu je Jan Boruta. Realizace: září 2008 ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "twareg.intranet",
+  :published #inst "2008-09-28T14:48:20.460-00:00",
+  :url "twareg-intranet",
+  :id 324,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://www.twareg.com/\"><img src=\"/img/reference/twareg.intranet.jpg\" class=\"preview\" alt=\"twareg.com\" width=\"400\" height=\"130\" /></a></div> <p>Firemní stránky v anglické verzi. Autorem grafického návrhu je Jan Boruta.</p> <p>Realizace: únor 2009</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2009-02-28T14:04:55.793-00:00",
+  :raw
+  "[*/img/reference/twareg.intranet.jpg 400x130 .(twareg.com)[preview]*]:[twareg] Firemní stránky v anglické verzi. Autorem grafického návrhu je Jan Boruta. Realizace: únor 2009 [twareg]: http://www.twareg.com/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "twareg.com",
+  :published #inst "2009-02-28T14:04:55.750-00:00",
+  :url "twareg-com",
+  :id 351,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><img src=\"/img/reference/ataxo.dochazka.jpg\" class=\"preview\" alt=\"Ataxo Docházka\" width=\"400\" height=\"130\" /></div> <p>Další implementace docházkového systému postaveného na ASP.NET MVC byla pro Ataxo. Implementace si vyžádala značná rozšíření systému, která byla později nasazena i v twareg.in­tranet. Autorem grafického návrhu je Jan Boruta.</p> <p>Realizace: duben – květen 2009</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2009-08-17T18:53:02.657-00:00",
+  :raw
+  "[*/img/reference/ataxo.dochazka.jpg 400x130 .(Ataxo Docházka)[preview]*] Další implementace docházkového systému postaveného na ASP.NET MVC byla pro Ataxo. Implementace si vyžádala značná rozšíření systému, která byla později nasazena i v twareg.intranet. Autorem grafického návrhu je Jan Boruta. Realizace: duben - květen 2009",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Docházka Ataxo",
+  :published #inst "2009-08-17T18:22:18.393-00:00",
+  :url "dochazka-ataxo",
+  :id 363,
+  :description "",
+  :category "Reference",
+  :tags []}
+ {:html
+  "<div><a href=\"http://www.trop.cz/\"><img src=\"/img/reference/trop.jpg\" class=\"preview\" alt=\"Trop\" width=\"400\" height=\"130\" /></a></div> <p>Komunitní katalog míst, kam se lidé chodí bavit nebo jen dobře najíst. Umožňuje vkládat recenze a hodnocení k místům, které pak mohou vaši přátelé komentovat. V místech je možné pořádat akce, na které můžete pozvat své známé. Aplikace je postavená na ASP.NET MVC a Castle. Autorem grafického návrhu je Jan Boruta.</p> <p>Realizace: ve vývoji od listopadu 2008</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2009-09-01T07:54:16.460-00:00",
+  :raw
+  "[*/img/reference/trop.jpg 400x130 .(Trop)[preview]*]:[trop] Komunitní katalog míst, kam se lidé chodí bavit nebo jen dobře najíst. Umožňuje vkládat recenze a hodnocení k místům, které pak mohou vaši přátelé komentovat. V místech je možné pořádat akce, na které můžete pozvat své známé. Aplikace je postavená na ASP.NET MVC a Castle. Autorem grafického návrhu je Jan Boruta. Realizace: ve vývoji od listopadu 2008 [trop]: http://www.trop.cz/",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Trop",
+  :published #inst "2009-09-01T07:50:56.463-00:00",
+  :url "trop",
+  :id 364,
+  :description "",
+  :category "Reference",
+  :tags []}]

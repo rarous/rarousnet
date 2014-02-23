@@ -12,7 +12,6 @@
                  [enlive "1.1.5"]]
   :min-lein-version "2.0.0"
   :plugins [[lein-environ "0.4.0"]]
-  :hooks [environ.leiningen.hooks]
   :resource-paths ["src/rarousnet" "resources"]
   :profiles
     {:production

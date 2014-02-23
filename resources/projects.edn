@@ -1,0 +1,62 @@
+[{:html
+  "<p>Komponenta pro snadné vytváření galerií z XML exportu programu Picasa. Funguje tak, že vygenerujete XML verzi galerie v programu <a href=\"http://picasa.google.com/\">Picasa</a> a nahrajete ji na server do určitého adresáře. Komponenta tento adresář hlídá a načítá jednotlivé galerie. Výsledný výstup lze snadno měnit pomocí šablon nebo lze využít už předpřipravené velice jednoduché šablony.</p> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T13:43:53.153-00:00",
+  :raw
+  "Komponenta pro snadné vytváření galerií z XML exportu programu Picasa. Funguje tak, že vygenerujete XML verzi galerie v programu [picasa] a nahrajete ji na server do určitého adresáře. Komponenta tento adresář hlídá a načítá jednotlivé galerie. Výsledný výstup lze snadno měnit pomocí šablon nebo lze využít už předpřipravené velice jednoduché šablony. [picasa]: http://picasa.google.com/ Picasa",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Picasa Gallery",
+  :published #inst "2008-09-28T13:43:53.140-00:00",
+  :url "picasa-gallery",
+  :id 303,
+  :description
+  "Komponenta pro snadné vytváření galerií z XML exportu programu Picasa.",
+  :category "Projekty",
+  :tags []}
+ {:html
+  "<div><a href=\"http://codeplex.com/gryphoon/\"><img src=\"/img/projects/gryphoon.png\" class=\"preview\" alt=\"Gryphoon\" width=\"210\" height=\"60\" /></a></div> <p>Systém na správu blogů a obsahových webů postavený na platformě <a href=\"http://asp.net/\">ASP.NET</a>. Podporuje více autorů, texty stránek se zadávají pomocí <a href=\"http://texy.info/\">Texy!</a> Je základem několika webů, některé jsou tady v referencích, některé ani neznám…</p> <ul> <li>SVN repository: <code>https://gryphoon.svn.codeplex.com/svn/</code></li> <li><a href=\"http://codeplex.com/gryphoon/\">Stránky projektu Gryphoon</a></li> <li><a href=\"/weblog/tag/gryphoon.aspx\">Články o projektu Gryphoon na blogu</a></li> </ul> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:11:57.650-00:00",
+  :raw
+  "[*/img/projects/gryphoon.png 210x60 .(Gryphoon)[preview]*]:[gryphoon-codeplex] Systém na správu blogů a obsahových webů postavený na platformě [aspnet]. Podporuje více autorů, texty stránek se zadávají pomocí [texy] Je základem několika webů, některé jsou tady v referencích, některé ani neznám… * SVN repository: `https://gryphoon.svn.codeplex.com/svn/` * \"Stránky projektu Gryphoon\":[gryphoon-codeplex] * \"Články o projektu Gryphoon na blogu\":[gryphoon-blog] [aspnet]: http://asp.net/ ASP.NET [texy]: http://texy.info/ Texy! [gryphoon-codeplex]: http://codeplex.com/gryphoon/ Gryphoon [gryphoon-blog]: /weblog/tag/gryphoon.aspx Gryphoon",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Gryphoon",
+  :published #inst "2008-09-28T13:45:40.360-00:00",
+  :url "gryphoon",
+  :id 304,
+  :description "Redakční systém postavený na Texy!",
+  :category "Projekty",
+  :tags []}
+ {:html
+  "<div><a href=\"http://codeplex.com/nforms/\"><img src=\"/img/projects/nforms.png\" class=\"preview\" alt=\"NForms\" width=\"140\" height=\"60\" /></a></div> <p>NForms je malý jednoduchý framework na tvorbu a zpracování webových formulářů na platformě <a href=\"http://asp.net/\">ASP.NET</a> nezávisející na infrastruktuře WebForms a tudíž je vhodný na tvorbu znovupoužitelných formulářů pro různé aplikační scénáře (Classic, <a href=\"/weblog/tag/mvp.aspx\">MVP</a>, <a href=\"/weblog/tag/mvc.aspx\">MVC</a>).</p> <ul> <li>SVN Repository: <code>https://nforms.svn.codeplex.com/svn/</code></li> <li><a href=\"http://codeplex.com/nforms/\">Stránky projektu NForms</a></li> <li><a href=\"/weblog/tag/nforms.aspx\">Články o projektu NForms na blogu</a></li> </ul> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T16:10:59.010-00:00",
+  :raw
+  "[*/img/projects/nforms.png 140x60 .(NForms)[preview]*]:[nforms-codeplex] NForms je malý jednoduchý framework na tvorbu a zpracování webových formulářů na platformě [aspnet] nezávisející na infrastruktuře WebForms a tudíž je vhodný na tvorbu znovupoužitelných formulářů pro různé aplikační scénáře (Classic, [mvp], [mvc]). * SVN Repository: `https://nforms.svn.codeplex.com/svn/` * \"Stránky projektu NForms\":[nforms-codeplex] * \"Články o projektu NForms na blogu\":[nforms-blog] [aspnet]: http://asp.net/ ASP.NET [mvc]: /weblog/tag/mvc.aspx MVC [mvp]: /weblog/tag/mvp.aspx MVP [nforms-codeplex]: http://codeplex.com/nforms/ NForms [nforms-blog]: /weblog/tag/nforms.aspx NForms ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "NForms",
+  :published #inst "2008-09-28T13:50:44.350-00:00",
+  :url "nforms",
+  :id 305,
+  :description "Framework na tvorbu a validaci webových formulářů.",
+  :category "Projekty",
+  :tags []}
+ {:html
+  "<div><a href=\"http://codeplex.com/texynet/\"><img src=\"/img/projects/texynet.png\" class=\"preview\" alt=\"Texy.net\" width=\"120\" height=\"60\" /></a></div> <p><a href=\"http://texy.info/\">Texy!</a> je nástroj na převod textu psaného jako na stroji do podoby, která je vhodná pro zobrazování na internetu (webu).</p> <p>Texy.net je konfigurační rozhraní pro snadnou konzumaci XML-RPC Texy! z prostředí Microsoft.net. Umožňuje i konzumaci jiných rozhraní, jako třeba <acronym title=\"Simple Object Access Protocol\">SOAP</acronym> nebo Texy! zkompilovanou ve <a href=\"http://php-compiler.net/\">Phalangeru</a>.</p> <ul> <li>SVN repository: <code>https://texynet.svn.codeplex.com/svn/</code></li> <li><a href=\"http://codeplex.com/texynet/\">Stránky projektu Texy.net</a></li> <li><a href=\"/weblog/tag/texynet.aspx\">Články o projektu Texy.net na blogu</a></li> </ul> <!-- by Texy2! -->",
+  :keywords "",
+  :edited #inst "2008-09-28T17:42:30.067-00:00",
+  :raw
+  "[*/img/projects/texynet.png 120x60 .(Texy.net)[preview]*]:[texynet-codeplex] [texy] je nástroj na převod textu psaného jako na stroji do podoby, která je vhodná pro zobrazování na internetu (webu). Texy.net je konfigurační rozhraní pro snadnou konzumaci XML-RPC Texy! z prostředí Microsoft.net. Umožňuje i konzumaci jiných rozhraní, jako třeba SOAP((Simple Object Access Protocol)) nebo Texy! zkompilovanou ve Phalangeru:[phalanger]. * SVN repository: `https://texynet.svn.codeplex.com/svn/` * \"Stránky projektu Texy.net\":[texynet-codeplex] * \"Články o projektu Texy.net na blogu\":[texynet-blog] [texy]: http://texy.info/ Texy! [phalanger]: http://php-compiler.net/ Pahlanger [texy-blog]: /weblog/tag/texy.aspx Texy! [texynet-blog]: /weblog/tag/texynet.aspx Texy.net [texynet-codeplex]: http://codeplex.com/texynet/ Texy.net ",
+  :is-published true,
+  :author "Aleš Roubíček",
+  :title "Texy.net",
+  :published #inst "2008-09-28T14:02:41.107-00:00",
+  :url "texy-net",
+  :id 306,
+  :description
+  "Nástroj na převod textu do formy, která je vhodná pro prezentaci na webu.",
+  :category "Projekty",
+  :tags []}]
