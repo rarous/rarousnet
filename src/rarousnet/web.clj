@@ -11,7 +11,8 @@
             [ring.util.response :as resp]
             [cemerick.drawbridge :as drawbridge]
             [environ.core :refer [env]]
-            [rarousnet.home.handler :as home]))
+            [rarousnet.home.handler :as home]
+            [rarousnet.weblog.handler :as blog]))
 
 (defn- authenticated? [user pass]
   ;; TODO: heroku config:add REPL_USER=[...] REPL_PASSWORD=[...]
@@ -24,6 +25,7 @@
 
 (defroutes app
   home/routes
+  blog/routes
   (ANY "/repl" {:as req}
        (drawbridge req))
   (route/resources "/")
