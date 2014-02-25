@@ -9,7 +9,8 @@
                  [ring-basic-authentication "1.0.5"]
                  [environ "0.4.0"]
                  [com.cemerick/drawbridge "0.0.6"]
-                 [enlive "1.1.5"]]
+                 [enlive "1.1.5"]
+                 [clj-time "0.6.0"]]
   :min-lein-version "2.0.0"
   :plugins [[lein-environ "0.4.0"]]
   :resource-paths ["src/rarousnet" "resources"]

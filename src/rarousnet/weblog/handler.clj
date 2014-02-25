@@ -1,5 +1,8 @@
 (ns rarousnet.weblog.handler
-  (:use net.cgrand.enlive-html)
+  (:use net.cgrand.enlive-html
+        clj-time.coerce
+        clj-time.format
+        clj-time.local)
   (:require [clojure.java.io :as io]
             [compojure.core :refer [defroutes GET]]
             [ring.util.response :refer [charset]]))
@@ -8,11 +11,37 @@
 (defn load-article [url]
   ((keyword url) articles))
 
+(def utc-format (formatters :basic-date-time))
+(def long-date-format
+  (-> (formatter "HH.mm - d. MMMM yyyy")
+      (with-locale (new java.util.Locale "cs"))))
+
 (deftemplate index-template "weblog/index.html" [])
 (deftemplate blogpost-template "weblog/blogpost.html" [article]
-  [:title] (content (:title article))
-  [:article :h1] (content (:title article))
-  [:article :div.content] (html-content (:html article)))
+  [:title]
+  (content (get article :title))
+  [:meta (attr= :name "author")]
+  (set-attr :content (get article :author))
+  [:meta (attr= :name "description")]
+  (set-attr :content (get article :description))
+  [:link (attr= :rel "canonical")]
+  (set-attr :href (:url article))
+  [:article :h1]
+  (content (get article :title))
+  [:article :div.entry-content]
+  (html-content (get article :html))
+  [:article :p.info :strong]
+  (content (get article :category))
+  [:article :p.info :time.published]
+  (content (->> (get article :published)
+               from-date
+               (unparse long-date-format)))
+  [:article :p.info :time.published]
+  (set-attr :datetime (->> (get article :published)
+                          from-date
+                          (unparse utc-format)))
+  [:article :strong.user]
+  (content (get article :author)))
 
 (defn render-view [template]
   (-> {:status 200
