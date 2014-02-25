@@ -1,0 +1,19 @@
+BEGIN:VCARD
+VERSION:2.1
+N:Roubíèek;Aleš
+FN:Aleš Roubíèek
+NICKNAME:rarouš
+ORG:Atlas.cz, a. s.
+TITLE:vývojáø
+TEL;HOME;VOICE:+420 485 178 264
+TEL;CELL;VOICE:+420 737 461 283
+ADR;HOME:;;Druzcov 52;Oseèná;;463 52;Èeská republika
+LABEL;HOME;ENCODING=QUOTED-PRINTABLE:Druzcov 52=0D=0AOse=E8n=E1 463 52=0D=0A=C8esk=E1 republika
+X-WAB-GENDER:2
+URL;HOME:http://rarous.net/
+URL;WORK:http://www.atlas.cz/
+ROLE:Employe
+BDAY:19840615
+EMAIL;PREF;INTERNET:rarous@gmail.com
+REV:20070725T082828Z
+END:VCARD

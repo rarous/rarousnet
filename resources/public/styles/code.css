@@ -1,0 +1,38 @@
+code{color:#900;background:#ffc;border:#999 1px dotted;padding:0 2px;font: 12px "Consolas",monospace}
+pre{margin:.5em 0 1em;padding:.25em .5em;overflow:auto;width: 550px;min-height:1.8em}
+pre.xml,
+pre.css{background-color:#fff;border:1px dashed #F63;color:#000;padding:.3em}
+pre.css{background-color:#fff;border-color:#33F}
+pre.csharp,
+pre.vb,
+pre.php{background-color:#fff;border:1px dashed #c90}
+pre.console{background-color:#000;color:#c0c0c0}
+pre code{color:#000;border:0;background:transparent;}
+* html pre{width:80%;padding-bottom:2em;overflow-y:hidden;}
+
+pre .kom {
+	color: #009900;
+}
+pre .elm, .hodnota {
+	color: Blue;
+}
+pre .tag, .selektor {
+	color: Maroon;
+}
+pre .attr, .entita {
+	color: Red;
+}
+pre .exp {
+	background: yellow;
+}
+pre.console code {font-family:Fixedsys,monospace;color:#c0c0c0}
+
+pre code .keyword{color: #0000FF}
+pre code .operator{color: #0000b8}
+pre code .preproc{color: #6699cc}
+pre code .normal{color: #000000}
+pre code .string{color: Maroon}
+pre code .comment{color: #008200}
+pre code .ln_nr{color: #008284}
+pre code .xml_tag{color: #848284}
+pre code .xml_com{color: #008200}
