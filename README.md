@@ -1,5 +1,7 @@
 # rarousnet
 
+![Build status](https://www.codeship.io/projects/aa007a20-80e3-0131-87d0-3684ca152879/status)
+
 A [Heroku](http://www.heroku.com) web app using Compojure.
 
 This generated project has a few basics set up beyond the bare Compojure defaults:
