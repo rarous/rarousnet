@@ -15,33 +15,26 @@
 (def long-date-format
   (-> (formatter "HH.mm - d. MMMM yyyy")
       (with-locale (new java.util.Locale "cs"))))
+(defn permalink [article]
+  (str "http://rarous.net/weblog/" (:id article) "-" (:url article) ".aspx"))
 
 (deftemplate index-template "weblog/index.html" [])
 (deftemplate blogpost-template "weblog/blogpost.html" [article]
-  [:title]
-  (content (get article :title))
-  [:meta (attr= :name "author")]
-  (set-attr :content (get article :author))
-  [:meta (attr= :name "description")]
-  (set-attr :content (get article :description))
-  [:link (attr= :rel "canonical")]
-  (set-attr :href (:url article))
-  [:article :h1]
-  (content (get article :title))
-  [:article :div.entry-content]
-  (html-content (get article :html))
-  [:article :p.info :strong]
-  (content (get article :category))
-  [:article :p.info :time.published]
-  (content (->> (get article :published)
-               from-date
-               (unparse long-date-format)))
-  [:article :p.info :time.published]
-  (set-attr :datetime (->> (get article :published)
-                          from-date
-                          (unparse utc-format)))
-  [:article :strong.user]
-  (content (get article :author)))
+  [:title] (content (get article :title))
+  [[:meta (attr= :name "author")]] (set-attr :content (get article :author))
+  [[:meta (attr= :name "description")]] (set-attr :content (get article :description))
+  [[:link (attr= :rel "canonical")]] (set-attr :href (permalink article))
+  [:article :h1] (content (get article :title))
+  [:article :div.entry-content] (html-content (get article :html))
+  [:article :p.info :strong] (content (get article :category))
+  [:article :strong.user] (content (get article :author))
+  [:article (attr= :rel "bookmark")] (set-attr :href (permalink article))
+  [:article :p.info :time.published] (content (->> (get article :published)
+                                                   from-date
+                                                   (unparse long-date-format)))
+  [:article :p.info :time.published] (set-attr :datetime (->> (get article :published)
+                                                              from-date
+                                                              (unparse utc-format))))
 
 (defn render-view [template]
   (-> {:status 200
