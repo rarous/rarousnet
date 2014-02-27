@@ -12,9 +12,9 @@
                  [enlive "1.1.5"]
                  [clj-time "0.6.0"]]
   :min-lein-version "2.0.0"
-  :plugins [[lein-environ "0.4.0"]]
+  :plugins [[lein-environ "0.4.0"]
+            [lein-midje "3.0.0"]]
   :resource-paths ["src/rarousnet" "resources"]
-  :profiles
-    {:production
-     {:env {:production true}}}
+  :profiles {:production {:env {:production true}}
+             :dev {:dependencies [[midje "1.6.2"]]}}
   :main rarousnet.web)
