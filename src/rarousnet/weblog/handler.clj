@@ -17,12 +17,21 @@
       (with-locale (new java.util.Locale "cs"))))
 (defn permalink [article]
   (str "http://rarous.net/weblog/" (:id article) "-" (:url article) ".aspx"))
+(defn author-twitter [article]
+  (let [author (get article :author)]
+    (condp = author
+      "Aleš Roubíček" "@alesroubicek"
+      "Alessio Busta" "@alessiobusta"
+      nil)))
 
 (deftemplate index-template "weblog/index.html" [])
 (deftemplate blogpost-template "weblog/blogpost.html" [article]
   [:title] (content (get article :title))
   [[:meta (attr= :name "author")]] (set-attr :content (get article :author))
   [[:meta (attr= :name "description")]] (set-attr :content (get article :description))
+  [[:meta (attr= :property "twitter:author")]] (set-attr :content (author-twitter article))
+  [[:meta (attr= :property "twitter:title")]] (set-attr :content (get article :title))
+  [[:meta (attr= :property "twitter:description")]] (set-attr :content (get article :description))
   [[:link (attr= :rel "canonical")]] (set-attr :href (permalink article))
   [:article :h1] (content (get article :title))
   [:article :div.entry-content] (html-content (get article :html))
