@@ -4,15 +4,20 @@
             [ring.util.response :refer [charset]]))
 
 (deftemplate home-template "home/index.html" [])
+(deftemplate webdesign-template "home/webdesign.html" [])
 
 (defn view [template]
     (apply str (template)))
 
-(defn home []
+(defn render [template]
   (-> {:status 200
        :headers {"Content-Type" "text/html"}
-       :body (view home-template)}
+       :body (view template)}
       (charset "UTF-8")))
 
+(defn home [] (render home-template))
+(defn webdesign [] (render webdesign-template))
+
 (defroutes routes
-  (GET "/" [] (home)))
+  (GET "/" [] (home))
+  (GET "/webdesign/" [] (webdesign)))
