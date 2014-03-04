@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0068)https://gist.githubusercontent.com/rwdaigle/2253296/raw/newrelic.yml -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }</style><style type="text/css"></style><style id="clearly_highlighting_css" type="text/css">/* selection */ html.clearly_highlighting_enabled ::-moz-selection { background: rgba(246, 238, 150, 0.99); } html.clearly_highlighting_enabled ::selection { background: rgba(246, 238, 150, 0.99); } /* cursor */ html.clearly_highlighting_enabled {    /* cursor and hot-spot position -- requires a default cursor, after the URL one */    cursor: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--cursor.png") 14 16, text; } /* highlight tag */ em.clearly_highlight_element {    font-style: inherit !important; font-weight: inherit !important;    background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--yellow.png");    background-repeat: repeat-x; background-position: top left; background-size: 100% 100%; } /* the delete-buttons are positioned relative to this */ em.clearly_highlight_element.clearly_highlight_first { position: relative; } /* delete buttons */ em.clearly_highlight_element a.clearly_highlight_delete_element {    display: none; cursor: pointer;    padding: 0; margin: 0; line-height: 0;    position: absolute; width: 34px; height: 34px; left: -17px; top: -17px;    background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--delete-sprite.png"); background-repeat: no-repeat; background-position: 0px 0px; } em.clearly_highlight_element a.clearly_highlight_delete_element:hover { background-position: -34px 0px; } /* retina */ @media (min--moz-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {    em.clearly_highlight_element { background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--yellow@2x.png"); }    em.clearly_highlight_element a.clearly_highlight_delete_element { background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--delete-sprite@2x.png"); background-size: 68px 34px; } } </style></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">#
+#
 # This file configures the New Relic Agent.  New Relic monitors
 # Ruby, Java, .NET, PHP, and Python applications with deep visibility and low overhead.
 # For more information, visit www.newrelic.com.
@@ -11,13 +9,13 @@
 
 
 # Here are the settings that are common to all environments
-common: &amp;default_settings
+common: &default_settings
   # ============================== LICENSE KEY ===============================
 
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: '&lt;%= ENV["NEW_RELIC_LICENSE_KEY"] %&gt;'
+  license_key: '<%= ENV["NEW_RELIC_LICENSE_KEY"] %>'
 
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
@@ -44,7 +42,7 @@ common: &amp;default_settings
   #       - Ajax Service
   #       - All Services
   #
-  app_name: &lt;%= ENV["NEW_RELIC_APP_NAME"] %&gt;
+  app_name: <%= ENV["NEW_RELIC_APP_NAME"] %>
 
   # When "true", the agent collects performance data about your
   # application and reports this data to the New Relic service at
@@ -182,14 +180,14 @@ common: &amp;default_settings
 # ------------------------------------------
 # Environment-specific settings are in this section.
 # For Rails applications, RAILS_ENV is used to determine the environment.
-# For Java applications, pass -Dnewrelic.environment &lt;environment&gt; to set
+# For Java applications, pass -Dnewrelic.environment <environment> to set
 # the environment.
 
 # NOTE if your application has other named environments, you should
 # provide newrelic configuration settings for these environments here.
 
 development:
-  &lt;&lt;: *default_settings
+  <<: *default_settings
   # Turn off communication to New Relic service in development mode (also
   # 'enabled').
   # NOTE: for initial evaluation purposes, you may want to temporarily
@@ -207,23 +205,23 @@ development:
   # textmate: true
 
 test:
-  &lt;&lt;: *default_settings
+  <<: *default_settings
   # It almost never makes sense to turn on the agent when running
   # unit, functional or integration tests or the like.
   monitor_mode: false
 
 # Turn on the agent in production for 24x7 monitoring. NewRelic
-# testing shows an average performance impact of &lt; 5 ms per
+# testing shows an average performance impact of < 5 ms per
 # transaction, you can leave this on all the time without
 # incurring any user-visible performance degradation.
 production:
-  &lt;&lt;: *default_settings
+  <<: *default_settings
   monitor_mode: true
 
 # Many applications have a staging environment which behaves
 # identically to production. Support for that environment is provided
 # here.  By default, the staging environment has the agent turned on.
 staging:
-  &lt;&lt;: *default_settings
+  <<: *default_settings
   monitor_mode: true
-  app_name: &lt;%= ENV["NEW_RELIC_APP_NAME"] %&gt; (Staging)</pre><iframe id="rdbIndicator" width="100%" height="270" border="0" src="./newrelic_files/indicator.htm" style="display: none; border: 0; position: fixed; left: 0; top: 0; z-index: 2147483647"></iframe></body></html>
+  app_name: <%= ENV["NEW_RELIC_APP_NAME"] %> (Staging)
