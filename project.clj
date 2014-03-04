@@ -15,6 +15,10 @@
   :plugins [[lein-environ "0.4.0"]
             [lein-midje "3.0.0"]]
   :resource-paths ["src/rarousnet" "resources"]
-  :profiles {:production {:env {:production true}}
-             :dev {:dependencies [[midje "1.6.2"]]}}
+  :profiles {:production
+             {:env {:production true}
+              :java-agents [[com.newrelic.agent.java/newrelic-agent "3.4.2"]]}
+
+             :dev
+             {:dependencies [[midje "1.6.2"]]}}
   :main rarousnet.web)
