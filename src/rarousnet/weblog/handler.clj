@@ -43,7 +43,8 @@
                                                    (unparse long-date-format)))
   [:article :p.info :time.published] (set-attr :datetime (->> (get article :published)
                                                               from-date
-                                                              (unparse utc-format))))
+                                                              (unparse utc-format)))
+  [:div.fb-like] (set-attr :data-href (permalink article)))
 
 (defn render-view [template]
   (-> {:status 200
