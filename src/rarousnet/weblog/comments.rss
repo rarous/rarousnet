@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<rss xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:georss="http://www.georss.org/georss" version="2.0">
+  <channel>
+    <georss:point>50.7234 14.9296</georss:point>
+    <title>rarouš.weblog  - komentáře k článkům</title>
+    <link>http://rarous.net/</link>
+    <description>Komentáře k článkům rarouš.weblog.</description>
+    <copyright>© 2004 - 2008 Aleš Roubíček. All rights reserved.</copyright>
+    <generator>Gryphoon Weblog v1.78</generator>
+    <item>
+      <author>banter</author>
+      <title>Komentář k článku Legacy code writer - part 1</title>
+      <guid>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx#km1460</guid>
+      <link>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx#km1460</link>
+      <pubDate>Wed, 12 Jun 2013 13:49:53 GMT</pubDate>
+      <description>&lt;p&gt;U legacy kódu prožívám podobné pocity, ale zařekl jsem se, že
+si přečtu knihu &lt;a href="http://amzn.to/15WqFPU"&gt;Working Effectively
+with Legacy Code&lt;/a&gt; Říkám si, zahodit vše a začít znovu. Ale to
+není cesta, ostatně přeložil jsem na toto téma článek: &lt;a
+href="http://blog.zvestov.cz/item/133"&gt;Věci, které byste nikdy
+neměli dělat&lt;/a&gt;&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>Arialdo Martini</author>
+      <title>Komentář k článku Legacy code writer - part 2</title>
+      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1459</guid>
+      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1459</link>
+      <pubDate>Thu, 06 Jun 2013 17:21:00 GMT</pubDate>
+      <description>&lt;p&gt;Thanks for the translation!&lt;/p&gt;&lt;p&gt;Please, find here [&lt;a
+href="http://arialdomartini.wordpress.com/2013/05/31/how-to-spot-the-legacy-code-writer-in-your-company-hint-its-you/"&gt;http://arialdomartini.wordpress.com/…int-its-you/&lt;/a&gt;]
+the original post&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>David Votrubec</author>
+      <title>Komentář k článku Legacy code writer - part 1</title>
+      <guid>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx#km1458</guid>
+      <link>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx#km1458</link>
+      <pubDate>Tue, 04 Jun 2013 16:10:21 GMT</pubDate>
+      <description>&lt;p&gt;Hahaha, tak to me rozeslmalo. Dost podobne vypadal muj prvni projekt
+v jedne nejmennovane firme. Davali to tehdy novackum, protoze nikdo
+jiny na tom nechtel delat. A kdyz neco horelo, tak novacka odvolali na
+jiny projekt a dali to zase nekomu jinemu. Kod pak podle toho
+vypadal…&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>Aleš Roubíček</author>
+      <title>Komentář k článku Legacy code writer - part 2</title>
+      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1457</guid>
+      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1457</link>
+      <pubDate>Sun, 02 Jun 2013 16:23:05 GMT</pubDate>
+      <description>&lt;p&gt;A o tom je celá tahle serie, která ještě nedoběhla do
+konce. :)&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>Satai</author>
+      <title>Komentář k článku Legacy code writer - part 2</title>
+      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1456</guid>
+      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1456</link>
+      <pubDate>Sun, 02 Jun 2013 16:20:02 GMT</pubDate>
+      <description>&lt;p&gt;Asi bych s tim mel trochu problem… ale porad se to da napsat a pak
+refucktorovat ;)&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>Tacoberu</author>
+      <title>Komentář k článku Legacy code writer - part 1</title>
+      <guid>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx#km1455</guid>
+      <link>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx#km1455</link>
+      <pubDate>Sun, 02 Jun 2013 16:17:26 GMT</pubDate>
+      <description>&lt;p&gt;Co mi to jen připomíná…&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>Aleš Roubíček</author>
+      <title>Komentář k článku Legacy code writer - part 2</title>
+      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1454</guid>
+      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1454</link>
+      <pubDate>Sun, 02 Jun 2013 15:51:35 GMT</pubDate>
+      <description>&lt;p&gt;Ad existence: tam šlo o to, že existuje někdo, kdo záměrně
+píše špatný kód. Tj. píše ho s úmyslem někoho nasrat a
+uškodit. :)&lt;/p&gt;&lt;p&gt;Dokonce, když to dáváme na CodeReatreatu jako
+úkol, tak je toho málo kdo schopný. Většinou píšou stejně
+špatně, jako když to za úkol neměli. :)&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>Satai</author>
+      <title>Komentář k článku Legacy code writer - part 2</title>
+      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1453</guid>
+      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1453</link>
+      <pubDate>Sun, 02 Jun 2013 14:41:51 GMT</pubDate>
+      <description>&lt;p&gt;[7] Souhlasim s tim, ze parove programovani je v mnoha situacich
+„best practice“. Ale to nedela ze „second best practice“
+antipattern. Navic v mnoha situacich je prave code review nejlepsi
+moznost.&lt;/p&gt;&lt;p&gt;Ad existence: ano, selhani mamagementu (a taky ocividna
+blbost). Ale jeho dusledkem je existence.&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>Aleš Roubíček</author>
+      <title>Komentář k článku Legacy code writer - part 2</title>
+      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1452</guid>
+      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1452</link>
+      <pubDate>Sun, 02 Jun 2013 13:02:34 GMT</pubDate>
+      <description>&lt;p&gt;Ondro, máme půlku teamu na Slovensku a pair programming je opravdu
+trošku nešikovnej, ale prodlouženej feedbackloop s codereview
+dovoluje dělat spoustu zbytečností, kterým by se dalo snadno
+párováním předejít.&lt;/p&gt;&lt;p&gt;Dane a nemyslíš, že když necháš
+samotnýho méně zkušenýho vývojáře dělat změny na důležitým
+systému, že je to selhání managementu? Že to stojí řádově víc,
+než kdyby to dělal v páru se zkušeným vývojářem?&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+    <item>
+      <author>dkl</author>
+      <title>Komentář k článku Legacy code writer - part 2</title>
+      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1451</guid>
+      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#km1451</link>
+      <pubDate>Sun, 02 Jun 2013 12:50:57 GMT</pubDate>
+      <description>&lt;p&gt;Já teda na legacy-code writera věřim. Sám jsem jím byl (jako
+ostatně asi každej). Je to v podstatě každej nezkušenej
+programátor.&lt;/p&gt;&lt;p&gt;BTW jedna z definic legacy kódu je jednoduše kód
+bez testů &lt;a
+href="http://my.safaribooksonline.com/book/software-engineering-and-development/0131177052/preface/pref03"&gt;http://my.safaribooksonline.com/…eface/pref03&lt;/a&gt;&lt;/p&gt;
+&lt;!-- by Texy2! --&gt;</description>
+    </item>
+  </channel>
+</rss>

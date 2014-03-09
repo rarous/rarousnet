@@ -26,6 +26,7 @@
 
 (deftemplate index-template "weblog/index.html" [])
 (deftemplate rss-template "weblog/index.rss" [])
+(deftemplate comments-rss-template "weblog/comments.rss" [])
 (deftemplate blogpost-template "weblog/blogpost.html" [article]
   [:title] (content (get article :title))
   [[:meta (attr= :name "author")]] (set-attr :content (get article :author))
@@ -52,14 +53,20 @@
        :body (apply str template)}
       (charset "UTF-8")))
 
+(defn render-feed [template]
+  (-> {:status 200
+       :headers {"Content-Type" "application/xml"}
+       :body (apply str template)}
+      (charset "UTF-8")))
+
 (defn index []
   (render-view (index-template)))
 
 (defn rss []
-  (-> {:status 200
-       :headers {"Content-Type" "application/xml"}
-       :body (apply str rss-template)}
-      (charset "UTF-8")))
+  (render-feed (rss-template)))
+
+(defn comments-rss []
+  (render-feed (comments-rss-template)))
 
 (defn blogpost [url]
   (some-> (load-article url)
@@ -69,4 +76,5 @@
 (defroutes routes
   (GET "/weblog/" [] (index))
   (GET "/feed/rss.ashx" [] (rss))
+  (GET "/feed/comments.ashx" [] (comments-rss))
   (GET "/weblog/:url" [url] (blogpost url)))
