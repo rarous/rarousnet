@@ -25,6 +25,7 @@
       nil)))
 
 (deftemplate index-template "weblog/index.html" [])
+(deftemplate rss-template "weblog/index.rss" [])
 (deftemplate blogpost-template "weblog/blogpost.html" [article]
   [:title] (content (get article :title))
   [[:meta (attr= :name "author")]] (set-attr :content (get article :author))
@@ -43,8 +44,7 @@
                                                    (unparse long-date-format)))
   [:article :p.info :time.published] (set-attr :datetime (->> (get article :published)
                                                               from-date
-                                                              (unparse utc-format)))
-  [:div.fb-like] (set-attr :data-href (permalink article)))
+                                                              (unparse utc-format))))
 
 (defn render-view [template]
   (-> {:status 200
@@ -55,6 +55,12 @@
 (defn index []
   (render-view (index-template)))
 
+(defn rss []
+  (-> {:status 200
+       :headers {"Content-Type" "application/xml"}
+       :body (apply str rss-template)}
+      (charset "UTF-8")))
+
 (defn blogpost [url]
   (some-> (load-article url)
           blogpost-template
@@ -62,4 +68,5 @@
 
 (defroutes routes
   (GET "/weblog/" [] (index))
+  (GET "/feed/rss.ashx" [] (rss))
   (GET "/weblog/:url" [url] (blogpost url)))
