@@ -16,7 +16,7 @@
   (-> (formatter "HH.mm - d. MMMM yyyy")
       (with-locale (new java.util.Locale "cs"))))
 (defn permalink [article]
-  (str "http://rarous.net/weblog/" (:id article) "-" (:url article) ".aspx"))
+  (str "http://www.rarous.net/weblog/" (:id article) "-" (:url article) ".aspx"))
 (defn author-twitter [article]
   (let [author (get article :author)]
     (condp = author

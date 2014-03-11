@@ -3,108 +3,108 @@
   <channel>
     <georss:point>50.7234 14.9296</georss:point>
     <title>rarouš.weblog</title>
-    <link>http://rarous.net/</link>
+    <link>http://www.rarous.net/</link>
     <description>Aleš Roubíček píše o webdesignu a dotnetu.</description>
     <copyright>© 2004 - 2008 Aleš Roubíček. All rights reserved.</copyright>
     <generator>Gryphoon Weblog v1.78</generator>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Legacy code writer - part 2</title>
-      <guid>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx</guid>
-      <link>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx</link>
+      <guid>http://www.rarous.net/weblog/454-legacy-code-writer-part-2.aspx</guid>
+      <link>http://www.rarous.net/weblog/454-legacy-code-writer-part-2.aspx</link>
       <pubDate>Sun, 02 Jun 2013 11:27:45 GMT</pubDate>
       <description>Druhá část povídánek o legacy kódu.</description>
-      <comments>http://rarous.net/weblog/454-legacy-code-writer-part-2.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/454-legacy-code-writer-part-2.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Legacy code writer - part 1</title>
-      <guid>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx</guid>
-      <link>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx</link>
+      <guid>http://www.rarous.net/weblog/453-legacy-code-writer-part-1.aspx</guid>
+      <link>http://www.rarous.net/weblog/453-legacy-code-writer-part-1.aspx</link>
       <pubDate>Sat, 01 Jun 2013 18:50:30 GMT</pubDate>
       <description>Malý exkuz do produkce legacy kódu.</description>
-      <comments>http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/453-legacy-code-writer-part-1.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Jak teda s těma výjimkama v busines logice?</title>
-      <guid>http://rarous.net/weblog/451-jak-teda-s-tema-vyjimkama-v-busines-logice.aspx</guid>
-      <link>http://rarous.net/weblog/451-jak-teda-s-tema-vyjimkama-v-busines-logice.aspx</link>
+      <guid>http://www.rarous.net/weblog/451-jak-teda-s-tema-vyjimkama-v-busines-logice.aspx</guid>
+      <link>http://www.rarous.net/weblog/451-jak-teda-s-tema-vyjimkama-v-busines-logice.aspx</link>
       <pubDate>Fri, 17 May 2013 14:11:33 GMT</pubDate>
       <description>Jak to vidím s výjimkama v business logice já.</description>
-      <comments>http://rarous.net/weblog/451-jak-teda-s-tema-vyjimkama-v-busines-logice.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/451-jak-teda-s-tema-vyjimkama-v-busines-logice.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Jak rozběhat Bower ve Visual Studiu</title>
-      <guid>http://rarous.net/weblog/450-jak-rozbehat-bower-ve-visual-studiu.aspx</guid>
-      <link>http://rarous.net/weblog/450-jak-rozbehat-bower-ve-visual-studiu.aspx</link>
+      <guid>http://www.rarous.net/weblog/450-jak-rozbehat-bower-ve-visual-studiu.aspx</guid>
+      <link>http://www.rarous.net/weblog/450-jak-rozbehat-bower-ve-visual-studiu.aspx</link>
       <pubDate>Fri, 03 May 2013 13:13:41 GMT</pubDate>
       <description>Takový malý tutoriálek pro command line junkies, jak si rozběhat bower ve Visual Studiu. </description>
-      <comments>http://rarous.net/weblog/450-jak-rozbehat-bower-ve-visual-studiu.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/450-jak-rozbehat-bower-ve-visual-studiu.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Parsování primitivních typů znova a lépe</title>
-      <guid>http://rarous.net/weblog/449-parsovani-primitivnich-typu-znova-a-lepe.aspx</guid>
-      <link>http://rarous.net/weblog/449-parsovani-primitivnich-typu-znova-a-lepe.aspx</link>
+      <guid>http://www.rarous.net/weblog/449-parsovani-primitivnich-typu-znova-a-lepe.aspx</guid>
+      <link>http://www.rarous.net/weblog/449-parsovani-primitivnich-typu-znova-a-lepe.aspx</link>
       <pubDate>Tue, 23 Apr 2013 17:10:57 GMT</pubDate>
       <description>Praktické využití těch šílených monád.</description>
-      <comments>http://rarous.net/weblog/449-parsovani-primitivnich-typu-znova-a-lepe.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/449-parsovani-primitivnich-typu-znova-a-lepe.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Deset důvodů proč nepoužívat funkcionální jazyky</title>
-      <guid>http://rarous.net/weblog/448-deset-duvodu-proc-nepouzivat-funkcionalni-jazyky.aspx</guid>
-      <link>http://rarous.net/weblog/448-deset-duvodu-proc-nepouzivat-funkcionalni-jazyky.aspx</link>
+      <guid>http://www.rarous.net/weblog/448-deset-duvodu-proc-nepouzivat-funkcionalni-jazyky.aspx</guid>
+      <link>http://www.rarous.net/weblog/448-deset-duvodu-proc-nepouzivat-funkcionalni-jazyky.aspx</link>
       <pubDate>Sun, 14 Apr 2013 10:15:12 GMT</pubDate>
       <description>Máte už plný zuby toho šílenýho povyku okolo funkcionálních jazyků? Já teda jo. Myslím, že je načase sepsat pár rozumných důvodů, proč se od něho držet dál. </description>
-      <comments>http://rarous.net/weblog/448-deset-duvodu-proc-nepouzivat-funkcionalni-jazyky.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/448-deset-duvodu-proc-nepouzivat-funkcionalni-jazyky.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Zatočíme s null</title>
-      <guid>http://rarous.net/weblog/447-zatocime-s-null.aspx</guid>
-      <link>http://rarous.net/weblog/447-zatocime-s-null.aspx</link>
+      <guid>http://www.rarous.net/weblog/447-zatocime-s-null.aspx</guid>
+      <link>http://www.rarous.net/weblog/447-zatocime-s-null.aspx</link>
       <pubDate>Thu, 11 Apr 2013 13:29:00 GMT</pubDate>
       <description>Malé zastavení nad "chytrými" způsoby řešení problematiky null pointerů.</description>
-      <comments>http://rarous.net/weblog/447-zatocime-s-null.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/447-zatocime-s-null.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Krátká pohádka o zlobivých bytech v DB</title>
-      <guid>http://rarous.net/weblog/446-kratka-pohadka-o-zlobivych-bytech-v-db.aspx</guid>
-      <link>http://rarous.net/weblog/446-kratka-pohadka-o-zlobivych-bytech-v-db.aspx</link>
+      <guid>http://www.rarous.net/weblog/446-kratka-pohadka-o-zlobivych-bytech-v-db.aspx</guid>
+      <link>http://www.rarous.net/weblog/446-kratka-pohadka-o-zlobivych-bytech-v-db.aspx</link>
       <pubDate>Wed, 03 Apr 2013 20:19:58 GMT</pubDate>
       <description>Zmrdem snadno a rychle za pár měsíců.</description>
-      <comments>http://rarous.net/weblog/446-kratka-pohadka-o-zlobivych-bytech-v-db.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/446-kratka-pohadka-o-zlobivych-bytech-v-db.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Asynchronní vs. paralelní zpracování úloh</title>
-      <guid>http://rarous.net/weblog/445-asynchronni-vs-paralelni-zpracovani-uloh.aspx</guid>
-      <link>http://rarous.net/weblog/445-asynchronni-vs-paralelni-zpracovani-uloh.aspx</link>
+      <guid>http://www.rarous.net/weblog/445-asynchronni-vs-paralelni-zpracovani-uloh.aspx</guid>
+      <link>http://www.rarous.net/weblog/445-asynchronni-vs-paralelni-zpracovani-uloh.aspx</link>
       <pubDate>Tue, 26 Mar 2013 12:42:52 GMT</pubDate>
       <description>Dnes se podíváme na zoubek asynchronnímu a paralelnímu zpracování.</description>
-      <comments>http://rarous.net/weblog/445-asynchronni-vs-paralelni-zpracovani-uloh.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/445-asynchronni-vs-paralelni-zpracovani-uloh.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Manifest Nejen Objektově Orientovaného Vývoje</title>
-      <guid>http://rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx</guid>
-      <link>http://rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx</link>
+      <guid>http://www.rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx</guid>
+      <link>http://www.rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx</link>
       <pubDate>Mon, 25 Mar 2013 14:01:23 GMT</pubDate>
       <description>Volný překlad manifestu Nejen Objektově Orientovaného Vývoje.</description>
-      <comments>http://rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx#komentare</comments>
+      <comments>http://www.rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx#komentare</comments>
       <category>Moje práce</category>
     </item>
   </channel>
