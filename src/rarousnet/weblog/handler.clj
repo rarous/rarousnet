@@ -72,6 +72,10 @@
    {:status 301
     :headers {"Location" "http://feeds.feedburner.com/rarous-weblog"}})
 
+(defn redirect-to-blogpost [url]
+   {:status 301
+    :headers {"Location" (str "http://www.rarous.net/weblog/" url)}})
+
 (defn blogpost [url]
   (some-> (load-article url)
           blogpost-template
@@ -83,4 +87,6 @@
   (GET "/feed/comments.ashx" [] (comments-rss))
   (GET "/ws/syndikace.asmx/rss" [] (redirect-to-rss-feed))
   (GET "/ws/Syndikace.asmx/Rss" [] (redirect-to-rss-feed))
-  (GET "/weblog/:url" [url] (blogpost url)))
+  (GET "/weblog/:url" [url] (blogpost url))
+  (GET "/clanek/:url" [url] (redirect-to-blogpost url))
+  )
