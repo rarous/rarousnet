@@ -82,4 +82,5 @@
   (GET "/feed/rss.ashx" [] (rss))
   (GET "/feed/comments.ashx" [] (comments-rss))
   (GET "/ws/syndikace.asmx/rss" [] (redirect-to-rss-feed))
+  (GET "/ws/Syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/weblog/:url" [url] (blogpost url)))
