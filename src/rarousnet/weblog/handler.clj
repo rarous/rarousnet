@@ -68,6 +68,10 @@
 (defn comments-rss []
   (render-feed (comments-rss-template)))
 
+(defn redirect-to-rss-feed []
+   {:status 301
+    :headers {"Location" "http://feeds.feedburner.com/rarous-weblog"}})
+
 (defn blogpost [url]
   (some-> (load-article url)
           blogpost-template
@@ -77,4 +81,5 @@
   (GET "/weblog/" [] (index))
   (GET "/feed/rss.ashx" [] (rss))
   (GET "/feed/comments.ashx" [] (comments-rss))
+  (GET "/ws/syndikace.asmx/rss" [] (redirect-to-rss-feed))
   (GET "/weblog/:url" [url] (blogpost url)))
