@@ -15,9 +15,15 @@
        :body (view template)}
       (charset "UTF-8")))
 
+(defn moved-permanently [location]
+  {:status 301
+   :headers {"Location" location}})
+
 (defn home [] (render home-template))
 (defn webdesign [] (render webdesign-template))
+(defn redirect-reference [] (moved-permanently "/webdesign/"))
 
 (defroutes routes
   (GET "/" [] (home))
-  (GET "/webdesign/" [] (webdesign)))
+  (GET "/webdesign/" [] (webdesign))
+  (GET "/reference.aspx" [] (redirect-reference)))
