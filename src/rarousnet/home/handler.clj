@@ -28,4 +28,4 @@
   (GET "/" [] (home))
   (GET "/webdesign/" [] (webdesign))
   (GET "/reference.aspx" [] (redirect-reference))
-  (GET "/texy-ws/endpoint.php" [] (redirect-texy)))
+  (ANY "/texy-ws/endpoint.php" [] (redirect-texy)))
