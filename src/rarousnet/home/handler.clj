@@ -1,6 +1,6 @@
 (ns rarousnet.home.handler
   (:use net.cgrand.enlive-html)
-  (:require [compojure.core :refer [defroutes GET]]
+  (:require [compojure.core :refer [defroutes GET ANY]]
             [ring.util.response :refer [charset]]))
 
 (deftemplate home-template "home/index.html" [])
