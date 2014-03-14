@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-<rss xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:georss="http://www.georss.org/georss" version="2.0">
+<rss version="2.0">
   <channel>
-    <georss:point>50.7234 14.9296</georss:point>
     <title>rarouš.weblog</title>
     <link>http://www.rarous.net/</link>
     <description>Aleš Roubíček píše o webdesignu a dotnetu.</description>
