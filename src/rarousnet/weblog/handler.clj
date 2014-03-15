@@ -19,7 +19,7 @@
   (str "http://www.rarous.net/weblog/" (:id article) "-" (:url article) ".aspx"))
 (defn author-twitter [article]
   (let [author (get article :author)]
-    (condp = author
+    (case author
       "Aleš Roubíček" "@alesroubicek"
       "Alessio Busta" "@alessiobusta"
       nil)))
