@@ -7,6 +7,7 @@
                  [compojure "1.1.6"]
                  [ring "1.2.1"]
                  [ring-basic-authentication "1.0.5"]
+                 [rm-hull/ring-gzip-middleware "0.1.7"]
                  [environ "0.4.0"]
                  [com.cemerick/drawbridge "0.0.6"]
                  [enlive "1.1.5"]

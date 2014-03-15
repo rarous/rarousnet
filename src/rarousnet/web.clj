@@ -3,6 +3,7 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [ring.middleware.gzip :refer wrap-gzip]
             [ring.middleware.stacktrace :as trace]
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
@@ -47,7 +48,8 @@
     (jetty/run-jetty (-> #'app
                          ((if (env :production)
                             wrap-error-page
-                            trace/wrap-stacktrace))
+                            trace/wrap-stacktrace
+                            wrap-gzip))
                          (site {:session {:store store}}))
                      {:port port :join? false})))
 
