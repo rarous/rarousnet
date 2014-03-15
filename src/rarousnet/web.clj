@@ -3,7 +3,7 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
-            [ring.middleware.gzip :refer wrap-gzip]
+            [ring.middleware.gzip :refer [wrap-gzip]]
             [ring.middleware.stacktrace :as trace]
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
