@@ -36,10 +36,10 @@
 (defn wrap-error-page [handler]
   (fn [req]
     (try (handler req)
-         (catch Exception e
-           {:status 500
-            :headers {"Content-Type" "text/html"}
-            :body (slurp (io/resource "500.html"))}))))
+      (catch Exception e
+        {:status 500
+         :headers {"Content-Type" "text/html"}
+         :body (slurp (io/resource "500.html"))}))))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))
@@ -48,9 +48,9 @@
     (jetty/run-jetty (-> #'app
                          ((if (env :production)
                             wrap-error-page
-                            trace/wrap-stacktrace
-                            wrap-gzip))
-                         (site {:session {:store store}}))
+                            trace/wrap-stacktrace))
+                         (site {:session {:store store}})
+                         wrap-gzip)
                      {:port port :join? false})))
 
 ;; For interactive development:
