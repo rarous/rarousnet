@@ -85,11 +85,13 @@
 
 (defroutes routes
   (GET "/weblog/" [] (index))
+  (GET "/weblog/:url" [url] (blogpost url))
   (GET "/feed/rss.ashx" [] (rss))
   (GET "/feed/comments.ashx" [] (comments-rss))
+
   (GET "/ws/syndikace.asmx/rss" [] (redirect-to-rss-feed))
   (GET "/ws/Syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/ws/syndikace.asmx/Rss" [] (redirect-to-rss-feed))
-  (GET "/weblog/:url" [url] (blogpost url))
   (GET "/clanek/:url" [url] (redirect-to-blogpost url))
-  )
+  (GET "/rubrika/:id-:url" [id url] (redirect-to-blogpost url))
+  (GET "/weblog" [] (redirect-to-blogpost "")))
