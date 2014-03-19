@@ -27,5 +27,8 @@
 (defroutes routes
   (GET "/" [] (home))
   (GET "/webdesign/" [] (webdesign))
+
   (GET "/reference.aspx" [] (redirect-reference))
+  (GET "/weblog/reference.aspx" [] (redirect-reference))
+  (GET "/weblog/projekty.aspx" [] (redirect-reference))
   (ANY "/texy-ws/endpoint.php" [] (redirect-texy)))
