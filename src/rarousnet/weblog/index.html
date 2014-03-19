@@ -1,29 +1,32 @@
 <!doctype html>
-<html lang=cs>
-    <head>
-        <meta charset="utf-8">
-        <title>rarouš.weblog</title>
-        <meta name="Description" content="Aleš Roubíček píše o webdesignu a dotnetu.">
-        <meta name="blogcatalog" content="9BC9064972">
-        <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/rarous-weblog" title="rarouš.weblog - poslední články">
-        <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře k článkům">
-        <link rel="canonical" href="http://www.rarous.net/weblog/">
-        <meta property="og:type" content="blog">
-        <meta property="og:url" content="http://www.rarous.net/weblog/">
-        <meta property="og:title" content="rarouš.weblog">
-        <!--[if lt IE 9]><script src=http://html5shim.googlecode.com/svn/trunk/html5.js></script><![endif]-->
-        <script>
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-90726-1']);
-            _gaq.push(['_trackPageview']);
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
-        <link rel="stylesheet" href="/design/blog/blog.css?30">
-        <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
+<html lang="cs">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<meta charset="utf-8">
+<title>rarouš.weblog</title>
+<meta name="description" content="Aleš Roubíček píše o webdesignu a dotnetu.">
+<meta name="blogcatalog" content="9BC9064972">
+<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/rarous-weblog" title="rarouš.weblog - poslední články">
+<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře k článkům">
+<link rel="canonical" href="http://www.rarous.net/weblog/">
+<meta property="fb:app_id" content="215763288621854">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://www.rarous.net/weblog/">
+<meta property="og:title" content="rarouš.weblog">
+<meta property="og:locale" content="cs_CZ">
+<!--[if lt IE 9]><script src=http://html5shim.googlecode.com/svn/trunk/html5.js></script><![endif]-->
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-90726-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+<link rel="stylesheet" href="/design/blog/blog.css?30">
+<link rel="stylesheet" href="/assets/css/prism.css">
+<link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
 </head>
 <body id="rarous">
     <div id="top">
@@ -337,8 +340,7 @@ kde se s ním bude dále pracovat. Vyhodíme tedy výjimku a tu pak odchytíme?
 Tím se ale dostáváme k bodu <code>4</code>. Lepším řešením je definovat
 komplexní návratový typ:
 
-<pre
-class="fsharp"><code>type ValidationResult =
+<pre><code class="language-fsharp">type ValidationResult =
   | Valid
   | Invalid of ValidationError list</code></pre>
 
@@ -353,8 +355,7 @@ zavedeme potenciální chybu v podobě <code
 title="NullReferenceException">NRE</code>… Proto si opět myslím, že by se
 měl vracet adekvátní typ:
 
-<pre
-class="fsharp"><code>type AuthenticationResult =
+<pre><code class="language-fsharp">type AuthenticationResult =
   | NotAuthenticated
   | Authenticated of User</code></pre>
 
@@ -448,10 +449,10 @@ práce s ní celkem neohrabaná a plná nepěkných věcí, jako
 <code>out</code> parametry nebo porušení základního objektového principu
 <em>tell don't ask</em>.
 
-<pre class="csharp"><code><span class="keyword">int</span>? TryParse(<span class="keyword">string</span> input) {
-  <span class="keyword">int</span> result;
-  <span class="keyword">if</span> (Int32.TryParse(input, <span class="keyword">out</span> result)) <span class="keyword">return</span> result;
-  <span class="keyword">return</span> <span class="keyword">null</span>;
+<pre><code class="language-csharp">int? TryParse(string input) {
+  int result;
+  if (Int32.TryParse(input, out result)) return result;
+  return null;
 }</code></pre>
 
 <p>Tohle je jednoduchá ukázka, kterou jistě ve svém kódu najdete
@@ -463,10 +464,10 @@ problém vyřešili zavedením jiného.
 <p>Tak se necháme inspirovat u F#, které nemá podporu pro <code>out</code>
 parametry. Ten to řeší nějak tak:
 
-<pre class="csharp"><code>Tuple&lt;<span class="keyword">bool</span>, <span class="keyword">int</span>&gt; TryParse(<span class="keyword">string</span> input) {
-  <span class="keyword">int</span> result;
-  <span class="keyword">bool</span> success = Int32.TryParse(input, <span class="keyword">out</span> result);
-  <span class="keyword">return</span> Tuple.Create(success, result);
+<pre><code class="language-csharp">Tuple&lt;bool, int&gt; TryParse(string input) {
+  int result;
+  bool success = Int32.TryParse(input, out result);
+  return Tuple.Create(success, result);
 }</code></pre>
 
 <p>Bohužel C# není jazyk, který by prvotřídně podporoval
@@ -475,10 +476,10 @@ Každopádně, nemáme problém s <code>null</code>, ale typ samotný nám toho
 taky moc neřekne. Co je ten <code>bool</code>? Nevíme, dokud se nepodíváme
 do dokumentace – kódu. Musí to jít i lépe! Maybe. ;)
 
-<pre class="csharp"><code>Maybe&lt;<span class="keyword">int</span>&gt; TryParse(<span class="keyword">string</span> input) {
-  <span class="keyword">int</span> result;
-  <span class="keyword">bool</span> success = Int32.TryParse(input, <span class="keyword">out</span> result);
-  <span class="keyword">return</span> success ? result.ToMaybe() : <span class="keyword">new</span> Nothing&lt;<span class="keyword">int</span>&gt;();
+<pre><code class="language-csharp">Maybe&lt;int&gt; TryParse(string input) {
+  int result;
+  bool success = Int32.TryParse(input, out result);
+  return success ? result.ToMaybe() : new Nothing&lt;int&gt;();
 }</code></pre>
 
 <p>Nyní máme existenci hodnoty vyjádřenou na úrovni typu a můžeme s ní
@@ -489,21 +490,21 @@ jestli ji máme nebo ne. Kód se tak krásně vyčistí.
 <p>Celé řešení můžeme nakonec pěkně generalizovat a vytvořit si
 vlastní modul pro parsování:
 
-<pre class="csharp"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> ParseEx {
-  <span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">bool</span> ParserDelegate&lt;T&gt;(<span class="keyword">string</span> input, <span class="keyword">out</span> T result);
+<pre><code class="language-csharp">public static class ParseEx {
+  public delegate bool ParserDelegate&lt;T&gt;(string input, out T result);
 
-  <span class="keyword">public</span> <span class="keyword">static</span> Maybe&lt;T&gt; Parse&lt;T&gt;(<span class="keyword">string</span> input, ParserDelegate&lt;T&gt; parser) {
+  public static Maybe&lt;T&gt; Parse&lt;T&gt;(string input, ParserDelegate&lt;T&gt; parser) {
     T result;
-    <span class="keyword">bool</span> isSuccess = parser(input, <span class="keyword">out</span> result);
-    <span class="keyword">return</span> isSuccess ? result.ToMaybe() : <span class="keyword">new</span> Nothing&lt;T&gt;();
+    bool isSuccess = parser(input, out result);
+    return isSuccess ? result.ToMaybe() : new Nothing&lt;T&gt;();
   }
 
-  <span class="keyword">public</span> <span class="keyword">static</span> Maybe&lt;DateTime&gt; ParseDateTime(<span class="keyword">string</span> input) {
-    <span class="keyword">return</span> Parse&lt;DateTime&gt;(input, DateTime.TryParse);
+  public static Maybe&lt;DateTime&gt; ParseDateTime(string input) {
+    return Parse&lt;DateTime&gt;(input, DateTime.TryParse);
   }
 
-  <span class="keyword">public</span> <span class="keyword">static</span> Maybe&lt;<span class="keyword">int</span>&gt; ParseInt32(<span class="keyword">string</span> input) {
-    <span class="keyword">return</span> Parse&lt;<span class="keyword">int</span>&gt;(input, Int32.TryParse);
+  public static Maybe&lt;int&gt; ParseInt32(string input) {
+    return Parse&lt;int&gt;(input, Int32.TryParse);
   }
 }</code></pre>
 
@@ -593,28 +594,27 @@ dobrém céčkovém jazyce, chybí tam tolik kódu, že mě to až děsí.
 
 <p>No, podívejte se sami na kód napsaný v povědomém jazyce:
 
-<pre class="csharp"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> SumOfSquaresHelper
+<pre><code class="language-csharp">public static class SumOfSquaresHelper
 {
-   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> Square(<span class="keyword">int</span> i)
+   public static int Square(int i)
    {
-      <span class="keyword">return</span> i * i;
+      return i * i;
    }
 
-   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> SumOfSquares(<span class="keyword">int</span> n)
+   public static int SumOfSquares(int n)
    {
-      <span class="keyword">int</span> sum = 0;
-      <span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt;= n; i++)
+      int sum = 0;
+      for (int i = 1; i &lt;= n; i++)
       {
          sum += Square(i);
       }
-      <span class="keyword">return</span> sum;
+      return sum;
    }
 }</code></pre>
 
 <p>a porovnejte to s tímhle:
 
-<pre
-class="fsharp"><code>let square x = x * x
+<pre><code class="language-fsharp">let square x = x * x
 let sumOfSquares n = [1..n] |&gt; List.map square |&gt; List.sum</code></pre>
 
 <p>To je 17 řádek ku 2. <a
@@ -633,25 +633,24 @@ opravdové programovací jazyky?
 <p>Pojďme si ukázat, co mám na mysli. Tady je kus kódu se starejma dobrejma
 složenejma závorkama:
 
-<pre class="csharp"><code><span class="keyword">public</span> <span class="keyword">class</span> Squarer
+<pre><code class="language-csharp">public class Squarer
 {
-    <span class="keyword">public</span> <span class="keyword">int</span> Square(<span class="keyword">int</span> input)
+    public int Square(int input)
     {
-        <span class="keyword">var</span> result = input * input;
-        <span class="keyword">return</span> result;
+        var result = input * input;
+        return result;
     }
 
-    <span class="keyword">public</span> <span class="keyword">void</span> PrintSquare(<span class="keyword">int</span> input)
+    public void PrintSquare(int input)
     {
-        <span class="keyword">var</span> result = <span class="keyword">this</span>.Square(input);
-        Console.WriteLine(<span class="string">"Input={0}. Result={1}"</span>, input, result);
+        var result = this.Square(input);
+        Console.WriteLine("Input={0}. Result={1}", input, result);
     }
 }</code></pre>
 
 <p>a tady obdobný kód bez složenejch závorek:
 
-<pre
-class="fsharp"><code>type Squarer() =
+<pre><code class="language-fsharp">type Squarer() =
 
     let Square input =
          let result = input * input
@@ -680,13 +679,13 @@ proč mám rád Javu.
 <p>Tady je signatůra funkce z nějakýho ML dialektu. Nejsou tam vůbec
 žádný deklarace typů. Všechny jsou odvozený automagicky:
 
-<pre class="fsharp"><code>let GroupBy source keySelector =
+<pre><code class="language-fsharp">let GroupBy source keySelector =
     ...</code></pre>
 
 <p>A tady je signatura té samé funkce v C#, s explicitně
 vyjádřenými typy:
 
-<pre class="csharp"><code><span class="keyword">public</span> IEnumerable&lt;IGrouping&lt;TKey, TSource&gt;&gt; GroupBy&lt;TSource, TKey&gt;(
+<pre><code class="language-csharp">public IEnumerable&lt;IGrouping&lt;TKey, TSource&gt;&gt; GroupBy&lt;TSource, TKey&gt;(
     IEnumerable&lt;TSource&gt; source,
     Func&lt;TSource, TKey&gt; keySelector
     )
@@ -758,9 +757,9 @@ svědomitý v případě ověřování <code>null</code> a to v každé
 metodě</a>. Celkem mě uspokojuje pocit, že vím, že můj kód je ve
 výsledku úplně neprůstřelný.
 
-<pre class="csharp"><code><span class="keyword">void</span> SomeMethod(SomeClass x)
+<pre><code class="language-csharp">void SomeMethod(SomeClass x)
 {
-    <span class="keyword">if</span> (x == <span class="keyword">null</span>) { <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentNullException(); }
+    if (x == null) { throw new ArgumentNullException(); }
 
     x.DoSomething();
 }</code></pre>
@@ -800,7 +799,7 @@ příliš matematiky</h3>
 <p>Tady je další ukázka počítání mocnin. IMO je dost těžký pochopit,
 o co vlastně jde, protože je tam sousta nesmyslných symbolů:
 
-<pre><code>ss=: +/ @: *:</code></pre>
+<pre><code class="language-j">ss=: +/ @: *:</code></pre>
 
 <p>Dobře, omlouvám se, moje chyba, tohle je <a
 href="http://en.wikipedia.org/wiki/J_(programming_language)">kód v J</a>. Ale
@@ -922,9 +921,9 @@ obávat <code>NRE</code>, protože tu máme bezpečný <em>Null Object</em>.
 
 <p>Já ho třeba používám vždycky, když implementuji logování:
 
-<pre class="csharp"><code>ILogger logger = NullLogger.Instance;
-<span class="keyword">public</span> ILogger Log {
-  get { <span class="keyword">return</span> logger; }
+<pre><code class="language-csharp">ILogger logger = NullLogger.Instance;
+public ILogger Log {
+  get { return logger; }
   set { logger = value ?? NullLogger.Instance; }
 }</code></pre>
 
@@ -934,20 +933,20 @@ Logger je možné injektovat, ale pokud se někdo pokusí podstrčit
 že se <code>logger</code> nepoužívá nikde jinde, než v property, máme
 bezpečno a nemusíme psát spoustu defenzivního kódu jako:
 
-<pre class="csharp"><code><span class="keyword">if</span> (Log != <span class="keyword">null</span>) Log.Info(<span class="string">"foo"</span>);</code></pre>
+<pre><code class="language-csharp">if (Log != null) Log.Info("foo");</code></pre>
 
 <p>Samozřejmě to není jediný případ užití. Další, z možných
 implementací, je vyjádření speciálního stavu, jako třeba:
 
-<pre class="csharp"><code><span class="keyword">public</span> <span class="keyword">class</span> AsyncResult {
-  <span class="keyword">public</span> AsyncResult(XElement response) {
+<pre><code class="language-csharp">public class AsyncResult {
+  public AsyncResult(XElement response) {
     Response = response;
   }
-  <span class="keyword">public</span> XElement Response { get; set; }
+  public XElement Response { get; set; }
 }
 
-<span class="keyword">public</span> <span class="keyword">class</span> QueryInProgress : AsyncResult {
-  <span class="keyword">public</span> QueryInProgress() : <span class="keyword">base</span>(<span class="keyword">null</span>) { }
+public class QueryInProgress : AsyncResult {
+  public QueryInProgress() : base(null) { }
 }</code></pre>
 
 <p>Tohle je <em>Null Object</em> implementovaný v SOA. Systém dostane ke
@@ -961,8 +960,7 @@ výsledek, dostane buď Null Object <code>QueryInProgress</code>, který
 <p>Jazyky, které podporují pattern-matching, umožňuji práci s typem
 Option:
 
-<pre
-class="fsharp"><code>let exists (x : int option) =
+<pre><code class="language-fsharp">let exists (x : int option) =
     match x with
     | Some(x) -&gt; true
     | None -&gt; false</code></pre>
@@ -971,8 +969,7 @@ class="fsharp"><code>let exists (x : int option) =
 o hodnotu, ale o typ. Typ <code>Option</code> je totiž definován jako
 generické disjunktivní sjednocení:
 
-<pre
-class="fsharp"><code>type Option&lt;'T&gt; =
+<pre><code class="language-fsharp">type Option&lt;'T&gt; =
   | None
   | Some of 'T</code></pre>
 
@@ -994,7 +991,7 @@ nad maybe.
 <p>Nepotřebujeme však nutně Haskell, abychom mohli využívat všech výhod.
 Tohle je třeba C#:
 
-<pre class="csharp"><code><span class="keyword">return</span> TryGetCachedData(message, metadata, request).Match(
+<pre><code class="language-csharp">return TryGetCachedData(message, metadata, request).Match(
   some: data =&gt; CachedResult(message.RequestId, data, stats),
   none: () =&gt; Result(message, context, metadata, request, stats));</code></pre>
 
@@ -1104,11 +1101,11 @@ Asynchronous Pattern (TAP)</a>. A protože je postavený na datové struktuře
 „asynchronní“ implementaci metody <code>ToFirstAsync()</code> ze
 SQLite:
 
-<pre class="csharp"><code><span class="keyword">public</span> Task&lt;T&gt; ToFirstAsync ()
+<pre><code class="language-csharp">public Task&lt;T&gt; ToFirstAsync ()
 {
-  <span class="keyword">return</span> Task&lt;T&gt;.Factory.StartNew(() =&gt; {
-    <span class="keyword">using</span> (((SQLiteConnectionWithLock)_innerQuery.Connection).Lock ()) {
-      <span class="keyword">return</span> _innerQuery.ToFirst ();
+  return Task&lt;T&gt;.Factory.StartNew(() =&gt; {
+    using (((SQLiteConnectionWithLock)_innerQuery.Connection).Lock ()) {
+      return _innerQuery.ToFirst ();
     }
   });
 }</code></pre>
@@ -1165,18 +1162,18 @@ za smell.
 <p>Popravdě, taky jsem takovou metodu měl. Zjednodušeně vypadala asi
 nějak tak:
 
-<pre class="csharp"><code><span class="keyword">class</span> Client : ConsumerOf&lt;Message&gt; {
-  <span class="keyword">readonly</span> ManualResetEvent sync = <span class="keyword">new</span> ManualResetEvent(<span class="keyword">false</span>);
+<pre><code class="language-csharp">class Client : ConsumerOf&lt;Message&gt; {
+  readonly ManualResetEvent sync = new ManualResetEvent(false);
 
-  <span class="keyword">public</span> Task&lt;Result&gt; QueryAsync(Request request) {
-    <span class="keyword">return</span> Task.Factory.StartNew(() =&gt; {
+  public Task&lt;Result&gt; QueryAsync(Request request) {
+    return Task.Factory.StartNew(() =&gt; {
       SendQuery(request.ToQuery());
       sync.Wait();
-      <span class="keyword">return</span> Result;
+      return Result;
     });
   }
 
-  <span class="keyword">public</span> <span class="keyword">void</span> Consume(Message msg) {
+  public void Consume(Message msg) {
     sync.Set();
     Result = msg.ToResult();
   }
@@ -1193,8 +1190,7 @@ sranda. Jak to udělat opravdu asynchronně?
 <p>Klíčem k úspěchu je využití třídy
 <code>TaskCompletionSource</code>:
 
-<pre
-class="csharp"><code>class Client : ConsumerOf&lt;Message&gt; {
+<pre><code class="language-csharp">class Client : ConsumerOf&lt;Message&gt; {
   readonly TaskCompletionSource tcs = new TaskCompletionSource();
 
   public Task&lt;Result&gt; QueryAsync(Request request) {
@@ -1307,8 +1303,6 @@ Autor: <strong class="user fn">Aleš Roubíček</strong> |
 </div>
 
 <div class="footer">
-  <div class="box vcard hslice" id="author">
-   </div>
 
 
 <div class="box drop rubriky">
@@ -1328,15 +1322,12 @@ Autor: <strong class="user fn">Aleš Roubíček</strong> |
 </div>
 </div>
 
-  <div class="box agregate" id="agregace">
-
-  </div>
-  <div class="box tirage" id="tirage">
-
-  </div>
-
+    <div class="ads">
+        <p>© 2014 Aleš Roubíček. Publikováno pod licencí <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons 4.0 Attribution-ShareAlike</a>.</p>
+    </div>
 </div>
 
 </div>
 <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script src="/assets/js/prism.js"></script>
 
