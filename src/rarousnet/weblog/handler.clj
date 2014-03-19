@@ -93,5 +93,7 @@
   (GET "/ws/Syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/ws/syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/clanek/:url" [url] (redirect-to-blogpost url))
-  (GET "/rubrika/:id-:url" [id url] (redirect-to-blogpost url))
-  (GET "/weblog" [] (redirect-to-blogpost "")))
+  (GET "/rubrika/:url" [url] (redirect-to-blogpost (subs url (.indexOf url "-"))))
+  (GET "/weblog" [] (redirect-to-blogpost ""))
+  (GET "/weblog/429-test-driven-developemt-pribeh-nezbedneho-vyvojare.aspx" []
+       (moved-permanently "/weblog/429-test-driven-development-pribeh-nezbedneho-vyvojare.aspx")))

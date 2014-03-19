@@ -21,6 +21,7 @@
 
 (defn home [] (render home-template))
 (defn webdesign [] (render webdesign-template))
+(defn redirect-home [] (moved-permanently "/"))
 (defn redirect-reference [] (moved-permanently "/webdesign/"))
 (defn redirect-texy [] (moved-permanently "http://texy-rarous.rhcloud.com/ws/endpoint.php"))
 
@@ -28,6 +29,8 @@
   (GET "/" [] (home))
   (GET "/webdesign/" [] (webdesign))
 
+  (GET "/default.aspx" [] (redirect-home))
+  (GET "/Default.aspx" [] (redirect-home))
   (GET "/reference.aspx" [] (redirect-reference))
   (GET "/weblog/reference.aspx" [] (redirect-reference))
   (GET "/weblog/projekty.aspx" [] (redirect-reference))
