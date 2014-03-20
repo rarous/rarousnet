@@ -43,17 +43,14 @@
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))
         ;; TODO: heroku config:add SESSION_SECRET=$RANDOM_16_CHARS
-        store (cookie/cookie-store {:key (env :session-secret)})
-        handler (-> #'app
+        store (cookie/cookie-store {:key (env :session-secret)})]
+    (run-server (-> #'app
                     ((if (env :production)
                        wrap-error-page
                        trace/wrap-stacktrace))
                     (site {:session {:store store}})
                     wrap-gzip)
-        reload (if (env :production)
-                 (handler)
-                 (reload/wrap-reload handler))]
-    (run-server reload {:port port})))
+                {:port port})))
 
 ;; For interactive development:
 ;; (stop)
