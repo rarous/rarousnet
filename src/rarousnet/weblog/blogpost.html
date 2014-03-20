@@ -93,6 +93,13 @@ ga('send', 'pageview');
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
                 })();
             </script>
+            <script>
+                if(FB&&FB.Event&&FB.Event.subscribe){
+                FB.Event.subscribe('edge.create',function(t){ga('send','social','facebook','like',t)});
+                FB.Event.subscribe('edge.remove',function(t){ga('send','social','facebook','unlike',t)});
+                FB.Event.subscribe('message.send',function(t){ga('send','social','facebook','share',t)});}
+                twttr.ready(function(twttr){twttr.events.bind('tweet',function(e){if(e)ga('send','social','twitter','tweet',(e.target&&e.target.nodeName=='IFRAME')?extractParamFromUri(e.target.src,'url'):'')})});
+            </script>
         </div>
     </body>
 </html>
