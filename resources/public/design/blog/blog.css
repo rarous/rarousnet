@@ -1,4 +1,4 @@
-﻿@import "../wai.css";
+@import "../wai.css";
 
 html,body{margin:0;padding:0;background:#FFF;color:#555;font:16px sans-serif}
 body{border-top:2px solid #333;border-bottom:2px solid #333;background:url(b.png) repeat-x top left}
@@ -22,24 +22,6 @@ pre{border:1px solid #CCC;margin:1em 0;padding:.5em;overflow:auto;max-width:680p
 pre.console{background:#000;color:#c0c0c0}
 pre.console code{font-family:Fixedsys,monospace;color:#c0c0c0}
 
-pre .kom{color:#090}
-pre .attr,pre .elm,pre .tag{color:#3A4A64}
-pre .hodnota,pre .selektor{color:#409B1C}
-pre .entita{color:#3B5BB5}
-pre .exp{color:#FF7800}
-
-pre code{background:transparent}
-pre code .keyword{color:#FF7800}
-pre code .int{color:#3B5BB5}
-pre code .operator{color:#0000b8}
-pre code .preproc{color:#69c}
-pre code .normal{color:#000}
-pre code .string{color:#409B1C}
-pre code .comment{color:#8C868F}
-pre code .ln_nr{color:#008284}
-pre code .xml_tag{color:#848284}
-pre code .xml_com{color:#008200}
-
 a{color:#006}
 a img{border:0}
 a:visited{color:#555}
@@ -56,9 +38,6 @@ div.image{border:1px solid #CCC;padding:4px;margin:1em 0;overflow:auto}
 .search input{border:0;margin:0;vertical-align:middle}
 .search input[type~="text"]{line-height:1.3;width:9em}
 
-.menu{background:url(menu.png?2) 0 -4px no-repeat;padding:0 3.8em;position:absolute;top:220px;font:2em 'Arial Black';text-transform:uppercase;letter-spacing:-3px}
-.menu a{color:#EFEFEF;padding:0 .2em;text-decoration:none}
-.menu a:hover{color:#FFF}
 
 .info,
 article>footer{font:.68em 'Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:1px;margin:.56em 0 .9em}
@@ -132,7 +111,7 @@ article .entry-content>p:first-child:first-letter{color:#C00;font-size:3.4em;lin
 .footer a{color:#CCC;text-decoration:none}
 .footer a:hover{background:transparent;color:#FFF;text-decoration:underline}
 .footer a img{border:0}
-.footer .ads{background:url(gray-52.png);position:absolute;left:0;bottom:0;width:100%;}
+.footer .ads{background:url(gray-52.png);clear:both;}
 .footer .ads p{margin:0;font-size:.9em !important;line-height:2.2;text-indent:1.8em}
 .footer .ads a{color:#CC0}
 .footer .box{color:#CCC;border:1px solid transparent;float:left;clear:none;width:15em;margin:0 .416em 0 0}
@@ -141,44 +120,38 @@ article .entry-content>p:first-child:first-letter{color:#C00;font-size:3.4em;lin
 .footer .box ul{background:#666;font-size:1.166em;list-style-type:none;margin:.3em 0;padding:.714em;min-height:16em}
 .footer .box .thumbnail{float:left;margin:0 .4em .2em 0;padding:2px;border:1px solid #CCC}
 
-.footer .box.vcard{width:31em}
-.footer .box .entry-content{background:#666;padding:.714em;min-height:16em}
+#content{margin:4em 1ex 1em}
 
-.footer .box.agregate ul li{line-height:17px;padding:0}
+@media screen and (min-width: 701px) {
+  #top{background:url(bg.png) no-repeat top right;border-top:2px solid #F09;border-bottom:2px solid #F09;margin:1px 0;min-width:50em}
+  #top>.footer{background:#666 url(fbg.png) repeat-x;border-bottom:2px solid #F09;min-height:8em;clear:both;margin-top:1.4em;padding-left:3.5em;font-size:12px}
 
-.footer .box.tirage ul{background:url(tbg.png);color:#DEE5EC;font:500 1.33em/1.63 Calibri,sans-serif}
-.footer .box.tirage ul li[class]{padding-left:26px;background:url(tbtn.png) 0 2px no-repeat;}
-.footer .box.tirage ul li.live-search{}
-.footer .box.tirage ul li.microformats{background-position:0 -26px}
-.footer .box.tirage ul li.w3-standards{background-position:0 -52px}
-.footer .box.tirage ul li.creative-commons{background-position:0 -76px}
-.footer .box.tirage ul li.clicky{background-position:0 -104px}
-.footer .box.tirage a{color:#DEE5EC}
+  #head{position:relative}
+  #head h1{position:relative;width:510px;height:215px;margin:0}
+  #head h1 .image{background:url(rarous-weblog.png);display:block;position:absolute;top:0;left:0;width:510px;height:215px;cursor:pointer;z-index:5}
 
-#top{background:url(bg.png) no-repeat top right;border-top:2px solid #F09;border-bottom:2px solid #F09;margin:1px 0;min-width:50em}
-#top>.footer{background:#666 url(fbg.png) repeat-x;border-bottom:2px solid #F09;min-height:8em;clear:both;margin-top:1.4em;padding-left:3.5em;font-size:12px}
+  #content{margin:4em 4em 1em 8em;max-width:46em;min-width:38em}
+  #content p:hover,#content li:hover,#content dl:hover{color:#111}
 
-#head{position:relative}
-#head h1{position:relative;width:510px;height:215px;margin:0}
-#head h1 .image{background:url(rarous-weblog.png);display:block;position:absolute;top:0;left:0;width:510px;height:215px;cursor:pointer;z-index:5}
-
-#content{margin:4em 4em 1em 8em;max-width:46em;min-width:38em}
-#content p:hover,#content li:hover,#content dl:hover{color:#111}
+  .menu{background:url(menu.png?2) 0 -4px no-repeat;padding:0 3.8em;position:absolute;top:220px;font:2em 'Arial Black';text-transform:uppercase;letter-spacing:-3px}
+  .menu a{color:#EFEFEF;padding:0 .2em;text-decoration:none}
+  .menu a:hover{color:#FFF}
+}
 
 @media print {
   html,body{font-size:13pt;color:black;border:0}
   p,ul,ol,dl{text-align:left}
   a{color:black}
-  
+
   code{background:transparent;font:.85em Consolas,'Lucida Console','Monaco CE',fixed,monospace}
 
   pre{border:0;margin:1em 0;padding:.5em;overflow:visible;max-width:none}
   pre.console{background:transparent;color:black}
   pre.console code{font-family:Fixedsys,monospace;color:black}
-  pre .kom,pre .elm,pre .hodnota,pre .tag,pre .selektor,pre .attr,pre .entita,pre .exp{color:black}  
+  pre .kom,pre .elm,pre .hodnota,pre .tag,pre .selektor,pre .attr,pre .entita,pre .exp{color:black}
   pre code{background:transparent}
   pre code .keyword,pre code .int,pre code .operator,pre code .preproc,pre code .normal,pre code .string,pre code .comment,pre code .ln_nr,pre code .xml_tag,pre code .xml_com{color:black}
-  
+
   .noprint,.footer,.newComment,.menu,.search,.wai,#head h1 .image{display:none}
   #top{border:0}
   #content{margin:0;max-width:none;min-width:0}
