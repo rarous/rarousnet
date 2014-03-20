@@ -20,7 +20,7 @@ pre{border:1px solid #CCC;margin:1em 0;padding:.5em;overflow:auto;max-width:680p
 * html pre{overflow-y:visible}
 
 pre.console{background:#000;color:#c0c0c0}
-pre.console code{font-family:Fixedsys,monospace;color:#c0c0c0}
+pre.console code{font-family:Fixedsys,monospace;color:#c0c0c0;background:transparent}
 
 a{color:#006}
 a img{border:0}
