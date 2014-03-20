@@ -73,10 +73,10 @@
   (render-feed (comments-rss-template)))
 
 (defn redirect-to-rss-feed []
-   (moved-permanently "http://feeds.feedburner.com/rarous-weblog"))
+  (moved-permanently "http://feeds.feedburner.com/rarous-weblog"))
 
 (defn redirect-to-blogpost [url]
-   (moved-permanently (str "http://www.rarous.net/weblog/" url)))
+  (moved-permanently (str "http://www.rarous.net/weblog/" url)))
 
 (defn blogpost [url]
   (some-> (load-article url)
