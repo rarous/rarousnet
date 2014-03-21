@@ -17,12 +17,18 @@
       (with-locale (new java.util.Locale "cs"))))
 (defn permalink [article]
   (str "http://www.rarous.net/weblog/" (:id article) "-" (:url article) ".aspx"))
+
 (defn author-twitter [article]
   (let [author (get article :author)]
     (case author
       "Aleš Roubíček" "@alesroubicek"
       "Alessio Busta" "@alessiobusta"
       nil)))
+
+(defn utc-date [article]
+  (->> (get article :published)
+       from-date
+       (unparse utc-format)))
 
 (deftemplate index-template "weblog/index.html" [])
 (deftemplate rss-template "weblog/index.rss" [])
@@ -34,7 +40,10 @@
   [[:meta (attr= :name "twitter:creator")]] (set-attr :content (author-twitter article))
   [[:meta (attr= :name "twitter:title")]] (set-attr :content (get article :title))
   [[:meta (attr= :name "twitter:description")]] (set-attr :content (get article :description))
+  [[:meta (attr= :property "article:published_time")]] (set-attr :content (utc-date article))
+  [[:meta (attr= :property "article:section")]] (set-attr :content (get article :category))
   [[:link (attr= :rel "canonical")]] (set-attr :href (permalink article))
+  [[:link (attr= :rel "category")]] (set-attr :href (get article :category-url))
   [:article :h1] (content (get article :title))
   [:article :div.entry-content] (html-content (get article :html))
   [:article :p.info :strong] (content (get article :category))
@@ -43,9 +52,7 @@
   [:article :p.info :time.published] (content (->> (get article :published)
                                                    from-date
                                                    (unparse long-date-format)))
-  [:article :p.info :time.published] (set-attr :datetime (->> (get article :published)
-                                                              from-date
-                                                              (unparse utc-format))))
+  [:article :p.info :time.published] (set-attr :datetime (utc-date article)))
 
 (defn render-view [template]
   (-> {:status 200
