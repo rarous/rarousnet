@@ -7,28 +7,33 @@
             [compojure.core :refer [defroutes GET]]
             [ring.util.response :refer [charset]]))
 
+(def blog-url "http://www.rarous.net/weblog/")
 (def articles (read-string (slurp (io/resource "articles.edn"))))
-(defn load-article [url]
-  ((keyword url) articles))
+(def categories (read-string (slurp (io/resource "rubrics.edn"))))
+(defn load-article [url] (get articles (keyword url)))
+(defn load-category [url] (get categories (keyword url)))
 
-(def utc-format (formatters :basic-date-time))
 (def long-date-format
   (-> (formatter "HH.mm - d. MMMM yyyy")
       (with-locale (new java.util.Locale "cs"))))
-(defn permalink [article]
-  (str "http://www.rarous.net/weblog/" (:id article) "-" (:url article) ".aspx"))
+(def utc-format (formatters :basic-date-time))
+(defn utc-date [article]
+  (->> (get article :published)
+       from-date
+       (unparse utc-format)))
+(defn long-date [article]
+  (->> (get article :published)
+       from-date
+       (unparse long-date-format)))
 
+(defn permalink [article]
+  (str blog-url (:id article) "-" (:url article) ".aspx"))
 (defn author-twitter [article]
   (let [author (get article :author)]
     (case author
       "Aleš Roubíček" "@alesroubicek"
       "Alessio Busta" "@alessiobusta"
       nil)))
-
-(defn utc-date [article]
-  (->> (get article :published)
-       from-date
-       (unparse utc-format)))
 
 (deftemplate index-template "weblog/index.html" [])
 (deftemplate rss-template "weblog/index.rss" [])
@@ -49,10 +54,15 @@
   [:article :p.info :strong] (content (get article :category))
   [:article :strong.user] (content (get article :author))
   [:article (attr= :rel "bookmark")] (set-attr :href (permalink article))
-  [:article :p.info :time.published] (content (->> (get article :published)
-                                                   from-date
-                                                   (unparse long-date-format)))
+  [:article :p.info :time.published] (content (long-date article))
   [:article :p.info :time.published] (set-attr :datetime (utc-date article)))
+(deftemplate category-template "weblog/category.html" [articles]
+  [:title] (content (str "Rubrika " (:category (first articles))))
+  [[:link (attr= :rel "canonical")]] (set-attr :href (str blog-url (name (:category-url (first articles)))))
+  [:#content :h1] (content (:category (first articles)))
+  [:#content :ul [:li first-of-type]] (clone-for [{title :title url :url id :id} articles]
+                                                 [:li :a] (content title)
+                                                 [:li :a] (set-attr :href (permalink {:url url :id id}))))
 
 (defn render-view [template]
   (-> {:status 200
@@ -90,9 +100,17 @@
           blogpost-template
           render-view))
 
+(defn category [url]
+  (some-> (load-category url)
+          category-template
+          render-view))
+
 (defroutes routes
   (GET "/weblog/" [] (index))
-  (GET "/weblog/:url" [url] (blogpost url))
+  (GET "/weblog/:url" [url]
+       (if (Character/isDigit (first url))
+         (blogpost url)
+         (category url)))
   (GET "/feed/rss.ashx" [] (rss))
   (GET "/feed/comments.ashx" [] (comments-rss))
 
