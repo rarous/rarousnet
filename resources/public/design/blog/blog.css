@@ -17,6 +17,7 @@ abbr,acronym{border-bottom:1px dotted #555}
 code{background:#F7F7EE;font:.85em Consolas,'Lucida Console','Monaco CE',fixed,monospace}
 
 pre{border:1px solid #CCC;margin:1em 0;padding:.5em;overflow:auto;max-width:680px}
+pre code{background-color:transparent}
 * html pre{overflow-y:visible}
 
 pre.console{background:#000;color:#c0c0c0}
@@ -105,13 +106,20 @@ article .entry-content>p:first-child:first-letter{color:#C00;font-size:3.4em;lin
 .hTagCloud .vvvv-popular{font-size:3em}
 
 .box{position:relative;}
-.footer{color:#EFEFEF;position:relative}
+.footer{color:#EFEFEF;background: #666;
+background: -moz-linear-gradient(top,  #999 0%, #666 25%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999), color-stop(25%,#666666));
+background: -webkit-linear-gradient(top,  #999 0%,#666 25%);
+background: -o-linear-gradient(top,  #999 0%,#666 25%);
+background: -ms-linear-gradient(top,  #999 0%,#666 25%);
+background: linear-gradient(to bottom,  #999 0%,#666 25%);
+position:relative}
 .footer p,.footer ul{font:1.16em 'Segoe UI','Trebuchet MS','Geneva CE',lucida,sans-serif;text-align:left;padding:0;margin:0}
 .footer ul li{padding:0;margin:0;}
 .footer a{color:#CCC;text-decoration:none}
 .footer a:hover{background:transparent;color:#FFF;text-decoration:underline}
 .footer a img{border:0}
-.footer .ads{background:url(gray-52.png);clear:both;}
+.footer .ads{background:rgba(51,51,51,.52);clear:both;}
 .footer .ads p{margin:0;font-size:.9em !important;line-height:2.2;text-indent:1.8em}
 .footer .ads a{color:#CC0}
 .footer .box{color:#CCC;border:1px solid transparent;float:left;clear:none;width:15em;margin:0 .416em 0 0}
@@ -124,7 +132,8 @@ article .entry-content>p:first-child:first-letter{color:#C00;font-size:3.4em;lin
 
 @media screen and (min-width: 701px) {
   #top{background:url(bg.png) no-repeat top right;border-top:2px solid #F09;border-bottom:2px solid #F09;margin:1px 0;min-width:50em}
-  #top>.footer{background:#666 url(fbg.png) repeat-x;border-bottom:2px solid #F09;min-height:8em;clear:both;margin-top:1.4em;padding-left:3.5em;font-size:12px}
+  #top>.footer{background:#666 url(fbg.png) repeat-x;border-bottom:2px solid #F09;min-height:8em;clear:both;margin-top:1.4em;font-size:12px}
+  #top>.footer>:first-child{margin-left:3.5em}
 
   #head{position:relative}
   #head h1{position:relative;width:510px;height:215px;margin:0}
