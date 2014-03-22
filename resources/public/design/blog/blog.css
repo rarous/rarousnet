@@ -39,6 +39,10 @@ div.image{border:1px solid #CCC;padding:4px;margin:1em 0;overflow:auto}
 .search input{border:0;margin:0;vertical-align:middle}
 .search input[type~="text"]{line-height:1.3;width:9em}
 
+.menu{font:1.6em 'Arial Black';text-transform:uppercase;letter-spacing:-3px;position:absolute;top:160px;z-index:20}
+.menu a,.menu strong{padding:0 .2em}
+.menu a{color:#EFEFEF;text-decoration:none}
+.menu a:hover{color:#FFF}
 
 .info,
 article>footer{font:.68em 'Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:1px;margin:.56em 0 .9em}
@@ -113,14 +117,14 @@ background: -webkit-linear-gradient(top,  #999 0%,#666 25%);
 background: -o-linear-gradient(top,  #999 0%,#666 25%);
 background: -ms-linear-gradient(top,  #999 0%,#666 25%);
 background: linear-gradient(to bottom,  #999 0%,#666 25%);
-position:relative}
+position:relative;font-size:12px}
 .footer p,.footer ul{font:1.16em 'Segoe UI','Trebuchet MS','Geneva CE',lucida,sans-serif;text-align:left;padding:0;margin:0}
-.footer ul li{padding:0;margin:0;}
+.footer ul li{padding:0;margin:0;line-height:1.6}
 .footer a{color:#CCC;text-decoration:none}
 .footer a:hover{background:transparent;color:#FFF;text-decoration:underline}
 .footer a img{border:0}
 .footer .ads{background:rgba(51,51,51,.52);clear:both;}
-.footer .ads p{margin:0;font-size:.9em !important;line-height:2.2;text-indent:1.8em}
+.footer .ads p{margin:0;font-size:.9em !important;line-height:2.2;text-indent:.6em}
 .footer .ads a{color:#CC0}
 .footer .box{color:#CCC;border:1px solid transparent;float:left;clear:none;width:15em;margin:0 .416em 0 0}
 .footer .box+.box{margin-left:.416em}
@@ -128,23 +132,29 @@ position:relative}
 .footer .box ul{background:#666;font-size:1.166em;list-style-type:none;margin:.3em 0;padding:.714em;min-height:16em}
 .footer .box .thumbnail{float:left;margin:0 .4em .2em 0;padding:2px;border:1px solid #CCC}
 
+#top{border-top:2px solid #F09;border-bottom:2px solid #F09;margin:1px 0}
+
+#head h1{position:relative;width:320px;height:194px;margin:0}
+#head h1 .image{background:url(rarous.weblog.png);display:block;position:absolute;top:0;left:0;width:320px;height:194px;cursor:pointer;z-index:5}
+
 #content{margin:4em 1ex 1em}
 
 @media screen and (min-width: 701px) {
-  #top{background:url(bg.png) no-repeat top right;border-top:2px solid #F09;border-bottom:2px solid #F09;margin:1px 0;min-width:50em}
-  #top>.footer{background:#666 url(fbg.png) repeat-x;border-bottom:2px solid #F09;min-height:8em;clear:both;margin-top:1.4em;font-size:12px}
+  #top{background:url(bg.png) no-repeat top right;min-width:50em}
+
+  #top>.footer{border-bottom:2px solid #F09;min-height:8em;clear:both;margin-top:1.4em}
   #top>.footer>:first-child{margin-left:3.5em}
 
   #head{position:relative}
-  #head h1{position:relative;width:510px;height:215px;margin:0}
-  #head h1 .image{background:url(rarous-weblog.png);display:block;position:absolute;top:0;left:0;width:510px;height:215px;cursor:pointer;z-index:5}
+  #head h1{width:510px;height:215px}
+  #head h1 .image{background:url(rarous-weblog.png);width:510px;height:215px}
 
   #content{margin:4em 4em 1em 8em;max-width:46em;min-width:38em}
   #content p:hover,#content li:hover,#content dl:hover{color:#111}
 
-  .menu{background:url(menu.png?2) 0 -4px no-repeat;padding:0 3.8em;position:absolute;top:220px;font:2em 'Arial Black';text-transform:uppercase;letter-spacing:-3px}
-  .menu a{color:#EFEFEF;padding:0 .2em;text-decoration:none}
-  .menu a:hover{color:#FFF}
+  .menu{background:url(menu.png?2) 0 -4px no-repeat;padding:0 3.8em;top:220px;font-size:2em}
+
+  .footer .ads p{text-indent:1.8em}
 }
 
 @media print {
