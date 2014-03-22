@@ -56,10 +56,11 @@
   [:article (attr= :rel "bookmark")] (set-attr :href (permalink article))
   [:article :p.info :time.published] (content (long-date article))
   [:article :p.info :time.published] (set-attr :datetime (utc-date article)))
+
 (deftemplate category-template "weblog/category.html" [articles]
   [:title] (content (str "Rubrika " (:category (first articles))))
   [[:link (attr= :rel "canonical")]] (set-attr :href (str blog-url (name (:category-url (first articles)))))
-  [:#content :h1] (content (:category (first articles)))
+  [:#content :h2] (content (:category (first articles)))
   [:#content :ul [:li first-of-type]] (clone-for [{title :title url :url id :id} articles]
                                                  [:li :a] (content title)
                                                  [:li :a] (set-attr :href (permalink {:url url :id id}))))
@@ -102,6 +103,7 @@
 
 (defn category [url]
   (some-> (load-category url)
+          reverse
           category-template
           render-view))
 
