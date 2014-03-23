@@ -34,6 +34,10 @@
   (GET "/photos/" [] (photos))
 
   (GET "/default.aspx" [] (redirect-home))
+  (GET "/about.aspx" [] (redirect-home))
+  (GET "/stranky.aspx" [] (redirect-home))
+  (GET "/odkazy.aspx" [] (redirect-home))
+  (GET "/skola.aspx" [] (redirect-home))
   (GET "/Default.aspx" [] (redirect-home))
   (GET "/reference.aspx" [] (redirect-reference))
   (GET "/weblog/reference.aspx" [] (redirect-reference))
