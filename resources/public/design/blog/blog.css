@@ -1,5 +1,3 @@
-@import "../wai.css";
-
 html,body{margin:0;padding:0;background:#FFF;color:#555;font:16px sans-serif}
 body{border-top:2px solid #333;border-bottom:2px solid #333;background:url(b.png) repeat-x top left}
 
@@ -23,6 +21,51 @@ pre code{background-color:transparent}
 pre.console{background:#000;color:#c0c0c0}
 pre.console code{font-family:Fixedsys,monospace;color:#c0c0c0;background:transparent}
 
+code[class*="language-"],
+pre[class*="language-"]{color:black;text-shadow:0 1px white;font-family:Consolas,Monaco,'Andale Mono',monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}
+
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection{text-shadow:none;background:#b3d4fc;}
+pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}
+:not(pre)>code[class*="language-"],
+pre[class*="language-"]{background:#f5f2f0}
+:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em}
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata{color:slategray}
+.token.punctuation{color:#999}
+.namespace{opacity:.7}
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol{color:#905}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.builtin{color:#690}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable{color:#a67f59;background:hsla(0,0%,100%,.5)}
+.token.atrule,
+.token.attr-value,
+.token.keyword{color:#07a}
+.token.regex,
+.token.important{color:#e90}
+.token.important{font-weight:bold}
+.token.entity{cursor:help}
+
 a{color:#006}
 a img{border:0}
 a:visited{color:#555}
@@ -31,6 +74,9 @@ a:hover{background:#C00;color:#FFF;text-decoration:none}
 li{padding:0;margin:0 0 0 2.5em}
 
 div.image{border:1px solid #CCC;padding:4px;margin:1em 0;overflow:auto}
+
+.wai a{position:absolute;top:-1000px;left:-1000px}
+.wai a:focus,.wai a:active{margin:.6em 1em;padding:.2em .4em;background:#FFC;z-index:100;top:0;left:0}
 
 .search{background:#FFF;border:1px solid #CCC;border-top:0;border-right:0;padding:.6em 1.4em 1em;margin:0;position:absolute;top:0;right:0}
 .search fieldset{border:1px solid #929292;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;margin:0;padding:1px}
@@ -167,14 +213,13 @@ position:relative;font-size:12px}
   pre{border:0;margin:1em 0;padding:.5em;overflow:visible;max-width:none}
   pre.console{background:transparent;color:black}
   pre.console code{font-family:Fixedsys,monospace;color:black}
-  pre .kom,pre .elm,pre .hodnota,pre .tag,pre .selektor,pre .attr,pre .entita,pre .exp{color:black}
   pre code{background:transparent}
-  pre code .keyword,pre code .int,pre code .operator,pre code .preproc,pre code .normal,pre code .string,pre code .comment,pre code .ln_nr,pre code .xml_tag,pre code .xml_com{color:black}
+
+	code[class*="language-"],pre[class*="language-"]{text-shadow:none}
 
   .noprint,.footer,.newComment,.menu,.search,.wai,#head h1 .image{display:none}
   #top{border:0}
   #content{margin:0;max-width:none;min-width:0}
   #head h1{font:1.2em/2 Cambria,Georgia,'New York CE',utopia,serif;border-bottom:1pt solid gray;margin-bottom:2em;position:static;width:auto;height:auto;text-align:center}
   #head h1 a{text-decoration:none}
-
 }
