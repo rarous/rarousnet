@@ -35,7 +35,7 @@
       "Alessio Busta" "@alessiobusta"
       nil)))
 
-(defn meta [name] [:meta (attr= :name name)])
+(defn meta-n [name] [:meta (attr= :name name)])
 (defn meta-p [name] [:meta (attr= :property name)])
 (defn itemprop [name] (attr= :itemprop name))
 
@@ -44,11 +44,11 @@
 (deftemplate comments-rss-template "weblog/comments.rss" [])
 (deftemplate blogpost-template "weblog/blogpost.html" [article]
   [:title] (content (get article :title))
-  [(meta "author")] (set-attr :content (get article :author))
-  [(meta "description")] (set-attr :content (get article :description))
-  [(meta "twitter:creator")] (set-attr :content (author-twitter article))
-  [(meta "twitter:title")] (set-attr :content (get article :title))
-  [(meta "twitter:description")] (set-attr :content (get article :description))
+  [(meta-n "author")] (set-attr :content (get article :author))
+  [(meta-n "description")] (set-attr :content (get article :description))
+  [(meta-n "twitter:creator")] (set-attr :content (author-twitter article))
+  [(meta-n "twitter:title")] (set-attr :content (get article :title))
+  [(meta-n "twitter:description")] (set-attr :content (get article :description))
   [(meta-p "article:published_time")] (set-attr :content (utc-date article))
   [(meta-p "article:section")] (set-attr :content (get article :category))
   [[:link (attr= :rel "canonical")]] (set-attr :href (permalink article))
