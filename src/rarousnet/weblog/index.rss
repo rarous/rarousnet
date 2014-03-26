@@ -8,6 +8,15 @@
     <generator>Gryphoon Weblog v1.78</generator>
     <item>
       <author>ales@roubicek.name (Aleš Roubíček)</author>
+      <title>Mikroslužby</title>
+      <guid>http://www.rarous.net/weblog/455-mikrosluzby.aspx</guid>
+      <link>http://www.rarous.net/weblog/455-mikrosluzby.aspx</link>
+      <pubDate>Wed, 26 Mar 2014 5:00:00 GMT</pubDate>
+      <description>Definice mikroslužeb.</description>
+      <category>Moje práce</category>
+    </item>
+    <item>
+      <author>ales@roubicek.name (Aleš Roubíček)</author>
       <title>Legacy code writer - part 2</title>
       <guid>http://www.rarous.net/weblog/454-legacy-code-writer-part-2.aspx</guid>
       <link>http://www.rarous.net/weblog/454-legacy-code-writer-part-2.aspx</link>
