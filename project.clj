@@ -5,7 +5,7 @@
             :url "https://www.apache.org/licenses/LICENSE-2.0.html"}
   :min-lein-version "2.0.0"
   :main rarousnet.web
-  :dependencies [[org.clojure/clojure "1.6.0-beta1"]
+  :dependencies [[org.clojure/clojure "1.6.0"]
                  [clj-time "0.6.0"]
                  [compojure "1.1.6"]
                  [enlive "1.1.5"]
@@ -15,7 +15,7 @@
                  [ring-basic-authentication "1.0.5"]
                  [rm-hull/ring-gzip-middleware "0.1.7"]
                  [com.cemerick/drawbridge "0.0.6"]]
-  :plugins [[lein-ancient "0.5.4"]
+  :plugins [[lein-ancient "0.5.5"]
             [lein-environ "0.4.0"]
             [lein-midje "3.1.3"]]
   :resource-paths ["src/rarousnet" "resources"]
