@@ -6,10 +6,10 @@
             [clojure.java.io :as io]
             [ring.middleware.basic-authentication :as basic]
             [ring.middleware.gzip :refer [wrap-gzip]]
-            [ring.middleware.stacktrace :as trace]
+            [ring.middleware.stacktrace :refer [wrap-stacktrace]]
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
-            [ring.middleware.reload :as reload]
+            [ring.middleware.reload :refer [wrap-reload]]
             [ring.util.response :as resp]
             [cemerick.drawbridge :as drawbridge]
             [environ.core :refer [env]]
@@ -17,7 +17,6 @@
             [rarousnet.weblog.handler :as blog]))
 
 (defn- authenticated? [user pass]
-  ;; TODO: heroku config:add REPL_USER=[...] REPL_PASSWORD=[...]
   (= [user pass] [(env :repl-user false) (env :repl-password false)]))
 
 (def ^:private drawbridge
@@ -25,7 +24,7 @@
       (session/wrap-session)
       (basic/wrap-basic-authentication authenticated?)))
 
-(defroutes app
+(defroutes app-routes
   home/routes
   blog/routes
   (ANY "/repl" {:as req} (drawbridge req))
@@ -40,17 +39,18 @@
          :headers {"Content-Type" "text/html"}
          :body (slurp (io/resource "500.html"))}))))
 
+(def app
+  (let [store (cookie/cookie-store {:key (env :session-secret)})]
+    (-> #'app-routes
+        ((if (env :production)
+           wrap-error-page
+           wrap-stacktrace))
+        (site {:session {:store store}})
+        wrap-gzip)))
+
 (defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))
-        ;; TODO: heroku config:add SESSION_SECRET=$RANDOM_16_CHARS
-        store (cookie/cookie-store {:key (env :session-secret)})]
-    (run-server (-> #'app
-                    ((if (env :production)
-                       wrap-error-page
-                       trace/wrap-stacktrace))
-                    (site {:session {:store store}})
-                    wrap-gzip)
-                {:port port})))
+  (let [port (Integer. (or port (env :port) 5000))]
+    (run-server app {:port port})))
 
 ;; For interactive development:
 ;; (stop)
