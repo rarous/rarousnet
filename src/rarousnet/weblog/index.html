@@ -46,6 +46,76 @@ ga('send', 'pageview');
 
 <div id="content">
 
+<article itemtype="http://schema.org/BlogPosting" itemscope="itemscope" role="article">
+        <header>
+            <h2 itemprop="name"><a href="/weblog/455-mikrosluzby.aspx">Mikroslužby</a></h2>
+            <p class="info">
+                <time datetime="20140326T070000.663Z" itemprop="datePublished" pubdate="pubdate">07.00 - 26. březen 2014</time> |
+                <strong itemprop="articleSection">Moje práce</strong></p>
+        </header>
+        <div itemprop="articleBody"><p>Máme tu jedinečnou příležitost definovat si
+<strong>Mikroslužby</strong> ne v tom, co nejsou, ale v tom co jsou.</p>
+
+<p>Tohle je má definice.</p>
+
+<h3 id="toc-definice">Definice</h3>
+
+<p><strong>Mikroslužba</strong> je <strong>diskrétní, izolovaný</strong> a
+<strong>pojmenovaný</strong> kus logiky, který konzumuje 0..N vstupů a
+produkuje 0..N výstupů, který je <strong>vykonaný</strong> za účelem
+přinést konzumentovi nějakou výhodu. Toto je poskytováno jako služba.</p>
+
+<h3 id="toc-diskretni">Diskrétní</h3>
+
+<p>Důvodem, proč to nazýváme Mikroslužbou a ne Službou, není počet
+řádek, který je menší než N, nebo velikost nasazované služby, která je
+maximálně N kilobajtů nebo žádná jiná libovolná metrika. Tím důvodem
+je nízký počet zodpovědností: jedna. <em>Dělá to jen jednu věc a tu
+dělá skvěle.</em></p>
+
+<h3 id="toc-izolovana">Izolovaná</h3>
+
+<p>Izolovaná znamená, že funguje odděleně od ostatních věcí, což z ní
+dělá <em>distribuovanou entitu.</em> Nezáleží na tom, kde konkrétně
+leží fyzický hardware nebo na jakém OS to běží. Pokud to spadne,
+zůstává to v izolaci. Předchází se tak kaskádovému šíření chyby.
+Navíc nám to umožňuje snadno vyvíjet a aktualizovat službu
+samostatně.</p>
+
+<h3 id="toc-pojmenovana">Pojmenovaná</h3>
+
+<p>Jelikož jsou Mikroslužby izolované, potřebujeme na ně nějakým
+způsobem odkazovat. Jméno v kombinaci se vstupy a výstupy
+<strong>Mikroslužby</strong> nám definují signaturu nebo identifikátor
+<strong>Mikroslužby</strong>.</p>
+
+<h3 id="toc-vstupy-a-vystupy">Vstupy a výstupy</h3>
+
+<p>Pokud máme jazyk, který podporuje typové informace, vstupy a výstupy
+mohou být typové. Tyto typy by měly být reflektovány při manipulaci. Což
+znamená, že konzument služby by měl znát, co služba přijímá a co
+poskytuje.</p>
+
+<h3 id="toc-vykonani">Vykonání</h3>
+
+<p>Protože konzument není ten, kdo vykonává logiku Mikroslužby, a
+Mikroslužby jsou přirozeně distribuované, volání nesmí konzumenta
+blokovat ve vykonávání jiných operací po dobu výkonu mikroslužby.
+Konzument nesmí být držen jako rukojmí, dokud mikroslužba nevyprodukuje
+svůj výstup. To znamená, že musejí být vytvořeny takové abstrakce,
+    které nám umožní Mikroslužby <em>konzumovat asynchronně.</em></p>
+
+<p>Překlad článku <a href="http://klangism.tumblr.com/post/80087171446/microservices">Microservices</a>
+od Viktora Klanga</p>
+
+<!-- by Texy2! --></div>
+        <footer itemtype="http://schema.org/Person" itemscope="itemscope" itemprop="author">
+            Autor: <strong itemprop="name">Aleš Roubíček</strong> <span class="noprint"> |
+            <a title="Permalink" itemprop="url" href="http://www.rarous.net/weblog/455-mikrosluzby.aspx" rel="bookmark">#</a> </span>
+        </footer>
+    </article>
+
+
 <article class="hentry" id="article-454">
 <header>
 <h2 class="entry-title"><a href="http://www.rarous.net/weblog/454-legacy-code-writer-part-2.aspx" title="Legacy code writer - part 2" rel="Bookmark">Legacy code writer - part 2</a></h2>
@@ -1186,68 +1256,6 @@ i vy. :)
 <footer class=vcard>
 Autor: <strong class="user fn">Aleš Roubíček</strong> |
 <a href="http://www.rarous.net/weblog/445-asynchronni-vs-paralelni-zpracovani-uloh.aspx#komentare">14x komentováno</a>
-</footer>
-</article>
-
-<article class="hentry" id="article-444">
-<header>
-<h2 class="entry-title"><a href="http://www.rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx" title="Manifest Nejen Objektově Orientovaného Vývoje" rel="Bookmark">Manifest Nejen Objektově Orientovaného Vývoje</a></h2>
-<p class="info">
-<span class="published">14.01 - 25. března 2013<span class="value" title="2013-03-25T14:01:23Z"></span></span> |
-<strong>Moje práce</strong>
-</header>
-<div class="entry-content">
-
-<p>Narazil jsem na velmi zajímavý <a href="http://notonlyoo.org/">manifest
-Nejen objektově orientovaného vývoje</a> a myslím, že by neměl ujít
-pozornosti ani tady v československu.
-
-<h3 id="toc-preklad-manifestu">Překlad Manifestu</h3>
-
-<p>Objevujeme lepší způsoby vývoje software tím, že jej tvoříme a
-pomáháme při jeho tvorbě ostatním. Při této práci jsme dospěli
-k těmto hodnotám:
-
-<ul>
-	<li><strong>Funkce a typy</strong> před třídami
-
-	<li><strong>Čistota</strong> před mutacemi
-
-	<li><strong>Kompozice</strong> před dědičností
-
-	<li><strong>Funkce vyššího řádu</strong> před <em>method
-	dispatch</em>
-
-	<li><strong>Option</strong> před <code>null</code>
-</ul>
-
-<p>Tak jest, přestože je v bodech napravo hodnota (kromě <code>null</code>),
-bodů nalevo si ceníme více.
-
-<h3 id="toc-principy">Principy</h3>
-
-<p>Ctíme následující principy:
-
-<ul>
-	<li>Učení se vícero paradigmat nám umožňuje lepší řešení
-	problémů.
-
-	<li>Používáme nejvhodnější paradigmata pro daný problém, nejen ta,
-	která aktuálně ovládáme.
-
-	<li>Upřednostňujeme přemýšlení nad nejlepším řešením problému před
-	slepým následováním <em>best practice</em>, směrnic, vzorů a
-	frameworků.
-
-	<li>Upřednostňujeme reprezentaci invariant na úrovni typů před
-	reprezentací na úrovni hodnot.
-</ul>
-
-<!-- by Texy2! -->
-</div>
-<footer class=vcard>
-Autor: <strong class="user fn">Aleš Roubíček</strong> |
-<a class="rss" href="http://www.rarous.net/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx#komentare">2x komentováno</a>
 </footer>
 </article>
 

@@ -11,7 +11,7 @@
 (def articles (read-string (slurp (io/resource "articles.edn"))))
 (def categories (read-string (slurp (io/resource "rubrics.edn"))))
 (defn load-article [url] (get articles (keyword url)))
-(defn load-category [url] (get categories (keyword url)))
+(defn load-category [url] (get categories url))
 
 (def long-date-format
   (-> (formatter "HH.mm - d. MMMM yyyy")
@@ -63,7 +63,7 @@
 
 (deftemplate category-template "weblog/category.html" [articles]
   [:title] (content (str "Rubrika " (:category (first articles))))
-  [[:link (attr= :rel "canonical")]] (set-attr :href (str blog-url (name (:category-url (first articles)))))
+  [[:link (attr= :rel "canonical")]] (set-attr :href (str blog-url (:category-url (first articles))))
   [:#content :h2] (content (:category (first articles)))
   [:#content :ul [:li first-of-type]] (clone-for [{title :title url :url id :id} articles]
                                                  [:li :a] (content title)
