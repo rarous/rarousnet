@@ -12,11 +12,17 @@
 (def categories (read-string (slurp (io/resource "rubrics.edn"))))
 (defn load-article [url] (get articles (keyword url)))
 (defn load-category [url] (get categories url))
+(defn last-articles [x]
+  (->> (vals articles)
+       (sort-by :id)
+       (reverse)
+       (take x)))
 
 (def long-date-format
   (-> (formatter "HH.mm - d. MMMM yyyy")
       (with-locale (new java.util.Locale "cs"))))
 (def utc-format (formatters :basic-date-time))
+(def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
 (defn utc-date [article]
   (->> (get article :published)
        from-date
@@ -25,11 +31,15 @@
   (->> (get article :published)
        from-date
        (unparse long-date-format)))
+(defn rss-date [article]
+  (->> (get article :published)
+       from-date
+       (unparse rss-format)))
 
 (defn permalink [article]
-  (str blog-url (:id article) "-" (:url article) ".aspx"))
+  (str blog-url (article :id) "-" (article :url) ".aspx"))
 (defn author-twitter [article]
-  (let [author (get article :author)]
+  (let [author (article :author)]
     (case author
       "Aleš Roubíček" "@alesroubicek"
       "Alessio Busta" "@alessiobusta"
@@ -38,34 +48,54 @@
 (defn meta-n [name] [:meta (attr= :name name)])
 (defn meta-p [name] [:meta (attr= :property name)])
 (defn itemprop [name] (attr= :itemprop name))
+(defn link [rel] [:link (attr= :rel rel)])
 
-(deftemplate index-template "weblog/index.html" [])
-(deftemplate rss-template "weblog/index.rss" [])
+(deftemplate index-template "weblog/index.html" [articles]
+  [:#content :article] (clone-for [article articles]
+                                  [:article :header (itemprop "name") :a] (content (article :title))
+                                  [:article :header (itemprop "name") :a] (set-attr :href (permalink article))
+                                  [:article (itemprop "articleBody")] (html-content (article :html))
+                                  [:article (itemprop "articleSection")] (content (article :category))
+                                  [:article (itemprop "author") (itemprop "name")] (content (article :author))
+                                  [:article (itemprop "url")] (set-attr :href (permalink article))
+                                  [:article (itemprop "datePublished")] (content (long-date article))
+                                  [:article (itemprop "datePublished")] (set-attr :datetime (utc-date article))))
+
+(deftemplate rss-template "weblog/index.rss" [articles]
+  [:item] (clone-for [article articles]
+                     [:author] (content (article :author))
+                     [:title] (content (article :title))
+                     [:guid] (content (permalink article))
+                     [:link] (content (permalink article))
+                     [:pubDate] (content (rss-date article))
+                     [:description] (content (article :description))
+                     [:category] (content (article :category))))
+
 (deftemplate comments-rss-template "weblog/comments.rss" [])
 (deftemplate blogpost-template "weblog/blogpost.html" [article]
-  [:title] (content (get article :title))
-  [(meta-n "author")] (set-attr :content (get article :author))
-  [(meta-n "description")] (set-attr :content (get article :description))
+  [:title] (content (article :title))
+  [(meta-n "author")] (set-attr :content (article :author))
+  [(meta-n "description")] (set-attr :content (article :description))
   [(meta-n "twitter:creator")] (set-attr :content (author-twitter article))
-  [(meta-n "twitter:title")] (set-attr :content (get article :title))
-  [(meta-n "twitter:description")] (set-attr :content (get article :description))
+  [(meta-n "twitter:title")] (set-attr :content (article :title))
+  [(meta-n "twitter:description")] (set-attr :content (article :description))
   [(meta-p "article:published_time")] (set-attr :content (utc-date article))
-  [(meta-p "article:section")] (set-attr :content (get article :category))
-  [[:link (attr= :rel "canonical")]] (set-attr :href (permalink article))
-  [[:link (attr= :rel "category")]] (set-attr :href (get article :category-url))
-  [:article :header (itemprop "name")] (content (get article :title))
-  [:article (itemprop "articleBody")] (html-content (get article :html))
-  [:article (itemprop "articleSection")] (content (get article :category))
-  [:article (itemprop "author") (itemprop "name")] (content (get article :author))
+  [(meta-p "article:section")] (set-attr :content (article :category))
+  [(link "canonical")] (set-attr :href (permalink article))
+  [(link "category")] (set-attr :href (article :category-url))
+  [:article :header (itemprop "name")] (content (article :title))
+  [:article (itemprop "articleBody")] (html-content (article :html))
+  [:article (itemprop "articleSection")] (content (article :category))
+  [:article (itemprop "author") (itemprop "name")] (content (article :author))
   [:article (itemprop "url")] (set-attr :href (permalink article))
   [:article (itemprop "datePublished")] (content (long-date article))
   [:article (itemprop "datePublished")] (set-attr :datetime (utc-date article)))
 
 (deftemplate category-template "weblog/category.html" [articles]
   [:title] (content (str "Rubrika " (:category (first articles))))
-  [[:link (attr= :rel "canonical")]] (set-attr :href (str blog-url (:category-url (first articles))))
+  [(link "canonical")] (set-attr :href (str blog-url (:category-url (first articles))))
   [:#content :h2] (content (:category (first articles)))
-  [:#content :ul [:li first-of-type]] (clone-for [{title :title url :url id :id} articles]
+  [:#content :ul [:li first-of-type]] (clone-for [{:keys [title url id]} articles]
                                                  [:li :a] (content title)
                                                  [:li :a] (set-attr :href (permalink {:url url :id id}))))
 
@@ -86,10 +116,14 @@
    :headers {"Location" location}})
 
 (defn index []
-  (render-view (index-template)))
+  (->> (last-articles 5)
+       index-template
+       render-view))
 
 (defn rss []
-  (render-feed (rss-template)))
+  (->> (last-articles 10)
+       rss-template
+       render-view))
 
 (defn comments-rss []
   (render-feed (comments-rss-template)))
@@ -128,3 +162,4 @@
   (GET "/weblog" [] (redirect-to-blogpost ""))
   (GET "/weblog/429-test-driven-developemt-pribeh-nezbedneho-vyvojare.aspx" []
        (moved-permanently "/weblog/429-test-driven-development-pribeh-nezbedneho-vyvojare.aspx")))
+
