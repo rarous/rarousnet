@@ -17,6 +17,7 @@
                  [com.cemerick/drawbridge "0.0.6"]]
   :plugins [[lein-ancient "0.5.5"]
             [lein-environ "0.4.0"]
+            [lein-kibit "0.0.8"]
             [lein-midje "3.1.3"]]
   :resource-paths ["src/rarousnet" "resources"]
   :profiles {:dev {:env {:production false}

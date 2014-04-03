@@ -19,8 +19,9 @@
        (take x)))
 
 (def long-date-format
-  (-> (formatter "HH.mm - d. MMMM yyyy")
-      (with-locale (new java.util.Locale "cs"))))
+  (with-locale
+    (formatter "HH.mm - d. MMMM yyyy")
+    (new java.util.Locale "cs")))
 (def utc-format (formatters :basic-date-time))
 (def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
 (defn utc-date [article]
@@ -158,7 +159,7 @@
   (GET "/ws/Syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/ws/syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/clanek/:url" [url] (redirect-to-blogpost url))
-  (GET "/rubrika/:url" [url] (redirect-to-blogpost (subs url (+ 1 (.indexOf url "-")))))
+  (GET "/rubrika/:url" [url] (redirect-to-blogpost (subs url (inc (.indexOf url "-")))))
   (GET "/weblog" [] (redirect-to-blogpost ""))
   (GET "/weblog/429-test-driven-developemt-pribeh-nezbedneho-vyvojare.aspx" []
        (moved-permanently "/weblog/429-test-driven-development-pribeh-nezbedneho-vyvojare.aspx")))
