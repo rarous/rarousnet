@@ -11,7 +11,7 @@
 (def articles (read-string (slurp (io/resource "articles.edn"))))
 (def categories (read-string (slurp (io/resource "rubrics.edn"))))
 (defn load-article [url] (get articles (keyword url)))
-(defn load-category [url] (get categories url))
+(defn load-category [url] (get categories (keyword url)))
 (defn last-articles [x]
   (->> (vals articles)
        (sort-by :id)
