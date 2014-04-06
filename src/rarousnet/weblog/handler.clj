@@ -8,15 +8,17 @@
             [ring.util.response :refer [charset]]))
 
 (def blog-url "http://www.rarous.net/weblog/")
-(def articles (read-string (slurp (io/resource "articles.edn"))))
-(def categories (read-string (slurp (io/resource "rubrics.edn"))))
+(defn read-resource [n] (read-string (slurp (io/resource n))))
+(def articles (read-resource "articles.edn"))
+(def categories (read-resource "rubrics.edn"))
 (defn load-article [url] (get articles (keyword url)))
 (defn load-category [url] (get categories (keyword url)))
-(defn last-articles [x]
+(defn last-articles [n]
   (->> (vals articles)
+
        (sort-by :id)
        (reverse)
-       (take x)))
+       (take n)))
 
 (def long-date-format
   (with-locale
