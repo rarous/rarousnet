@@ -75,7 +75,7 @@ ga('create','UA-90726-1','auto');ga('send','pageview')
 <div><a href="https://twitter.com/share" class="twitter-share-button" data-via="rarousweblog" data-lang="cs" data-related="alesroubicek">Tweet</a></div>
 <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>
 <div><div class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="320"></div></div>
-
+<div class="kindleWidget" style="display:inline-block;padding:3px;cursor:pointer;font-size:11px;font-family:sans-serif;white-space:nowrap;line-height:1;"><img style="vertical-align:middle;margin:0;padding:0;border:none;" src="https://d1xnn692s7u6t6.cloudfront.net/white-15.png" /><span style="vertical-align:middle;margin-left:3px;">Poslat do Kindlu</span></div>
 <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte mi ticket</a>.
 </div>
 <div class="clear"></div>
@@ -102,6 +102,7 @@ ga('create','UA-90726-1','auto');ga('send','pageview')
 </div>
 <script src="/assets/js/prism.js"></script>
 <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script src="https://d1xnn692s7u6t6.cloudfront.net/widget.js"></script>
 <script>twttr.ready(function(twttr){twttr.events.bind('tweet',function(e){if(e)
 ga('send','social','twitter','tweet',(e.target&&e.target.nodeName=='IFRAME')?extractParamFromUri(e.target.src,'url'):'')})});
 window.fbAsyncInit=function(){FB.init({appId:'215763288621854',status:0,xfbml:1});
@@ -112,7 +113,8 @@ js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/cs_CZ/all.js"
 fjs.parentNode.insertBefore(js,fjs)}(document,'script','facebook-jssdk'));
 window.___gcfg={lang:'cs'};(function(d,s){
 var po=d.createElement(s);po.async=true;po.src='https://apis.google.com/js/platform.js'
-var js=d.getElementsByTagName(s)[0];js.parentNode.insertBefore(po,js)})(document, 'script')</script>
+var js=d.getElementsByTagName(s)[0];js.parentNode.insertBefore(po,js)})(document, 'script')
+(function k(){window.$SendToKindle&&window.$SendToKindle.Widget?$SendToKindle.Widget.init({}):setTimeout(k,500);})()</script>
 </div>
 </body>
 </html>
