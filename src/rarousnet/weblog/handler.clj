@@ -8,7 +8,7 @@
             [ring.util.response :refer [charset]]))
 
 (def blog-url "http://www.rarous.net/weblog/")
-(defn read-resource [n] (read-string (slurp (io/resource n))))
+(defn- read-resource [n] (read-string (slurp (io/resource n))))
 (def articles (read-resource "articles.edn"))
 (def categories (read-resource "rubrics.edn"))
 (defn load-article [url] (get articles (keyword url)))
@@ -48,10 +48,10 @@
       "Alessio Busta" "@alessiobusta"
       nil)))
 
-(defn meta-n [name] [:meta (attr= :name name)])
-(defn meta-p [name] [:meta (attr= :property name)])
-(defn itemprop [name] (attr= :itemprop name))
-(defn link [rel] [:link (attr= :rel rel)])
+(defn- meta-n [name] [:meta (attr= :name name)])
+(defn- meta-p [name] [:meta (attr= :property name)])
+(defn- itemprop [name] (attr= :itemprop name))
+(defn- link [rel] [:link (attr= :rel rel)])
 
 (deftemplate index-template "weblog/index.html" [articles]
   [:#content :article] (clone-for [article articles]
