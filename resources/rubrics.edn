@@ -1200,7 +1200,7 @@
   {:category-url :moje-prace.aspx,
    :id 456,
    :title "Reaktivní programování",
-   :published #inst "2014-04-03T17:30:00.663-00:00",
+   :published #inst "2014-04-03T18:00:00.663-00:00",
    :url "reaktivni-programovani",
    :category "Moje práce",
    :is-published true}],
@@ -1754,6 +1754,13 @@
    :title "Pár slintů o Windows Phone 7",
    :published #inst "2012-08-30T10:26:13.693-00:00",
    :url "par-slintu-o-windows-phone-7",
+   :category "Jen tak",
+   :is-published true}
+  {:category-url :jen-tak.aspx,
+   :id 457,
+   :title "Velká pyramida",
+   :published #inst "2014-07-04T12:00:00.663-00:00",
+   :url "velka-pyramida",
    :category "Jen tak",
    :is-published true}],
  :tuning.aspx
