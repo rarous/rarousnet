@@ -8,3 +8,5 @@ pom.xml
 /.env
 /target
 .nrepl-port
+
+.lein-repl-history
