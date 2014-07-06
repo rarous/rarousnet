@@ -1,151 +1,163 @@
 <!doctype html>
 <html lang="cs">
 <head>
-<meta charset="utf-8">
-<title>Aleš Roubíček</title>
-<meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
-<meta name="copyright" content="&copy; 2004 - 2014 Aleš Roubíček. Creative Commons 3.0 BY-SA">
-<meta name="description" content="Aleš Roubíček vývojář webových aplikací.">
-<link rel="bookmark" href="http://www.rarous.net/" title="rarouš.net">
-<link rel="canonical" href="http://www.rarous.net/">
-<link rel="openid2.provider" href="https://www.google.com/accounts/o8/ud?source=profiles" />
-<link rel="openid2.local_id" href="https://profiles.google.com/rarous" />
-<link rel="alternate" type="application/rss+xml" href="http://feeds2.feedburner.com/rarous-weblog" title="rarouš.weblog - články">
-<link rel="alternate" type="application/rss+xml" href="http://feeds2.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře">
-<link rel="stylesheet" href="/assets/css/hp.css">
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-90726-1', 'auto');
-ga('send', 'pageview');
-</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleš Roubíček</title>
+    <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
+    <meta name="copyright" content="&copy; 2004 - 2014 Aleš Roubíček. Creative Commons 3.0 BY-SA">
+    <meta name="description" content="Aleš Roubíček vývojář webových aplikací.">
+    <link rel="bookmark" href="http://www.rarous.net/" title="rarouš.net">
+    <link rel="canonical" href="http://www.rarous.net/">
+    <link rel="openid2.provider" href="https://www.google.com/accounts/o8/ud?source=profiles" />
+    <link rel="openid2.local_id" href="https://profiles.google.com/rarous" />
+    <link rel="alternate" type="application/rss+xml" href="http://feeds2.feedburner.com/rarous-weblog" title="rarouš.weblog - články">
+    <link rel="alternate" type="application/rss+xml" href="http://feeds2.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře">
+    <link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-90726-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <style>
+        body {
+            font: 1em "Cardo", serif;
+            color: #878787;
+            background: rgb(248, 237, 180) url(bg.png);
+        }
+        a { color: #0277bb; }
+        a:hover { color: #01476f; }
+
+        #header {
+            color: #878787;
+            margin: 1.8em auto 0;
+        }
+
+        #header:after {
+            content: "";
+            display: block;
+
+            min-height: 190px;
+
+            background-image: url(https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xfa1/t31.0-8/c0.25.851.315/p480x480/10497978_10201378833232184_8484574773808288286_o.jpg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            -webkit-background-size: 100%;
+            -moz-background-size: 100%;
+            -o-background-size: 100%;
+            background-size: 100%;
+        }
+
+        #header h1 {
+            font-weight: 200;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        #contact {
+            background: #fff;
+            border: 1px solid #e2e2e2;
+        }
+        #contact header { padding-left: 1em }
+        #contact h1 { margin-bottom: 0 }
+        #contact h2 {
+            color: #DEDEDE;
+            font-size: 1em;
+            font-style: italic;
+            margin-top: 0;
+        }
+        #contact dl { line-height: 2em }
+        #contact dt { position: absolute; left: -1000px }
+        #contact dd { margin-left: 0; padding-left: 1em }
+
+        [itemprop="telephone"]:before,
+        [itemprop="email"]:before,
+        .bank-account-number:before { content: "✆"; display: inline-block; padding-right: 1ex }
+        [itemprop="email"]:before { content: "✉" }
+        .bank-account-number:before { content: "⑉" }
+        [itemprop="address"], .qr-code { display: none }
+
+        #links a:link,
+        #links a:visited { color: #878787; text-decoration: none }
+        #links a:hover { color: #01476f; text-decoration: underline }
+        #links ul {
+            margin: 2.4em 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-weight: bold;
+            word-spacing: .5em;
+        }
+        #links li { display: inline-block; word-spacing: 0 }
+        #links li:before { content: "❖ "; word-spacing: .5em }
+        #links li:first-child:before { content: "" }
+
+        #header:after,
+        #contact {
+            -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
+            -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
+            box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
+            border-radius: 2px 2px 2px 2px;
+            -moz-border-radius: 2px 2px 2px 2px;
+            -webkit-border-radius: 2px 2px 2px 2px;
+
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width: 640px) {
+            .qr-code { display: block; float: right }
+            #header { margin: 3.6em auto 0 }
+            #header:after { height: 315px; margin-top: 3.6em }
+            #contact { margin-top: 3.6em }
+        }
+
+        @media (min-resolution: 1.5dppx) {
+            body { font-size: 1.4em }
+        }
+    </style>
 </head>
-    <body>
-        <div id="top">
-    <div class="wai">
-        <a href="http://www.ippi.cz/klavesove-zkratky/neni-mapa-stranek.html" accesskey="1" tabindex="1">Klávesové zkratky na tomto webu</a>
-        <a href="#kontakt" accesskey="0" tabindex="2">Na obsah stránky</a>
+<body>
+    <div id="top">
+        <section id="header">
+            <h1>Software for the Masses</h1>
+        </section>
+        <section id="contact" itemscope itemtype="http://schema.org/Person">
+            <div class="qr-code">
+                <img alt="me card" src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=L|0&chl=MECARD:N:Ale%C5%A1%20Roub%C3%AD%C4%8Dek;TEL:+420737461283;EMAIL:ales@roubicek.name;URL:http://rarous.net"
+                     title="Oskenuj si kontakt do mobilu">
+            </div>
+            <header>
+                <h1 itemprop="name">Aleš Roubíček</h1>
+                <h2 itemprop="jobTitle">web developer</h2>
+            </header>
+            <dl>
+                <dt>E-mail:</dt>
+                <dd itemprop="email"><a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID">ales&#64;<!-- -->roubicek.name</a></dd>
+                <dt>Telefon:</dt>
+                <dd itemprop="telephone"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
+                <dt>Banka:</dt>
+                <dd class="bank-account-number" title="číslu účtu">1238482024/2310</dd>
+                <dt>Adresa:</dt>
+                <dd itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                    <span itemprop="streetAddress">Druzcov 52</span><br>
+                    <span itemprop="postalCode">463 52</span>,
+                    <span itemprop="addressLocality">Osečná</span>
+                </dd>
+            </dl>
+        </section>
+        <section id="links">
+            <ul>
+                <li><a href="/weblog/">weblog</a></li>
+                <li><a href="http://twitter.com/alesroubicek" rel="me">twitter</a></li>
+                <li><a href="http://www.github.com/rarous" rel="me">github</a></li>
+                <li><a href="http://www.linkedin.com/in/rarous" rel="me">linked in</a></li>
+            </ul>
+        </section>
     </div>
-    <div class="header">
-      <img alt="rarouš.net" src="/assets/css/rarous-net.png" id="logo" />
-    </div>
-    <div class="content">
-      <div id="kontakt" class="column vcard">
-        <img alt="foto: avatar" src="https://s.gravatar.com/avatar/428a9c6e5b151e618d4db288105bc5f3?s=160" id="avatar" class="photo thumbnail" width="160" height="160" />
-        <h1 class="fn">Aleš Roubíček</h1>
-        <p class="job title">vývojář webových aplikací</p>
-        <dl>
-          <dt>Narozen:</dt>
-          <dd class="bday"><abbr class="value" title="1984-06-15T00:00:00Z">15.&thinsp;června&thinsp;1984</abbr></dd>
-          <dt>E-mail:</dt>
-          <dd><a class="email gmail talk" href="mailto:ales&#64;roubicek.name" title="E-mail, Jabber, Live ID">ales&#64;<!-- -->roubicek.name</a></dd>
-          <dt>Telefon:</dt>
-          <dd class="tel t-mobile"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
-          <dt>Banka:</dt>
-          <dd class="bank zuno">1238482024/2310</dd>
-          <dt>Jabber:</dt>
-          <dd><a href="xmpp:rarous@gmail.com" class="url jabber">rarous@gmail.com</a></dd>
-        </dl>
-        <p>Adresa:</p>
-        <div class="adr">
-          <div class="street-address">Druzcov 52</div>
-          <span class="postal-code">463 52</span>,
-          <span class="locality">Osečná</span>
-          <div class="country-name">Česká republika</div>
-        </div>
-        <p class="geo">
-          <abbr class="latitude" title="50.7234">50°43'24.24"N</abbr>;
-          <abbr class="longitude" title="14.9296">14°55'46.56"E</abbr>
-        </p>
-        <p><a class="btn" href="http://www.linkedin.com/in/rarous" title="Zobrazit můj profil na LinkedIn">Profil LinkedIn</a>
-          <a class="btn" href="/webdesign/" title="Zobrazit portfolio služeb">Portfolio</a></p>
-        <hr class="hidden" />
-      </div>
-      <div class="column">
-        <div class="box weblog">
-          <h2><a href="/weblog/">rarouš.weblog<span class="image"></span></a></h2>
-
-          <div class="hentry">
-            <h3 class="entry-title"><a href="" rel="bookmark"></a></h3>
-            <p class="published"><span class="value" title="@item.DatePublished.ToString("s")Z">@item.DatePublished.ToString("HH.mm") &ndash; @item.DatePublished.ToString("dd. MMMM yyyy")</span></p>
-            <p class="entry-summary">@item.Description</p>
-          </div>
-
-          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous-weblog" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
-          <hr class="hidden" />
-        </div>
-      </div>
-      <div class="column">
-        <div class="box twitter">
-          <h2><a href="http://twitter.com/rarous" rel="me">twitter<span class="image"></span></a></h2>
-          <p>@ViewBag.TwitterQuote</p>
-          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous/twitter" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
-          <hr class="hidden" />
-        </div>
-
-        <div class="box picasa">
-          <h2><a href="http://picasaweb.google.com/rarous" rel="me">picasa.webalbums<span class="image"></span></a></h2>
-          @foreach (var album in ViewBag.PicasaAlbums) {
-          <div class="photo">
-            <a href="@album.Href"><img alt="album: @album.Title" src="@album.ThumbnailUrl" class="thumbnail" title="@album.Title" width="160" height="160" /></a>
-            <strong>@album.Title</strong>
-          </div>
-          }
-          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous/gallery" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
-          <hr class="hidden" />
-        </div>
-
-        <div class="box lastfm">
-          <h2><a href="http://www.last.fm/user/rarous/" rel="me">last.fm<span class="image"></span></a></h2>
-          <table class="list">
-            @foreach (var track in ViewBag.LastFmMusic) {
-            <tr><td>@track.Title</td><td>@ToWords(track.DatePlayed)</td></tr>
-            }
-          </table>
-          <div class="syndication"><a href="http://feeds2.feedburner.com/rarous/lastfm" type="text/xml"><img alt="RSS" src="/assets/css/rss.png" style="background:orange;border:1px solid #333" /></a></div>
-          <hr class="hidden" />
-        </div>
-      </div>
-    </div>
-    <div style="clear:both"></div>
-    <div class="footer">
-      <div class="box projects">
-        <h2>Projekty</h2>
-        <ul>
-          <li><a href="http://www.coderetreat.cz/">CodeRetreat CZ</a></li>
-        </ul>
-        <hr class="hidden" />
-      </div>
-      <div class="box projects">
-        <h2>Sociální sítě</h2>
-        <ul>
-          <li><a href="http://www.linkedin.com/in/rarous" rel="me">LinkedIn</a></li>
-          <li><a href="http://twitter.com/alesroubicek" rel="me">Twitter</a></li>
-          <li><a href="http://www.last.fm/user/rarous/" rel="me">Last.fm</a></li>
-          <li><a href="http://delicious.com/rarous" rel="me">Delicious</a></li>
-          <li><a href="http://picasaweb.google.com/rarous" rel="me">Picasa</a></li>
-          <li><a href="http://www.slideshare.net/rarous" rel="me">SlideShare</a></li>
-          <li><a href="http://www.youtube.com/profile?user=rarous" rel="me">YouTube</a></li>
-          <li><a href="http://www.github.com/rarous" rel="me">github</a></li>
-          <li><a href="http://www.technorati.com/blogs/www.rarous.net" rel="me">Technorati</a></li>
-          <li><a href="http://www.myspace.com/alessiobusta" rel="me">MySpace</a></li>
-          <li><a href="http://www.idj.cz/alessiobusta" rel="me">iDJ</a></li>
-        </ul>
-        <hr class="hidden" />
-      </div>
-      <div class="box tirage">
-        <h2>Tiráž</h2>
-        <ul>
-          <li>
-            <a href="http://www.codeplex.com/texynet/" title="Texty jsou převáděny pomocí Texy.net"><img alt="Texy.net" src="/content/img/texy-net.png" /></a>
-          </li>
-          <li class="creative-commons"><a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license" title="Share alike license" xml:lang="en">Creative Commons</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="ads"></div>
-    </body>
+</body>
 </html>
