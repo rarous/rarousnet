@@ -103,17 +103,17 @@
   [:article (itemprop "datePublished")] (html/content (long-date article))
   [:article (itemprop "datePublished")] (html/set-attr :datetime (utc-date published)))
 
-(defsnippet year-items "weblog/category.html" [:#content :section] [years]
-  [:section] (html/clone-for [{:keys [year articles]} years]
-                             [:section :h1] (html/content (str year))
-                             [:article] (html/substitute (category-items articles))))
-
 (defsnippet category-items "weblog/category.html" [:#content :article] [articles]
   [:article] (html/clone-for [{:keys [title published] :as article} articles]
                              [:article :a] (html/content title)
                              [:article :a] (html/set-attr :href (permalink article))
                              [:article :time] (html/content (short-date published))
                              [:article :time] (html/set-attr :datetime (utc-date published))))
+
+(defsnippet year-items "weblog/category.html" [:#content :section] [years]
+  [:section] (html/clone-for [{:keys [year articles]} years]
+                             [:section :h1] (html/content (str year))
+                             [:article] (html/substitute (category-items articles))))
 
 (deftemplate category-template "weblog/category.html" [{:keys [title url years]}]
   [:title] (html/content (str "Rubrika " title))
