@@ -158,6 +158,13 @@ font:.86em/1.2 'Segoe UI','Tahoma','Geneva CE',lucida,sans-serif;position:relati
 .hTagCloud .vvv-popular{font-size:2.545em}
 .hTagCloud .vvvv-popular{font-size:3em}
 
+.category-listing h2{margin-bottom:1em}
+.category-listing section{position:relative}
+.category-listing section>h1{position:absolute;margin:-.2ex 0}
+.category-listing article{position:relative;left:11em;padding-bottom:1.6em}
+.category-listing article h1{font-size:1.2em}
+.category-listing article time{position:absolute;top:0;left:-5em;font-size:1.18em}
+
 .box{position:relative;}
 .footer{color:#EFEFEF;background: #666;
 background: -moz-linear-gradient(top,  #999 0%, #666 25%);
