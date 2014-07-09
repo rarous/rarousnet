@@ -100,7 +100,7 @@
   [:article (itemprop "articleSection")] (html/content category)
   [:article (itemprop "author") (itemprop "name")] (html/content author)
   [:article (itemprop "url")] (html/set-attr :href (permalink article))
-  [:article (itemprop "datePublished")] (html/content (long-date article))
+  [:article (itemprop "datePublished")] (html/content (long-date published))
   [:article (itemprop "datePublished")] (html/set-attr :datetime (utc-date published)))
 
 (defsnippet category-items "weblog/category.html" [:#content :article] [articles]
