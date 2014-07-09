@@ -1,9 +1,9 @@
 (ns rarousnet.web
-  (:use [org.httpkit.server :only [run-server]])
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [org.httpkit.server :refer [run-server]]
             [ring.middleware.basic-authentication :as basic]
             [ring.middleware.gzip :refer [wrap-gzip]]
             [ring.middleware.stacktrace :refer [wrap-stacktrace]]
