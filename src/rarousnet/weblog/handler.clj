@@ -64,9 +64,11 @@
 (defn- meta-p [name] [:meta (html/attr= :property name)])
 (defn- itemprop [name] (html/attr= :itemprop name))
 (defn- link [rel] [:link (html/attr= :rel rel)])
+(defn- script [src] [:script (html/attr= :src src)])
 
 (deftemplate index-template "weblog/index.html" [r articles]
   [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
+  [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
   [:#content :article] (html/clone-for [{:keys [title html category author published] :as article} articles]
                                        [:article :header (itemprop "name") :a] (html/content title)
                                        [:article :header (itemprop "name") :a] (html/set-attr :href (rel-link article))
@@ -101,6 +103,7 @@
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "category")] (html/set-attr :href category-url)
   [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
+  [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
   [:article :header (itemprop "name")] (html/content title)
   [:article (itemprop "articleBody")] (html/html-content html)
   [:article (itemprop "articleSection")] (html/content category)

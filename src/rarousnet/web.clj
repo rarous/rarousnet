@@ -27,6 +27,7 @@
 
 (defn- get-assets []
   (concat
+   (assets/load-bundle "public" "weblog.js" ["/assets/js/prism.js"])
    (assets/load-bundle "public" "weblog.css" ["/design/blog/blog.css"])
    (assets/load-assets "public"
                        ["/bg.png"
