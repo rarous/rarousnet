@@ -11,9 +11,12 @@
                  [enlive "1.1.5"]
                  [environ "0.5.0"]
                  [http-kit "2.1.18"]
+                 [optimus "0.15.0"]
                  [ring "1.3.0"]
+                 [ring/ring-defaults "0.1.0"]
                  [ring-basic-authentication "1.0.5"]
-                 [rm-hull/ring-gzip-middleware "0.1.7"]
+                 [ring.middleware.etag "1.0.0-SNAPSHOT"]
+                 [rm-hull/ring-gzip-middleware "0.1.7"]]
   :plugins [[lein-ancient "0.5.5"]
             [lein-environ "0.5.0"]
             [lein-kibit "0.0.8"]
@@ -21,3 +24,4 @@
   :resource-paths ["src/rarousnet" "resources"]
   :profiles {:dev {:env {:production false}
                    :dependencies [[midje "1.6.3"]]}
+             :production {:env {:production true}}})

@@ -3,12 +3,16 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [optimus.prime :as optimus]
+            [optimus.assets :as assets]
+            [optimus.optimizations :as optimizations]
+            [optimus.strategies :as strategies]
             [org.httpkit.server :refer [run-server]]
             [ring.middleware.basic-authentication :as basic]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.middleware.etag.core :as etag]
             [ring.middleware.gzip :refer [wrap-gzip]]
             [ring.middleware.stacktrace :refer [wrap-stacktrace]]
-            [ring.middleware.session :as session]
-            [ring.middleware.session.cookie :as cookie]
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.util.response :as resp]
             [environ.core :refer [env]]
@@ -21,22 +25,41 @@
   (route/resources "/")
   (ANY "*" [] (route/not-found (slurp (io/resource "404.html")))))
 
-(defn wrap-error-page [handler]
+(defn- get-assets []
+  (concat
+   (assets/load-bundle "public" "weblog.css" ["/design/blog/blog.css"])
+   (assets/load-assets "public"
+                       ["/bg.png"
+                        "/favicon.ico"
+                        "/design/blog/favicon.png"])))
+(def optimization
+  (if (env :production)
+    optimizations/all
+    optimizations/none))
+(def strategy
+  (if (env :production)
+    strategies/serve-frozen-assets
+    strategies/serve-live-assets))
+
+(def create-md5-etag (etag/create-hashed-etag-fn etag/md5))
+
+(defn- wrap-error-page [handler]
   (fn [req]
-    (try (handler req)
+    (try
+      (handler req)
       (catch Exception e
         {:status 500
          :headers {"Content-Type" "text/html"}
          :body (slurp (io/resource "500.html"))}))))
 
 (def app
-  (let [store (cookie/cookie-store {:key (env :session-secret)})]
-    (-> #'app-routes
-        ((if (env :production)
-           wrap-error-page
-           wrap-stacktrace))
-        (site {:session {:store store}})
-        wrap-gzip)))
+  (-> #'app-routes
+      (etag/with-etag {:etag-generator create-md5-etag})
+      ((if (env :production)
+         wrap-error-page
+         wrap-stacktrace))
+      (optimus/wrap get-assets optimization strategy)
+      wrap-gzip))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]

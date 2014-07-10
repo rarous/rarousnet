@@ -4,6 +4,7 @@
             [clj-time.format :refer [formatter unparse with-locale formatters]]
             [clojure.java.io :as io]
             [compojure.core :refer [defroutes GET]]
+            [optimus.link :as link]
             [net.cgrand.enlive-html :refer [defsnippet deftemplate] :as html]
             [ring.util.response :refer [charset]]))
 
@@ -64,7 +65,8 @@
 (defn- itemprop [name] (html/attr= :itemprop name))
 (defn- link [rel] [:link (html/attr= :rel rel)])
 
-(deftemplate index-template "weblog/index.html" [articles]
+(deftemplate index-template "weblog/index.html" [r articles]
+  [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
   [:#content :article] (html/clone-for [{:keys [title html category author published] :as article} articles]
                                        [:article :header (itemprop "name") :a] (html/content title)
                                        [:article :header (itemprop "name") :a] (html/set-attr :href (link article))
@@ -87,7 +89,7 @@
 
 (deftemplate comments-rss-template "weblog/comments.rss" [])
 (deftemplate blogpost-template "weblog/blogpost.html"
-  [{:keys [title author description category category-url html published] :as article}]
+  [r {:keys [title author description category category-url html published] :as article}]
   [:title] (html/content title)
   [(meta-n "author")] (html/set-attr :content author)
   [(meta-n "description")] (html/set-attr :content description)
@@ -98,6 +100,7 @@
   [(meta-p "article:section")] (html/set-attr :content category)
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "category")] (html/set-attr :href category-url)
+  [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
   [:article :header (itemprop "name")] (html/content title)
   [:article (itemprop "articleBody")] (html/html-content html)
   [:article (itemprop "articleSection")] (html/content category)
@@ -118,9 +121,10 @@
                              [:section :h1] (html/content (str year))
                              [:article] (html/substitute (category-items articles))))
 
-(deftemplate category-template "weblog/category.html" [{:keys [title url years]}]
+(deftemplate category-template "weblog/category.html" [r {:keys [title url years]}]
   [:title] (html/content (str "Rubrika " title))
   [(link "canonical")] (html/set-attr :href (str blog-url url))
+  [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
   [:#content :h2] (html/content title)
   [:#content :section] (html/substitute (year-items years)))
 
@@ -140,9 +144,9 @@
   {:status 301
    :headers {"Location" location}})
 
-(defn index []
+(defn index [r]
   (->> (last-articles 5)
-       index-template
+       (index-template r)
        render-view))
 
 (defn rss []
@@ -159,22 +163,22 @@
 (defn redirect-to-blogpost [url]
   (moved-permanently (str "http://www.rarous.net/weblog/" url)))
 
-(defn blogpost [url]
-  (some-> (load-article url)
-          blogpost-template
-          render-view))
+(defn blogpost [url r]
+  (some->> (load-article url)
+           (blogpost-template r)
+           render-view))
 
-(defn category [url]
-  (some-> (load-category url)
-          category-template
-          render-view))
+(defn category [url r]
+  (some->> (load-category url)
+           (category-template r)
+           render-view))
 
 (defroutes routes
-  (GET "/weblog/" [] (index))
-  (GET "/weblog/:url" [url]
+  (GET "/weblog/" r (index r))
+  (GET "/weblog/:url" [url :as r]
        (if (Character/isDigit (first url))
-         (blogpost url)
-         (category url)))
+         (blogpost url r)
+         (category url r)))
   (GET "/feed/rss.ashx" [] (rss))
   (GET "/feed/comments.ashx" [] (comments-rss))
 
