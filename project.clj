@@ -22,5 +22,3 @@
   :resource-paths ["src/rarousnet" "resources"]
   :profiles {:dev {:env {:production false}
                    :dependencies [[midje "1.6.3"]]}
-             :production {:env {:production true}
-                          :java-agents [[com.newrelic.agent.java/newrelic-agent "3.4.2"]]}})
