@@ -16,7 +16,7 @@
                  [ring/ring-defaults "0.1.0"]
                  [ring-basic-authentication "1.0.5"]
                  [ring.middleware.etag "1.0.0-SNAPSHOT"]
-                 [rm-hull/ring-gzip-middleware "0.1.7"]]
+                 [bk/ring-gzip "0.1.1"]]
   :plugins [[lein-ancient "0.5.5"]
             [lein-environ "0.5.0"]
             [lein-kibit "0.0.8"]
