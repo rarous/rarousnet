@@ -52,7 +52,7 @@
 
 (defn permalink [{:keys [id url]}]
   (str blog-url id "-" url ".aspx"))
-(defn link [{:keys [id url]}]
+(defn rel-link [{:keys [id url]}]
   (str blog-relative-url id "-" url ".aspx"))
 (defn author-twitter [{:keys [author]}]
   (case author
@@ -69,11 +69,11 @@
   [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
   [:#content :article] (html/clone-for [{:keys [title html category author published] :as article} articles]
                                        [:article :header (itemprop "name") :a] (html/content title)
-                                       [:article :header (itemprop "name") :a] (html/set-attr :href (link article))
+                                       [:article :header (itemprop "name") :a] (html/set-attr :href (rel-link article))
                                        [:article (itemprop "articleBody")] (html/html-content html)
                                        [:article (itemprop "articleSection")] (html/content category)
                                        [:article (itemprop "author") (itemprop "name")] (html/content author)
-                                       [:article (itemprop "url")] (html/set-attr :href (link article))
+                                       [:article (itemprop "url")] (html/set-attr :href (rel-link article))
                                        [:article (itemprop "datePublished")] (html/content (long-date published))
                                        [:article (itemprop "datePublished")] (html/set-attr :datetime (utc-date published))))
 
@@ -105,14 +105,14 @@
   [:article (itemprop "articleBody")] (html/html-content html)
   [:article (itemprop "articleSection")] (html/content category)
   [:article (itemprop "author") (itemprop "name")] (html/content author)
-  [:article (itemprop "url")] (html/set-attr :href (link article))
+  [:article (itemprop "url")] (html/set-attr :href (rel-link article))
   [:article (itemprop "datePublished")] (html/content (long-date published))
   [:article (itemprop "datePublished")] (html/set-attr :datetime (utc-date published)))
 
 (defsnippet category-items "weblog/category.html" [:#content :article] [articles]
   [:article] (html/clone-for [{:keys [title published] :as article} articles]
                              [:article :a] (html/content title)
-                             [:article :a] (html/set-attr :href (link article))
+                             [:article :a] (html/set-attr :href (rel-link article))
                              [:article :time] (html/content (short-date published))
                              [:article :time] (html/set-attr :datetime (utc-date published))))
 
