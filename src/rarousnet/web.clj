@@ -59,6 +59,7 @@
          wrap-error-page
          wrap-stacktrace))
       (optimus/wrap get-assets optimization strategy)
+      (wrap-defaults site-defaults)
       wrap-gzip))
 
 (defn -main [& [port]]
