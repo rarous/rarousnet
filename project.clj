@@ -14,7 +14,6 @@
                  [ring "1.3.0"]
                  [ring-basic-authentication "1.0.5"]
                  [rm-hull/ring-gzip-middleware "0.1.7"]
-                 [com.cemerick/drawbridge "0.0.6"]]
   :plugins [[lein-ancient "0.5.5"]
             [lein-environ "0.5.0"]
             [lein-kibit "0.0.8"]

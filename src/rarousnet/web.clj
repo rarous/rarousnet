@@ -11,23 +11,13 @@
             [ring.middleware.session.cookie :as cookie]
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.util.response :as resp]
-            [cemerick.drawbridge :as drawbridge]
             [environ.core :refer [env]]
             [rarousnet.home.handler :as home]
             [rarousnet.weblog.handler :as blog]))
 
-(defn- authenticated? [user pass]
-  (= [user pass] [(env :repl-user false) (env :repl-password false)]))
-
-(def ^:private drawbridge
-  (-> (drawbridge/ring-handler)
-      (session/wrap-session)
-      (basic/wrap-basic-authentication authenticated?)))
-
 (defroutes app-routes
   home/routes
   blog/routes
-  (ANY "/repl" {:as req} (drawbridge req))
   (route/resources "/")
   (ANY "*" [] (route/not-found (slurp (io/resource "404.html")))))
 
