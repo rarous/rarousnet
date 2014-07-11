@@ -27,13 +27,14 @@
         body {
             font: 1em "Cardo", serif;
             color: #878787;
-            background: #EEDD99 url(bg.png);
+            background: #EEDD99 url(/assets/bg.png);
         }
         a { color: #6A7E9D; }
         a:hover { color: #2A436A; }
 
         #header {
             margin: 1.8em auto 0;
+            text-align: center;
         }
 
         #header:after {
@@ -55,7 +56,6 @@
             color: #555;
             font-size: 1.2em;
             font-weight: 200;
-            text-align: center;
             text-transform: uppercase;
         }
 
@@ -133,6 +133,7 @@
 <body>
     <div id="top">
         <section id="header">
+            <img class="logo" src="/assets/logo.svg" width="60" height="43">
             <h1>Software for the Masses</h1>
         </section>
         <section id="contact" itemscope itemtype="http://schema.org/Person">
