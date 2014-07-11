@@ -6,11 +6,14 @@
   :min-lein-version "2.0.0"
   :main rarousnet.web
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.clojure/tools.logging "0.3.0"]
                  [clj-time "0.7.0"]
                  [compojure "1.1.8"]
+                 [com.logentries/logentries-appender "1.1.25"]
                  [enlive "1.1.5"]
                  [environ "0.5.0"]
                  [http-kit "2.1.18"]
+                 [log4j/log4j "1.2.17"]
                  [optimus "0.15.0"]
                  [ring "1.3.0"]
                  [ring/ring-defaults "0.1.0"]

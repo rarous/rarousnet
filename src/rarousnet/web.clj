@@ -1,8 +1,9 @@
 (ns rarousnet.web
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+  (:require [clojure.java.io :as io]
+            [clojure.tools.logging :refer [error]]
+            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
-            [clojure.java.io :as io]
             [optimus.prime :as optimus]
             [optimus.assets :as assets]
             [optimus.optimizations :as optimizations]
@@ -22,6 +23,7 @@
 (defroutes app-routes
   home/routes
   blog/routes
+  (GET "/500" [] (throw))
   (route/resources "/")
   (ANY "*" [] (route/not-found (slurp (io/resource "404.html")))))
 
@@ -49,7 +51,8 @@
   (fn [req]
     (try
       (handler req)
-      (catch Exception e
+      (catch Exception ex
+        (error ex (str "Error in execution of page " (:uri req)))
         {:status 500
          :headers {"Content-Type" "text/html"}
          :body (slurp (io/resource "500.html"))}))))
