@@ -2,34 +2,38 @@
   (:require [clj-time.core :as t]
             [clj-time.coerce :refer [from-date]]
             [clj-time.format :refer [formatter unparse with-locale formatters]]
+            [clojure.core.reducers :as r]
             [clojure.java.io :as io]
             [compojure.core :refer [defroutes GET]]
             [optimus.link :as link]
             [net.cgrand.enlive-html :refer [defsnippet deftemplate] :as html]
             [ring.util.response :refer [charset]]))
 
+(defn- read-resource [n] (read-string (slurp (io/resource n))))
+
 (def blog-relative-url "/weblog/")
 (def blog-url (str "http://www.rarous.net" blog-relative-url))
-(defn- read-resource [n] (read-string (slurp (io/resource n))))
 (def articles (read-resource "articles.edn"))
 (def categories (read-resource "rubrics.edn"))
+
 (defn load-article [url] (get articles (keyword url)))
+
 (defn last-articles [n]
   (->> (vals articles)
        (sort-by :id)
        (reverse)
        (take n)))
+
 (defn load-category [url]
-  (let [category-items (-> (get categories (keyword url)) reverse)
+  (let [category-items (get categories (keyword url))
         title (:category (first category-items))
         years (->> category-items
-                   (map #(assoc % :year (t/year (from-date (:published %)))))
-                   (group-by :year)
-                   (mapv (fn [x] {:year (first x) :articles (second x)}))
-                   (sort-by :year)
-                   reverse
-                   (into []))]
-    {:title title, :url url, :years years}))
+                   (group-by (comp t/year from-date :published))
+                   (map (partial zipmap [:year :articles]))
+                   (sort-by :year >))]
+    (if title
+      {:title title, :url url, :years years}
+      nil)))
 
 (def long-date-format
   (with-locale
@@ -41,14 +45,14 @@
     (java.util.Locale. "cs")))
 (def utc-format (formatters :basic-date-time))
 (def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
-(defn utc-date [published]
-  (unparse utc-format (from-date published)))
-(defn long-date [published]
-  (unparse long-date-format (from-date published)))
-(defn short-date [published]
-  (unparse short-date-format (from-date published)))
-(defn rss-date [published]
-  (unparse rss-format (from-date published)))
+(defn utc-date [d]
+  (unparse utc-format (from-date d)))
+(defn long-date [d]
+  (unparse long-date-format (from-date d)))
+(defn short-date [d]
+  (unparse short-date-format (from-date d)))
+(defn rss-date [d]
+  (unparse rss-format (from-date d)))
 
 (defn permalink [{:keys [id url]}]
   (str blog-url id "-" url ".aspx"))
