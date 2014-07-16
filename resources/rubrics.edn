@@ -1174,7 +1174,14 @@
    :category "Škola",
    :is-published true}],
  :jen-tak.aspx
- [{:id 457,
+ [{:id 458,
+   :title
+   "Proč je [programovací jazyk X] rozhodně lepší než [programovací jazyk Y]",
+   :published #inst "2014-07-16T11:00:00.663-00:00",
+   :url "proc-je-jazyk-x-lepsi-nez-y",
+   :category "Jen tak",
+   :is-published true}
+  {:id 457,
    :title "Velká pyramida",
    :published #inst "2014-07-04T12:00:00.663-00:00",
    :url "velka-pyramida",
