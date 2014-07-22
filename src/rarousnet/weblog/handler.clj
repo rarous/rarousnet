@@ -70,18 +70,26 @@
 (defn- link [rel] [:link (html/attr= :rel rel)])
 (defn- script [src] [:script (html/attr= :src src)])
 
+(defsnippet link-stylesheet (html/html [:link {:href "" :rel "stylesheet"}]) [:link] [hrefs]
+  (html/clone-for [href hrefs] [:link] (html/set-attr :href href)))
+
+(defn- style-bundle [r name]
+  (html/substitute (link-stylesheet (link/bundle-paths r [name]))))
+
 (deftemplate index-template "weblog/index.html" [r articles]
   [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
   [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
   [:#content :article] (html/clone-for [{:keys [title html category author published] :as article} articles]
-                                       [:article :header (itemprop "name") :a] (html/content title)
-                                       [:article :header (itemprop "name") :a] (html/set-attr :href (rel-link article))
+                                       [:article :header (itemprop "name") :a] (html/do->
+                                                                                (html/content title)
+                                                                                (html/set-attr :href (rel-link article)))
                                        [:article (itemprop "articleBody")] (html/html-content html)
                                        [:article (itemprop "articleSection")] (html/content category)
                                        [:article (itemprop "author") (itemprop "name")] (html/content author)
                                        [:article (itemprop "url")] (html/set-attr :href (rel-link article))
-                                       [:article (itemprop "datePublished")] (html/content (long-date published))
-                                       [:article (itemprop "datePublished")] (html/set-attr :datetime (utc-date published))))
+                                       [:article (itemprop "datePublished")] (html/do->
+                                                                              (html/content (long-date published))
+                                                                              (html/set-attr :datetime (utc-date published)))))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
   [:item] (html/clone-for [{:keys [author title description category published] :as article} articles]
@@ -106,7 +114,7 @@
   [(meta-p "article:section")] (html/set-attr :content category)
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "category")] (html/set-attr :href category-url)
-  [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
+  [(link "stylesheet")] (html/substitute (link-stylesheet (link/bundle-paths r ["weblog.css"])))
   [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
   [:article :header (itemprop "name")] (html/content title)
   [:article (itemprop "articleBody")] (html/html-content html)
@@ -117,21 +125,21 @@
   [:article (itemprop "datePublished")] (html/set-attr :datetime (utc-date published)))
 
 (defsnippet category-items "weblog/category.html" [:#content :article] [articles]
-  [:article] (html/clone-for [{:keys [title published] :as article} articles]
-                             [:article :a] (html/content title)
-                             [:article :a] (html/set-attr :href (rel-link article))
-                             [:article :time] (html/content (short-date published))
-                             [:article :time] (html/set-attr :datetime (utc-date published))))
+  (html/clone-for [{:keys [title published] :as article} articles]
+                  [:article :a] (html/content title)
+                  [:article :a] (html/set-attr :href (rel-link article))
+                  [:article :time] (html/content (short-date published))
+                  [:article :time] (html/set-attr :datetime (utc-date published))))
 
 (defsnippet year-items "weblog/category.html" [:#content :section] [years]
-  [:section] (html/clone-for [{:keys [year articles]} years]
-                             [:section :h1] (html/content (str year))
-                             [:article] (html/substitute (category-items articles))))
+  (html/clone-for [{:keys [year articles]} years]
+                  [:section :h1] (html/content (str year))
+                  [:article] (html/substitute (category-items articles))))
 
 (deftemplate category-template "weblog/category.html" [r {:keys [title url years]}]
   [:title] (html/content (str "Rubrika " title))
   [(link "canonical")] (html/set-attr :href (str blog-url url))
-  [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
+  [(link "stylesheet")] (style-bundle r "weblog.css")
   [:#content :h2] (html/content title)
   [:#content :section] (html/substitute (year-items years)))
 

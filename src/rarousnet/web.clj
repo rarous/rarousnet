@@ -23,7 +23,7 @@
 (defroutes app-routes
   home/routes
   blog/routes
-  (GET "/500" [] (throw))
+  (GET "/500" [] (Exception. "500"))
   (route/resources "/")
   (ANY "*" [] (route/not-found (slurp (io/resource "404.html")))))
 

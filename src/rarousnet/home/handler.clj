@@ -8,7 +8,7 @@
 (deftemplate photos-template "home/photos.html" [])
 
 (defn view [template]
-    (apply str (template)))
+  (apply str (template)))
 
 (defn render [template]
   (-> {:status 200
