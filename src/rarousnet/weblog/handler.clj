@@ -24,7 +24,8 @@
 (defn last-articles [n]
   (->> (vals articles)
        (sort-by :id)
-       (take-last n)))
+       (take-last n)
+       (reverse)))
 
 (defn load-category [url]
   (let [category-items (get categories (keyword url))
