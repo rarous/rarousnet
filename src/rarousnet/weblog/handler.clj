@@ -4,25 +4,27 @@
             [clj-time.format :refer [formatter unparse with-locale formatters]]
             [clojure.core.reducers :as r]
             [clojure.java.io :as io]
+            [cognitect.transit :as transit]
             [compojure.core :refer [defroutes GET]]
             [optimus.link :as link]
             [net.cgrand.enlive-html :refer [defsnippet deftemplate] :as html]
             [ring.util.response :refer [charset]]))
 
-(defn- read-resource [n] (read-string (slurp (io/resource n))))
-
 (def blog-relative-url "/weblog/")
 (def blog-url (str "http://www.rarous.net" blog-relative-url))
-(def articles (read-resource "articles.edn"))
-(def categories (read-resource "rubrics.edn"))
+
+(defn- read-resource [n]
+  (with-open [in (io/input-stream (io/resource n))]
+    (transit/read (transit/reader in :msgpack))))
+(def articles (read-resource "articles.mp"))
+(def categories (read-resource "rubrics.mp"))
 
 (defn load-article [url] (get articles (keyword url)))
 
 (defn last-articles [n]
   (->> (vals articles)
        (sort-by :id)
-       (reverse)
-       (take n)))
+       (take-last n)))
 
 (defn load-category [url]
   (let [category-items (get categories (keyword url))
@@ -31,9 +33,7 @@
                    (group-by (comp t/year from-date :published))
                    (map (partial zipmap [:year :articles]))
                    (sort-by :year >))]
-    (if title
-      {:title title, :url url, :years years}
-      nil)))
+    (if title {:title title, :url url, :years years} nil)))
 
 (def long-date-format
   (with-locale

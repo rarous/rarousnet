@@ -9,6 +9,7 @@
                  [org.clojure/tools.logging "0.3.0"]
                  [clj-time "0.7.0"]
                  [compojure "1.1.8"]
+                 [com.cognitect/transit-clj "0.8.259"]
                  [com.logentries/logentries-appender "1.1.25"]
                  [enlive "1.1.5"]
                  [environ "0.5.0"]
@@ -20,9 +21,7 @@
                  [ring-basic-authentication "1.0.5"]
                  [ring.middleware.etag "1.0.0-SNAPSHOT"]
                  [bk/ring-gzip "0.1.1"]]
-  :plugins [[lein-ancient "0.5.5"]
-            [lein-environ "0.5.0"]
-            [lein-kibit "0.0.8"]
+  :plugins [[lein-environ "0.5.0"]
             [lein-midje "3.1.3"]]
   :resource-paths ["src/rarousnet" "resources"]
   :profiles {:dev {:env {:production false}
