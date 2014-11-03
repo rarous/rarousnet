@@ -33,6 +33,8 @@
   (GET "/webdesign/" [] (webdesign))
   (GET "/photos/" [] (photos))
 
+  (GET "/contact" [] (redirect-home))
+  (GET "/kontakt" [] (redirect-home))
   (GET "/default.aspx" [] (redirect-home))
   (GET "/about.aspx" [] (redirect-home))
   (GET "/stranky.aspx" [] (redirect-home))
