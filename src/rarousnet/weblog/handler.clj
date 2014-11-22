@@ -8,7 +8,8 @@
             [compojure.core :refer [defroutes GET]]
             [optimus.link :as link]
             [net.cgrand.enlive-html :refer [defsnippet deftemplate] :as html]
-            [ring.util.response :refer [charset]]))
+            [ring.util.response :refer [charset]])
+  (:import [java.util Locale]))
 
 (def blog-relative-url "/weblog/")
 (def blog-url (str "http://www.rarous.net" blog-relative-url))
@@ -37,13 +38,9 @@
     (if title {:title title, :url url, :years years} nil)))
 
 (def long-date-format
-  (with-locale
-    (formatter "HH.mm - d. MMMM yyyy")
-    (java.util.Locale. "cs")))
+  (with-locale (formatter "HH.mm - d. MMMM yyyy") (Locale. "cs")))
 (def short-date-format
-  (with-locale
-    (formatter "MMM d")
-    (java.util.Locale. "cs")))
+  (with-locale (formatter "MMM d") (Locale. "cs")))
 (def utc-format (formatters :basic-date-time))
 (def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
 (defn utc-date [d]
@@ -202,6 +199,7 @@
   (GET "/ws/Syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/ws/syndikace.asmx/Rss" [] (redirect-to-rss-feed))
   (GET "/clanek/:url" [url] (redirect-to-blogpost url))
+  (GET "/clanek.aspx/:url" [url] (redirect-to-blogpost (str url ".aspx")))
   (GET "/rubrika/:url" [url] (redirect-to-blogpost (subs url (inc (.indexOf url "-")))))
   (GET "/weblog" [] (redirect-to-blogpost ""))
   (GET "/weblog/429-test-driven-developemt-pribeh-nezbedneho-vyvojare.aspx" []
