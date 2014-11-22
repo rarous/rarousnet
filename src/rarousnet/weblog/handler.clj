@@ -203,5 +203,9 @@
   (GET "/rubrika/:url" [url] (redirect-to-blogpost (subs url (inc (.indexOf url "-")))))
   (GET "/weblog" [] (redirect-to-blogpost ""))
   (GET "/weblog/429-test-driven-developemt-pribeh-nezbedneho-vyvojare.aspx" []
-       (moved-permanently "/weblog/429-test-driven-development-pribeh-nezbedneho-vyvojare.aspx")))
+       (moved-permanently "/weblog/429-test-driven-development-pribeh-nezbedneho-vyvojare.aspx"))
+  (GET "/weblog/267-vladani-data-do-stranky.aspx" []
+       (moved-permanently "/weblog/267-vkladani-data-do-stranky.aspx"))
+  (GET "/weblog/329-rest-full-aplikace-pomoci-asp-net-mvc.aspx" []
+       (moved-permanently "/weblog/329-rest-aplikace-pomoci-asp-net-mvc.aspx")))
 
