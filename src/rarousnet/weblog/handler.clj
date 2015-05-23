@@ -65,6 +65,10 @@
 (defn- meta-n [name] [:meta (html/attr= :name name)])
 (defn- meta-p [name] [:meta (html/attr= :property name)])
 (defn- itemprop [name] (html/attr= :itemprop name))
+(defn- itemtype [name] (html/attr= :itemtype (str "http://schema.org/" name)))
+(defn- microdata
+  ([type prop] [(itemtype type) (itemprop prop)])
+  ([type subtype prop] [(itemtype type) (itemtype subtype) (itemprop prop)]))
 (defn- link [rel] [:link (html/attr= :rel rel)])
 (defn- script [src] [:script (html/attr= :src src)])
 
@@ -74,20 +78,23 @@
 (defn- style-bundle [r name]
   (html/substitute (link-stylesheet (link/bundle-paths r [name]))))
 
+(defsnippet article-listing "weblog/index.html" [:#content :article]
+  [{:keys [title author category html published] :as article}]
+  [(microdata "BlogPosting" "name") :a] (html/do->
+                                         (html/content title)
+                                         (html/set-attr :href (rel-link article)))
+  (microdata "BlogPosting" "datePublished") (html/do->
+                                              (html/content (long-date published))
+                                              (html/set-attr :datetime (utc-date published)))
+  (microdata "BlogPosting" "articleSection") (html/content category)
+  (microdata "BlogPosting" "articleBody") (html/html-content html)
+  (microdata "BlogPosting" "Person" "name") (html/content author)
+  (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
+
 (deftemplate index-template "weblog/index.html" [r articles]
   [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
   [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
-  [:#content :article] (html/clone-for [{:keys [title html category author published] :as article} articles]
-                                       [:article :header (itemprop "name") :a] (html/do->
-                                                                                (html/content title)
-                                                                                (html/set-attr :href (rel-link article)))
-                                       [:article (itemprop "articleBody")] (html/html-content html)
-                                       [:article (itemprop "articleSection")] (html/content category)
-                                       [:article (itemprop "author") (itemprop "name")] (html/content author)
-                                       [:article (itemprop "url")] (html/set-attr :href (rel-link article))
-                                       [:article (itemprop "datePublished")] (html/do->
-                                                                              (html/content (long-date published))
-                                                                              (html/set-attr :datetime (utc-date published)))))
+  [:#content :article] (html/content (map article-listing articles)))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
   [:item] (html/clone-for [{:keys [author title description category published] :as article} articles]
@@ -100,6 +107,18 @@
                           [:category] (html/content category)))
 
 (deftemplate comments-rss-template "weblog/comments.rss" [])
+
+(defsnippet article-detail "weblog/blogpost.html" [:article]
+  [{:keys [title author category html published] :as article}]
+  (microdata "BlogPosting" "name") (html/content title)
+  (microdata "BlogPosting" "datePublished") (html/do->
+                                              (html/content (long-date published))
+                                              (html/set-attr :datetime (utc-date published)))
+  (microdata "BlogPosting" "articleSection") (html/content category)
+  (microdata "BlogPosting" "articleBody") (html/html-content html)
+  (microdata "BlogPosting" "Person" "name") (html/content author)
+  (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
+
 (deftemplate blogpost-template "weblog/blogpost.html"
   [r {:keys [title author description category category-url html published] :as article}]
   [:title] (html/content title)
@@ -114,13 +133,7 @@
   [(link "category")] (html/set-attr :href category-url)
   [(link "stylesheet")] (html/substitute (link-stylesheet (link/bundle-paths r ["weblog.css"])))
   [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
-  [:article :header (itemprop "name")] (html/content title)
-  [:article (itemprop "articleBody")] (html/html-content html)
-  [:article (itemprop "articleSection")] (html/content category)
-  [:article (itemprop "author") (itemprop "name")] (html/content author)
-  [:article (itemprop "url")] (html/set-attr :href (rel-link article))
-  [:article (itemprop "datePublished")] (html/content (long-date published))
-  [:article (itemprop "datePublished")] (html/set-attr :datetime (utc-date published)))
+  [:article] (html/substitute (article-detail article)))
 
 (defsnippet category-items "weblog/category.html" [:#content :article] [articles]
   (html/clone-for [{:keys [title published] :as article} articles]
