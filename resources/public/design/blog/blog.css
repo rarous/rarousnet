@@ -1,5 +1,22 @@
-html,body{margin:0;padding:0;background:#FFF;color:#555;font:16px sans-serif}
-body{border-top:2px solid #333;border-bottom:2px solid #333;background:url(b.png) repeat-x top left}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #FFF;
+  color: #555;
+  font: 100% sans-serif
+}
+body {
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+  background: url(b.png) repeat-x top left;
+  -moz-font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  -moz-font-feature-settings: "kern=1, liga=1, dlig=1";
+  -ms-font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  -o-font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  -webkit-font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  font-feature-settings: "kern" 1, "liga" 1, "dlig" 1
+}
 
 h2,article h1{font:2.4em Georgia,'New York CE',utopia,serif;letter-spacing:-2px;margin:0;z-index:20}
 h2 a{text-decoration:none}
