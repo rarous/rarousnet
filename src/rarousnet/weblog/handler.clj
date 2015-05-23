@@ -80,9 +80,9 @@
 
 (defsnippet article-listing "weblog/index.html" [:#content :article]
   [{:keys [title author category html published] :as article}]
-  [(microdata "BlogPosting" "name") :a] (html/do->
-                                         (html/content title)
-                                         (html/set-attr :href (rel-link article)))
+  (conj (microdata "BlogPosting" "name") :a) (html/do->
+                                              (html/content title)
+                                              (html/set-attr :href (rel-link article)))
   (microdata "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date published))
                                               (html/set-attr :datetime (utc-date published)))
@@ -94,7 +94,7 @@
 (deftemplate index-template "weblog/index.html" [r articles]
   [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
   [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
-  [:#content :article] (html/content (map article-listing articles)))
+  [:#content] (html/content (map article-listing articles)))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
   [:item] (html/clone-for [{:keys [author title description category published] :as article} articles]
