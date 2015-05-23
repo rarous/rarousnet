@@ -36,10 +36,12 @@
                         "/assets/logo.svg"
                         "/favicon.ico"
                         "/design/blog/favicon.png"])))
+
 (def optimization
   (if (env :production)
     optimizations/all
     optimizations/none))
+
 (def strategy
   (if (env :production)
     strategies/serve-frozen-assets
@@ -59,17 +61,18 @@
 
 (def app
   (-> #'app-routes
-      (etag/with-etag {:etag-generator create-md5-etag})
       ((if (env :production)
          wrap-error-page
          wrap-stacktrace))
       (optimus/wrap get-assets optimization strategy)
+      (etag/with-etag {:etag-generator create-md5-etag})
       (wrap-defaults site-defaults)
       wrap-gzip))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (run-server app {:port port})))
+    (run-server app {:port port})
+    (println (str "Web server is running on port " port))))
 
 ;; For interactive development:
 ;; (stop)
