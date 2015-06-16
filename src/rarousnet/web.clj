@@ -65,7 +65,7 @@
          wrap-error-page
          wrap-stacktrace))
       (optimus/wrap get-assets optimization strategy)
-      (etag/with-etag {:etag-generator create-md5-etag})
+      #_(etag/with-etag {:etag-generator create-md5-etag})
       (wrap-defaults site-defaults)
       wrap-gzip))
 
