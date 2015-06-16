@@ -112,25 +112,39 @@
           -moz-border-radius: 2px;
           -webkit-border-radius: 2px;
 
-          max-width: 850px;
-          margin-left: auto;
-          margin-right: auto;
+          margin-left: 8px;
+          margin-right: 8px;
+        }
 
         }
 
-        @media screen and (min-width: 480px) {
-          #header:after { height: 170px }
+        @media screen and (min-width: 480px) and (max-width: 640px) {
+          #header:after {
+            height: 170px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+          #contact {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+          }
         }
         @media screen and (min-width: 640px) {
           #header { margin: 2.4em auto 0 }
           #header:after { height: 200px; margin-top: 2.4em }
-          #contact { margin-top: 2.4em }
+          #contact { margin-top: 1.2em }
         }
         @media screen and (min-width: 850px) {
           #header { margin: 3.6em auto 0 }
           .qr-code { display: block; float: right }
           #header:after { height: 315px; margin-top: 3.6em }
           #contact { margin-top: 3.6em }
+          #header:after,
+          #contact {
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
         @media (min-resolution: 1.5dppx) {
           body { font-size: 1.4em }
