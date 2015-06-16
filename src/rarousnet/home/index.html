@@ -20,48 +20,51 @@
     <!--[if lt IE 9]><script src=https://html5shim.googlecode.com/svn/trunk/html5.js></script><![endif]-->
     <style>
         body {
-            font: 1em "Cardo", serif;
-            color: #878787;
-            background: #EEDD99 url(/assets/bg.png);
-            padding: 0;
-            margin: 0;
--webkit-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
-            -moz-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
-            -moz-font-feature-settings: "dlig=1, kern=1, liga=1";
-            -ms-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
-            font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
+          font: 1em Georgia, serif;
+          color: #878787;
+          background: #EEDD99 url(/assets/bg.png);
+          padding: 0;
+          margin: 0;
+          -webkit-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
+          -moz-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
+          -moz-font-feature-settings: "dlig=1, kern=1, liga=1";
+          -ms-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
+          font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
+        }
+        .wf-active body {
+          font-family: Cardo;
         }
         a { color: #6A7E9D; }
         a:hover { color: #2A436A; }
 
         #header {
-            margin: 1.8em auto 0;
-            text-align: center;
+          margin: 1.8em auto 0;
+          text-align: center;
         }
 
         #header:after {
-            content: "";
-            display: block;
-            min-height: 116px;
-            background-image: url(https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-9/10552457_10201413660302839_7444628729865362009_n.jpg?oh=fb535daa2456f92ded21364fbcce0547&oe=55B1C00D&__gda__=1438431231_1343bd4355c27329ea77fecad25c3690);
-            background-repeat: no-repeat;
-            background-position: center center;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
+          content: "";
+          display: block;
+          min-height: 116px;
+          background-image: url(https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-9/10552457_10201413660302839_7444628729865362009_n.jpg?oh=fb535daa2456f92ded21364fbcce0547&oe=55B1C00D&__gda__=1438431231_1343bd4355c27329ea77fecad25c3690);
+          background-repeat: no-repeat;
+          background-position: center center;
+          -webkit-background-size: 100%;
+          -moz-background-size: 100%;
+          -o-background-size: 100%;
+          background-size: 100%;
         }
 
         #header h1 {
-            color: #555;
-            font-size: 1.2em;
-            font-weight: 300;
-            text-transform: uppercase;
+          color: #555;
+          font-size: 1.2em;
+          font-weight: 300;
+          text-transform: uppercase;
         }
 
         #contact {
-            background: #fff;
-            border: 1px solid #e2e2e2;
+          background: #fff;
+          border: 1px solid #e2e2e2;
         }
         #contact header { padding-left: 1em }
         #contact h1 {
@@ -69,11 +72,11 @@
           font-weight: 400;
         }
         #contact h2 {
-            color: #DEDEDE;
-            font-size: 1em;
-            font-style: italic;
+          color: #DEDEDE;
+          font-size: 1em;
+          font-style: italic;
           font-weight: 400;
-            margin-top: 0;
+          margin-top: 0;
         }
         #contact dl { line-height: 2em }
         #contact dt { position: absolute; left: -1000px }
@@ -90,11 +93,11 @@
         #links a:visited { color: #878787; text-decoration: none }
         #links a:hover { color: #6A7E9D; text-decoration: underline }
         #links ul {
-            margin: 2.4em 0;
-            padding: 0;
-            list-style: none;
-            text-align: center;
-            word-spacing: .5em;
+          margin: 2.4em 0;
+          padding: 0;
+          list-style: none;
+          text-align: center;
+          word-spacing: .5em;
         }
         #links li { display: inline-block; word-spacing: 0 }
         #links li:before { content: "❖ "; word-spacing: .5em }
@@ -102,34 +105,35 @@
 
         #header:after,
         #contact {
-            -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
-            -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
-            box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
-            border-radius: 2px 2px 2px 2px;
-            -moz-border-radius: 2px 2px 2px 2px;
-            -webkit-border-radius: 2px 2px 2px 2px;
+          -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
+          -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
+          box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
+          border-radius: 2px;
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
 
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
+          max-width: 850px;
+          margin-left: auto;
+          margin-right: auto;
+
         }
 
         @media screen and (min-width: 480px) {
-            #header:after { height: 170px }
+          #header:after { height: 170px }
         }
         @media screen and (min-width: 640px) {
-            #header { margin: 2.4em auto 0 }
-            #header:after { height: 200px; margin-top: 2.4em }
-            #contact { margin-top: 2.4em }
+          #header { margin: 2.4em auto 0 }
+          #header:after { height: 200px; margin-top: 2.4em }
+          #contact { margin-top: 2.4em }
         }
         @media screen and (min-width: 850px) {
-            #header { margin: 3.6em auto 0 }
-            .qr-code { display: block; float: right }
-            #header:after { height: 315px; margin-top: 3.6em }
-            #contact { margin-top: 3.6em }
+          #header { margin: 3.6em auto 0 }
+          .qr-code { display: block; float: right }
+          #header:after { height: 315px; margin-top: 3.6em }
+          #contact { margin-top: 3.6em }
         }
         @media (min-resolution: 1.5dppx) {
-            body { font-size: 1.4em }
+          body { font-size: 1.4em }
         }
     </style>
 </head>
