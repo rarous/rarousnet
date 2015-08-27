@@ -18,7 +18,8 @@
             [ring.util.response :as resp]
             [environ.core :refer [env]]
             [rarousnet.home.handler :as home]
-            [rarousnet.weblog.handler :as blog]))
+            [rarousnet.weblog.handler :as blog])
+  (:gen-class))
 
 (defroutes app-routes
   home/routes

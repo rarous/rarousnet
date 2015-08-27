@@ -27,5 +27,10 @@
             [lein-midje "3.1.3"]]
   :resource-paths ["src/rarousnet" "resources"]
   :profiles {:dev {:env {:production false}
-             :production {:env {:production true}}})
                    :dependencies [[midje "1.7.0"]]}
+             :production {:env {:production true}}
+             :uberjar {:hooks []
+                       :env {:production true}
+                       :omit-source true
+                       :aot :all
+                       :main rarousnet.web}})
