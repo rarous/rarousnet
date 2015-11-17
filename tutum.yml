@@ -1,0 +1,10 @@
+rarousnet-web:
+  image: rarous/rarousnet
+  ports:
+    - 5000:5000
+  tags:
+    - production
+  environment:
+    - PORT=5000
+    - VIRTUAL_HOST=www.rarous.net
+  restart: always
