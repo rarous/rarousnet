@@ -3,7 +3,7 @@
   :url "http://rarous.net/"
   :license {:name "Apache License, Version 2.0"
             :url "https://www.apache.org/licenses/LICENSE-2.0.html"}
-  :min-lein-version "2.0.0"
+  :min-lein-version "2.5.0"
   :main rarousnet.web
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/tools.logging "0.3.1"]
