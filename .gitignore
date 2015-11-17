@@ -1,6 +1,7 @@
 pom.xml
 *jar
 /classes/
+/.idea/
 /.lein-deps-sum
 /.lein-failures
 /.lein-env
@@ -10,3 +11,5 @@ pom.xml
 .nrepl-port
 
 .lein-repl-history
+
+*.iml
