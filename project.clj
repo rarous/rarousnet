@@ -5,7 +5,7 @@
             :url "https://www.apache.org/licenses/LICENSE-2.0.html"}
   :min-lein-version "2.5.0"
   :main rarousnet.web
-  :dependencies [[org.clojure/clojure "1.7.0"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/tools.logging "0.3.1"]
                  [clj-time "0.11.0"]
                  [compojure "1.4.0"]
