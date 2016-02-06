@@ -12,3 +12,7 @@ deployment:
       - docker build -t rarous/rarousnet .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push rarous/rarousnet
+
+notify:
+  webhooks:
+    - url: https://zapier.com/hooks/catch/2h6wqx/
