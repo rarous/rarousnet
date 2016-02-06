@@ -8,7 +8,7 @@ deployment:
   hub:
     branch: master
     commands:
-      - mv "$(lein uberjar | sed -n 's/^Created \(.*standalone\.jar\)/\1/p')" app-standalone.jar
+      - lein uberjar
       - docker build -t rarous/rarousnet .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push rarous/rarousnet
