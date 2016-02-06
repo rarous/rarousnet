@@ -6,7 +6,6 @@
             [clojure.java.io :as io]
             [cognitect.transit :as transit]
             [compojure.core :refer [defroutes GET]]
-            [optimus.link :as link]
             [net.cgrand.enlive-html :refer [defsnippet deftemplate] :as html]
             [ring.util.response :refer [charset]])
   (:import [java.util Locale]))
@@ -72,12 +71,6 @@
 (defn- link [rel] [:link (html/attr= :rel rel)])
 (defn- script [src] [:script (html/attr= :src src)])
 
-(defsnippet link-stylesheet (html/html [:link {:href "" :rel "stylesheet"}]) [:link] [hrefs]
-  (html/clone-for [href hrefs] [:link] (html/set-attr :href href)))
-
-(defn- style-bundle [r name]
-  (html/substitute (link-stylesheet (link/bundle-paths r [name]))))
-
 (defsnippet article-listing "weblog/index.html" [:#content :article]
   [{:keys [title author category html published] :as article}]
   (conj (microdata "BlogPosting" "name") :a) (html/do->
@@ -92,8 +85,6 @@
   (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
 
 (deftemplate index-template "weblog/index.html" [r articles]
-  [(link "stylesheet")] (html/set-attr :href (first (link/bundle-paths r ["weblog.css"])))
-  [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
   [:#content] (html/content (map article-listing articles)))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
@@ -131,8 +122,6 @@
   [(meta-p "article:section")] (html/set-attr :content category)
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "category")] (html/set-attr :href category-url)
-  [(link "stylesheet")] (html/substitute (link-stylesheet (link/bundle-paths r ["weblog.css"])))
-  [(script "/assets/js/prism.js")] (html/set-attr :src (first (link/bundle-paths r ["weblog.js"])))
   [:article] (html/substitute (article-detail article)))
 
 (defsnippet category-items "weblog/category.html" [:#content :article] [articles]
@@ -150,7 +139,6 @@
 (deftemplate category-template "weblog/category.html" [r {:keys [title url years]}]
   [:title] (html/content (str "Rubrika " title))
   [(link "canonical")] (html/set-attr :href (str blog-url url))
-  [(link "stylesheet")] (style-bundle r "weblog.css")
   [:#content :h2] (html/content title)
   [:#content :section] (html/substitute (year-items years)))
 

@@ -9,13 +9,10 @@
                  [org.clojure/tools.logging "0.3.1"]
                  [clj-time "0.11.0"]
                  [compojure "1.4.0"]
-                 [com.cognitect/transit-clj "0.8.281"]
-                 [com.logentries/logentries-appender "1.1.30"]
+                 [com.cognitect/transit-clj "0.8.285"]
                  [enlive "1.1.6"]
-                 [environ "1.0.0"]
+                 [environ "1.0.2"]
                  [http-kit "2.1.19"]
-                 [log4j/log4j "1.2.17"]
-                 [optimus "0.18.3"]
                  [ring/ring-core "1.4.0"]
                  [ring/ring-codec "1.0.0"]
                  [ring/ring-devel "1.4.0"]
@@ -23,14 +20,13 @@
                  [ring-basic-authentication "1.0.5"]
                  [ring.middleware.etag "1.0.0-SNAPSHOT"]
                  [bk/ring-gzip "0.1.1"]]
-  :plugins [[lein-environ "0.5.0"]
-            [lein-midje "3.1.3"]]
+  :plugins [[lein-environ "1.0.2"]]
   :resource-paths ["src/rarousnet" "resources"]
-  :profiles {:dev {:env {:production false}
-                   :dependencies [[midje "1.7.0"]]}
+  :profiles {:dev {:env {:production false}}
              :production {:env {:production true}}
              :uberjar {:hooks []
                        :env {:production true}
+                       :uberjar-name "app-standalone.jar"
                        :omit-source true
                        :aot :all
                        :main rarousnet.web}})
