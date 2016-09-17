@@ -1,16 +1,15 @@
 (ns rarousnet.web
-  (:require [clojure.java.io :as io]
-            [clojure.tools.logging :refer [error]]
-            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [compojure.handler :refer [site]]
-            [compojure.route :as route]
-            [org.httpkit.server :refer [run-server]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [ring.middleware.stacktrace :refer [wrap-stacktrace]]
-            [ring.middleware.reload :refer [wrap-reload]]
-            [environ.core :refer [env]]
-            [rarousnet.home.handler :as home]
-            [rarousnet.weblog.handler :as blog])
+  (:require
+    [clojure.java.io :as io]
+    [clojure.tools.logging :as log]
+    [compojure.core :refer [defroutes GET ANY]]
+    [compojure.route :as route]
+    [org.httpkit.server :refer [run-server]]
+    [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+    [ring.middleware.stacktrace :refer [wrap-stacktrace]]
+    [environ.core :refer [env]]
+    [rarousnet.home.handler :as home]
+    [rarousnet.weblog.handler :as blog])
   (:gen-class))
 
 (defroutes app-routes
@@ -25,7 +24,7 @@
     (try
       (handler req)
       (catch Exception ex
-        (error ex (str "Error in execution of page " (:uri req)))
+        (log/error ex (str "Error in execution of page " (:uri req)))
         {:status 500
          :headers {"Content-Type" "text/html"}
          :body (slurp (io/resource "500.html"))}))))
@@ -42,6 +41,3 @@
     (run-server app {:port port})
     (println (str "Web server is running on http://localhost:" port))))
 
-;; For interactive development:
-;; (stop)
-;; (def stop (-main))

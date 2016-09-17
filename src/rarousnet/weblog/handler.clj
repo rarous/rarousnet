@@ -1,14 +1,14 @@
 (ns rarousnet.weblog.handler
-  (:require [clj-time.core :as t]
-            [clj-time.coerce :refer [from-date]]
-            [clj-time.format :refer [formatter unparse with-locale formatters]]
-            [clojure.core.reducers :as r]
-            [clojure.java.io :as io]
-            [cognitect.transit :as transit]
-            [compojure.core :refer [defroutes GET]]
-            [net.cgrand.enlive-html :refer [defsnippet deftemplate] :as html]
-            [ring.util.response :refer [charset]])
-  (:import [java.util Locale]))
+  (:require
+    [clj-time.core :as time]
+    [clj-time.coerce :refer [from-date]]
+    [clj-time.format :refer [formatter unparse with-locale formatters]]
+    [clojure.java.io :as io]
+    [cognitect.transit :as transit]
+    [compojure.core :refer [defroutes GET]]
+    [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate]]
+    [ring.util.response :refer [charset]])
+  (:import (java.util Locale)))
 
 (def blog-relative-url "/weblog/")
 (def blog-url (str "http://www.rarous.net" blog-relative-url))
@@ -31,7 +31,7 @@
   (let [category-items (get categories (keyword url))
         title (:category (first category-items))
         years (->> category-items
-                   (group-by (comp t/year from-date :published))
+                   (group-by (comp time/year from-date :published))
                    (map (partial zipmap [:year :articles]))
                    (sort-by :year >))]
     (if title {:title title, :url url, :years years} nil)))

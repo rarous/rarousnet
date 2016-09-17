@@ -1,28 +1,26 @@
 (ns rarousnet.home.handler
-  (:require [compojure.core :refer [defroutes GET ANY]]
-            [net.cgrand.enlive-html :refer [deftemplate]]
-            [ring.util.response :refer [charset]]))
+  (:require
+    [compojure.core :refer [defroutes GET ANY]]
+    [net.cgrand.enlive-html :refer [deftemplate]]
+    [ring.util.response :refer [charset]]))
 
 (deftemplate home-template "home/index.html" [])
 (deftemplate webdesign-template "home/webdesign.html" [])
 (deftemplate photos-template "home/photos.html" [])
 
-(defn view [template]
-  (apply str (template)))
-
 (defn render [template]
   (-> {:status 200
        :headers {"Content-Type" "text/html"}
-       :body (view template)}
+       :body (apply str template)}
       (charset "UTF-8")))
 
 (defn moved-permanently [location]
   {:status 301
    :headers {"Location" location}})
 
-(defn home [] (render home-template))
-(defn webdesign [] (render webdesign-template))
-(defn photos [] (render photos-template))
+(defn home [] (render (home-template)))
+(defn webdesign [] (render (webdesign-template)))
+(defn photos [] (render (photos-template)))
 (defn redirect-home [] (moved-permanently "/"))
 (defn redirect-reference [] (moved-permanently "/webdesign/"))
 (defn redirect-photos [] (moved-permanently "/photos/"))
