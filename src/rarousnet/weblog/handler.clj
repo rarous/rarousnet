@@ -169,8 +169,8 @@
 
 (defn rss []
   (->> (last-articles 10)
-       rss-template
-       render-view)))
+       (rss-template)
+       (render-view)))
 
 (defn comments-rss []
   (render-feed (comments-rss-template)))
