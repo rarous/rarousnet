@@ -165,8 +165,7 @@
   (->> (last-articles 5)
        (index-template r)
        (render-view
-         {"Link" "/design/blog/blog.css?32; rel=preload; as=style"
-          "Link" "/assets/js/prism.js; rel=preload; as=script"})))
+         {"Link" "/design/blog/blog.css?32;rel=preload;as=style,/assets/js/prism.js;rel=preload;as=script"})))
 
 (defn rss []
   (->> (last-articles 10)
@@ -186,13 +185,12 @@
   (some->> (load-article url)
            (blogpost-template r)
            (render-view
-             {"Link" "/design/blog/blog.css?32; rel=preload; as=style"
-              "Link" "/assets/js/prism.js; rel=preload; as=script"})))
+             {"Link" "/design/blog/blog.css?32;rel=preload;as=style,/assets/js/prism.js;rel=preload;as=script"})))
 
 (defn category [url r]
   (some->> (load-category url)
            (category-template r)
-           (render-view {"Link" "/design/blog/blog.css?32; rel=preload; as=style"})))
+           (render-view {"Link" "/design/blog/blog.css?32;rel=preload;as=style"})))
 
 (defroutes routes
   (GET "/weblog/" r (index r))
