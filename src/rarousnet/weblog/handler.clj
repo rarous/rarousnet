@@ -144,7 +144,7 @@
 
 (defn render-view
   ([template]
-    (render-view {} template)
+    (render-view {} template))
    ([headers template]
     (-> {:status 200
          :headers (assoc headers "Content-Type" "text/html")
