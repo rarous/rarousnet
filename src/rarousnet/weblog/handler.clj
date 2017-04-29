@@ -142,11 +142,14 @@
   [:#content :h2] (html/content title)
   [:#content :section] (html/substitute (year-items years)))
 
-(defn render-view [template]
-  (-> {:status 200
-       :headers {"Content-Type" "text/html"}
-       :body (apply str template)}
-      (charset "UTF-8")))
+(defn render-view
+  ([template]
+    (render-view {} template)
+   ([headers template]
+    (-> {:status 200
+         :headers (assoc headers "Content-Type" "text/html")
+         :body (apply str template)}
+        (charset "UTF-8"))))
 
 (defn render-feed [template]
   (-> {:status 200
@@ -161,12 +164,14 @@
 (defn index [r]
   (->> (last-articles 5)
        (index-template r)
-       render-view))
+       (render-view
+         {"Link" "/design/blog/blog.css?32; rel=preload; as=style"
+          "Link" "/assets/js/prism.js; rel=preload; as=script"})))
 
 (defn rss []
   (->> (last-articles 10)
        rss-template
-       render-view))
+       render-view)))
 
 (defn comments-rss []
   (render-feed (comments-rss-template)))
@@ -180,12 +185,14 @@
 (defn blogpost [url r]
   (some->> (load-article url)
            (blogpost-template r)
-           render-view))
+           (render-view
+             {"Link" "/design/blog/blog.css?32; rel=preload; as=style"
+              "Link" "/assets/js/prism.js; rel=preload; as=script"})))
 
 (defn category [url r]
   (some->> (load-category url)
            (category-template r)
-           render-view))
+           (render-view {"Link" "/design/blog/blog.css?32; rel=preload; as=style"})))
 
 (defroutes routes
   (GET "/weblog/" r (index r))
