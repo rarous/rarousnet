@@ -11,7 +11,7 @@
   (:import (java.util Locale)))
 
 (def blog-relative-url "/weblog/")
-(def blog-url (str "http://www.rarous.net" blog-relative-url))
+(def blog-url (str "https://www.rarous.net" blog-relative-url))
 
 (defn- read-resource [n]
   (with-open [in (io/input-stream (io/resource n))]
@@ -64,7 +64,7 @@
 (defn- meta-n [name] [:meta (html/attr= :name name)])
 (defn- meta-p [name] [:meta (html/attr= :property name)])
 (defn- itemprop [name] (html/attr= :itemprop name))
-(defn- itemtype [name] (html/attr= :itemtype (str "http://schema.org/" name)))
+(defn- itemtype [name] (html/attr= :itemtype (str "https://schema.org/" name)))
 (defn- microdata
   ([type prop] [(itemtype type) (itemprop prop)])
   ([type subtype prop] [(itemtype type) (itemtype subtype) (itemprop prop)]))
@@ -176,10 +176,10 @@
   (render-feed (comments-rss-template)))
 
 (defn redirect-to-rss-feed []
-  (moved-permanently "http://feeds.feedburner.com/rarous-weblog"))
+  (moved-permanently "https://feeds.feedburner.com/rarous-weblog"))
 
 (defn redirect-to-blogpost [url]
-  (moved-permanently (str "http://www.rarous.net/weblog/" url)))
+  (moved-permanently (str "https://www.rarous.net/weblog/" url)))
 
 (defn blogpost [url r]
   (some->> (load-article url)
