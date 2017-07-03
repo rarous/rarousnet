@@ -8,7 +8,8 @@
     [compojure.core :refer [defroutes GET]]
     [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate]]
     [ring.util.response :refer [charset]])
-  (:import (java.util Locale)))
+  (:import
+    (java.util Locale)))
 
 (def blog-relative-url "/weblog/")
 (def blog-url (str "https://www.rarous.net" blog-relative-url))
@@ -162,10 +163,12 @@
    :headers {"Location" location}})
 
 (defn index [r]
-  (->> (last-articles 5)
-       (index-template r)
-       (render-view
-         {"Link" "</design/blog/blog.css?32>;rel=preload;as=style,</assets/js/prism.js>;rel=preload;as=script"})))
+  (->> 
+    (last-articles 5)
+    (index-template r)
+    (render-view
+      {"Link" "</design/blog/blog.css?32>;rel=preload;as=style,</assets/js/prism.js>;rel=preload;as=script"
+       "Content-Security-Policy" "default-src 'none'; font-src https://fonts.gstatic.com; frame-src https://accounts.google.com https://apis.google.com https://platform.twitter.com https://staticxx.facebook.com https://www.eyeem.com https://www.facebook.com https://www.intagme.com; img-src 'self' data: https://chart.googleapis.com https://res.cloudinary.com https://s.gravatar.com https://ssl.google-analytics.com https://syndication.twitter.com https://www.facebook.com https://www.google-analytics.com; script-src 'self' 'unsafe-inline' https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=85b614c0f6/cloudflare.min.js https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js https://apis.google.com/ https://connect.facebook.net/ https://d1xnn692s7u6t6.cloudfront.net/widget.js https://platform.twitter.com/ https://ssl.google-analytics.com/ga.js https://www.google-analytics.com/analytics.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/"})))
 
 (defn rss []
   (->> (last-articles 10)
@@ -182,15 +185,20 @@
   (moved-permanently (str "https://www.rarous.net/weblog/" url)))
 
 (defn blogpost [url r]
-  (some->> (load-article url)
-           (blogpost-template r)
-           (render-view
-             {"Link" "</design/blog/blog.css?32>;rel=preload;as=style,</assets/js/prism.js>;rel=preload;as=script"})))
+  (some->>
+    (load-article url)
+    (blogpost-template r)
+    (render-view
+     {"Link" "</design/blog/blog.css?32>;rel=preload;as=style,</assets/js/prism.js>;rel=preload;as=script"
+      "Content-Security-Policy" "default-src 'none'; font-src https://fonts.gstatic.com; frame-src https://accounts.google.com https://apis.google.com https://platform.twitter.com https://staticxx.facebook.com https://www.eyeem.com https://www.facebook.com https://www.intagme.com; img-src 'self' data: https://chart.googleapis.com https://res.cloudinary.com https://s.gravatar.com https://ssl.google-analytics.com https://syndication.twitter.com https://www.facebook.com https://www.google-analytics.com; script-src 'self' 'unsafe-inline' https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=85b614c0f6/cloudflare.min.js https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js https://apis.google.com/ https://connect.facebook.net/ https://d1xnn692s7u6t6.cloudfront.net/widget.js https://platform.twitter.com/ https://ssl.google-analytics.com/ga.js https://www.google-analytics.com/analytics.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/"})))
 
 (defn category [url r]
-  (some->> (load-category url)
-           (category-template r)
-           (render-view {"Link" "</design/blog/blog.css?32>;rel=preload;as=style"})))
+  (some->>
+    (load-category url)
+    (category-template r)
+    (render-view 
+     {"Link" "</design/blog/blog.css?32>;rel=preload;as=style"
+      "Content-Security-Policy" "default-src 'none'; font-src https://fonts.gstatic.com; frame-src https://accounts.google.com https://apis.google.com https://platform.twitter.com https://staticxx.facebook.com https://www.eyeem.com https://www.facebook.com https://www.intagme.com; img-src 'self' data: https://chart.googleapis.com https://res.cloudinary.com https://s.gravatar.com https://ssl.google-analytics.com https://syndication.twitter.com https://www.facebook.com https://www.google-analytics.com; script-src 'self' 'unsafe-inline' https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=85b614c0f6/cloudflare.min.js https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js https://apis.google.com/ https://connect.facebook.net/ https://d1xnn692s7u6t6.cloudfront.net/widget.js https://platform.twitter.com/ https://ssl.google-analytics.com/ga.js https://www.google-analytics.com/analytics.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/"})))
 
 (defroutes routes
   (GET "/weblog/" r (index r))
