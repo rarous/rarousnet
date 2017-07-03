@@ -10,7 +10,8 @@
 
 (defn render [template]
   (-> {:status 200
-       :headers {"Content-Type" "text/html"}
+       :headers {"Content-Type" "text/html"
+                 "Content-Security-Policy" "default-src 'none'; font-src https://fonts.gstatic.com; img-src 'self' https://chart.googleapis.com https://res.cloudinary.com https://s.gravatar.com https://ssl.google-analytics.com https://www.google-analytics.com; script-src 'unsafe-inline' https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=85b614c0f6/cloudflare.min.js https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js https://ssl.google-analytics.com/ga.js https://www.google-analytics.com/analytics.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/"}
        :body (apply str template)}
       (charset "UTF-8")))
 
