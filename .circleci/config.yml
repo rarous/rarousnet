@@ -9,8 +9,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore lein cache
-          key: v1-dependencies-{{ checksum "project.clj" }}
+          keys:
+            - v1-dependencies-{{ checksum "project.clj" }}
       - run:
           name: Test with coverage
           command: lein cloverage --codecov --junit
