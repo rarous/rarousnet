@@ -7,7 +7,7 @@
     [cognitect.transit :as transit]
     [compojure.core :refer [defroutes GET]]
     [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate]]
-    [ring.util.response :refer [charset]])
+    [ring.util.response :refer [charset response redirect content-type]])
   (:import
     (java.util Locale)))
 
@@ -148,19 +148,19 @@
     (render-view {} template))
    ([headers template]
     (-> {:status 200
-         :headers (assoc headers "Content-Type" "text/html")
+         :headers headers
          :body (apply str template)}
+        (content-type "text/html")
         (charset "UTF-8"))))
 
+
 (defn render-feed [template]
-  (-> {:status 200
-       :headers {"Content-Type" "application/xml"}
-       :body (apply str template)}
+  (-> (response (apply str template))
+      (content-type "application/xml")
       (charset "UTF-8")))
 
 (defn moved-permanently [location]
-  {:status 301
-   :headers {"Location" location}})
+  (redirect location :moved-permanently))
 
 (defn index [r]
   (->> 
