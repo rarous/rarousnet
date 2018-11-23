@@ -8,12 +8,7 @@ jobs:
       - image: circleci/clojure:lein-2.8.1
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "project.clj" }}
-      - run:
-          name: Test with coverage
-          command: lein cloverage --codecov --junit
+      - run: lein cloverage --codecov --junit
       - save_cache:
           name: Store lein cache
           key: v1-dependencies-{{ checksum "project.clj" }}
