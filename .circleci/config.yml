@@ -51,6 +51,9 @@ workflows:
           requires:
             - test
       - docker-publish/publish:
+          after_checkout:
+            - attach_workspace:
+                at: .
           requires:
             - build
           filters:
