@@ -42,7 +42,7 @@ jobs:
           root: .
           paths: target/app-standalone.jar
 
-workflow:
+workflows:
   build_and_deploy:
     jobs:
       - test
