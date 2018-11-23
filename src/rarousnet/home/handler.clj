@@ -2,21 +2,19 @@
   (:require
     [compojure.core :refer [defroutes GET ANY]]
     [net.cgrand.enlive-html :refer [deftemplate]]
-    [ring.util.response :refer [charset]]))
+    [ring.util.response :refer [charset response content-type redirect]]))
 
 (deftemplate home-template "home/index.html" [])
 (deftemplate webdesign-template "home/webdesign.html" [])
 (deftemplate photos-template "home/photos.html" [])
 
 (defn render [template]
-  (-> {:status 200
-       :headers {"Content-Type" "text/html"}
-       :body (apply str template)}
+  (-> (response (apply str template))
+      (content-type "text/html")
       (charset "UTF-8")))
 
 (defn moved-permanently [location]
-  {:status 301
-   :headers {"Location" location}})
+  (redirect location :moved-permanently))
 
 (defn home [] (render (home-template)))
 (defn webdesign [] (render (webdesign-template)))
