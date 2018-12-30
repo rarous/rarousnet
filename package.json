@@ -1,0 +1,13 @@
+{
+    "name": "aws-javascript",
+    "main": "index.js",
+    "dependencies": {
+        "@pulumi/aws": "latest",
+        "@pulumi/cloud": "^0.16.2",
+        "@pulumi/cloud-aws": "^0.16.2",
+        "@pulumi/pulumi": "latest"
+    },
+    "devDependencies": {
+        "prettier": "^1.15.3"
+    }
+}

@@ -1,0 +1,9 @@
+name: rarousnet
+runtime: nodejs
+description: Aleš Roubíček's personal website
+template:
+  description: A minimal AWS JavaScript Pulumi program
+  config:
+    aws:region:
+      description: The AWS region to deploy into
+      default: us-east-1
