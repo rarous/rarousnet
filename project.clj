@@ -1,9 +1,9 @@
 (defproject rarousnet "1.0.0-SNAPSHOT"
   :description "rarous.net web site"
   :url "http://rarous.net/"
-  :license {:name "Apache License, Version 2.0"
-            :url "https://www.apache.org/licenses/LICENSE-2.0.html"}
-  :min-lein-version "2.8.0"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v20.html"}
+  :min-lein-version "2.8.3"
   :main rarousnet.web
   :dependencies [[org.clojure/clojure "1.10.0-beta8"]
                  [org.clojure/tools.logging "0.4.1"]
