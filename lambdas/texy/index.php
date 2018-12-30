@@ -1,14 +1,14 @@
 <?php
-include 'texy.php';
+include 'texy.phar';
 
 function insertFlash($invocation, $cmd, $args, $raw)
 {
     switch ($cmd) {
         case 'flash':
-            $movie = Texy\Texy::escapeHtml($args[0]);
+            $movie = Texy::escapeHtml($args[0]);
             $width = $args[1];
             $height = $args[2];
-            $vars = Texz\Texy::escapeHtml($args[3]);
+            $vars = Texy::escapeHtml($args[3]);
             $output = '<!--[if !IE]> -->
 			<object type="application/x-shockwave-flash" data="' . $movie . '" width="' . $width . '" height="' . $height . '">
 			<!-- <![endif]-->
@@ -24,14 +24,14 @@ function insertFlash($invocation, $cmd, $args, $raw)
 			  <param name="flashvars" value="' . $vars . '" />
 			</object>
 			<!-- <![endif]-->';
-            return $invocation->texy->protect($output, Texy\Texy::CONTENT_MARKUP);
+            return $invocation->texy->protect($output, Texy::CONTENT_MARKUP);
         default: // neumime zpracovat, zavolame dalsi handler v rade
             return $invocation->proceed();
     }
 }
 
 $contents = file_get_contents('php://stdin');
-$texy = new Texy\Texy();
+$texy = new Texy();
 
 $texy->allowed['phrase/ins'] = TRUE;
 $texy->allowed['phrase/sup'] = TRUE;
