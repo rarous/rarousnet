@@ -5,13 +5,12 @@ orbs:
 jobs:
   test:
     docker:
-      - image: circleci/clojure:lein-2.8.1
+      - image: circleci/clojure:openjdk-11-lein
     steps:
       - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "project.clj" }}
-            - v1-dependencies-
       - run:
           name: Test with coverage
           command: lein cloverage --codecov --junit
@@ -30,7 +29,7 @@ jobs:
           path: target/coverage/
   build:
     docker:
-      - image: circleci/clojure:lein-2.8.1
+      - image: circleci/clojure:openjdk-11-lein
     steps:
       - checkout
       - restore_cache:

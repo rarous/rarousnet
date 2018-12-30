@@ -5,14 +5,14 @@
             :url "http://www.eclipse.org/legal/epl-v20.html"}
   :min-lein-version "2.8.3"
   :main rarousnet.web
-  :dependencies [[org.clojure/clojure "1.10.0-beta8"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
                  [org.clojure/tools.logging "0.4.1"]
                  [com.cognitect/transit-clj "0.8.313"]
                  [clj-time "0.15.1"]
                  [compojure "1.6.1"]
                  [enlive "1.1.6"]
                  [environ "1.0.2"]
-                 [http-kit "2.3.0"]
+                 [http-kit "2.4.0-alpha2"]
                  [ring/ring-core "1.7.1"]
                  [ring/ring-devel "1.7.1"]
                  [ring/ring-defaults "0.3.2"]]
