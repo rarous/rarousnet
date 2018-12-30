@@ -1,34 +1,17 @@
 (ns rarousnet.home.handler
   (:require
     [compojure.core :refer [defroutes GET ANY]]
-    [net.cgrand.enlive-html :refer [deftemplate]]
-    [ring.util.response :refer [charset response content-type redirect]]))
-
-(deftemplate home-template "home/index.html" [])
-(deftemplate webdesign-template "home/webdesign.html" [])
-(deftemplate photos-template "home/photos.html" [])
-
-(defn render [template]
-  (-> (response (apply str template))
-      (content-type "text/html")
-      (charset "UTF-8")))
+    [ring.util.response :refer [charset redirect]]))
 
 (defn moved-permanently [location]
   (redirect location :moved-permanently))
 
-(defn home [] (render (home-template)))
-(defn webdesign [] (render (webdesign-template)))
-(defn photos [] (render (photos-template)))
 (defn redirect-home [] (moved-permanently "/"))
 (defn redirect-reference [] (moved-permanently "/webdesign/"))
 (defn redirect-photos [] (moved-permanently "/photos/"))
 (defn redirect-texy [] (moved-permanently "http://texy-rarous.rhcloud.com/ws/endpoint.php"))
 
 (defroutes routes
-  (GET "/" [] (home))
-  (GET "/webdesign/" [] (webdesign))
-  (GET "/photos/" [] (photos))
-
   (GET "/contact" [] (redirect-home))
   (GET "/kontakt" [] (redirect-home))
   (GET "/default.aspx" [] (redirect-home))
