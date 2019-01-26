@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<adresa>
-	<jmeno typ="křestní">Karel</jmeno>
-	<jmeno typ="příjmení">Novák</jmeno>
-	<ulice cp="110">Liberecká</ulice>
-	<obec psc="46352">Osečná</obec>
-</adresa>
