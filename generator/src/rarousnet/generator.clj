@@ -8,7 +8,8 @@
     [clojure.java.shell :refer [sh]]
     [clojure.string :as string]
     [cheshire.core :as json]
-    [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate]])
+    [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate]]
+    [clojure.string :as str])
   (:import
     (java.io File)
     (java.text Normalizer Normalizer$Form)
@@ -139,6 +140,9 @@
   [(link "canonical")] (html/set-attr :href (str blog-url url))
   [:#content :h2] (html/content title)
   [:#content :section] (html/substitute (year-items years)))
+
+(deftemplate redirect-template "weblog/redirect.html" [{:keys [url]}]
+  [html/any-node] (html/replace-vars {:url url}))
 
 (defn date [s]
   (->> s tc/from-string tc/to-date))
@@ -280,6 +284,27 @@
       (mapcat yearbook)
       (map (partial write-file dist)))))
 
+(def weblog-pattern
+  #(str (:id %) "-" (str/replace (last (str/split (:file-name %) #"/")) #"html" "aspx/index.html")))
+(def clanek-pattern
+  #(str "../clanek/" (:id %) "-" (str/replace (last (str/split (:file-name %) #"/")) #"html" "aspx/index.html")))
+(def clanek-aspx-pattern
+  #(str "../clanek.aspx/" (:id %) "-" (str/replace (last (str/split (:file-name %) #"/")) #"\.html" "/index.html")))
+
+(defn redirect-names [article]
+  (for [ptr [weblog-pattern clanek-pattern clanek-aspx-pattern]]
+    {:file-name (ptr article)
+     :url (str blog-url (:file-name article))}))
+
+(defn redirects [content dist]
+  (dorun
+    (->>
+      content
+      (map (convert article-meta))
+      (mapcat redirect-names)
+      (map #(assoc % :html (apply str (redirect-template %))))
+      (map (partial write-file dist)))))
+
 (defn static-content [src dest]
   (sh "cp" "-pR" src dest))
 
@@ -315,7 +340,9 @@
       (println)
       (println "Generating years/months/days index pages...")
       (time (indexes content dist))
-      ;; TODO: redirects
+      (println)
+      (println "Generating redirect pages...")
+      (time (redirects content dist))
       ;; TODO: comments
       (println)
       (println "DONE"))))
