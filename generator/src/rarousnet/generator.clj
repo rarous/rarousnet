@@ -183,6 +183,7 @@
   (spit (io/file "../dist/weblog/" file-name) html))
 
 (defn articles-rss [content]
+  (println "Generating RSS feed...")
   (->>
     content
     (pmap (convert article-meta))
@@ -193,30 +194,29 @@
     (assoc {:file-name "articles.rss"} :html)
     (write-file)))
 
-(defn articles [content]
-  (let [articles (eduction (map (convert article)) content)
-        data (into {} (map #(vector (:file-name %) (:texy %))) articles)
-        results (texy data)]
-    (println "Generating articles...")
-    (dorun
-      (->>
-        articles
-        (group-by :file-name)
-        (map (fn [[k [v]]] (assoc v :html (results k))))
-        (map #(assoc % :html (apply str (blogpost-template %))))
-        (map write-file)))
-    (println "Generating landing page...")
-    (dorun
-      (->>
-        articles
-        (map #(assoc % :timestamp (tc/to-long (:published %))
-                       :html (results (:file-name %))))
-        (sort-by :timestamp >)
-        (take 5)
-        (index-template)
-        (apply str)
-        (assoc {:file-name "index.html"} :html)
-        (write-file)))))
+(defn articles-entries [articles results]
+  (println "Generating articles...")
+  (dorun
+    (->>
+      articles
+      (group-by :file-name)
+      (map (fn [[k [v]]] (assoc v :html (results k))))
+      (map #(assoc % :html (apply str (blogpost-template %))))
+      (map write-file))))
+
+(defn articles-index [articles results]
+  (println "Generating landing page...")
+  (dorun
+    (->>
+      articles
+      (map #(assoc % :timestamp (tc/to-long (:published %))
+                     :html (results (:file-name %))))
+      (sort-by :timestamp >)
+      (take 5)
+      (index-template)
+      (apply str)
+      (assoc {:file-name "index.html"} :html)
+      (write-file))))
 
 (defn tags [content]
   (println "Generating tag index pages...")
@@ -238,24 +238,29 @@
                 :html html})))
       (map write-file))))
 
-(defn static-content []
+(defn static-content [src dest]
   (println "Copying static content to distribution folder...")
-  (sh "cp" "-pR" "../static/" "../dist"))
+  (sh "cp" "-pR" src dest))
 
 (defn -main [& args]
-  (println "Gryphoon 3.0 - static website generator")
-  (println)
-  (println "Reading content...")
-  (let [content (eduction
-                  (remove (fn [^File f] (.isDirectory f)))
-                  (file-seq (io/file "../content/weblog")))]
-    (static-content)
-    (articles content)
-    (articles-rss content)
-    (tags content)
-    ;; TODO: years/months/days indexes
-    ;; TODO: redirects
-    ;; TODO: comments
-    ))
+  (let [root (second args)]
+    (println args)
+    (println "Gryphoon 3.0 - static website generator")
+    (println)
+    (println "Reading content...")
+    (let [content (eduction
+                    (remove (fn [^File f] (.isDirectory f)))
+                    (file-seq (io/file "../content/weblog")))
+          articles (eduction (map (convert article)) content)
+          results (texy (into {} (map #(vector (:file-name %) (:texy %))) articles))]
+      (static-content "../static/" "../dist")
+      (articles-entries articles results)
+      (articles-index articles results)
+      (articles-rss content)
+      (tags content)
+      ;; TODO: years/months/days indexes
+      ;; TODO: redirects
+      ;; TODO: comments
+      )))
 
 
