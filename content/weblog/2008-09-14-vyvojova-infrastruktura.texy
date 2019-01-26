@@ -1,0 +1,80 @@
+---
+{:id 300,
+ :title "Vývojová infrastruktura",
+ :description
+ "Proč je dobré mít základní vývojovou infrastrukturu? Jakou jsme ji měli v Atlasu a jakou ji máme teď? A jakou ji máte vy?",
+ :author "Aleš Roubíček",
+ :tags
+ #{"svn" "trac" "atlas" "twareg" "moje práce" "xunit" "teamcity" "vcs"
+   "msbuild" "purecm"},
+ :published "2008-09-14T09:40:54.550"}
+---
+
+Na začátku vývoje každého produktu bychom si měli připravit vhodnou infrastrukturu. Základem je verzovací systém – pokud pracujete sám, je značnou výhodou, v teamu nezbytností. Další důležitou součásti je systém pro vedení úkolů a bugů. Dále je vhodná wiki a taky nějaký buildserver.
+
+Proč je to tak důležité?
+========================
+
+Verzovací systém je vhodný na jakýkoli projekt, nemusí to nutně být ani projekt softwarový – my ho třeba s Borkem používáme na přípravu přednášky:[prednaska]. Je to ochrana před ztrátou dat, občas pomůže se podívat do historie, dnešní systémy umějí mergovat změny z více zdrojů a jsou snadno zařaditelné do automatizovaného procesu.
+
+Úkolník je dobrý z mnoha důvodů, vidíte, co máte dělat, jakou to má prioritu, kolik už máte hotovo. Slouží i jako váš výkaz, že se jen neflákáte. ;)
+
+Build server je už jen třešničkou na dortu, která za vás dělá rutinu - špinavou a nudnou práci.
+
+Jak to bylo v Atlase
+====================
+
+Když jsem nastupoval do vývoje Atlas.cz, fungoval tam jen Visual SourceSafe, stagovalo se přes FTP. Vše bylo dost závislé na správném připravení verze do produkčního prostředí, to připravoval člověk a snadno mohlo dojít k chybě. :) Za nějaký čas jsme se rozhodovali jak to celé zautomatizovat a usnadnit. Nakonec jsme přešli na PureCM, Atlas.Build a Atlas.Autowebsite.
+
+[purecm] je verzovací systém s integrovaným úkolníkem a s možností skriptování v pythonu a dotnetím API. Má systém repository, které mají streamy a ty lze vzájemně mergovat v rámci hierarchie. Také k nim lze dopsat tzv. Custom action. Ta u nás nebyla nic jiného než spoušť události. Služba Atlas.Build tuto událost zachytila, provedla checkout, pročistila projekt a podle jednoduchého build skriptu (zjednodušený NAnt) připravila verzi buďto na *dev* servery nebo na *staging*, kterou pak nahrála na příslušný server pod danou verzí (názvem streamu).
+
+Vývojář pak zadal do prohlížeče adresu, třeba `http://katalog.3.6.0.dev2.atlas.cz`, kde na něj čekal Autowebsite, který se zeptal jakou verzi frameworku použít a pak v IIS metabázi založil nový web.
+
+Bylo za tím spousta magie a bylo celkem jednoduché a efektní a taky ušité na míru našim potřebám.
+
+Jak to máme v Twaregu
+=====================
+
+Když jsme přišli do Twaregu:[twareg], bylo opět potřeba připravit infrastrukturu. Po týdnu zkoušení a rozhodování jsme nakonec zvolili kombinaci Subversion (SVN), Trac, TeamCity.
+
+[svn] je celkem osvědčený verzovací sytém, je zdarma a multiplatformní, existuje pro něj dostatek nástrojů, včetně integrace do Visual Studia a je podporován všemi testovanými buildservery.
+
+[trac] je wiki a systém pro vedení úkolů s pěkným webovým prohlížečem repository. S SVN je spjat pupeční šňůrou a dá se dobře automatizovat tvorba nových projektů. Navíc je to OpenSource a je zdarma.
+
+[teamcity] je skvělý buildserver podporující Javu i dotnet (nejen tyto), umí se připojit do SVN a zvládá i vzdálené předtestované commity, což je killer feature. Pokud se dokážete smířit s omezením na 3 build agenty, 20 uživatelů a 20 konfigurací, pak je zdarma. Má pěknou integraci do Visual Studia a má API pro rozšiřování.
+
+První měsíc v Twaregu jsem (nejen) připravoval infrastrukturu. Napsal jsem službu, která zakládá nové repository, připraví do nich základní adresářovou strukturu a založí projekt v tracku. Automatizované zakládání pro TeamCity zatím není a ještě nevím, jestli je potřeba. Jednotlivé konfigurace je lepší projít ručně a nastavit dle požadavků daného projektu. Na projektu většinou máme dvě konfigurace, jednu, která je pro vzdálený předtestovaný commit do vývojového branche a druhou, která se spouští při commitu do trunku. Provede se kompletní build, spustí se testy, pokud je vše **ok**, vytvoří se dokumentace a nahraje na intranet, provede se deploy knihoven do společného úložiště a vytvoří se weby, pokud nějaké v projektu jsou.
+
+Co se všechno má udělat je řízeno [msbuild] skriptem, pro který jsem připravil několik tasků. Upravil jsem [xunit] task, aby se posílaly zprávy do TeamCity a přibalily výsledky testů do sumáře o buildu.
+
+Je fakt, že tady máme build skripty mnohem ukecanější něž v Atlasu, ale jsou mnohem flexibilnější - vzhledem k heterogennímu prostředí je to potřeba.
+
+Závěr
+=====
+
+Investujete-li na začátku nějaký čas na vybudování infrastruktury, jistě se vám to vrátí později v podobě nevytrhaných vlasů a neokousaných nehtů, když někdo někomu omylem přemázne celodenní práci nebo vydeployuje nefunkční verzi. Nemít verzovací systém je vyložený hazard, nemít úkolník je přinejmenším nepohodlné a bez build serveru se dá žít…
+
+A jakou infrastrukturu/systém používáte vy?
+
+/--div .[#related hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(299)]
+* [clanek(194)]
+* [clanek(174)]
+\--div
+
+[svn]: http://subversion.tigris.org/ SVN
+[trac]: http://trac.edgewall.org/ Trac
+[teamcity]: http://www.jetbrains.com/teamcity/ TeamCity
+[xunit]: http://www.codeplex.com/xunit xUnit.net
+[msbuild]: http://msdn.microsoft.com/en-us/library/0k6kkbsd.aspx MSBuild
+[purecm]: http://www.purecm.com/ PureCM
+[prednaska]: /weblog/295-povidani-o-asp-net-na-webexpu.aspx
+
+[clanek(299)]: /weblog/299-stahnete-si-texy-net-a-nforms-pres-svn.aspx Stáhněte si Texy.net a NForms přes SVN .{rel:bookmark}
+[clanek(194)]: /weblog/194-prednaska-o-msbuild.aspx Přednáška o MSBuild .{rel:bookmark}
+[clanek(174)]: /weblog/174-par-tipu-pro-vyvojare.aspx Pár tipů pro vývojáře .{rel:bookmark}
+
+[twareg]: http://www.twareg.com/ Twareg

@@ -1,0 +1,36 @@
+---
+{:id 439,
+ :title "CodeRush - editor na steroidech",
+ :description
+ "Borek měl pár pěkných výtek, k editoru kódu ve Visual Studiu. Jsou to veci nepříjemné, ale já si je díky CodeRushi neuvědomuju. Proč? Čtěte dál.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "CodeRush"},
+ :published "2013-02-15T10:18:53.813"}
+---
+
+V čem "musím s Borkem souhlasit":[http://devblog.cz/2013/02/co-mi-vadi-na-visual-studiu/] je, že Visual Studio má opravdu debilní editor kódu. Jenže je to věc, kterou si uvědomuju pouze ve chvílích, kdy sedím před studiem, které nemá nainstalovaný CodeRush:[http://www.devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/index.xml].
+
+CodeRush toho podobně jako ořezávátko umí celkem hodně, ale v čem opravdu vyniká je editace kódu.
+
+K Borkovým bodům:
+
+* `Shift+Enter` duplikuje řádky a navíc skočí na symbol, který je aktuálně v rozporu a je třeba ho upravit.
+* samotná reindentace je pro mě jen poloviční řešení, používám vždy reformát `Ctrl+K,D`, abych udržoval kód konzistentní s coding standardem.
+* na přesouvání řádku "existuje plugin":[http://code.google.com/p/dxcorecommunityplugins/wiki/DX_MoveCode], nepoužívám.
+* "Smart Copy":[http://www.devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/clipboard_tools.xml], řeší odsazování i formátování, navíc má kontextovou citlivost. Když zkopíruju deklaraci fieldu a vložím ji do konstruktoru, vloží se jeho inicializace apod.
+* mazání řádků funguje přes `Shift+Delete`
+* `Ctrl+click` je značně neefektivní způsob navigace. VS umí `F12` pro skok na deklaraci, CR přidává `Tab` pro navigaci po symbolech, `Shift+F12` pro seznam všech referencí v solution a `Ctrl+Alt+N` pro kontextovou navigaci (potomci, předkové, implementace, přetížení...).
+* Na místo poslední editace mě přenese `Esc` (pakliže refactoring zanechal značku nebo jsem si značku vložil sám pomocí `Alt+Home`). Značky fungují na principu zásobníku. Přidávat lze i permanentní značky pod číslem, pakliže někam skáčete pravidelně. (`Ctrl+Alt+číslo` pro vložení značky, `Atl+číslo` pro skok na značku.
+* přehledy brzdí, důležitá je "rychlá kontextová navigace":[http://www.devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/navigation_tools.xml]. `Ctrl+Alt+F` pro soubory, `Ctrl+Alt+.` pro naposledy použité soubory a `Ctrl+Shift+Q` pro navigaci po memberech.
+
+Něco na víc:
+
+* `Alt+←/→` funguje podobně jako `Ctrl+←/→` akorát i po jednotlivých slovech v camel/PascalCase symbolech. Stejně tak funguje `Alt` ve spojení s klávesami `Shift` a `Delete` pro výběr, či smazáni textu.
+* `Ctrl+```` pro refactoring.
+* `F2` neskutečně rychlý inline Rename.
+* historie schránky
+* "inteligentní šablony":[http://www.devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/automatic_code_generation.xml]
+* smart semicolon
+* zen coding
+
+...a spousta dalších věcí, ke kterým se dostanem třeba jindy.

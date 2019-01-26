@@ -1,0 +1,19 @@
+---
+{:id 143,
+ :title "Školení OOP, UML a návrhových vzorů",
+ :description
+ "Poslední tři dny jsem se účastnil školení OOP, UML a návrhových vzorů. Zde jsou mé dojmy.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2006-05-05T21:10:24.377"}
+---
+
+Poslední tři dny jsem se účastnil "školení OOP, UML a návrhových vzorů":[http://blog.renestein.net/PermaLink,guid,bacdc2f2-68ca-428b-8489-98a31e946b27.aspx], které pořádá [ReneStein]. Na školení jsem se dostal čirou náhodou a dověděl jsem se o tom až den před zahájením – můj kolega Filip se nechal zapsat právě na tento kurz, ale vzhledem k tomu, že zrovna dokončuje důležitý projekt, nemohl se zúčastnit. Protože již byl kurz zaplacený, byl jsem nakonec vyslán já – tímto děkuji ;)
+
+Začnu nejdříve tím, co se mi na kurzu nelíbilo: nelíbilo se mi, že pro tři učebny je pouze jedna toaleta v podobě "jedné mísy .(samozřejmě záchodové)". Tím výčet mé nespokojenosti končí :)
+
+René se ze mne snažil vypáčit nějaký feedback, ale záměrně jsem mlžil a nechal jsem si ho až na tento zápisek, který píšu po shlédnutí kompletní sady přednášek. Školení pro mě bylo přínosem, ať už proto, že jsem se setkal se zajímavými lidmi z oboru nebo proto, že jsem poznal příjemnou pizzerii, která leží jen pár metrů od míst, která jsme skoro denně navštěvoval několik let (2,5 roku FELace na katedře počítačů :D). Samozřejmě, že největším přínosem pro mě byl obsah přednášek, kdy se René snaží v prvním dni projet OOP s návazností na UML, zbořit některé mýty – "to já rád":[/clanek/114-kladivo-na-carodejnice.aspx] – a srovnat znalosti posluchačů na úroveň, se kterou budou schopni vstřebávat informace prezentované v následujících dnech. Musím říct, že je to pěkná *nalejvárna* a to, co jiní vykládají celé semestry, René zvládne za tři dny a má to větší efektivnost. Výhodou tohoto kurzu je spousta praktických ukázek a výměna zkušeností z praxe lektora, tak účastníků kurzu.
+
+Vzhledem k tomu, že je školení velice přínosné, musím ho doporučit všem, kdož mají zájem navrhovat a psát kvalitní objektové aplikace. René taky chystá návazný kurz, který bude zaměřen více na praktickou stránku věci s využitím znalostí právě z tohoto kurzu. Nevím, jestli neprozradím nějaké tajemství, ale můžeme se těšit i na knihu věnovanou této problematice. **Díky René.**
+
+[ReneStein]: http://blog.renestein.net/ René Stein

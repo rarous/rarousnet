@@ -1,0 +1,38 @@
+---
+{:id 325,
+ :title "What's Up?",
+ :description
+ "Možná si říkáte, tady to umřelo, nic se neděje. Možná máte pravdu.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "webexpo" "aspnet" "mvc" "silverlight" "dataservices"},
+ :published "2008-10-16T15:38:37.717"}
+---
+
+Možná si říkáte, tady to umřelo, nic se neděje. Možná máte pravdu. Je to tím, že poslední dobou toho mám docela dost. Krom příprav na sobotní přednášku:[prednaska], jsem se musel věnovat shánění a následnému stěhování a nyní už i zařizování, což mě docela vytěžuje. :) Navíc v novém bytě ještě nemám zaveden internet, tak jsem téměř mužem v off-linu.
+
+K příležitosti WebExpa:[webexpo] jsem si vytvořil kalendář:[kalendar], kde bych se chtěl nejspíš pohybovat, uvidíme, jak to nakonec dopadne.
+
+No a když už se to tak blíží, tak Microsoft nezapoměl vydat "beta verzi ASP.NET MVC":[beta] o němž chceme s Borkem povídat. Neni to jediný release před konferencí, například vyšel i [silverlight] o němž bude po nás povídat Štěpán Bechynský.
+
+Vzhledem k tomu, že změny mezi Preview 5 a Beta verzí nejsou nikterak veliké (stačí pár drobných úprav, aby vše opět běželo jak má, budeme na přednášce tedy ukazovat už Betu. Já už jsem převedl moji ukázkovou aplikaci. Ta bude aplikace našeho tuaregského intranetu, takže žádná ukázková spatlanina, ale aplikace z reálného života. Dobré je, že na ní můžu ukázat jak ASP.NET MVC, tak ADO.NET Data Service, které v projektu také používám.
+
+Tak pokud budete na WebExpu, tak mě nezapomeňte přijít pozdravit ;)
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(295)]
+* [haacked]
+* [scottgu]
+\--
+
+[clanek(295]: http://rarous.net/clanek/295-povidani-o-asp-net-na-webexpu.aspx Povídání o ASP.NET na WebExpu
+[prednaska]: http://webexpo.cz/prednaska/asp-net/
+[webexpo]: http://www.webexpo.cz/
+[kalendar]: http://www.google.com/calendar/embed?src=thtd3v3ci017a69t1ba0p5p8vc@group.calendar.google.com&ctz=Europe/Prague
+[beta]: http://www.microsoft.com/downloads/details.aspx?familyid=a24d1e00-cd35-4f66-baa0-2362bdde0766&displaylang=en&tm
+[silverlight]: http://www.microsoft.com/silverlight Silverlight 2
+[haacked]: http://haacked.com/archive/2008/10/16/aspnetmvc-beta-release.aspx Phil Haack: ASP.NET MVC Beta Released!
+[scottgu]: http://weblogs.asp.net/scottgu/archive/2008/10/16/asp-net-mvc-beta-released.aspx Scott Guthrie: ASP.NET MVC Beta Released

@@ -1,0 +1,24 @@
+---
+{:id 260,
+ :title "Dynamic Silverlight",
+ :description "Pár odkazů na dynamické jazyky do vašeho prohlížeče.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "ironruby" "dlr" "silverlight" "ironpython"},
+ :published "2008-03-15T11:48:20.540"}
+---
+
+Jednou z věcí, na kterou se dlouho těším, je podpora dynamických jazyků v Silverlightu 2+. Umožňuje to nový stack v .net runtime DLR((Dynamic Language Runtime)), nad kterým jsou implementovány jazyky [python], [ruby], JScript.net a budoucí verze Visual Basicu označovaná jako VBx.
+
+Dynamic Silverlight - jak se rozšíření Silverlightu:[silverlight] 2.0 pro dynamické jazyky nazývá - byl představen poslední den konference MIX08. Zájemcům doporučuju shlédnout "záznam přednášky":[video] Johna Lama. No a právě včera byly zprovozněny "nové stránky":[dynamicsilverlight] tohoto zajímavého projektu, kde si můžete stáhnout SDK s potřebnými knihovnami. Tak s chutí do hraní! :)
+
+Tagy: [tag-silverlight], [tag-ironpython], [tag-ironruby]
+
+[tag-silverlight]: http://technorati.com/tag/silverlight Silverlight .{rel=tag}
+[tag-ironpython]: http://technorati.com/tag/ironpython IronPython .{rel=tag}
+[tag-ironruby]: http://technorati.com/tag/ironruby IronRuby .{rel=tag}
+
+[silverlight]: http://silverlight.net/ Silverlight
+[dynamicsilverlight]: http://dynamicsilverlight.net/ Dynamic Silverlight
+[python]: http://www.codeplex.com/IronPython IronPython
+[ruby]: http://www.ironruby.net/ IronRuby
+[video]: http://sessions.visitmix.com/?selectedSearch=T28

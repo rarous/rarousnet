@@ -1,0 +1,11 @@
+---
+{:id 168,
+ :title "Nový kabátek pro Microsoft.com",
+ :description
+ "Redesign homepage Microsoft.com, preview verze funkční pouze v MSIE :(.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2006-07-25T09:50:17.313"}
+---
+
+Microsoft připravuje redesign svých stránek. Jak vypadá současný stav se můžete podívat na "Microsoft.com Preview":[http://preview.microsoft.com/en/us/default.aspx] (POZOR: IE only). Jako homepage mi přijde dostatečně výrazná i celkem přehledná, ale zatim mi nefunguje formulář pro hledání, ačkoliv je v takovém pěkném zašupovacím boxu :) Ještě to chce trochu zapracovat i na těch "bílých" místech. Kód se chce tvářit jako XHTML 1.0 Strict, ale i na Trasitional má ještě hodně daleko.

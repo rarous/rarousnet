@@ -1,0 +1,32 @@
+---
+{:id 56,
+ :title "Služba Svátky",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webové služby"},
+ :published "2005-04-28T10:27:00"}
+---
+
+Vytvořil jsem jednoduchou webovou službu, která vrací jména z kalendáře. Má dvě metody:
+
+1) "Dnesni":/ws/svatky.asmx?op=Dnesni - vrací aktuální svátek k dnešnímu dni
+2) "PodleData":/ws/svatky.asmx?op=PodleData - vrací svátek k datumu předávaného parametrem **datum**
+
+Jak vidíte jde o velice jednoduchou službu, která se dotazuje do
+databáze svátků. I přes její jednoduchost jsem narazil na zajímavou věc, o které jsem dosud netušil, a to, že pokud službu zavoláte pomocí protokolu HTTP-GET nebo HTTP-POST, tak dojde k chybě, místo vrácení výsledku. Po hodině hledání jsem přišel na to, že ASP.NET 1.1 a novější maj tyto protokoly pro <acronym title="web service" lang="en">WS</acronym> defaultně zablokované. Řešení je ale jednoduché, stačí upravit soubor web.config a vše by mělo fungovat, jak má.
+
+/--- code xml
+<configuration>
+  <system.web>
+
+    <!-- povolení protokolů GET a POST pro WS -->
+    <webservices>
+      <protocols>
+        <add name="HttpGet" />
+        <add name="HttpPost" />
+      </protocols>
+    </webservices>
+
+  </system.web>
+</configuration>
+\--- code

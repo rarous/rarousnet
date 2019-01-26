@@ -1,0 +1,82 @@
+---
+{:id 136,
+ :title "Texy RPC wrapper pro dotnet",
+ :description "Texy se na nás směje.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-20T12:35:31.787"}
+---
+
+== Update 2
+Protože se změnil protokol komunikace s Texy RPC a já měl i pár nápdů na vylepšení, použijte raději "Texy.net RC1":[/clanek/196-texy-net-release-candidate.aspx], je to **jediná funkční** verze ;)
+
+== Update
+*Napsal jsem knihovnu, která zprostředkovává kounikaci s Texy! XML-RPC, která je mnohem lepší než toto řešení. Najdete ji v článku "Texy.net 1.0 beta":[/clanek/158-texy-net-1-0-beta.aspx]*
+
+Ještě jsem ani nestihl napsat, že DGX:[http://www.dgx.cz/trine/] uvolnil finální release "Texy! 1.0":[http://www.texy.info/] a včera večer přidal ještě XML RPC rozhranní pro Texy (na adrese `http://xmlrpc.texy.info/`). Toho jsem nemohl nevyužít k procvičení vzdáleného volání z ASP.NET. Sice to neni tak elegantní řešení jako u "Texy WS":[/clanek/64-texy-web-service-ws.aspx], ale je tu další možnost, jak Texy do dotnetu implementovat...
+
+/---code csharp
+using System;
+using System.IO;
+using System.Net;
+using System.Web;
+using System.Collections;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Xml;
+using System.Text;
+
+[WebService(
+    Namespace = "http://rarous.net/ws/",
+    Description = "XML RPC to SOAP bridge for Texy!")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+public class TexyService : System.Web.Services.WebService {
+
+    public TexyService () { }
+
+    [WebMethod(Description = "Konvertuje vstupní text do XHTML")]
+    public string ConvertToXhtml(string text)
+    {
+        Uri url = new Uri("http://xmlrpc.texy.info/");
+        HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+        request.UserAgent = "Gryphoon Texy Bridge 0.1";
+        request.Accept = "text/html, text/xml, application/xhtml+xml, application/xml";
+        request.ContentType = "text/xml";
+        request.Method = "POST";
+
+        XmlTextWriter writer = new XmlTextWriter(request.GetRequestStream(), Encoding.UTF8);
+        writer.WriteStartDocument();
+        writer.WriteStartElement("methodCall");
+            writer.WriteElementString("methodName", "texy1.toHtml");
+            writer.WriteStartElement("params");
+                writer.WriteStartElement("param");
+                    writer.WriteStartElement("value");
+                        writer.WriteElementString("string", text);
+                    writer.WriteEndElement();
+                writer.WriteEndElement();
+            writer.WriteEndElement();
+        writer.WriteEndElement();
+        writer.Close();
+
+        HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+        XmlTextReader reader = new XmlTextReader(response.GetResponseStream());
+
+        string output = String.Empty;
+        object val = reader.NameTable.Add("string");
+        while (reader.Read())
+        {
+            if (reader.NodeType == XmlNodeType.Element && reader.Name.Equals(val))
+                output = Server.HtmlDecode(reader.ReadInnerXml());
+        }
+
+        reader.Close();
+        response.Close();
+
+        return output;
+    }
+}
+\---
+
+Rovnou jsem wrapper implementoval do Webové služby pro další využití (např. v Atlasu), ale celá magie je pouze v metodě `ConvertToXhtml`, která se o všechno postará. Tohle je první nástřel a možná má ještě nějaký mouchy, ale to se podá ;) Určitě chci ještě dopsat možnost konfigurace, kterou "Texy RPC taky nabízí":[http://www.texy.info/cz/xmlrpc].
+
+"Ukázka služby":[/ws/TexyService.asmx]

@@ -1,0 +1,10 @@
+---
+{:id 123,
+ :title "Vítejte v novém Webu",
+ :description "A co mě dnes ráno pobavilo?",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2006-03-24T07:25:05.910"}
+---
+
+Projíždím si - jako každé ráno - svoji "oblíbenou čtečku":[http://reader.google.com/] a narazil jsem na zajímavý článek o **Web 2.0**. "Welcome to Web 2.0":[http://weblogs.asp.net/nleghari/archive/2006/03/23/440965.aspx]

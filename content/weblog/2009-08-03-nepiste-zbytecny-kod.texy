@@ -1,0 +1,230 @@
+---
+{:id 361,
+ :title "Nepište zbytečný kód",
+ :description
+ "Nejčastější chybou při psaní zdrojových kódů je psaní kódu zbytečného. Zbytečný kód narušuje kontinuitu čtení, skrývá jasné myšlenky, neřeší problémy.",
+ :author "Aleš Roubíček",
+ :tags #{"csharp" "asp.net 2.0" "refactoring"},
+ :published "2009-08-03T07:19:19.083"}
+---
+
+Jedním ze **základních pravidel** psaní přehledného kódu je **nepsat zbytečný kód**.  Pojďme si ukázat pár příkladů zbytečného kódu, kterému je zahodno se raději vyhnout.
+
+Komentáře
+==========
+
+Programátoři jsou často velice kreativní lidé, ale svou kreativitu si vybíjí nesprávným způsobem. Tak se může stát, že během své kariéry narazíte na skvosty typu:
+
+1. zakomentované kusy kódu
+2. označení dočasného kódu v kometáři
+3. vylévání srdíčka nad vlastní blbostí
+
+K bodu prvnímu. Když něco takového potkáte, rovnou to smažte, nesnažte se nad tím přemýšlet. Jestli někdy ten kód budete potřebovat, najdete ho ve vašem VCS. Pokud se přistihnete, že máte označený blok kódu a chystáte se zmáčknout magickou kombinaci kláves `Ctrl+K, C`, ušetřete si práci a rovnou zmáčkněte `Delete`. ;)
+
+K bodu druhému. Nejprve zjistěte, kdo to napsal a dejtemu rovnou pohlavek nebo seberte prémie. Nejlépe oboje, u někoho lépe fungují podmíněné reflexy spojené s fyzickou bolestí, někdo si vzpomene, že mu nezbyly peníze na tu skvělou chlastačku a už to nebude chtít opakovat. Zjišťovat, co na koho platí je moc drahé.  ;)
+
+Pro představu, našli jsme takovýto kód:
+
+/--code csharp
+//Testovaci verze
+if (Request.Cookies.AllKeys.Contains("ticket")) {
+  InvitedUser iuser = _invitedUsersRepository.FindByHash(Request.Cookies["ticket"].Value);
+  if (iuser != null) {
+    iuser.Valid = false;
+    _invitedUsersRepository.Save(iuser);
+  }
+}
+// --
+;
+\--code
+
+Autora jsme ztrestali. První krok máme za sebou, co dál? Tohle asi hned smazat nepůjde. Prvním možným krokem, je nadefinovat build symbol a tyto bloky obalit preprocesorovou podmínkou:
+
+/--code csharp
+#if TEST_VERSION
+if (Request.Cookies.AllKeys.Contains("ticket")) {
+  InvitedUser iuser = _invitedUsersRepository.FindByHash(Request.Cookies["ticket"].Value);
+  if (iuser != null) {
+    iuser.Valid = false;
+    _invitedUsersRepository.Save(iuser);
+  }
+}
+#endif
+;
+\--code
+
+Sice jsme se nezbavili špatného kódu, ale aspoň pujde dočasná featura vypnout z jednoho místa a kód hovoří trochu jasněji.
+
+Pokud napíšete blok kódu a pocítíte potřebu uvodit ho komentářem, nebo takových bloků máte zasebou víc, je čas refaktorovat! Místo komentářů vytvořte metody s popisnými názvy (ekvivalent komentáře). Komentáře mají tu vlastnost, že rychle ztrácejí význam a zůstávají v místech, kde už není co komentovat.
+
+Pravidlo: >>Když ucítíte potřebu napsat v kódu komentář, zamyslete se, zda nenajdete lepší způsob jak tuto myšlenku vyjádřit.<<
+
+Poznejte svůj jazyk
+===================
+
+Za programátora se považuje každý, kdo se v nějakém jazyce naučí pár příkazů. Někdo si vystačí s málem a pak mu nezbývá než prasit. Základem je poznat jazyk, ve kterém se chystáme sdělovat své myšlenkové pochody. Zdrojový kód se mnohem častěji čte než píše, proto by měl obsahovat co nejméně zbytečností, které odvádějí pozornost.
+
+Začněme třeba u JavaScriptu. Často se setkávám s kódem, který napovídá, že autor má hrubé znalosti C a jemu podobných jazyků, ale o JavaScriptu moc potuchy nemá.
+
+Podmíněné přiřazení
+===================
+
+Jednou z typických ukázek může být validace vstupních parametrů a nastavení výchozí hodnoty, pokud přišlo `null`. Nejhorší případ:
+
+/--code javascript
+function example(options) {
+  if (options == null) {
+    this.options = { color: 'red' };
+  }
+  else {
+    this.options = options;
+  }
+}
+\--code
+
+O něco chytřejší programátor použije ternární podmíněný operátor:
+
+/--code javascript
+function example(options) {
+  this.options = (options != null) ? options : { color: 'red' };
+}
+\--code
+
+Vývojář znalý JavaScriptu však odbourá zbytečné ruchy a vznikne logický zápis:
+
+/--code javascript
+function example(options) {
+  this.options = options || { color: 'red' };
+}
+\--code
+
+Pojďme teď dál k mému oblíbenému C#. Předchozí příklad tam nejde řešit operátorem `||` protože C# je silně typový a `null != false`. Ovšem C# 2.0 přinesl s `Nullable<T>` hodnotovými typy i operátor `??`. Ten slouží jako zkrácená varianta ternárního podmíněného operátoru. Díky němu můžeme následující kód:
+
+/--code csharp
+public void Example(Options options) {
+  _options = (options != null) ? options : new Options { Color = Color.Red };
+}
+\--code
+
+Pěkně odšumět:
+
+/--code csharp
+public void Example(Options options) {
+  _options = options ?? new Options { Color = Color.Red };
+}
+\--code
+
+Pokud pracujete s `Nullable` hodnotovými typy, zkraťte i následující zápis:
+
+/--code csharp
+public void Example(int? pageIndex) {
+  int page = 1 + (pageIndex.HasValue ? pageIndex.Value : 0);
+}
+\--code
+
+Na:
+
+/--code csharp
+public void Example(int? pageIndex) {
+  int page = 1 + (pageIndex ?? 0);
+}
+\--code
+
+Generické parametry
+====================
+
+Dalším, velice častým šumem, je explicitní uvádění generických parametrů, tam kde to není potřeba. Za příklad si vezměme třeba generickou metodu `Assert.Equal<T>(T expected, T actual)` z frameworku [xunit]. Můžeme ji volat takto:
+
+/--code csharp
+Assert.Equal<string>("test", null);
+\--code
+
+Jenže kompilátor není žádný hlupák a dokáže správně dosadit typ generického parametru podle typu předávaného parametru. Proto je možné napsat, mnohem přehlednější zápis:
+
+/--code csharp
+Assert.Equal("test", null);
+\--code
+
+FxCop vám přímo radí: >>Pište generické metody tak, aby se typ generického parametru dal implicitně odvodit.<<
+
+Zbytečné volání ToString
+========================
+
+Často se také můžete setkat s voláním metody `ToString` tam, kde to není pořeba. Příklad:
+
+/--code csharp
+double rating = 3.8;
+string output = "Your rating is: " + rating.ToString();
+\--code
+
+Tohle lze napsat bez šumu:
+
+/--code csharp
+double rating = 3.8;
+string output = "Your rating is: " + rating;
+\--code
+
+Teď si jistě, říkáte, že jsem asi blbec, jak můžu po silně typovém C# chtít, aby sečetl `string` a `double`. Nuže můžu. Krom toho, že je C# silně typový, podporuje i přetěžování operátorů! A designéři třídy `String` přidali přetížení operátoru `+` na kterýkoliv `Object`, na kterém zavolají metodu `ToString` za vás. :)
+
+Zbytečné explicitní přetypování
+===============================
+
+Občas se bohužel můžeme v kódu potkat s věcmi, nad kterými zůstává rozum stát. Někdo například už pochopil dědičnost. Pochopil, že třída `List<T>` implementuje rozhraní `IList<T>` a to dědí z `ICollection<T>`, které je potomkem obecného rozhranní `IEnumerable<T>`. Jenže pak přijde na praktické použití a je zle:
+
+/--code csharp
+public class UserDetailViewData {
+  public IEnumerable<User> Friends { get; set; }
+}
+
+public class UsersController : Controller {
+  public ActionResult Detail(userName) {
+    IList<User> friends = GetFriendsOfUser(userName);
+    return View(new UserDetailViewData {
+      Friends = (IEnumerable<User>)friends
+    });
+  }
+}
+\--code
+
+Takhle vytržené z kontextu to nemusí vypadat až tak zle, ale originál mě stál málem ukroucení hlavy.
+
+Roztahaná inicializace
+======================
+
+Novinkou C# 3.0 jsou inicializátory. Zvažte následující kód:
+
+/--code csharp
+var user = new User();
+user.Name = "Josef Novák";
+user.Gender = Gender.Male;
+\--code
+
+
+Přepsat na:
+
+/--code csharp
+var user = new User {
+  Name = "Josef Novák",
+  Gender = Gender.Male,
+};
+\--code
+
+Vyhnete se tím, zbytečnému opakování `user.`.
+
+
+Závorky navíc
+==============
+
+Častý šumem v kódy bývají také závorky, které nemají žádný význam, zejména u inicilizátorů s bezparametrickým konstrukotrem `new User() { Name = "Josef Novák" }` a u anonymních bezparametrických delegátů `delegate() { return true; }`. Tyto závorky klidně smažte a u delegátů zvažte kompresi na lambda výraz: `()=> true`.
+
+Na druhou stranu existuje spousta případů, kdy vhodně vložené závorky zvyšují čitelnost.
+
+Závěr
+=====
+
+Když říkám, že je lepší psát némě kódu, rozhodně tím nemám na mysli kriptické zápisy alá regexy. To, co ušetříte na zbytečném kódu, klidně investujte do popisných názvů proměnných a metod. Důležitá je **čitelnost**. Se spoustou výše zmiňovaných úprav vám mohou pomoci nástroje, např. [crx], který je zcela zdarma.
+
+Rozhodně jsem nepokryl všechny možnosti, kde psát zbytečný kód navíc. Jistě taky některé znáte, podělte se o ně v komentářích. :)
+
+[xunit]: http://xunit.codeplex.com/ xUnit.net
+[crx]: http://www.devexpress.com/crx CodeRush Express

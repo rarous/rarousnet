@@ -1,0 +1,27 @@
+---
+{:id 58,
+ :title "Bezpečnější brouzdání",
+ :description "Návod na to, jak brouzdat bezpečněji.",
+ :author "Aleš Roubíček",
+ :tags #{"tuning"},
+ :published "2005-05-09T00:00:00"}
+---
+
+Dnes vám poradím, jak zbezpečnit brouzdání po stránkách Internetu, kde na vás čekají nejrůznější bezpečnostní nástrahy. Předem upozorňuji, že provedené změny v systému děláte na vlastní nebezpečí.
+
+Pokud používáte systém Windows 2000 nebo XP a brouzdáte Internetem v uživatelské roli Administrátor, zakládáte si na pěkný malér, neboť všechny aplikace mají přístup do systémových složek a registrů, kde je systém nejzranitelnější. Já vám přináším řešení, kterým  můžete omezit práva vybraným aplikacím.
+
+Nejprve si vytvořte soubor **prava.reg** a do něho vložte následující řádky:
+
+/--- code
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Safer\CodeIdentifiers]
+"Levels"=dword:00020000
+\--- code
+
+Uložte ho a potom ho spusťte – zanesete tím novou položku do registrů. Tato položka vám umožní omezit práva některých aplikací. V dalším kroku si spusťte **Místní zásady zabezpečení** (najdete ho v 'Ovládací panely > Nástroje pro správu').
+
+Zde si otevřete složku **Zásady omezení softwaru** a v ní **Další pravidla**. Nyní klepněte na menu **Akce** a vyberte **Nové pravidlo cesty**. Nyní se vám otevře dialog, kde si vyberete soubor kterému chcete omezit oprávnění (např. 'C:\Program Files\Mozilla Firefox\firefox.exe') a *Úroveň zabezpečení* nastavíte na **Běžný uživatel** - tato položka přibyla po aplikaci souboru *prava.reg*.
+
+Osobně doporučuji snížit takto práva všem aplikacím, které přistupují na Internet a mohou přijímat škodlivý software. Na tomto místě můžete také některé aplikace úplně zakázat. Stačí nastavit úroveň zabezpečení na **Nepovoleno** a milá aplikace pouze vyhodí chybovou hlášku a konec.
+
+Na závěr ještě návod, jak vše vrátit. Postup je stejný, jen úroveň oprávnění nastavíte na **Bez omezení**. Toť vše přátelé.

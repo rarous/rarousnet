@@ -1,0 +1,44 @@
+---
+{:id 423,
+ :title "Proč nemám rád CoffeeScript",
+ :description "Muselo to ven. :)",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2012-08-11T09:26:11.903"}
+---
+
+Nepopírám, že CoffeeScript má některé featury, které jsou zajímavé. Pro mně je však nepřehledný. "Dan ve svém blogu píše":[http://estejs.tumblr.com/post/29175863516/why-coffeescript] pár důvodů, proč CoffeeScript ano:
+
+> My arguments for CoffeeScript:
+>  * reduction of noise in code, indenting is enough, we don’t need (), {} and ;
+>  * enforces consistent code style
+>  * beautiful class definition
+>  * less typing = less typos
+>  * +zilion little big details
+
+Zajímavé. Tohle jsou vlastně moje body, proč CoffeeScript ne. :)
+
+1. Redukce šumu
+============
+
+Šum považuju za špatný, ovšem. C-like jazyky jsou plné šumu, který CoffeeScript zdánlivě odstraňuje. Jenže zdání klame. CoffeeScrit je plný "bílého šumu", který je stejně špatný jako každý jiný šum. Náš mozek je z mnoha hodin matematiky zvyklý na matematická znaménka, dokáže s nimi pracovat mnohem lépe než se slovy. Správně vložená závorka/operátor je dobro.
+
+2. Jednotný styl
+===========
+
+Někdo preferuje potlačení idividualit, preferuje uniformitu, jiný nikoli. Jenže ani v případě CoffeeScriptu není konzistence nikterak závratná. Tam, kde skončili náboženské boje o závorky, tam nastoupili boje o odsazování. Někdo preferuje taby, jiný mezery. Další sází kód do tabulkového layoutu. Stejnej shit.
+
+3. Definice třídy
+============
+
+Třídy v JavaScriptu nejsou! Je to prototypový jazyk. Tak to kurva už přijměte. ;) Pokud ale fakt třídy nutně potřebujete, použijte Traceur:[http://code.google.com/p/traceur-compiler/], což je překladač z ECMAScriptu 6. BTW "Webstorm ho má":[http://blog.jetbrains.com/webide/2012/04/webstorm-4-0-in-harmony-with-ecmascript/] od verze 4 integrovaný.
+
+4. Méně psaní
+=========
+
+No, vsadim se, že s CodeRushem a Intellisense toho napíšu mnohem mnohem míň a s menší chybovostí než v CoffeeScriptu. (Platí jak pro C# tak pro JavaScript. Ostatně asi i pro WebStorm. :))
+
+5. A ty detaily
+=========
+
+Jak se říká tisíckrát nic umořilo vola. Jak byl Dan z počátku ke CoffeeScriptu skeptický, mně celkem nadchl. Naopak, jak jsem postupně viděl spoustu drobných detailů, ztratil u mně zájem a podporu. Což je celkem zajímavý, protože něco podobnýho "už jsem před tím taky zažil, ale obráceně...":[http://rarous.net/weblog/396-muj-pohled-na-fsharp-se-meni.aspx]

@@ -1,0 +1,61 @@
+---
+{:id 79,
+ :title "Přístup k objektům Master page v ASP.NET 2",
+ :description
+ "Návod jak přistupovat k&#160;vlastním vlastnostem Master page z&#160;obsahových stránek.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2005-11-09T09:39:17.483"}
+---
+
+ASP.NET 2 přináší globální šablonování pomocí Master pages. Díky tomu snadno udržíte jednotný vzhled aplikace. V "mástru" si nadefinujete stránku přesně tak, jak chcete, aby ve výsledku vypadala a pomocí objektů `<asp:ContentPlaceholder>` definujete místa, která se u jednotlivých stránek budou měnit. Samotné aspx stránky budou obsahovat už jen tyto upravitelné části a výkonnou část dané stránky.
+
+Ovšem někdy je potřeba volat ovládací prvky, které jsou součástí mástru. Na výběr máme minimálně dvě možnosti jak toho docílit. Tou první je pomocí volání metody `FindControl(string name)` vlastnosti Master s tím, že si musíte přetypovat nalezený kontrol, nebo ošetřit nenalezený. Ta druhá využívá vlastnosti OOP((objektově orientované programování)) a to dědičnosti. Naše Master page dědí ze třídy Master, my si k ní ještě připíšeme vlastní vlastnosti, které budou vracet a nastavovat námi požadované ovládací prvky nebo jejich vlastnosti.
+
+Chtějme např. z obsahové stránky přidávat do hlavičky stránky **link na syndikaci**, která se bude dynamicky měnit podle toho, v jaké jste sekci webu nebo jestli jste na titulní straně.
+
+V prvním kroku si vytvoříme vlastnost, která bude vracet sekci `<head>` výsledné stránky.
+
+/---code csharp
+public partial class MyMaster : Master
+{
+	public HtmlHead Head
+	{
+		get { return (HtmlHead)this.Page.Header; }
+	}
+
+	protected void Page_Load(object sender, EventArgs e)
+	{
+
+	}
+}
+\---code
+
+V druhém kroku nastavíme obsahovým stránkám třídu, která jim má být Mastrem. Každá třída odvozená od Page má vlastnost Master, která je typu Master. Naštěstí se zde používají generika, takže není velkým problémem nastavit si třídu vlastní. Dosáhneme toho vložením následujícího řádku do zdroje obsahové stránky (podobně jako se registrují UserControls).
+
+/---code xml
+<%@ MasterType VirtualPath="~/MyMaster.master" %>
+\---code
+
+Pokud by tento řádek v kódu chyběl, museli bychom všude vlastnost Master přetypovat na námi požadovanou třídu, což přináší zbytečné opakování kódu, který není nutné psát. A na konec tu máme malou ukázku toho, jak přidat link na RSS do stránky pomocí vlastnosti Head v našem mástru.
+
+/---code xml
+<%@ Page Language="C#" MasterPageFile="~/MyMaster.master" %>
+<%@ MasterType VirtualPath="~/MyMaster.master" %>
+
+<script runat="server">
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        HtmlLink rssLink = new HtmlLink();
+        rssLink.Href = "~/Syndikace.asmx/Rss";
+        rssLink.Attributes.Add("rel", "Alternate");
+        rssLink.Attributes.Add("type", "application/rss+xml");
+        rssLink.Attributes.Add("title", "Web feed článků - RSS 2.0");
+
+        Master.Head.Controls.Add(rssLink);
+    }
+</script>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceholder1" Runat="Server">
+</asp:Content>
+\---code

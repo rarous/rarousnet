@@ -1,0 +1,60 @@
+---
+{:id 220,
+ :title "Jak funguje MonoRail",
+ :description
+ "Po úvodním seznamovacím spotu je tu první díl seriálku o MonoRail frameworku. Dnes to bude o tom, jak vlastně MonoRail funguje.",
+ :author "Aleš Roubíček",
+ :tags #{"castle" "brail" "monorail" "mvc" "asp.net 2.0"},
+ :published "2007-08-17T13:20:28.833"}
+---
+
+Po "letmém seznámení":[clanek(219)] s frameworkem MonoRail (MR) je tu první část slibovaného seriálu. V dnešním díle se ponoříme do technických principů frameworku.
+
+Základem MR je klasický `IHttpHandler` známý z ASP.NET, který se stará o zpracování požadavků přicházejících na server. Ve výchozím stavu zpracovává požadavky s příponou `.rails`, ale protože tato není na většině hostingů nastavena na ISAPI filtr ASP.NET, dá se nastavit zpracování přípony jiné (často `ashx`), která je webovému serveru známá a je spojená s ASP.NET filtrem.
+
+Handler rozparsuje adresu a snaží se najít vhodný `Controller` a jeho metodu, která požadavek zpracuje a předá data na patřičný `View`. Vypadá to asi následovně. Na handler přijde požadavek ve tvaru `/home/index.rails`, handler se pokusí vyhledat třídu `HomeController`, která dědí ze třídy `Controller`, a u ní metodu `Index()`. Takže controller pro tento požadavek by vypadal asi následovně:
+
+/--code csharp
+public class HomeControler : Controller {
+  public void Index()  {
+    PropertyBag["hello"] = "Pozdrav z jednokolejky";
+  }
+}
+\--code
+
+Takový controller by  se měl nacházet v projektu ve složce `controllers`. Vlastnost `PropertyBag` je slovník (asociativní pole), který předává data z controlleru na view. Aby se nám to celé mohlo někde zobrazit, potřebujeme ještě tedy view. Ve složce `/views/home/` si vytvoříme soubor `index.brail` (Brail je jedním z ViewEnginů) do kterého zadáme:
+
+/--code xml
+<html>
+  <head>
+    <title>Pozdrav</title>
+  </head>
+  <body>
+    <h1>${hello}</h1>
+  </body>
+</html>
+\--code
+
+Řetězec `${hello}` bude na výstupu nahrazen textem z PropertyBagu. Dolar složené závorky totiž prochází lokální proměnné a snaží se z nich získat hodnotu. Pokud taková proměnná neexistuje zavolá se metoda `GetParametr`, která projde kolekce PropertyBag, Flash, Request apod. a snaží se v nich nalézt klíč, kterým je text mezi závorkami. Hodnota  je pak vypsána namísto dolarové funkce. :) Dolarová funkce je takový shortcut pro tento zápis: `<?brail output hello ?>` což je obdoba `<?php echo $hello; ?>` v PHP nebo `<%= hello %>` v ASP.
+
+Celá skládačka do sebe zapadne, když do prohlížeče zadáme adresu `http://server/home/index.rails`. Díky příponě *rails* se požadavek předá Handleru MonoRail. Ten rozparsuje adresu a snaží se najít třídu *HomeController*, kterou jsme vytvořili, takže success. V této třídě hledá metodu *Index*, tu máme taky, další bod k dobru. Tato metoda nám  nastaví v *PropertyBagu* hello na hodnotu „Pozdrav z jednokolejky“. Dále handler hledá vhodné view, které jsme také vytvořili. Předá mu Context, zpracuje se šablona a nakonec bude do prohlížeče odesláno HTML.
+
+/--code xml
+<html>
+  <head>
+    <title>Pozdrav</title>
+  </head>
+  <body>
+    <h1>Pozdrav z jednokolejky</h1>
+  </body>
+</html>
+\--code
+
+Pro dnešek vše.
+
+== Související
+* [clanek(219)]
+* [how it works]
+
+[clanek(219)]: /weblog/219-zaciname-s-jednokolejkou.aspx Začínáme s jednokolejkou
+[how it works]: http://www.castleproject.org/monorail/documentation/trunk/manual/howitworks.html MonoRail - How it works 

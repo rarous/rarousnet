@@ -1,0 +1,31 @@
+---
+{:id 370,
+ :title "Mikroformáty jako datový model stránky",
+ :description
+ "Dříve, když jsem psal webové aplikace, kde bylo potřeba hodně JavaScriptu, aby se dosáhlo pohodlné práce, duplikoval jsem data. Jenže všichni víme, že duplikování je zlo. :)",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "microformats" "aspnet" "mvc" "trop" "rdfa"},
+ :published "2009-11-18T12:47:56.843"}
+---
+
+Dříve, když jsem psal webové aplikace, kde bylo potřeba hodně JavaScriptu, aby se dosáhlo pohodlné práce, duplikoval jsem data. Ano, je to tak a stydím se za to. Většina dat, které se na stránce vypisovaly, byla duplicitní. Jednou byly v HTML((Hypertext Markup Language)) a podruhé v JSON((JavaScript Object Notation)), aby se s nimi dalo snadno pracovat v JavaScriptu. Jenže všichni víme, že duplikování je zlo. :)
+
+V Tropu:[trop] jsem se tomuto nešvaru snažil vyhnout. A tak je většina dat ve stránkách označena mikroformáty. Výhodou mikroformátů je, že jsou snadno strojově zpracovatené. Tudíž i JavaScriptem. Pokud se třeba podíváte na detail místa (např. [PUB]) uvidíte mapku, kde je bublina s kontaktními údaji místa. Tato data nejsou v žádném JSON ve stránce, ani se nestahují AJAXovým dotazem. Script jednoduše vezme data z mikroformátu [hcard] včetně geo souřadnic, kde se má bublina vykreslit.
+
+Podobný model je aplikován na různých místech Tropu.
+
+Mikroformáty vs. RDFa
+=====================
+
+Myslím, že v tomto případě se i ukazuje, že mikroformáty jsou lepší než RDFa. Protože parsovat mikroformáty pomocí jQuery je mnohem snažší a přehlednější. RDFa je možná flexibilnější v tom, kolik gramatik dokáže pojmout, ale to je i jeho zásadní slabinou. Mikroformáty definují jednoduché formáty, které staví na jednoduchém modelu HTML. Existují nástroje, díky nimž lze s nimi snadno pracovat.
+
+Mikroformáty a ASP.NET MVC
+==========================
+
+Úžasnou novinkou ASP.NET MVC 2 bude extenze `Html.DisplayFor`, kde se vytvoří jediná šablona třeba s vizitkou uživatele a pak jí mužu používat všude, aniž bych někde na něco zapomněl nebo něco nabořil. Dnes musím mít několik extenzí pro různé typy dat, kde mám navíc kód přímo v extenzi. Sice je jednoduchý, ale čím méně HTML v C# kódu, tím lépe. (On to tedy není přímo HTML kód, ale jeho objektová reprezentace.)
+
+Práce s mikroformáty tak bude mnohem jednodušší a ucelenější. :)
+
+[trop]: http://www.trop.cz/
+[PUB]: http://www.trop.cz/v/13 The Pub na Staroměstské
+[hcard]: http://microformats.org/wiki/hcard hCard

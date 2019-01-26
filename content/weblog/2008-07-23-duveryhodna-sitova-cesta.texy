@@ -1,0 +1,24 @@
+---
+{:id 289,
+ :title "Důvěryhodná síťová cesta",
+ :description
+ "Jak nastavit síťovou cestu, jako důvěryhodnou pro spouštění .net assembly.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2008-07-23T14:00:57.243"}
+---
+
+Společné knihovny v našich projektech linkujeme z jednoho síťového místa. Při spouštění testů z Visuál Studia se v tomto případě může objevit chybová hláška, že knihovna není v důvěryhodném umístění a testy se nepodaří spustit.
+
+/--code
+Microsoft.VisualStudio.TestTools.TestManagement.ExecutionException: Test Run deployment issue: The location of the file or directory ‘\\server\path\library.dll’ is not trusted.
+\--code
+
+Existuje na to celkem snadné řešení, ale je poměrně těžko dohledatelné... Je potřeba toto umístění přidat mezi důvěryhodná uložiště assembly .net Frameworku. Nejsnažší cesta je nastavit CAS Policy asi přes příkazovou řádku:
+
+/--code
+cd %SystemRoot%\Microsoft.NET\Framework\v2.0.50727
+caspol -m -ag 1.2 -url \\Server\path\* FullTrust
+\--code
+
+Snad se bude hodit.

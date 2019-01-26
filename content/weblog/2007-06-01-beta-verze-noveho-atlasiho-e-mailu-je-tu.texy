@@ -1,0 +1,30 @@
+---
+{:id 211,
+ :title "Beta verze nového Atlasího e-mailu je tu",
+ :description
+ "Po 14denním interním testování byla včera večer vypuštěna zbrusu nová verze Atlasího e-mailu. Zapojte se do jejího veřejného testování i vy!",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "webmail" "atlas"},
+ :published "2007-06-01T09:35:48.763"}
+---
+
+Po 14denním interním testování byla včera večer vypuštěna zbrusu "nová verze Atlasího e-mailu":[beta]. Zapojte se do jejího veřejného testování i vy!
+
+Pod vedením Honzy Kuneše vznikl zcela nový webmail pro portál Atlas. Co přináší oproti stávající verzi nového?
+
+* Nový jednodušší a přehlednější design
+* Kontextové nabídky
+* Přetahování zpráv myší mezi složkami
+* Náhledy přiložených obrázků
+* Průběžné ulkádání e-malů
+* Stahování všech příloh v jednom zip souboru
+
+...a další drobnosti, které vám práci z e-mailem jistě zpříjemní. V plánu jsou další vylepšní jako fulltextové hledání ve zprávách, notifikátor nových zpráv, gadget do sidebaru a další drobná vylepšení, plus zapracování připomínek a některých návrhů z betatestingu.
+
+Samozřejmě kluci nedělali novej GMail, proč taky? :)
+
+Na závěr foto webmail týmu:
+
+[*/data/obrazky/webmail-team.JPG .(webmail team)*]
+
+[beta]: http://beta.mail.atlas.cz/

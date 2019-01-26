@@ -1,0 +1,109 @@
+---
+{:id 349,
+ :title "Serverové ovládací prvky v ASP.NET MVC",
+ :description
+ "Docela často se vyskytující fámou je, že v ASP.NET MVC nelze používat serverové ovládací prvky (Server Controls). Pojďme se podívat na ty, které fungují i v ASP.NET MVC a můžou nám poskytnout nějakou zajímavou funkcionalitu a zpřehlednit tak naše View.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "mvc" "controls"},
+ :published "2009-02-21T12:32:36.547"}
+---
+
+Docela často se vyskytující fámou je, že v ASP.NET MVC nelze používat serverové ovládací prvky (Server Controls). Pravda to je jen z části, nelze používat jen ty prvky, které pro svoji funkčnost vyžadují `ViewState`. Pojďme se podívat na ty, které fungují i v ASP.NET MVC a můžou nám poskytnout nějakou zajímavou funkcionalitu a zpřehlednit tak naše View.
+
+MasterPage a Placeholdery
+=========================
+
+Snad první komponenty, které použijete, jsou `asp:ContentPlaceHolder` a `asp:Content`. Narazíte na ně při definování globální šablony (Master Page) a jednotlivých pohledů (View). Většinou je použijete automaticky a ani si neuvědomíte, že jde o serverové komponenty. A to je dobře. Rozhodně je lepší používat master page než server side include nebo do všech stránek vkládat view user controly se sdílenými částmi šablony.
+
+LoginView a spol.
+================
+
+Další rozhodně doporučitelnou komponentou je `asp:LoginView`. Ta slouší k rozdílnému zobrazování obsahu pro nepřihlášené/přihlášené uživatele a také pro jednotlivé uživatelské role. Předpokladem je, že využíváte ASP.NET Membership nebo nějakou vlastní  implementaci, která nastavuje do kontextu správné `IPrincipal`. Pak můžete v kódu použít třeba toto:
+
+/--code xml
+<asp:LoginView ID="LoginView1" runat="server">
+  <AnonymousTemplate>
+    Nepřihlášený | <%= Html.ActionLink("Přihlásit se", "Login", "Account") %>
+  </AnonymousTemplate>
+  <LoggedInTemplate>
+    <asp:LoginName runat="server" />| <%= Html.ActionLink("Odhlásit se", "Logout", "Account") %>
+  </LoggedInTemplate>
+</asp:LoginView>
+\--code
+
+Tím docílíte zobrazení odkazu pro přihlášení nepřihlášenému uživateli a odkazu pro odhlášení uživateli přihlášenému. Jak vidíte, je možné používat i `asp:LoginName` pro výpis jména aktuálně přihlášeného uživatele.
+
+Localize pro lokalizaci
+====================
+
+Pokud děláte na webové aplikaci, která má být lokalizovaná do více jazyků, jistě se vám bude hodit `asp:Localize`, které slouží k snadnému definování míst, která mají být nahrazována texty z resource souboru. Nebudu teď řešit jak rozhodnout jaký jazyk zvolit, můžete ho mít natvrdo nastavený ve `web.config` souboru pro jednotlivé deployované domény, nebo získat nějaký parametr z routy, nebo nechat zjišťovat jazyk podle uživatelova nastavení prohlížeče. Pokud budete mít zájem o problematiku lokalizace, můžu jí věnovat některý další spot. :)
+
+/--code xml
+<asp:Localize runat="server" meta:resourcekey="SomeResource1" />
+\--code
+
+Lokalizaci pak provedeme v patřičném resx souboru následovně:
+
+/--code xml
+<data name="SomeResource1.Text" xml:space="preserve">
+  <value>Some text</value>
+</data>
+\--code
+
+SiteMapPath pro drobečkovou navigaci
+======================================
+
+Další serverovou komponentou, kterou můžete ve svých šablonách pohledů využít je `asp:SiteMapPath`, které slouží ke generování drobečkové navigace podle struktury definované v souboru `Web.sitemap`.
+
+/--code xml
+<asp:SiteMapPath runat="server">
+  <PathSeparatorTemplate> &amp;gt; </PathSeparatorTemplate>
+</asp:SiteMapPath>
+\--code
+
+Xml pro transformaci
+==================
+
+Jedním z posledních ze standardně dodávaných serverových komponent, které ještě v MVC fungují je `asp:Xml`, které slouží ke vkládání XML dat a jejich transformaci pomocí XSLT.
+
+/--code xml
+<asp:Xml runat="server" DocumentSource="/content/contact.xml" TransformSource="/content/contact.xslt"/>
+\--code
+
+ViewType pro silný typ modelu v pohledu
+===================================
+
+RC verze MVC frameworku přinesla vlastní serverovou komponentu, která určuje silný typ pro vlastnost `Model` vašeho pohledu. Je to alternativa k dědění z generické `ViewPage`.
+
+/--code xml
+<mvc:ViewType runat="server" TypeName="ViewPage&amp;lt;MyProject.Model.Customer&amp;gt;" />
+\--code
+
+A dál?
+=======
+
+Dál můžete používat komponenty třetích stran, nebo vlastní, které nevyžadují `ViewState`. Pokud máte jako předka vašich stránek `System.Web.Mvc.ViewPage` nemáte v šablonách dostupný data binging. I na to je třeba dávat pozor. Do budoucna by mělo dojít k tomu, že helpery, které jsou součástí MVC frameworku, se dočkají i zapouzdření do komponent. Ale k tomu dojde až po vydání verze 1.0. Již dnes však můžete najít jejich předběžnou implementaci v tzv. [futures], které si můžete stáhnout na CodePlexu. Najdete mezi nimi tyto komponenty:
+
+* ActionLink,
+* DropDownList,
+* TextBox,
+* Password,
+* Label,
+* Hidden a
+* Repeater
+
+Jejich předkem je `MvcControl`, který zpřístupňuje `ViewContext` a `ViewData`. Repeater si třeba zajišťuje DataBinding sám, takže není třeba ho explicitně volat ze stránky. Nevýhoudou však je, že je třeba Evalovat data, protože Repeater není silně typový. Mám takový pocit, že můj "generický repeater":[clanek(278)] by měl v MVC fungovat bez problémů. Ještě jsem to nezkoušel, ale nevidím důvod, proč by neměl. Asi provedu revizi a připravím vylepšenou variantu pro MVC.
+
+A to je pro dnešek vše.
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [lipton]
+\--div
+
+[clanek(278)]: /weblog/278-genericky-kontejner-a-repeater.aspx Generický kontejner a repeater .(Generický kontejner a repeater){rel:bookmark}
+
+[futures]: http://www.codeplex.com/aspnet/Release/ProjectReleases.aspx?ReleaseId=22359 ASP.NET MVC Futures
+[lipton]: http://weblogs.asp.net/leftslipper/archive/2009/03/03/asp-net-mvc-release-candidate-2-i-declare-myself-to-be-declarative.aspx Eilon Lipton: I declare myself to be declarative!

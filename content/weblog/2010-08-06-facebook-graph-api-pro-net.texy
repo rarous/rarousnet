@@ -1,0 +1,41 @@
+---
+{:id 393,
+ :title "Facebook Graph API pro .net",
+ :description
+ "Představení nové SDK pro Facebook nad dotnetem a prosba o pomoc s odhalením zásadní neschopnosti mého mozku.",
+ :author "Aleš Roubíček",
+ :tags #{"graph" "asp.net 2.0" "facebook"},
+ :published "2010-08-06T09:19:16.683"}
+---
+
+Možná jste postřehli, že před nedávnem vypustil Facebook na svém githubu "csharp SDK":[sdk] pro jejich "Graph API":[graph]. Z počátku mě ta zpráva potěšila, protože "Facebook Toolkit":[toolkit], který jsem používal, tak nějak nefunguje s novým "JS SDK":[jssdk] a vůbec má zvláštní problémy.
+
+Po chvilce nadšení přišla chvilka zklamámí. Podíval jsem se na kód a ukázky a zděsil se. S dotnetem to má asi tolik společného jako, že to jde zkompilovat pomocí `csc`. Tohle opravdu nechcete používat. Na netu jsem objevil i další implementace Graph API, ale stále nic, co bych chtěl používat.
+
+Nakonec jsem se rozhodl napsat "vlastní implementaci":[graphapi]. Základ je inspirován již zmiňovaným csharp SDK, ale napsanej tak, aby využíval věci, co framework již nabízí, místo vlastní implementace JSON jsem použil osvědčený "JSON.NET":[jsonnet], přidal podporu pro ověřování pomocí OAuth i klientské JS ověření pomocí tlačítka `fb:login`.
+
+No a hlavně další vrstvu abstrakce včetně objektů API.
+
+Tohle všechno je moc hezký, mně se to dobře používá, je to IoC ready, ale zatím chybí podpora pro desktopové ověřování. Ale hlavně mi nefunguje postování na wall, což je celkem zásadní problém. Zkoušel jsem už spoustu cest. Práva na publikování `publish_stream` uživatel potvrdí, ale Facebook s ledovým klidem odpovídá:
+
+/--pre
+Exception: (#200) The user hasn't authorized the application to perform this action
+\--
+
+A mě z toho může trefit šlak. :)
+
+Proto moc prosím, zkuste si stáhnout projekt, a trošku si pohrát, jestli třeba nebudete mít větší štěstí. Případného mistra odvšivovače pak pozvu na skleničku něčeho moc dobrého.
+
+Pokud si nebudete vědět rady, jak to rozběhat, klidně mi napište "mail nebo na IM":[/#kontakt]. Dám vám klíče pro testovací účely a jistě další dobré rady. :)
+
+Update
+=====
+
+Chybu jsem nakonec odhalil a pozval se na pár Black Labelů. Chyba byla v tom, že se nastavavovala špatná hodnota vlastnosti `Method` objektu `HttpWebRequest`. Namísto hodnoty `POST` tam byl `Post` (hodnota enumerce `HttpVerb` a `ToString`). Navíc se ještě špatně encodovalo tělo requestu, kde se encodovalo všechno, ne jen hodnoty. Škoda, že se takováto chyba nedala vyčíst z chybové hlášky, která byla v tomto případě celkem zavádějící. Každopádně GraphApi už je plně funkčí a můžete ho plnohodnotně požívat.
+
+[jsonnet]: http://json.codeplex.com/
+[toolkit]: http://facebooktoolkit.codeplex.com/
+[sdk]: http://github.com/facebook/csharp-sdk
+[graph]: http://developers.facebook.com/docs/api
+[jssdk]: http://developers.facebook.com/docs/reference/javascript/
+[graphapi]: http://github.com/rarous/GraphApi

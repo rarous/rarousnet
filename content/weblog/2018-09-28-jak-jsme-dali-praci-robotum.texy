@@ -1,0 +1,50 @@
+---
+{:id 469,
+ :title "Jak jsme dali práci robotům",
+ :description
+ "Rutinní práci by neměli dělat drahocení inženýři, ale roboti. I my v TopMonks roboty zaměstnáváme.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "topmonks"},
+ :published "2018-09-28T11:58:00.777"}
+---
+
+Jednou ze zajímavostí IT je, že se snaží automatizovat rutinní práci lidi a dávat jim více
+možností soustředit se na činnosti s větší hodnotou. Nebo jim práci brát. :-/
+Když se nad tím člověk zamyslí, je celkem paradoxní jak málo tohle IT lidi dělají sami sobě
+a často se topí v rutinní práci a ještě se předhánějí v tom, kdo jí dělá víc nebo hůř... :)
+
+Poslední dobou jsem sledovat, jak nám - s rostoucím počtem projektů na kterých děláme
+- rostou náklady na údržbu. A tak jsem hledal řešení, jak ten maintenance overhead snížit,
+aniž bychom kvůli tomu museli nabírat více lidí. Nebo přetěžovat lidi, co už máme. A jako řešení se ukázali roboti!
+
+[* /data/obrazky/github-security-checks.jpg *]
+
+Začalo to jednoduchým zaškrtnutím checkboxu v nastavení repository an Githubu.
+“Ano, kontrolujte mi prosím závislosti, jestli nemají známé bezpečnostní díry.”
+A jejda, najednou se ukázalo, že některé projekty, které byly několik měsících bez údržby
+(zdánlivě ji nepotřebovaly), mají bezpečnostní díry. To nám, ale ve skutečnosti náklady na
+maintenance ještě zvýšilo, lid museli začít řešit problémy, které byly u ledu...
+
+[* /data/obrazky/dependabot.jpg *]
+
+Tak jsem začal hledat řešení, které by nám mohlo pomoci a našel jsem "Dependabot":[https://dependabot.com/].
+Dependabot je robot, kterého si pozvete do projektu a on vám pomáhá s údržbou závislostí.
+Začali jsme s lehkou **nedůvěrou**, co to s našimi službami udělá. Nechali jsme každé ráno
+Dependabota dělat **pull requesty** s aktualizacemi jednotlivých závislostí.
+
+/--code yaml
+filters:
+  branches:
+    only: master
+\--code
+
+Museli jsme upravit build scripty, aby nám PR neprotekly na dev prostředí, ale aby se jen provedly
+všechny testy, které v pipelině máme. Naštěstí Travis CI i CircleCI mají koncept filtrů na branche,
+takže to byl de-facto three-liner. A pak už každé ráno chodily pull requesty. Občas některé testy neprošly.
+Občas se některé aplikace rozbily, i když testy prošly. Takže jsme museli zlepšit naše integrační testy.
+
+Z počáteční záplavy (Dependabot má sane default na max 5 PR za den) pull requestů se stalo občasné
+rutinní schvalování pull requestů. Vzhledem k tomu, že několik měsíců už jsou jeho kontribuce spolehlivé,
+nemá cenu jej v práci blokovat. Dependabota jsem přepnul do módu *Live Update* a *automatický merge PR,*
+pokud všechno vypadá ok. A o rutinní práci se nemusím starat. Malou krátkodobou investicí do robustnější
+test suite jsem se zbavil rutinní práce a můžu se věnovat té opravdu užitečné.

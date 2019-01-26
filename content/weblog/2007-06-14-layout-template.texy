@@ -1,0 +1,88 @@
+---
+{:id 213,
+ :title "Layout Template",
+ :description
+ "Jedna z věcí, která nejen mne zaujala na přednášce o Visual Studiu 2008, byl LayoutTemplate u nového kontrolu asp:ListView. Jak na jeho implementaci se pokusí nastínit tento člán.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "asp.net 2.0"},
+ :published "2007-06-14T10:42:12.670"}
+---
+
+Jedna z věcí, která nejen mne zaujala na přednášce o Visual Studiu 2008, byl `LayoutTemplate` u nového kontrolu `asp:ListView`. Jak na jeho implementaci se pokusí nastínit tento člán.
+
+Šablonované ovládací prvky jsou v ASP.NET celkem běžnou věcí a jejich výskyt asi nikoho nepřekvapí. Celkem běžná je také praktika `HeaderTemplate` a `FooterTemplate` jejichž obsah se renderuje na začátku/konci. Pokud chcete mít třeba render obalený v `div` značce, dojde k tzv. křížení značek, což je v XML nepěkná praktika, a některé editory na tom selžou. Kód by mohl vypadat následovně:
+
+/--code xml
+...
+  <HeaderTemplate><div></HeaderTemplate>
+  <FooterTemplate></div></FooterTemplate>
+...
+\--code
+
+Oproti tomu `LayoutTemplate` přichází s tím, že šablona Headeru i Footeru je v jednom. Asi následovně:
+
+/--code xml
+...
+  <LayoutTemplate>
+    <div id="layoutContainer" runat="server"></div>
+  </LayoutTemplate>
+...
+\--code
+
+Pěkné, že? Někdo se možná zalekne `runat="server"`, že by to třeba mohlo renderovat něco jinýho než by chtěl. Nebude ;)
+
+== Jak to funguje?
+Lepší bude si to celé vysvětlit na ukázce kódu. Naimplementujeme si vlastní LayoutTemplateable control. Začneme tím, že si vytvoříme rozhranní `ILayoutTemplateable`.
+
+/--code csharp
+public interface ILayoutTemplateable {
+  string LayoutContainerId { get; set; }
+
+  [TemplateContainer(typeof(Control))]
+  ITemplate LayoutTemplate { get; set; }
+}
+\--code
+
+Dalším krokem bude `TemplatingHelper`, který nám pomůže s instancováním šablon a vytvořením layout kontejneru.
+
+/--code csharp
+public static class TemplatingHelper {
+  public static Control CreateLayoutContainer(Control parent, ILayoutTemplateable item) {
+    Control container = new Control();
+    Instantiate(container, item.LayoutTemplate, parent);
+    return container.FindControl(item.LayoutContainerId);
+  }
+
+  public static void Instantiate(Control container, ITemplate template, Control parent) {
+    if (template == null || parent == null) {
+      return;
+    }
+
+    container = container ?? new Control();
+
+    template.InstantiateIn(container);
+    parent.Controls.Add(container);
+  }
+}
+\--code
+
+No a na konec ukázka užití:
+
+/--code csharp
+public class TemplatedControl : Control, ILayoutTemplateable {
+
+  ...
+
+  public override void CreateChildControls() {
+   Controls.Clear();
+   // vytvorime layoutContainer
+   Control layoutContainer = TemplatingHelper.CreateLayoutContainer(this, this);
+   // vytvorime polozky
+   foreach (string item in collection) {
+     TemplatingHelper.Instantiate(new StringContainer(item), ItemTemplate, layoutContainer);
+   }
+  }
+}
+\--code
+
+--Doufám, že to funguje, páč jsem si to teď nějak vycucal z prstů... Ale principielně, by to mělo fungovat.-- ++Tak už jsem se dostal k implementaci a kupodivu to celé funguje.++ :)

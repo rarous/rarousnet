@@ -1,0 +1,24 @@
+---
+{:id 210,
+ :title "Audio stack ve Vistách",
+ :description
+ "Visty maj novej audio stack, ale ne vždy jsou změny k lepšímu. Jak řešit některé problémy možná napoví tento článek.",
+ :author "Aleš Roubíček",
+ :tags #{"vista" "tuning" "windows" "audio"},
+ :published "2007-05-25T20:03:07.143"}
+---
+
+Jedna z věcí která mě na Vistách nejvíc štve je předělanej Audio stack. Jakou audiofila by mě to spíš mělo těšit, ale prozatím tomu tak není.
+
+1. Nefunguje mi externí zvukovka. Kvůli absenci ovladačů pro můj Conectiv do Vist si musím na disku držet ještě pořád XPčka a když chci dělat se zvukem musím prostě přebootvat a řešit dilema, dneska večer programovat nebo míchat :) Doufám, že M-Audio brzy dodá funkční ovladače i pro Vistu.
+
+2. Když dojížděla mp3ka ve WMP((Windows Media Player)) ke konci tak asi 30 s před koncem začala přeskakovat, a po skončení se celkem dlouho čekalo na natažení další skladby... Docela nepříjemná věc. Naštěstí na tuhle Issue existuje celkem snadné řešení.
+
+Řešení problému přeskakujících skladeb ve Windows Vista
+=======================================================
+
+Nejjednodušší je asi si nainstalovat WinAMP, pro někoho dostačující řešení, ale mně WinAMP prostě nesedí.
+
+Druhou možností je navštívit *Control panel* > *Sound* poklepete na repráčcích a přepnete se na kartu *Enhancements*. Zde zaškrtnete volbu **Disable all enhancements**. A je to v cajku...
+
+[*/data/obrazky/vista-sound.png*]

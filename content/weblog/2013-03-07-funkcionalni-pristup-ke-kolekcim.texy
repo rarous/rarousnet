@@ -1,0 +1,283 @@
+---
+{:id 440,
+ :title "Funkcionální přístup ke kolekcím",
+ :description
+ "Dneska zabrousíme do vod funkcionálních a ukážeme si implementaci některých důležitých funkcí vyššího řádu.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "fsharp"},
+ :published "2013-03-07T07:34:49.233"}
+---
+
+Když vidíte začátečníka pracovat s kolekcemi, často se setkáte s tím, že možností první volby je iterace pomocí cyklů a změna stavu. Díky tomu máme spoustu rozbitých aplikací. Ruku na srdce, kdo z vás nemá ve své codebase něco podobného:
+
+/--code csharp
+var list = new List();
+foreach (var item in someCollection) {
+  // ... some work
+  list.Add(item);
+}
+return list;
+\--code
+
+Nádhera! :)
+
+Zapomeňte na cykly a mutace, kdo se v tom má vyznat a hledat chyby? Buďte deklarativní.
+
+Disclaimer
+==========
+
+Následující řádky používají techniku obvyklou ve funkcionálních jazycích - rekurzi. Je dost možné, že váš jazyk nemá podporu na úrovni kompilátoru pro rekurzi (tail recursion se optimalizuje tak, že se přepíše na cyklus) a může docházet k tomu, že vám bude přetékat zásobník. V první řadě vždy musíte vědět, co děláte. Ale to platí obecně o všem v programování. C# optimalizovat rekurzi neumí, přesto můžete používat funkcionální koncepty, např. LINQ, který je implementovaný pomocí iterátorů. Následující ukázky budou v F#, který rekurzi optimalizovat umí.
+
+Všechny ukázky si můžete vyzkoušet přímo ve vašem prohlížeči na webu "Try F#":[http://www.tryfsharp.org/create/rarous/HigherOrderListOps.fsx]. Jednotlivé ukázky stačí označit a stisknout `Ctrl+Enter`.
+
+Článek vychází z "Higher-order list operations":[http://matt.might.net/articles/higher-order-list-operations/].
+
+Rekurze
+=======
+
+Když zjistíte, že cykly ne, většinou přejdete na rekurzi. Častou chybou však je, že píšete příliš mnoho kódu. Proč? Protože vám třeba chybí znalosti o knihovnách nebo konstruktech jazyka, které nám umožní psát kódu méně. Pojďme si ukázat, jak psát kódu méně a jak některé knihovní funkce vlastně fungují.
+
+Přičítání jedné
+===============
+
+Máme za úkol napsat funkci, která projde seznam čísel a přičte ke každému prvku jedničku. V implementaci použijeme datovou strukturu spojový seznam (v C# spíše než `LinkedList<T>` použijeme `ImmutableList<T>` z NuGet balíčku `Microsoft.Bcl.Immutable`) a využijeme rekurze:
+
+/--code fsharp
+let rec add1 lst =
+    if List.isEmpty lst then []
+    else (List.head lst) + 1 :: add1 (List.tail lst)
+
+add1 [1; 2; 3]
+\--code
+
+Že jde o rekurzivní funkci nám říká klíčové slovo `rec`. Funguje to tak, že vezmu první prvek seznamu a přičtu k němu jedničku, ten pak připojím k seznamu (operátor `::`), který se spočítá obdobně ze zbytku vstupního seznamu. Pokud je seznam prázdný (nebo jsme došli na konec - každý spojový seznam končí prázdným polem), vrátíme prázdný seznam. Tím se nám rekurze ukončí.
+
+Odčítání jedné
+==============
+
+Obdobně naimplementujeme i odčítání:
+
+/--code fsharp
+let rec sub1 lst =
+    if List.isEmpty lst then []
+    else (List.head lst) - 1 :: sub1 (List.tail lst)
+
+sub1 [1; 2; 3]
+\--code
+
+Ok, máme funkcionální datovou strukturu, máme rekurzi, je to už teda funkcionální kód?
+
+Tak určitě ne.
+
+Knihovní funkce
+===============
+
+Další častou chybou je používání podmínek a ukecaného kódu vůbec. Navíc když se na obě funkce podíváme blíže, zjistíme, že to jsou v podstatě duplicity a jediné, co je odlišuje, je operace sčítání nebo odčítání. Když se oprostíme od implementačních detailů, zjistíme, že neděláme nic jiného než mapování. A tak jde kód přepsat do jednodušší podoby:
+
+/--code fsharp
+let inc x = x + 1
+let dec x = x - 1
+
+List.map inc [1; 2; 3]
+List.map dec [1; 2; 3]
+\--code
+
+Nejprve jsme si definovali pomocné funkce pro inkrementaci a dekrementaci prvku a pak použili knihovní funkci `List.map`, která projde všechny prvky seznamu a na každý aplikuje předanou funkci (v C# je obdobou `Enumerable.Select`). Důležitým detailem, který nemusí být na první pohled zřejmý, je, že nedojde k úpravě předaného seznamu, ale k vytvoření seznamu nového.
+
+High order function
+===================
+
+Jak bychom takovou funkci `map` naimplementovali? Zkusíme to pomocí jednoduché generalizace našich funkcí `add1` a `sub1`. Už jsme si říkali, že se liší jen v operaci přičtení/odečtení jedničky. Takže z našich funkcí vytvoříme funkci vyššího řádu:
+
+/--code fsharp
+let rec map f lst =
+    if List.isEmpty lst then []
+    else f(List.head lst)::map f (List.tail lst)
+
+map inc [1 .. 3]
+\--code
+
+Funkce vyššího řádu se vyznačují tím, že jako parametr přijímají jinou funkci, která definuje, co se uvnitř bude dít (obdoba vzoru strategie z objektového světa). Funkce je takřka stejná jako naše konkrétní ukázky. Jediný rozdíl je, že nyní aplikujeme předanou funkci na první prvek seznamu a pak už je to stejný. Teď tedy máme funkci vyššího řádu, ale pořád je toho kódu zbytečně moc.
+
+Pattern matching
+================
+
+Další skvělou vlastností mnoha funkcionálních jazyků je *pattern matching* - volba výsledku na základě strukturální podobnosti. Naši `map` funkci můžeme hezky zjednodušit na:
+
+/--code fsharp
+let rec mapMatch f lst =
+    match lst with
+    | [] -> []
+    | head::tail -> f head::mapMatch f tail
+
+mapMatch dec [1 .. 3]
+\--code
+
+Kód je de facto stejný jako v předchozím případě, jen nám zmizelo volání knihovních funkcí `List.isEmpty`, `List.head` a `List.tail` a místo nich máme vzory. Prázdný seznam se mapuje na prázdný seznam, seznam s nějakým prvkem se dle vzoru rozdělí na `head` a `tail`. Na `head` se aplikuje funkce a nový `tail` se vypočítá rekurzí.
+
+List comprehension
+==================
+
+Možná jste si všimli, že jsem v ukázkách najednou přestal psát `[1; 2; 3;]` pro vytvoření seznamu tří čísel, ale přešel k zápisu `[1 .. 3]`. Funkcionální jazyky mívají pro kolekce větší pochopení a tak nezvládají jen tupé vyjmenování prvků, ale rozumí i složitějším konstrukcím pro vytvoření seznamu (platí i pro pole a sekvence). Zde byl použit operátor rozsahu `..`. Ve skutečnosti můžeme jít mnohem dál a aplikovat třeba rovnou i mapování:
+
+/--code fsharp
+[for x in 1 .. 3 -> x + 1]
+\--code
+
+Výsledek je stejný jako v předchozích příkladech. Kód je minimální. Myšlenka zřejmá.
+
+Filtrování kolekcí
+==================
+
+Další možností, kde můžeme využít funkce vyššího řádu a pokusíme se zbavit podmínek, je filtrování kolekcí. Funkce `filter` vrací prvky ze vstupního pole, které splňují předaný predikát:
+
+/--code fsharp
+let even x = x % 2 = 0
+
+let rec filter p lst =
+    if List.isEmpty lst then []
+    elif p (List.head lst) then List.head lst::filter p (List.tail lst)
+    else filter p (List.tail lst)
+
+filter even [1 .. 10]
+\--code
+
+Nejprve jsme si definovali predikát pro sudá čísla, který budeme používat i v dalších ukázkách, a pak funkci `filter` implementovanou pomocí podmínek a knihovních funkcí (F# má samozřejmě funkci `List.filter` již implementovanou, v C# ji hledejte pod názvem `Enumerable.Where`). Filtr je o něco složitější než mapování, protože se musíme rozhodnout, které prvky chceme a které ne. Ty prvky, které splňují predikát připojíme před zbytek počítaného seznamu. Pokud prvek predikát nesplňuje, pokračuje dál ve výpočtu seznamu. U prázdného seznamu ukončíme rekurzi.
+
+S využitím pattern matchingu kód vypadá následovně:
+
+/--code fsharp
+let rec filterMatch p lst =
+    match lst with
+    | [] -> []
+    | hd::tl when p hd -> hd::filterMatch p tl
+    | hd::tl -> filterMatch p tl
+
+filterMatch even [1 .. 10]
+\--code
+
+Pěkné, že? A ještě ukázka s *list comprehension*:
+
+/--code fsharp
+[for x in 1 .. 10 do if even x then yield x]
+\--code
+
+Všimněte si, že zde se nám šipka `->` z ukázky pro mapování změnila na `do ... yield`. Schválně si to zkuste, že jde o stejný kód. Tady už bohužel kompaktní zápis nefunguje, protože tam potřebujeme vložit filtrovací podmínku.
+
+Agregace kolekcí
+================
+
+Další častou operací, kterou se seznamy můžeme dělat, je jejich agregace. Ve funkcionálních jazycích se často můžeme potkat s funkcí `fold` (v C# `Enumerable.Aggregate`):
+
+/--code fsharp
+let rec foldr cons nil lst =
+    match lst with
+    | [] -> nil
+    | hd::tl -> cons hd (foldr cons nil tl)
+
+foldr (+) 0 [1 .. 4]
+\--code
+
+Parametr `cons` je konstrukční funkce výsledku, `nil` reprezentuje prázdný prvek.
+
+A ještě *tail recursive* varianta pro efektivnější zpracování kompilátorem:
+
+/--code fsharp
+let rec foldl cons nil lst =
+    match lst with
+    | [] -> nil
+    | hd::tl -> foldl cons (cons hd nil) tl
+
+foldl (+) 0 [1 .. 4]
+\--code
+
+
+Zipování
+========
+
+Další velice důležitou funkcí je `zip`, která vezme dva seznamy a vytvoří z nich jeden tvořený dvojicemi, podobně jako zip u vaší bundy.
+
+/--code fsharp
+let rec zip lst1 lst2 =
+    match lst1, lst2 with
+    | [], [] -> []
+    | hd1::tl1, hd2::tl2 -> (hd1, hd2)::zip tl1 tl2
+
+zip [1 .. 3] ['a' .. 'c']
+\--code
+
+Žádný velký objev. :) Novinkou je matchování na více prvků a zavedení n-tic (tuples). Zip je velice šikovná funkce. Schválně jestli vás napadne nějaké rozumné užití. Nebojte se o něj podělit třeba v komentářích.
+
+Také si všimněte, že tu mícháme jabka (`int`) s hruškama (`char`) a vše funguje. Není to tím, že by F# byl slabě typový, ale tím, že naše funkce jsou plně generické! Schválně si zkuste v předchozích ukázkách změnit vstupní data.
+
+Rozepnutí
+=========
+
+Opakem zipování je `unzip`, která nám ze seznamu dvojic udělá dva seznamy prvků. A protože nám tato funkce vrací dva seznamy, začíná to být trochu tricky:
+
+/--code fsharp
+let rec unzip lst =
+    match lst with
+    | [] -> ([], [])
+    | (x, y)::tl ->
+        let (xs, ys) = unzip tl
+        (x::xs, y::ys)
+
+unzip [(1, 'a'); (2, 'b'); (3, 'c')]
+\--code
+
+Taková nepěkná věc je, že si musíme začít pamatovat výsledek rekurzivního volání, se kterým dále pracujeme. Všimněte si také, že F# umí rozpadnout n-tici do samostatných chlívečků. Nebudu říkat proměnných, protože `let` vazba je neměnná.
+
+Continuation
+============
+
+Co bychom to byly za funkcionáře, kdybychom nechali takové imperativní přiřazování v naší jinak čisté implementaci? Jak se jen zbavit přiřazení? Co třeba za pomocí continuation? Nic vám to neříká? Co třeba callback? Ten už jistě znáte. :)
+
+/--code fsharp
+let rec unzipk k lst =
+    match lst with
+    | [] -> k [] []
+    | (x, y)::tl -> unzipk (fun xs ys -> k (x::xs) (y::ys)) tl
+
+unzipk (fun xs ys -> xs) [(1, 'a'); (2, 'b'); (3, 'c')]
+\--code
+
+V této formě musí uživatel funkce přidat callback, ale na druhou stranu si může vybírat, co vlastně chce za výsledek. Funkcionální kompozice je mocná.
+
+Partitioning
+============
+
+Partitioning je něco jako filtrování, jen nám opět vrací dva seznamy. Jeden s pozitivními výsledky a druhý s negativními:
+
+/--code fsharp
+let rec partition p lst =
+    match lst with
+    | [] -> ([], [])
+    | hd::tl ->
+        let (ins, outs) = partition p tl
+        if p hd then (hd::ins, outs)
+        else (ins, hd::outs)
+
+partition even [1 .. 10]
+\--code
+
+Implementace je dost podobná unzipování, jen teď máme na vstupu pouze jeden prvek a rozhodujeme se, do kterého seznamu ho zařadíme. A opět můžeme implementaci udělat pomocí continuation:
+
+/--code fsharp
+let rec partitionk p k lst =
+    match lst with
+    | [] -> (k [] [])
+    | hd::tl -> partitionk p (fun ins outs ->
+                                if p hd then k (hd::ins) outs
+                                else k ins (hd::outs)) tl
+
+partitionk even (fun evens odds -> evens) [1 .. 10]
+\--code
+
+Závěr
+=====
+
+Ukázali jsme si, jak si ušetřit spoustu práce pomocí funkcionálního přístupu ke kolekcím. Implementace jednotlivých funkcí je jen ukázkou, jak snadno se dají takové věci implementovat a rychlým průletem, co všechno F# umí. Sice jsme se jen sklouzli po povrchu, ale jako základ je to celkem slušný, ne? :)
+
+Zkuste si pohrát "se spustitelnými ukázkami":[http://www.tryfsharp.org/create/rarous/HigherOrderListOps.fsx]. Zkuste mapování a filtrování implementovat pomocí continuation. Zkuste si třeba `filter` implementovat pomocí `partition`. Většina kombinátorů lze totiž implementovat pomocí pouhých tří základních, ale k tomu zase třeba jindy.
+

@@ -1,0 +1,18 @@
+---
+{:id 88,
+ :title "Ready to launch na FELu",
+ :description "Můj pohled na přednášku.",
+ :author "Aleš Roubíček",
+ :tags #{"škola"},
+ :published "2005-12-04T10:32:19.673"}
+---
+
+Dnes se konala přednáška u příležitosti představení nové generace vývojových nástrojů z dílny firmy Microsoft:[http://www.microsoft.com/]. Přednášku zahajoval Dr. Dalibor Kačmář, bohužel ho zklamala technika. Nejprve vůz, ve kterém měl připravené materiál pro studenty – letáčky, DVD s Express edicemi jednotlivých nástrojů, propisky a dotazníky. Tyto věci přivezli jeho kolegové v druhé části přednášky, takže i sběrači letáčků si přišli na své. Ze začátku měl pan Kačmář problémy s projektorem, když se mu je podařilo vyřešit a začal přednášet, z ničeho nic se restartoval jeho počítač. To se mu během přednášky stalo několikrát. Z event logů pak zjistil, že mu pravděpodobně "odchází hard disk do křemíkového nebe":[/clanek.aspx/72/spadly-disk].
+
+Přednášku započal nejprve jako manažer a vykládal o výhodách MSDN Academic Aliance, o novinkách a verzích nového Visual Studia apod. V druhé části jeho bloku, došlo na ukázku vývoje Master Page a několika Content Page. Ukázku master-detail databázové aplikace, Membership, Role a Profiles a dalších dílčích zajímavostí "nové verze ASP.NET":[http://asp.net]. Kvůli výpadkům techniky, však nebylo odprezentováno, vše, co měl pan Kačmář připraveno. Náhradou nám bylo prodlouženější okénko na dotazy.
+
+Po přestávce s občerstvením a nabrání potřebných letáčků, přebral přednášku pan "Michal Neuwirth":[http://blog.vyvojar.cz/michalowo]. Ten prezentoval tématiku Windows Forms, rapidního vývoje uživatelského rozhraní a napojování na datové zdroje. V druhé půli svého bloku předvedl technologii ClickOnce v praxi – mimochodem je tato technologie velice pěkná, škoda jen, že ji nelze využívat u webových aplikací.
+
+Třetím přednášejícím byl pan "Michael Juřek":[http://blog.vyvojar.cz/mjurek/], který měl velice zajímavou praktickou prezentaci (bez slidů) Team Systému a vlastností pro ladění aplikací. Zde jsem se konečně dozvěděl, jak funguje a k čemu je dobrý Unit testing :) To nám zatím ve škole nikdo neprozradil a obávám se, že se toho asi ani nedočkám.
+
+Osobně se mi přednáška hodně líbila a dozvěděl jsem se i něco nového. Bohužel výpadky techniky nešlo ovlivnit, ale to se dá omluvit. Omluvit se ale nedá chování publika. Přibližně polovina posluchačů byli žáci Střední průmyslové školy Ječná. Jejich chování bylo místy nemístné až nevhodné. Očividně tam nebyli ze zájmu, ale protože museli. No nic, byli to ještě děti, které nevědí jak se na podobných akcích chovat.

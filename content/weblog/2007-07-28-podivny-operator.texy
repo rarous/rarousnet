@@ -1,0 +1,32 @@
+---
+{:id 218,
+ :title "Podivný operátor /*!*/",
+ :description
+ "Četl jsem si zdrojáky IronRuby a v deklarcích metod se často objevovalo podivné /*!*/. Co to asi je?",
+ :author "Aleš Roubíček",
+ :tags #{"specsharp" "ironruby" "csharp" "asp.net 2.0"},
+ :published "2007-07-28T15:58:35.890"}
+---
+
+Četl jsem si zdrojáky IronRuby a v deklarcích metod se často objevovalo podivné `/*!*/`. Např.
+
+/--code csharp
+public RubyConstantAttribute(string/*!*/ name) {
+  if (name == null) throw new ArgumentNullException("name");
+  _name = name;
+}
+\--code
+
+Nejpve jsem moc nechápal, asi nějaká interní věc (coding style) pro označování něčeho. Kontrakt v ukázce možná napoví, že by parametr neměl být `null`. Ale počkat, něco takového má přeci Spec#, NonNullable types. Znáte to ne, v C# 2.0 máme Nullable Value types, vyznačují se tím, že za jejich názvem je otazník, např. `int?`. No a Spec# ještě přidává NonNullable Reference types s vykřičníkem na konci, např. `string!`. No jo, ale IronRuby je přece napsaná v C#...
+
+Kompilátor Spec# má tu výhodu, že dokáže zkompilovat C# kód. A dokonce pokud se Spec# kód mírně poupraví, tak jde naopak snadno zkompilovat kompilátorem C#. Nějak se nám to zamotává :). Pokud chcete Spec#ový kód zkompilovat v C#, ale nechat ho zkompilovatelný ve Spec#, musíte použít speciální komentáře `//^` pro jednu řádku, `/*^ ^*/` pro blok. A ještě je tu jedna výjimka a to právě u toho vykřičníku. `/*!*/` je zkrácenou verzí `/*^!^*/`. A jsme doma...
+
+Snad se dočkáme Spec#ových vychytávek v nějaké přístí verzi C#, třeba v té čtvrté. Protože předchozí ukázka by mohla vypada odost uhlazeněji:
+
+/--code csharp
+public RubyConstantAttribute(string! name) {
+  _name = name;
+}
+\--code
+
+a výsledek je stejný.

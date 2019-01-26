@@ -3,6 +3,18 @@ orbs:
   codecov: codecov/codecov@1.0.1
   docker-publish: circleci/docker-publish@0.1.0
 jobs:
+  generate:
+    docker:
+      - image: rarous/cci-openjdk11-php7-clojure-tools-deps:latest
+    steps:
+      - checkout
+    run:
+      name: Generate static web site content
+      command: |
+        pushd generator
+        clojure -m rarousnet.generator
+        popd
+
   test:
     docker:
       - image: circleci/clojure:openjdk-11-lein

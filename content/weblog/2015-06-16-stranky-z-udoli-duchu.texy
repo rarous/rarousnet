@@ -1,0 +1,63 @@
+---
+{:id 463,
+ :title "Stránky z údolí duchů",
+ :description
+ "Jeden tip jak zamezit neviditelným stránkám a nepříjmnému probliknutí textů, když používáme custom fonty.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2015-06-16T18:15:00.663"}
+---
+
+
+Sedíme takhle s kolegy v kavárně a chci jim ukázat portfolio jedno člověka, který by mohl případně rozšířit naše řady. Grafika, styly, všechno ok, jen tomu něco chybí... Po chvíli přemýšlení stránka problikne a objeví se text!
+
+Určitě jste to také zažili. Když se nad tím tak zamyslím, stává se mi to dost často. Trendem poslední doby jsou webové fonty a když je grafik co proto, tak je zkrátka použije, aby bylo vidět, že se vyzná. Nebozí kodéři pak sáhnou po některé ze služeb, která nabízí hostované webové fonty s potřebnou licencí, nebo to prostě vygenerují a hostují si sami.
+
+Už když návrh převádíme do kódu, tak nás občasný výpadek připojení nebo zpoždění na připojení k poskytovateli fontů začnou dopalovat a tak se uchýlíme k tomu, že si font, se kterým pracujeme, nainstalujeme do systému a problém je vyřešen!
+
+Za pár dní po nasazení, se někdo ozve, že se mu stránka nezobrazuje. Tak mu odpovíme, že “to není možný, mně všechno funguje jak má a nemůžu to nijak nasimulovat. Problém bude u Vás!” A problém je vyřešen. Návštěvník, si bude pamatovat, že tohle je ten web, co se nezobrazuje a už se asi nevrátí...
+
+## Vrahem je webdesigner
+
+Žijeme v době, kdy připojení k internetu dosáhlo závratných rychlostí a tak moc neřešíme, co všechno stránka obsahuje a jak je to velký. Gzip se s tím popere... Věci v CDN se cachují... Všechno to vyřeší HTTP/2... Blbost!
+
+Fonty s našimi nabodeníčkymi a čtyřmi základními řezy mají jednotky megabajtů. Na mobilním připojení nebo na linkách mimo Prahu a šťastnější města to jsou desítky vteřin. Pro vaši návštěvnost možná smrtelné.
+
+Proč? Protože browser musí čekat, než se font načte, aby s ním mohl vykreslit texty na stránce. Můžete mít třeba 10 fallback fontů v deklaraci, ale pokud font zavádíte ve stylech pomocí `@font-face`, je známý a browser čeká na jeho natažení.
+
+> “To máme přestat používat fonty?”
+
+Tak určitě ne. Stačí je jen používat chytře.
+
+## Zachrání nás Webfont Loader!
+
+Jestli existuje nějaká firma, posedlá rychlostí a efektivností je to asi Google, kde tento problém už vyřešili. Ve spolupráci s dalším poskytovatelem webových fontů - Typekitem - vytvořili [Webfont Loader](https://github.com/typekit/webfontloader). Je to script, který slouží k zavedení webového fontu do stránky tak, aby stránka byla čitelná od chvíle, kdy má browser nějaký text načtený.
+
+Do hlavičky stránky se vkládá takto:
+
+/--code markup
+<script>
+  WebFont.load({
+    google: {
+      families: ['Droid Sans', 'Droid Serif']
+    }
+  });
+</script>
+\---code
+
+Samotné načtení fontu pomocí Webfont Loaderu vám ale nezaručí kýžený výsledek! Musíme ještě upravit stylopis tak, aby reflektoval, že se nějaké fonty načítají a použil fallback. Ještě lépe: použijeme progressive enhancement! To znamená, že nejprve stránku nastylujeme použitelně s bezpečnými fonty. Pak pomocí speciální třídy, kterou Webfont Loader přidá po úspěšném načtení fontů, dosáhneme kýženého typografického efektu.
+
+Ta třída se jmenuje `wf-active` a WFL ji dává na rootový element - `html`. To nám umožní psát styly podobné těmto:
+
+/---code css
+body { font: 1em serif }
+.wf-active body { font-family: 'Droid Serif' }
+\---code
+
+Webfont Loader umožňuje i granulárnější práci a generuje třídy pro jednotlivé řezy a různé stavy průběhu načítání, takže se výsledek dá slušně poladit. Projděte si dokumentaci, není moc dlouhá, ale obsahuje spoustu užitečných informací.
+
+Mějte na paměti, že je potřeba fallback poladit, aby byly hlavně šířky písmen velmi blízké požadovanému fontu, protože jinak bude muset browser přepočítávat tok textu a velikosti boxů a to také není moc pěkný efekt.
+
+Na ladění se vám jistě bude hodit, když si vypnete lokálně nainstalované fonty a v browseru použijete simulací pomalé linky. Případně stačí na `html` elementu zapínat/vypínat související třídu. Však vy už si poradíte...
+
+Tak, proč vaše stránky ještě problikávají a nejdou půl minuty přečíst?

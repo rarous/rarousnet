@@ -1,0 +1,21 @@
+---
+{:id 216,
+ :title "Kecálek ve Visual Studiu",
+ :description
+ "Leopold by možná řekl: „Člověče, to je dobrý, tohleto! To vypadá jako, že pracuju, ikdyž ne. To je dobrý :).“ Bohužel už není mezi námi, takže se to asi nedovíme.",
+ :author "Aleš Roubíček",
+ :tags #{"im" "webdesign" "messenger" "jabber" "vs" "ironpython"},
+ :published "2007-07-26T07:18:46.527"}
+---
+
+Leopold by možná řekl: „Člověče, to je dobrý, tohleto! To vypadá jako, že pracuju, ikdyž ne. To je dobrý :).“ Bohužel už není mezi námi, takže se to asi nedovíme. Nebojte, nenašli ho udušeného počítačovou myší, to jen přesedlal z Visual Studia na linux, a kdo ví, v čem píše teď :D.
+
+A co že by se mu tak líbilo? Hledajíce PyTel na zajíce, tedy vlastně, kterak zapnout podporu IronPythonu:[ironpython] ve Visual Studiu (dále jen VS), jsem narazil na nutnost stáhnout si "Visual Studio SDK":[vssdk], kde je jedním z ukázkových balíčku (čtyři projekty) právě "integrace IronPythonu do VS":[integration]. Ale to jen tak na okraj. Hlavní důvod, proč toto pišu je, že jsem v souvislosti s VS SDK narazil na velice zajímavý projekt s názvem VSMessenger:[vsmess].
+
+Název samotný může ledasco napovědět. Vězte tedy, že se jedná o integrovaný kecálek (IM klient) přímo do prostředí VS. Tady je "ukázkové video":[video], že nekecám. Na výběr máme dokonce dva providery. Tím prvním je samozřejmě Windows Live Messenger, u kterého si můžete na speciálním toolbaru držet informaci o stavu vybraných kontaktů. Po kliknutí na jméno se vám ale otevře chatovací okno WLM. Druhým, pro mne o dosti zajímavějším, providerem je Jabber (chcete-li XMPP) provider. Ten je do VS integrován kompletně i s chatovacím oknem.
+
+[vsmess]: http://codeplex.com/vsmessenger
+[vssdk]: http://www.microsoft.com/downloads/details.aspx?FamilyID=51A5C65B-C020-4E08-8AC0-3EB9C06996F4
+[ironpython]: http://codeplex.com/IronPython
+[integration]: http://blogs.msdn.com/aaronmar/archive/2006/02/16/a-bit-more-on-ironpython.aspx
+[video]: http://www.vssdk.com/screencasts/Intro_PartII.wmv

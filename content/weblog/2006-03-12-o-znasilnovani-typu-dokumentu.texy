@@ -1,0 +1,17 @@
+---
+{:id 117,
+ :title "O znásilňování typu dokumentu",
+ :description
+ "Víte o tom, že když si myslíte, že děláte něco dobře, memusí to dobré být?",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2006-03-12T11:10:44.533"}
+---
+
+Čas od času si prohlížím zdrojové kódy stránek, které si zrovna čtu. Jen tak pro inspiraci, či ze zvědavosti, je to taková profesní deformace :) Všiml jsem si, že často používaným typem dokumentu je na českých blozích *XHTML 1.0 Strict*. Jo to beru, lidi se chtěj držet standardů nebo chtěj být prostě IN. Je to chvály hodné, ale většina asi netuší proč to dělá, že to dělají chybně. Pokud máte dokument XHTML 1.0 Strict, **musíte** ho servírovat s mime-typem `application/xhtml+xml` nebo `text/xml`, ale rozhodně ne jako `text/html`, který je určen jen a pouze pro HTML, s drobnou výjimkou XHTML 1.0 Transitional, kde je to tolerováno.
+
+Z mého soukromého bádání na malém vzorku vychází, že to obrovská majorita dělá **blbě**. Najdou se světlé výjimky postavené na "Blog:CMS":[http://www.blogcms.org/], které, posílají správný mime-type `application/xhtml+xml` pro klienty, které ho znají, ale pokud narazí na klienta, který XHTML nezná, posílají mu mime-type `text/html`, což je blbě :)
+
+Teď si tu udělám malé promo, protože Gryphoon je jediný redakční systém, který znám, který už v základu posílá nejen správný mime-type, ale i typ dokumentu pro prohlížeče, které neznají XHTML. Navíc jde ještě o kousek dál. Díky ASP.NET 2.0, která má v konfigurační souboru možnost "nastavit způsob výstupu":[/clanek/78-jak-na-validator-w3c.aspx], gryphoon se chová i podle toho. Takže, pokud je v konfiguraci nastaven režim  *Strict* posílá se na výstup plně validní XHTML 1.1 s mime-typem `application/xhtml+xml`, nebo HTML 4.01 Strict pro prohlížeče, které neznají XHTML. V režimu *Transitional* jde na výstup XHTML 1.0 Transitional opět s patřičným mime-typem a v režimu *Legacy* vyjedou takové ty divné věci, co jako HTML vypadají. Ovšem nekončí to jen u typu dokumentu, ale pokračuje to i správným výstupem. Upravují se scripty, formuláře a vůbec celý výsledný kód.
+
+Na závěr ještě taková perlička. W3C , které vydává webová doporučení a podle kterých se Gryphoon řídí, se samo svými doporučeními neřídí :)

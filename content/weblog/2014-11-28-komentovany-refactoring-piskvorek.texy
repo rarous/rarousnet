@@ -1,0 +1,297 @@
+---
+{:id 460,
+ :title "Komentovaný „refactoring“ piškvorek",
+ :description
+ "Podrobný průvodce refactoringem Clojure kódu, aby byl více idiomatický, funkcionální a dodržovat pravidla jednoduchého návrhu.",
+ :author "Aleš Roubíček",
+ :tags #{"clojure" "moje práce" "refactoring"},
+ :published "2014-11-28T18:30:00.663"}
+---
+
+
+Jirka Knesl publikoval [komentovaný kód v Clojure s řešením hry piškvorky](http://knesl.com/articles/view/okomentovany-zdrojak-piskvorek). Jistě záslužná věc takhle edukovat. Mně se na tom kódu ale nelíbí hned několik věcí.
+
+## Co se mi nelíbí?
+
+* Formátování
+* Mrtvý kód
+* Neidiomatický kód
+* Míchání business logiky a prezentace
+* Absence testů
+* Zbytečně komplikované
+
+Pořadí je od nezásadních detailů po zásadní výhrady. Tento kód je špatný.
+
+Chtěl jsem reakci napsat jako komentovaný Refactoring, ale kvůli absenci testů refactoring dělat nemůžeme. Maximálně *move some random shit™.* Napsat testy pro tuto implementaci je zbytečná investice, protože samotná logika je zadrátovaná mezi prezentační logikou.
+
+## Disclaimer
+
+Prosím, všimněte si, že nikde nehodnotím Jirkovy programátorské schopnosti nebo jeho povahu. Hodnotím pouze kód, který publikoval  na svém blogu. Jirku mám jako člověka rád, vážim si ho a nemyslím si, že je špatným programátorem. Berte to, prosím, jako cvičení z refactoringu a lehký úvod do Clojure.
+
+## Neidiomatický kód
+
+Ačkoliv kód na první pohled připomíná Lisp a tváří se jako Clojure, tak na pohled druhý...
+
+Zkrátka, kód v Clojure se takto nepíše. Vypadá to spíše jako opis PHP/Ruby like kódu s občasným cukříčkem.
+
+Clojure má velice jednoduchu syntaxi. Jsou to jen závorky. Pak má ještě celkem rozsáhlou sadu konvencí jako: že predikáty končí otazníkem, že potenciálně nebezpečné funkce se side-efekty končí vykřičníkem apod. Funkce, která něco převádí na jinou reprezentaci, zpravidla v názvu obsahuje šipku a tak dále. Pak máme [konvence pro odsazování a formátování kódu](https://github.com/bbatsov/clojure-style-guide). Ukázkový kód většinu z nich nedodržuje.
+
+Formou zápisu to začíná, programovacím stylem pokračuje. Clojure je praktický funcionální jazyk. Funkcionálních myšlenek v ukázce moc nenajdeme. Spíš silně imperativní přístup, kde je občas něco hozeno do funkce, protože se to už moc opakovalo, a Jirkova oblíbená partial aplikace.
+
+Podívejme se na některé kusy kódu, které si o trochu lásky vysloveně křičí.
+
+## Převod příkazu na souřadnice
+
+Začneme vyzobáváním souřednic z příkazu. Příkaz je očekáván ve tvaru “ln” kde `l` je písmeno od a do i a `n` je číslo od jedné  do devíti. Půdovní kód používá podřetězců. Když si ale uvědomíme, že řetězec je sekvencí znaků, stačí nám zavolat funkce `first` a `second`, které veznou první nebo druhý prvek sekvence.
+
+Pak tu máme zjevnou duplicitu. Snažíme se převést zadaný kód na souřadnice ve vektoru vektorů, který reprezentuje hrací plochu. Místo abychom vytvářeli dvě různé struktury (Set a Mapu) se skoro stejnými hodnotami vytvoříme si pouze vektor, ze ktereho si jmenované struktury necháme vytvořit pomocí funkcí, které nám Clojure poskytuje. Set vytvoříme jednoduše zavoláním funkce `set` nad sekvencí. Na vytvoření mapy využijeme funkci `zipmap`, která nám sezipuje sekvence do mapy, kde první sekvence učuje klíče a další hodnoty.
+
+/--code clojure
+(defn command->position [command]
+  (if (= 2 (count command))
+    (let [fst (first command)
+          snd (second command)
+          row [\a \b \c \d \e \f \g \h \i]
+          col [\1 \2 \3 \4 \5 \6 \7 \8 \9]]
+      (if (and (contains? (set row) fst) (contains? (set col) snd))
+        [((zipmap row (range 9)) fst) ((zipmap col (range 9))
+\---code
+
+Všimněte si, že jsem vynechal vracení keywordu `:error`, místo toho nevrátíme nic. Což je nesmysl. Funkce přece musí něco vracet. Ano, vrací se `nil`. Proč `nil` místo `:error`u? To si povíme za chvíli. Teď se ještě vrátíme k předchozímu kódu. Set v Clojure je speciální verze Mapy, kde klíč i hodnota jsou identické. Funkce `contains?` testuje, zda kolekce obsahuje daný klíč. S touto znalostí, se můžeme Setu s lehkým srdce zbavit úplně:
+
+/--code clojure
+(defn command->position [command]
+  (let [r (first command)
+        c (second command)
+        row (zipmap [\a \b \c \d \e \f \g \h \i] (range 9))
+        col (zipmap [\1 \2 \3 \4 \5 \6 \7 \8 \9] (range 9))]
+    (when (and (row r) (col c))
+      [(row r) (col c)])))
+\--code
+
+Můžeme být i trochu velkorysí a umožnit na vstupu jakoukoliv délku řetězce. Pokud bude mít první dva prvky, které pro nás mají hodnotu, tak je využijeme, jinak se bránit nepotřebujeme, tento kód je bezpečný a vráti `nil`.
+
+## Nil místo keywordů pro speciální případy
+
+V předchozím fragmentu kódu se vyskytoval keyword `:error`, který se vracel v případě, že vstup nemohl být namapovaný na souřadnice v hrací ploše. Stejně tak je neobsazené místo v hrací ploše reprezentováno keywordem `:nothing`. V prvním případě nejde o chybu, ale prostě vstup nereprezentuje žádný validní stav. Pro oba případy je vhodnější použít koncept, kterým Clojure pro tyto případy disponuje - `nil`.
+
+Nil, narozdíl od jeho sestřičky `null`, je v Clojure celkem běžný koncept a dá se s ním pracovat bezpečně. Podobně jako s `Maybe` nebo `Option`, [které znáte z jiných jazyků](http://www.rarous.net/weblog/447-zatocime-s-null.aspx). Možná jste si v poslední ukázce všimli, že zmizelo volání funkce `contains?`. Pokud mapu zavoláme jako funkci a parametrem je klíč, který v mapě existuje, vrátí se hodnota pod tímto klíčem. Pokud ne, vrátí se `nil`. Ale proč to funguje? Nil se v logických výrazech vyhodnocuje jako `false`. Podobně jako v JavaScriptu `null` - na rozdíl JavaScriptu se v Clojure jako `false` vyhodnocuje pouze `false` a `nil`.
+
+Takže jsem všechny výskyty `:error` a `:nothing` nahradil ekvivalentním kódem s `nil`.
+
+## Textová reprezentace hrací plochy
+
+Na zobrazení boardu tu máme jednu funkci `print-board`, která opravdu, jak název napovídá, použije `print` na vytištění boardu na standardní výstup. Takže to vlastně ani funkce není! Napravme to, prosím. Extrahujeme několik menších funkcí, které potom použijeme k sestavení celého problému.
+
+1. Zbavíme se hluboce zanořeného `case` a hezky si ten koncept pojmenujeme:
+
+/--code clojure
+(def item->str
+  {:x  "x"
+   :o  "o"
+   nil "_"})
+\--code
+
+2. Zbavíme se zanořeného `map` a hezky si ho pojmenujeme:
+
+/--code clojure
+(defn row->str [row]
+  (s/reverse (s/join " " (map item->str row))))
+\--code
+
+3. Zbavíme se side-effectu a funkci přejmenujeme:
+
+/--code clojure
+(defn board->str [board]
+  (s/reverse (s/join "\n" (map row->str board))))
+\--code
+
+Samotné printování posuneme do hlavní smyčky. Problém máme krásně dekomponovaný do malých funkcí ze kterých je zjevné na první pohled, co dělají, a dá se to i otestovat.
+
+Pro logické seřazení operací ještě můžeme použít threading macro:
+
+/--code clojure
+(defn row->str [row]
+  (->> row (map item->str) (s/join " ") s/reverse))
+
+(defn board->str [board]
+  (->> board (map row->str) (s/join "\n") s/reverse))
+\--code
+
+## Game loop
+
+Hlavní logika hry je promísena s parsováním standardního vstupu a výpisem reakcí na standardní výstup. Je to takzvaný  Gulash design pattern. Samozřejmě to není čistý vzor Gulash, protože je řádně říznut návrhovým vzorem Spaghetti.
+
+ Jak z toho ven?
+
+1. Stav hry je reprezentován listem obsahujícím hrací plochu, aktivního hráče a status hry. List je pro reprezentaci stavu nevhodný, použijeme místo něj record:
+
+/--code clojure
+(defrecord Game [board active-player game-status])
+\--code
+
+Vytváření listu všude nahradíme konstruktorem záznamu a u remízy rovnou fixneme bug:
+
+/--code clojure
+(->Game next-board active-player :complete)
+\--code
+
+Record je datová struktůra, která se tváří jako mapa, ale umožňuje nám další kouzla, ke který se dostaneme později.
+
+2. Dále musíme pořešit tu obrovskou podmínku, kde se míchají příkazy a herní logika. Vezmeme tedy vstup uživatele a převedeme ho na vektor s příkazem a případně jeho parametry:
+
+/--code clojure
+(defn parse-command [cmd]
+  (case cmd
+    "new" [:new]
+    "quit" [:quit]
+    "board" [:board]
+    [:position (command->position cmd)]))
+\--code
+
+3. Nyní využijeme polymorfismu a rozsekáme ten loop na dílčí příkazy pomocí multi method:
+
+/--code clojure
+(defmulti exec (fn [cmd _] (first cmd)))
+
+(defmethod exec :new [_ _]
+  (println "Nova hra")
+  new-game)
+
+(defmethod exec :quit [_ _]
+  (println "Navidenou"))
+
+(defmethod exec :board [_ {:keys [board] :as game}]
+  (println (board->str board))
+  game)
+
+(defmethod exec :position [[_ pos] {:keys [board active-player game-status]}]
+    ;; tady zbylá logika hry
+\--code
+
+4. Samotná `game-loop` se nám smrskne na něco, s čím se dá pracovat:
+
+/--code clojure
+(defn game-loop [game]
+  (loop [{:keys [active-player] :as game} game]
+    (println "Hrac " (name active-player))
+    (let [cmd (parse-command (read-line))]
+      (when-let [next-round (exec cmd game)]
+        (recur next-round)))))
+\--code
+
+Pro jistotu jsme přepsali potenciální přetečení zásobníku (když budete hrát opravdu dlouho) na opravdovou smyčku. Clojure nedělá tail-call optimalizaci, tu si musíte pořešit sami právě pomocí `loop`.
+
+Nyní jsme se dostali na tak o třetinu více řádek kódu, ale pomalu se v tom dá vyznat a můžeme začít odlepovat textovou reprezentaci hry od herní logiky. Multimetody `exec` rozdělíme na dva konecepty. Na samotnou herní logiku a na prezentační část:
+
+/--code clojure
+(defmulti play (fn [cmd _] (first cmd)))
+(defmethod play :new [_ _] new-game)
+(defmethod play :quit [_ _] nil)
+(defmethod play :default [_ game] game)
+
+(defmulti print-command (fn [cmd _] (first cmd)))
+(defmethod print-command :new [_ _] (println "Nova hra"))
+(defmethod print-command :quit [_ _] (println "Navidenou"))
+(defmethod print-command :board [_ game] (println game))
+\--code
+
+Teď jsme schopní i přidávat jednoduše nové příkazy. Třeba pro nápovědu:
+
+/--code clojure
+(def help "
+Povolené příkazy jsou:
+new - nová hra
+quit - konec
+board - zobrazit hrací plochu
+help - zobrazit tuto nápovědu
+[a-i][0-9] - tah na pole, kde řada je pozice a, b, c, d, e, f, g, h, i. Sloupec je 1 až 9.
+formát zápisu je např.: e5")
+
+(defmethod print-command :help [_ _] (println help))
+\--code
+
+Další možností, jak využít polymorfismu, je připsání metody `print-method` pro record `Game`:
+
+/--code clojure
+(defmethod clojure.core/print-method Game [v ^java.io.Writer w]
+  (.write w (board->str (:board v))))
+\--code
+
+Využijeme již dříve upravenou funkci na převod boardu do textové podoby. Můžeme tak hezky oddělit prezentační část od samotné logiky i na úrovni struktury kódu. Teď můžeme samotnou logiku pokrýt testy a začít refactorovat tu.
+
+## Algoritmy
+
+Tak logika je očištěna a můžeme pokračovat v klestění cesty k funkcionálním zítřkům. :) Začneme hezky od konce. Vítěztsvím! Na první pohled monstr klacek. Máme tu nějaké zbytečné parametry. Třeba `active-user` se neřeší nikde, pryč s ním. Dále se předává `position` do `take``-9``-around`, ale tam se nepoužívá, pryč s tím. Pak tu máme spoustu volání `(first position)` a `(second position)`.  Provedeme rozložení parametru `position` na `x` a `y.` Pomalu se v tom dá vyznat. Teď ještě změníme `(fn [_] x)` na více Clojure `(constantly x)` a výsledek je o mnoho přívětivější:
+
+/--code clojure
+(defn won? [board [x y]]
+  (or
+    (contains-5? (take-9-around board (partial + x) (constantly y))) ; L < - > R
+    (contains-5? (take-9-around board (constantly x) (partial + y))) ; U < - > D
+    (contains-5? (take-9-around board (partial + x) (partial + y))) ; LD <-> UR
+    (contains-5? (take-9-around board (partial + x) (partial - y))))) ; LU <-> DR
+\--code
+
+Pořád je to ale hodně imperativní a obsahuje spoustu opakujícího se kódu. Stačí trošku zamíchat a vypadne nám z toho něco suššího:
+
+/--code clojure
+(defn won? [board [x y]]
+  (let [surroundings (fn [[xfn yfn]] (take-9-around board xfn yfn))
+        horizontal [(partial + x) (constantly y)]
+        vertical [(constantly x) (partial + y)]
+        diagonal+ [(partial + x) (partial + y)]
+        diagonal- [(partial + x) (partial - y)]]
+
+    (->> [horizontal vertical diagonal+ diagonal-]
+         (map surroundings)
+         (filter has-5-in-row?)
+         not-empty?)))
+\--code
+
+Místo magických komentářů jsme vytvořili popisné vazby, opakující se kód jsme extrahovali do closure a pak to celý prohnali dataflow procesem. Na konci čekáme, jestli něco vypadne. Pokud jo, máme vítěze!
+
+Posuneme se na kontrolu řady:
+
+/--code clojure
+(defn between? [x min max] (and (>= x min) (<= x max)))
+(defn valid-positions [[x y]] (and (between? x 0 8) (between? y 0 8)))
+
+(defn take-9-around [board xfn yfn]
+  (let [xs (map xfn (range -4 5))
+        ys (map yfn (range -4 5))]
+    (->> (map vector xs ys)
+         (filter valid-positions)
+         (map #(get-in board %)))))
+\--code
+
+Tady jsme kód jen trochu narovnali použitím vlastního predikátu, použitím vestavěné funkce `vector` a následným lehkým učesáním, aby to při čtení dávalo větší smysl. Partial aplikace je fajn, ale u dataflow kombinátorů preferuji užití function literal. Už su také.
+
+Tak. A ještě se musíme poprat s metodami pro `:position`, protože máme zduplikovanou herní logiku a to není dobré. Proto si pravidla extrahujeme do samostatné funkce, která vrací jen keywordy reprezentující stav. A ty můžeme využít k definici multimetod pro jednotlivé stavy.
+
+Ještě dočistíme printování a vytáhneme ho jen do samotné herní smyčky. Všechny metody pro prezentaci teď vrací `string`y nebo vektory s jednotlivými řádky. To se teď dá také testovat.
+
+Stala se nám ale taková nepěkná věc! Sice jsme vyseparovali pravidla do samostatné fukce, ale tím, že jsme rozdělili prezentační část od samotné herní logiky, dochází k tomu, že se nám zbytečně dvakrát za jedno kolo konroluje případné vítězství nebo remíza. A to není dobré...
+
+## Funkce s pamatovákem
+
+Hodilo by se nám něco, co nám zajistí, že při volání fukce s danými parametry se výpočet provede jen jednou a pak se vrací nacachovaná hodnota výsledku. To si můžeme dovolit díky užívání čistých funkcí. V Clojure najdeme funkci `memoize`, která slouží přesně k tomuto účelu:
+
+/--code clojure
+(def turn-once-per-round (memoize turn))
+\--code
+
+A ve funkci `rules` zavoláme tuto novou verzi. A je to. Nezapomínejte však, že si tu kupujeme výpočetní čas za vyšší paměťovou náročnost. Zde si to můžeme dovolit, protože jednotlivá kola [sdílí svou strukturu](http://www.meetup.com/Lambda-Meetup-Group/events/218796226/), nárůsty jsou pouze o rozdíl mezi jednotlivými koly.
+
+## Testování
+
+Několikrát jsem se tu zmiňoval  testování. Nejprve v počátku, že to je vlastně netestovatelné. Postupně jsme se prokousali k tak malým funkcím, že už na první pohled je zjevné, že v nich chyba není. Dělají opravdu jednu věc. Ty nemá moc cenu testovat. Jedinou funkcí, do které jsme vyseparovali veškerou logiku je funkce `rules`.
+
+Můžeme zvolit manuální cestu a napsat si testy na jednotlivé případy, kterých nebude málo, nebo můžeme použít property based testy za pomoci `test.check`, který nám vygeneruje **testovací data** na základě definovaných vlastností.
+
+## Závěr
+
+Na začátku byla výzva “jak bys to napsal ty?” Ale tohle není moje řešení, jak bych to napsal já. [Tohle je ukázka, jak bych to refactoroval](https://gist.github.com/rarous/695e486df9bd0d4ff2ba), se zaměřením na použití malinko pokročilejších technik, které Clojure nabízí. Vyplivnout hotové řešení na zelené louce (plné bugů) dokáže kde kdo. I já. Ale nebudu to dělat (možná někdy v [coding dojo](http://srazy.info/coding-dojo-prague)). Doufám, že tahle cesta byla pro někoho alespoň lehkou inspirací jak a proč psát jednodušší kód.
+
+PS. Jednoduchost neznamená, že je to pro všechny snadné pochopit.
+    

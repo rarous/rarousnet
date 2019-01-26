@@ -1,0 +1,13 @@
+---
+{:id 57,
+ :title "PHP2ASP.NET konvertor",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2005-04-28T13:20:00"}
+---
+
+Začal jsem předělávat [texy] syntax converter do .net. Opět jsem narazil na menší problém, nerozunim php, ve kterém je Texy! napsané a navíc se mi nechtělo implementovat 140kB zdrojových kódů od znovu. Naštěstí jsem našel "nástroj od Microsoftu":[php2asp], který konvertuje PHP do ASP.NET, konkrétně do C# :) Takže většinu těžké práce mám za sebou, teď musim odchytat chyby (cca 260), které vznikly při převodu a pak odladit...
+
+[texy]: http://www.texy.info/ Texy!
+[php2asp]: http://www.asp.net/migrationassistants/php2aspnet.aspx?tabindex=0&amp;tabid=1

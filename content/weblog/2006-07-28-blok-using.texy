@@ -1,0 +1,44 @@
+---
+{:id 171,
+ :title "Blok using",
+ :description
+ "Pár slov k zajímavému bloku, který může zvýšit výkon vaší aplikace.",
+ :author "Aleš Roubíček",
+ :tags #{"idisposable" "tuning" "csharp"},
+ :published "2006-07-28T19:33:08.953"}
+---
+
+Jazyk C# je obdařen velice zajímavým blokem uvozený slovem *using*. Víte k čemu slouží? Používáte ho? Pokud jste si na jednu z předchozích otázek odpověděli negativně, měli byste si přečíst následující řádky. :)
+
+Klíčové slovo `using` má v C# hned dva významy. Tím prvním je import namespaců a vytváření aliasů k třídám, ale ten je pravděpodobně provařený. Druhým významem je uvození bloku, ve kterém se používá komponenta  implementující rozhranní `IDisposable`. Implementace IDisposable se používá k uvolňování zdrojů.
+
+/---code csharp
+SqlConnection conn  = new SqlConnection(connString);
+conn.Open();
+// práce s databází
+conn.Close();
+\---code
+
+To byla ukázka naivního přístupu k databázi, kdy se spoléháme, na to, že vše proběhne v pořádku a dojde k zavolání `conn.Close()`, což může být klidně pravda, ale pokud dojde k vyvolání jakékoli vyjímky před zavoláním `conn.Close()`, zůstane připojení stále otevřené, dokud nedojde k timeoutu a objekt `conn` nezpracuje GC. To může trvat hodně dlouho a zabírat tak zbytečně cenné systémové zdroje.
+
+/---code csharp
+using (SqlConnection conn  = new SqlConnection(connString)) {
+    conn.Open();
+    // práce s databází
+}
+\---code
+
+A takle by se to mělo psát. :)  Blok using přijímá jako parametr disposovatelné komponenty a na konci bloku zavolá `IDisposable.Dispose()`. V případě SqlConnection volá metoda *Dispose* metodu *Close*. Nutno podotknout, že k zavolání metody *Dispose* dojde i při vyhození vyjímky. Jak je toho dosaženo? Blok using neni nic jiného než zkráceným (a pro mě i přehlednějším) zápisem následujícího kódu.
+
+/---code csharp
+SqlConnection conn  = new SqlConnection(connString);
+try {
+    conn.Open();
+    // práce s databází
+}
+finally {
+    conn.Dispose();
+}
+\---
+
+Toť celé tajemství a kouzlo bloku using. Závěrem bych vám chtěl ještě doporučit blok using používat všude tam, kde používáte nejrůznější Readery, Writer a jiné třídy implemetující rozhranní IDisposable, protože tak můžete ušetřit cenné zdroje a zvýšit tak výkon vaší aplikace :) Hodně štěstí...

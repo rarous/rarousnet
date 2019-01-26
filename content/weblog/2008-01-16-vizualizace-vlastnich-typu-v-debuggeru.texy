@@ -1,0 +1,45 @@
+---
+{:id 249,
+ :title "Vizualizace vlastních typů v debuggeru",
+ :description
+ "Jistě všichni znáte možnost jak přepsat defaultní zobrazování vlastního typu v debuggeru VS pomocí přepsání metody `ToString()`. Ovšem někdy je tato metoda velice užitečná i na jiné účely, co potom s tím?",
+ :author "Aleš Roubíček",
+ :tags #{"debugerdisplay" "csharp" "nforms" "asp.net 2.0"},
+ :published "2008-01-16T07:54:41.473"}
+---
+
+Jistě všichni znáte možnost jak přepsat výchozí zobrazování vlastního typu v debuggeru VS pomocí přepsání metody `ToString()`. Ovšem někdy je tato metoda velice užitečná i na jiné účely, co potom s tím?
+
+Když debuguje ve VS vlastní typy ve watches se vám u proměnné zobrazuje celý název typu, např. `Rarous.NForms.TextItem`. Pokud chcete v debuggeru vidět užitečnější informace, zpravidla přepíšete metodu `ToString()`, kterou má každý objekt, tak, aby vypisovala to, co chcete. Např.:
+
+/--code csharp
+public override string ToString() {
+  return "\"" + Control.Name + "\", Value=" + Control.GetValue();
+}
+\--code
+
+Při debutování by se nám pak mohlo zobrazovat něco jako `"email", Value=frantisek.koudelka@sts-chvojkovice.cz`. Jenže. Teď chci, aby se mi v šabloně při zápisu `<%=Form["email"]%>` vypsal kód formulářového prvku a jeho labelu. Jak to udělat, aby se zachovalo pěkné debugování a přibyla nová a ještě lepší funkčnost?
+
+Naštěstí existuje jiné řešení, jak debugovací informace zobrazovat. Troufnu si tvrdit, že i mnohem čistší. V .net frameworku existuje atribut `System.Diagnostics.DebuggerDisplayAttribute`, který je určen, právě k zobrazování informací v debuggeru. Jeho užití je následující:
+
+/--code csharp
+[DebuggerDisplay("{Control.Name}, Value={Control.GetValue(),nq}")]
+public class TextItem : FormItem {
+  // implementace třídy...
+
+  public override string ToString() {
+    return Label + " " + Control;
+  }
+}
+\--code
+
+Tímto jsme dosáhli, nové funkčnosti metody `ToString()` a zachovali jsme vlastní informace zobrazované v debuggeru. Více informaci o atributu DebuggerDisplay:[msdn], najdete v MSDN.
+
+Tagy: [tag-csharp], [tag-debugger], [tag-nforms]
+
+[tag-csharp]: http://technorati.com/tag/c%23 C# .{rel=tag}
+[tag-debugger]: http://technorati.com/tag/debugger debugger .{rel=tag}
+[tag-nforms]: http://technorati.com/tag/nforms NForms .{rel=tag}
+
+[msdn]: http://msdn2.microsoft.com/en-us/library/x810d419.aspx
+

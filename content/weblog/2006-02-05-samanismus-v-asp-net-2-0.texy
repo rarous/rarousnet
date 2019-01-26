@@ -1,0 +1,69 @@
+---
+{:id 106,
+ :title "Šamanismus v ASP.NET 2.0",
+ :description "Zasvědcení do tajů ASP.NET 2.0...",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-02-05T14:07:40.617"}
+---
+
+
+Nebojte se, tento článek nebude o pokoutných praktikách a užití magie v této velice zajímavé webové technologii, nýbrž o nových ovládacích prvcích, které slouží jako průvodci, známí z Windows. Každý může mít svůj názor na jejich opodstatnění na webu, ale v některých scénářích jsou k nezaplacení a usnadňují vývoj.
+
+Asi první šaman, na kterého narazíte je `asp:CreateUserWizard`, který je součástí Membership API. Tento šaman slouží, jak už název napovídá, k vytváření nových uživatelů aplikace. Tento šaman má implementované dva kroky:
+
+1) `asp:CreateUserWizardStep` - Zadání požadovaných údajů, potřebných k vytvoření nového uživatele.
+2) `asp:CompleteWizardStep` - Hláška o úspěšném dokončení vytváření uživatele.
+
+Krom těchto dvou si můžete přidat libovolné množství vlastních kroků, například krok, ve kterém přidělíme uživateli jeho Role. Každý kontrol, který je odvozený od třídy `Wizard` má vlastnost `WizardSteps`, kam můžete přidávat vlastní kroky šamana. Takže následující kus kódu představuje šamana na vytvoření uživatele s přidělením uživatelské role.
+
+/---code xml
+<asp:CreateUserWizard ID="NovyUzivatelWizard" runat="server" LoginCreatedUser="false" OnActiveStepChanged="NovyUzivatelWizard_ActiveStepChanged" OnContinueButtonClick="NovyUzivatelWizard_ContinueButtonClick">
+    <WizardSteps>
+        <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"                         Title="Vytvořen&#237; nov&#233;ho uživatele"></asp:CreateUserWizardStep>
+        <asp:WizardStep ID="WizardStep1" runat="server" AllowReturn="False"                                     EnableTheming="True" StepType="Step" Title="Role nov&#233;ho uživatele">
+            Role nového uživatele<br />
+            <asp:CheckBoxList ID="UzivatelskeRoleList" runat="server"></asp:CheckBoxList>
+        </asp:WizardStep>
+        <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"                                    Title="Hotovo"><asp:CompleteWizardStep>
+    </WizardSteps>
+</asp:CreateUserWizard>
+\---
+
+Jak vidíte, implementace vlastních kroků v designové části není moc náročná. Krom přidělení ovladačů událostí pro přechod mezi jednotlivými kroky, jsem přidal vlastnost, která ošetřuje „podivné chování“, kdy se po vytvoření uživatele dojde k jeho automatickému nalogování. Takže pokud se divíte, že po vytvoření nového uživatele jste ve vaší aplikaci někým jiným, nastavte vlastnost `LoginCreatedUser` na `false`.
+
+Pokud měníte kolekci *WizardSteps*, nezapomeňte na původní kroky, to jen tak pro jistotu :).  A nyní přistoupíme k programové části šamana. Zde musíme ošetřit chování jednotlivých kroků v ovladačích událostí `OnActiveStepChanged` a `OnContinueButtonClick`.
+
+/---code csharp
+protected void NovyUzivatelWizard_ActiveStepChanged(object sender, EventArgs e)
+{
+	// pokud je aktivní krok pro výběr rolí
+	if (NovyUzivatelWizard.ActiveStepIndex == 1) {
+		// načteme všechny uživatelské role a  svážeme je s datovým prvkem
+		UzivatelskeRoleList.DataSource = Roles.GetAllRoles();
+		UzivatelskeRoleList.DataBind();
+
+	}
+}
+protected void NovyUzivatelWizard_ContinueButtonClick(object sender, EventArgs e)
+{
+	// pokud je aktivní krok pro výběr rolí
+	if (NovyUzivatelWizard.ActiveStepIndex == 1) {
+		StringBuilder sb = new StringBuilder();
+		// projedeme pole checkboxů
+		for (int i = 0; i < UzivatelskeRoleList.Items.Count; i++) {
+			// pokud je vybraná role
+			if (UzivatelskeRoleList.Items[i].Selected) {
+				// přidáme její název do kolekce
+				sb.Append(UzivatelskeRoleList.Items[i].Text + ",");
+			}
+		}
+		// přiřadíme novému uživateli jeho role
+		Roles.AddUserToRoles(NovyUzivatelWizard.UserName, sb.ToString().Split(','));
+	}
+}
+\---
+
+Na kódu asi není nic zvláštního, důležité je zjišťování aktivního kroku šamana pomocí vlastnosti `ActiveStepIndex`. Zbytek kódu se věnuje načtení kolekce uživatelských rolí do CheckBoxListu a pak přiřazení vybraných rolí nově vytvořenému uživateli.
+
+Toto byla ukázka funkčnosti konkrétního šamana, ale vy si můžete pomocí toho konceptu vytvořit vlastní šamany postavené na ovládacím prvku `asp:Wizard`. Nazapomeňtě, že se třída Wizard **renderuje do tabulky **, což zhoršuje její přístupnost, ale i to se dá obejít – téma na další pokračování.  Toť vše, drazí čtenáři, doufám, že jsem vám alespoň trochu pomohl s pronikáním do tajů ASP.NET 2.0.

@@ -1,0 +1,70 @@
+---
+{:id 386,
+ :title "Aktualizace výpisu na stránce pomocí Rx",
+ :description
+ "Dnes se podíváme na to, jak si zjednodušit práci a asynchronním voláním na server. Budeme aktualizovat feed pomocí mikroformátu, jQuery a Rx.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "microformats" "rx" "trop" "javascript" "jquery"},
+ :published "2010-03-24T15:55:17.677"}
+---
+
+Včera jsem začal implementovat "aktualizaci času na výpisu":[/weblog/385-casovy-vypis-s-aktualizaci.aspx] typu *friend feed*. Dnes se podíváme na to, jak si zjednodušit práci s asynchronním voláním na server. Samozřejmě opět s využitím jQuery a Reactive Extensions.
+
+Asynchronní volání
+==================
+
+Asynchronní volání je z pohledu šetření zdroji výhodné, ovšem z hlediska psaní a údržby kódu už to taková sláva není. Proto nám na pomoc přicházejí Rx((Reactive eXtensions)), které asynchronní operace převádějí na neblokující lineární kód.
+
+Pojďme hned k dnešní ukázce, která bude o dost jednodušší než včera. Ale použitá technika a principy zůstávají stejné:
+
+/--code javascript
+Rx.Observable.
+  Interval(60000).
+  Select(getFeedUpdates).
+  Switch().
+  SelectMany(function(result) {
+    return $(result).find('.hentry').toArray().reverse().toObservable();
+  }).
+  Subscribe(function(entry) {
+    var feed = $('.hfeed')
+    feed.prepend(entry);
+    $('.hentry:last', feed).remove();
+  });
+\--code
+
+Opět vytvářím `Observable` objekt, který něco vystřelí jednou za minutu. Tajemství funkce `getFeedUpdates` si nechám na později. A rovnou se vrhnu na zpracování dorazivších výsledků. Výsledkem mého asynchronního volání je kus HTML kódu s vygenerovaným feedem s novými příspěvky. Z tohohle kusu HTML si vyberu jen elementy s třídou `hentry`. Ty jsou seřazeny podle data sestupně, ale já chci feed aktualizovat postupně od nejstarších příspěvků k nejnovějším, takže je otočím funkcí `reverse` a pošlu je do světa jako `Observable` objekty.
+
+Nakonec se přihlásím k odběru těchto jednotlivých příspěvků pomocí operátoru `Subscribe`. Když mi nějaký příspěvek přilítne, tak ho vezmu a dám ho na začátek feedu a potom odeberu poslední záznam, aby se nám feed na stránce nenatahoval. Takže jsme elegantně zvládli příjem nových příspěvků. A jak je vlastně načítáme?
+
+/--code javascript
+function getLastActivityDate() {
+  return $('.hfeed>.hentry .updated .value-title').first().attr('title');
+}
+
+function getFeedUpdates() {
+  var subject = new Rx.AsyncSubject();
+  var data = { lastActivity: getLastActivityDate() };
+
+  jQuery.post("url", data, function(result, status) {
+    if (status == "success") {
+      subject.OnNext(result);
+      subject.OnCompleted();
+    }
+    else {
+      subject.OnError(result);
+    }
+  });
+
+  return subject.AsObservable();
+}
+\--code
+
+Funkce `getLastActivityDate` načte datum posledního zobrazeného příspěvku, které slouží k načtení novějších příspěvků ze serveru. Opět k tomu využívám mikroformátu `hAtom` a jeho konkrétní implementaci v mé stránce.
+
+Podívejme se ale raději na další funkci. To je výše zmiňovaná `getFeedUpdates`, která nám transformuje asynchronní volání na objekt `Observable` a to pomocí třídy `AsyncSubject`. Povšimněte si, že v callbacku asynchronního volání vrátím přes closure data do subjektu, který už je tou dobou pozorován první ukázkou kódu.
+
+Když přijde odpověď od serveru, je zavolána metoda `OnNext`, která vyhodí přijatá data dál ke zpracování. A vzhledem k tomu, že na jeden dotaz asi více odpovědí nepřijde, tak taky ukončíme vysílání výsledků pomocí metody `OnComplete`. Kdyby náhodou něco na serveru selhalo, máme tu ještě metodu `OnError`, jejíž zpracování nikde neřeším. :)
+
+Ale vězte, že chyby můžete zpracovávat stejně snadno jako normální data.
+
+No a to je pro dnešek vše. Tuhle ukázku si bohužel vyzkoušet nemůžete, protože k ní už je zapotřebí i serverová část a ta ještě není venku. Příště se možná podíváme, jak pomocí Rx snadno a rychle vytvořit poměrně sofistikovaný našeptávač.

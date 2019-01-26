@@ -1,0 +1,37 @@
+---
+{:id 246,
+ :title "Deklarativně nebo šablonově?",
+ :description
+ "Kolega Tragéd mi v komentáři k minulému článku sdělil, že moje ukázka je zoufalá. Já s ním tak trochu souhlasím, ale ne úplně.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "asp.net 2.0" "templates"},
+ :published "2007-12-30T18:02:12.583"}
+---
+
+Kolega **Tragéd** mi v komentáři k "minulému článku":[clanek(245)] sdělil, že moje ukázka je zoufalá. Já s ním tak trochu souhlasím, ale ne úplně.
+
+Spousta kolegů píšících v ASP.NET má za zlatou krávu deklarativní zápis všeho možného do ASPX stránky. I já býval takový. Když jsem viděl někde v kódu `<% %>`, říkal jsem si fůj. Jenže s postupem času se toho člověk celkem hodně naučí. A začne přicházet na to, že ne vždycky je deklarativní zápis to pravé ořechové.
+
+Vezměme si jako příklad jednoduchý `Repeater`. To je kontrol pro cyklický výpis dat. Vrazí se mu cokoli, co implementuje `IEnumerable` nebo je to `DataTable`, a on to hezky řádek po řádku vyplivne na stránku.
+
+/--code xml
+<asp:Repeater runat="server" DataSource="<%# "jedna dvě tři".Split(' ') %>">
+  <ItemTemplate><span><%# Container.DataItem %></span></ItemTemplate>
+</asp:Repeater>
+\--code
+
+Pak člověku přijde na mysl, v čem je předchozí kus kódu lepší než ten následující?
+
+/--code xml
+<% foreach(string item in "jedna dvě tři".Split(' ')) { %>
+<span><%= item %></span>
+<% } %>
+\--code
+
+Já vím, je zoufalej, ale proč? Dělá to samé. A troufnu si tvrdit, že je přehlednější a o něco výkonnější. Sice jsem to nijak neměřil, ale již z podstaty, že nemusím parsovat XML Reapeatru, nemusím instanciovat další třídu `Reapeater`, projít jejím životním cyklem, databindingem atd.
+
+Vezměte si dál třeba nějakej deklerativní datasource. Třeba ten SqlDataSource, hned porušujete dobré mravy. Stránka by vůbec neměla o nějakém SQLu nic vědět. To patří do úplně jiné vrstvy aplikace. Netvrdím, že je to úplně špatně. Každej ať si dodržuje svoji štábní kulturu.
+
+Dobré na těch dvou ukázkách je to, že si mohu vybrat, který způsob mi víc vyhovuje. Špatné je to, když někdo přes plot křičí, že to co já používám, je zoufalost a že bych se měl zařadit zpátky mezi pravověrné Deklarativisty. Nikdy. Vždycky radši přemýšlej, co je pro daný scénář výhodnější. Mám projekt kde jedna stránka je psaná „postaru“ a další používaj sadu deklarativní komponent. A je to tak v pořádku.
+
+[clanek(245)]: /weblog/245-nforms-pro-asp-net.aspx

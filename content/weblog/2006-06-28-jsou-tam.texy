@@ -1,0 +1,18 @@
+---
+{:id 163,
+ :title "Jsou tam :)",
+ :description "Podařilo se mi zrestaurovat ztracené komentáře :)",
+ :author "Aleš Roubíček",
+ :tags #{"google" "reader" "jen tak" "atom" "rss"},
+ :published "2006-06-28T14:33:14.787"}
+---
+
+"Kdo?" "Néé, co!"
+
+Odedneška mám dovolenou (až do konce příštího týdne) a tak jsem se podíval na zoubek "mým ztraceným komentářům":[/clanek/154-to-se-mi-zase-neco-povedlo.aspx]. Postup jak na to jsem si už dopředu vymyslel. Využil jsem toho, že si všechny komentáře syndikuju v "Google Readeru":[http://reader.google.com/]. Přepsané komentáře jsem si v GR označil labelem a využil možnosti takový label sdílet (ve formátu Atom). Napsal jsem si importér z Atomu do SQL Update příkazu a začal sosat data.
+
+Ano sosat jsem musel postupně, protože GR exporty mají jen dvacet položek a já potřeboval těch komentářů vysosnout zhruba 200 :) Takže jsem musel ručně odštítkovat naimportované komentáře a opět provést import. No alespoň část toho procesu se mi povedlo zautomatizovat a ušetřit tak pár hodin práce :)
+
+Důležité však je, že většina komentářu je zase ve své původní podobě a na spráném místě. Bohužel přibližně deset komentářů jsem v onen osudný den nestihl nasyndikovat. Ty jsou asi nenávratně pryč, teda pokud je někdo nemá někde v útrobách své čtečky :) Kdyby je náhodou někdo našel, prosím o jejich vrácení :D
+
+Děkuji za pozornost.

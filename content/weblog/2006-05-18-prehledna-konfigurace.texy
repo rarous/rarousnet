@@ -1,0 +1,12 @@
+---
+{:id 150,
+ :title "Přehledná konfigurace",
+ :description "Reakce na Konfigurace v .NET",
+ :author "Aleš Roubíček",
+ :tags #{"xml" "asp.net 2.0"},
+ :published "2006-05-18T06:10:55.520"}
+---
+
+Dnes vyšel na Vyvojar.cz článek s názvem "Konfigurace v .NET":[http://www.vyvojar.cz/Default.aspx?tabid=1&newsType=ArticleView&articleId=409], kde autor pěkně ukazuje XML Serializaci složitějších objektů do XML. Po tud se mi to líbí a nemám námitek. Ovšem k jakému účelu je to použito - nemám slov.
+
+Ať žijí půlmegové a větší konfiguráky!

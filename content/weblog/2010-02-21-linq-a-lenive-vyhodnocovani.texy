@@ -1,0 +1,83 @@
+---
+{:id 380,
+ :title "LINQ a lenivé vyhodnocování",
+ :description
+ "Občas není na škodu být lenivý, mnohdy se to vyplatí! To platí i o našich programech, zejména o těch, které zpracovávají veliké množství dat.",
+ :author "Aleš Roubíček",
+ :tags #{"ling" "asp.net 2.0" "ienumerable" "lazy"},
+ :published "2010-02-21T08:02:56.270"}
+---
+
+Občas není na škodu být lenivý, mnohdy se to vyplatí! To platí i o našich programech, zejména o těch, které zpracovávají veliké množství dat. Jistě si říkáte, jak může být můj program lenivý, já přeci chci, aby byl co nejvýkonnější. Ano, to se nevylučuje, právě naopak! :)
+
+Když jsem nedávno psal o tom, že [clanek(359)], neshledal jsem se s velikým porozuměním. Tento článek byl o návrhu rozhraní našich tříd. Dneska se podíváme na implementační detaily a výhody plynoucí z vracení (zvracení?) `IEnumerable<>`.
+
+LINQ2SQL a metoda ToList()
+==========================
+
+Začněme tedy u nevýhod užívání generického listu v LINQu. Vsadím se, že většina z vás pro vykonání LINQového dotazu do databáze zavolá metodu `ToList()`. Okamžitě se tím vykoná dotaz a jeho výsledek je natažen do paměti, konkrétně jako položky generického listu. Jistě se tím zvýší výkon při iteraci přes výslednou kolekci. To je super, ale pro pro výpis používat velice drahý obal v podobě listu? List umožňuje kolekce snadno modifikovat, to je jistě skvělá vlastnost, ale také sebou nese zbytečně alokovanou paměť navíc.
+
+Mnohem výhodnější je volat metodu `ToArray()`, která vykoná dotaz úplně stejným způsobem, ale vezme si jen tolik paměti, kolik opravdu potřebuje, nehledě na to, že samotný .net runtime je na práci s `Array` optimalizovaný. Jednoduchou změnou můžeme ušetřit spoustu paměti a zlepšit tak výkon naší aplikace. Pokud jsme však do našich rozhraní zanesli `IList<>`, musíme teď měnit spoustu kódu, protože náš původní návrh byl krátkozraký.
+
+Zpátky k lenivosti
+==================
+
+To, co jsme si popsali v předchozích řádcích, nemá s lenivostí stále nic společného, jde jen o malou optimalizaci dychtivého přístupu k datům (eager loading). Ten samozřejmě nemusí být z principu špatný, ale hodí se pouze pro data omezeného rozsahu. Pokud zpracováváme velké nebo předem neznámé množství dat je lepší zlenivět. Tím se opět vracíme k `IEnumerable<>`.
+
+Vezměme si hypotetický příklad že náš program bude zpracovávat nekonečný zdroj pravdy:
+
+/--code csharp
+static IEnumerable<Boolean> GetInfinityTruth() {
+  while (true) {
+    yield return true;
+  }
+}
+\--code
+
+Fůj, napsal jsem nekonečnou smyčku. Hele, ale jak jinak byste chtěli udělat nekonečný zdroj pravdy? Pomocí listu? Těžko. ;) Takovýhle kód je zcela validní a bezproblémový. Tedy do doby, než se najde někdo šikovný, komu se hodí list, a nad `GetInfinityTruth()` zavolá `ToList()`. Asi nám vyskočí `OutOfMemoryException`. :)
+
+Vážně, výhodou tohoto kódu je, že (teoreticky) vrací nekonečné množství dat a přesto se s ním dá v klidu pracovat, aniž by nám sežralo adekvátní množství paměti (opět nekonečné). A to díky lenivosti! S takovýmto přístupem se nám totiž vyhodnocuje vždy jen jeden prvek z kolekce a to až v případě, že je opravdu potřeba. Oddalujeme načítání prvku do doby, kdy s ním opravdu budeme něco dělat.
+
+Další výhodou je, že zcela bez problémů, můžeme celou tu nekonečnou pravdu popřít:
+
+/--code csharp
+static IEnumerable<Boolean> Disclaim(this IEnumerable<Boolean> source) {
+  return source.Select(value => !value);
+}
+\--code
+
+Samozřejmě bych to mohl napsat i takhle:
+
+
+/--code csharp
+static IEnumerable<Boolean> Disclaim(this IEnumerable<Boolean> source) {
+  foreach(bool value in source) {
+    yield return !value;
+  }
+}
+\--code
+
+Ale to je příliš mnoho psaní. [clanek(361)]!
+
+Teďka, když zavolám `GetInfinityTruth().Disclaim()`, dostanu nekonečný zdroj nepravdy, tedy samé lži. :) Opět to funguje tak, že je popřen každý konkrétní prvek, až když na něj dojde, ne všechny najednou, to by bylo moc práce. On se totiž příjemce naší nekonečné pravdy může kdykoli rozhodnout, že už ho to nebaví. A co my pak s tím, že jsme mu dopředu připravili krásné lži? Nic. Byla to zbytečná práce. V tomto případě se lenivost vyplatila.
+
+Závěr
+=====
+
+"Poslouchaj Roubíček, oni jsou nejspíš blázen. Nás tu krměj o nekonečné pravdě, co my s tím?" No, je to určitá abstrakce. ;)
+
+Související
+===========
+
+* [cincura]
+* [lazy]
+* [white]
+* [allen]
+
+[clanek(359)]: /weblog/359-vracet-list-je-spatne.aspx Vracet list je špatné .{rel: bookmark}(Vracet list je špatné)
+[clanek(361)]: /weblog/361-nepiste-zbytecny-kod.aspx Nepište zbytečný kód .{rel: bookmark}(Nepište zbytečný kód)
+
+[cincura]: http://www.vyvojar.cz/Articles/599-lazy-eager-explicit-loading-o-co-jde.aspx Lazy, eager, explicit loading – o co jde?
+[lazy]: http://en.wikipedia.org/wiki/Lazy_evaluation Lazy evaluation
+[white]: http://blogs.msdn.com/ericwhite/pages/Lazy-Evaluation-_2800_and-in-contrast_2C00_-Eager-Evaluation_2900_.aspx Lazy evaluation (and in contrast, eager evaluation)
+[allen]: http://odetocode.com/Blogs/scott/archive/2008/10/01/lazy-linq-and-enumerable-objects.aspx Lazy LINQ and Enumerable Objects

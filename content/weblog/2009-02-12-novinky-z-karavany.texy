@@ -1,0 +1,30 @@
+---
+{:id 347,
+ :title "Novinky z karavany",
+ :description
+ "Ano, je to tak, jak možná někteří tušíte, chystám se psát o tom, co je nového v Twaregu. A únor není na novinky chudý.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "twareg" "bizspark"},
+ :published "2009-02-12T06:00:38.347"}
+---
+
+Ano, je to tak, jak možná někteří tušíte, chystám se psát o tom, co je nového v Twaregu. A únor není na novinky chudý.
+
+Ale začnu hezky od začátku roku, kdy jsme mezi nás přivítali nového člena "Miloše Savaru":[savara], který se přidal do týmu reklamního systému codename „Hyas“ a pracuje na veřejném API. Jádro zatím podstupuje zátěžové testy. :) Náš komunitní projekt už podporuje OpenID včetně načítání údajů profilu, přibyla schopnost lokalizace pomocí IP adresy a fulltextové hledání.
+
+Dev platforma se nám rozrostla o nový silný stroj a tak došlo k přeinstalování serverů, změně rolí a jmen. Nově používáme jména hadů. Taky se nám dostalo jednoho bladea. A to už se pomalu dostáváme ke spuštění našich webových stránek [twareg]. Zatím tam není moc obsahu, ale věřím, že bude postupně přibývat. :) Zatím tam najdete "náš kontakt":[kontakt], "náš tým":[team] a "nabídku práce":[jobs]. Sice od příštího týdne získáme další posilu týmu, ale pořád "sháníme další schopné lidi":[clanek(334)].
+
+Krom stránek jsem spustili i vlastní twitter: "štěbetání tuarégů":[twitter].
+
+Na stránkách si také můžete všimnout, že jsme se stali členy BizSparku. Ačkoli jsme se na české pobočce Microsoftu dozvěděli, že tento program pro podporu start-upů není pro Českou Republiku určen, tak v programu jsme a můžeme čerpat jeho výhody. Pokud netušíte, co to je [bizspark], tak vězte, že je to program pro začínající firmy, které se rozhodnou vyvíjet na MS platformě. Program je to tříletý. Během této doby máte předplatné  MSDN včetně licencí do produkčního prostředí. A to vše za $100. Po uplynutí třech let, tedy zaplatíte $100 a všechny licence, které jste do té doby získali, vám zůstanou.
+
+Tak nám držte palce, pokud chcete, přijďte se na nás podívat, případně zvažte, jestli u nás nechcete pracovat. :)
+
+[savara]: http://savara.us/ Miloš Savara .{rel:met co-worker}
+[twareg]: http://www.twareg.com/ Twareg.com
+[kontakt]: http://www.twareg.com/contact
+[team]: http://www.twareg.com/team
+[jobs]: http://www.twareg.com/jobs
+[clanek(334)]: /weblog/334-odpojte-se-k-nam.aspx Odpojte se k nám! .(Odpojte se k nám!){rel:bookmark}
+[twitter]: http://twitter.com/twareg
+[bizspark]: http://microsoftstartupzone.com/ BizSpark

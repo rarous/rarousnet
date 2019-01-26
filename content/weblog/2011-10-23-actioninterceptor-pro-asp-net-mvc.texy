@@ -1,0 +1,114 @@
+---
+{:id 408,
+ :title "ActionInterceptor pro ASP.NET MVC",
+ :description
+ "Taková malá ukázka toho, jak mít čistší kód v ASP.NET MVC pomocí AOP a Windsor kontejneru.",
+ :author "Aleš Roubíček",
+ :tags #{"windsor" "aop" "aspnetmvc" "asp.net 2.0"},
+ :published "2011-10-23T10:19:28.777"}
+---
+
+V pátek jsem na twitteru publikoval:[http://twitter.com/alesroubicek/status/127324625041494017] `ActionInterceptor` a záhy jsem dostal "reakci od Dana Kolmana":[http://twitter.com/#!/kolman/status/127326719358156800], "proč ne `ActionFilterAttribute`?" Sice jsem to na twitteru shrnul:[http://twitter.com/alesroubicek/status/127327835063992320], ale klidně si to shrnu ještě jednou a obšírněji. Dělá mi to totiž dobře.
+
+Action Filtry
+========
+
+"Action filtry":[http://www.asp.net/mvc/tutorials/understanding-action-filters-cs] jsou - už od první verze ASP.NET MVC - způsobem, jak rozšiřovat akce o znovupoužitelné aspekty. Můžete tak zabalit často používané koncepty a jednoduše je aplikovat tam, kde je to třeba. Jenže action filtry mají několik zásadních omezení:
+
+1. Nepřijde mi úplně košer, aby atributy byly nositeli jednotky práce. Jejich úkolem je *poskytovat metadata, nikoli funkcionalitu*.
+2. Do verze 3 tu nebyla možnost injektovat závislosti, ve 3. verzi přibyl "service lokátor":[http://bradwilson.typepad.com/blog/2010/10/service-location-pt5-idependencyresolver.html] (`IDependencyResolver`), který má k dokonalosti velmi daleko.
+3. Pokud chci přidat aspekt, musím zasahovat do rozšiřovaného kódu.
+
+Všechny tři body jsou pro mne velmi **zásadní chyby v návrhu** a použitelnosti. Jak je vyřešit?
+
+Action interceptor
+===========
+
+Ve svých aplikacích spokojeně používám "IoC kontejner Castle.Windsor":[http://docs.castleproject.org/Windsor.MainPage.ashx], který umožňuje snadno vkládat aspekty. Děje se tak pomocí dynamicky vytvářených proxy nad dekorovanými objekty. Jak se má aspekt chovat a kde aplikovat můžeme snadno popsat v objektu, který implementuje rozhraní `IInterceptor`.
+
+Ze základního popisu to nemusí být zcela zřejmé, ale aspekty můžete aplikovat pouze na virtuální metody. Proto když chcete přidávat aspekt do vašich kontrolerů musíte sáhnout k tomu, že všechny akce budou `virtual` (což je IMO nesmysl) nebo prostě využijete již existující extension pointy, které MVC framework nabízí. Kupodivu jsou to známé metody, které se objevují i v Action filterech. Implementace Action interceptoru bude tedy vypadat následovně:
+
+/--code csharp
+using System;
+using System.Linq;
+using System.Web.Mvc;
+using Castle.DynamicProxy;
+
+public abstract class ActionInterceptor : IInterceptor, IActionFilter, IResultFilter {
+
+ public void Intercept(IInvocation invocation) {
+    switch (invocation.Method.Name) {
+      case "OnActionExecuting":
+        Intercept(invocation, OnActionExecuting);
+        break;
+      case "OnActionExecuted":
+        Intercept(invocation, OnActionExecuted);
+        break;
+      case "OnResultExecuting":
+        Intercept(invocation, OnResultExecuting);
+        break;
+      case "OnResultExecuted":
+        Intercept(invocation, OnResultExecuted);
+        break;
+    }
+    invocation.Proceed();
+  }
+
+  void Intercept<TContext>(IInvocation invocation, Action<TContext> action) {
+    action(invocation.Arguments.First() as TContext);
+  }
+
+  public virtual void OnActionExecuting(ActionExecutingContext filterContext) {
+
+  }
+
+  public virtual void OnActionExecuted(ActionExecutedContext filterContext) {
+
+  }
+
+  public virtual void OnResultExecuting(ResultExecutingContext filterContext) {
+
+  }
+
+  public virtual void OnResultExecuted(ResultExecutedContext filterContext) {
+
+  }
+}
+\--code
+
+Užití je pak už pouhé podědění a přepsání patřičné metody podobně jako u Action filtrů.
+
+Aplikace aspektu
+===========
+
+Takovýto aspekt můžeme aplikovat několika způsoby. Nejpřímější cestou, bez nutnosti modifikovat cíl aspektu, je konfigurace kontejneru:
+
+/--code csharp
+Component.
+  For<LoggingInterceptor>().
+  Lifestyle.Transient,
+
+Component.
+  For<HomeController>().
+  Lifestyle.Transient.
+  Interceptors<LoggingInterceptor>()
+\--code
+
+A jedem. :)
+
+Další možností je aplikovat interceptor podobně jako action filtr - pomocí atributu:
+
+/--code csharp
+[Authorization]
+public class HomeController : System.Web.Mvc.Controller {
+
+}
+
+public class AuthorizationAttribute : Castle.Core.InterceptorAttribute {
+  public AuthorizationAttribute()
+    : base(typeof(AuthorizationInterceptor)) {
+  }
+}
+\--code
+
+Každý ze způsobů užití má své přednosti. Konfiguraci kontejneru používám tehdy, když potřebuji přidat dočasné nebo velice obecné aspekty. Naopak, pokud potřebuji explicitně vyjádřit nějaký koncept (autorizaci, invalidaci cache apod.), který má být při čtení controlleru zřejmý, použiji atributy.

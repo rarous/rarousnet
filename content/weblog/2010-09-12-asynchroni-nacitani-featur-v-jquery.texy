@@ -1,0 +1,46 @@
+---
+{:id 395,
+ :title "Asynchroní načítání featur v jQuery",
+ :description
+ "K optimalizaci rychlosti načítání stránek se můžeme postavit různě. Někdo to neřeší, někdo snižuje počet požadavků jednou velkou haldou scriptů a někdo načítá featury asynchronně.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "javascript" "jquery"},
+ :published "2010-09-12T11:21:59.380"}
+---
+
+K optimalizaci rychlosti načítání stránek se můžeme postavit různě. Někdo to neřeší, někdo snižuje počet požadavků jednou velkou haldou scriptů a někdo načítá featury asynchronně.
+
+Je to celkem snadné. Místo jednoho velikého scriptu s jQuery, všemi pluginy a vlastními scripty, připojíme do šablony webu scripty dva. Jeden bude linkovat jQuery z CDN  druhý bude bootstrapper, který bude asynchronně donačítat scripty pro featury na dané stránce:
+
+/--code xml
+<script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+</script>
+<script type="text/javascript" src="/scripts/bootstrapper.js"></script>
+\--code
+
+Jak vypadá takový bootstrapper? Následovně:
+
+/--code javascript
+jQuery(function($) {
+  initCalendar($);
+});
+
+function initCalendar($) {
+  var cal = $('.calendar');
+  if (cal.length == 0) return;
+  $.getScript('/scripts/jquery.calendar.js', function() {
+    cal.calendar();
+  });
+}
+\--code
+
+Jak to funguje?
+===============
+
+Když máme připravený DOM, jQuery spustí naši inicializační funkci pro kalendáře. Pokud na stránce žádné kalendáře nemáme, tak skončíme. Nemá cenu načítat script s kalendářem. Pokud na stránce, nějaké kalendáře jsou, tak načteme potřebný script a zaregistrujeme funkci, která se spustí po zavedení scriptu. V tomto případě obohatí stránku o pěkné kalendáře. :)
+
+Zbavili jsme se tak blokujících čekání na načtení scriptů, načítáme pouze dva scripty, z toho první je jistě už v lokální cache prohlížeče. Na zbylé scripty nemusí prohlížeč čekat a stránka se vykreslí celkem rychle bez záseků. Jednotlivá vylepšení stránky se donačtou záhy. Uživatel nic nepozná, jen bude mít plynulejší prožitek.
+
+A to je vše, milé děti.
+

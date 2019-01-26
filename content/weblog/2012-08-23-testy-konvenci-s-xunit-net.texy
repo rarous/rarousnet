@@ -1,0 +1,66 @@
+---
+{:id 425,
+ :title "Testy konvencí s xUnit.net",
+ :description
+ "V každé dobře navržené aplikaci by se měly dodržovat nějaké konvence, které nám umožní psát flexibilní a dopředně kompatibilní kód, který není třeba často měnit.;",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "xunit"},
+ :published "2012-08-23T11:21:12.133"}
+---
+
+V každé dobře navržené aplikaci by se měly dodržovat nějaké konvence, které nám umožní psát flexibilní a dopředně kompatibilní kód, který není třeba často měnit. Je vhodné mít tyto konvence někde zdokumentované. Nejlépe pak formou spustitelných testů.
+
+Ukázka z praxe
+==============
+
+Zrovna teď řešim messaging za pomocí Rhino.ESB  a narazil jsem na potřebu, aby všechny zprávy měly bezparametrický konstruktor a stejně tak i jejich vlastnosti. Jal jsem se psát test a vypadlo mi něco takového:
+
+/--code csharp
+[Fact]
+public void MessagesShouldHaveParameterlessContructor()
+{
+    var asm = typeof(Message).Assembly;
+    var query = from type in asm.GetTypes()
+                where type.Namespace == typeof(Message).Namespace
+                select type;
+
+    Assert.True(query.All(HasDefaultConstructor));
+}
+
+static bool HasDefaultConstructor(Type type)
+{
+    return type.GetConstructor(Type.EmptyTypes) != null;
+}
+\--code
+
+Super, projdu všechny typy z namespace, kde sídlí zprávy, a zjistím, jestli mají bezparametrický konstruktor. Pokud to všechny zprávy splňují, není problém. Jenže, když jedna tuto konvenci nesplní, jak ji rychle najít? Můžeme přidat nějaký druh výpisu na konzoli, jakou zprávu zrovna testujeme, ale to už porušujeme hned několik doporučení, jak psát RTM((Readable, Trust-worthy, Maintainable)) testy.
+
+Lepším řešením je využít toho, co nám nabízí framework. Nejde o nic jiného než data driven test. Na to má xUnit.net `Theory`. Uděláme lehký refactoring a z jednoho ne moc říkajícího testu uděláme serii kokrétních testů, kde hezky uvidíme, které zprávy byly testovány:
+
+/--code csharp
+public static IEnumerable<object[]> MessageTypes
+{
+    get
+    {
+        var asm = typeof(Message).Assembly;
+        var query = from type in asm.GetTypes()
+                    where type.Namespace == typeof(Message).Namespace
+                    select new object[] { type };
+        return query;
+    }
+}
+
+[Theory]
+[PropertyData("MessageTypes")]
+public void MessagesShouldHaveParameterlessContructor(Type type)
+{
+    Assert.True(HasDefaultConstructor(type));
+}
+
+static bool HasDefaultConstructor(Type type)
+{
+    return type.GetConstructor(Type.EmptyTypes) != null;
+}
+\--code
+
+Vidíte, ani to moc nebolelo a máme future-proof testy, které nám ohlídají potřeby frameworků a zároveň mají velkou vypovídací hodnotu. Když se podívám na výsledek testů, tak hned vidím, která třída konvenci nedodržuje.

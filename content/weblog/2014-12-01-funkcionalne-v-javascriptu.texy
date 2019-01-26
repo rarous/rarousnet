@@ -1,0 +1,69 @@
+---
+{:id 461,
+ :title "Funkcionálně v JavaScriptu",
+ :description
+ "Dneska se dá solidně funkcionálně programovat i v JavaScriptu. Malá ukázka z praxe, jak na Immutabilní datové struktury za pomocí transducerů.",
+ :author "Aleš Roubíček",
+ :tags #{"immutable" "moje práce" "transducers" "javascript"},
+ :published "2014-12-01T19:15:00.663"}
+---
+
+
+Aktuálně dělám na jednom projektu v JavaScriptu. Je to UI komponenta, kde se pracuje s poměrně velkým množstvím dat. Na vstupu a na výstupu je JSON. Tudíž je to vlastně funkce transformující data. Jak jinak k tomu problému přistoupit než funkcionálně?
+
+Data jsou uložena v "persistentních datových struktůrách":[https://github.com/facebook/immutable-js] a mají zhruba následující strukturu:
+
+/--code javascript
+var data = Immutable.fromJS({
+    foos: {'foo-id': {id: 'foo-id'}},
+    bars: {'bar-id': {id: 'bar-id', foo: 'foo-id'}}
+});
+\--code
+
+Prvky jsou indexovány podle typu a dále podle jejich uníkátních `id`. Druhý typ prvků má vazbu na ten první. Vazba není referencí, ale pomocí `id` a navázený prvek se dá snadno vytáhnout pomocí funkce `getIn`, která umí efektivně procházet stromovou strukturu.
+
+/--code javascript
+var bar = data.getIn(['bars', 'bar-id']);
+var foo = data.getIn(['foos', bar.get('foo')]);
+\--code
+
+Dnes jsme narazil na zajímavý problém. Potřebuji mazat záznamy a když smažu `foo` potřebuju smazat i patřičné `bar`y, které na něj mají referenci, protože jejich přítomnost už není žádoucí. Smazat samotné `foo` je celkem přímočaré:
+
+/--code javascript
+var nextData = data.removeIn(['foos', id]);
+\--code
+
+Funkce `removeIn` vrací novou koleci bez prvku se zadanou cestou. Teď ovšem potřebujeme najít všechny `bar`y, které mají vazbu na námi mazané `foo`. Pro definici dataflow používám "transducery":[https://github.com/cognitect-labs/transducers-js]:
+
+/--code javascript
+var xform = comp(
+    filter(x => x.get('foo') == id),
+    map(x => x.get('id')));
+\--code
+
+Celkem jednoduchý, přímočarý kód. Nic extra. Ale co teď s nima? Potřebujeme z immutable kolekce odebrat N prvků. Mohli bychom to vzít  povědomou imperativní cestou:
+
+/--code javascript
+var nextData = data.removeIn(['foos', id]);
+into([], xform, data.get('bars').values()).forEach(x => {
+    nextData = nextData.removeIn(['bars', x]);
+});
+\--code
+
+Ale opravdu používáme immutabilní datové struktury, abychom vzápětí dělali takový prasárničky? Já tedy ne. Vyjdeme ze znalosti, že `removeIn` vrací novou kolekci. Tudíž by se nám hodila nějaká agregace. To není nic jinýho než využití transduce:
+
+/--code javascript
+var nextData = data.withMutations(d =>
+    transduce(
+        xform,
+        (acc, x) => acc.removeIn(['bars', x]),
+        d.removeIn(['foos', id]),
+        data.get('bars').values()));
+\--code
+
+Funkce `withMutations` nám umožňuje efektivně (díky "transient kolekcím":[http://clojure.org/transients]) a bezpečně provést změny pro dosažení výsledného stavu. Nedochází ke změně původní kolekce, ani nám měněný stav nikam neutíká mimo scope.
+
+Funkce `transduce` vezme již vytvořený transducer pro nalezení `id` prvků k odebrání. Pak definujeme krok redukce, tj. vezmeme kolekci z předchozího kroku a odebereme z ní jeden prvek, jehož `id` zrovna máme. Následuje počáteční hodnota redukce, tou tedy je kolekce po odebrání `foo`. A nakonec data, nad kterými to celé probíhá a to jsou jednotlivé `bar`y, kterými krmíme transducer `xform`, z kterého lezou `id`čka pro step function. A tím se kruh uzavřel.
+
+Tak a teď se jděte projít.
+    

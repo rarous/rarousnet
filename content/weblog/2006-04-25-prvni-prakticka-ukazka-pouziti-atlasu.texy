@@ -1,0 +1,117 @@
+---
+{:id 138,
+ :title "První praktická ukázka použití Atlasu",
+ :description
+ "Další díl seriálu o Atlas frameworku, tentokrát praktická ukázka. (Rozšířeno o Progress)",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-25T21:46:00"}
+---
+
+Když už jsem v "minulém spotu":[/clanek/136-texy-rpc-wrapper-pro-dotnet.aspx] napsal takovou pěknou webovou službu, proč ji nevyužít k praktické ukázce využití Atlasu :) Následůjící kód převádí zadaný text v Texy syntaxu na XHTML a zobrazí ho do stránky s polečně s výpisem získaného kódu.
+
+/---code xml
+<%@ Page Language="C#" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Texy Converter v Atlasu</title>
+    <style type="text/css">
+        .bordered {border:3px double #CCC;}
+        .pre {font-family:monospace;}
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <atlas:ScriptManager ID="ScriptManager1" runat="server" />
+
+        <div>
+            <fieldset>
+                <legend>Převést Texy! do XHTML</legend>
+                <label for="texyInput">Texy kód</label>
+                <br />
+
+                <textarea id="texyInput" cols="80" rows="12">
+                ukázkový kód v "Texy!":[http://www.texy.info]
+                </textarea>
+                <br />
+                <input type="button" id="convertButton" value="Převeď" />
+            </fieldset>
+
+            <!-- Zprava behem nacitani dat -->
+            <div id="progress">Načítám data...</div>
+
+            <!-- Placeholder pro vystup -->
+            <div id="output">
+                <h2>Formátovaný text</h2>
+                <div id="xhtmlOutput" class="bordered"></div>
+                <h2>XHTML kód</h2>
+                <div id="textOutput" class="bordered pre"></div>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/xml-script">
+        <page xmlns:script="http://schemas.microsoft.com/xml-script/2005">
+            <components>
+                <control id="output" visible="false" />
+                <control id="progress" visible="false" />
+
+                <label id="xhtmlOutput">
+                  <bindings>
+                    <binding id="resultsBinding1" dataContext="texyService"
+                             dataPath="result" property="text" automatic="false" />
+                  </bindings>
+                </label>
+
+                <label id="textOutput" htmlEncode="true">
+                  <bindings>
+                    <binding id="resultsBinding2" dataContext="texyService"
+                             dataPath="result" property="text" automatic="false" />
+                  </bindings>
+                </label>
+
+                <textBox id="texyInput" />
+
+                <button id="convertButton">
+                  <click>
+                    <invokeMethod target="texyService" method="invoke" />
+                    <setProperty target="progress" property="visible" value="true" />
+                  </click>
+                </button>
+
+                <serviceMethod id="texyService" methodName="ConvertToXhtml"
+                               url="/ws/TexyService.asmx">
+                  <bindings>
+                    <binding property="parameters" propertyKey="text"
+                             dataContext="texyInput" dataPath="text" />
+                  </bindings>
+                  <completed>
+                    <invokeMethod target="resultsBinding1" method="evaluateIn" />
+                    <invokeMethod target="resultsBinding2" method="evaluateIn" />
+                    <setProperty target="output" property="visible" value="true" />
+                    <setProperty target="progress" property="visible" value="false" />
+                  </completed>
+                </serviceMethod>
+            </components>
+        </page>
+    </script>
+</body>
+</html>
+\---
+
+Celá ukázka se obešla bez napsání jediného řádku JS kódu - byla použita deklarativní metoda :) Na ukázce neni moc zvláštností. Jde o standardní ASP.NET stránku s přidaným `ScriptManagerem`, formulářem pro zadávání textu a placeholdery pro vypsání výsledku. Následuje **XML-Script** a tomu se podíváme na zoubek.
+
+Prvním krokem je přidání komponent - navázání HTML prvků s objektovým modelem Atlasu. Přidal jsem `output` a zneviditelnil ho, aby se neukazovaly prázdné divy a nadpisy před příchodem dat. Přidal jsem další dva divy jako `label`y, které načítají data z webové služby, a ten druhý encoduje HTML na entity.
+
+Přidání `textBox`u pro vstup je samozřejmostí :) Odesílacímu tlačítku přiřadíme ovladač události `click` a nastavíme, aby odeslal data webové službě a zobrazil box s výsledkem. Poslední komponentou je samotná služba. Ta má pouze jeden vstupní parametr `text`, který je svázaný s hodnotou vstupního políčka.
+
+A pokud proběhla komunikace se službou v pořádku a máme výsledek, svážeme ho s výstupními placeholdery. A to je pro dnešek vše, přátelé. Na případné dotazy rád odpovím v komentářích.
+
+== Doplnění
+
+Díky věcné "připomínce":[/clanek/138-prvni-prakticka-ukazka-pouziti-atlasu.aspx#km144] Petra v komentářích jsem doplnil zobrazení zprávy o průběhu akce při probíhající komunikaci se službou. Díky ;)
+
+"Ukázka aplikace":[http://rarous.net/ukazky/texy-atlas.aspx]

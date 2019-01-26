@@ -1,0 +1,46 @@
+---
+{:id 256,
+ :title "Mikroformáty - Důvod proč používat XHTML",
+ :description
+ "Minulý týden jsme si prodiskutovali pár mýtů na téma HTML vs. XHTML. Dneska si povíme o jedné věci, která nám možná přidá na hodnotě XHTML a tou jsou mikroformáty.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "hcard" "microformats" "operator" "xhtml" "firefox"
+   "xfn" "ie8"},
+ :published "2008-02-12T11:04:57.267"}
+---
+
+Minulý týden jsme si prodiskutovali "pár mýtů na téma HTML vs. XHTML":[clanek(254)]. Zjistili jsme, že v HTML 4 jsou hodnoty atributů `id` a `class` citlivé na velikost písmen (přinejmenším v CSS a JavaScriptu). Shodli jsme se na tom, že DTD je přežitek, a že za spoustou mýtů stojí prasata, která jsou podvědomě spojována s HTML.
+
+Dneska si povíme o jedné věci, která nám možná přidá na hodnotě XHTML a tou jsou mikroformáty:[microformats].
+
+Mikroformáty
+============
+
+Mikroformáty jsou sémanticky obohacené části XHTML kódu. Ačkoli se pro jejich definovaná využívá atributů (`class`, `rel`, `rev`…), které jsou samozřejmě definovány v HTML, k získávání jejich cenných dat se obecně využívá XML parserů. Proto je lepší mít stránky v dobře sestaveném XHTML, než v plně validním HTML – samozřejmě pokud chcete mikroformáty využívat. Ale proč by ne.
+
+Uživáme v praxi
+===============
+
+Když se podíváte do pravého sloupce (možná je až dole), na první pohled tam nenajdete nic zajímavého, vlastně kecám. Hned nahoře jsou moje kontaktní údaje, k jejich definici jsem použil mikroformátu [hCard], který slouží k popisu vizitkových dat a je kompatibilní se standardním formátem *vCard*.
+
+O kousek niž je další box s titulem **Kolegové a kamarádi**, není to nic jiného než blogroll s odkazy na mé kolegy, kamarády a další dobré lidi :).  Při jeho tvorbě jsem použil špetku mikroformátu zvaného [XFN]. Tento slouží k definici meziblogových vztahů.
+
+Mezi těmito boxy je jiný, tako co žádný mikroformát nepoužívá, ale informuje o tom, že stále hledám nějakého šikovného kolegu, co umí dobře C# a chtěl by se mnou spolupracovat na "Atlasu firem":[katalog] a s ním spojených interních systémech. Práce je to opravdu zajímavá, rozšíříš si obzory a navíc možnost pracovat s tak milými a sympatickými lidmi…
+
+S čím na ně?
+============
+
+Jo k praktickému využití mikroformátů ještě schází podpora v prohlížečích. Do odnoží firefoxu se dá doinstalovat nástroj [operator], který je určitě dobrým pomocníkem při vývoji a je propojen na některé služby, které s MF umí pracovat. Nativní podpora pro mikroformáty je slibována ve Firefoxu 3 a Internet Exploreru 8 (znamená to, že bude konečně umět XHTML?). Dále se po internetu válej nějaký skripty, které slouží k transformaci na jiné formáty, CSSka pro zvýrazňování mikroformátů ve stránce a tak.
+
+Tagy: [tag-microformats], [tag-xhtml]
+
+[tag-microformats]: http://technorati.com/tag/microformats Microformats .{rel=tag}
+[tag-xhtml]: http://technorati.com/tag/xhtml XHTML .{rel=tag}
+
+[clanek(254)]: /weblog/254-david-se-vrhl-na-goliase-xhtml.aspx David se vrhl na Goliáše XHTML.
+[microformats]: http://microformats.org/ Microformats
+[hCard]: http://microformats.org/wiki/hcard hCard
+[XFN]: http://gmpg.org/xfn XFN
+[operator]: https://addons.mozilla.org/en-US/firefox/addon/4106 Operator
+[katalog]: http://firmy.atlas.cz/

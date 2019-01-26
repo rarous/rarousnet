@@ -1,0 +1,78 @@
+---
+{:id 219,
+ :title "Začínáme s jednokolejkou",
+ :description
+ "Nultý díl připravovaného seriálu o velice zajímavém frameworku pro tvvorbu webu. Chcete jednoduchost Ruby on Rails, výkon ASP.NET, volnost a modularitu? Tak nasedejte...",
+ :author "Aleš Roubíček",
+ :tags
+ #{"castle" "brail" "activerecord" "monorail" "mvc" "asp.net 2.0"},
+ :published "2007-08-14T16:10:57.470"}
+---
+
+Jedním z fenoménů poslední doby ve webovém vývoji jsou bezesporu Ruby on Rails (RoR). Framework určený k --RAD((Rapid Application Developement))-- ++Agile vývoji++ používající objektový přístup a postavený na návrhových vzorech jako je MVC((Model View Controler)) nebo Active Record. Framework je určený pro jazyk či platformu Ruby, to je jeho výhoda i omezení zároveň. Málokdo se má chuť nebo čas se po nocích učit novým jazykům a stávat se vícenásobným robotem.
+
+RoR není rozhodně jediným projektem s podobnou filosofií. My dotneťáci máme krom WebForms, které se snaží přihnout webový vývoj desktopovým zvyklostem (událostmi řízený, stavový), podobný framework, který je navíc opensource. Tento framework se jmenuje **MonoRail** a oněm bude následující článek a možná i mini seriálek :)
+
+MonoRail
+========
+
+Z názvu by se mohlo zdát, že má projekt něco společného s Monem:[mono], opensource implementací dotnetu, ale není tomu tak, krom toho, že MonoRail:[monorail] běží i na Monu 1.1. MonoRail je součást opensource projeku Castle, který si klade za cíl RAD v Enterprise prostředí. Jeho součástí jsou frameworky ActiveRecord (ORM Persistence layer postavený nad NHibernate), Windsor container (Inversion of Control), DynamicProxy (vytváří Proxy třídy z Interfejsů) a právě MonoRail. Všechny frameworky umějí pracovat samostatně, ale jejich největší síla je v jejich spolupráci.
+
+Co je tedy MonoRail? Je to MVC framework inspirovaný ActionPackem:[actionpack] běžící na platformně dotnet. Je to náhrada "ASP.NET WebForms":[http://asp.net/], ale ty mohou sloužit jako ViewEngine:[#view], nebo běžet v jedné aplikaci s MonoRails vedle sebe. Dalšími ViewEnginy jsou NVelocity (port Velocity pod dotnet) nebo Brail (Views jsou psaná v jazyce Boo, což je skriptovací Python like jazyk pro dotnet). Preferovanější je asi NVelocity, ale vývoj Brailu je živější, a WebForms se pro změnu skoro nepoužívají (kvůli PageLife cyklu, který v MonoRailu neexistuje). MonoRail se vám může oproti ASP.NET zdát oldskůlovější, ale opak je pravdou. MonoRail přináší zjednodušení, vrací se k webovému vývoji (bezestavový, Request/Response), staví na osvědčených metodách a zrychluje celý vývoj. Konec řečí, pojďme na věc :)
+
+Model .[#model]
+=====
+
+Model obecně slouží jako zdroj/zpracovávač dat aplikace. Podle toho, jak je vaše aplikace složitá, je bohatý váš model :). Zpravidla se jedná o Domain Model, Business logiku, nebo cokoli jiného, co má na starosti ověřování obchodních pravidel, persistenci a získávání dat. Pro jednoduchost stačí vygenerovat Entity podle DB schématu pomocí ActiveRecord Generatoru nebo naopak vytvořit model a z něj vygenerovat schema.
+
+/--code csharp
+[ActiveRecord]
+public class User : ActiveRecordBase {
+  [PrimaryKey] public int Id { get; set; }
+  [Property] public string Name { get; set; }
+  ...
+}
+\--code
+
+Pro zjednodušení napsáno v C# 3.0 :) ActiveRecord plně využívá atributů k popisu schematu. Dědění třídy `ActiveRecordBase` není nutností, pro začátek stačí vědět, že nám přidává k entitě spoustu metod pro databázový přístup. Vhodnější pravděpodobně bude využít interface `IRepository<T>` z projektu [rhino], který využívá Repository pattern.
+
+View .[#view]
+====
+
+View jsou obvykle soubory obsahující kusy HTML kódu a prezentační logiky. K zapouzdření prezentační logiky lze využít tzv. View komponent (obdoba UserControls, ale většinou mnohem obecnější). Existují tu i layouty, což je obdoba MasterPages.
+
+/--code xml
+<html>
+  <head>
+    <title>Layout</title>
+  </head>
+  <body>
+    ${ChildOutput}
+    <p class="footer">Společná patička.</p>
+  </body>
+</html>
+\--code
+
+Takto vypadá **velice zjednodušený** layout. `${ChildOutput}` bude nahrazen obsahem jednotlivých view.
+
+Controler .[#controller]
+=========
+
+Kontroler spojuje svět View se světem Modelu. Řídí činnost view mění stavy Modelu. Je to *to*, co dělá aplikaci aplikací.
+
+/--code csharp
+[Scaffolding(typeof(User))]
+public class UsersController : Controller {
+}
+\--code
+
+Teď když zadáme něco jako `http://localhost:12345/users/new.rails` tak dostaneme formulář pro zadávání nových uživatelů. (V případě, že doimplementujeme třídu `User`, aby měla všechny potřebné vlastnosti).
+
+Pro dnešek bych tedy ukončil první představovací článek a v příštích spotech bychom se mohli podívat na tuto zajímavou technologii trošku blíž...
+
+[actionpack]: http://wiki.rubyonrails.org/rails/pages/ActionPack ActionPack
+[castle-dl]: http://sourceforge.net/project/downloading.php?groupname=castleproject&filename=Castle.msi&use_mirror=kent
+[mono]: http://www.mono-project.com/ Mono
+[monorail]: http://www.castleproject.org/monorail/index.html MonoRail
+[rhino]: http://rhino-tools.svn.sourceforge.net/svnroot/rhino-tools/trunk/rhino-commons/ Rhino.Commons
+[dgx-ruby]: http://www.dgx.cz/trine/item/ruby-on-rails-dekuji-nechci Ruby on Rails? Děkuji, nechci.

@@ -1,0 +1,12 @@
+---
+{:id 1,
+ :title "Vítejte",
+ :description "Připoutejte se, začínáme.",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon"},
+ :published "2004-02-14T10:00:00"}
+---
+
+Tak po týdnu jsem konečně dokončil práce na rozšiřování mého redakčního systému Gryphoon pro potřeby blogu. Oproti minulé verzi přibyla možnost komentovat příspěvky, může přispívat více autorů, vytvořil jsem archiv článků a dodělal další drobnosti. Ještě mi zbývá udělat pořádný editor příspěvků a rozšířit možnosti editoru komentářů.
+
+Mám přislíbenu spoluúčast mých kamarádů na obsahu blogu, takže by se zde měly objevit pestřejší témata, než jen ta má. Tak přeji nám hodně štěstí a ať se staneme pro pár lidí oblíbenými.

@@ -1,0 +1,15 @@
+---
+{:id 8,
+ :title "Last week",
+ :description "O mojí poslední práci.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2004-02-28T20:00:00"}
+---
+
+Za poslední týden jsem předělal úvodní stránku "druzcovských stránek":[druzcov], vypozoroval jsem zmenšení na 25% z původní velikosti tabulkového layoutu. Tak teď už snad mám všechno ve stylech.
+
+Co mě ale pořád straší je [osecna]. Tam mě ještě pořád čeká dost práce. Ale snad to bude stát za to. Můžu tam dobře zužitkovat zkušenosti, které jsem získal při vývoji tohoto webu, který už mám z 95% hotový.
+
+[druzcov]: http://druzcov.wz.cz/
+[osecna]: http://www.osecna.info/ Osečná

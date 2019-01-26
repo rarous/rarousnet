@@ -1,0 +1,141 @@
+---
+{:id 459,
+ :title "Transducers",
+ :description "Lehký uvod do tranducerů.",
+ :author "Aleš Roubíček",
+ :tags #{"clojure" "moje práce" "transducers"},
+ :published "2014-10-16T7:30:00.663"}
+---
+
+
+Transducery. O co jde? To je zas nějaká super cool novinka, co za pár
+měsíců přejde v zapomnění? Proč bych se o to měl jako zajímat? Pomůžeme
+mi to nějak?
+
+Otázky. Spousta otázek.
+
+Buďte v klidu. O nic velkýho nejde. V podstatě to nás uživatele může
+nechat chladnými. Zase další `map`, `filter`, `reduce` bla bla bla.
+
+A nebo taky ne.
+
+Transducery na první pohled nepřináší nic nového. Máme tu další řadu
+standardních dataflow kombinátorů, které má každý moderní jazyk a
+Clojure jakbysmet. Od samého začátku. Samozřejmě. Na druhý pohled, to
+je vlastně to samé jako před dvěma lety představené reducery. Skoro.
+
+Zpátky do minulosti
+===============
+
+Začněme pěkně od začátku. Clojure obsahuje sadu standardních kombinátorů
+pro definici dataflow na kolekcemi dat. Jak asi takové kombinátory
+fungují, jsem si už ukázali v článku "Funkcionální přístup ke
+kolekcím":[http://www.rarous.net/weblog/440-funkcionalni-pristup-ke-kolekcim.aspx].
+Implementace v Clojure se moc neliší. Co je důležíté vědět je, že
+implementace vědí s jakou datovou strukturou mají co dočinění. Nebo to
+aspoň tuší a podle toho se chovají. Dále je dobré vědět, že když
+vytváříme dataflow pipeline, máme dvětři možnosti
+jak toho dosáhnout:
+
+1. standardní kompozice
+  /--code clojure
+  (reduce + (filter odd? (map #(+ 2 %) (range 0 10))))
+  \--
+
+2. funkcionální kompozice
+  /--code clojure
+  (def xform
+    (comp
+      (partial reduce +)
+      (partial filter odd?)
+      (partial map #(+ 2 %))))
+  (xform (range 0 10))
+  \--
+
+3. threading macro
+  /--code clojure
+  (->> (range 0 10)
+       (map #(+ 2 %))
+       (filter odd?)
+       (reduce +))
+  \--
+
+První příklad musíme číst zevnitř, abychom pochopili, co se děje. Tj.
+vytvoříme posloupnost 0..9, ke každéme prvku přičteme 2 a vybereme jen
+ta lichá, která nakonec sečteme. V druhém případě složíme funkci z
+částečných aplikací kombinátorů a pak ji zavoláme nad požadovanou
+kolekcí. Kombinátory skládáme opět odzadu. Třetí zápis otáčí posloupnost
+instrukcí tak, jak je náš mozek vnímá, že by opravdu měly jít za sebou.
+
+V roce 2012 "Rich představil reducery":[https://vimeo.com/45561411].
+Cílem reducerů je vyřešit některé problémy, které klasicke kombinátory
+mají. Tak zaprvé je tu problém s alokací dočasných kolekcí. Každý
+kombinátor si zpravidla vytváří svou vlastní nad kterou pracuje
+následující v řadě. Reducery ve vnitř nevytváří své kolekce, ale
+přispívají do redukčního procesu. Vytváří tak recepty, jak se mají
+kolekce zredukovat.
+
+/--code clojure
+(require '[clojure.core.reducers :as r])
+(def xform
+  (comp
+    (r/filter odd?)
+    (r/map #(+ 2 %))))
+(reduce + (xform (range 0 10)))
+\--
+
+Reducery si musíme vyžádat z jejich vlastního prostoru názvů. Můžeme je
+komponovat bez nutnosti částečné aplikace. Kouzelné macro vytváří unární
+variantu funkce bez kolekce a částečnou aplikaci doplní za nás. Ale kód
+se o něco lépe čte a je potenciálně paralelizovatelný. Každopádně tok
+funkcí je pořád od zadu.
+
+core.async
+========
+
+V roce 2013 "Rich představil
+cose.async":[http://www.infoq.com/presentations/core-async-clojure]
+implemantaci CSP((comminucating sequential processes)). Záhy začali s
+implementací dataflow kombinátorů nad asynchronními kanály. Až najednou
+zase všechny zmizely...
+
+Tím se dostáváme ke vzniku transducerů. V jeden okamžik už toho měl Rich
+dost a řekl: “To jako budeme pro každý typ datových kolekcí vytvářet
+nové a nové kombinátory? Nešlo by to jinak?” *Hammock time!* A "odpověď
+jsou Transducery":[https://www.youtube.com/watch?v=6mTbuzafcII]!
+
+Transducers
+=========
+
+Transducery se snaží oprostit podstatu dataflow kombinátorů od
+implementačních detailů kolekce. Vytváříme tak obecné recepty, co máme s
+daty dělat, ale už nám chybí popis jak.
+
+/--code clojure
+(def xform
+  (comp
+    (map #(+ 2 %))
+    (filter odd?)))
+(transduce xform + (range 0 10))
+\--
+
+Všimněte si dvou lehkých rozdílů oproti příkladu s reducery. Ten první
+je, že transducery funkcionálně komponujeme v pořadí, jaké předpokládá
+mozek. Ten druhý je, že transducery nevoláme přímo, ale předáváme je
+funkci vyššího řádu. Oproti klasickým kombinátorům nejsou potřeba žádné
+mezivýsledky v podobě kolekce, protože jde o aplikaci jediné funkce,
+která kompozicí vznikne.
+
+Ten samý recept teď můžu vzít a použít ho na data procházející kanálem:
+
+/--code clojure
+(chan 1 xform)
+\--
+
+Fajne je, že recept nemusím nijak parametrizovat. Je to hotová konkrétní
+věc a to, jak budou vykonány, záleží na funkci, která je dostane.
+
+Záměrně jsem se nepouštěl do rozborů, jak jsou jednotlivé kombinátory
+implementovány. To máte jak s monádama - je lepší věděť, jak je použít,
+než jak jsou implementovaný.
+    

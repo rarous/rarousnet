@@ -1,0 +1,107 @@
+---
+{:id 328,
+ :title "K WebExpu ještě jednou a pořádně",
+ :description
+ "Už je to týden, co nám skončila přednáška o ASP.NET 3.5 / futures na konferenci WebExpo 2008. Rád bych se k této konferenci ještě ohlédl.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "webexpo" "activerecord" "aspnet" "ajax" "mvc" "twareg"
+   "nette" "spring" "nhibernate"},
+ :published "2008-10-25T16:19:27.570"}
+---
+
+Už je to týden, co nám skončila "přednáška o ASP.NET 3.5 / futures":[prednaska] na konferenci "WebExpo 2008":[webexpo]. Rád bych se k této konferenci ještě ohlédl.
+
+Moje prezentace
+===============
+
+Když mě začátkem léta oslovil [vasek], jestli nechci přednášet o **ASP.NET MVC** na WebExpu, měl jsem zprvu strach. Nikdy jsem veřejně nepřednášel a z malých slideshow, které jsem dělal pro kolegy nebo ve škole, jsem si byl jistý, že mé prezentační schopnosti nejsou skoro žádné. Ale pak jsem si řekl, že zkusit bych to mohl, přinejmenším je to dobrá zkušenost a raději jsem požádal Borka:[borek], aby se ke mně přidal. Proč? Protože už jsem ho viděl přednášet na WebCampu a bylo to dobré.
+
+Takže jsme se domluvili, že přednáška bude mít trochu širší záběr než jen ASP.NET MVC, které v té době bylo pouze v ukázkových verzích. V průběhu září jsme vymysleli "nějakou osnovu":[clanek(295)], Borek založil SVN repository a začali jsme připravovat prezentaci.
+
+Nejprve jsem udělal ukázku na využití [dataservices] ve spolupráci s [ajax] (tu najdete přibalenou). Krom toho, že ukazuje základy konzumace RESTových Data Services, tak je i hezkou ukázkou toho, jak takové služby stavět nejen nad "Entity Frameworkem":[entityframework], ale i nad [activerecord]/[nhibernate]. No, ukázka není úplně dokončená, protože jsem se jí přestal věnovat a už jsem nenašel chuť jí dokončit, ale základní koncepce je snad pochopitelná – snažil jsem se vše okomentovat.
+
+Osobně nemám rád psaní zbytečného kódu. Nejsem zastáncem zbytečných ukázkových aplikací, testovacích utilitek a tak. Takže už jsem žádné další ukázkové aplikace nepsal a rozhodl se další možnosti ASP.NET ukázat na již hotových aplikacích, se kterými mám něco společného.
+
+Základní koncept komponent a Master pages jsem se tedy rozhodl ukázat – ať nechodíme daleko – na šabloně "tohoto blogu":[weblog]. O něco pokročilejší komponentový framework jsem pak ukazoval na šabloně [obchody]. Tahle jedna šablona je v podstatě celý web. Bez knihovny je sice mrtvá a ještě chyběj pravidla URL rewritingu, ale jinak je tam vše. Tyhle dvě ukázky najdete taktéž přibalené.
+
+Poslední mou ukázkou byla aplikace, kterou jsem psal kvůli potřebě naučit se [mvc] a [dataservices] prakticky ještě před konferencí a zároveň abychom se v práci zbavili nutnosti zapisovat si příchody někam na papír (formulář) a pak na konci měsíce počítat, kolik kdo dostane stravenek :). Tak vznikla *docházka* a taky *rozcestník projektů* a tím pádem základ **Twareg.Intranet**. Shodou okolností to možná bude i naše první komerčně prodávaná aplikace. Hezký osud bokovky…
+
+Takže na tomto webu jsem se pokusil ukázat, jak se dělá routing, jak je ten systém modulární. Jak deklarativně pomocí atributů nastavit autorizaci k akcím a jak akce snadno přejmenovat. Na víc už moc nezbýval čas. Tahle ukázka přibalená není. Namísto ní najdete Borkovy REST služby postavené nad ASP.NET MVC, které jsme bohužel nestihli ukázat.
+
+Co se týče mého vystoupení, tak moc spokojený nejsem, vůbec se to nedostalo ani na spodní hranici mých představ o dobré přednášce – naštěstí tam byl Borek, aby to zachránil.
+
+{{flash: http://www.authorstream.com/player.swf?p=99567_633604576063437500, 520, 434}}
+
+[AuthorStream] ty slajdy trochu rozsypal, ale lepší než nic. Jinak pokud si chcete slajdy nebo ukázky stáhnout, pokračujte na [clanek(326)]. Pokud vás toto téma zajímá určitě najdete spoustu zajímavých "futures bits na Codeplexu":[codeplex-aspnet]. Některá témata z přednášky bych rád rozebral podrobněji tady na blogu, ale až někdy jindy.
+
+Shlédnuté prezentace
+====================
+
+Na WebExpu jsem naštěstí nebyl jen jako pokus o přednášejícího, ale i jako divák. Oproti původnímu plánu jsem nakonec navštívil trochu jiné přednášky. Jako opravdu výbornou můžu označit "přednášku Juraje Michálka o Flexu":[webexpo-flex]. Hodně dobrá byla nejspíš i "Karmiho přednáška o Ruby on Rails":[webexpo-rails], ale zastihl jsem jen asi posledních 25 min. "Přednáška o Nette":[webexpo-nette] z úst nejzasvěcenějšího:[davidek] byla zábavná, nicméně s plánovaným "školením PHP frameworky":[skoleni] na paměti značně zredukovaná.
+
+Mezi pro mě obsahově hodnotné a pořád dobře odprezentované bych ještě rád zařadil "Dagiho přednášku o Springu":[webexpo-spring], "přednášku Vlastimila Pečínky o architektuře v Seznamu":[webexpo-seznam] a "přednášku o SproutCore od Antonína Hildebranda":[webexpo-sprout]. Sice jsem nedostal odpověď na otázku, jestli to funguje i bez JavaScriptu, ale i tak přednášku hodnotím jako přínosnou a můžu rubistům tiše závidět ;).
+
+Sociální vlivy
+==============
+
+Na tuhle akci jsem nejvíc těšil hlavně kvůli lidem. Já moc na tydlety akce nechodím, ale jednou za čas se potkat s lidmi, které často čtu, není špatné. Rád jsem osobně potkal i některé nové tváře, které jsem dosud nečetl a třeba to napravím…
+
+Na závěr
+========
+
+Na závěr patří především *velíké díky* Vaškovi:[vasek], za velikou zkušenost, za zorganizování téhle veliké party se spostou zajímavých osobností a se širokým záběrem témat. Je dobré když se člověk může podívat na to jak to dělaj jinde a něčemu se třaba přiučit nebo prodiskutovat své pohledy na věc. Ono táhnout konferenci až do první hodiny ranní není žádná sranda. Respekt!
+
+Jo a málem bych zapomněl, na LinkedIn jsem vytvořil k této konferenci skupinu, takže pokud jste se ještě do ní nepřidali, neváhejte a "udělejte to":[linkedin-webexpo] ještě teď. A pokud vás zajímají slajdy ostatních nebo chcte nasdílet své, využijte "eventu na slide share":[slideshare].
+
+/--div .[hslice #related]
+Související .[entry-title]
+============
+.[entry-content]
+* [clanek(295)]
+* [clanek(326)]
+* [clanek(327)]
+* [misantrop-webexpo]
+* [sindelka-webexpo]
+* [hulan-webexpo]
+* [korbel-webexpo]
+* [hassman-webexpo]
+* [nikdo-webexpo1]
+* [nikdo-webexpo2]
+\--div
+
+[clanek(327)]: /weblog/327-webexpo-za-nami.aspx WebExpo za námi
+[clanek(326)]: /weblog/326-slajdy-a-ukazky-z-webexpa.aspx Slajdy a ukázky z WebExpa
+[clanek(295)]: /weblog/295-povidani-o-asp-net-na-webexpu.aspx Povídání o ASP.NET na WebExpu
+
+[webexpo]: http://www.webexpo.cz/ WebExpo
+[webexpo-flex]: http://webexpo.cz/prednaska/adobe-flex-adobe-air/
+[webexpo-rails]: http://webexpo.cz/prednaska/efektivni-vyvoj-webovych-aplikaci-v-ruby-on-rails/
+[webexpo-nette]: http://webexpo.cz/prednaska/vyvoj-webovych-aplikaci-v-php-a-nette-framework/
+[webexpo-spring]: http://webexpo.cz/prednaska/spring-framework/
+[webexpo-seznam]: http://webexpo.cz/prednaska/architektura-aplikaci-v-seznamu/
+[webexpo-sprout]: http://webexpo.cz/prednaska/sproutcore/
+[prednaska]: http://webexpo.cz/prednaska/asp-net/
+[skoleni]: http://www.skoleniphp.cz/
+[codeplex-aspnet]: http://www.codeplex.com/aspnet
+[borek]: http://www.borber.com/ Borek Bernard .{rel: friend met}
+[davidek]: http://davidgrudl.com/ David Grudl .{rel: friend met}
+[vasek]: http://www.dvanula.cz/ Vašek Stoupa .{rel: friend met}
+[obchody]: http://obchody.atlas.cz/ obchody.atlas.cz
+[weblog]: /weblog/
+[mvc]: http://asp.net/mvc/ ASP.NET MVC
+[ajax]: http://asp.net/ajax/ ASP.NET AJAX
+[dataservices]: http://msdn.microsoft.com/en-us/data/bb931106.aspx ADO.NET Data Services
+[nhibernate]: http://www.hibernate.org/343.html NHibernate
+[activerecord]: http://www.castleproject.org/activerecord/index.html ActiveRecord
+[entityframework]: http://msdn.microsoft.com/en-us/library/bb399572.aspx Entity Framework
+[AuthorStream]: http://www.authorstream.com/ Author Stream
+[misantrop-webexpo]: http://www.misantrop.info/732022-webexpo-2008.php Martin Malý: WebExpo 2008
+[sindelka-webexpo]: http://www.sindelka.cz/cz/ohlednuti-webexpo/ Pavel Šindelka: Ohlédnutí za konferencí WebExpo
+[hulan-webexpo]: http://myego.cz/item/webexpo-ohlednuti-za-konferenci Radek Hulán: WebExpo - ohlédnutí za konferencí
+[korbel-webexpo]: http://jankorbel.cz/2008/10/20/par-poznamek-k-webexpu/ Jan Korbel: Pár poznámek k WebExpu
+[hassman-webexpo]: http://zdrojak.root.cz/clanky/jake-bylo-webexpo-2008/ Martin Hassman: Jaké bylo WebExpo 2008
+[linkedin-webexpo]: http://www.linkedin.com/groups?gid=1077997&trk=hb_side_g
+[slideshare]: http://www.slideshare.net/event/webexpo-2008-praha
+[nikdo-webexpo1]: http://nikdo.cz/blog/webexpo-2008-den-prvni Radek Matěj: WebExpo 2008 - den první
+[nikdo-webexpo2]: http://nikdo.cz/blog/webexpo-2008-den-druhy Radek Matěj: WebExpo 2008 - den druhý

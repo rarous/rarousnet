@@ -1,0 +1,50 @@
+---
+{:id 129,
+ :title "Začínáme s Atlasem",
+ :description "První díl seriálu o Atlas Frameworku.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-07T15:36:40.543"}
+---
+
+Atlas:[Atlas] je kódové označení pro --budoucí verzi ASP.NET, ale v současnosti je to-- client side framework, který je nadstavbou pro ASP.NET 2.0. Atlas je produktem Microsoftu a je ve fázi vývoje, v současné době je však dostatečně stabilní a dopředně kompatibilní na to, abychom se s ním mohli seznámit a vytvářet aplikace. Současná verze oplívá „go-live“ licencí, takže aplikace v něm vytvořené mohou být bez omezení nasazeny na produkční servery.
+
+Atlas se koncepčně dělí na dvě části – klientskou a serverovou. *Klientská část* může bez problémů fungovat bez serverové, naopak to ale neplatí. Základem Atlasu je tedy JavaScriptový framework, který si klade za cíl ulehčit vývoj tzv. AJAXových aplikací. Podobnou iniciativou je např. Prototype:[Prototype], který vznikl u tvůrců Ruby on Rails.
+
+Framework samotný je rozdělen do několika vrstev:
+[*/data/obrazky/atlas_klient.png >]
+Vrstva kompatibility:
+ - Má na starosti vyrovnat rozdíly v implementaci JavaScriptu v různých prohlížečích. V současnosti podporuje InternetExplorer, Mozillu/Firefox a Safari. Opera je zatím mimo hru, ale snad se to s příchodem deváté verze změní (ta už by měla podporovat objekt XmlHTTPRequest).
+
+Vrstva OOP:
+ - Asi nejvíce kontroverzní vrstva, která se snaží přinést do JavaScriptu základy OOP((Objektově orientované programování)). Přináší možnosti dědičnosti, namespacy, abstraktní třídy a rozhranní :)
+
+Vrstva komponent:
+ - Tato vrstva přináší klientské komponenty pro tvorbu uživatelského rozhranní. Namátkou ListView, Timer, Button, Hyperlink aj. Tyto komponenty se používají pouze na straně skriptů a jsou virtualizací struktur popsaných pomocí XHTML. Ne všechny komponenty jsou vizuální a jejich počet není konečný, můžete si snadno vytvořit komponenty vlastní.
+
+Datová vrstva:
+ - Má za úkol přistupovat k datům zprostředkovaným webovými službami a následně je zpřístupnit ve tvaru, se kterým je JavaScript schopný pracovat. V současné době dokáže Atlas bez problémů konzumovat data z ASP.NET Webservices a WCF((Windows Communication Fundation)) a pomocí bridges i se službami třetích stran. Ale tento výrok není zcela přesný, Atlas prostě zvládne přijímat data ve formátech XML a JSON((JavaScript Object Notation)), což jsou standardní formáty pro AJAXovou komunikaci.
+
+Deklarativní vrstva:
+ - Tato vrstva si klade za cíl usnadnit programování tzv. deklarativní metodou – něco jako XAML nebo XUL u tlustých klientů – a přináší XML-Script. V tomto skriptu se nejsnadněji deklarují komponenty, které jsou součástí stránky, jejich chování  a svázání s daty a XHTML šablonami.
+
+Tak to by měla být klientská část, která je nezávislá na platformě ASP.NET. Doufám, že jsem na nic nezapomněl. Nad tím vším je postavena *serverová část*. Jedná se o sadu komponent – tzv. Extenderů. Extendery jsou typy komponent, které jsou časté ve WinFormových aplikacích, a v podstatě rozšiřují funkčnost jiných komponent. Např. aplikací `AutoCompleteExtender`u na `TextBox` dostaneme *TextBox s našeptávačem*.
+
+Základní komponentou je `ScriptManager`, bez něho jsou všechny komponenty mrtvé. Ve ScriptManageru se připojují JavaScriptové knihovny a komponenty, webové služby jako zdroje dat a definuje se zde šablona pro chybové hlášky. ScriptManager z těchto informací generuje výsledný XML-Script a načítá potřebné skripty z Assembly. (Klientská část Atlasu je pro potřeby ASP.NET zakompilovaná v Assembly a volaná pomocí handleru WebResource.axd.)
+
+Tak a to by pro začátek mohlo stačit. Dnes jsme sfoukli takové uvedení do problematiky, v příštím díle se podíváme na zoubek už praktickým ukázkám a začneme s nejsilnější komponentou - `UpdatePanel`. Ukážeme si, jak se pomocí něho dají snadno převést současné ASP.NET aplikace na AJAXové.
+
+== Zajímavé odkazy
+* "ASP.NET Atlas":[Atlas] - hlavní stránka projektu
+* "Nikhil Kothari":[Nikhilk] - hlavní architekt Atlasu
+* "Scott Guthrie":[ScottGu] - šéf vývoje ASP.NET, ISS a Visual WebDeveloper
+* "Atlas Announcements":[AtlasBlog] - stránka s novinkami o Atlasu
+
+Zajímavých odkazů mám daleko víc, ale ty až v dalším díle ;)
+
+[Atlas]: http://atlas.asp.net/
+[AtlasBlog]: http://weblogs.asp.net/atlas/
+[Prototype]: http://prototype.conio.net/
+[Nikhilk]: http://www.nikhilk.net/Category.ASPNET.aspx
+[ScottGu]: http://weblogs.asp.net/scottgu/
+[WilcoB]: http://www.wilcob.com/Wilco/Atlas.aspx

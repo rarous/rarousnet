@@ -1,0 +1,82 @@
+---
+{:id 268,
+ :title "Vyhledávání komponent v ASP.NET stránce",
+ :description
+ "Asi málo koho překvapí, že v ASP.NET jsou komponenty, ze kterých se skládá výsledná stránka. Někdy však narazíme na potřebu provázat tyto prvky mezi sebou. Jednou z možností je vyhledávání přes ID prvku. Ale je tu menší háček.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "asp.net 2.0" "findcontrol"},
+ :published "2008-05-02T13:13:41.633"}
+---
+
+Asi málo koho překvapí, že v ASP.NET jsou komponenty, ze kterých se skládá výsledná stránka. Někdy však narazíme na potřebu provázat tyto prvky mezi sebou. Jednou z možností je vyhledávání přes ID prvku.
+
+Vývojáři na toto pamatovali a každý potomek třídy `System.Web.UI.Control` má metodu `FindControl(string)`, která rekurzivně projde strom potomků a snaží se najít toho se zadaným ID. To je všechno moc hezký, jenže je tu jeden háček, který to tak trochu celý nabourává.
+
+Rekurzivně se prohledává pouze v rozsahu jmenného kontejneru. Pokud je mezi potomky komponenta implementující rozhranní `System.Web.UI.INamingContainer`, jeho potomci se neprohledávají. Pak přijdeme na problém, kdy chceme na celé stránce najít komponentu s daným ID. Pokud stránka obsahuje WebForm, nebo je to ContentPage, nebo má šablonované prvky, ve kterých je hledaná komponenta zanořená, tak zavolání `Page.FindControl("HledaneID")` vrátí `null`.
+
+Řešení problému
+===============
+
+Kdysi jsem si napsal pomocníka. Který ošetřoval různé podmínky (MasterPage, WebForm a ContentPlaceHoldery). Byl dost konkrétní, ale na většinu případů užití bohatě stačil. Ta funkce nebyla moc hezká. Nedávno jsem narazil právě na popis toho, proč mi to kdysi nefungovalo a musel jsem psát ty výjimky, který jsem snad osvětlil v předchozím odstavci. Nová upravená verze vypadá následovně:
+
+/--code csharp
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+
+public class PageHelper {
+  /// <summary>
+  /// Najde ovládací prvek požadovaneho typu na strance
+  /// včetně ošetření na MasterPage.
+  /// </summary>
+  /// <typeparam name="T">Typ ovládacího prvku.</typeparam>
+  /// <param name="parent">Ve které stránce se má hledat.</param>
+  /// <param name="controlID">ID Controlu ve stránce.</param>
+  /// <returns></returns>
+  public static T FindControl<T>(Page parent, string controlID)
+    where T : Control {
+    return FindControl(parent.Master as Control ?? parent as Control, controlID) as T;
+  }
+
+  private static Control FindControl(Control parent, string controlID) {
+    if (parent == null) {
+      throw new ArgumentNullException("parent");
+    }
+    if (String.IsNullOrEmpty(controlID)) {
+      return null;
+    }
+
+    Control result = parent.FindControl(controlID);
+    if (result == null && parent.Controls.Count > 1) {
+      foreach (Control child in parent.Controls) {
+        if (child is INamingContainer || child is HtmlContainerControl) {
+          result = FindControl(child, controlID);
+        }
+        if (result != null) {
+          break;
+        }
+      }
+    }
+    return result;
+  }
+}
+\--code
+
+Snad se bude hodit.
+
+/--div .[#related hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(213)]
+\--div
+
+Tagy: [tag-aspnet], [tag-csharp], [tag-findcontrol]
+
+[tag-aspnet]: http://technorati.com/tag/aspnet ASP.NET .{rel:tag}
+[tag-csharp]: http://technorati.com/tag/c%23 C# .{rel:tag}
+[tag-csharp]: http://technorati.com/tag/findcontrol FindControl .{rel:tag}
+
+[clanek(213)]: /weblog/213-layout-template.aspx Layout Template

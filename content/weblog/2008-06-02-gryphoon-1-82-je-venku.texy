@@ -1,0 +1,23 @@
+---
+{:id 279,
+ :title "Gryphoon 1.82 je venku",
+ :description
+ "Ondra uvolnil systém, který pohání tento a mnoho dalších webů včetně nějakých vylepšení.",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon" "moje práce"},
+ :published "2008-06-02T17:04:23.787"}
+---
+
+Kolega Ondra:[jerrysohn] uvolnil systém [gryphoon], který pohání tento a mnoho dalších webů včetně nějakých vylepšení. Najdete ho "ke stažení včetně návodu k nasazení":[install] na stránkách projektu.
+
+Je to záležitost na kterou jsem nesahal takřka 3 roky a taky je to systém, na kterým jsem se učil. Spousta věcí je pojmenována česky, žádný komentáře v kódu a tak. Fakt to není dobrý ke studování, ale funguje to ;) Vím o spoustě míst, které by se daly snadno rozšířit, vylepšit, doplnit. Ani by to nezabralo moc času, ale z pricipu se mi nechce.
+
+Měl jsem pak napsanou velkou část verze dvě, ale nikdy jsem ji nedotáhl do konce. Nelíbilo se mi, že jsem použil typované DataSety a nikdy jsem pro něj nevytvořil administraci. Dvojka je tedy mrtvá. V plánu je trojka postavená na 3.5 frameworku, ASP.NET MVC a ActiveRecord. Ale u tý jsem ve fázi pokusů a designování architektury.
+
+Enjoy
+
+
+
+[jerrysohn]: http://www.jerrysohn.net/
+[gryphoon]: http://www.gryphoon.net/ Gryphoon
+[install]: http://www.gryphoon.net/Download%20Gryphoon%20weblog%20edition.ashx

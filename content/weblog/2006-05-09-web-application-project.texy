@@ -1,0 +1,18 @@
+---
+{:id 144,
+ :title "Web Application Project",
+ :description "Staronový model webového projektu pro VS2005.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-05-09T20:20:27.053"}
+---
+
+Kupí se mi témata, o kterých chci psát, ale nějak na ně nezbývá času. Začnu tedy zprávou, o které dnes píšou snad všichni. Vývojový team ASP.NET, IIS a VWD uvolnil finální verzi "Web Application Project":[wap] (WAP), což neni nic jiného než starý model webového projektu z VS2003 s podporou ASP.NET 2.0 a MSBuildu. Osobně se mi s tímto typem projektu pracuje lépe než Web Site projektem, který je ve VS2005 defaultní.
+
+Nový typ projektu se po nainstalování přidá do nabídky výběru projektu a je tu i kontextová možnost převést stávající weby na tento model. Nejvíce se však bude WAP hodit při migraci webů z VS2003, pro niž existuje "pěkný tutoriál":[migrace].
+
+Pokud se rozhodnete pro instalaci WAPu, musíte si nejprve nainstalovat "záplatu pro VS2005":[zaplata], která umožní fungování WAP. Poslední důležitou informací je, že WAP bude součástí VS2005 SP1 a bude dále podporovaný i v následujících verzích. Ve verzi SP1 dozná ještě několika vylepšení plynoucích právě z chystaných změn VS SP1.
+
+[wap]: http://msdn.microsoft.com/asp.net/reference/infrastructure/wap/default.aspx
+[migrace]: http://webproject.scottgu.com/CSharp/Migration/Migration.aspx
+[zaplata]: http://go.microsoft.com/fwlink/?LinkId=63636

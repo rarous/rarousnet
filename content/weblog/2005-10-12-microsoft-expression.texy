@@ -1,0 +1,24 @@
+---
+{:id 74,
+ :title "Microsoft Expression",
+ :description "Microsoft připravuje novou sadu grafických nástrojů.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2005-10-12T13:31:12"}
+---
+
+Microsoft připravuje novou "sadu grafických nástrojů":[expression]. Nástroje budou postaveny na *Windows Presentation Foundation* a budou vstupovat na bitevní pole, kde je již nyní „tvrdá konkurence.“ Vlastně zas tak horké to není, protože [adobe] koupilo Macromedii, čímž se konkurenční boj značně scvrknul :)
+
+Prvním z rodiny je produkt s kódovým označením **Acrylic Graphic Designer**. Tento produkt se chce poměřovat s Photoshopem a jemu podobnými nástroji. S tímto programem mám i osobní zkušenosti, protože mám nainstalovanou jednu z betaverzí (build 684). Samozřejmě podporuje práci ve vrstvách a vrstvy rozlišuje na bitmapové a vektorové. Prostředí programu je klasické s plovoucími nástrojovými lištami a nabídkami vlastností. Pro mě, uživatele Fireworksů, toto chování moc nevyhovuje, ale člověk si na něj po chvilce práce zvykne a za čas mu i přijde intuitivní :) Tento nástroj je tedy určen pro předtiskovou přípravu a pro přípravu grafiky pro web – tady osobně nedám dopustit na [fireworks].
+
+Druhým členem nové rodiny je produkt s kódovým označením **Sparkle Interactive Designer**. Tento produkt se pro změnu staví do závodu na startovní čáře vedle Flashe. Uživatelské prostředí vychází z Acryliku s nutnými rozšířeními pro tvorbu animované grafiky. Samozřejmě bude Sparkl umět importovat věci z Acryliku.
+
+Třetím produktem je, podle mě, pecka, která nemá obdoby a pokud se Microsoft opravdu povede, co slibuje, bude tu nástroj, po kterém musí zatoužit snad každý webdesignér. Jedná se o produkt s označením **Quartz Web Designer**. Tento nástroj slibuje intuitivní práci s CSS((Cascading StyleSheet)) ve WISIWIG((What I See Is What I Get)) režimu, včetně pozicování, nastavování marginů a paddingů. Výstupem by měl být kód splňující normy [w3c]. S CSS to ale nekončí! Wed Designer by měl plně podporovat XML((Extensible Markup Language)) a pravděpodobně, by v něm měly jít jednoduše generovat XSD((XML Schema)) schémata a XSL((Extensible Stylesheet Language)) transformace, ale tady si nejsem moc jistý, jestli jsem špatně nepochopil ukázkový materiál. Třešničkou na dortu je codeless DataBinding a podpora [aspnet] 2.
+
+Nová produktová řada na mě působí celkem uceleně a pokrývá potřeby současných webdesignérů. Osobně se těším na produkt s označením *Quartz*…
+
+[adobe]: http://www.adobe.com/ Adobe
+[expression]: http://www.microsoft.com/products/expression/en/default.aspx
+[w3c]: http://www.w3.org W3C .(World Wide Web Consortium)
+[fireworks]: http://www.macromedia.com/software/fireworks/ Fireworks
+[aspnet]: http://asp.net/ ASP.NET

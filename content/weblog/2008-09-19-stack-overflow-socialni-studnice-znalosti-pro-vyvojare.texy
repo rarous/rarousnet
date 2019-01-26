@@ -1,0 +1,22 @@
+---
+{:id 301,
+ :title "Stack Overflow - sociální studnice znalostí pro vývojáře",
+ :description
+ "Tento týden byla spuštěna do veřejného beta provozu nová studnice znalostí pro vývojáře s romantickým názvem Stack Overflow.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "mvc" "asp.net 2.0" "web20"},
+ :published "2008-09-19T17:29:09.140"}
+---
+
+Tento týden byla spuštěna do veřejného beta provozu nová studnice znalostí pro vývojáře s romantickým názvem [stackoverflow].
+
+Tento web se veze na sociální vlně. Je to kombinace FAQ, Wiki a Diggu. Umožňuje hlasování o relevantnosti odpovědí, tagování, gravatary, komentáře, prostě všechny tydlety cool 2.0 věci. Zatímto zajímavám počinem pro vývojáře stojí dvě docela známé a uznávané osobnosti v blogosféře a to [codinghorror] (Coding Horror) a [joel] (Joel on Software).
+
+Tak honem šup šup se na něco zeptat nebo odpovědět, úspěch této aplikace závisí pouze na dostatečně relevantích přispěvatelích.
+
+PS. technická poznámka, celé je to postaveno pomocí [mvc] frameworku.
+
+[stackoverflow]: http://www.stackoverflow.com/ Stack Overflow
+[codinghorror]: http://www.codinghorror.com/ Jeff Atwood
+[joel]: http://www.joelonsoftware.com/ Joel Spolsky
+[mvc]: /weblog/tag/mvc.aspx ASP.NET MVC

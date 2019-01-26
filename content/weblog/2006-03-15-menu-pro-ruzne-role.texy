@@ -1,0 +1,28 @@
+---
+{:id 120,
+ :title "Menu pro různé role",
+ :description "Jak na to.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-03-15T09:16:47.423"}
+---
+
+ASP.NET 2.0 přichází s konceptem SiteMaps spojeným s několika serverovými prvky určenými k práci s navigací (Stopy, Menu, TreeView). V zásadě to funguje jednoduše, stačí vytvořit soubor **Web.sitemap** např. v rootu webu, na který je defaultně namapovaný `SiteMapProvider`, pak stačí přidat požadované uzly navigace do sitemapu, požadované navigační prvky do stránky a je to. Už to funguje.
+
+Ve spoustě scénářů to může stačit, ale někdy přijde čas omezit některým uživatelům přístup do některých částí webu. V článku "Creating Menu Based on Role":[http://gridviewguy.com/ArticleDetails.aspx?articleID=165] se autor pokusil nastínit, jak postupovat. Mě se na tom nelíbí jedna věc. Vybírá menu programově podle role. Podle mého skromného názoru je to zbytečná práce, protože ASP.NET 2.0 má v SiteMapu rozlišování rolí zabudované a proto by mělo stačit do web.sitemap souboru přidat omezení na role:
+
+/---code xml
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="~/" title="root" description="Site Map Root">
+        <siteMapNode siteMapFile="~/Navigation/Admin.sitemap" roles="Admin" />
+        <siteMapNode siteMapFile="~/Navigation/User.sitemap" roles="User" />
+    </siteMapNode>
+</siteMap>
+\---code
+
+Ale možná se pletu :)
+
+== Update
+
+Dnes jsem narazil na zajímavou sérii článků o práci se SiteMap, kdyby jste měli zájem: "Examining ASP.NET 2.0's Site Navigation":[http://aspnet.4guysfromrolla.com/articles/111605-1.aspx]

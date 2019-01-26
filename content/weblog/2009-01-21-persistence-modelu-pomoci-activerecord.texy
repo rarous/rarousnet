@@ -1,0 +1,138 @@
+---
+{:id 345,
+ :title "Persistence modelu pomocí ActiveRecord",
+ :description
+ "Dneska se podíváme na zoubek modelu. Jak integrovat Castle ActiveRecord do naší připravené infrastruktury a automaticky registrovat repository? Samozřejmě nám pomůže Binsor...",
+ :author "Aleš Roubíček",
+ :tags
+ #{"binsor" "activerecord" "aspnet" "repository" "mvc" "asp.net 2.0"
+   "nhibernate"},
+ :published "2009-01-21T15:16:56.257"}
+---
+
+V architektuře naší MVC aplikace jsme se dostali již poměrně daleko. Vybrali jsme si "šablonovací systém":[clanek(343)], máme vyřešenou "integraci s IoC kontejnerem":[clanek(332)], "vymazlené routování":[clanek(338)], připravené "model bindery":[clanek(336)] a teď je na čase nějakým způsobem model persistovat. Existuje mnoho způsobů, jak toho dosáhnout.
+
+1. Persistenci si můžete řešit sami na úrovni ADO.NET. Jenže proč řešit něco, co už někdo stokrát vyřešil?
+2. Použít nějaký ORM((Object Relational Mapper)) nástroj.
+
+ORM nástrojů na výběr máme dnes tolik, že je stěží na prstech spočítáme, jaký si tedy vybrat? Pro mnohé bude první volbou LINQ to SQL. Pro jednoduché mapování (1:1) a tam, kde je možné být závislý pouze na MS SQL, je toto řešení dostačující. Osobně preferuju malinko složitější cestu, ale ve výsledku myslím, že mnohem mocnější. :)
+
+Castle ActiveRecord a Repository pattern
+====================================
+
+Já ve svých posledních proktech používám [activerecord], což je implemenatce návrhového vzoru ActiveRecord nad ORM frameworkem [nhibernate]. V mnoha ohledech práci s NHibernatem značně zjednodušuje, ať už je to mapování, automatickou správu session a podobně. Způsoby užití jsme už popsal ve spotu [clanek(271)]. Další výhodou je, že vše, co funguje v NHibernate (LINQ, Spatial, vlastní mapovací typy), můžete použí i s Castle ActiveRecord.
+
+Datové třídy však nedědím z bázové třídy `ActiveRecordBase`, ale používám Repository, která se stará o CRUD((Create, Read, Update, Delete)) operace s entitou. Pokud chcete mít mapování a závislost na ActiveRecord snadno odstranitelnou, můžete mapovací atributy vyčlenit třeba do samostatného **partial** souboru. Ale nejspíš nikdy v životním cyklu vaší aplikace nebudete ORM framework měnit, takže se trápit metadaty o databázovém schema je celkem zbytečné...
+
+Základem pro repository je generické rozhraní `IRepository<>`, pro snadnou automatickou registraci repositoří v kontejneru ještě nadefinujeme ještě i negenerické rozhraní:
+
+/--code csharp
+using Castle.ActiveRecord;
+
+public interface IRepository {}
+
+public interface IRepository<Tentity> : IRepository where TEntity : class {
+  TEntity FindById(int id);
+  void Save(TEntity entity);
+  void Delete(TEntity entity);
+}
+
+public abstract class ActiveRecordRepositoryBase<TEntity>
+  : IRepository<TEntity> where TEntity : class {
+  public virtual TEntity FindById(int id) {
+    return ActiveRecordMediator<TEntity>.FindByPrimaryKey(id);
+  }
+  public virtual void Save(TEntity entity) {
+    ActiveRecordMediator<TEntity>.SaveAndFlush(entity);
+  }
+  public virtual void Delete(TEntity entity) {
+    ActiveRecordMediator<TEntity>.DeleteAndFlush(entity);
+  }
+}
+\--code
+
+Pojďme si podporu pro ActiveRecord integrovat do naší MVC aplikace.
+
+Integrace přes Binsor
+===================
+
+Výhodou projektů z Castle, je, že se mezi sebou dokážou integrovat a využívat navzájem výhod své synergie. Nejprve si do projektu přidáme referenci na knihovnu `Castle.ActiveRecord` a ještě `Castle.Facilities.ActiveRecordIntegration`. Následně zaregistrujeme v souboru `Windsor.boo` facility pro  integraci ActiveRecordu do IoC kontejneru:
+
+/--code boo
+import System.Reflection
+
+// podpora ActiveRecord v kontejneru
+facility ActiveRecordFacility:
+  configuration:
+    @isWeb = true, isDebug = false
+    assemblies = [ Assembly.Load("MyApplication.Entities") ]
+    config(keyvalues, item: add):
+      show_sql = true
+      command_timeout = 500
+      dialect = 'NHibernate.Dialect.MsSql2005Dialect'
+      connection.provider = 'NHibernate.Connection.DriverConnectionProvider'
+      connection.driver_class = 'NHibernate.Driver.SqlClientDriver'
+      connection.connection_string_name = 'CONN_DEMO'
+\--code
+
+Teď ještě potřebujeme ve `web.config`u přidat `ConnectionString` pod klíčem `CONN_DEMO` a volitelně přidat životnost session na jeden request. To uděláte tak, že do sekce `system.web\httpModules` přidáte následující modul:
+
+/--code xml
+<add
+  name="PerRequestSessionScope"
+  type="Castle.ActiveRecord.Framework.SessionScopeWebModule, Castle.ActiveRecord"/>
+\--code
+
+To má za výhodu to, že všechny vaše dotazy za jeden request se chovají jako jedna transakce. Takže integrace frameworku, je hotová. Teď ještě přidáme automatickou registraci samotných repositoří.
+
+/--code boo
+for repository in AllTypesBased of IRepository("MyApplication.Entities"):
+  component repository.Name.ToLower(), repository.GetInterfaces()[0], repository:
+    lifestyle PerWebRequest
+\--code
+
+Tímto se zaregistrují všechny repository, které dědí z `ActiveRecordRepositoryBase` a jsou pak ve vašich komponentách dostupné jako `IRepository<User>` (příklad pro entitu `User`). Pokud budete mít v repository více metod, je dobré vytvořit pro ně kontrakt, který obsahuje kontrakt generické repository. Například takto:
+
+/--code boo
+public interface IUsersRepository : IRepository<User> {
+  User FindUserByEmail(string email);
+}
+\--code
+
+Registrace takovýchto komponent už je o něco složitější, ale dá se to také zvládnout. Nejprve si zavedeme konvenci, že repository, které takovéto kontrakty implementují, se budou jmenovat až na **I** na začátku stejně. :) Takže pro kontrakt `IUsersRepository` budeme mít konkrétní implementaci `UsersRepository` atd. Pro jejich registraci využijeme metodu `System.Type.FindInterfaces`, která bere jako první argument delegát na vyhledávací funkci a druhý argument jsou hledací kritéria. Takže si vytvoříme funkci, která splňuje kontrakt delegáta, a následně ji hned využijeme pro registraci:
+
+/--code boo
+def contains_name(t as Type, o as Object):
+  return t.Name.Contains(o.ToString())
+
+for repository in AllTypesBased of IRepository("MyApplication.Entities"):
+  repository_interface = repository.FindInterfaces(contains_name, repository.Name)
+  component repository.Name.ToLower(), repository_interface, repository:
+    lifestyle PerWebRequest
+\--code
+
+Cool ne? Pár řádků konfigurace a nejspíš máme vystaráno, tedy když dodržíme stanovenou konvenci, tak už se o registraci komponent datové vrstvy nemusíme starat. Stejně tak už máme zaregistrované model bindery a controllery. Trošku nám to konfigurace povyrostla, ale díky možnostem, které nám přináší Binsor, je to jen zlomek toho, co by bylo potřeba napsat v XML.
+
+Projektík se nám pomalu rozrůstá, sice stále nic nedělá, ale je to dobrý základ pro pořádný web. Pokusím se ho hodit někam do SVN, aby bylo lehčí se v projektu orientovat a byly vidět jednotlivé změny.
+
+/--div .[#related hslice]
+Související .[entry-title]
+==========
+.[entry-content]
+* [clanek(271)]
+* [clanek(332)]
+* [clanek(336)]
+* [clanek(338)]
+* [clanek(343)]
+\--div
+
+
+[clanek(271)]: /weblog/271-active-record-vs-repository-pattern.aspx ActiveRecord vs. Repository pattern .(ActiveRecord vs. Repository pattern){rel:bookmark}
+[clanek(332)]: /weblog/332-inversion-of-control-v-asp-net-mvc.aspx Inversion of Control v ASP.NET MVC .(Inversion of Control v ASP.NET MVC){rel:bookmark}
+[clanek(336)]: /weblog/336-model-binders-v-asp-net-mvc.aspx Model binders v ASP.NET MVC .(Model binders v ASP.NET MVC){rel:bookmark}
+[clanek(338)]: /weblog/338-dsl-pro-konfiguraci-url-routingu-v-asp-net-mvc.aspx DSL pro konfiguraci URL Routingu v ASP.NET MVC .(DSL pro konfiguraci URL Routingu v ASP.NET MVC){rel:bookmark}
+[clanek(343)]: /weblog/343-jaky-pohled-si-vybrat.aspx Jaký pohled si vybrat? .(Jaký pohled si vybrat?){rel:bookmark}
+
+
+[activerecord]: http://www.castleproject.org/activerecord/index.html Castle ActiveRecord
+[nhibernate]: http://www.nhibernate.org/ NHibernate

@@ -1,0 +1,17 @@
+---
+{:id 177,
+ :title "Internet Explorer 7 RC1 je venku",
+ :description
+ "Včera v pozdních večerních hodinách byl vypuštěn první kandidát na release Windows Internet Exploreru 7.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "ie7"},
+ :published "2006-08-25T09:13:25.767"}
+---
+
+Včera v pozdních večerních hodinách byl vypuštěn první kandidát na release Windows Internet Exploreru 7. Přináší hlavně zvýšení stability a výkonu a opět opravu několika bugů, které byly nalezeny v betafázi.
+
+Vývojáři upozorňují, že byla přepracována architektura rozšíření (Add-ons) a proto některé němusí fungovat správně. Současná architektura by se však již do finální verze měnit neměla.
+
+Příjemnou novinkou je, že se instalátor umí vypořádat s předchozími betaverzemi, takže je nemusíte odebírat ručně. Nicméně nepřijdete o dva nutné restarty (v případě upgradu z IE 6 jen jeden). Na první pohled asi žádné významné změny nepoznáte, možná rychlejší startování prohlížeče. Víc jsem toho ale otestovat nestihl. Další postřehy, pokud budou čekejte v updatu článku :)
+
+Stahovat můžete za "stránek Internet Exploreru":[http://www.microsoft.com/windows/ie/default.mspx]

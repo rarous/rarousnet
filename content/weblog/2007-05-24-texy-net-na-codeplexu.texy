@@ -1,0 +1,27 @@
+---
+{:id 209,
+ :title "Texy.net na CodePlexu",
+ :description "Dneska jsem vypustil Texy.net na CodePlex...",
+ :author "Aleš Roubíček",
+ :tags #{"texynet" "codeplex" "asp.net 2.0"},
+ :published "2007-05-24T21:11:15.727"}
+---
+
+Dneska jsem vypustil "Texy.net na CodePlex":[http://www.codeplex.com/texynet/]. Vypublikoval jsem první Wiki stránky uploadoval [RC1] a [RC2] verzi a experimentální *PhalangerProvider*. Vloženy jsou i zdrojáky:[source]. K RTM verzi zbývá již jen dopsat dokumentaci, najít a opravit bugy:[issues].
+
+Pokud mátě někdo zájem se do projektu zapojit, dveře jsou otevřené.
+
+Co je v plánu po 1.0 RTM
+========================
+
+PhalangerProvider nebo IronPythonProvider nebo IronRubyProvider, který bude plně použitelný se současným API Texy.net. Nejde o nic jiného než využít kompilátorů pro dynamické jazyky do kterých už byla nebo bude Texy! portována. Zajímavé je, že byl uvolněn [texier] což je Texy na Ruby, ale IronRuby je ještě neuvolněná. Naproti tomu je venku IronPython skoro ve verzi 2.0, ale [zirafka] jeste svoji PyTexy neuvolnila (: No a nakonec Phalanger. Vněm se Texy zkompilovat podařilo, ale furt se mi to nějak nezdá. "Tomášova verze":[phalanger-texy] mi neumožňuje konfigurovat moduly, což je dost zásadní věc...
+
+No a pak, nebo mezi tím, konečně něco jako to, čemu předběžně říkám **Texy#** :)
+
+[RC1]: http://www.codeplex.com/texynet/Release/ProjectReleases.aspx?ReleaseId=4460 RC1
+[RC2]: http://www.codeplex.com/texynet/Release/ProjectReleases.aspx?ReleaseId=4461 RC2
+[source]: http://www.codeplex.com/texynet/SourceControl/ListDownloadableCommits.aspx
+[issues]: http://www.codeplex.com/texynet/WorkItem/List.aspx
+[texier]: http://texier.rubyforge.org/ Texier
+[phalanger-texy]: http://tomasp.net/blog/aspnettexy.aspx
+[zirafka]: http://blog.zirafka.cz/ žirafka

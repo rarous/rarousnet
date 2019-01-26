@@ -1,0 +1,39 @@
+---
+{:id 110,
+ :title "Nová verze galerie",
+ :description
+ "Vytvořil jsem novou verzi galerie a dávám ji volně k použití.",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon"},
+ :published "2006-02-18T18:51:00"}
+---
+
+Možná jste si všimli, že mám na svých stránkách fotogalerii:[/galerie.aspx]. Tahle galerie je jednou z plug-in komponent redakčního systému Gryphoon a je postavená na Picasa:[http://picasa.google.com/] Raw XML formátu. U většiny programů, které dělají html galerie, je nevýhoda, že je layout výsledné galerie pevně daný. Toto omezení se někdy dá vyřešit pomocí vytvoření vlastní šablony, ale většinou je tato technika celkem složitá a navíc je výsledkem pouze sada statických souborů. Další možností je použít nějakou free dynamickou galerii. Ta většinou všechno řeší přes databázi, ale zase je nezávislá na desktopové aplikaci.
+
+Můj plug-in je závislý na výše zmiňované Picase a její exportní šabloně *XML gallery*. Výsledný export se nahraje na ftp, nebo se využije možnost uploadu zazipované galerie přímo přes rozhranní Gryphoonu. Vložení galerie do stránky je stejně tak složité, jako tam vložit obyčejný label :)
+
+/---code xml
+<%@ Register TagPrefix="Gryphoon" TagName="Galerie" Src="~/controls/Galerie.ascx" %>
+…
+<Gryphoon:Galerie ID="Galerie1" runat="server" Folder="~/galerie" ParseDateFromFolder="true">
+<!-- šablony částí stránky -->
+</Gryphoon:Galerie>
+\---
+
+Pomocí vlastnosti `Folder` nastavíme adresář, kde jsou uloženy adresáře s exporty z Picasy.
+Pomocí vlastnosti `ParseDateFromFolder` povoluje parsování data z názvu složky Alba. To je proto, že já i mí kamarádi, kteří také používají Gryphoon, jsme zvyklí pojmenovávat složky exportů v následujícím tvaru `yyyy-mm-dd_jmeno_alba`. Dokonce lze použít i rozšířenou formu, kdy se album vztahuje k nějakému úseku dnů, pak se použije název složky ve tvaru `yyyy-mm-dd-dd_jmeno_alba`. Takže pokud je tato vlastnost nastavena na **true**, lze v šablonách použít `Container.Date` pro výpis data kdy bylo album pořízeno.
+
+U staré verze zde končily možnosti nastavení výsledného vzhledu galerie, protože vše bylo natvrdo napsáno v kódu kontrolu. Nová verze přichází se šablonováním. Máme tu sedm šablon pro nastavení vzhledu jednotlivých částí v různých stavech galerie. Každá šablona má svou vlastní sadu vlastností, které lze použít. Nutností je si šablony nadefinovat, jinak Galerie fungovat nebude, protože nemá předprogramované šablony - to snad v příští verzi.
+
+Poslední věc, která se ještě musí udělat, je svázání dat pomocí příkazu `DataBind()` ve stránce, která má v sobě galerii vloženou.
+
+/---code csharp
+void Page_Load(object sender, EventArgs e){
+...
+DataBind();
+}
+\---
+
+Ke stažení "Gryphoon Gallery v0.82":[/files/GryphoonGallery.zip] (Zip, 4,87KiB)
+
+**Update** ke stažení nyní i ukázka použití a lehká úprava galerie.

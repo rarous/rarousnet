@@ -1,0 +1,32 @@
+---
+{:id 366,
+ :title "Odsazování kódu a bloky",
+ :description
+ "Jak zacházet s odsazováním kódu a komentáři, aby byl kód co nejčitelnější?",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2009-09-20T20:42:31.070"}
+---
+
+Konečně jsem se dostal k tomu, abych si otevřel knihu [kniha]. Hezky shrnuje žalostný stav našeho školství s ohledem na přípravu budoucích vývojářů. Dále zanáší pravidla pro psaní přehlednějšího kódu. S mnoha pravidly, které autor zanáší, musím plně souhlasit. K některým mám výhrady a jedno bych teď chtěl doplnit.
+
+> Pravidlo sedmé
+> --------------
+> Kód musí obsahovat dostatek volných řádek oddělujících od sebe krátké logické celky.
+
+Tohle pravidlo mi mluví z duše. Sám se vypořádávám s kódem kolegy, který o "odstavci" v životě neslyšel. Číst monolitický text je velice těžké a ještě těžší je mu porozumět. Pan Paleta (autor knihy) dále doporučuje:
+
+> Zdrojový kód zpřehledňují prázdné řádky, které by podobně jako tačka za větou měly
+> "ukončovat myšlenku." Nepřerušená sekvence příkazů může být dlouhá asi tak dva až pět
+> řádků, jen výjimečně o něco více. *Někdy je vhodné jako první řádek sekvence uvést
+> krátký komentář...*
+
+Schválně jsem zvýraznil poslední větu, protože to je ta část, ke které mám výhradu. Možná
+si vzpomenete, jak jsem minule psal: [clanek(361)]. Klidně takový kus kódu napiště. Ale ihned ho refaktorujte! Logický blok uvozený konetářem, je totiž ideální místo pro vytvoření metody. Název této metody je právě obsah komentáře a tělem následný logický blok.
+
+Pokud máte [refactor] od Developer Express, stačí onen blok označit a stisknout `Ctrl+;`
+(klávesa nad `Tab`) a vybrat `Extract method`. Tento refaktoring udělá přesně to, co jsem popsal v minulém odstavci.
+
+[kniha]: http://knihy.cpress.cz/knihy/pocitacova-literatura/programovani/co-programatory-ve-skole-neuci-aneb-softwarove-inzenyrstvi-v-realne-praxi/ Co programátory ve škole neučí
+[clanek(361)]: /weblog/361-nepiste-zbytecny-kod.aspx Nepiště zbytečný kód
+[refactor]: http://devexpress.com/Products/Visual_Studio_Add-in/Refactoring/ Refactor! Pro

@@ -1,0 +1,90 @@
+---
+{:id 331,
+ :title "Proč jsou statické helpery zlo?",
+ :description
+ "Minulý týden psal Arthur spotík o takovém tom víkendovém programování, ve kterém šlo hlavně o to, že přešel na Vistu, vytvořil si gadget pro přehrávání ČRo a taky editor hosts souboru. Napsal ho v C# a zmínil se o tom, že použil techniku, se kterou nejsem",
+ :author "Aleš Roubíček",
+ :tags #{"static" "csharp" "asp.net 2.0" "ioc" "oop"},
+ :published "2008-11-22T10:53:52.983"}
+---
+
+Minulý týden psal Arthur spotík o takovém tom "víkendovém programování":[vikendove-programovani], ve kterém šlo hlavně o to, že přešel na Vistu, vytvořil si gadget pro přehrávání ČRo a taky editor `hosts` souboru. Napsal ho v C# a zmínil se o tom, že použil techniku, se kterou nejsem s to…
+
+Zkrátka podědil si generickou `Dictionary<TKey, TValue>` a rozšířil ji o serializaci. Dictionary není serializovatelná. Je to dáno jak její generickou povahou (constraints pro atributy neexistují), tak tím, že sídlí v knihovně, která nesmí mít závislost na jiné, která serializaci zajišťuje.
+
+/--code csharp
+public class SerializableDictionary<TKey, TValue>
+  : Dictionary<TKey, TValue>, ISerializable {
+  // ...
+}
+\--code
+
+To byla moje chvíle, vyčmuchal jsem zde codesmell (zbytečné dědění, které by šlo vyřešit kompozicí). "Neomaleně jsem vstoupil do diskuse":[komentar] chválící gadget a sprostě Arthura pohanil. Omlouvám se za to. Mým úmyslem bylo ho postrčit o kus dál, možná rozšířit obzory. Prostě sprostá rada, která by mi v začátcích se C# pomohla nebloudit labyrintem macatých tříd se spoustou dovedností a košatou hierarchií předků a potomků.
+
+Alternativní řešení
+===================
+
+V diskusi, kterou jsem tímto vyvolal, padlo i to, že jde o porušení [srp], které už rozebral Borek. Arthur tedy nabídl, alternativní řešení, jak se s problémem vypořádat:
+
+> Samozřejmě jsem si mohl napsat i kašpárkovskou třídu, co má dvě **statické metody** (Serializuj a Deserializuj) a veřejný parametr "Dictionary"... šlo by to vyřešit mnoha způsoby, lišícími se co do pracnosti, elegance a efektivity, a já se rozhodl nedělat "composition blackbox", ale podědit třídu - především proto, že bych musel zpřístupňovat spoustu veřejných metod od původní generiky, nebo deklarovat vložený objekt jako veřejný.
+
+/--code csharp
+public static class DictionarySerializer<TKey, TValue> {
+  public static byte[] Serialize(Dictionary<TKey, TValue> dictionary) {
+    // ...
+  }
+  public static Dictionary<TKey, TValue> Deserialize(byte[] data) {
+    // ...
+  }
+}
+\--code
+
+Přejdu teď *composition blackbox* - vrátím se snad k němu někdy jindy, ale zastavím se u statických metod. Myslím si totiž, že to je další cesta do pekel… :)
+
+Staticky vs. Instančně
+======================
+
+Na toto téma se vedlo jedno z vláken té jinak pěkné diskuse o šikovném gadgetu. (Platíte koncesionářské poplatky?) Osobně zastávám názor, že je lepší se statickým helperům vyhýbat. Jednak ze zkušenosti a druhak z některých signálů a pouček správného OO návrhu.
+
+V objektových jazycích odvozených od C jsme si zvykli používat třídy. Třída je předpis, podle kterého se vyrábějí objekty. Objekty jsou přenašeči dat nebo službami. Mohou být tedy obdařeny rozhraním, přes které s ním komunikují jiné objekty. Jenže ve světě Céčkových jazyků, můžeme mít tzv. statické členy. Statický člen existuje jen jednou, po celou dobu života aplikace.
+
+Jenže, co je to **život aplikace**? Nevím jak je to přesně v PHP, ale myslím, že tam je to cca jeden požadavek. Statické proměnné tu slouží jako šikovná náhrada globálních proměnných a statické metody dovolují volat akce bez nudného vytváření instance třídy. To je jistě super. Ve světě dotnetu je to však mnohem složitější. V ASP.NET žije aplikace dokud ji někdo nevypne, tj. neresetuje aplikační pool, nezmění konfiguraci nebo neaktualizuje binárky. Takže u statického členu nikdy netušíte, jak dlouho bude žít.
+
+Dalším problémem je **konkurence**. V PHP se aplikace spouští při každém požadavku a po jeho skončení opět vyhnije a to vše se děje v rámci jednoho vlákna. V ASP.NET žije aplikace mnoho požadavků, které jsou zpracovány samostatnými vlákny. Vzhledem k tomu, že statické členy jsou v aplikaci jen jednou a to pro více vláken, musíte najednou začít řešit konkurenční přístup, k těmto členům.
+
+Další z problémů statických členů je ten, že **třída není objekt**, tudíž by se s členy třídy nemělo počítat v objektovém návrhu. :) Statické metody ani vlastnosti **nelze popsat rozhraním**, při jejich užití vzniká **úzká vazba**. Takovéto členy se také krásně vyhýbají dědičnosti. Nelze je přepsat tradičními postupy.
+
+Takhle bych ve zkratce shrnul hlavní nevýhody statického přístupu. Platí jen pro určité případy. Nemusíte se s nimi nutně setkat a pro váš konkrétní případ mohou být i výhodné. Pokud však navrhujete API, které má být znovupoužitelné (hlavní výhoda OOP), nikdy nevíte, v jakém prostředí poběží. A když už píšeme objektově, tak proč rovnou nepsat tak, aby naše třídy znovupoužitelné byly?
+
+Jak tedy s těmi helpery?
+========================
+
+Jak říká Michal Bláha, „statický helpery jsou výbornej syntax sugar.“ Jasně, proč ne? Ve skriptech může být statický helper jasným přínosem. Je ale třeba myslet na některá pravidla.
+
+Základním pravidlem, pokud chci vytvořit statický helper, je vytvořit instanční implementaci. Dobrou ukázkou tohoto přístupu je například `System.IO.File`, který je statickou fasádou nad `System.IO.FileInfo`. Podobně funguje např. i metoda `Rarous.TexyNet.Texy.Process`, která slouží k rychlému převodu textu do HTML, ale je tu i silné instanční API, které tato metoda volá.
+
+Závěr
+=====
+
+Statické helpery jsou zlo, když jsou primárním návrhem a taky jediným. Pokud dosahujete kompozice objektů pomocí dependency injection, jsou pro vás statické helpery nedosažitelné (bez napsání instančního wraperu). Když píšete unit testy, nemůžete snadno statický helper nahradit. Pokud máte statické vlastnosti, musíte myslet na konkurenční přístup a životnost zdrojů, které takto zapouzdřujete.
+
+/--code csharp
+public interface IDictionarySerializer<TKey, TValue, TData> {
+  TData Serialize(IDictionary<TKey, TValue> dictionary);
+  IDictionary<TKey, TValue> Deserialize(TData data);
+}
+\--code
+
+Přece jen existuje více cest k cíli a je možné, že se někde šeredně pletu. Jaký je váš pohled na věc?
+
+/--div .[#related hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* "Martin Malý: Programátorský víkend":[vikendove-programovani]
+* "Borek Bernard: Zapouzdření vs. Single Responsibility Principle":[srp]
+\--div
+
+[srp]: http://www.borber.com/blog/zapouzdreni-vs-single-responsibility-principle Single Responsibility Principle
+[vikendove-programovani]: http://www.misantrop.info/742263-programatorsky-vikend.php Programátorský víkend
+[komentar]: http://www.misantrop.info/742263-programatorsky-vikend.php#cmt_4

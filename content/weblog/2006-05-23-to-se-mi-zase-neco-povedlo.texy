@@ -1,0 +1,10 @@
+---
+{:id 154,
+ :title "To se mi zase něco povedlo",
+ :description "Přepsal jsem si všechny komentáře.",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2006-05-23T18:54:38.820"}
+---
+
+Tak se mi povedlo díky mému pospíchání přepsat všechny komentáře k příspěvkům - takové znehodnocení informací :( Je mi z toho smutno. O tom, že bych měl databázi zálohovanou silně pochybuju, to jsem ale vůl. takže pozor, až budu příště psát `UPDATE`, musim připsat i `WHERE`! Kretén, kterén a ještě jednou kretén...

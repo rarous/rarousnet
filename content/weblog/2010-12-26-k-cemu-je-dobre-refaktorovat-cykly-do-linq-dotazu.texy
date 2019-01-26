@@ -1,0 +1,71 @@
+---
+{:id 400,
+ :title "K čemu je dobré refaktorovat cykly do LINQ dotazů?",
+ :description
+ "Všetšinou se totiž vyplatí abstrahovat z imperativního zápisu na deklarativní.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0" "linq"},
+ :published "2010-12-26T07:30:48.117"}
+---
+
+V posledním zápichu jsem ukázal, jak "refaktorovat cyklus na LINQ":[clanek(399)]. Boris v komentářích poukázal na to, že výsledný kód nemusí být zrovna optimální, co se týče konzumace zdrojů. Já myslím, že je to malá cena, která je vyvážena obrovskou flexibilitou.
+
+Nejprve se vraťme k ukázkovému kódu. Ještě trochu jsem ho přepsal, aby byl výsledek srozumitelnější:
+
+/--code csharp
+static void ParseRouteData(Regex regex, Match match, RouteData data) {
+  var groups = match.Groups.Cast<Group>();
+  var groupNames = regex.GetGroupNames();
+
+  var matchingPairs =
+    from item in groups.
+      Zip(groupNames, (group, name) => new {
+        Pair = CreatePair(name, group.Value),
+        IsMatch = group.Success,
+      })
+    where item.IsMatch && IsValidKeyAndValue(item.Pair)
+    select item.Pair;
+
+  matchingPairs.Do(SetRouteData(data));
+}
+
+static KeyValuePair<string, string> CreatePair(string key, string value) {
+  return new KeyValuePair<string, string>(key, value);
+}
+
+static bool IsValidKeyAndValue(KeyValuePair<string, string> pair) {
+  return IsNamedKey(pair) && IsNotEmptyValue(pair);
+}
+
+static bool IsNamedKey(KeyValuePair<string, string> pair) {
+  return !(string.IsNullOrEmpty(pair.Key) || char.IsNumber(pair.Key, 0));
+}
+
+static bool IsNotEmptyValue(KeyValuePair<string, string> pair) {
+  return !string.IsNullOrEmpty(pair.Value);
+}
+
+static Action<KeyValuePair<string, string>> SetRouteData(RouteData data) {
+  return pair => data.Values[pair.Key] = pair.Value;
+}
+\--code
+
+1. Upravil jsem název funkce. Nyní už neiterujeme, ale po odhalení, co funkce vlastně dělá, můžeme říct, že parsuje routovací data. Odstínili jsme se od implementačního detailu. Jsme více deklarativní.
+
+2. Změnil jsem lambda based zápis na query like zápis. Ten se stejně na lambda based zápis převede kompilátorem, ale odstraní se zbytečný šum.
+
+3. Přibyly dvě další funkce. `CreatePair` jsem zavedl pro zkrácení řádku, aby se nemuselo tady na blogu scrollovat doprava, ale opět nás odstiňuje od zbytečné informace (implementační detail).
+
+4. Oddělil jsem dotaz a jeho samotné vykonání.
+
+Proč tedy LINQ?
+===============
+
+LINQ((Language INtegrated Query)) nám umožňuje zapisovat programy deklarativně. To znamená, že píšeme, **čeho** chceme dosáhnout, ne **jak** toho chceme dosáhnout. To je obrovská výhoda! Teď zapomeňme na to, že filtrujeme jednotky vyparsovaných hodnot. Mějme jich tisíce nebo rovnou milióny! Pokud potřebujeme výsledek rychle, jsme v imperativním případě namydlený. Sice je výkonostně optimálnější než ten deklarativní, ale pouze v případě, že máme k dispozici jediný stroj s jediným jádrem CPU.
+
+Pokud máme jader víc nebo celý cluster, můžeme vykonání LINQ dotazu distribuovat na více jader (pomocí TPL((Task Parallel Library))) nebo do celého clusteru (pomocí [dryad]). Více jader je u dnešních počítačů už standard a tak mikrooptimalizace jsou většinou ke škodě.
+
+Samozřejmě existují výjimky, jako jsou např. mobilní zařízení, kde není výkonu nazbyt. Otázkou je, zda raději nepřenechat výpočetně složité operace na serverech? ;)
+
+[clanek(399)]: /weblog/399-pryc-se-stromecky-nyni-interaktivne.aspx Pryč se stromečky! Nyní interaktivně. .(Pryč se stromečky! Nyní interaktivně.){rel:bookmark}
+[dryad]: http://research.microsoft.com/en-us/projects/dryadlinq/ Dryad

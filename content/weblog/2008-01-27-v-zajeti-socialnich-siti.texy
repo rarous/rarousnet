@@ -1,0 +1,38 @@
+---
+{:id 252,
+ :title "V zajetí sociálních sítí",
+ :description
+ "Nedávno jsem zkusil nainstalovat sociální prohlížeč [flock]. Nebylo to poprvé, ale tehdá jsem ještě nebyl tak socializovaně zasíťován. Teď už jsem, tak mu zkouším dávat druhou šanci. ",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "delicious" "reader" "twitter" "ie7" "flock"},
+ :published "2008-01-27T12:09:50.340"}
+---
+
+Nedávno jsem zkusil nainstalovat sociální prohlížeč [flock]. Nebylo to poprvé, ale tehdá jsem ještě nebyl tak socializovaně zasíťován. Teď už jsem, tak mu zkouším dávat druhou šanci.
+
+Jako hlavní prohlížeč používám "IE7"((Internet Explorer 7)) ve Vistě a jsem s ním plně spokojen, používám i zbylé z velké čtverky (Firefox, Safari, Opera((dá-li se její pidi podíl počítat mezi velké))) - pro pracovní účely, jako programátor webových aplikací je nemohu ignorovat.
+
+Po tom, co jsem si přečetl zprávičku, že Flock 1.1 bude podporovat i moji oblíbenou Picasu:[picasa], řekl jsem si, že bych ho měl zase zkusit. Tak jsem si v pátek nainstalovat verzi 1.0 a začal objevovat její možnosti.
+
+== Nově zapojen
+
+Díky Flocku jsem se zapojil do dalších web 2.0 sítí :). První byl [twitter] a začal jsem microblogovat. Hned při registraci jsem pozval pár svých známých a první, kdo se mnou začal, nebyl nikdo jiný než [mravenec] – duchovní syn služby [weblogy].
+
+Dobrý na twittru je, že do něj můžete posílat zprávy i přes Jabber (např. [talk]) nebo SMSkou. Ve Flocku pak vidíte vaše kontakty s jejich aktuálními stavy. :)
+
+Při hlubším zkoumání jsem zjistil, že přes tlačítko pro přihlašování RSS((Realy Simple Sindication)) kanálů lze přidávat kanály i do "Google Readeru":[reader], který používám jako čtečku kanálů. To se mi líbí, v IEčku jsem dosud používal bookmarklet. Další věcí, která mě mile překvapila, bylo, že bookmarky lze ukládat do online služby [delicious]. Tuto službu jsem dosud nepoužíval, ale už je na čase. :) Takže to je zatím poslední sociální síť, ve které jsem uvízl.
+
+Budu Flock ještě pár dní zkoušet a možná po necelých dvou letech opustím IE7… Možná také po této zkušenosti obnovíme myšlenku zesocializovat službu Weblogy. Kdo ví…
+
+== Související
+
+* "Sociální sítě":[/clanek/191-socialni-site.aspx]
+
+[flock]: http://www.flock.com/ Flock
+[twitter]: http://www.twitter.com/ twitter
+[mravenec]: http://www.mraveniste.org/ Jan Bien „Mravenec“
+[weblogy]: http://www.weblogy.cz Weblogy.cz
+[reader]: http://reader.google.com/
+[delicious]: http://del.icio.us/ del.icio.us
+[talk]: http://talk.google.com/ Google Talk
+[picasa]: http://picasa.google.com Picasa

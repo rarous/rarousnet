@@ -1,0 +1,12 @@
+---
+{:id 141,
+ :title "Remember Me or not?",
+ :description "Ukázka špatného návrhu ASP.NET 2.0",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-26T09:51:47.243"}
+---
+
+Taky se vám stalo, že jste chtěli využích svělých dovedností MemberShip Provideru a Login controls, a když jste zaškrtli *Remember Me*, tak se to chopvalo úplně stejně? Tak to jste narazili na chybu, teda alespoň podle mě to chyba je. Podle vývojářů ASP.NET je to *by design* :(
+
+Problém je v tom, že ASP.NET 2.0 načítá životnost perzistentní i neperzistentní cookie z web.configu a to pouze z jedné hodnoty! Tato hodnota je pro obě metody stejná, tak v čem je rozdíl? ASP.NET 1.x načítalo pro neperzistentní cookie stejnou hodnotu z web.configu, ale perzistentní cookie byla natvrdo asi na 50 let. Teď opravdu nechápu, k čemu mi je perzistentní cookie, když expiruje za stejnou dobu jako neperzistentí...

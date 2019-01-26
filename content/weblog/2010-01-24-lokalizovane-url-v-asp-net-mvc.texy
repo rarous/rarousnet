@@ -1,0 +1,30 @@
+---
+{:id 376,
+ :title "Lokalizované URL v ASP.NET MVC",
+ :description
+ "Jak snadno a rychle vyřešit problém lokalizovaných URL v ASP.NET MVC potažmo i v ASP.NET 4?",
+ :author "Aleš Roubíček",
+ :tags #{"lokalizace" "aspnet" "mvc" "asp.net 2.0" "routing"},
+ :published "2010-01-24T11:26:42.327"}
+---
+
+Pokud se dostanete do situace, že budete potřebovat lokalizovat URL adresy vaší webové aplikace, máte hned několik možností, jak to řešit.
+
+Jedno z možných řešení, které se mi ani trochu nelíbí, popsal Augi ve svém článku [augi]. Já mám raději jednoduchá řešení, která nepotřebují hackovat systém. :)
+
+Když jsme začali psát Trop:[http://www.trop.cz/], byl celý v angličtině. Díky konvencím, které jsem popsal v článku [clanek(340)], měla naprostá většina stránek svojí vlastní routu. A protože definice routy není nic jiného než textový řetězec, přesunul jsem jej do resource souboru `Routes.resx`. To byl první krok.
+
+Když jsme vymýšleli, jakým způsobem poběží jednotlivé jazykové mutace, bylo jasné, že každá mutace bude mít vlastní top-level doménu a bude to samostatná instance aplikace. To je super, protože se pak dá využít konfigurační sekce `globalization`, kde se nastaví jazyk prostředí konkrétní instance, podle kterého se i vybírají konkrétní resource soubory.
+
+Česká instance pak má ve web.configu následující řádek:
+
+/--code xml
+<globalization culture="cs-CZ" />
+\--code
+
+Díky tomu se použijí routovací pravidla z `Routes.cs.resx` a URL adresy se generují česky, aniž bych musel v kódu cokoli změnit. Samozřejmě nejsou přeložená všechna routovací pravidla, spousta akcí, které jsou pouze `POST`, překlad nepotřebuje, protože nejsou součástí prezentační vrstvy.
+
+Nakonec veškeré úsilí, které bylo k implementaci lokalizovaných URL potřeba, bylo v tom, embedovat definované routy do resource souboru, s čímž mi ochotně pomohl Refactor! Pro. :) Zbytek je věc konfigurace v deployovacím scriptu. Ale to už je na jiné povídání.
+
+[clanek(340)]: /weblog/340-pojmenovane-routy-v-asp-net-mvc.aspx Pojmenované routy v ASP.NET MVC
+[augi]: http://www.augi.cz/programovani/asp-net-mvc-lokalizace-url/ ASP.NET MVC - lokalizace URL

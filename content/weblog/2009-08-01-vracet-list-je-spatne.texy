@@ -1,0 +1,85 @@
+---
+{:id 359,
+ :title "Vracet List je špatné",
+ :description
+ "Občas pohodlnost vyhrává a zadělává na zasmrádnutý kód, který přináší problémy. Pojďme vymítit jednu ze zhůvěřilostí \"kreativního\" návrhu. ",
+ :author "Aleš Roubíček",
+ :tags #{"csharp" "asp.net 2.0" "refactoring"},
+ :published "2009-08-01T08:51:21.480"}
+---
+
+Přinejmenším na veřejnosti. Mnohdy se v různých APIs můžete setkat s tím, že různé objekty veřejně vystavují metody/vlasnosti, které mají návratový typ `List<T>`, v lepším případě `IList<T>`. Krásná ukázka nerozvážného návrhu.
+
+Proč je špatné vracet `List<T>`
+=============================
+
+Když vracíte `List<T>`, znamená to, že říkáte všechno o vnitřní implementaci a zavíráte si vrátka pro její možnou změnu. Generický List sice neni nerozšiřitelný (`sealed`), ale ani nebyl při návrhu moc k rozšiřování zamýšlen. Navíc tim porušujute jeden ze základních principů OOP((Objektově orientované programování)) - a to zapouzdření. Dále tim umožňujete konzumentovi vaši kolekci přímo měnit.
+
+Ukázka naivního/lenošného přístupu
+==================================
+
+Pro ukázku mějme třídu reprezentující uživatele `User`, kterému můžeme přiřadit uživatelské role `Role`. Naivní přístup:
+
+/--code csharp
+public class User {
+  public List<Role> Roles { get; private set; }
+}
+
+public class UserConsumerCode {
+  public void SomeMethod {
+    var user = new User();
+    user.Roles.Add(Role.Admin);
+
+    // ...
+
+    user.Roles.Remove(Role.Reviewer);
+
+    // ...
+
+    var isAdmin = user.Roles.Contains(Role.Admin);
+  }
+}
+\--code
+
+Jak vidíte, klient má nad kolekcí rolí uživatele plnou moc. Může si přidávat, odebírat, přetřizovat jak se mu zlíbí. A my nemáme nejmenší šanci tyto celkem důležité operace jakkoli ovlivnit, nebo u nich vědět. Kdybychom změnili typ kolekce *Roles* na `IList<Role>`, tak sice můžeme změnit vnitřní implementaci a místo `List<T>` použít třeba `LinkedList<T>`, ale stále zveřejňujeme příliš mnoho. Jedinou výhodou tohoto řešení je, že jsme nemuseli napsat moc kódu a máme hodně funkcionality.
+
+Jak zlepšit náš kód?
+====================
+
+Rovnou přeskočím použití `ICollection<T>`, a přejdeme k tomu, jak by to mělo vypadat. Zachováme si zapouzdření, uzavřeme se vůči nechtěné manipulaci z vnějšku a otevřeme se snadným vnitřním změnám a rozšiřitelnosti ([ocp]).
+
+/--code csharp
+public class User {
+  private readonly ICollection<Role> _roles;
+
+  public User() {
+    _roles = new List<Role>();
+  }
+
+  public IEnumerable<Role> Roles {
+    get { return _roles.ToArray(); }
+  }
+
+  public void AddRole(Role role) {
+    _roles.Add(role);
+  }
+
+  public void RemoveRole(Role role) {
+    _role.Remove(role);
+  }
+
+  public bool IsInRole(Role role) {
+    return _roles.Contains(role);
+  }
+}
+\--code
+
+Pěkně jsme obohatili a zpřehlednili naše API (zápis `user.IsInRole(Role.Admin)` říká mnohem více, než `user.Roles.Contains(Role.Admin)`, navíc neporušuje [Demeter law]), skryli jsme implementační detaily a zároveň nechali otevřená vrátka pro snadnou výměnu vnitřní implementace... Dalším krokem by měly být kontrakty manipulačních metod, aby byly bezpečné. Dále pak můžeme přidat vyvolávání událostí, abychom o manipulaci věděli. Míst pro rozšíření je tu spousta.
+
+Hloupá otázka na závěr
+======================
+
+> „Ale, jak teď zjistim, kolik rolí má uživatel přiřazených, když `IEnumerable` nemá vlastnost `Count` ani `Length`?“ `using System.Linq;` ;)
+
+[ocp]: http://en.wikipedia.org/wiki/Open/closed_principle Open/closed principle
+[Demeter law]: http://en.wikipedia.org/wiki/Law_of_Demeter Demeterův zákon

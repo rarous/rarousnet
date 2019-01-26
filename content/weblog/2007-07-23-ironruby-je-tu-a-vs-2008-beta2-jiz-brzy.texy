@@ -1,0 +1,25 @@
+---
+{:id 215,
+ :title "IronRuby je tu a VS 2008 beta2 již brzy",
+ :description
+ "John Lam a ScottGu dnes oznámili možnost stažení zdrojáků IronRuby a mimo jiné také to, že VS 2008 beta2 výjde již tento týden a je z 99% feature complete. To jsou myslím dobré zprávy.",
+ :author "Aleš Roubíček",
+ :tags #{"vs2008" "ironruby" "dlr" "asp.net 2.0" "vs"},
+ :published "2007-07-23T21:37:41"}
+---
+
+John Lam a ScottGu dnes oznámili možnost stažení "zdrojáků IronRuby":[ironruby-src] a mimo jiné také to, že VS 2008 beta2 výjde již tento týden a je z 99% feature complete. To jsou myslím dobré zprávy.
+
+IronRuby je čerstvou implementací Ruby na platformě .NET, postavenou nad novou vrstvou DLR((Dynamic Language Runtime)), která by měla být společná pro Python, Ruby, JS((JavaScript)), VB((VisualBasic)) a tajně doufám, že jednou i pro PHP ;) IronRuby je zatím v plenkách ve verzi 0.1 Pre-Alpha. Neobsahuje ani všechny vlastnosti jazyka a skoro žádné standardní knihovny (rubařské), ale do jejich tvorby se klidně budete moci zapojit. Projekt bude hostován na RubyForge:[rubyforge] a to pod MSPL((Microsoft Permissive Licence)).
+
+== Update
+
+Visual Studio 2008 beta 2 je již venku. Stahovat můžete zde:[http://msdn2.microsoft.com/en-us/vstudio/aa700831.aspx].
+
+== Související
+
+* John Lam - "First look at IronRuby":[http://www.iunknown.com/2007/07/a-first-look-at.html]
+* Scott Guthrie - "First look at IronRuby":[http://weblogs.asp.net/scottgu/archive/2007/07/23/first-look-at-ironruby.aspx]
+
+[ironruby-src]: http://iunknown.typepad.com/IronRuby-Pre-Alpha1.zip
+[rubyforge]: http://rubyforge.org/

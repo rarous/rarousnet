@@ -1,0 +1,15 @@
+---
+{:id 412,
+ :title "Trénujete na Code Retreat?",
+ :description
+ "Již za týden se koná první velký český Code Retreat v Praze. Je na čase trénovat!",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "coderetreat"},
+ :published "2011-11-26T09:19:00.510"}
+---
+
+Již za týden se koná akce, do které jsem tak trochu namočený, Global Day of Code Retreat. My se snažíme připravit jedno "místečko v Praze":[http://coderetreat.cz].
+
+Ačkoli má akce za cíl vás vytrénovat v lepší vývojáře, je dobré abyste na něj přišli trochu připravení. :) Určitě si přečtěte "pravidla problému":[http://en.wikipedia.org/wiki/Conway's_Game_of_Life], který se bude celý den znova a znova implementovat. Ale nezůstaňte pouze u čtení, zamyslete se nad tím, jak danou úlohu naimplementovat. Nebojte se a jděte ještě dál a vážně tu vaši ideu i zhmotněte!
+
+Dalším krokem jak se na akci připravit, je zacvičit si nějakou tu katu v kódování. Zkuste třeba oblíbenou "bowling game":[http://codingdojo.org/cgi-bin/wiki.pl?KataBowling] nebo "string calculator":[http://katas.softwarecraftsmanship.org/?p=80]. Procvičíte si tak TDD i nástroje, které budete používat. 

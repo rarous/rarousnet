@@ -1,0 +1,100 @@
+---
+{:id 340,
+ :title "Pojmenované routy v ASP.NET MVC",
+ :description
+ "Dnes se podíváme na zoubek opět URL routingu. Tentokrát se podíváme na to, jak pěkně generovat odkazy.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "mvc" "routing"},
+ :published "2009-01-03T21:10:44.220"}
+---
+
+Minule jsme si ukázali, "jak jednodušeji definovat routy v ASP.NET MVC":[clanek(338)] pomocí maker v jazyce Boo. Prvním parametrem pravidla pro vytvoření routy je její název. K čemu je užitečný?
+
+Když začnete psát větší aplikaci v [aspnetmvc], zjistíte, že si s výchozí routou `{controller}/{action}/{id}` dlouho nevystačíte. Ať už je to tím, že chcete mít aplikaci lokalizovatelnou do více jazyků včetně URL adres, nebo tím, že prostě název řadiče (controlleru) není pro URL zrovna vhodný. Je k tomu spousta důvodů, ale ten nejzákladnější bude, že ne všechny akce mají pouze jeden parametr a ještě k tomu id...
+
+Definice routovací tabulky
+==========================
+
+K definici fiktivní routovací tabulky využijeme DSL vytvořenou v minulém spotu. Každý správný vývojář určitě "nepoužívá čísla":[dgx-konstanty], ale ani řetězce! Proto si nejprve vytvoříme statickou třídu pro uskladnění názvů našich rout.
+
+/--code csharp
+namespace MyWeb.Routing {
+  public static class Routes {
+    public const string EditArticle = "edit article";
+    public const string ListArticles = "list articles";
+  }
+}
+\--code
+
+A nyní přejdeme k definování routovací tabulky.
+
+/--code boo
+import file from RoutingMacros.boo
+
+import System.Web.Routing
+import System.Web.Mvc
+
+import MyWeb.Routing from MyWeb
+
+articles_controller = "Articles"
+
+map_route Routes.EditArticle, "admin$/articles/editor/{id}":
+  defaults:
+    controller = articles_controller
+    action = "Edit"
+
+map_route Routes.ListArticles, "admin$/articles":
+  defaults:
+    controller = articles_controller
+    action = "Index"
+
+\--code
+
+Řetězce šablony routy jsou rovněž dobrými adepty na přesun do resource souboru, ale pro tentokrát se spokojíme s jejich přítomností. Pro dnešní ukázku to plně dostačuje. :)
+
+Tak, routovací tabulku máme nadefinovanou a k čemu nám to vlastně je?
+
+Použití v praxi
+===============
+
+Když jsem onehdá psal o tom, jak funguje [clanek(296)], tak jsem nakousnul téma obousměrného routingu. Na WebExpu na to už tolik času taky nebylo, tak nezbývá, než se k tomu vrátit nyní. Pro někoho to bude možná překvapení, ale routovací tabulky lze využít i k **vytváření odkazů**! A taky se toho hojně využívá. Určitě každý, kdo už si ASP.NET MVC zkoušel, potkal `HtmlHelper` a jeho extenzi `ActionLink`. Užití v šabloně pohledu je asi následující:
+
+/--code xml
+<%= Html.ActionLink("Vypiš články", "Index") %>
+\--code
+
+Tento helper se podívá do routovací tabulky, z kontextu si vezme název aktuálního řadiče (vpodstatě všechny vlastnosti aktuální routy) a spojí ho s názvem akce, který byl definován jako parametr helperu (v tomto případě *Index*). Tyhle dvě (popř. více) hodnoty hledá v tabulce, najde šablonu routy (`"admin$/articles"`), nacpe do ní získané hodnoty (v tomto případě žádné) a vrátí to celé jako odkaz:
+
+/--code xml
+<a href="admin$/articles">Vypiš články</a>
+\--code
+
+Výhodou užití takového helperu je, že pokud změníte routu, tak se vám automaticky generují správné odkazy. Odkazy na akci jsou dobré v kontextu jednoho řadiče. Jenže, když máme trochu víc řadičů a navíc na jejich akce odkazujeme z pohledů jiných řadičů, musíme přidávat další parametr, který definuje, o jaký řadič se jedná, na jehož akci chceme odkázat. Věci by měly zůstávat co nejjednodušší. Proto je zde další helper, který dělá odkazy na pojmenované routy.
+
+/--code xml
+<%= Html.RouteLink("Vypiš články", Routes.ListArticles) %>
+\--code
+
+Výsledek je totožný s předchozím, ale jsou tu i jisté jiné benefity. Název routy je totiž klíčem v routovací tabulce, proto je vytváření odkazu na pojmenovanou routu rychlejší/výkonnější (nemusí se vyhledávat v hodnotách, ale je tu přístup přímo přes index). Proto se je nebojte používat, kde to jen jde...
+
+Závěr
+=====
+
+Obousměrný routing je v ASP.NET MVC velice silná věc a prozkoumat jeho temná zákoutí a pochopit, co se k čemu hodí, může zabrat nějaký ten čas. Doufám, že jsem vám trošku to prozkoumávání usnadnil. Ale nebojte, zanedlouho by měla vyjít RC verze ASP.NET MVC, kde přibudou další zajímavé helpery.
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(296)]
+* [clanek(338)]
+* [lipton]
+\--div
+
+
+
+[clanek(296)]: /weblog/296-url-routing-v-asp-net-cast-prvni.aspx URL Routing v ASP.NET MVC .(Routing v ASP.NET MVC){rel:bookmark}
+[clanek(338)]: /weblog/338-dsl-pro-konfiguraci-url-routingu-v-asp-net-mvc.aspx DSL pro konfiguraci URL Routingu v ASP.NET MVC .(DSL pro konfiguraci URL Routingu v ASP.NET MVC){rel:bookmark}
+[dgx-konstanty]: http://latrine.dgx.cz/programatori-nepouzivaji-cisla Programátoři nepoužívají čísla .(Programátoři nepoužívají čísla)
+[aspnetmvc]: http://asp.net/mvc ASP.NET MVC
+[lipton]: http://weblogs.asp.net/leftslipper/archive/2008/12/17/optimizing-your-route-collection-for-url-generation-in-asp-net-mvc-and-more.aspx Eilon Lipton: Optimizing your route collection for URL generation in ASP.NET MVC (and more!)

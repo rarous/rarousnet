@@ -1,0 +1,27 @@
+---
+{:id 230,
+ :title "Microsoft koupil licenci od Eolas",
+ :description
+ "Microsoft koupil licenci od Eolas, což znamená, že již brzy z Internet Eploreru zmizí ono otravné \"Click to activate\" u emebeded prvků na stránce.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "plugin" "ie" "eolas"},
+ :published "2007-11-09T10:09:46.260"}
+---
+
+Microsoft koupil licenci od Eolas, což znamená, že již brzy z Internet Eploreru zmizí ono otravné "Click to activate" u emebeded prvků na stránce.
+
+Toto chování se objevilo v březnu loňského roku, kdy přišla firma Eolas s tím, že má patentovaný způsob vkládání pluginů do stránky, který používá Internet Explorer, a že to tak nesmí být. Microsoft proto vydal update, který vyžadoval, aby každý prvek vkládaný přes tagy `applet`, `object` a `embed` byl aktivovaný uživatelem pomocí kliknutí.
+
+Existuje tu však možnost vkládat embed prvky přes JavaScript bez nutnosti aktivace. Dokonce existuje několik volně dostupných skriptů (např. "od DGX":[eolas]), které stačí vložit do stránky a ty vyjmou všechny embed prvky z html a opět je vloží pomocí scriptu, čímž je problém prakticky vyřešen. Ale udivuje mne, že to skoro nikdo nepoužívá.
+
+V prosinci by měla vyjít aktualizace, která toto chování opět vrátí do stavu před březnem 2006.
+
+Související
+===========
+
+* David Grudl: [dgx]
+* Pete LePage: [activation]
+
+[eolas]: http://knowhow.dgx.cz/eolas-workaround/
+[dgx]: http://latrine.dgx.cz/jak-obejit-aktivovani-pluginu-v-ie Jak obejít aktivování pluginů v IE
+[activation]: http://blogs.msdn.com/ie/archive/2007/11/08/ie-automatic-component-activation-changes-to-ie-activex-update.aspx IE Automatic Component Activation

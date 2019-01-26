@@ -1,0 +1,27 @@
+---
+{:id 126,
+ :title "Novinky ve světě ASP.NET",
+ :description
+ "Pár novinek ve vývoji ASP.NET. (Lehce aktualizovaná verze.)",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-06T07:32:00"}
+---
+
+V poslední době vychází řada nových projektů z rukou tvůrců ASP.NET. V první řadě je to bezesporu revoluční framework Atlas o kterém jsem "již psal":[clanek(95)] a psát ještě budu. Jak jsem "již psal":[clanek(121)], březnové CTP((Community Technical Preview)) bylo uvolněno s go-live licencí, to umožňuje používat Atlas na produkčních serverech. Budoucí CTPčka budou s touto licencí vypouštěny rovněž. Aby nedošlo k mílce, doplním, že Atlas neni závislý na ASP.NET, ikdyž je pro něj primárně vyvíjen, a jeho výhody mohou "využívat i třeba PHPkáři":[AtlasPhp] nebo i "statici". Atlas je čistě klientská záležitost - teda až na zdroje dat samozřejmě. Data jsou přijímána ve formátech XML nebo JSON((JavaScript Object Notation)).
+
+V příštím měsíci by měl být uvolněn první balíček ASP.NET serverověklientských prvků postavených na Atlasu (kaskádové dropdownlisty, drag panely, sbalovací panely ap.). Určitě takové komponenty pomohou k usnadnění vývoje interaktivních webových aplikací.
+
+Tak a na závěr si dáme pauzu od skvělého Atlasu a podívame se na mé oblíbené téma *kvalita výstupu ASP.NET*. Vývojáří slibují, že již brzy vydají balíček Adaptérů i se zdrojovými kódy, které převádějí výstup na CSS strukturální kód. Dodám, že na Adaptérech je postaven celý adaptivní rendering ASP.NET, takže ke změně výstupu bude potřeba jen knihovna s Adaptéry a upravené soubory `*.browser`. Opravena by měla být většina dnes "nepoužitelných kontrolů", které jsou layoutovány pomocí tabulek. To je myslím **cool**, ale mohlo to být rovnou. Ale zase tu budeme mít ukázku zajímavých programátorských postupů. Více o adaptérech najdete "na stránce s tutoriály k ASP.NET":[QuickStarts] a taky "u Borka":[Borek-488].
+
+Zdroj: "Weblog Scotta Guthrie":[Zdroj]
+
+PS: "vývoj neni jen šedá nuda":[400rozdilu]
+
+[clanek(95)]: /clanek/95-nova-generace-webu.aspx .(článek Nová generace webu)
+[clanek(121)]: /clanek/121-atlas-go-live.aspx .(článek Atlas go Live)
+[AtlasPhp]: http://www.shankun.com/AtlasPhp.aspx
+[QuickStarts]: http://www.asp.net/QuickStart/aspnet/doc/extensibility.aspx#A
+[Borek-488]: http://borber.com/blog/?p=488
+[Zdroj]: http://weblogs.asp.net/scottgu/archive/2006/03/30/441465.aspx
+[400rozdilu]: http://www.400plusdifferences.com/

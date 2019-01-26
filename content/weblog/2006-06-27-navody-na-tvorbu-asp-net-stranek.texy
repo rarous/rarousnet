@@ -1,0 +1,20 @@
+---
+{:id 161,
+ :title "Návody na tvorbu ASP.NET stránek",
+ :description
+ "Perfektní návody na tvorbu ASP.NET stránek pro práci s daty",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "asp.net 2.0"},
+ :published "2006-06-27T10:07:21.770"}
+---
+
+Přímo na domovské stránce "ASP.NET":[aspnet] vyšla "sada návodů":[dataaccess] na tvorbu ASP.NET 2.0 stránek, které pracují s daty. Je zde popsán postup od vytvoření třívrstvé aplikace (DAL((Data Access Layer)), BLL((Business Logic Layer)), PL((Presentation Layer))) přes Master-Deatil pohledy na data po kompletní řešení. Ukázky kódů jsou jak v jazyce Visual Basic .NET tak v C#, ale většinou se jedná o ukázku RAD((Rapid Application Development)) ve Visual Studiu :) Za celým 20 dílným tutoriálem stojí Scott Mitchel, "autor několika knih":[http://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco] o ASP.NET a autor "několika":[http://www.4guysfromrolla.com] "zajímavých":[http://scottonwriting.net/] webů.
+
+Ještě něž mě začnete kamenovat, vrátím se k číslu 20 :) Vím, na zmíněných stránkách je k nalezení pouze 15 tutoriálů. Ta další pětka tam také je, ale není odnikud odkázána. Stačí pouze změnit číslo v URL a jste tam :)
+
+Přejí příjemné studování.
+
+PS. Osobně se mi podobný způsob psaní aplikací úplně nezamlouvá, ale pořád je to čistější než některé opičárny, které občas můžeme potkat ;)
+
+[aspnet]: http://asp.net/
+[dataaccess]: http://asp.net/learn/dataaccess/

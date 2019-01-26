@@ -1,0 +1,98 @@
+---
+{:id 353,
+ :title "Nedělní WTF: Základy programování v jazyce Boo",
+ :description
+ "Ano, i já občas narazím na slabého nebožáka a rád si do něj kopnu. Je to takové uvolňující. :) Pojďte si taky kopnout. A můžete i do mě!",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak" "boo" "wtf"},
+ :published "2009-03-08T17:16:44.163"}
+---
+
+Při pravidelném proklikávání se službou [devlogy] jsem zaznamenal výskyt dalšího dílu seriálu *Základy programování v jazyce Boo* na serveru programujte.com. Vzpomněl jsem si na "první díl seriálu":[prvni], který jsem četl před časem, a opět se mi naježila srst. Šel jsem se tedy podívat, jak s tím autor vládne dál.
+
+No děs a bída. Jestli se takhle někde programuje a ještě k tomu v [boo], tak to je mi moc líto. Boo vzniklo jako agilní jazyk inspirovaný jednoduchostí Pythonu:[python] a silou dotnetu:[dotnet]. Sice je silně typový, ale nenutí nás typy explicitně vyjadřovat. V podstatě nás nenutí k žádným zbytečnostem. Jeho filosofii lze ukázat na následujících ukázkách výpisu **Hello World** na konzolu:
+
+/--code csharp
+class Program {
+  public static void Main() {
+    System.Console.Write("Hello Wold");
+  }
+}
+\--code
+
+Začal jsem nejjednodušším programem v C#, který vypíše na konzolu `Hello World`. Teď to samé v Boo:
+
+/--code boo
+print 'Hello World'
+\--code
+
+Ano, to je vše.
+
+Když se vrátím k článkům na programujte.com, je vidět, že autor netuší, která bije, když píše:
+
+> „Každý kód v Boo musí začínat jmenými prostory.“
+
+A skutečně ukázku s Hello World okořenil krásně zbytečným importem jmenného prostoru `System`. Není nad to mást začátečníky spoustou zbytečností, protože pak mají pocit, že se toho naučili hodně. :) Bohužel praxe ukazuje, že méně je mnohdy více a tak se posuneme o kousek dál. Tedy spíš zpátky na začátek, kde autor popisuje instalaci IDE((Integrated Development Enviroment)). Už tohle je pěkná blbost, protože k vyzkoušení Boo žádné IDE nepotřebujete. Boo je totiž vybaveno interaktivní konzolou `booish`, která je podobná těm, které můžete znát z dynamických jazyků Python, Ruby nebo třeba z mona – pro C#. Prostě konzola, kde píšete kód a rovnou se vám pod rukama vykonává. Pro začátečnické pokusy ideální.
+
+Další skvělé expresivní zážitky najdeme v druhém:[druhy] a třetím:[treti] díle v odstavcích věnovaných proměnným. Autor se zapomněl zmínit, že máme k dispozici celý typový systém dotnetu.
+
+> „Typů proměnných je více a my si probereme jen ty základní.“
+
+A už začíná deklarovat jednu proměnnou za druhou.
+
+/--code boo
+celeCislo as int  //definice, aktuální hodnota 0
+celeCislo = 200  //inicializace proměnné
+celeCislo as int = 5
+\--code
+
+Fakt krásné. Všimněte si prvního komentáře. To je stavební kámen další ukázky:
+
+/--code boo
+   //příklad cyklu while
+   import System
+   i as int
+   while(i < 5):
+      print i
+      i++
+\--code
+
+Za takový kód bych si dobrovolně zakázal oběd, abych dostal trochu krve do mozku. Ukázka je bezesporu funkční, ale obsahuje zbytečný import, spoléhá se na implicitní inicializaci hodnotové proměnné, navíc zanáší šum v podobě zbytečných závorek. Takže jak se tedy Boo píše? Ukázka s proměnnými:
+
+/--code boo
+integer = 5
+realNumber = 5.0
+text = 'some text'
+\--code
+
+Jednoduše přiřadíme hodnotu a kompilátor už ví jakého je typu – a není to `object` ani `variant`. ;)
+
+/--code boo
+i = 0
+
+while i < 5:
+  print i++
+\--code
+
+A tady je celá myšlenka ukázky cyklu `while`. Proč je lepší?
+
+1.	Používat komentáře je krásná věc, ale většinou je lepší psát tak, aby se komentáře používat vůbec nemusely. Většinou stačí slušně pojmenovat proměnné (nejlépe **celým jménem**). Tam, kde chcete napsat komentář, raději zvažte, zda není lepší vytvořit novou metodu s dostatečně **popisným názvem**.
+2.	Zbytečným importem nic nezkazíme, ale zvýšíme šum. Někdo by dokonce mohl přemýšlet nad tím, proč tam ten `import` vlastně je.
+3.	Používat neinicializované proměnné je už na výprask. Než uvádět explicitně typ, to tam radši napište tu implicitní hodnotu, ten kód je pak mnohem srozumitelnější.
+4.	No a závorka. Pokud na ní jste z Cčkových jazyků zvyklí, prosím, ale je to další zbytečné zašumění kódu.
+5.	Hodit postfixovou inkrementaci na jeden řádek s printem už je jen taková třešnička na dortu.
+
+Výborná je taky ukázka s `for` cyklem nebo proměnné typu `char`…
+
+Psát texty pro začátečníky je těžké, proto se o ně ani nepokouším, ale neměl by je psát začátečník. Protože chyby, které se v „mládí“ naučíte a zažijete si je, budete pak opakovat a opakovat, než se z nich poučíte. A to stojí čas a ten jsou peníze…
+
+Poučení z dnešního WTF((What the fuck)): „Čím méně kódu napíšete dnes, o to se vám bude lépe spravovat zítra.“ :)
+
+[boo]: http://boo.codehouse.org/ Boo
+[dotnet]: http://www.microsoft.com/net .net
+[python]: http://www.python.org/ Python
+[devlogy]: http://www.devlogy.cz/ Devlogy.cz
+[prvni]: http://programujte.com/index.php?akce=clanek&cl=2008122304-zaklady-programovani-v-jazyce-boo-1-dil
+[druhy]: http://programujte.com/index.php?akce=clanek&cl=2008122500-zaklady-programovani-v-jazyce-boo-2-dil
+[treti]: http://programujte.com/index.php?akce=clanek&cl=2008123002-zaklady-programovani-v-jazyce-boo-3-dil
+

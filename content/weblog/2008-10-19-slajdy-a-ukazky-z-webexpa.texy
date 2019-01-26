@@ -1,0 +1,24 @@
+---
+{:id 326,
+ :title "Slajdy a ukázky z WebExpa",
+ :description
+ "Konečně jsem se dostal k tomu abych nahrál slajdy z naší přednášky na web.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "webexpo" "aspnet" "mvc"},
+ :published "2008-10-19T12:58:14.843"}
+---
+
+Konečně jsem se dostal k tomu abych nahrál slajdy z naší přednášky na web.
+
+{{flash: http://www.authorstream.com/player.swf?p=99567_633604576063437500, 520, 434 }}
+
+Tady tedy jsou:
+* [slajdy] (1,00 MiB, PPSX)
+* [pdf] (2,49 MiB, PDF)
+* [ukazky] (19,44 MiB, ZIP)
+
+[slajdy]: /files/webexpo/webexpo-aspnet-3.5-futures.ppsx.zip slajdy pro PowerPoint .{onclick:t._trackPageview('/files/webexpo/webexpo-aspnet-3.5-futures.ppsx.zip')}
+
+[pdf]: /data/soubory/webexpo-aspnet-3.5-futures.pdf slajdy pro Adobe Reader .{onclick:t._trackPageview('/files/webexpo/webexpo-aspnet-3.5-futures.pdf')}
+
+[ukazky]: /files/webexpo/webexpo-aspnet-3.5-futures.zip ukázky .{onclick:t._trackPageview('/files/webexpo/webexpo-aspnet-3.5-futures.zip')}

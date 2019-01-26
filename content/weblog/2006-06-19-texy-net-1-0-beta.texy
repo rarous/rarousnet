@@ -1,0 +1,78 @@
+---
+{:id 158,
+ :title "Texy.net 1.0 beta 2",
+ :description
+ "Uvolňují druhou beta verzi dotnet knihovny zpřístupňující Texy!",
+ :author "Aleš Roubíček",
+ :tags #{"texynet" "asp.net 2.0"},
+ :published "2006-06-19T15:30:00"}
+---
+
+== Update
+[*/data/obrazky/texy-net.png .(Texy.net logo)[right]*]
+Beta 2 respektuje změny v rozhranní "Texy! XML-RPC":[texy-rpc] a již plně podporuje definování povolených classů, stylů a tagů. Zatím nevyřešenou věcí je komprese přenášeného textu. **Verze beta 1 již není funkční a je nutné jí nahradit betou 2!**
+
+== Ke stažení
+* "Texy.net 1.0 beta 2":[/data/soubory/Texy-net-10-beta2.zip] (obsahuje potřebné knihovny, dokumentaci a zdrojové kódy)
+* "Šablona do Visual Studia s ukázkou použití":[/data/soubory/TexyNet.vsi]
+
+------
+
+Konečně jsem dopsal knihovnu, která zpřístupňuje "Texy!":[texy] pro dotnet 2.0 aplikace. Knihovna interně využívá "Texy! XML-RPC":[texy-rpc] za pomocí knihovny "XML-RPC.net":[rpc-net]. Implementováno je skoro vše, krom GZip komprimace přenosu (v příští verzi přibude možnost přenos komprimovat) --a ještě není plně funkční definování povolených classů, stylů a tagů - konkrétní implementaci musím ještě probrat s DGX:[dgx] :)--
+
+== Ukázka použití
+/---code xml
+<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Ukázka Texy.net</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <asp:TextBox ID="Input" runat="server" TextMode="multiline"></asp:TextBox>
+    <br /><asp:Button ID="SubmitButton" runat="server" OnClick="SubmitButton_Click" Text="Převést" />
+    <asp:Literal ID="Output" runat="server"></asp:Literal>
+    </div>
+    </form>
+</body>
+</html>
+\---code
+
+/---code csharp
+using System;
+using System.Data;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using PBSoftware.Gryphoon.TexyRpc;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void SubmitButton_Click(object sender, EventArgs e)
+    {
+        Texy texy = new Texy(Input.Text);
+        bool useConfiguration = true;
+
+        texy.Configuration.HeadingModule.Top = 3;
+
+        Output.Text = texy.ToXhtml(useConfiguration);
+    }
+}
+\---code
+
+Ukázková stránka obsahuje tlačítko `SubmitButton` po jehož stisknutí dojde k převedení obdahu TextBoxu `Input` pomocí Texy! a výsledek je vypsám pomocí Literalu `Output`.
+
+Knihovnu uvolňuji k volnému použití pod **Creative Commons** licencí. Případné připomínky zanechte v komentářích. :) V balíčku je i "dokumentace":[/sandbox/texy-doc/index.html].
+
+[texy]: http://www.texy.info/cz/
+[texy-rpc]: http://www.texy.info/cz/xmlrpc
+[rpc-net]: http://www.xml-rpc.net/
+[dgx]: http://www.dgx.cz/trine/

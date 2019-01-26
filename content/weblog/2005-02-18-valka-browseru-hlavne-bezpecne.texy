@@ -1,0 +1,29 @@
+---
+{:id 49,
+ :title "Válka browserů - hlavně bezpečně",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2005-02-18T00:00:00"}
+---
+
+Microsoft nedávno anoncoval vydání betaverze Internet Exploreru 7,
+které by mělo proběhnout někdy v létě. Spousta lidí to komentovala na svých blozích, není třeba to rozebírat. Netscape dnes odložil vydání betaverze Netscape Browseru 8.0 na konec února. Netscape Browser má být postaven na Firefoxu, který si stáhlo již 25 mil. lidí na světě. To je stručné vnesení do začínající druhé světové války prohlížečů internetového obsahu.
+
+Připomeňme, že tu první světovou vyhrál Microsoft se svým Internet
+Explorerem. V první světové šlo hlavně o to, kdo dokáže přečíst větší kodérskou prasárnu a kdo má víc vlastních technologií, které jsou navzájem nekompatibilní. Vzešlo z toho i něco dobrého, uchytili se technologie jako JavaScript nebo kaskádní styly, web v té době začal být dynamický.
+
+Po válce se sešly moudré hlavy, aby zjistily, že spoušť, kterou za
+sebou tahle válka nechala, je třeba uklidit. A tak začalo období
+evangelizace. V tomto období spousta tvůrců webu začala zjišťovat, že existují webové standardy - které vymyslely moudré hlavy - a něketří je začali dodržovat. Bohužel Microsoftí Internet Explorer si se standardy zcela nerozumí a začíná pouštět vedle sebe pohrobka Netscape Comunicatoru: Mozillu a Operu, prohlížeče, které standardům rozumí daleko víc a navíc přinášejí rozšířenou funkcionalitu oproti zastarávajícímu Internet Exploreru.
+
+Jenže Mozilla je moc velká a práce s ní není zrovna nejjednodušší,
+proto nemůže konkurovat Internet Exploreru na poli domácích uživatelů. Tak vznikl projekt Phoenix, později Firebird a dnes Firefox, který má přivést Mozillu do domácích počítačů. Vsází na jednoduchost ovládání a podobný vzhled jako IE. Marketingově je jeho vypuštění zvládnuté na jedničku a dnes má Firefox skoro 10% podíl na trhu. Jeho hlavním heslem je bezpečnost.
+
+Microsoft si jistě všiml, že z malého OpenSource projektu se stává
+vážná konkurence a proto vydal zprávu, že chystá nový browser, který bude zaměřen na bezpečnost, kdo by to byl řekl. Dnes měla vyjít betaverze Netscape Browseru 8.0 a hádejte, proč byla odložena, protože hlavním cílem vývojářů je bezpečnost nového produktu. Proč to jen nikoho nenapadlo dřív?
+
+Odpověď je nasnadě. Dnes má k internetu přístup skoro každý -
+samozřejmě počítám lidi z "vyspělé části světa" - a s jeho masovostí a složitostí služeb jim zprostředkovaných roste i možnost útoků, podvodů, ztráty dat a jiných nepěkných věcí. Toho, že je Internet Explorer nejrozšířenější, využívají lidé, kteří na vás chtějí zaútočit, můžou využít jednu díru nebo technologii k útoku s vysokou efektivitou.
+
+Firefox hlásá, že je bezpečnější než IE, ale zlatý oči. S tím jak jeho popularita roste poroste i počet útoků na jeho uživatele. Proto není obranou využívat slabin nepřítele ke svému posílení, ale soustavná práce na prevenci a maximálním zabezpečení produktů. Nechme se překvapit, co přinese jaro.

@@ -1,0 +1,30 @@
+---
+{:id 254,
+ :title "David se vrhl na Goliáše XHTML",
+ :description
+ "Z titulku můžete vyčíst tajnou šifru DGX. Snad jsem toho neprozradil moc... Aneb moje reakce na článek „Konečně pravda o XHTML a HTML.“",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "xhtml"},
+ :published "2008-02-03T09:08:10.667"}
+---
+
+DGX se rozhodl vydat článek s titulkem [xhtml] a moudře zakázal komentáře, protože toto je stále téma, které dokáže pěkně blafnout. Díky tomu můžu napsat svůj komentář u sebe.
+
+1. Dovolil bych si nesouhlasit s následujícím tím, úryvkem, z části [prasarny].
+
+ > XHTML kód zase třeba používáním řetězců abc, AbC, aBC pro různé třídy.
+
+ Hodnoty atributů `class` a `id` jsou stejně case-sensitive jak v HTML, tak v XHTML. Pokud se   tak nechoval např. Netscape 6-, byla to chyba jeho interpreteru CSS.
+
+2. Můj názor na DTD v XHTML je již nějakou dobu celkem jasný - přináší jen problémy, stěžuje rozšiřitelnost. Užívejme raději schéma a jmenné prostory. Jediný důvod k použití DTD v XHTML je, bohužel, přepínání prohlížeče do standard modu.
+
+3. Dle mého názoru je velkou výhodou XHTML v čisté podobě to, že je lépe čitelné pro lidského čtenáře, protože se může lépe orientovat (vizuálně), kde daný element končí a kde začíná.
+
+Největším problémem bezesporu je XML samotné. Jeho striktnost a jednoznačnost vyvolává v kreativní části lidstva ranní nevolnost. Jak jinak si vysvětlit, že ani relativně velké firmy nejsou schopné dodávat dobře sestavené dokumenty?
+
+
+Tagy: [tag-xhtml]
+
+[tag-xhtml]: http://technorati.com/tag/xhtml XHTML .{rel=tag}
+[xhtml]: http://latrine.dgx.cz/konecne-pravda-o-xhtml-a-html Konečně pravda o XHTML a HTML
+[prasarny]: http://latrine.dgx.cz/konecne-pravda-o-xhtml-a-html#toc-mytus-html-dovoluje-prasarny-ktere-vam-v-xhtml-neprojdou Prasárny

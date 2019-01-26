@@ -1,0 +1,39 @@
+---
+{:id 288,
+ :title "Konec dobrý, všechno dobré!",
+ :description
+ "Je tomu téměř 28 měsíců, co jsem nastoupil do Atlasu. Atlas byl mé první zaměstnání, nastupoval jsem do něj přímo za školy. Tímto chci Pájovi a Renému poděkovat za důvěru a šanci, kterou mi dali.",
+ :author "Aleš Roubíček",
+ :tags #{"odpojeni" "jen tak" "atlas" "opus" "twareg"},
+ :published "2008-06-27T11:13:06.557"}
+---
+
+Je tomu téměř 28 měsíců, co jsem nastoupil do Atlasu. Tuto událost jsem oznámil tady na blogu spotem [clanek(115)]. Atlas byl mé první zaměstnání, nastupoval jsem do něj přímo za školy. Tímto chci Pájovi a Renému poděkovat za důvěru a šanci, kterou mi dali.
+
+Za ty více než dva roky jsem poznal spoustu skvělých lidí, kteří byli více než kolegy z práce. Atlas byl něco jako rodina. Ne vždy to bylo růžové, ale takový je život. V průběhu svého působení jsem vystřídal několik produktů. Začínal jsem odblešováním Pokecu:[pokec]. V tomto období se mě Honza rozhodl přidat mezi zdroje [weblogy], podotýkám, že proti mé vůli :D.  Dalším úkolem bylo napsat importovací rozhraní pro Atlasí redakci. Následovala neslavná úprava Registrace:[profil], dovolená na Krétě, první [clanek(193)] a hektická příprava Atlas Checku.
+
+==Atlas.Opus
+V té době (listopad 2006) se už vymýšlel koncept Opusu, já jsem vždycky přisedával poblíž a poslouchal, o co jde. Nakonec jsem se dostal do týmu interních systémů a katalogu, ve kterém jsem byl dosud. Opus mělo být řešení, které nahradí několik interních systémů, které už byly těžko udržovatelné a málo kdo do nich viděl. V podstatě to --byla-- ++je++ stromová atributová databáze s definovatelnými typy vč. dědičnosti a tzv. rozhraní. Velice zajímavý projekt, na kterém jsem získal spoustu zkušeností.
+
+Mým hlavním úkolem bylo vytvořit nad Opusem katalogy. Prvním projektem byla "registrace do Atlasu Firem":[registrace], tak trošku marketingově uspěchaná věc, která díky špatným rozhodnutím ztratila svůj efekt. Ta se spouštěla, tuším, někdy v březnu 2007. V červenci se pak pustili „malé katalogy“ [obchody] a [sex]. V září se spouštěla první verze "velkého katalogu":[katalog], která ještě z části tahala data ze staré databáze (placené zápisy) a z části z nové (bezplatné). Dalším krokem v migraci, bylo napsat administrační rozhraní pro obchodníky, aby mohli v Opusu prodávat a zbavili jsme se tak Firmátoru.
+
+Ke konci roku jsme měli připravené rozhraní pro testování a v březnu jsme migrovali poslední placené zápisy do nového systému. V plánu byl další rozvoj, částečné přebírání některé funkcionality SalesModulu, který měl být nahrazen CRM řešením, a další zajímavé služby. Ale pak přišlo spojeno.cz…
+
+==Odpojeni.cz
+Nastala doba chaosu, různých jednání a tak. Postupem času se ukazovalo, že v takovéto firmě už dál pracovat nechci. Podobného názoru jsem nebyl sám a tak vzniklo [odpojeni]. Spoustu odborných komentářů k této události si jistě dokážete dohledat na Lupě a Živě sami. :) Je až k nevíře, jak se nám to všechno pěkně podařilo na těch woknech naklikat. :)
+
+Pomalu jsem se tedy proklikal k závěru. Co napsat? Za posledních pár měsíců se ze mě stal téměř alkoholik, profesionální hráč Call of Duty, filtr Centráckého spamu (ty lidi si na mejlech fakt ujížděj), sabotér, rebelant a já nevím co ještě – jo vlastně, jo měl jsem i víc času blogovat… Určitě to všechno byly zkušenosti k nezaplacení a já už se těším na ty nové, v příštím zaměstnání, kam nastupuju v úterý společně s většinou Atlasího vývoje a slečnou Veronikou. :P Držte mi palce.
+
+Ich komme!
+
+[pokec]: http://pokec.atlas.cz/
+[profil]: http://profil.atlas.cz/
+[weblogy]: http://www.w3blogy.cz/ W3Blogy.cz
+[registrace]: http://firmy.atlas.cz/registrace/
+[katalog]: http://katalog.atlas.cz/
+[obchody]: http://obchody.atlas.cz/ Obchody
+[sex]: http://sex.atlas.cz/ Sex
+[odpojeni]: http://www.odpojeni.cz/ Odpojeni.cz
+
+[clanek(115)]: /weblog/115-rarous-v-atlasu.aspx Rarouš v Atlasu .(Rarouš v Atlasu)
+[clanek(193)]: /weblog/193-team-building.aspx Teambuilding

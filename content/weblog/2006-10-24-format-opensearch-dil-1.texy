@@ -1,0 +1,54 @@
+---
+{:id 185,
+ :title "Formát OpenSearch – díl 1.",
+ :description
+ "Formát OpenSearch je zajímavou XML implementací. Pojďme se na něj podívat trochu blíž. V tomto díle se podíváme na to, jak implementovat vlastní vyhledávací plug-in do Internet Exploreru 7.0 a Firefoxu 2.0.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "opensearch" "firefox" "ie7" "rss"},
+ :published "2006-10-24T11:36:42.163"}
+---
+
+O formát OpenSearch jsem se začal zajímat někdy najaře letošního roku z velmi prostého důvodu – lze v něm snadno definovat vlastní vyhledávací modul pro Internet Explorer 7.0 a Firefox 2.0. To však není vše, co tento formát umí a k čemu je určený.
+
+Definice vyhledávacího modulu
+=============================
+
+Pokud máte na svém webu implementováno vyhledávání, můžete svým návštěvníkům zkrátit cestu přidáním vlastního modulu, který se přidá do seznamu vyhledávacích strojů ve vašem prohlížeči. Jak na to vám vysvětlí následující odstavce :)
+
+Nejprve je nutné napsat OpenSearch Description dokument s definicí  vašeho modulu. Malá ukázka:
+
+/---code xml
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Web Search</ShortName>
+  <Description>Use Example.com to search the Web.</Description>
+  <Tags>example web</Tags>
+  <Contact>admin@example.com</Contact>
+  <Url type="text/html"
+       template="http://example.com/?q={searchTerms} "/>
+  <Url type="application/rss+xml"
+       template="http://example.com/?q={searchTerms}&amp;amp;format=rss"/>
+</OpenSearchDescription>
+\---code
+
+Ukázka popisuje fiktivní vyhledávač, který poskytuje výsledky hledání ve formě HTML a RSS (dva elementy `Url` s definovaným content-typem), důležitým parametrem je `{searchTerms}`, který klient (např. prohlížeč) nahradí svým dotazem, "další parametry":[http://www.opensearch.org/Specifications/OpenSearch/1.1#OpenSearch_1.1_parameters] . Obsah elementu `ShortName` určuje název vyhledávacího stroje – tento se bude zobrazovat v seznamu vyhledávacích modulů. Další elementy jen přidávají další metadata pro autodiscovery.
+
+Pak stačí přidat do vašich stránek element `link`, který odkazuje na soubor vytvořený v předešlém kroku. Připojení je obdobné s připojováním RSS nebo Atom kanálu. Příklad:
+
+/---code xml
+<link rel="Search"
+      href="http://www.example.com/opensearch.xml"
+      type="application/opensearchdescription+xml"
+      title="Example Search" />
+\---code
+
+[* /data/obrazky/search.png .(rozsvícené tlačítko)[right]*]
+Pokud pak navštívíte takovou stránku, prohlížeč vám dá vědět, že našel modul rozsvícením tlačítka pro výběr modulu.
+
+Další možností, jak modul vytvořit je použít generátor:[http://www.searchplugins.net/generate.aspx].
+
+Související
+===========
+* OpenSearch.org:[http://www.opensearch.org/]
+* "Search Plugins":[http://www.searchplugins.net/]
+

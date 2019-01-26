@@ -1,0 +1,26 @@
+---
+{:id 255,
+ :title "Method Chaining vs. Fluent Interface",
+ :description
+ "Přes Devlogy jsem narazil na článek Intervalu s názvem Fluent Interfaces, ve kterém autor popisuje Method Chaining. Kde udělal kolega Mrozek chybu?",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2008-02-03T11:24:55.363"}
+---
+
+Přes [devlogy] jsem narazil na článek Intervalu:[interval] s názvem [fluent], ve kterém autor popisuje [chaining]. Kde udělal kolega Mrozek chybu?
+
+V definici vážení! :)
+
+> Takzvané "Fluent Interface" (česky též "plynulé rozhraní" nebo "řetězcovité volání") je způsob spojování metod <strong>jednoho objektu</strong>, který usnadňuje předávání pracovního kontextu objektu.
+
+Plynulé rozhraní totiž jde za hranice jednoho objektu. Umožňuje kontextově navazovat třeba celé API do jedné věty. Často se jako návratový typ dané metody používá nějaké rozhraní. Důležité také je, že plynulá rozhraní se používají k tvorbě DSL((Domain Specific Language)).
+
+To jsem dneska zase rozepsal...
+
+Přišli jste sem z RSS čtečky? Zkontrolujte si prosím, zda máte správnou URL feedu http://feeds.feedburner.com/rarous-weblog. Děkuji
+
+[devlogy]: http://www.devlogy.cz/ Devlogy.cz
+[interval]: http://interval.cz/ Interval.cz
+[fluent]: http://php.interval.cz/clanky/fluent-interfaces/ Fluent Interfaces
+[chaining]: http://martinfowler.com/dslwip/MethodChaining.html Method Chaining

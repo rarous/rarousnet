@@ -1,0 +1,68 @@
+---
+{:id 348,
+ :title "Kanonicky proti duplicitám",
+ :description
+ "Vyhledávače přicházejí s podporou nového link tagu canonical. Pojďme se podívat, jak předcházet duplicitnímu obsahu a rozmělňování page ranku, jak pomocí tohoto tagu, tak pomocí URL rewritingu.",
+ :author "Aleš Roubíček",
+ :tags #{"apache" "webdesign" "url" "seo" "rewriting" "iis7"},
+ :published "2009-02-13T07:27:54.080"}
+---
+
+Jedním z velkých problémů dnešních vyhledávačů je duplicitní obsah. Musejí se poprat s velkým množstvím stránek, které vypadají na první pohled shodně a liší se pouze v URL((Uniform Resource Locator)) adrese. Jak mají rozhodnout, kterou z těchto adres vrátit uživateli jako jedinou správnou?
+
+Problém duplicitního obsahu
+===========================
+
+Duplicitní obsah může vzniknout velice jednoduše, nemusí ani dojít ke zkopírování stránky někým jiným. Prostě stačí mít blbě nastavený server a vracet stejný obsah pro URL s i bez `www.` na začátku. Další možností je, že se vaše adresy dynamických stránek v čase vyvíjí. Začínal jsem s nepěknými adresami ve tvaru `clanek.aspx?id=4`, pak jsem časem přešel na SEO URL ve tvaru `clanek.aspx/4-nejaky-nadpis`, později jsem přidal URL rewriter a mé URL vypadaly takto `clanek/4-nejaky-nadpis.aspx`. Všechny tyto adresy vedou na stejný obsah, ale protože mají jinou URL, jsou to pro vyhledávacího robota různé stránky.
+
+Jako správný poskytovatel obsahu bych měl zajistit, že všechny verze URL jsou stále funkční, ale měly by směřovat na jedinou platnou. Ale jak?
+
+Řešení
+=======
+
+Cest k cíli vede samozřejmě spousta. Pokud máte tu možnost, využijte nějaký URL rewriter. Zvolte si kanonickou formu vašich adres a tu všude používejte. Pokud nechcete používat v adresách prefix `www.`, stačí málo.
+
+Na IIS7 s URL Rewriterem přidejte do vašeho `web.config` souboru do sekce `system.webServer/rewrite/rules` následující kód:
+
+/--code xml
+<rule name="Remove WWW prefix" >
+  <match url="(.*)" ignoreCase="true" />
+  <conditions>
+    <add input="{HTTP_HOST}" pattern="^www\.domain\.com" />
+  </conditions>
+  <action type="Redirect" url="http://domain.com/{R:1}" redirectType="Permanent" />
+</rule>
+\--code
+
+Na Apachi stačí do souboru `.htaccess` přidat následující řádky:
+
+/--code
+# Remove WWW prefix
+RewriteCond %HTTP_HOST ^www\.domain\.com [I]
+RewriteRule ^/(.*) http://domain.com/$1 [RP]
+\--code
+
+Co ale dělat, pokud nemáte na serveru možnost URL rewriting provádět?
+
+Naštěstí existuje alternativa. Vývojáři Google, Yahoo a Live Search se domluvili na zavedení `link` tagu, který určuje kanonickou URL přímo v dokumentu. Do sekce `html/head` vašich stránek přidejte následující tag:
+
+/--code xml
+<link rel="canonical" href="http://domain.com/kanonicka/adresa-stranky" />
+\--code
+
+Tím dosáhnete toho, že pokud crawler navštíví vaši stránku přes různé adresy, vždy ji bude považovat za jednu a tu samou s adresou, která je hodnotou atributu `href`.
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [so]
+* [ls]
+* [go]
+* [ss]
+\--div
+
+[so]: http://blog.stackoverflow.com/2008/06/dropping-the-www-prefix/ StackOverflow Blog: Dropping The www Prefix
+[ls]: http://blogs.msdn.com/webmaster/archive/2009/02/12/partnering-to-help-solve-duplicate-content-issues.aspx Live Search Blog: Partnering to help solve duplicate content issues
+[go]: http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html Google Webmaster Blog: Specify your canonical
+[ss]: http://fulltext.sblog.cz/2009/02/17/29 Seznam Fulltext blog: Nová zbraň pro boj s duplicitním obsahem

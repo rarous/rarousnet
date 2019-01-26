@@ -1,0 +1,93 @@
+---
+{:id 265,
+ :title "Using pattern",
+ :description "Dneska se podíváme na jeden zajímavý vzor v jazyce C#.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"aspnet" "idisposable" "mvc" "asp.net 2.0" "patterns" "rhinomocks"},
+ :published "2008-04-14T15:32:14.900"}
+---
+
+Je tomu již dlouhá doba, co jsem psal "spotík o užívání bloku `using`":[clanek(171)]  v jazyce C# pro třídy implementující rozhranní `System.IDisposable`. Tohoto bloku se dá využít k logickému členění kódu do bloků a vytvořit tak syntax sugar na úrovni API.
+
+Ukázky užití
+============
+
+S using patternem se v moderních API dá potkat celkem často. První ukázka je z mockovacího frameworku [rhino-mocks]. Používá se pro nahrávání a přehrávání chování mockovaného objektu.
+
+/--code csharp
+MockRepository mocks = new MockRepository();
+IDependency dependency = mocks.CreateMock<IDependency>();
+
+using(mocks.Record()) {
+    Expect.Call(dependency.GetSomething("parameter")).Return("result");
+    dependency.DoSomething();
+}
+
+using(mocks.Playback()) {
+    Subject subject = new Subject(dependency);
+    subject.DoWork();
+}
+\--code
+
+Using pattern usnadňuje čtení takovéhoto kódu a hned je jasná i logická struktura.
+
+Další ukázka pochází z ASP.NET MVC frameworku, kde se using pattern používá v HTML helperu pro generování formuláře.
+
+/--code xml
+<% using(Html.Form<HomeController>(action => action.Index())) { %>
+...
+<% } %>
+\--code
+
+Implementace
+============
+
+Základem, tedy, je blok `using`, který slouží k bezpečnému zavolání metody `Dispose` objektu implementujícího rozhranní `System.IDisposable`. Jak na to, když v using bloku předáváme metodu a ne objekt? Jednoduše, musíme vrátit v metodě objekt, který se o špinavou práci postará. V podstatě ani nemusí být nijak inteligentní.
+
+/--code csharp
+  public class UsingPattern : IDisposable {
+
+    private WorkerMethod _method;
+
+    public delegate void WorkerMethod();
+
+    public UsingPattern(WorkerMethod method) {
+      _method = method;
+    }
+
+    public void Dispose() {
+      _method();
+    }
+  }
+\--code
+
+Užití v našem API je pak celkem triviální.
+
+/--code csharp
+  public class SomeClass {
+    public UsingPattern SomeMethod() {
+      Console.WriteLine("Zacatek bloku");
+      return new UsingPattern(() => Console.WriteLine("Konec bloku"));
+    }
+  }
+
+  public class OtherClass {
+    public void Consumer() {
+      var some = new SomeClass();
+
+      using (some.SomeMethod()) {
+        Console.WriteLine("Blok");
+      }
+    }
+  }
+\--code
+
+Tagy: [tag-csharp], [tag-patterns]
+
+[tag-csharp]: http://technorati.com/tag/c%23 c# .{rel:tag}
+[tag-patterns]: http://technorati.com/tag/patterns patterns .{rel:tag}
+
+[rhino-mocks]: http://www.ayende.com/projects/rhino-mocks/downloads.aspx Rhino Mocks
+[clanek(171)]: /weblog/171-blok-using.aspx
+

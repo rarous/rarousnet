@@ -1,0 +1,12 @@
+---
+{:id 111,
+ :title "Jsem nadšen z ASP.NET",
+ :description "Reakce na dění v La Trine.",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2006-02-21T22:39:11.790"}
+---
+
+Můj oblíbený autor mé oblíbené "La Trine":[http://www.dgx.cz/trine/] David Grudl napsal velice kontroverzní článek "Jsem zděšen z ASP.NET":[http://www.dgx.cz/trine/item/jsem-zdesen-z-asp-net], který některé ~~zvedl ze židle~~ jiné donutil flamovat. Ať už se David obouvá do ASP.NET jakkoli, jedno mu nelze odepřít, je to výborná reklama na jeho připravovaný framework **Nette**. Nepravdy či polopravdy a nepřesnosti byly rozebrány v hunté diskusi pod článkem.
+
+Z článku a reakcí na něj je jasné, že svět pořád nemá povědoní co je dotnet a co všechno umí. To mě utvrzuje v tom, že mám pokračovat v lehké osvětě a že když se sem dostanou čtenáři, kteří dotnet neznají, že jim třeba pomohu s pochopením této technologie nebo pomůžu do začátku. :)

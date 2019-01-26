@@ -1,0 +1,13 @@
+---
+{:id 24,
+ :title "Firefox",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2004-06-10T10:00:00"}
+---
+
+Brzy má vyjít nová verze "Firefoxu":[firefox] 0.9. Tak jsem se podíval na release candidate. Hned mě překvapilo zeštíhlení instalačního balíčku na 4,8 MiB, dále nový vzhled Firefoxu. Nicméně mě nový vzled moc neuchvátil, líbí se mi více ten, co má [opera] 7.51. No nevím jestli se k foxu vrátím, Opera si mě zatím drží svým IRC clientem a některejma vychytávkama, bohužel zase ale nemá takovou personalizaci jako Firefox. Doufám, že verze 1.0 bude tak vychytaná a že bude kombinovat to nejlepší ze všech v použitelném celku.
+
+[firefox]: http://firefox.czilla.cz/
+[opera]: http://www.opera.com/ Opera

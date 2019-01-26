@@ -1,0 +1,61 @@
+---
+{:id 401,
+ :title "Volme správné názvy!",
+ :description
+ "Pár tipů, jak psát přehlednější kód, kterému rozumí i někdo jiný, než autor.",
+ :author "Aleš Roubíček",
+ :tags #{"cleancode" "asp.net 2.0"},
+ :published "2011-04-08T14:59:43.163"}
+---
+
+Ovládat dokážeme pouze věci, které dokážeme pojmenovat. Pokud něco dokážeme pojmenovat, můžeme se na to domluvit i s ostatními a komunikace je počátkem vývoje. Nebo tak to nejspíš bylo u lidí. ;)
+
+> “There are only two hard things in Computer Science: cache invalidation and naming things” [Phil Karlton]
+
+Ano jedním z nejtěžších problémů v softwarovém vývoji je **správně pojmenovat** věci. Ostatně to není problém pouze softwarového vývoje. :) Přijít s dobrým jménem vyžaduje zkušenost a dobré vyjadřovací schopnosti.
+
+Každý programátor dokáže napsat kus kódu, kterému rozumí počítač, ale jen málo z nich dokáže napsat kód, kterému budou rozumět i lidé (ať někdo jiný nebo po čase on sám). A volba správných názvů přímo vede k dobrému porozumění kódu!
+
+Základní pravidla pro psaní srozumitleného kódu
+===============================================
+
+1. Nepsat kód v jiném národním jazyce než je angličtina (většina programovacích jazyků má klíčová slova anglická).
+2. Používat popisné názvy.
+3. Nepoužívat kryptické kódování alá maďarská notace.
+
+Pravidla pro pojmenování proměnných
+===================================
+
+Proměnná je předmět a tudíž by to měl její název reflektovat. Nejčastěji by názvy proměnných měla být **podstatná jména** (případně s přívlastky.) Výjimkou jsou boolovské proměnné a delegáty. Proměnné typu `bool` by se měly dát číst jako predikáty:
+
+/--code csharp
+bool isEnabled = false;
+bool hasChildren = true;
+\--code
+
+Pro delegáty platí většinou pravidla stejná jako pro tvorbu názvů metod (viz. dále.)
+
+Délka názvu proměnné by měla reflektovat scope v jakém se nachází. Pokud mám proměnou v lambda výrazu, klidně může být jednopísmenková. Např. `x => x * x`. Podobně je na tom proměnná pro index ve smyčce nebo prvek `foreach` cyklu. (Pokud tělo cyklu není delší než 4 řádky.)
+
+V případě proměnných z působností v metodách bychom už měli používat celá slova či popisná sousloví. Pokud máme proměnné s **větším polem působnosti**, jako jsou parametry metod nebo členské proměnné, měly bychom je pojmenovat **delším popisnějším názvem**.
+
+/--code csharp
+readonly IArticlesRepository articlesRepository;
+\--code
+
+Pravidla pro pojmenování metod
+==============================
+
+U metod je to přesně naopak než u proměnných. Metody vyjadřují nějakou akci a proto by měly **začínat slovesem**. Veřejné metody by měly mít název **krátký** a **jasný**. Jedno písmenkové metody patří možná tak akorát do globálního scope (viz. jQuery ;) ale všichni víme, že globální scope je špatný, že ano?) Proč krátké? Protože je pravděpodobné, že je budeme používat často a nejspíš nejen my, ale i někdo jiný. Název však nesmí obsahovat zbytečné implementační detaily (ty by měly být v dokumentačním komentáři). Pěkným příkladem je třeba `File.Open`.
+
+Naproti tomu **privátní metody** by měly mít **popisné názvy dlouhé i několik slov** nebo to může být krátká věta. Nahrazují nám totiž rychle zastarávající komentáře. Nebojte se často používat refactoring `Extract Method` na menší logické kusy kódu a pěkně je pojmenujte. Kód se vám bude číst mnohem líp!
+
+Pravidla pro pojmenování tříd
+=============================
+
+Pro třídy platí podobná pravidla jako pro metody, akorát že třídy jsou opět podstatná jména. Privátní třídy pojmenováváme popisně, veřejné stručně a výstižně. U abstraktních tříd používáme abstraktní jména. Potomci pak toto jméno rozšiřují o konkrétní přívlastky.
+
+Závěr
+=====
+
+Volba správného jména je velice důležitá, protože, když se na váš kód podíváte pozorně, zjistíte, že jde v podstatě o variace neustále se opakujících konstrukcí a význam jim dodávají právě jména.

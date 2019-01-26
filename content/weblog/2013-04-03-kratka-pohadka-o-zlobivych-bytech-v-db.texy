@@ -1,0 +1,21 @@
+---
+{:id 446,
+ :title "Krátká pohádka o zlobivých bytech v DB",
+ :description "Zmrdem snadno a rychle za pár měsíců.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2013-04-03T20:19:58.777"}
+---
+
+"Celý je to pomalý a taví nám to databázi. Vždyť tam máme pár uživatelů a už to nezvládá. To jste se vyznamenali, borci." A to byl začátek celkem slušného redesignu, dva měsíce po spuštění do produkce, s celkem zajímavě naplněnou databází. Po létě proseděným ve stínu kolbenky, značném vyčerpání z posunování vostrýho startu. Krásná vize na barevný podzim a začátek zimy.
+
+A za celým tím byla úžasná myšlenka **ukládat obrázky do databáze**. Vždyť MS SQL to umí, dokonce má datový typ `FileStream`, který ukládá soubory "fyzicky" na file systém! Jistoty, prosperita. Samý profit. Vzpomínáte na Longhorn a jeho geniální WinFS, která měla spasit správu souborů?
+
+O necelý rok dříve
+===========
+
+Když jsem s novým rokem nastupoval do nového zaměstnání, projekt už pár měsíců běžel. Při procházení datové vrstvy mě zarazila jedna věc a to, že se obrázky ukládaly přímo do databáze. Entity, které měly navázané obrázky prostě obsahovaly vlastnost typu `byte[]`. Puristický dogmatik ve mně zpozorněl. "Přijde vám ukládat nerelační data do relační databáze ok? Mně teda ne." Říkám pánům architektům. Neviděli na tom nic špatného a jelo se dál.
+
+Za pár měsíců se rozhodlo, že budeme hostovat v cloudu. SQL Azure sice `FileStream`y neumí, ale pořád můžeme mít `varbinary` sloupce. Mně se to furt nezdálo. Je to "good enough," jak se s oblibou říkalo.
+
+Problem solved.

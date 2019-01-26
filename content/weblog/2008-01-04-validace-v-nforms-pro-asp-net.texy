@@ -1,0 +1,41 @@
+---
+{:id 247,
+ :title "Validace v NForms pro ASP.NET",
+ :description
+ "Oproti původnímu očekávání, jsem za uplynulý týden na NForms skoro nešáhl. Chtělo by se říci naštěstí, protože jsem se věnoval jiným aktivitám, nepočítačovým. :) Ale asi z toho bude (z)páteční projekt. Po týdnu jsem to tedy znovu otevřel a včera dopsal zí",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "nforms" "asp.net 2.0" "lambda"},
+ :published "2008-01-04T16:09:37.467"}
+---
+
+Oproti původnímu očekávání, jsem za uplynulý týden na NForms:[clanek(245)] skoro nešáhl. Chtělo by se říci naštěstí, protože jsem se věnoval jiným aktivitám, nepočítačovým. :) Ale asi z toho bude --z--páteční projekt. Po týdnu jsem to tedy znovu otevřel a včera dopsal získávání hodnot formuláře a na dnešek zbylo začít validační vrstvu.
+
+Validaci jsem započal jednoduchým pravidlem `PredicateRule`. Otázka je, jestli je to dobrý krok. Proto vlastně tento spot píšu. :) Predikátová pravidla vznikají zápisem lambda výrazů, což je sám o sobě mocný nástroj a dalo by se s ním hodně vyhrát. Ovšem naráží to pár překážek. Například typovost hodnot formulářových prvků.
+
+Když jsem psal tu část NForms, která získává poslaná data, vytvořil jsem generickou metodu `GetValue<T>(Converter<string,T>)`. Tato metoda získá hodnotu v požadovaném typu. Pro převod na základní datové typy z textového řetězce se dají použít předpřipravené metody třídy `System.Convert `, pro vlastní struktury stačí předat delegát na vlastní converter a mělo by to fungovat… Jenže jak se validátor dozví, jaký typ zvolit?
+
+Znamená to asi jediné, musím napsat ještě generické ekvivalenty formulářových prvků. Na jednu stranu to znamená docela víc práce, než jsem čekal :) a na druhou mnohem větší komfort při tvorbě formulářů a validačních pravidel. Díky tomu, že je celý framework určen pro verzi 3.5, můžu využít lambda výrazy ke generování JScriptových pravidel. Tedy doufám, že to půjde. Validační kód by pak mohl vypadat nějak tak:
+
+/--code csharp
+Form.AddRule("age", age => age > 18, "Uživatel musí být plnoletý");
+\--code
+
+Co myslíte? Mám se vydat touto cestou, nebo je to moc odvážné? :)
+
+/--div .[#related hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(245)]
+* [clanek(242)]
+* [clanek(238)]
+\--div
+
+Tagy: [tag-nforms], [tag-lambda], [tag-aspnetmvc]
+[tag-nforms]: http://technorati.com/tag/nforms NForms .{rel:tag}
+[tag-lambda]: http://technorati.com/tag/lambda lambda .{rel:tag}
+[tag-aspnetmvc]: http://technorati.com/tag/aspnetmvc aspnetmvc .{rel:tag}
+
+[clanek(245)]: /weblog/245-nforms-pro-asp-net.aspx NForms pro ASP.NET
+[clanek(242)]: /weblog/242-redakcni-system-na-asp-net-mvc.aspx Redakční systém na ASP.NET MVC
+[clanek(238)]: /weblog/238-cekani-na-asp-net-extensions.aspx Čekání na ASP.NET Extensions

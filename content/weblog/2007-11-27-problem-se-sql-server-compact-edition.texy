@@ -1,0 +1,32 @@
+---
+{:id 234,
+ :title "Problem ActiveRecord se SQL CE",
+ :description
+ "Píšu takovou malou aplikaci, která používá SQL Compact Edition pro ukládání dat a Castle ActiveRecord jako persistenční vrstvu. Očekával jsem, bezproblémové použití, ale chyba lávky. ",
+ :author "Aleš Roubíček",
+ :tags #{"castle" "sqlce" "activerecord" "asp.net 2.0" "sql"},
+ :published "2007-11-27T20:17:43.537"}
+---
+
+Píšu takovou malou aplikaci, která používá SQL Compact Edition pro ukládání dat a Castle ActiveRecord jako persistenční vrstvu. Očekával jsem, bezproblémové použití, ale chyba lávky. To bych přišel o námět na tenhle spot.
+
+Napoprvé jsem chtěl využít služeb LINQ to SQL, ale ten si s SQL CE moc nerozumí (tj. vůbec). Tak jsem tedy sáhl po ActiveRecord o kterém jsem četl, že se SQL CE umí (díky NHibernatu). Přidal jsem DB do projektu, nastavil konfiguraci následujícně:
+
+/--code xml
+<activerecord>
+  <config>
+    <add key="hibernate.dialect"
+         value="NHibernate.Dialect.MsSqlCeDialect" />
+    <add key="hibernate.connection.driver_class"
+         value="NHibernate.Driver.SqlServerCeDriver" />
+    <add key="hibernate.connection.provider"
+         value="NHibernate.Connection.DriverConnectionProvider" />
+    <add key="hibernate.connection.connection_string"
+         value="Data Source=DbFile.sdf;" />
+  </config>
+</activerecord>
+\--code
+
+Spustím testy. Nic, spadlo to na výjimce, že NHibernate nemůže vytvořit Driver pro SQL CE. Po chvilce hledání jsem našel, že se musí u reference na `Syste.Data.SqlServerCe` nastavit vlastnost **Copy Local** na *True* a to i u testovacího projektu!
+
+Tak jsem zas o něco chytřejší :)

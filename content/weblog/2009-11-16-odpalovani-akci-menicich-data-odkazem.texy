@@ -1,0 +1,21 @@
+---
+{:id 369,
+ :title "Odpalování akcí měnících data odkazem",
+ :description
+ "Jak volat serverové akce, které jsou potenciálně nebezpečné (mění data), odkazem, se dozvíte možná v tomto spotu.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "form" "rest" "trop" "jquery"},
+ :published "2009-11-16T09:29:26.230"}
+---
+
+V RESTové architektuře webu byste neměli odpalovat akce, které mění data, pomocí odkazů. Měli byste tak činit pomocí sloves HTTP protokolu (`PUT`, `POST`, `DELETE`). Přejdu fakt, že dnešní prohlížeče znají jen sloveso `POST` a ostatní musíte simulovat pomocí XHR((XML HTTP Request)). Stejně se dostanete do situací, kdy potřebujete nějakou akci měnící data odpalít odkazem.
+
+Abych pro příklad nemusel chodit daleko, vezmu si hlasování k akcím na Tropu:[trop]. U každé akce se můžete vyjádřit k tomu, zda na akci *půjdete*, *možná se ukážete* nebo *nepůjdete*. Pokud je uživatel nepřihlášený, vidí pod názvem akce tři ikonky s počtem hlasů. Po přihlášení se stanou aktivními a lze s nimi hlasovat. Původně byla tato „tlačítka“ pouhými odkazy na akci, která hlasování zpracovávala. Jenže po tom, co jsem pouštěl některé spidery, začaly přibývat hlasy.
+
+Tím se dostáváme k praktickému důsledku porušení doporučení z prvního odstavce. Problém jsem nakonec vyřešil následujícím vzorem: Do stránky jsem přidal formuláře, které bezpečným způsobem odpalují akce měnící data. Každý formulář má své `id`. Odkazy, které původně vedly na akce měnící data, nyní odkazují na id jednotlivých formulářů a mají třídu `form-submit`. Jednoduchý jQuery kód pak projde tyto odkazy a na `click` jim naváže `submit` odkazovaného formuláře a ten pak schová.
+
+Stránka vypadá pořád stejně, chová se stejně, ale dělá to *jinak*. Pokud nemá uživatel povolený JavaScript, tak se po kliknutí na ikonku dostane na správný formulář, který musí odeslat stiskem tlačítka submit. Funkčnost tak zůstává přístupná i bez JavaScriptu. Zároveň nehrozí, že by došlo k nechtěné aktivaci akce nějakým spiderem, který si ošahává odkazy na stránce.
+
+Snad se bude hodit i vám.
+
+[trop]: http://www.trop.cz/

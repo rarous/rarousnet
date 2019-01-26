@@ -1,0 +1,196 @@
+---
+{:id 341,
+ :title "Oprava předchozích článků",
+ :description
+ "Trošku jsem zrevidoval kód předchozích článků, opravil některé chyby a refaktoroval makra pro routování. A taky tady přináším nějaká doplnění.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "binsor" "binders" "aspnet" "mvc" "rest"},
+ :published "2009-01-04T11:10:58.343"}
+---
+
+Nikdo není neomylný, i já dělam chyby. A poměrně často. Bohužel i ve svých článcích. Proto jsem se jal revidovat sérii předchozích článků o ASP.NET MVC a znovu si prošel jejich kód a ověřil, že funguje.
+
+Prošel jsem tedy následující články:
+
+* [clanek(296)]
+* [clanek(329)]
+* [clanek(332)]
+* [clanek(336)]
+* [clanek(338)]
+* [clanek(340)]
+
+Doplnění REST
+=============
+
+V článku [clanek(329)] jsem nastínil, jak vytvořit RESTful přístup k entitám pomocí filtrů akcí. Výslednou ukázku jsem doplnil o výstupy akce. V komentářích padlo několik dotazů, jak vlastně REST služby volat, protože zatím žádný prohlížeč neumí formulář odeslat jinou metodou než POST nebo GET.
+
+Jediným řešením, jak ze stránek REST používat je AJAX. Proto akce vrací JSON. V pohledech pak postačí následující kód:
+
+/--code xml
+  <% using (Ajax.BeginForm("REST", "Customers", new AjaxOptions { HttpMethod = "POST" })) {%>
+    <input type="submit" value="Create New" />
+  <% } %>
+
+  <% using (Ajax.BeginForm("REST", "Customers", new AjaxOptions { HttpMethod = "PUT" })) {%>
+    <input type="submit" value="Update" />
+    <input type="hidden" name="id" value="10" />
+  <% } %>
+
+  <% using (Ajax.BeginForm("REST", "Customers", new AjaxOptions { HttpMethod = "DELETE" })) {%>
+    <input type="submit" value="Delete" />
+    <input type="hidden" name="id" value="10" />
+  <% } %>
+
+  <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+  <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
+\--code
+
+Vylepšená verze model binderu
+=============================
+
+V článku [clanek(336)] jsem ukazoval jak si napsat vlastní model binder. Taky jsem psal že uvedený postup není moc dobrý. Tady je tedy lepší verze:
+
+/--code csharp
+public class AddressBinder : BinderBase<Address> {
+  public override ModelBinderResult BindModel(ModelBindingContext bindingContext) {
+
+    IValueProvider valueProvider = bindingContext.ValueProvider;
+    Address address = bindingContext.Model as Address ?? new Address();
+
+    address.Street = GetSafeStringValue(valueProvider, "address_street");
+    address.StreetNumber = GetSafeStringValue(valueProvider, "address_street_number");
+    address.PostalCode = GetSafeStringValue(valueProvider, "address_postal_code");
+    address.Town = GetSafeStringValue(valueProvider, "address_town");
+
+    return new ModelBinderResult(address);
+  }
+}
+\--code
+
+K tomu je ale ještě potřeba rozšířit bázovou třídu binderu:
+
+/--code csharp
+using System;
+using System.Web.Mvc;
+
+public abstract class BinderBase<T> : IModelBinder {
+
+  protected static string GetSafeStringValue(IValueProvider valueProvider, string key) {
+    ValueProviderResult value = valueProvider.GetValue(key);
+
+    if (value != null) {
+      return value.AttemptedValue.Trim();
+    }
+
+    return String.Empty;
+  }
+
+  protected static bool GetSafeBooleanValue(IValueProvider valueProvider, string key) {
+    ValueProviderResult value = valueProvider.GetValue(key);
+
+    return value != null;
+  }
+
+  public Type ModelType {
+    get {
+      return typeof(T);
+    }
+  }
+
+  public abstract ModelBinderResult BindModel(ModelBindingContext bindingContext);
+}
+\--code
+
+Tím jsme se zbavili závislosti na `HttpContext`u, binder je lépe testovatelný a hlavně se dá použít i v metodě `UpdateModel`.
+
+Oprava integrace IoC kontejneru do ASP.NET MVC
+==============================================
+
+V ukázkových kódech článku [clanek(332)] bylo několik chybek, chyběly usingy a některé věci jsem trošku refaktoroval.
+
+Nová verze RoutingMacros.boo
+============================
+
+V článku [clanek(338)] jsem měl jedno makro nedopsané. V nové verzi jsem přidal sekci `constraints` k makru `ignore_route` a provedl lehký refaktoring. Plně funkční kód:
+
+/--code boo
+import Boo.Lang.Extensions
+import Boo.Lang.Compiler
+import Boo.Lang.Compiler.Ast
+import Boo.Lang.Compiler.Ast.Visitors
+
+import System.Web
+import System.Web.Routing
+
+class IgnoreRouteInternal(Route):
+  def constructor(url as string):
+    super(url, StopRoutingHandler())
+
+  override def GetVirtualPath(requestContext as RequestContext, values as RouteValueDictionary):
+    return null as VirtualPathData
+
+def apply_constraints(block as Block, constraints as MacroStatement):
+  assert block
+  return if not constraints
+
+  block.Add([| route.Constraints = RouteValueDictionary() |])
+
+  for exp as ExpressionStatement in constraints.Block.Statements:
+    binary = exp.Expression as BinaryExpression
+    block.Add([| route.Constraints.Add($(binary.Left.ToString()), $(binary.Right)) |])
+
+def apply_defaults(block as Block, defaults as MacroStatement):
+  assert block
+  return if not defaults
+
+  block.Add([| route.Defaults = RouteValueDictionary() |])
+
+  for exp as ExpressionStatement in defaults.Block.Statements:
+    binary = exp.Expression as BinaryExpression
+    block.Add([| route.Defaults.Add($(binary.Left.ToString()), $(binary.Right)) |])
+
+macro ignore_route:
+  path, = ignore_route.Arguments
+  constraints = ignore_route["constraints"] as MacroStatement
+
+  block = Block()
+  block.Add([| route = IgnoreRouteInternal($path) |])
+  apply_constraints(block, constraints)
+  block.Add([| RouteTable.Routes.Add(route) |])
+
+  return block
+
+macro map_route:
+  name, path = map_route.Arguments
+  defaults = map_route["defaults"] as MacroStatement
+  constraints = map_route["constraints"] as MacroStatement
+
+  block = Block()
+  block.Add([| route = Route($path, MvcRouteHandler()) |])
+  apply_defaults(block, defaults)
+  apply_constraints(block, constraints)
+  block.Add([| RouteTable.Routes.Add($name, route) |])
+
+  return block
+
+macro defaults:
+  allowedParents as List = [ "map_route" ]
+  parent as MacroStatement = defaults.GetAncestor(NodeType.MacroStatement)
+  assert allowedParents.Contains(parent.Name)
+
+  parent["defaults"] = defaults
+
+macro constraints:
+  allowedParents as List = [ "map_route", "ignore_route" ]
+  parent as MacroStatement = constraints.GetAncestor(NodeType.MacroStatement)
+  assert allowedParents.Contains(parent.Name)
+
+  parent["constraints"] = constraints
+\--code
+
+[clanek(296)]: /weblog/296-url-routing-v-asp-net-cast-prvni.aspx URL Routing v ASP.NET – část první .(URL Routing v ASP.NET – část první){rel:bookmark}
+[clanek(329)]: /weblog/329-rest-aplikace-pomoci-asp-net-mvc.aspx REST aplikace pomocí ASP.NET MVC .(REST aplikace pomocí ASP.NET MVC){rel:bookmark}
+[clanek(332)]: /weblog/332-inversion-of-control-v-asp-net-mvc.aspx Inversion of Control v ASP.NET MVC .(Inversion of Control v ASP.NET MVC){rel:bookmark}
+[clanek(336)]: /weblog/336-model-binders-v-asp-net-mvc.aspx Model binders v ASP.NET MVC .(Model binders v ASP.NET MVC){rel:bookmark}
+[clanek(338)]: /weblog/338-dsl-pro-konfiguraci-url-routingu-v-asp-net-mvc.aspx DSL pro konfiguraci URL Routingu v ASP.NET MVC .(DSL pro konfiguraci URL Routingu v ASP.NET MVC){rel:bookmark}
+[clanek(340)]: /weblog/340-pojmenovane-routy-v-asp-net-mvc.aspx Pojmenované routy v ASP.NET MVC .(Pojmenované routy v ASP.NET MVC){rel:bookmark}

@@ -1,0 +1,34 @@
+---
+{:id 206,
+ :title "Nová éra klientského programování",
+ :description
+ "Ještě jsem se ani pořádně neohřál ve studených vodách JavaScriptu a přichází mi vysvobození! Microsoft Silverlight.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "plugin" "dotnet" "dlr" "silverlight"},
+ :published "2007-05-03T07:35:44.970"}
+---
+
+Ještě jsem se ani pořádně neohřál ve studených vodách JavaScriptu a přichází mi vysvobození! Microsoft konečně vypustil novou verzi CLR((Common Language Runtime)), která je součástí plug-inu Silverlight (dříve známý pod kódovým označením „WPF/E“). Co je na tom tak vysvobozujícího?
+
+Microsoft vzal CLR 2.0, trochu ho přepracoval, přibyla nová vrstva DLR((Dynamic Language Runtime)), která ulehčuje portaci dynamických jazyků (Python, Ruby, ECMA Script, VB Script) na platformu dotnet. K CLR přibalil základní knihovny .net frameworku, potažmo jejich podmnožinu, a zabalil to do plug-in o velikosti 4,5 MiB, který funguje v prohlížečích IE, Firefox a Safari a zanedlouho přibyde i podpora pro Operu. Pokud jste četli pozorně určitě jste si všimli *Safari*, ano tento plug-in funguje i na OS X! Odteď můžeme tedy psát klientské „skripty“ v C#, VB.NET nebo třeba v IronPythonu:[python]. Brzy by měla přijít i podpora IronRuby, ECMA Scriptu 3.0 a VBx (VB Script).
+
+Silverlight:[silverlight] umožňuje psát graficky zajímavé, interaktivní aplikace, které jsou součástí HTML stránky, stylem na který jste zvyklí při psaní serversidu nebo WPF. Můžete také použít stávající assembly i na klientovi, bez nutnosti rekompilace.
+
+Otázkou zůstává, zda-li se Silverlight dokáže prosadit na trhu, kde už vládne Flash/Flex...
+
+== Související
+* [clanek(198)]
+* Borek Bernard: [wpfe]
+* Dev::Info: [devinfo]
+* Brad Abrams: [poster]
+* Jesse Ezell: [story]
+* C|net News: [mono]
+
+[mono]: http://news.com.com/8301-10784_3-9714669-7.html Silverlight on Linux? We're in, says Mono founder
+[wpfe]: http://www.borber.com/blog/prvni-detaily-o-wpf-e První detaily o WPF/E
+[devinfo]: http://dev20.info/microsoft-silverlight-dal-i-do-ringu-k-adobe-flex Microsoft Silverlight - další do ringu k Adobe Flex
+[story]: http://weblogs.asp.net/jezell/archive/2007/05/03/silverlight-vs-flash-the-developer-story.aspx Silverlight vs. Flash: The Developer Story
+[poster]: http://blogs.msdn.com/brada/archive/2007/04/30/silverlight-poster.aspx Silverlight Poster...
+[clanek(198)]:  /weblog/198-prinasi-microsoft-novou-generaci-webu.aspx Přináší Microsoft novou generaci webu?
+[silverlight]: http://www.silverlight.net/
+[python]: http://www.codeplex.com/IronPython

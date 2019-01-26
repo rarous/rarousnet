@@ -1,0 +1,61 @@
+---
+{:id 418,
+ :title "Co je špatně se Service Locatorem?",
+ :description
+ "No, právě. Záleží z jakého úhlu pohledu se na to koukáme...",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "patterns"},
+ :published "2012-04-16T17:56:13.617"}
+---
+
+Service Locator je obecný návrhový vzor, který dodává jeho uživatelům instance požadovaných služeb. Existuje několik variant implementace tohoto vzoru a dokonce jsou od něj odvozeny i další specifcké vzory.
+
+Singleton
+=======
+
+Nejjednodušší implementaci service locatoru zná asi každý, kdo kdy s návrhovými vzory koketoval - je jím starý známý Singleton! Krom toho, že Singleton svou vnitřní implementací zajišťuje garantovaný lifetime instance, tak tuto instanci i poskytuje - typicky pomocí statické vlastnosti `Instance` v horších jazycích pak funkcí((nebudu říkat metoda, protože statická metod je IMO nesmysl)) `getInstance()`.
+
+Abstract Factory
+===========
+
+Další z častých implementací service locatoru je Factory, jde o další konkrétnější odvozeninu vzoru, která má semantiku nejen instance dodávat, ale i vytvářet. V důslednějších variantách má factory na starosti i řádnou destrukci vytvořeného objektu. Já to nazývám "šrotovným". :) Factory většinou vytváří nové instance pomocí metody `Create()` nebo nějaké její variace.
+
+Generický Service Locator
+================
+
+Další častou implementací je obecný service locator v mnoha aplikacích/frameworcích taky přezdívaný jako `Registry` nebo `Kernel` a podobně. Základním rozhraním většiny IoC kontejnerů je právě takovýto service locator. Většinou instance dostaneme zavoláním metody `GetInstance()` nebo `Resolve()`.
+
+Jak vidíte, vzory jsou to známé, celkem běžně užívané, narážíme na ně denně. Tak co je špatně? Proč někdo používá označení Service Locator pejorativně?
+
+Usage pattern
+==========
+
+Service locator totiž není jen návrhovým vzorem, ale i **vzorem užití.** A tady narazíme na jádro pudla. Vezměme si mou oblíbenou ukázku se Singletonem. Tento vzor jal se býti častován anti-patternem. Je to snad, kvůli tomu, že by to byl špatný návrhový vzor? Myslím, že ne. Tento vzor se spojil v lidských hlavách se vzorem užití, který **je špatný**!
+
+Ruku na srdce, kolikrát ve svém kódu voláte, třeba `HttpContext.Current` místo toho, abyste si ho nechali injektovat konstruktorem?
+
+/--code csharp
+public class SomeWebFoo {
+  public void DoWork() {
+    // code
+    if (HttpContext.Current.IsDebuggingEnabled) {
+    // code
+  }
+}
+
+public class BetterWebFoo {
+  readonly HttpContextBase httpContext;
+
+  public BetterWebFoo(HttpContextBase httpContext) {
+    this.httpContext = httpContext;
+  }
+
+  public void DoWork() {
+    // code
+    if (httpContext.IsDebuggingEnabled) {
+    // code
+  }
+}
+\--code
+
+První třída používá Service Locator usage pattern, druhá inversion of control. V prvním případě skrytě přistupujeme přes statickou vlastnost (globální proměnná) k instanci konkrétního typu. Druhá třída svou závislost veřejně deklaruje, ale je jí navíc jedno, jaký konkrétní typ dostane - závisí pouze na abstrakci. Proč je první třída ve většině případů horší nechám už na vás. Určitě na to přijdete. ;)

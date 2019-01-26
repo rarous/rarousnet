@@ -1,0 +1,45 @@
+---
+{:id 358,
+ :title "Tip na přehlednější šablony",
+ :description
+ "Zastávám názor, že šablona by měla být co nejvíce přehledná a obsahovat co nejméně programového kódu. Pojďme se podívat na některé kousky zasmrádlého kódu a jak se s nimi vypořádat.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"aspnet" "mvc" "asp.net 2.0" "routing" "refactoring"
+   "bestpractice"},
+ :published "2009-07-12T09:25:30.993"}
+---
+
+Zastávám názor, že šablona by měla být co nejvíce přehledná a obsahovat co nejméně programového kódu. Pojďme se podívat na některé kousky zasmrádlého kódu a jak se s nimi vypořádat.
+
+Html.ActionLink
+===============
+
+`Html.ActionLink` je pro mne jedním z prvních míst, kde zvednout ukazováček a říct: „takhle ne.“  Již "ve spotu o routingu":[clanek(340)] jsem psal, že procházení routovací tabulky při hledání akce je výpočetně náročné a pokud vaše tabulka obsahuje mnoho řádků, může být zdrojem nepříjemného zdržení. Mějme například helper odkaz na detail zboží v jehož URL obsahuje informace o kategorii zboží, jeho id a název:
+
+/--code xml
+<%= Html.ActionLink(Model.Name, "Detail", "Goods", new { id = Model.Id, name = Model.UrlName, category = Model.Category.UrlName }) %>
+\--code
+
+Tohle rozhodně není přehledné, ani výkonné. Začněme tedy refaktorovat. Nelíbí se mi, že tag odkazu je generovaný a že pořádně netuším, jestli třeba nejsou parametry ve špatném pořadí. A co potom takový kodér? Co když bude chtít přidat nějakou třídu, aby mohl tento konkrétní odkaz lépe nastylovat nebo mu dát nějaký sémantický význam? Přejděme na `Url.Action`!
+
+/--code xml
+<a href="<%= Url.Action("Detail", "Goods", new { id = Model.Id, name = Model.UrlName, category = Model.Category.UrlName }) %>"><%= Html.Encode(Model.Name) %></a>
+\--code
+
+No moc jsme si nepomohli. Sice teď máme větší kontrolu nad generovaným kódem, ale kód je o dost delší a pořád pěkně „smrdí.“ Zbavme se teď kouzelných řetězců, ty mohou být zdrojem špatně dohledatelných chyb!
+
+/--code xml
+<a href="<%= Url.RouteUrl(RouteTo.CommodityDetail, new { id = Model.Id, name = Model.UrlName, category = Model.Category.UrlName }) %>"><%= Html.Encode(Model.Name) %></a>
+\--code
+
+Zbavili jsme se možnosti udělat chybu v názvu akce nebo řadiče a navíc teď probíhá vyhledávání routy v tabulce podle klíče, tudíž mnohem efektivněji. Ale pořád mi tu něco smrdí. Ano je to ta anonymní třída, i tady je velká šance na vnesení chyby. Ačkoli to tak na první pohled nevypadá, názvy vlastností této třídy nejsou nic jiného než kouzelné řetězce, jen bez uvozovek. Na pozadí se totiž překládají jako klíče ve slovníku. Lék na to je jednoduchý. Vytvoříme si vlastní helper!
+
+/--code xml
+<a href="<%= Url.CommodityDetail(Model) %>"><%= Html.Encode(Model.Name) %></a>
+\--code
+
+Zápis se rázem zpřehlednil, snížila se možnost zanesení chyby a množství opakovaného kódu.
+
+
+[clanek(340)]: /weblog/340-pojmenovane-routy-v-asp-net-mvc.aspx Pojmenované routy v ASP.NET MVC .(Pojmenované routy v ASP.NET MVC){rel:bookmark}

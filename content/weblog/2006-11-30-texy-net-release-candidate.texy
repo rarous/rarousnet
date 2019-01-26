@@ -1,0 +1,69 @@
+---
+{:id 196,
+ :title "Texy.net release candidate",
+ :description
+ "Použití Texy! na dotnetu nebylo nikdy předtím jednodušší!",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "texynet"},
+ :published "2006-11-30T22:40:40.677"}
+---
+
+Po delší odmlce přicházím opět s dotnetovou implementací <a href="/data/projekty/Texy-net-1.0.RC1.zip" onClick="javascript:urchinTracker('/data/projekty/Texy-net-1.0.RC1.zip');">Texy! XML-RPC</a> klienta.  Přesto, že jsem nedostal žádnou odezvu, jsem odchytal pár bugů z předešlé verze, ale hlavně došlo k rozšíření o podporu deklarativní konfigurace.
+
+Dosud se musela Texy.net konfigurovat pokaždé zvlášť v kódu ve kterém byla volána. Nová verze přináší možnost konfigurace pomocí vlastní sekce ve `web.config` souboru. Vytvořil jsem jak vlastní handler pro načítání konfigurace, tak i <a href="/data/projekty/GryphoonConfig.xsd" onClick="javascript:urchinTracker('/data/projekty/GryphoonConfig.xsd ');">schéma</a> pro snadnější editaci konfigurace. Schéma si zkopírujte do adresáře `C:\Program Files\Microsoft Visual Studio 8\Xml\Schemas\Custom\` a do souboru `C:\Program Files\Microsoft Visual Studio 8\Xml\Schemas\DotNetConfig.xsd` přidejte následující kód:
+ `<xs:include schemaLocation="Custom/GryphoonConfig.xsd" />`.
+
+== Ukázka použití
+
+**web.config**
+/---code xml
+<?xml version="1.0" ?>
+<configuration>
+  <configSections>
+    <section name="rarous.texy"
+      type="Rarous.Texy.Configuration.ConfigSectionHandler, Rarous.Texy"
+      allowLocation="true" allowDefinition="Everywhere" />
+  </configSections>
+
+  <rarous.texy>
+    <formatterModule indent="false" lineWrap="255" />
+    <headingModule top="2" />
+  </rarous.texy>
+
+...
+
+</configuration>
+\---code
+
+Ukázka výše má za následek, že výstupní kód nebude odsazován a bude zalamován po 255 znacích. Dále je nastaven nadpis `h2` jako nejvyšší možný. Následuje obligátní ukázka požití v kódu.
+
+/---code csharp
+string input = "nějaký text."; // vstupní text
+// načteme konfiguraci
+Rarous.Texy.Configuration.ConfigSectionHandler handler =
+    (Rarous.Texy.Configuration.ConfigSectionHandler)
+    ConfigurationManager.GetSection("rarous.texy");
+// vytvoříme instanci Texy!
+Rarous.Texy.Texy texy = new Rarous.Texy.Texy(input, handler);
+// překonvertujeme na XHTML s pomocí konfigurace
+string output = texy.ToXhtml(true);
+
+\---code
+
+Tímto však možnosti nekončí. Já například zmiňovaný handler používám  v připravovaném redakčním systému Gryphoon2 pro konfiguraci pro články a pro komentáře. TexyProcessor se pak stará o načítání konfigurace pro aktuální potřebu.
+
+No a protože tohle není úplně nejjednodušší ukázka kódu, máme tu ještě takové usnadnění :) Nejjednodušší možnost použití Texy tedy je:
+
+/---code csharp
+string html = Rarous.Texy.Texy.Process("Hello World!");
+\---code
+
+Doufám, že alespoň někomu to pomůže k snadnějšímu používání Texy! na dotnetu. Závěrem bych vás chtěl poprosit, pokud najdete nějakou chybku, neváhejte a sdělte mi ji, ať už v komentářích, nebo na e-mail:[rarous+texy@gmail.com]. Za každý feedback budu rád. :)
+
+== Ke stažení
+
+* <a href="/data/projekty/Texy-net-1.0.RC1.zip" onClick="javascript:urchinTracker('/data/projekty/Texy-net-1.0.RC1.zip');">Texy.net RC1</a>
+* <a href="/data/projekty/GryphoonConfig.xsd" onClick="javascript:urchinTracker('/data/projekty/GryphoonConfig.xsd ');">Schéma do Visual Studia</a>
+
+[texy-net]: /data/projekty/Texy-net-1.0.RC1.zip  RC1
+[schema]: /data/projekty/GryphoonConfig.xsd Schéma do Visual Studia

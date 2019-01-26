@@ -1,0 +1,27 @@
+---
+{:id 266,
+ :title "Skandální odhalení",
+ :description
+ "Kódové označení: rarouš; Verze: Microsoft Cylon 4.02 SP1 Hollywar Edition; Datum posledního updatu: CET 21:45 16.4.2008",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2008-04-18T10:14:09.717"}
+---
+
+Kódové označení: rarouš
+ Verze: Microsoft Cylon 4.02 SP1 Hollywar Edition
+ Datum posledního updatu: CET 21:45 16.4.2008
+
+rarouš – robotická bytost ([cylon]) vytvořená v laboratořích v Redmondu pro vedení svatých válek v oblasti střední a východní Evropy. Identických modelů je po Zemi rozmístěno několik.
+
+Elektronika je napájena "palivovými články":[clanek] na bázi etanolu:[ethanol], který je nedílnou součásti konzumních lihovin (běžně užívaný metanol, by mohl vzbuzovat u veřejnosti podezření). Nekompatibilní roztoky s koncentrací menší než 35% (typicky pivo) jsou neprodleně ze systému vyloučeny nejkratší možnou cestou. Zbylá voda je vylučována pomocí standardního rozhranní, které je navíc opatřeno USB A konektorem. Tento se používá ke každodennímu 16 hodinovému rituálu (tzv. "obcování s počítačem":[obcovani]), který slouží k nutné aktualizaci a údržbě systému.
+
+Cyloni byly vyvinuti k různým účelům, někteří jsou skvělými marketéry, jiní programátory nebo správci systémů. Obvykle jsou to klikači. Jejich systém používá vždy nejnovější technologie Microsoftu, proto se jejich chování může zdát nestabilní (schizofrenie, nenadálé výbuchy rebélie apod.). Velice obtížnou úlohou pro programátory Cylonů bylo vytvoření simulace emocí. V současné čtvrté verzi se může setkat již s rozladěností, vztekem, nebo simulací kocoviny. Často nejsou sami schopní vyhodnotit, kdy se mají emoční podprogramy spustit, proto neustále analyzují okolí. Na základě této analýzy, odcházejí při obcování s počítačem informace do datacentra v Redmondu a jsou okamžitě vyhodnocovány farmou superpočítačů. Následně vznikne sada aktualizačních balíčků a hotfixů, které jsou distribuovány pomocí Cylon Update nebo v rámci [update].
+
+Tento spot byl vytvořen za pomocí `System.Reflection.Machine.SelfDump()`.
+
+[ethanol]: http://cs.wikipedia.org/wiki/Ethanol
+[cylon]: http://en.wikipedia.org/wiki/Cylon_%28re-imagining%29 cylon
+[clanek]: http://cs.wikipedia.org/wiki/Palivov%C3%BD_%C4%8Dl%C3%A1nek
+[update]: http://update.microsoft.com/microsoftupdate/v6/default.aspx?ln=cs-cz Microsoft Update
+[obcovani]: http://www.lupa.cz/clanky/atlas-ve-sparech-centra-pratelska-prevzeti-neexis

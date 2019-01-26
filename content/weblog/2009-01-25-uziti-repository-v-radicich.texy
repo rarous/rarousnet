@@ -1,0 +1,70 @@
+---
+{:id 346,
+ :title "Užití repository v řadičích",
+ :description
+ "Dost už bylo infrastruktury, pojďme si ji trochu užít! :) Dneska si ukážeme jak používat naší infrastrukturu, která by nám měla spoustu věcí usnadnit. Proto jí vlastně tady tvořím.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"binders" "aspnet" "repository" "mvc" "rest" "asp.net 2.0" "ioc"},
+ :published "2009-01-25T10:18:39.737"}
+---
+
+Dost už bylo infrastruktury, pojďme si ji trochu užít! :) Dneska si ukážeme jak používat naší infrastrukturu, která by nám měla spoustu věcí usnadnit. Proto jí vlastně tady tvořím.
+
+Dependency injection a bindování modelu
+=======================================
+
+Vytvoříme si řadič, který bude pracovat řekněme s uživateli - to je taková věc, která je nutná snad v každé aplikaci. Ruku na srdce, aplikace bez uživatelů je tak trochu k ničemu. Tak pojďme na to!
+
+/--code csharp
+[HandleErrors]
+public class UsersController : System.Web.Mvc.Controller {
+
+  private IUsersRepository _usersRepository;
+
+  public UsersController(IUsersRepository usersRepository) {
+    _usersRepository = usersRepository;
+  }
+
+  [ActionName("Rest")]
+  [AcceptVerbs(HttpVerbs.Post)]
+  public ActionResult Create(FormCollection forms) {
+
+    var user = new User();
+    if (ModelState.IsValid == false) {
+      throw new ValidationException();
+    }
+
+    UpdateModel(user, forms.ToValueProvider());
+    _usersRepository.Save(user);
+
+    return Json(user);
+  }
+}
+\--code
+
+Krátké a úderné. Jde o klasický řadič, který má závislost na repository uživatelů. Tuto závislost si nechává nainjektovat přes konstruktor. O její životní cyklus se nestará, to řeší IoC((Inversion of Controll)) kontejner. Pak tu máme akci, která zpracovává POST dotazy řekněme na URL `/Users`, to teď není podstatné. Tato akce by měla vytvořit nového uživatele z dat, která přišla v POSTu (`FormCollection`).
+
+Pokud nejsou data v pořádku, tak vyhodíme validační výjimku. O to, jak se tato data mapují na model uživatele, se opět řadič nestará, to je věc model binderu. Pokračujeme dále k uložení uživatele, někam. Kam a jakým způsobem je řadiči opět šumák, to je starost repository. Nakonec pošleme zpátky hotového uživatele jako JSON((JavaScript Object Notation)) objekt.
+
+A to je pro dnešek vše… :)
+
+/--div .[#related hslice]
+Související .[entry-title]
+==========
+.[entry-content]
+* [clanek(271)]
+* [clanek(332)]
+* [clanek(336)]
+* [clanek(338)]
+* [clanek(343)]
+* [clanek(345)]
+\--div
+
+
+[clanek(271)]: /weblog/271-active-record-vs-repository-pattern.aspx ActiveRecord vs. Repository pattern .(ActiveRecord vs. Repository pattern){rel:bookmark}
+[clanek(332)]: /weblog/332-inversion-of-control-v-asp-net-mvc.aspx Inversion of Control v ASP.NET MVC .(Inversion of Control v ASP.NET MVC){rel:bookmark}
+[clanek(336)]: /weblog/336-model-binders-v-asp-net-mvc.aspx Model binders v ASP.NET MVC .(Model binders v ASP.NET MVC){rel:bookmark}
+[clanek(338)]: /weblog/338-dsl-pro-konfiguraci-url-routingu-v-asp-net-mvc.aspx DSL pro konfiguraci URL Routingu v ASP.NET MVC .(DSL pro konfiguraci URL Routingu v ASP.NET MVC){rel:bookmark}
+[clanek(343)]: /weblog/343-jaky-pohled-si-vybrat.aspx Jaký pohled si vybrat? .(Jaký pohled si vybrat?){rel:bookmark}
+[clanek(345)]: /weblog/345-persistence-modelu-pomoci-activerecord.aspx Persistence modelu pomocí ActiveRecord .(Persistence modelu pomocí ActiveRecord){rel:bookmark}

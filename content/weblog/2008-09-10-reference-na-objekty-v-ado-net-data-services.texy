@@ -1,0 +1,66 @@
+---
+{:id 297,
+ :title "Reference na objekty v ADO.NET Data Services",
+ :description
+ "Pokud se rozhodnete pro vaše AJAXové aplikace požívat RESTové služby ADO.NET Data Services, jistě se dostanete do situace, kdy máte komplexní typ a potřebujete vytvořit novou entitu s odkazem na již existující objekt.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "webexpo" "ajax" "rest" "dataservices"},
+ :published "2008-09-10T06:44:15.543"}
+---
+
+Pokud se rozhodnete pro vaše AJAXové aplikace požívat RESTové služby ADO.NET Data Services, jistě se dostanete do situace, kdy máte komplexní typ a potřebujete vytvořit novou entitu s odkazem na již existující objekt.
+
+Řešení tohoto problému jsem hledal dost dlouho, nakonec bylo celkem jednoduché.
+
+Problém
+=======
+
+AJAXově vytvářím entitu, která má vlastnost `User`, což je reference na uživatele, který danou entitu vytvořil – kterému patří.
+
+Cesta k řešení
+==============
+
+Nejprve jsem zkoušel využít něco podobného, jako je u entit, které jsou vráceny pomocí metody GET. Tedy odkaz na jinou entitu je vyjádřen pomocí vlastnosi `__deffered` a ta má atribut `uri`, který odkazuje na již existující entitu pomocí jejího URL((Unified Resource Locator)). Bohužel, to nefungovalo, protože `__deffered` je metodou POST ignorováno. Kód vypadal asi následujícně:
+
+/--code javascript
+User: { __deffered: { uri: "/Users(13)" } }
+\--code
+
+Pak jsem tedy zkusil druhý zoufalý krok. Zkusil jsem použít atribut ID, který je vlastně jediný důležitý pro správné persistování do databáze. Kód následující:
+
+/--code javascript
+User: { Id: 13 }
+\--code
+
+Jenže ani to není správná cesta, navíc si tak můžete Usera poškodit.
+
+Konečné řešení
+===============
+
+Konečné funkční řešení se od toho původního pokusu skoro neliší, ano byl jsem hodně blízko a vzal to oklikou a až důkladné čtení dokumentace mi otevřelo oči. Vlastnost `__metadata` byla aktuálně tou správkou, která se měla použít! Takže správný kód vypadá takto:
+
+/--code javascript
+User: { __metadata: { uri: "/Users(13)" } }
+\--code
+
+Závěr
+=====
+
+Já vím, není to žádná super extra informace, ale já k jejímu získání spotřeboval celkem dost času. Možná to někomu ušetří starosti a hledání… Pokud vás zajímají [dataservices] - což je velice zajímavá technologie – můžete se přijít podívat na "naši přednášku o ASP.NET":[prednaska], kde o nich bude utroušeno několik slov a předvedena pěkná ukázka ve spojení s AJAXem a k databázi budeme přistupovat přes [nhibernate] místo Entity Frameworku.
+
+/--div .[#related hslice]
+Související .[entry-title]
+=========
+.[entry-content]
+* [prednaska]
+* [vyvojar-serial]
+\--div
+Tagy: [tag-dataservices], [tag-ajax]
+
+[tag-dataservices]: http://technorati.com/tag/dataservices DataServices .{rel:tag}
+[tag-ajax]: http://technorati.com/tag/ajax AJAX .{rel:tag}
+
+[prednaska]: /weblog/295-povidani-o-asp-net-na-webexpu.aspx Povídání o ASP.NET na WebExpu .{rel:bookmark}
+[dataservices]: http://msdn.microsoft.com/en-us/data/bb931106.aspx  ADO.NET Data Services
+[nhibernate]: http://www.hibernate.org/343.html NHibernate
+[vyvojar-serial]: http://www.vyvojar.cz/Series/8-ado-net-data-services.aspx Vývojář.cz - Seriál o ADO.NET Data Services

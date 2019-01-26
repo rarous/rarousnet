@@ -1,0 +1,24 @@
+---
+{:id 428,
+ :title "Inversion of Control",
+ :description
+ "Zapomeňte na Dependency injection, osvoboďte svou mysl od nepodstatných detailů a ochutnejte nirvánu v podobě IoC.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "ioc"},
+ :published "2012-09-27T11:29:29.253"}
+---
+
+Inversion of Control je princip, který při psaní svých softwérů uplatňuji zhruba 5 let. Nikdy o něm nějak do hloubky neuvažuju, prostě je to způsob jakým software píšu. Nepotřebuju nikoho přesvědčovat, že zrovna ten můj způsob je nejlepší. Poznají to sami. :) Na začátku jsem pouze potřeboval opustit svou komfotní zónu a přestat být control freak.
+
+Je úžasný, že umíte injektovat závislosti, ale k čemu je vám to dobrý, když netušíte, k čemu je vám to dobrý? ;) Když používáte DI, říká vám něco vzor dekorátor, strategy nebo třeba adaptér? Jestli ne nebo ano, ale nepoužíváte je, serte na DI. "Testovatelnost!" říkáte? Hmm, existují i jiné techniky a třeba vás ani nebudou tak bolet.
+
+Vítejte ve světě za zrcadlem
+============================
+
+Důležité je udělat ten první krok. Obrátit své myšlení naruby. Pak přestat řešit detaily. Pro to, abych udělal tohle potřebuju něco, co umí tohle a tohle. Jak to dělá? Koho to zajímá? Jak se to ke mně dostane? Koho to zajímá? Je to opravdu důležité? Ne, neni. Důležité je, co dělá váš kus kódu, jakou má business value. Čím víc se snaží menežovat, místo aby něco dělal, tím horší ten kód je. To je fakt. Smiřte se s tím.
+
+Moje práce spočívá v tom, že vytvářím různobarvené kousíčky lega. Pak přiložím návod. Ne nějak přesný (zapomeňte na XML, NEON, YAML, JSON a já nevím co ještě), jen řeknu, že červené dvouřadové lištičky jsou támhle v té krabičce, popřípadě se některé můžou ještě válet pod postelí. Nechme stroj ať nás překvapí. Stroj netrpí přehnanou potřebou se kreativně vyjádřit a umí táhnout na branku. Většinou má lepší výsledky než lidi.
+
+A když mu něco chybí, nebojí se ozvat, nesnaží se to nějak zaplácnout něčím, co tam nepatří. Nebojí se ranit mé city a řekne, "tohle jsi posral." Cajk. Můžeme jít dál. :) Abyste mohli dosáhnou nirvány, potřebujete dobrý type systém, nebo Ruby. Všechno ostatní je jen nepovedené napodobování, jak Dan rád říká *Cargo Cult*.
+
+*Metafora s legem patří @renestein, já si jí jen drze ukradl.*

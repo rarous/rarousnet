@@ -1,0 +1,22 @@
+---
+{:id 55,
+ :title "Poslední dobou",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2005-04-24T21:06:00"}
+---
+
+Poslední dobou jsem udělal několik webů. Po zprovoznění [ggdagcz] jsem udělal jednoduché stránky pro náš "projekt v předmětu Softwarové inženýrství":[team]. Minulý víkend jsem udělal kompletní návrh webu pro [inkasni] a teď čekám, jak se k tomu vyjádří. Dále jsme s mikem konečně zprovoznily jeho stránky, takže vás tímto "zvu na prohlídku...":[mike]
+
+[microsoft] konečně uvolnil druhou betaverzi "Visual Studia 2005":[vs2005] a já se pomalu pouštím do rekonstrukce těchto stránek. Prvním krokem bylo převedení frontendu blogu do Masteru. Taky jsem přidal do pravého sloupce výpis mikových článků z jeho webu. Je to generovaný z RSS pomocí XSLT...
+
+Po dlouhé době vyšla "nová verze Opery":[opera], prvního prohlížeče s podporou SVG - vektorové grafiky zapisované v XML. Opera dělá promo akci, pokud přivedu 250 unikátních návštěvníků na jejich stránky, dostanu registraci zdarma, tak prosím klikněte na banner v horní části stránky, naoplátku pro vás taky něco udělám. Dík, je to "jenom jedno kliknutí...":[opera]
+
+[ggdagcz]: http://ggdag.euweb.cz/ Gigi D'Agostino Czech fan pages
+[team]: http://team.kvalitne.cz/
+[inkasni]: http://www.inkasni.cz Inkasní družstvo
+[mike]: http://mikemaly.net/
+[microsoft]: http://www.microsoft.com Microsoft
+[vs2005]: http://lab.msdn.microsoft.com/vs2005
+[opera]: http://my.opera.com/rarous/affiliate/

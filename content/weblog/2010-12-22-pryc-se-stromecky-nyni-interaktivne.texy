@@ -1,0 +1,65 @@
+---
+{:id 399,
+ :title "Pryč se stromečky! Nyní interaktivně.",
+ :description
+ "Včera jsme si předvedli jak pomocí několika základních refaktoringů snížit cyklomatickou komplexitu, zpřehlednit tak kód a snížit riziko výskytu chyb. Dnes se posuneme ještě o kousek dál a zbavíme se nadbytečného imperativního kódu.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0" "rx" "linq"},
+ :published "2010-12-22T07:35:42.090"}
+---
+
+Včera jsme si předvedli:[clanek(398)] jak pomocí několika základních refaktoringů snížit cyklomatickou komplexitu, zpřehlednit tak kód a snížit riziko výskytu chyb. Dnes se posuneme ještě o kousek dál a zbavíme se nadbytečného imperativního kódu.
+
+LINQuj, LINQuj
+==============
+
+Když jsem dorefaktoroval metodu `IterateMatchingPathGroups` do poslední verze s guardy, hned jsem viděl, že tohle je jasný LINQoký dotaz přepsaný imperativně. Původně jsem ho chtěl přidat do včerejšího článku, ale pak jsem zjistil, že nejde úplně o triviální dotaz a že to nechám na pozorném čtenáři na rozvinutí v komentářích.
+
+Netrvalo dlouho a na twitteru mi psal [tomasp], že by tato metoda šla přepsat pomocí LINQu. Inu, funkcionální srdcař se nezapře. :) Tak mi to nedalo a píšu tenhle druhej díl.
+
+Interaktivní extenze na scénu!
+==============================
+
+Jak už jsem psal, nejde o úplně triviální LINQ dotaz, protože tu potřebujeme mapovat dvě kolekce na sebe. Ve čtvrté verzi .net frameworku byl přidán kombinátor `Zip`, který dělá přesně to, co potřebujeme. (Pokud používáte .net 3.5, najdete tento v knihovně System.Interactive v rámci [rxnet].) Tady je výsledný kód, který si popíšeme dále:
+
+/--code csharp
+static void IterateMatchingGroups(Regex regex, Match match, RouteData data) {
+  GroupCollection groups = match.Groups;
+  string[] groupNames = regex.GetGroupNames();
+
+  groups.Cast<Group>().
+    Zip(groupNames, (group, name) => new {
+      Pair = new KeyValuePair<string, string>(name, group.Value),
+      IsMatch = group.Success,
+    }).
+    Where(x => x.IsMatch).
+    Select(x => x.Pair).
+    Where(IsNamedKey).
+    Where(IsNotEmptyValue).
+    Do(SetRouteData(data));
+}
+
+static bool IsNamedKey(KeyValuePair<string, string> pair) {
+  return !(string.IsNullOrEmpty(pair.Key) || char.IsNumber(pair.Key, 0));
+}
+
+static bool IsNotEmptyValue(KeyValuePair<string, string> pair) {
+  return !string.IsNullOrEmpty(pair.Value);
+}
+
+static Action<KeyValuePair<string, string>> SetRouteData(RouteData data) {
+  return pair => data.Values[pair.Key] = pair.Value;
+}
+\--code
+
+Nejprve si připravíme vstupní kolekce skupin a jejich názvů. Protože `GroupCollection` implementuje pouze negenerické `IEnumerable` použijeme extenzi `Cast<TResult>`, která vytvoří generickou kolekci, nad kterou už se dají použít LINQ kombinátory. Dále obě kolekce sezipujeme a vytvoříme si pomocný anonymní objekt, který drží pár klíč-hodnota a informaci, zda byl úspěšný match.
+
+Odfiltrujeme si neúspěšné matche a dál už potřebujeme jen pár klíč-hodnota, tak si ho vyselectujeme. Odfiltrujeme páry, které nemají klíč nebo je klíčem číslo, a pak ještě ty, které nemají hodnotu. Tím jsme sémanticky nahradili guard podmínky z cyklu předchozí verze. A dostali jsme se k tomu, co vlastně chceme udělat, tj. přidat nalezené hodnoty do kolekce routovacích dat. K tomu slouží kombinátor `Do` z interaktivních extenzí.
+
+Pokud zrovna nechcete používat skvělou knihovnu Rx.net, můžete kombinátor `Do` nahradit zápisem `ToList().ForEach` nebo `AsParallel().ForAll` z TPL((Task Parallel Library)).
+
+A to je pro dnešek vše. Nějaká dotazy, výtky a tak? :)
+
+[clanek(398)]: /weblog/398-pryc-se-stromecky.aspx Pryč se stromečky .(Pryč se stromečky!){rel:bookmark}
+[tomasp]: http://www.tomasp.net Tomáš Petříček
+[rxnet]: http://msdn.microsoft.com/en-us/devlabs/ee794896 Rx.net

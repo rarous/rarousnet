@@ -1,0 +1,34 @@
+---
+{:id 381,
+ :title "Záleží na jazyku?",
+ :description
+ "Považuji se za C# vývojáře, ale každý den používám spoustu dalších jazyků. Je znalost jazyka opravdu to, co z nás dělá programátory?",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2010-02-26T07:43:23.513"}
+---
+
+Považuji se za C# vývojáře, ale každý den používám spoustu dalších jazyků. Je znalost jazyka opravdu to, co z nás dělá programátory?
+
+C#:
+  - Jazyk, který používám pro psaní serverových částí webových aplikací, konzolových utilit a služeb. Imperativní objektový jazyk s funkcionálními vlastnostmi se hodí skoro na všechno.
+Boo:
+  - Boo používám hlavně na části, které se mohou u aplikace měnit i po zkompilování aplikace. Jeho silnou vlastností je tvorba DSL((Domain Specific Language)) a díky tomu je konfigurace aplikací příjemnou záležitostí.
+JavaScript:
+  - Původně jsem se JavaScriptu vyhýbal a neměl jsem ho rád. Pak jsem mu ale přišel na chuť a zjistil, jak moc pěkný jazyk to je a co všechno se s ním dá dělat. Používám výhradně na oživení webových stránek.
+PowerShell:
+  - S tímto jazykem teprve začínám, ale některé jeho vlastnosti jsou opravdu zajímavé. Snažím se v něm psát scripty pro automatizaci některých rutin na serverech.
+MSBuild:
+  - XML jazyk, který používám pro build a deployment scripty. V nové verzi podporuje i vkládání PowerShell scriptů a stává se tak ještě zajímavějším nástrojem.
+XHTML:
+  - Další XML jazyk, který používám pro tvorbu prezentační části webových aplikací.
+CSS:
+  - Ovládnutí tohoto jazyka může vypadat jako hračka, ale často rozeznáte mistry od obyčejných dělníků. Používám pro stylování prezentační části webových aplikací.
+T-SQL:
+  - Dotazovací jazyk do databází není mojí nejsilnější zbraní, ale přesto v něm dokážu napsat některé zajímavé věci. S tím, že používám NHibernate, se mi nutnost jeho použití trochu snižuje, ale stejně člověk potřebuje občas udělat nějaké změny ve schematu nebo nějaký report.
+Texy!:
+  - Tahle syntaxe mi pomáhá při psaní textů na web takřka denně.
+
+Sešla se mi tu sbírka devíti jazyků, které používám takřka denně ke svojí práci, a to jsem schválně opomněl všechny ty XML dialekty pro různé konfigurace. :)
+
+Jazyk je pouze nástroj a každý se hodí k jinému účelu. Stává se, že některé jazyky si najdou cestičku, jak se dostat do jiných a mnohdy je to výhoda. Obzvlášť, pokud oba známe. Samozřejmě je dobré mít povědomí i o jiných jazycích, jejichž myšlenky nás mohou obohatit i v našem oblíbeném jazyce.

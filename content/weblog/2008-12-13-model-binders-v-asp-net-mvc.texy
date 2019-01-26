@@ -1,0 +1,139 @@
+---
+{:id 336,
+ :title "Model binders v ASP.NET MVC",
+ :description
+ "Jednou z pěkných vlastností ASP.NET MVC je, že data která posíláte akci, můžete v kódu získávat přes silně typové parametry metody (akce). Pokud dostatečně dodržujete dané konvence, můžete takto získat i třeba komplexní typy.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"imodelbinder" "binsor" "aspnet" "windsor" "mvc" "asp.net 2.0" "boo"
+   "ioc"},
+ :published "2008-12-13T20:15:00.427"}
+---
+
+Jednou z pěkných vlastností ASP.NET MVC je, že data která posíláte akci, můžete v kódu získávat přes silně typové parametry metody (akce). Pokud dostatečně dodržujete dané konvence, můžete takto získat i třeba komplexní typy.
+
+To je zařízeno něčím, co se jmenuje **model binders**. Základem je `DefaultModelBinder`, který implementuje rozhranní `IModelBinder`. Dále pak atributy `BindAttribute` a jeho bratříček k psaní vlastních atributů `CustomModelBinderAttribute` a v neposlední řadě metody řadiče `UpdateModel` a `TryUpdateModel`.
+
+O tom jak používat `DefaultModelBinder`, si můžete "přečíst třeba u ScottaGu":[scottgu]. Já bych se spíš chtěl zaměřit na možnosti rozšíření, které nám infrastruktura model binders přináší.
+
+Velkou slabinou konvenčního `DefaultModelBinder`u je, že ve view musíte dodržovat jmenné konvence vašeho modelu. Sice to může přinést spoustu benefitů, ale i problémů.
+
+Možnosti
+========
+
+Možností, jak bindery používat, je mnoho. Můžete si třeba "bindovat z AppSettings nebo z třeba z cookie":[aboutcode]. I to je pomocí model binders možné. Pojďme se ale podívat na to, jak bindovat váš model na data odeslaná z view s odlišnou jmennou konvencí…
+
+Základy
+=======
+
+Vlastní bindery můžeme vytvořit tak, že implementuje rozhraní `IModelBinder`. Hotovou implementaci pak musíme zaregistrovat při startu aplikace. Pro ukázku si uděláme velice jednoduchý příklad načítání adresy z `FormsCollection`. Mějme datovou třídu adresa:
+
+/--code csharp
+public class Address {
+    public string Street { get; set; }
+    public string StreetNumber { get; set; }
+    public string Town { get; set; }
+    public string PostalCode { get; set; }
+}
+\--code
+
+K ní si vytvoříme model binder:
+
+/--code csharp
+public class AddressBinder : IModelBinder {
+  public ModelBinderResult BindModel(ModelBindingContext bindingContext) {
+    var address = new Address {
+      Street = bindingContext.HttpContext.Request["address_street"].Trim(),
+      StreetNumber = bindingContext.HttpContext.Request["address_street_number"].Trim(),
+      PostalCode = bindingContext.HttpContext.Request["address_postal_code"].Trim(),
+      Town = bindingContext.HttpContext.Request["address_town"].Trim(),
+    };
+
+    return new ModelBinderResult(address);
+  }
+}
+\--code
+
+Který nakonec zaregistrujeme v `Global.asax`:
+
+/--code csharp
+protected void Application_Start() {
+  ModelBinders.Binders[typeof(Address)] = new AddressBinder();
+}
+\--code
+
+Když teď akci předáme parametr typu `Address`, bude automaticky vázán pomocí `AddressBinder`u. Stejně tak, použijeme-li metodu `UpdateModel`. V některých scénářích zjistíte, že výše uvedený binder, není úplně skvělý, ba co víc, že je v podstatě dost k ničemu. Navíc taky přijdete na to, že když váš model bude trochu bohatší, tak se váš `Global.asax` pěkně natáhne, navíc pokud budou mít vaše bindery závislosti na jiných službách, začne v tom být pěkný bordel…
+
+Binsor  na scénu
+================
+
+Minule jsme si ukázali, "jak propojit ASP.NET MVC s IoC kontejnerem":[clanek(332)] a dnes ho využijeme a trochu si ulehčíme práci… Jak jsem již psal, všechny model bindery implementují rozhranní `IModelBinder` a toho můžeme využít pro jejich registraci do kontejneru, přidáním následujících řádků do souboru `Windsor.boo`:
+
+/--code boo
+for binder in AllTypesBased of IModelBinder("<nazev assembly s Model Bindery>"):
+  component binder.Name.ToLower(), IModelBinder, binder
+\--code
+
+Máme je zaregistrované v kontejneru, ale potřeby psát něco do `Global.asax` jsme se nezbavili. To je pravda, ale vzápětí to napravíme. Budeme ještě potřebovat generickou bázovou třídu. Proč gerenerickou? No, je v tom takovej fígl - ten prozradím až za chvíli. :) Teď k věci:
+
+/--code csharp
+public abstract class ModelBinderBase<T> : IModelBinder {
+  public Type ModelType {
+    get { return typeof(T); }
+  }
+  public abstract ModelBinderResult BindModel(ModelBindingContext bindingContext);
+}
+\--code
+
+V podstatě jsme rozšířili rozhraní `IModelBinder` o znalost typu datového objektu se kterým pracuje. Proč? Vzpomeňte si na registraci binderu, kde je klíčem ve slovníku binderů typ datového objektu. Ano, to je on!
+
+Jěště trochu poupravíme náš `AddressBinder`:
+
+/--code csharp
+public class AddressBinder : ModelBinderBase<Address> {
+  public override ModelBinderResult BindModel(ModelBindingContext bindingContext) {
+    var address = new Address {
+      Street = bindingContext.HttpContext.Request["address_street"].Trim(),
+      StreetNumber = bindingContext.HttpContext.Request["address_street_number"].Trim(),
+      PostalCode = bindingContext.HttpContext.Request["address_postal_code"].Trim(),
+      Town = bindingContext.HttpContext.Request["address_town"].Trim(),
+    };
+
+    return new ModelBinderResult(address);
+  }
+}
+\--code
+
+Pořád tu zůstává ta nepěkná závislost na `HttpRequestu`, je snadno řešitelná, ale našemu příkladu nevadí a vypořádáme se s ní někdy jindy… Takže vraťme se zase k `Windsor.boo` a na jeho konec přidejme následující řádky:
+
+/--code boo
+for modelBinder as duck in IoC.Container.ResolveAll of IModelBinder():
+  ModelBinders.Binders[modelBinder.ModelType] = modelBinder
+\--code
+
+Upozorňuji, že tyto řádky **musí být až na konci** souboru. Musí se volat, až po tom, co se zaregistrují všechny komponenty, protože tady si vyzvedáváme již hotové bindery z kontejneru a registrujeme je do ASP.NET MVC.
+
+Možná jste si povšimli formulky `as duck`. Boo:[boo] je staticky typovaný jazyk, stejně jako C#, jen využívá implicitního typování. V tomto případě nám generická metoda `ResolveAll` vrací hotové instance, které implementují rozhranní `IModelBinder` a taky mají tento silný typ. A toto rozhraní neví nic o tom s jakým typem modelu je svázáno.
+
+Naštěstí Boo podporuje "duck typing":[ducktype], což nám přidává tak trochu dynamičnost – pozdní vazbu. Já vím, že všechny moje bindery dědí z bázové třídy, která má vlastnost `ModelType` a s použítím `as duck` jí můžu zavolat. Tohle je vlastnost, kterou bude C# umět až ve verzi 4.0, do té doby je v něm toto velice těžko řešitelné (osobně jsem se o to ani nepokoušel, ale nejspíš nějak přes reflexi by to jít mělo).
+
+Tím jsme se zbavili nutnosti registrovat každý model binder zvlášť.
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(332)]
+* [scottgu]
+* [aboutcode]
+* [ducktype]
+* [boo]
+\--div
+
+
+[clanek(332)]: /weblog/332-inversion-of-control-v-asp-net-mvc.aspx Inversion of Control v ASP.NET MVC .(Inversion of Control v ASP.NET MVC){rel:bookmark}
+
+[scottgu]: http://weblogs.asp.net/scottgu/archive/2008/10/16/asp-net-mvc-beta-released.aspx#four Refactored Model Binder Infrastructure
+[aboutcode]: http://www.aboutcode.net/2008/12/08/Model+Binders+For+HttpCookie+And+AppSetting.aspx Model Binders for HttpCookie and AppSetting
+[ducktype]: http://en.wikipedia.org/wiki/Duck_typing Duck typing
+[boo]: http://boo.codehaus.org/ Jazyk Boo

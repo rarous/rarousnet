@@ -1,0 +1,100 @@
+---
+{:id 293,
+ :title "Binsor – síla konfigurace",
+ :description
+ "Pojďme si přiblížit možnosti konfigurační DSL pro Windsor kontejner v jazyce Boo.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"castle" "binsor" "dsl" "activerecord" "windsor" "asp.net 2.0" "boo"
+   "ioc"},
+ :published "2008-08-25T15:18:09.473"}
+---
+
+Pokud se dostanete do stádia, kdy potřebujete takovou architekturu, kde je potřeba používat plug-iny třetí strany, kde je potřeba snadno vyměnit komponentu za jinou, přichází ke slovu nějaký druh konfigurace.
+
+Velice často se můžeme setkat s konfigurací komponent v XML. Ať už je to [provider] známý z ASP.NET, či vlastní konfigurační sekce, nebo konfigurace Windsor kontejneru, pořád tu máme XML. Jeho ohromnou výhodou je, že se dají systémové komponenty snadno překonfigurovat bez nutnosti celý systém překompilovat. Stačí pouhý restart aplikace. Navíc nástrojů na editaci a validaci XML máme nepočítaně, takže změnu konfigurace zvládne téměř každý.
+
+Velkou nevýhodou XML, je jeho omezené výrazivo. Špatně se v něm píše `foreach` nebo `if`. Prostě na složitější konstrukce je potřeba programovací jazyk. A nebo skriptovací!
+
+==Boo na scénu
+
+[boo] je staticky typovaný objektový jazyk nad [cli] (dot net) inspirovaný syntaxí Pythonu:[python]. Jeho hlavní silou je metaprogramování. Na úrovni kompilátoru se snadno dají psát makra. Takových maker lze využít k tvorbě přehledných [dsl] a  jednou z takových je i Binsor.
+
+== Windsor + Boo = Binsor
+
+[windsor] je "IoC((Inversion of Control)) kontejner":[injection] na platformě dot net a je součástí "opensource projektu Castle":[castle]. Windsor má v základu dvě možnosti jak konfigurovat komponenty.
+
+1.	Programově na úrovni mikrokernelu.
+2.	XML konfigurací.
+
+XML konfigurace je nejčastěji užívanou možností, kvůli výše popsaným výhodám. V trunku se nedávnou objevila i konfigurace pomocí DSL na principu fluent interface přímo v C#. Taková konfigurace je velice pěkná, ale je tu pořád nutnost při každé změně znova celý projekt kompilovat. Proto je tu [binsor], který si bere sílu programovacího jazyka, efektnost XML konfigurace a navíc jednoduchost a přímočarost syntaxe.
+
+== Konfigurace komponent
+
+Nejčastější aktivitou s Binsorem nejspíš bude registrace komponent. :)
+
+/--code boo
+component 'my_component', IServiceContract, ServiceImplementation:
+    # nastavime parametr konstruktoru
+    constructorParameter = 10
+    # nastavime vlastnost sluzby
+    SomeProperty = "Hello Word!"
+\--code
+
+Kód je v celku jednoduchý. Na prvním řádku začínamé klíčovým slovem `component`, které říká, že registrujeme komponentu. Prvním parametrem je název komponenty, přes který se na ní můžeme odkazovat. Druhý parametr je rozhranní služby a třetí je konkrétní implementace, která bude při rozpoznání kontejnerem vrácena, např. `IoC.Container.Resolve<IServiceContract>()`. Za dvojtečkou pokračuje výčet nastavovaných vlastností a parametrů. Můžeme takto nastavovat i speciální vlastnost ovlivňující životnost objektu.
+
+/--code boo
+component HttpRequest:
+    lifestyle Singleton
+\--code
+
+Všimněte si, že se ani nemusí při registraci uvádět referenční název nebo abstraktní typ. Může se klidně rovnou registrovat typ konkrétní, který se bude v tomto případě chovat jako singleton. Takovéto ukázky jsou fešné, ale nic, co bychom nezvládli pomocí XML. Pojďme trochu dál.
+
+/--code boo
+for type in AllTypesBased of Controller("MyApplication.Web"):
+    component type
+\--code
+
+Tento kód zaregistruje všechny controllery (třídy, které jsou potomky třídy `Controller`)  z assembly `MyApplication.Web`.  Krom generické metody `AllTypesBased`, je tu ještě generická metoda `AllTypesWithAttribute` a negenerická `AllTypes`. Všechny mají jako parametr název assembly, jejíž typy procházejí.
+
+== Facility
+
+Neméně důležitou součástí konfigurace jsou facility, které dodávají kontejneru nové možnosti a zapouzdřují větší sady komponent do logických jednotek. Pro ukázku konfigurace ActiveRecord komponent pomocí Binsoru:
+
+/--code boo
+facility ActiveRecordFacility:
+    configuration:
+        @isWeb = true, isDebug = true
+        assemblies = [ Assembly.Load("MyApplication.Entities") ]
+        config(keyvalues, item: add):
+            show_sql = true
+            command_timeout = 5000
+            cache.foo.use_query_cache = false
+            dialect = 'NHibernate.Dialect.MsSql2005Dialect'
+            connection.provider = 'NHibernate.Connection.DriverConnectionProvider'
+            connection.driver_class = 'NHibernate.Driver.SqlClientDriver'
+            connection.connection_string = 'connectionString1'
+\--code
+
+== Shrnutí
+
+Osobně se mi možnosti konfigurace přes Binsor velice líbí, ale je celkem možné, že ne každému to může vyhovovat. Pokud ale používáte Windsor a přijde vám XML konfigurace nepřehledná, je toto možná cesta, jak z toho ven. Pokud chcete nějaké lepší příklady, doporučuju si stáhnout SVN repository `https://rhino-tools.svn.sourceforge.net/svnroot/rhino-tools/trunk/rhino-commons` a projít si testy. Jako editor se mi osvědčil [sharpdevelop], který má podporu pro Boo přímo v základu, nebo doinstalovat [boostudio] do Visual Studia.
+
+Tagy: [tag-ioc], [tag-windsor], [tag-binsor], [tag-boo]
+
+[tag-ioc]: http://technorati.com/tag/ioc IoC .{rel:tag}
+[tag-windsor]: http://technorati.com/tag/windsor Windsor .{rel:tag}
+[tag-binsor]: http://technorati.com/tag/binsor Binsor .{rel:tag}
+[tag-boo]: http://technorati.com/tag/boo Boo .{rel:tag}
+
+[boo]: http://boo.codehaus.org/ Boo
+[windsor]: http://www.castleproject.org/container/index.html Windsor
+[binsor]: http://www.ayende.com/Blog/category/451.aspx Binsor
+[castle]: http://www.castleproject.org/ Castle Project
+[python]: http://www.python.org/ Pyhton
+[dsl]: http://en.wikipedia.org/wiki/Domain_Specific_Language DSL((Domain Specific Language))
+[cli]: http://en.wikipedia.org/wiki/Common_Language_Infrastructure CLI((Common Language Infrastructure))
+[provider]: http://msdn.microsoft.com/en-us/library/ms972319.aspx Provider pattern
+[injection]: http://martinfowler.com/articles/injection.html Dependency injection
+[sharpdevelop]: http://sharpdevelop.net/OpenSource/SD/ SharpDevelop
+[boostudio]: http://www.codeplex.com/BooLangStudio BooLang Studio

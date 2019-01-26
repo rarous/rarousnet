@@ -1,0 +1,120 @@
+---
+{:id 64,
+ :title "Texy! Web Service (WS)",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webové služby"},
+ :published "2005-08-02T18:40:00"}
+---
+
+Již dlouhou dobu používám [texy] v několika webových projektech, které používají redakční systém [textpattern]. Na syntax Texy! jsem si zvykl a líbí se mi, jak jednoduše dostanu XHTML validní kód. Už v začátku jsem chtěl přepsat Texy! do dotnetu, abych ho mohl použít i v mém redakčním systému Gryphoon. Jenže Texy! má velice rozsáhlé zdrojové kódy a tak se mi do toho moc nechtělo, i když by to byla velice zajímavá zkušenost. Jednoho krásného dne mě však napadlo, že by bylo docela zajímavé udělat z Texy! webovou službu, ke které může přistupovat v podstatě kdokoliv.
+
+Nakonec jsem se rozhodl službu napsat sám a něco se přiučit v [php] (né že by to byla moje priorita, ale každá zkušenost dobrá). Zjistil jsem, že PHP 4.x nemá podporu pro [soap] volání, tak jsem našel knihovnu [nusoap]. Knihovna nuSOAP je univerzální knihovnou jak pro WS klienty, tak pro WS servery. Jedinou podivností této knihovny je, že z nějakého zvláštního důvodu převádí UTF-8 na ISO-8859-1 a pak zpět, čímž dojde ke ztrátě znaků s diakritikou.
+
+Takže je potřeba v této knihovně udělat několik změn, aby
+správně fungovala čeština. Nejprve je nutné upravit funkci
+**character_data** ve třídě *soap_parser*. Následující kód prostě zakomentujte:
+
+/--- code php
+if($this->decode_utf8) {
+  $data = utf8_decode($data);
+}
+\---
+
+Dále je potřeba nastavit kódování odchozí zprávy na UTF-8, to se
+dělá v deklaracích třídy *nusoap_base*, řádek
+
+/--- code php
+var $soap_defencoding = 'ISO-8859-1';
+\---
+
+Změňte na:
+
+/--- code php
+var $soap_defencoding = 'UTF-8';
+\---
+
+Tím by měly být problémy se ztrátou českých znaků vyřešeny. Další
+nutnou knihovnou je samotná [texydl]. No a nyní se dostáváme k tomu nejdůležitějšímu - službě samotné.
+
+/--- code php
+<?php
+
+/*  Texy Web Service
+ *  ================
+ *
+ *  Provides SOAP interface for Texy! syntax convertor.
+ *  Author: Aleš Roubíček -rarous- (rarous@seznam.cz)
+ *
+ */
+
+require_once("texy-compact.php");  // knihovna Texy!
+require_once("nusoap.php"); // knihovna nuSOAP
+
+$ns = "http://texy.info"; // prostor názvů služby
+
+$server = new soap_server();
+$server->configureWSDL('TexyConverter', $ns); // název webové služby
+$server->wsdl->schemaTargetNamespace = $ns;
+
+// zveřejnění metody s jejími parametry
+$server->register(
+  'PrevedDoXhtml',
+  array('text' => 'xsd:string'),
+  array('return' => 'xsd:string'),
+  $ns
+);
+
+$server->register(
+  'PrevedDoXhtmlR',
+  array('text' => 'xsd:string',
+    'utf' => 'xsd:boolean',
+    'trust' => 'xsd:boolean',
+    'headingLevel' => 'xsd:integer'
+  ),
+  array('return' => 'xsd:string'),
+  $ns
+);
+
+// funkce pro základní formátování s natvrdo nastavenými vlastnostmi
+// input string text – text v Texy! syntaxu
+// return string html – vrací XHTML kód
+function PrevedDoXhtml($text) {
+  $texy = &new Texy();
+  $texy->utf = true;
+  $texy->trustMode();
+  $texy->headingModule->top = 3;
+  $html = $texy->process($text);
+  return $html;
+}
+
+// funkce pro základní formátování s volitelnými vlastnostmi
+// input string text – text v Texy! syntaxi
+// input boolean utf – má Texy! pracovat s UTF?
+// input boolean trust – má Texy! pracovat v důvěryhodném režimu nebo v bezpečném
+// input integer headingLevel – nejvyšší úroveň nadpisu
+// return string html – vrací XHTML kód
+function PrevedDoXhtmlR($text, $utf, $trust, $headingLevel) {
+  $texy = &new Texy();
+  $texy->utf = $utf;
+  if($trust) $texy->trustMode();
+  else $texy->safeMode();
+  $texy->headingModule->top = $headingLevel;
+  $html = $texy->process($text);
+  return $html;
+}
+
+$server->service($HTTP_RAW_POST_DATA);
+
+?>
+\---
+
+Toť vše drazí čtenáři. Vlastně ještě ne, tohle je první
+příspěvek na tomhle blogu, který je formátován pomocí Texy!
+
+[texy]: http://texy.info/ Texy!
+[texydl]: http://www.texy.info/cz/download knihovna Texy!
+[textpattern]: http://www.textpattern.com TextPattern
+[php]: http://www.php.net PHP .(PHP Hypertext Processor)
+[soap]: http://www.w3.org/TR/2003/REC-soap12-part0-20030624/ SOAP .(Simple Object Access Protocol)
+[nusoap]: http://sourceforge.net/projects/nusoap/ nuSOAP .(stránky projektu nuSOAP)

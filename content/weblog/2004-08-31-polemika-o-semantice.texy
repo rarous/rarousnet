@@ -1,0 +1,20 @@
+---
+{:id 30,
+ :title "Polemika o semantice",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2004-08-31T00:00:00"}
+---
+
+Nedávno se na Well Done (http://hulan.info/blog/item/xhtml-a-semanticky-kod-versus-realita) diskutovalo, zda je semanticky lepší řadit komentáře do DIVů nebo do OL-LI číslovaného seznamu. Podle mě, je to ale plácání do vody…
+
+HTML, potažmo XHTML, není jazyk vytvořený k tvoření webových aplikací, nýbrž k formátování (logickému členění)&nbsp;textu a jeho provázání pomocí hypertextových odkazů. To že se časem nabalily k HTML formuláře, aplety a jiné objekty je smutná realita. Pokud ale někdo chce tvrdit že jeho webová aplikace je semanticky v pořádku (né-li nejlepší na webu), neberu ho vážně pokud je to celé čistě v XHTML. Na takové věci se mají používat XForms, RDF, a další vhodnější XML aplikace.
+
+Jenže žijeme v divné době, kdy toto nechápou ani výrobci prohlížečů&nbsp; (na těch záleží nejvíce), ani někteří rádoby prorokové a guruové internetu. Ale až jednou budou tyto doporučení fungovat v praxi, můžeme se začít o nějaké sémantice bavit.
+
+Dnes ale mame jiné možnosti:
+
+1) Dělat po "staru" a nedávat najevo nějakou svoji pochybnou dokonalost
+2) Napsat si vlastní semanticky lepsi XML aplikace a ty pak používat spolu s XHTML 1.1 a CSS, s tím že asi budou problémy ve straších prohlížečích (IE6 je taky starej prohlížeč)
+3) Bod č. 1 + Testovat a učit se nové metody, až příjde čas budou se hodit a kdo dřív příjde, ten dřív mele…

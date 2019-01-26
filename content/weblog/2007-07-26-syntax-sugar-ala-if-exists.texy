@@ -1,0 +1,29 @@
+---
+{:id 217,
+ :title "Syntax sugar alá If Exists",
+ :description "Reakce na ifx - bylo-li by libo cukříček? ",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2007-07-26T08:01:05.037"}
+---
+
+Kolega Bouda se na svém "vývojářském blogu":[link] zamýšlí nad tím, zda by nebylo dobré rozšířit syntaxi jazyka C# o příkaz `ifx` (**if** e**x**ists), který by měl zpřehlednit/zjednodušit zápis `if (this.someRef != null) ...` na `ifx (this.someRef) ...`, podobně jako to umí ECMAScript.
+
+Můj názor je takový, že v C# by se takovéto konstrukce zavádět neměly. Pokud má někdo averzi k operátorům `!` a `!=`, ostatně jako já, dá se to obejít jiným syntaktickým cukrem. Ne na úrovni jazyka, ale na úrovni API.
+
+/--code csharp
+public static class Is {
+  public static bool Null(object item) {
+    return item == null;
+  }
+  public static bool NotNull(object item) {
+    return item != null;
+  }
+}
+\--code
+
+Zápis s použitím  této minitřídy by pak vypadal `if (Is.NotNull(this.someRef)) ...`. Na jednu stranu je zápis čitelnější i pro necéčkaře, na druhou je o něco delší a je v něm více závorek...
+
+Nebo je tu možnost přejít na "Spec#":[http://research.microsoft.com/specsharp/], který podporuje non-nullable types.
+
+[link]: http://blog.vyvojar.cz/pbouda/archive/2007/07/25/ifx-bylo-li-by-libo-cuk-ek.aspx

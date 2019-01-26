@@ -1,0 +1,45 @@
+---
+{:id 330,
+ :title "Komponenty a nástroje od DevExpress zdarma",
+ :description
+ "Firma Developer Express uvolnila sadu vizuálních koponent jak pro WinForms, tak pro WebForms a aby toho nebylo málo, tak i Xpress verzi skvělého CodeRush.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "vs2008" "coderush" "refactor"},
+ :published "2008-11-16T18:53:16.813"}
+---
+
+Firma DevExpress je známá vývojem vizuálních komponent – v poslední době zejména pro dotnet, ale dříve také např. pro VCL nebo Delphi. Další jejich aktivitou jsou nástroje pro zvýšení produktivity práce CodeRush a Refactor! Pro, což jsou plug-iny do Visual Studia. No a nedávno došlo k uvolnění bezplatné sady komponent a express verze nástrojů.
+
+Vizuální komponenty pro ASP.NET
+===============================
+
+"Balíček bezplatných komponent":[komponenty] obsahuje 21 kusů, jako tag cloud, menu, stránkovač, záložky, rss čtečku nebo callback panel. Určitě jsou mnohé z nich užitečné. :) Integrují se do toolboxu VS 2005 i 2008. Stáhnout:[komponenty] si je můžete zdarma po vyplnění registrace (jméno a e-mailová adresa).
+
+Nástroje pro zvýšení produktivity
+=================================
+
+Pokud jste viděli videa o VS 2010, možná jste si všimli, že bude podporovat spoustu pěkných code snippets, příkazy pro generování kódu přes smart tagy apod. Tohle a mnohem víc umí už léta CodeRush. A DevExpress nyní přišli Xpress verzí, která přináší zdarma vybrané funkce zdarma. Je to třeba:
+
+inteligentní vkládání ze schránky:
+ * když napíšete sadu fieldů a zkopírujete ji a pak vložíte do konstruktru, automaticky se vytvoří inicializace těchto fieldů,
+navigace po referencích:
+ * kurzorem najedete do názvu proměnné a pomocí klávesy `TAB` přeskakujete po všech jejích výskytech,
+generování kódu:
+ * to se hodí při TDD stylu práce, kdy napíšete test pro neexistující třídy a metody a necháte si je přes smart tag vygenerovat,
+inteligentní selekce:
+ * numerickou klávesou `+` se označí nejbližší logická jednotka, a opakovaným stiskem třeba celý řádek, potom blok a tak dále, hodí se to třeba při psaní LINQ dotazů, které pak třeba chcete vložit do závorky a zavolat třeba metodu `Take` nebo `ToList`. Zmáčknete třikrát `+` a pak `(` a celý LINQ dotaz je ozávorkovaný.
+
+Krom výše zmiňované funkcionality CodeRush jsou přibaleny i některé skvělé refaktoringy z Refactor! Pro. Z těch zajímavějších vyberu třeba konverzi delegáta na lambda výraz, vytvoření lokální proměnné z označeného kusu kódu, komprimace na samo implementující  property, převod ternárního operátoru na `if` a zase zpátky, přesun typu do samostatného souboru a další užitečné refactoringy.
+
+Závěr
+=====
+
+Osobně jsem spokojeným vlastníkem plné verze "CodeRush a Refactor!":[coderush] Pro a používám spoustu dalších vychytávek, které v bezplatné verzi nejsou, ale i tak může být velice zajímavá, protože spousta věcí je velice návykových, a když je to zadarmo…
+
+No prostě doporučuju minimálně alespoň vyzkoušet.
+
+*Poznamka: Vzhledem k licenční politice Microsoftu, nefunguje CodeRush Xpress v Express edicích Visual Studia. Pro jejich použití potřebujete alespoň Standard verzi.*
+
+[komponenty]: http://www.devexpress.com/Products/Free/WebRegistration60/
+[nastroje]: http://www.devexpress.com/Products/Visual_Studio_Add-in/CodeRushX/
+[coderush]: http://devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/

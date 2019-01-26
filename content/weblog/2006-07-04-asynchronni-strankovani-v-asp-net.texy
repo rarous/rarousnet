@@ -1,0 +1,159 @@
+---
+{:id 165,
+ :title "Asynchronní stránkování v ASP.NET",
+ :description
+ "Ukázka využití komponenty MultiView s ASP.NET 'Atlas' k asynchronnímu stránkování prezentovaných dat.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "ajax" "asp.net 2.0"},
+ :published "2006-07-04T21:05:53.947"}
+---
+
+V jednom z komentářů k článku [clanek(132)] se komentující ptal na to, jak může docílit toho, aby se nenačítala MasterPage celá, ale pouze ContentPages. To jsem označil za nepochopení MasterPages, protože ty slouží pouze jako šablony společných prvků pro skupinu stránek. MasterPages slouží k udržení jednotného vzhledu a struktury stránek a k pomyslnému oddělení obsahu a zbytku stránky dochází pouze na serveru. Na klienta se posílá pouze jedna jediná stránka - složená z mástru a obsahu. Je to zkrátka něco jako razítko na výkresu, jednotlivá políčka musíte vyplnit sami a výkres je také nedělitelný :).
+
+Tazatel však chtěl docílit efektu framů, kde by se načítal jen měnící se obsah a zbytek zůstal v prohlížeči. Jedním z možných řešení je využití ASP.NET komponenty `asp:MultiView` společně s ASP.NET 'Atlas'. To si nyní představíme podrobněji...
+
+Komponenta *MultiView* je novou kompozitní komponentou v ASP.NET 2.0, která je přímou příbuznou *Wizardů*:[clanek(106)]. MultiView je elegantnějším řešením tam, kde se dříve využívali skrývané Panely a s množstvím různých panelů na stránce docházelo k velikému zmatku. Nesměli jste zapomenout jedny panely schovat a další zase naopak zobrazit. MultiView pouze zadáte index požadovaného pohledu, který se má zobrazit. Doporučení hodnou praktikou je si pro jednotlivé pohledy vytvořit výčet (enumeraci). Kód pak získá větší přehlednost a i po několika týdnech budete vědět o jaký pohled šlo ;).
+
+Tak jsme si teoreticy probrali komponentu MultiView a nyní si ukážeme praktickou ukázku. Takže mějme následující MasterPage:
+
+/---code xml
+<%@ Master Language="C#" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs" xml:lang="cs">
+<head runat="server">
+    <title>Ukázky s ASP.NET 'Atlas'</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+	<h1>Ukázky s ASP.NET 'Atlas'</h1>
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
+        <p>&copy;2006 Aleš Roubíček. Některá práva vyhrazena. creative commons</p>
+    </div>
+    </form>
+</body>
+</html>
+\---
+
+K ní vytvoříme následující ContentPage:
+
+/---code xml
+<%@ Page Language="C#" MasterPageFile="Atlas.master" Title="Ukázka MultiView" %>
+
+<script runat="server">
+
+	enum PageViews
+	{
+		First = 0,
+		Second = 1
+	}
+
+	protected void FirstViewButton_Click(object sender, EventArgs e)
+	{
+		PagesMultiView.ActiveViewIndex = (int)PageViews.First;
+	}
+
+	protected void SecondViewButton_Click(object sender, EventArgs e)
+	{
+		PagesMultiView.ActiveViewIndex = (int)PageViews.Second;
+	}
+
+</script>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+	<asp:LinkButton ID="FirstViewButton" runat="server" Text="První stránka"
+			OnClick="FirstViewButton_Click"></asp:LinkButton>
+
+	<asp:LinkButton ID="SecondViewButton" runat="server" Text="Druhá stránka"
+			OnClick="SecondViewButton_Click"></asp:LinkButton>
+
+	<asp:MultiView ID="PagesMultiView" runat="server" ActiveViewIndex="0">
+
+		<asp:View ID="FirstView" runat="server">
+			<h2>První stránka</h2>
+			<p>Obsah první stránky.</p>
+		</asp:View>
+
+		<asp:View ID="SecondView" runat="server">
+			<h2>Druhá stránka</h2>
+			<p>Obsah druhé stránky.</p>
+		</asp:View>
+
+	</asp:MultiView>
+
+</asp:Content>
+\---
+
+Tato stránka obsahuje dvě tlačítka a jeden MultiView. Tlačítka mají nastarosti přepínat pohledy. Přepínání je prováděno v ovladačích události *Click*. Prozatím nic úchvatného, máme stránku, která umí přepínat svůj obsah, ale stejně se vždy musí poslat požadavek na server, kde se přepne pohled a pak se odešle nová celá stránka. To neřeší náš problém :( Naštěstí konečné řešení je velice blízko :) Stačí oživit stránku pomocí ASP.NET 'Atlas'. Výsledná ContentPage bude vypadat následujícně:
+
+/---code xml
+<%@ Page Language="C#" MasterPageFile="Atlas.master" Title="Ukázka MultiView" %>
+
+<script runat="server">
+
+	enum PageViews
+	{
+		First = 0,
+		Second = 1
+	}
+
+	protected void FirstViewButton_Click(object sender, EventArgs e)
+	{
+		PagesMultiView.ActiveViewIndex = (int)PageViews.First;
+	}
+
+	protected void SecondViewButton_Click(object sender, EventArgs e)
+	{
+		PagesMultiView.ActiveViewIndex = (int)PageViews.Second;
+	}
+
+</script>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+	<atlas:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true">
+	</atlas:ScriptManager>
+
+	<asp:LinkButton ID="FirstViewButton" runat="server" Text="První stránka"
+					OnClick="FirstViewButton_Click"></asp:LinkButton>
+
+	<asp:LinkButton ID="SecondViewButton" runat="server" Text="Druhá stránka"
+					OnClick="SecondViewButton_Click"></asp:LinkButton>
+
+	<atlas:UpdatePanel ID="ViewUpdate" runat="server" RenderMode="Block">
+
+		<ContentTemplate>
+			<asp:MultiView ID="PagesMultiView" runat="server" ActiveViewIndex="0">
+
+				<asp:View ID="FirstView" runat="server">
+					<h2>První stránka</h2>
+					<p>Obsah první stránky.</p>
+				</asp:View>
+
+				<asp:View ID="SecondView" runat="server">
+					<h2>Druhá stránka</h2>
+					<p>Obsah druhé stránky.</p>
+				</asp:View>
+
+			</asp:MultiView>
+		</ContentTemplate>
+
+		<Triggers>
+			<atlas:ControlEventTrigger ControlID="FirstViewButton" EventName="Click" />
+			<atlas:ControlEventTrigger ControlID="SecondViewButton" EventName="Click" />
+		</Triggers>
+
+	</atlas:UpdatePanel>
+
+</asp:Content>
+\---
+
+Tímto máme hotovo. Při změně pohledu dojde k asynchronnímu načtení pouze vnitřku stránky a zbytek MasterPage zůstane v prohlížeči.
+
+[clanek(106)]: /clanek/106-samanismus-v-asp-net-2-0.aspx
+[clanek(132)]: /clanek/132-zaciname-s-atlasem-2.aspx Začínáme s Atlasem 2

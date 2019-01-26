@@ -1,0 +1,76 @@
+---
+{:id 133,
+ :title "Začínáme s Atlasem 2a",
+ :description "Pokračování seriálu o Atlasu.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-13T08:08:25.983"}
+---
+
+Možná si říkáte, proč jsem zvolil tak divný nadpis. Odpověď je nasnadě, tento článek není slibovaným třetím dílem s praktickou ukázkou použití Atlasu, ale spíše praktickým doplněním předchozích dvou dílů o linky na zajímavé věci ohledně Atlasu. Omlouvám se tedy, že nyní neuvedu slibovaný kód, o který samozřejmě nepřijdete – ale vyžaduje delší přípravu – a snad vám budou následující řádky dostatečnou útěchou…
+
+Začnu horkou novinkou. Právě byla uvolněna "sada Atlasích komponent":[AtlasToolkit], které by měly usnadnit práci ASP.NET vývojářům v obvyklých AJAXových scénářích. Můžete si je i přímo "vyzkoušet":[AtlasToolkitPreview] online. Sada obsahuje následující komponenty:
+
+CascadingDropDown:
+ - Kaskádní DropDown listy, klasický scénář použití AJAXu.
+CollaspiblePanel:
+ - Sbalovací panely, opět častá věc u různých boxíků.
+ConfirmButton:
+ - Extender, který při aplikaci na některý z Buttonů vyžaduje potvrzení provedení akce.
+DragPanel:
+ - Extender, který udělá ze zvoleného boxu, box volně přemisťovatelný po stránce. Zatím netuším jaký je rozdíl mezi DragDropExtenderem ze základního balíčku, ale pravděpodobně bude navíc podporovat součinnost jinými komponentami z AtlasToolkitu.
+HoverMenu:
+ - Popup okýnko s mnohem větší flexibilitou než HoverBehavior na klientské straně, viz ukázka:[http://atlas.asp.net/atlastoolkit/HoverMenu/HoverMenu.aspx]
+PopupControl:
+ - Další popup, tentokrát určený k trochu jiným scénářům, viz ukázka:[http://atlas.asp.net/atlastoolkit/PopupControl/PopupControl.aspx]
+ReorderList:
+ - Prvek svázaný s daty, který umožňuje reorganizaci pomocí přetahování.
+TextBoxWatermark:
+ - Něco podobného, jako mám v hledacím políčku. Do TextBoxu se vyplní předepsaný text např. „Hledaný text“ a po kliknutí do políčka zmizí.
+ToggleButton:
+ - Extender, který změní klasický CheckBox na obrázkový.
+
+V toolkitu najdete jak ukázky předpřipraveného kódu k okamžitému použití tak i klasickou SDK dokumentaci. To by bylo k žhavé novince zvané AtlasToolkit:[AtlasToolkit] a nyní bych se chtěl zaměřit na nástroje, které nám ulehčí práci při vývoji AJAXových aplikací, Atlas nevyjímaje.
+
+== Nástroje .[#nastroje]
+V první řadě je to kvalitní vývojové prostředí, já doporučuji volně stažitelný "Visual WebDeveloper":[VWD], který je určen pro vývoj ASP.NET 2.0 aplikací, ale je vhodný i pro vývoj v Atlasu, sice ještě značně pokulhává Intellisense při vývoji JavaScriptu – což mi přijde logické vzhledem k silné netypovosti tohoto jazyka – i při editaci XML-Scriptu – tady zase uvažuji o napsání vlastního schématu, který by měl Intellisence generovat. No vývojáři slibujou, že v nové verzi „Orcas“ bude plná podpora vývoje v Atlasu, tak uvidíme.
+
+Nejdůležitějším nástrojem je samotný Atlas:[Atlas], který se po instalaci integruje do Visual WebDeveloperu v podobě šablony nového projektu.
+
+Další dobrou pomůckou jsou "JS Utils":[JSUtils] přidávající do JavaScriptu možnosti *kompilace*. Balíček obsahuje dva nástroje JSX2JS a JSA2JS. JSX je tzv. Extended JScript – umožňuje v kódu používat direktivy preprocesoru vhodné pro ladění kódu i s možností odlišování prohlížeče, JSA je JScript Assembly a ta umožňuje navíc includovat další JS a JSX soubory, po kompilaci dojde ke spojení souborů do jednoho a komprimaci přebytečných bílých znaků. Celé se to dá pomocí HttpModulu zaintegrovat do runtime ASP.NET a provádět JIT kompilaci. Samozřejmě kompilaci nepravou.
+
+Pokud používáte MSIE, bude pro vás nepostradatelný "Web Developer Hepler":[WDH], který přidá do prohlížeče možnosti debugování JS kódu, logování provozu na HTTP, DOM inspektor, informace o stránce, requesty a návraty dat apod. Pokud ladíte ASP.NET na localhostu podporuje  WDH traceování, prohlížení ViewState a mnoho dalšího. Hodně užitečné. Další pomůckou je "Developer Toolbar":[DT], z dílny vývojářů MSIE.
+
+Pokud používáte Firefox, tak něco podobného umí "FireBug":[FireBug] a "WebDeveloper Toolbar":[WDT].
+
+Pokud používáte Operu, máte asi smůlu, doufám, že jen zatím, Opera není v Atlasu podporovaná.
+
+Pokud používáte Safari, nevím, co bych vám doporučil, nikdy jsem neměl možnost tento prohlížeč vyzkoušet, ale je podporovaný v Atlasu, takže, zde by neměl být problém ;)
+
+== Webcasty
+Dnes je tato forma prezentace velice populární a v Microsoftu nezaostávají :)
+
+- Nikhil Kothari - Představení platformy Atlas a její vize EXE:[http://www.microsoft.com/downloads/details.aspx?familyid=5CC5CE52-45B7-4C64-992C-4F0FBC8C8221&displaylang=en]
+- Scott Guthrie - Ukázka vývoje ToDo listu WMV:[http://download.microsoft.com/download/8/5/8/85803fdd-fe9a-4783-ab37-e0c565172ffd/asp_net_atlas.wmv]
+- Jonathan Hawkins - Přednáška o Atlasu s diváckými dotazy WMV:[http://download.microsoft.com/download/1/3/1/131b8030-b16e-4f75-b197-f7df71811181/ATLAS_Technology%20Preview_2-27-06.wmv]
+
+== Ukázky kódu z MIX 06
+"MIX 06":[Mix06] byla konference věnovaná webovému vývoji z pohledu Microsoftu. Krom uvedeni Beta2 verze Internet Exploreru 7 zde byla vypuštěna March CTP Atlasu a Atlasu samotnému bylo věnováno hodně prostoru. Zde některé z přednášek a zdrojových kódů:
+
+- Nikhil Kothari ZIP:[http://www.nikhilk.net/Content/Presentations/MIX06.zip]
+- Brad Abrams a Rick Spencer ZIP:[http://download.microsoft.com/download/b/6/0/b607f6f5-2843-4bc1-b41d-1396e33e81f2/DiceRUs.zip]
+- Shanku Niyogi ZIP:[http://www.shankun.com/Downloads/MIX_Talk.zip]
+- Jonathan Hawkins ZIP:[http://outdoorexplorer.org/atlasmap/atlasmap.zip]
+
+Doufám, že vám tento článek pomohl najít vhodné nástroje k vývoji v Atlasu, či přinesl zajímavé informace ohledně vývoje samotného. Příště se už opravdu pustíme do praktické ukázky a jak už jsem naznačoval minule, mělo by jít o RSS čtečku.
+
+[Atlas]: http://www.microsoft.com/downloads/details.aspx?FamilyId=B01DC501-B3C1-4EC0-93F0-7DAC68D2F787&displaylang=en
+[AtlasToolkit]: http://atlas.asp.net/default.aspx?tabid=47&subtabid=477
+[AtlasToolkitPreview]: http://atlas.asp.net/atlastoolkit/
+[VWD]: http://msdn.microsoft.com/vstudio/express/vwd/default.aspx
+[JSUtils]: http://www.nikhilk.net/Project.JSUtils.aspx
+[WDH]: http://www.nikhilk.net/Project.WebDevHelper.aspx
+[DT]: http://www.microsoft.com/downloads/details.aspx?familyid=E59C3964-672D-4511-BB3E-2D5E1DB91038&displaylang=en
+[FireBug]: https://addons.mozilla.org/firefox/1843/
+[WDT]: https://addons.mozilla.org/firefox/60/
+[Mix06]: http://www.mix06.com/default.aspx?css=226dd03b3

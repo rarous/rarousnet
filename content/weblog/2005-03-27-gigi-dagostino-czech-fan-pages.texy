@@ -1,0 +1,16 @@
+---
+{:id 54,
+ :title "Gigi D'Agostino Czech fan pages",
+ :description
+ "Pozvánka na prohlídku nových stránek, na kterých jsem dělal.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2005-03-27T00:00:00"}
+---
+
+Po dvou měsících usilovné práce jsem dnes konečně spustil novou verzi [ggdagcz]. Nová verze má zcela nový design z mých rukou a běží na redakčním systému [textpattern]. Doufám, že bude stejně úspěšná jako ta předchozí a že se bude líbit...
+
+Spuštěním to ale ještě nekončí. Máme ještě spoustu práce. Musim doladit styl, protože jse zjistil, že v Opeře není úplně takový jaký má být, navíc mám v textu připraveno několik classů, které ještě nejsou implementovány. Potom ještě musim dosypat texty do discografie a založit další sekce. No je toho ještě dost...
+
+[ggdagcz]: http://ggdag.euweb.cz/ Gigi D'Agostino Czech fan pages
+[textpattern]: http://textpattern.com/ Textpattern

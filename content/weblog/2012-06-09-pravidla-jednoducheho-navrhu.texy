@@ -1,0 +1,15 @@
+---
+{:id 421,
+ :title "Pravidla jednoduchého návrhu",
+ :description "Čtyři pravidla jednoduché návrhu.",
+ :author "Aleš Roubíček",
+ :tags #{"xp" "design" "moje práce"},
+ :published "2012-06-09T12:59:32.310"}
+---
+
+Volně přeloženo z knihy "Extreme Programming Explained":[http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416]
+
+1. Systém (kód i testy) musí jasně vyjadřoval všechny vaše záměry.
+2. Systém nesmí obsahovat duplicitní kód.
+3. Systém by měl mít nejmenší možný počet tříd.
+4. Systém by měl mít nejmenší možný počet metod.

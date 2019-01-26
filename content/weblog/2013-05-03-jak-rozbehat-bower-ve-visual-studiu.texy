@@ -1,0 +1,40 @@
+---
+{:id 450,
+ :title "Jak rozběhat Bower ve Visual Studiu",
+ :description
+ "Takový malý tutoriálek pro command line junkies, jak si rozběhat bower ve Visual Studiu. ",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2013-05-03T13:13:41.253"}
+---
+
+Takový malý tutoriálek pro command line junkies, jak si rozběhat bower:[https://github.com/bower/bower] ve Visual Studiu.
+
+Nainstalujte si Chockolatey:
+
+/--code
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
+\--code
+
+*(`Win+R`, `Ctrl+V`, `Enter`)*
+
+Nainstalujte si Node:
+
+/--code
+cinst nodejs.install
+\--code
+
+Vytvořte si profil pro nuget konzoli `%UserProfile%\Documents\WindowsPowerShell\NuGet_profile.ps1` a do něj přidejte:
+
+/--code powershell
+Set-Alias npm "C:\Program Files\nodejs\npm.cmd"
+Set-Alias bower "~\AppData\Roaming\npm\bower.cmd"
+\--code
+
+Spusťte si Visual Studio, otevřete Package Management Consoli a napište:
+
+/--code
+npm install -g bower
+\--code
+
+A jedem. :)

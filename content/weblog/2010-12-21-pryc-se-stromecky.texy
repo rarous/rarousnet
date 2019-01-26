@@ -1,0 +1,118 @@
+---
+{:id 398,
+ :title "Pryč se stromečky!",
+ :description "Malá předvánoční agitace za lepší svět. ",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0" "refactoring"},
+ :published "2010-12-21T16:44:43.483"}
+---
+
+Blíží se Vánoce, čas stresu a shonu za nejdražšími Vánočními dárky, pro naše nejdražší. Čas, kdy se ve velkém mordují kapři (navíc na veřejnosti, no fůj!) a kácí se stromky. Ano, ty které potom ověsíme nejrůznějšími koulemi a řetězy, aby pak několik týdnů opadávalo jehličí a vůbec. O tomhle ale psát nechci. :)
+
+Dneska se podíváme na jiný úkaz. A to na problematiku zanořování kódu, který ve výsledku vypadá jako stromečky. (Pokud jste takový kód ještě neviděli, což pochybuju, tak ukázku najdete třeba tady v sekci [darkmagic].)
+
+V čem je problém?
+=================
+
+Možná si říkáte, "co to ten Roubíček zase vymejšlí? Vždyť takovej kód je přece v pořádku," (tj. dělá, to, co má.) "A navíc nemusíme chodit do lesa, protože máme stromečky pořád na očích!" To je fakt. Jenže, ruku na srdce, dokážete odhadnout na první pohled, co takový kód vlastně dělá? Moc asi ne. A proč? Protože **pět** úrovní zanoření (nepočítám namespace, class ani metodu) je už trochu moc.
+
+Jak moc? No hrozně moc. Fakt! Ono se to totiž dá krásně změřit, např. pomocí metriky [cyclomaticcomplexity].
+
+[* /data/obrazky/cyclomatic.png *]
+
+Když se podíváme na tuto metriku u ukázkového příkladu, zjistíme, že metoda  `GetRouteData` dosahuje hodnoty **17**. Co to znamená? Když si přečtete odkazovaný popis metriky, dozvíte se také, že její hodnota určuje míru možného výskytu chyb. Čím větší je cyklomatická komplexita, tím více toho modul dělá a zvyšuje se riziko přehlédnutých chyb. Doporučuje se mít komplexitu do deseti a tady tuto hodnotu překračujeme takřka dvojnásobně.
+
+> It smells like refactoring time!
+
+Refaktorovat, refaktorovat, refaktorovat
+=========================================
+
+Jednoduše jsme pomocí metriky odhalili kandidáta, kde budeme kácet stromy. Když se podíváme pozorně na ukázkový příklad, můžeme si všimnout bloků kódu, které začínají komentářem. Budu se opakovat, ale "nepište zbytečný kód":[clanek(361)]! Tohle jsou jasné samostatné metody. Použijeme tedy refaktoring `Extract method`. Po extrahování čtyř metod, už se nám metoda vejde na jednu obrazovku a cyklomatická komplexita spadne na trojku. Takřka na jednu šestinu!
+
+Huh. A to je teprve začátek.
+
+Po prvním kole vypadá výsledek asi tak:
+
+/--code csharp
+public override RouteData GetRouteData(HttpContextBase httpContext) {
+  // Build regex
+  domainRegex = CreateRegex(Domain);
+  pathRegex = CreateRegex(Url);
+  // Request information
+  string requestDomain;
+  string requestPath;
+  RequestInformation(httpContext, out requestDomain, out requestPath);
+  // Match domain and route
+  Match domainMatch = domainRegex.Match(requestDomain);
+  Match pathMatch = pathRegex.Match(requestPath);
+  // Route data
+  RouteData data = null;
+  if (domainMatch.Success && pathMatch.Success) {
+    data = new RouteData(this, RouteHandler);
+    AddDefaultsFirst(data);
+    IterateMatchingDomainGroups(domainMatch, data);
+    IterateMatchingPathGroups(pathMatch, data);
+  }
+  return data;
+}
+\--
+
+Není to žádná nádhera, ale je mnohem přehlednější, než originál. A v řeči čísel:
+
+[* /data/obrazky/cyclomatic-2.png *]
+
+Rozplétáme podmínky
+===================
+
+Tak, snížili jsme komplexitu metody, ale tiše nám narostla komplexita třídy. Klidně můžeme pokračovat v cestě, to zvládneme později. Teď se zaměříme na ty velký šestky. Na první pohled cyklus se spoustou zanořených podmínek. Pryč s nimi! Teď přijde na řadu refaktoring `Flatten Conditional` a z vše objímajícího `if`u uděláme jen guarda. Dále tu mám dva zanořený `if`y? Proč, když je můžeme logicky spojit operátorem `&&`? Směle do toho! Pro změnu použijeme refaktoring `Combine Conditionals` a vytvoříme jednu dlouhou a ošklivou podmínku…
+
+Čas na refaktoring `Extract method` a podmínku pěkně smysluplně pojmenovat. Po pár magických kombinacích kláves se nám z týhle zrůdičky:
+
+/--code csharp
+private static void IterateMatchingPathGroups(Match pathMatch, RouteData data) {
+  for (int i = 1; i < pathMatch.Groups.Count; i++) {
+    Group group = pathMatch.Groups[i];
+    if (group.Success) {
+      string key = pathRegex.GroupNameFromNumber(i);
+      if (!string.IsNullOrEmpty(key) && !char.IsNumber(key, 0)) {
+        if (!string.IsNullOrEmpty(group.Value)) {
+          data.Values[key] = group.Value;
+        }
+      }
+    }
+  }
+}
+\--code
+
+Stane opět poměrně snadno pochopitelný kód:
+
+/--code csharp
+private static void IterateMatchingPathGroups(Match pathMatch, RouteData data) {
+  for (int i = 1; i < pathMatch.Groups.Count; i++) {
+    Group group = pathMatch.Groups[i];
+    if (IsNotMatch(group))
+      continue;
+
+    string key = pathRegex.GroupNameFromNumber(i);
+    if (IsInvalidKeyOrValue(group, key))
+      continue;
+
+    data.Values[key] = group.Value;
+  }
+}
+\--code
+
+Navíc, když se teď na ten kód podíváme, zjistíme, že se ty původní šestky (z kterých už jsou čtyřky) liší jen v tom, že používají každá jinou členskou proměnou, naštěstí stejného typu. Tak jdeme zase refaktorovat. :) Nejprve si tedy tuto proměnou uložíme lokálně na začátku metody a ze zbytku extrahujeme metodu novou s jedním parametrem navíc.
+
+U druhý čtyřky už to dělat nemusíme, páč výsledný extrakt z té první je plně vyhovující našim potřebám a tak ho zavoláme jen s jiným parametrem. Ze dvou čtyřek máme jednu a dvě jedničky. A komplexita třídy se nám vrátila k původní hodnotě. Ano, máme tu teď spoustu malých metod, které ale mají jasný účel. A když se podíváme blíž, zjistíme, že můžeme úplně v klidu některé z nich extrahovat no úplně nové třídy. Ale to už je na jinou pohádku.
+
+Stromečky jsou totiž fuč. :)
+
+PS. Zmíněné refaktoringy a vizualizace metrik jsou součásti skvělého produktu [refactorpro] nebo samotné refactoringy v neplacené verzi [coderushx].
+
+[clanek(361)]: /weblog/361-nepiste-zbytecny-kod.aspx
+
+[darkmagic]: http://blog.maartenballiauw.be/post/2009/05/20/ASPNET-MVC-Domain-Routing.aspx Dark Magic
+[cyclomaticcomplexity]: http://en.wikipedia.org/wiki/Cyclomatic_complexity Cyclomatic complexity
+[refactorpro]: http://www.devexpress.com/Products/Visual_Studio_Add-in/Refactoring/ Refactor Pro!
+[coderushx]: http://www.devexpress.com/Products/Visual_Studio_Add-in/CodeRushX/ Code Rush Xpress

@@ -1,0 +1,19 @@
+---
+{:id 63,
+ :title "Windows Vista",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"tuning"},
+ :published "2005-07-24T00:00:00"}
+---
+
+Microsoft konečně oznámil komerční název jeho *Longhornu*, příštího operačního systému z dílny "Microsoftu":[microsoft]. Byla oznámena i data vydání beta verzí a kandidátů na vydání. První beta verze vyjde 3. srpna tohoto roku a měla by přinést hlavně nové prvky pro programátory, souhrnně nazývané WinFX. Je to managed framevork, který by měl nahradit Win32, i když toto by mělo být zachováno.
+
+Důležitou částí WinFX bude Indigo, zajišťující volání distribuovaných služeb, které staví na standardech WS-xxx, WSDL a SOAP z dílny "W3C":[w3]. To by mělo zajistit, že v brzké budoucnosti se nebudou aplikace instalovat do počítače, ale budete používat logiku, která je někde na nějaké adrese napsaná v nějakém jazyku běžícím na nějaké platformě… Doufám, že se podpora pro Webové služby dostane (na úrovni systémového API) i do dalších operačních systémů.
+
+Další důležitou částí je Avalon. Jedná se o API, díky kterému si můžete libovolně hrát s <acronym title="Graphic User Interface" lang="en">GUI</acronym>. Popis GUI je ve formátu MS XAML, takže distribuce budoucích aplikací na váš počítač bude zprostředkována pomocí XML a protokolů, které jeho přenos podporují, především HTTP.
+
+Tohle jsou základní stavební kameny nového systému, na které se nejvíc těším, protože to je problematika, která mě hodně zajímá a ve které se snažím získat co nejvíc zkušeností. V brzké době, bych se měl stát členem mini teamu, ve kterém budeme řešit dotazování do Foxovských databází z jedné stránky. Databáze je decentralizovaná a navíc není přístupná z venku, ale pouze přes VPN. Jedním z řešení, na kterém budu dělat, je dotazování pomocí XML webových služeb.
+
+[microsoft]: http://www.microsoft.com
+[w3]: http://www.w3.org

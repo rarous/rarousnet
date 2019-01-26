@@ -1,0 +1,18 @@
+---
+{:id 184,
+ :title "ASP.NET AJAX Extensions beta 1",
+ :description "Atlas Framework se blíží ke stabilní verzi.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "ajax" "asp.net 2.0" "javascript"},
+ :published "2006-10-20T20:28:03.800"}
+---
+
+Dnes byla po dlouhé odmlce vypuštěna další verze 'Atlas' Frameworku, tentokráté již pod komerčním názvem a ve fázi beta testování. Co se vše změnilo?
+
+Krom názvu tedy doznal framework "značných změn":[http://ajax.asp.net/files/AspNet_AJAX_CTP_to_Beta_Whitepaper.aspx]. Prvně byl framework rozdělen na *Core* a *Preview* část. Core:[http://download.microsoft.com/download/3/1/c/31cb8c2d-d6e5-4b5e-ae1c-79724667f7d1/ASPAJAXExtSetup.msi] obsahuje nejdůležitější jádro frameworku (JSON, Class Library, Compatibility layer apod.) a jeho velikost se podařilo stlačit na přibližně 20 KiB (GZip komprese), což je velice dobrá zpráva, konečně se Atlas stává použitelným i v reálném světě :) Preview:[http://download.microsoft.com/download/a/a/9/aa9949bb-58e4-4048-85f3-35ac4ab5cc04/ASPAJAXCTP.msi] balíček obsahuje spoustu dalších věcí, které byly součástí předchozích verzí a budou nadále vyvíjeny s možností zařazení do Core po jejich dostatečné stabilizaci a otestování kompatibility. ControlToolkit:[http://www.codeplex.com/Release/ProjectReleases.aspx?ProjectName=AtlasControlToolkit] zůstává a byl opět rozšířen o další nové Extendery.
+
+Krom struktury projektu došlo i na technologické změny. Tou nejdůležitější změnou je přechod z closures na prototypování. Tím doznal framework i značného výkonostního nárůstů, protože prototypy obecně spotřebovávají mnohem méně paměti. Vývojáři si od prototypování slibují také snadnější vývoj a podporu pro Intellisenee v 'Orcas' studiu. Podlě náznaků to vypadá, že Intellisense poběží díky metadatům v JavaScriptu (obdoba Atributů v C#). Nechme se překvapit.
+
+Co se týče serverové části tzv. ASP.NET 2.0 AJAX Extensions, tak všechny controly mají nyní prefix `asp` namísto `atlas` a od příští verze dotnet frameworku budou i jeho integrální součástí. AJAX Extensions také nahrazují stávající **Validátory**, které byly přepsány nad "MS AJAX Library":[http://ajax.asp.net/downloads/beta/default.aspx?tabid=47&subtabid=471]. Snad budou fungovat mnohem lépe než ty stávající.
+
+Osobně jsem ještě velice zajímavě vypadající novinky nezkoušel, ale snad se brzy naskytne ta možnost :)

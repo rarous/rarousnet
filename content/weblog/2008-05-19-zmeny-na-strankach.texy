@@ -1,0 +1,25 @@
+---
+{:id 270,
+ :title "Změny na stránkách",
+ :description
+ "Trochu jsem si pohrál s těmahle stránkama. Potunil jsem hlavní stránku a upravil výstup RSS.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "caching" "moje práce" "etag"},
+ :published "2008-05-19T19:28:40.980"}
+---
+
+První viditelnou změnou je úprava RSS exportu, odedneška se budou v hlavním feedu zobrazovat celé články. Pokud chcete v mém feedu i nadále pouze perexy, použijte adresu http://feeds.feedburner.com/rarous/weblog. Je to experiment, ve kterém si chci ověřit, jaký vliv to bude mít na návštěvnost - čtenost článků. Druhým důvodem je [technorati] - doufám, že tak začne indexovat tagy.
+
+V rámci optimalizace výkonu homepage:[/] jsem všechny agregované feedy hodil do FeedBurneru:[feedburner], který jim dokáže nastavit cachovací hlavičky a hlavně ETag, kterej např. google nikam nedává. Navíc má mnohem kratší odezvy.
+
+Teď mám na hlavní stránce celkem tři úrovně cachování.
+
+1. *Veřejné*. Stránka má nastavené cahování u klienta a po cestě na dvě minuty - její rychlejší aktualizaci nečekám a je to spíš ochrana proti zběsilému refreshování.
+2. *Output cache na serveru*. Využívám cachovacího mechanismu ASP.NET a vyredrovaná stránka se na serveru cachuje 5 minut. To má výhodu v tom, že se posílá odpověď 304, když se obsah nezměnil.
+3. *Cachování agregovaných dat*. Když načtu feed, uložím si ho pod jeho ETagem do cache  na 45 minut. Při dalším dotazu se pošle požadavek HEAD a stáhnou se jen hlavičky. Pokud se změnil ETag, tak ho v cache nenajdu a musím data načíst GETem.
+
+Myslím, že teď je to celkem účinné, ale stejně ještě přijde časem jedna změna, kdy se o načítání feedů nebude starat Controller, ale na pozadí poběží task, který bude agregovat podobně jako služba [weblogy].
+
+[technorati]: http://www.technorati.com/ Technorati
+[feedburner]: http://www.feedburner.com/ FeedBurner
+[weblogy]: http://www.weblogy.cz/ Weblogy.cz

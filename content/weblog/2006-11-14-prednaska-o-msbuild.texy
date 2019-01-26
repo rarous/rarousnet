@@ -1,0 +1,12 @@
+---
+{:id 194,
+ :title "Přednáška o MSBuild",
+ :description "Slidy z přednášky o MSBuild.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "msbuild"},
+ :published "2006-11-14T17:57:05.463"}
+---
+
+Minulý týden jsem měl malou přednášku pro své kolegy, která si kladla za cíl proniknout do tajů MSBuildu, aspoň trošku. Malinko, prostě vědět o čem je řeč :)
+
+Slíbil jsem, že dám slidy k dispozici na mým blogu, teda tady, tak jo. Přikládám prezentaci:[/data/soubory/MSBuild.ppt]. Možná taky ještě jeden spot věnuji podrobnějšímu výkladu, ale to by se mi muselo hodně chtít :)

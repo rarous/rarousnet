@@ -1,0 +1,64 @@
+---
+{:id 263,
+ :title "Homepage reloaded",
+ :description
+ "Konečně se mi podařilo odstranit nepříjemný bug na mojí nedávno spuštěné homepage. Analytics teď trackují bezproblémů a počítají i zastoupení Silverlightu.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "silverlight" "analytics"},
+ :published "2008-04-09T11:34:07.417"}
+---
+
+Už je tomu nějakej ten týden, co jsem nasadil novou sociální homepage:[/]. Po úpravách, které jí měly vystavovat jako `application/xhtml+xml` došlo k tomu, že jsem se na ní ve Firefoxu už nedostal.
+
+Měl jsem za to, že je chyba v mém systému a že je muj FF nějakej nabořenej, protože u Macíka:[macus] to třeba nedělalo. Proto jsem to ani moc neřešil. Jenže jsem si jednoho dne řekl, že to musím rozlousknout.
+
+Jádro pudla
+===========
+
+Chyba nakonec nebyla pouze v mém Firefoxu, ale šlo o kombinaci Firofox + Silverlight. Do svého Google Analytics kódu jsem měl totiž přidaný kód, pro "měření zastoupení Silverlight":[nikhilk] pluginu, který jsem vzal od Nikhila Kothariho. Problém byl v tom, že plugin instancioval pomocí vytvoření `embed` značky přes `innerHTML`. To v kombinaci s `application/xhtml+xml` Firefox sestřelilo.
+
+Řešení
+======
+
+Když si mě včera do Twittru přidal Arcao:[arcao], našel jsem na jeho stránkách informaci, o které jsem dosud nevěděl. Google Analytics maj novej script pro měření. Takže ten jsem použil pro novou verzi meho kontrolu na měření návštěvnosti. A začal si hrát s ověřováním  Silverlightu. U IE jsem zůstal u metody inicializace ActiveX objektu a využití jeho API. U Firefoxu jsme na to musel trochu jinak. Nakonec jsem využil PAPI((Plug-in API)) a vlastnost `description`, která vrací verzi pluginu.
+
+Ale verze pluginu se neshoduje s komerčním označením Silverlightu. Musel jsem tedy ještě přidat přepočet. Zatím je to takhle:
+
+.[tabulka]
+| Plug-in | Silverlight
+|---------------------------
+| 0.80    | WPF/e
+| 0.90    | Silverlight 1.0
+| 0.95    | Silverlight 1.1
+| 1.00    | Silverlight 2.0
+
+No a výsledný kód po nějaké kompresi vypadá takto:
+
+/--code xml
+<%@ Control Language="C#" %>
+<script runat="server">
+private string _ua;
+public string UserAccount {
+  get { return _ua; }
+  set { _ua = value; }
+}
+</script>
+<script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+<% if (Page.Response.ContentType.ToLower() == "text/html") { %><!--<% } else { %>// <![CDATA[ <% } %>
+try{var t=_gat._getTracker("<%= UserAccount %>"),v=(function (){var v='',n={},s='Silverlight',a='AgControl',b=s+' Plug-In',x=['2.0','1.1','1.0'];n.a=window.navigator.userAgent;n.p=navigator.plugins;
+try {if(n.a.indexOf('MSIE')>=0){var c=new ActiveXObject(a+'.'+a);if(c)for(var i=0;i<sv.length;i++)if(c.isVersionSupported(x[i])){v=s+'/'+x[i];break;}}
+else if(n.p[b]){v=n.p[b].description;var d=v.split('.');if(d.length>0)v=d[0]=='1'?s+'/2.0':d[0]=='0'&&d[1]=='95'?s+'/1.1':d[0]=='0'&&d[1]=='90'?s+'/1.0':d[0]=='0'&&d[1]=='80'?'WPF/E':'';}
+}catch(e){}return v;})(),a=t._addOrganic,b=t._setVar,q='q',s='s';
+a('seznam.cz',q);a('centrum.cz',q);a('jyxo.cz',s);a('atlas.cz',q);a('zoohoo.cz',q);a('tiscali.cz','query');a('1.cz',q);a('volny.cz','search');
+a('zoznam',s);a('atlas.sk','phrase');a('centrum.sk',q);a('morfeo.sk',q);a('szm','ws');a('azet',s+q);a('zoohoo.sk',q);
+t._initData();t._trackPageview();if(v)b(v);}catch(e){}
+<% if (Page.Response.ContentType.ToLower() == "text/html") { %>// --><% } else { %>// ]]><% } %>
+</script>
+\--code
+
+Snad se bude hodit.
+
+[macus]: http://www.maciweb.cz/
+[arcao]: http://arcao.com/
+[nikhilk]: http://www.nikhilk.net/Silverlight-Analytics.aspx

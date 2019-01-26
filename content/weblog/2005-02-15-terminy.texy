@@ -1,0 +1,20 @@
+---
+{:id 47,
+ :title "Termíny",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2005-02-15T00:00:00"}
+---
+
+Je tomu bohužel tak, termíny svazují náš život :) A když jsem si
+myslel, že během zkouškového období stihnu přepsat redakční systém Gryphoon, tak jsem se šeredně přepočítal. Od posledního příspěvku jsem nenapsal ani řádku nového kódu :( Může za to hodně práce a do toho ještě zkouška z Diskrétní matematiky a logiky, kterou dělám zítra.
+
+Jednou z těch prací je příprava nového designu pro [ggdagcz], trochu jsem se začal angažovat v českém fanklubu. Když jsme u tý muziky, v sobotu 19. 2. bude v "Dubnici":[dubnice] (u Stráže pod Ralskem) "DJ Orbith":[orbith], takže tímto zvu všechny příznivce taneční muziky na pořádnou kalbu. Určitě budu o této akci ještě referovat a možná přihodím i nějakej obrázek.
+
+Další práce je ta pro "Benteler":[benteler]. Dodělal jsem Sklad a teď pracuju na databázi revizí strojů. Základ je úplně stejnej jako u Skladu, akorát je to dělaný pro víc závodů najednou. No mám na to ještě tejden a půl a ještě nemám funkční kus, pouze kostry stránek s náznakem funkčnosti. Pak se to celé musí odladit a otestovat, to zase bude fofr, už se na to těšim :)
+
+[ggdagcz]: http://ggdag.euweb.cz GiGi D'AGOSTiNO Czech fan pages
+[dubnice]: http://www.discodubnice.cz
+[orbith]: http://www.djorbith.com
+[benteler]: http://www.benteler.cz

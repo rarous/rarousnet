@@ -1,0 +1,204 @@
+---
+{:id 343,
+ :title "Jaký pohled si vybrat?",
+ :description
+ "ASP.NET MVC umožňuje výběr šablonovacího systému i jazyka, který v něm chcete používat. Máte rádi Ruby a Haml, nebo Boo? I pro vás tu něco máme!",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "brail" "spark" "aspnet" "mvc" "ironruby" "nvelocity"
+   "nhaml" "boo" "ironpython" "viewengine"},
+ :published "2009-01-10T18:07:45.653"}
+---
+
+ASP.NET MVC je velice modulární, jeho největší devízou je, že skoro vše lze nahradit něčím jiným. Nejinak je tomu i u ViewEnginu (šablonovací systém). Dokonce můžete v jedné aplikaci používat několik šablonovacích systémů vedle sebe. A to už se vyplatí!
+
+Jaký je výběr?
+==============
+
+Existuje spousta známých i neznámých šablonovacích systémů. Najznámější jsou asi, počkejte si na to, **PHP/ASP**. Ha! Ano, PHP((PHP Hypertext Processor)) i ASP((Active Server Pages)) nejsou nic jinýho než šablonovací systémy. To že v nich někdo dokáže psát celé aplikace – klobouk dolu.
+
+Šablonovací systém najdete téměř v každém oblíbeném webovém frameworku. V ASP.NET MVC mu většinou říkáme *ASPX* nebo *WebForms* view engine. To je ten, který se používá v základu. Narozdíl od ASP můžete v ASPX šablonách používat i serverové značky. Toho lze využít pro tvorbu Master pages a Content pages, nebo pro snadnou lokalizaci za pomocí `asp:Localize`. :) V takové šabloně můžete navíc použít jakýkoli dotnetí jazyk pro logiku pohledu. Následuje ukázka pohledu s jazykem C#:
+
+/--code xml
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Test view page</title>
+</head>
+<body>
+  <h1>Test view page</h1>
+
+  <ul>
+    <% foreach (var company in Model.Companies) { %>
+    <li><%= company.Name %></li>
+    <% } %>
+  </ul>
+
+  <% using(Html.BeginForm("create", "company", FormMethod.Post) { %>
+   <fieldset>
+     <legend>Create new company</legend>
+     <label for="companyName">Name:</label>
+     <%= Html.TextBox("companyName") %>
+     <input type="submit" value="Create company" />
+   </fieldset>
+  <% } %>
+</body>
+</html>
+\--code
+
+Stejná ukázka za použití Visual Basicu:
+
+/--code xml
+<%@ Page Language="VB"  Inherits="System.Web.Mvc.ViewPage" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Test view page</title>
+</head>
+<body>
+  <h1>Test view page</h1>
+
+  <ul>
+    <% For Each company In Model.Companies %>
+    <li><%= company.Name %></li>
+    <% Next %>
+  </ul>
+
+  <% Using Html.BeginForm("create", "company", FormMethod.Post) %>
+   <fieldset>
+     <legend>Create new company</legend>
+     <label for="companyName">Name:</label>
+     <%= Html.TextBox("companyName") %>
+     <input type="submit" value="Create company" />
+   </fieldset>
+  <% End Using %>
+</body>
+</html>
+\--code
+
+Osobně v pohledech upřednostňuju Visual Basic - je to díky jeho ukecanosti. Ano, i ta se někdy může hodit. V pohledech je pak lépe vidět, kde začíná a končí `for` cyklus nebo podmíněný blok. Nejspíš lze stejného efektu dosáhnout i za použití [ironruby]. Ale to zjistím asi velice brzy. :)
+
+Když už jsme u toho Ruby, potažmo u Railsů, nesmím zapomenout zmínit [haml]. Kód v něm může vypadat celkem obskurně, ale má přísnou logiku a zachovává čistou strukturu pohledu.
+
+/--code haml
+%html{:xmlns => 'http://www.w3.org/1999/xhtml'}
+  %head
+    %title Test view page
+  %body
+    %h1 Test view page
+    %ul
+      -model.companies.each do |company|
+        %li= company.name
+    %form{:action => url.action({:action => 'Create'}), :method => 'post'}
+      %fieldset
+        %legend Create new company
+        %label{:for => 'companyName'} Name:
+        =html.text_box('companyName')
+        %input{:type => 'submit', :value => 'Create company'}
+\--code
+
+Do ASP.NET MVC lze přidat jeho port do dotnetu: [nhaml]. Pro logiku pohledu lze použít jazyky C#, [ironruby] a [boo].
+
+Obecným šablonovacím jazykem je Velocity, které si našlo cestu například do MonoRailu v podobě [nvelocity]. Samozřejmě je ho možné používat i v ASP.NET MVC.
+
+/--code xml
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Test view page</title>
+</head>
+<body>
+  <h1>Test view page</h1>
+
+  <ul>
+#foreach($company in $model.Companies)
+    <li>$company.Name</li>
+#end
+  </ul>
+
+  <form action="$url.Action('create')" method="POST">
+    <fieldset>
+      <legend>Create new company</legend>
+      <label for="companyName">Name:</label>
+      $html.TextBox('companyName')
+      <input type="submit" value="Create company" />
+    </fieldset>
+  </form>
+</body>
+</html>
+\--code
+
+Na půdě MonoRailu vznikl i další šablonovací systém postavený nad [boo] s poetickým názvem [brail]. V šablonách se může používat i rozšířená syntaxe Boo, která není závislá na odsazování a používá `end` literály pro definici bloků.
+
+/--code xml
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Test view page</title>
+</head>
+<body>
+  <h1>Test view page</h1>
+
+  <ul>
+    <?brail for company in model.Companies: ?>
+    <li>${company.Name}</li>
+    <?brail end ?>
+  </ul>
+
+  <?brail using Html.BeginForm('create', 'company', FormMethod.Post): ?>
+    <fieldset>
+      <legend>Create new company</legend>
+      <label for="companyName">Name:</label>
+      ${Html.TextBox('companyName')}
+      <input type="submit" value="Create company" />
+    </fieldset>
+  <?brail end ?>
+</body>
+</html>
+\--code
+
+Samozřejmě můžete místo `<?brail ?>` použít zkrácený zápis `<% %>`, to už je jen na vás, jestli se vám víc líbí PHP nebo ASP styl…
+
+A pomalu se blížíme k poslednímu zajímavému šablonovacímu systému. A tím je [spark]. Spark si klade za cíl, být co nejblíže kodérovi a jeho syntaxe je založená primárně na XHTML((Extensible Hypertext Markup Language)). Pro logiku pohledu využíváte rozšířených značek a atributů, které jsou překládány do vámi zvoleného  jazyka. Zvolit si můžete tradičně mezi C#, [ironruby] a [ironpython].
+
+/--code xml
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Test view page</title>
+</head>
+<body>
+  <h1>Test view page</h1>
+
+  <ul>
+    <li each="company in model.Companies">${company.name}</li>
+  </ul>
+
+  <form action="${url.action('create')}" method="POST">
+    <fieldset>
+      <legend>Create new company</legend>
+      <label for="companyName">Name:</label>
+      ${html.text_box('companyName')}
+      <input type="submit" value="Create company" />
+    </fieldset>
+  </form>
+</body>
+</html>
+\--code
+
+Závěr
+=====
+
+Když se podíváte na výše uvedené ukázky, zjistíte, že mají mnohé společné. Na vás je si vybrat. Každý z šablonovacích systémů má svá specifika a například Sparku bych se chtěl podrobněji věnovat v některém z následujících spotů.
+
+Pokud se rozhodnete některý z view enginů použít, zkuste to přes projekt [mvccontrib].
+
+Díky možnostem otevřené architektury ASP.NET MVC a možnosti zvolit si k práci jazyk, který vám nejvíce vyhovuje, můžete docílit nejen úspěchu u žen, ale i dle vašich preferencí! No řekněte, kdo z vás to má?
+
+*V ukázkách NHamlu a Sparku jsem zvolil integraci s jazykem IronRuby.*
+
+[boo]: http://boo.codehaus.org/ Boo
+[ironruby]: http://www.ironruby.net/ IronRuby
+[ironpython]: http://ironpython.codeplex.com/ IronPython
+[nhaml]: http://code.google.com/p/nhaml/ NHaml
+[haml]: http://haml.hamptoncatlin.com/ Haml
+[nvelocity]: http://www.castleproject.org/others/nvelocity/index.html NVelocity
+[spark]: http://dev.dejardin.org/ Spark
+[brail]: http://www.castleproject.org/MonoRail/documentation/trunk/viewengines/brail/index.html Brail
+[mvccontrib]: http://mvccontrib.codeplex.com/ MVC Contrib

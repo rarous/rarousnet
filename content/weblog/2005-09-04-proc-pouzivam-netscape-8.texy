@@ -1,0 +1,52 @@
+---
+{:id 68,
+ :title "Proč používám Netscape 8",
+ :description
+ "O tom, proč jsem nahradil Firefox Netscape Browserem 8.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2005-09-04T10:45:44"}
+---
+
+Na mém počítačí je naistalovaných spousta prohlížečů, ale pouze jeden má tu čest být mým hlavním. Je jím [netscape]. Dlouho jsem před tím používal Firebirda a potom "Firefoxe":[firefox], byl jsem s nimi spokojený, ale vadila mi jedna věc - některé stránky byly nepřístupné nebo nefunkční. Proto jsem musel občas otevírat Internet Explorer (IE), hlavně při chození do banky.
+
+Když se objevily zprávy o tom, že nová verze Netscape (NS) bude postavená na Firefoxu a že bude mít přepínání enginů, nadchlo mě to a těšil jsem se na release jako malé dítě. Hned, jak oficiálně vyšel, jsem ho naistaloval...
+
+Chvíli jsem ho používal, ale zase jsem se vrátil zpět k Firefoxu. Pak jsem musel zformátovat disk a při nové instalaci systému jsem se rozhodl, že dám Netscapu druhou šanci a myslím že jsem udělal dobře, jsem nad míru spokojený.
+
+=== Co se mi na NS8 tak líbí?
+
+V první řadě je to používání dvou zobrazovacích jader - Gecko a Trident - mezi kterými si můžu libovolně přepínat a nastavovat pro jednotlivé servery, jaké jádro použít s tím, že si to NS((Netscape)) pamatuje. Dále je to vychytaný systém ověřování bezpečnostních úrovní stránek, který ve Firefoxu chybí a v IE((Internet Explorer)) není tak dotažený. NS si ověřuje důvěryhodnost stránek u serverů jako je eTrust nebo VerySign, nebo si úroveň zabezpečení můžete, zase pro jednotlivé sity, nastavit ručně.
+
+Oproti Firefoxu má NS ve výchozí instalaci mnohem lepší podporu pro prohlížení stránek v záložkách, má integrovaný [icq] klient, má integrovanou podporu pro [gmail] a jiné používané e-mailové služby, má pro mě přítulnější a kompaktnější prostředí.
+
+Velkou nevýhodou, oproti Firefoxu, je zatim nedostatečné množství nabízených rozšíření, ale po čase jsem zjistil, že je zase tolik nepotřebuju, jediné co mi chybělo byly MouseGestures a ty mi v poslední verzi fungují bez problémů. Oni se totiž některé extensions pro Firefox dají přemluvit k tomu, aby se tvářili, že jsou pro NS8 a ve výsledku i fungují.
+
+=== Jak na to?
+
+Postup je jednoduchý. Z [moz-update] si stáhnete rozšíření, které se vám líbí (Udělejte to přes pravé tlačítko volbou *Save Target As...*). Potom si rozšíření otevřete pomocí ZIP a v něm upravíte soubor **install.rdf** a to následovně:
+
+1.  Musíte změnit ID cílové aplikace
+2.  Musíte změnit podporovanou verzi
+
+Výsledná část kódu po editaci bude třeba vypadat následovně:
+
+/---code xml
+...
+<em:targetApplication>
+    <rdf:Description>
+        <em:id>{3db10fab-e461-4c80-8b97-957ad5f8ea47}</em:id>
+        <em:minVersion>8.0.1</em:minVersion>
+        <em:maxVersion>8.0.4</em:maxVersion>
+    </rdf:Description>
+</em:targetApplication>
+...
+\---
+
+Výsledek uložíme a pokusíme se ho Netscapu vnutit. Otevřete si okno *Extensions* a naše rozšíření do něj přetáhneme. Potom NS restartujeme. Voalá. Ovšem je velice provděpodobné, že ho nepříjme. Pak je nutné nefunkční rozšíření odebrat, opět v okně Extensions. Pokud se k němu nedostanete, je nutné spustit NS v *safe modu* a pak to půjde. Z toho vyplívá, že to děláte **na vlastní nebezpečí** a já nenesu žádnou vinu na tom, co se vám může stát.
+
+[moz-update]: http://update.mozilla.org/ Mozilla Upadate
+[netscape]: http://browser.netscape.com/ Nescape Browser 8
+[firefox]: http://firefox.czilla.cz/ Firefox
+[icq]: http://www.icq.com/ ICQ
+[gmail]: http://www.gmail.com/ GMail

@@ -1,0 +1,134 @@
+---
+{:id 85,
+ :title "Beztabulkové renderování controlů v ASP.NET 2.0",
+ :description "Jak odstranit obalové tabulky u controlů ASP.NET 2.0",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2005-11-30T10:39:00"}
+---
+
+Již delší dobu jsem se pídil po tom, jak vyřešit takový malý problém s `asp:Login` controlem a podobným, které se dají krásně přepsat pomocí šablonování, ale vždy zůstane obalová tabulka. Tato tabulka je natvrdo napsaná v kódu tohoto velice užitečného controlu. Každá třída odvozená od `WebControl` má definovaný základní element, od kterého se odvozuje renderování výsledného kódu. Bázovým elementem všech složitějších controlů je v ASP.NET 2.0 právě element `table`, čímž se porušují pravidla přístupnosti a vůbec semantický pohled na výsledný XHTML((Extensible Markup Language)).
+
+Nakonec jsem "našel řešení na jednom blogu":http://blog.dreamprojections.com/archive/2005/04/08/783.aspx a ještě ho trochu poupravil.
+
+/---code csharp
+using System;
+using System.Data;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+namespace PBSoftware.Gryphoon.Controls
+{
+	public class Login : System.Web.UI.WebControls.Login
+	{
+		protected override HtmlTextWriterTag TagKey
+		{
+			get
+			{
+				return HtmlTextWriterTag.Div;
+			}
+		}
+
+		protected override void Render(HtmlTextWriter writer)
+		{
+			WebControl div = new WebControl(TagKey);
+
+			if (LayoutTemplate == null)
+				LayoutTemplate = new LoginTemplate();
+
+			LayoutTemplate.InstantiateIn(div);
+
+			Controls.Clear();
+			Controls.Add(div);
+
+			div.CopyBaseAttributes(this);
+			div.RenderControl(writer);
+		}
+	}
+
+	public class LoginTemplate : ITemplate
+	{
+		public LoginTemplate() { }
+
+		public void InstantiateIn(Control container)
+		{
+			HtmlGenericControl fieldset = new HtmlGenericControl("fieldset");
+			HtmlGenericControl legend = new HtmlGenericControl("legend");
+			legend.InnerText = "Přihlášení do aplikace";
+
+			Label userNameLabel = new Label();
+			userNameLabel.ID = "UserNameLabel";
+			userNameLabel.AssociatedControlID = "UserName";
+			userNameLabel.Text = "Uživatel:";
+
+			TextBox userNameTextBox = new TextBox();
+			userNameTextBox.ID = "UserName";
+
+			RequiredFieldValidator userNameRequired = new RequiredFieldValidator();
+			userNameRequired.ID = "UserNameRequired";
+			userNameRequired.ControlToValidate = "UserName";
+			userNameRequired.ErrorMessage = "Uživatelské jméno je povinné.";
+			userNameRequired.ToolTip = "Uživatelské jméno je povinné.";
+			userNameRequired.Text = "*";
+			userNameRequired.ValidationGroup = "Login1";
+
+			Label passwordLabel = new Label();
+			passwordLabel.ID = "PasswordLabel";
+			passwordLabel.AssociatedControlID = "Password";
+			passwordLabel.Text = "Heslo:";
+
+			TextBox passwordTextBox = new TextBox();
+			passwordTextBox.ID = "Password";
+			passwordTextBox.TextMode = TextBoxMode.Password;
+
+			RequiredFieldValidator passwordRequired = new RequiredFieldValidator();
+			passwordRequired.ID = "PasswordRequired";
+			passwordRequired.ControlToValidate = "Password";
+			passwordRequired.ErrorMessage = "Heslo je povinné.";
+			passwordRequired.ToolTip = "Heslo je povinné.";
+			userNameRequired.Text = "*";
+			passwordRequired.ValidationGroup = "Login1";
+
+			CheckBox rememberMe = new CheckBox();
+			rememberMe.ID = "RememberMe";
+			rememberMe.Text = "Pamatuj si mě.";
+
+			Literal failureText = new Literal();
+			failureText.ID = "FailureText";
+			failureText.EnableViewState = false;
+
+			Button loginButton = new Button();
+			loginButton.ID = "LoginButton";
+			loginButton.CommandName = "Click";
+			loginButton.Text = "Přihlásit se";
+			loginButton.ValidationGroup = "Login1";
+
+			HtmlGenericControl br = new HtmlGenericControl("br");
+
+			fieldset.Controls.Add(legend);
+			fieldset.Controls.Add(userNameLabel);
+			fieldset.Controls.Add(userNameTextBox);
+			fieldset.Controls.Add(userNameRequired);
+			fieldset.Controls.Add(br);
+			fieldset.Controls.Add(passwordLabel);
+			fieldset.Controls.Add(passwordTextBox);
+			fieldset.Controls.Add(passwordRequired);
+			fieldset.Controls.Add(br);
+			fieldset.Controls.Add(rememberMe);
+			fieldset.Controls.Add(failureText);
+			fieldset.Controls.Add(loginButton);
+
+			container.Controls.Add(fieldset);
+		}
+	}
+}
+\---code
+
+--Předem upozorňuju, že tento control musí mít přidělenou nějakou šablonu, jinak nebude fungovat--. Ještě na tom zapracuju, protože se mi nelíbí některé chování.
+
+**Update:** Připsal jsem defaultní šablonu.

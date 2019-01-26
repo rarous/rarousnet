@@ -1,0 +1,78 @@
+---
+{:id 385,
+ :title "Časový výpis s aktualizací",
+ :description
+ "Na Facebooku se mi líbí, že se automaticky aktualizuje čas, před jakým byl příspěvek na zeď pověšen. Jak si naimplementovat vlastní pomocí mikroformátu, jQuery a Rx?",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "microformats" "rx" "trop" "javascript" "jquery"},
+ :published "2010-03-23T15:58:56.253"}
+---
+
+Na Facebooku se mi líbí, že se automaticky aktualizuje čas, před jakým byl příspěvek na zeď pověšen. Jak si naimplementovat vlastní pomocí mikroformátu, jQuery a Rx?
+
+Na Tropu:[http://www.trop.cz] máme několik výpisů typu *friend feed*, které jsou velice podobné výpisu na zdi na Facebooku. Rozdíl je v tom, že se u příspěvků neaktualizuje doba, před kterou byl příspěvek přidán, a ani se asynchronně nenačítají příspěvky nové. Jak vyřešit první problém, se podíváme dnes.
+
+Reactive Extensions
+===================
+
+Již nějakou dobu používám na .netu Rx((Reactive eXtensions)), která přidává další monady:[http://en.wikipedia.org/wiki/Monad_(functional_programming)] pro interaktivní programování nad `IEnumerable<T>`, podporu paralelního zpracování a zcela nové reaktivní programování postavené nad `IObservable<T>`. Vysvětlovat tu dualitu `IEnumerable<T>` a `IObservable<T>` dnes hodlat nehodlám. Dodám snad jen to, že tyto extenze jsou již "dostupné i pro JavaScript":[http://live.visitmix.com/MIX10/Sessions/FTL01] a  "stáhnout si je můžete na MSDN":[http://msdn.microsoft.com/en-us/devlabs/ee794896.aspx]. K čemu je to dobré?
+
+Reaktivní extenze vám pomohou s řešením ne zrovna snadných úloh, jako je práce s událostmi od uživatele, asynchronní volání služeb a práce s kolekcemi. To vše pomocí standardních LINQ operátorů. Tedy snadno a rychle. Doufám, že si ještě někdy najdu čas a popsal bych je trochu blíž. Možná po implementaci druhé části výše nastoleného problému. :)
+
+Pojďme na věc
+=============
+jQuery a mikroformáty asi přibližovat nemusím, to jsou věci, které tu už s námi nějaký pátek jsou. Já se na Tropu snažím mikroformáty využít všude kde to jen jde, jak jsem již psal, je to můj "datový model stránky":[/weblog/370-mikroformaty-jako-datovy-model-stranky.aspx]. U výpisu typu *friend feed* je aktuálně nefunkční kostra mikroformátu hAtom:[http://microformats.org/wiki/hatom]. Takže to pojďme napravit a rychle jí zprovoznit. Vezmu kus kódu a upravím ho tak, aby to byl platný hAtom:
+
+/--code xml
+<li class="hentry" id="activity-2330">
+  <p class="entry-title"><a class="vcard author" href="/lide/zbiejczuk">
+    <span class="admin" title="Trop Administrator">
+     <span class="power" title="Znalec">
+      <span class="fn">zbiejczuk</span>
+     </span>
+    </span></a>
+    napsal recenzi pro <a href="/mista/808/ku-bar-praha#review-1096" rel="Bookmark">K.U. Bar</a></p>
+  <p class="entry-content">
+Hoďte na sebe nevyzývavě značkové oblečení, kupte si drahý cigára,
+popíjejte koktejly a konverzujte markeťáckým…
+  </p>
+  <p class="meta">přidáno
+    <span class="updated">
+     <span class="text">22. března 2010 ve 12.24</span>
+     <span class="value-title" title="2010-03-22T11:24:19Z"></span>
+    </span>
+  </p>
+</li>
+\--code
+
+Další soustředění budu směřovat na `span` se třídou **updated**, protože tam se skrývá ta důležitá věc - čas. Čas, kdy byl příspěvek publikován. Tento čas vezmeme a převedeme ho na "hezčí" textovou prezentaci. Strojově získatelná data dle ISO8601 máme uložena pomocí value-class-patternu, pro snažší update je tu navíc span s třídou **text**, kam budeme strkat náš vlastní text. Parsování mikroformátu provádím pomocí jQuery.
+
+Rx jsou psány tak, aby s jQuery mohly fungovat, ale já jsem mlsná huba a trošku si jQuery osolím, aby se mi s ním a Rx pracovalo trochu líp:
+
+/--code javascript
+jQuery.fn.toObservable = function (eventType, eventData) {
+  if (arguments.length == 0) {
+    return Rx.Observable.FromArray(this.toArray());
+  }
+  return Rx.Observable.FromJQuery(this, eventType, eventData);
+}
+\--code
+
+Pokud zavolám `toObservable` nad jQuery objektem bez parametrů, převede se výsledek dotazu na pole (nalezených elementů) a to je převedeno na `Observable` objekt se kterým už pracují samotné Rx. Pokud zadám jako parametr název jQuery události, je vrácen `Observable` objekt nad těmito událostmi. To ale dnes nevyužiju, ale i tak se může hodit. Ještě by to šlo rozšířit o podporu *live* událostí, snad jindy.
+
+Dále už se vrhnu rovnou do rozbouřené vody. jQuery na mne začne chrlit nalezené elementy, které musím zkrotit! Jak, kdy, proč? No tak, že mu to řeknu:
+
+/--code javascript
+Rx.Observable.
+  Interval(10000).
+  Select(function () {
+    return $('.hentry .updated').toObservable();
+  }).
+  Switch().
+  Select(mapToElementValuePair).
+  Subscribe(changeElementText);
+\--code
+
+Nejprve si vytvořim `Observable` objekt, který na mne jednou za 10 s vyplivne sadu nalezených elementů, které jsou součástí mikroformátu a nesou informaci o čase. `Swicht` slouží k tomu, že pokud by se nestihli v daném intervalu zpracovat všechny elementy, nezačne chrlit další. Tyhle elementy pak vezmu (druhý `Select`) a vytvořím si pomocný objekt, který obsahuje element a vyparsovaný objekt `Date` s časem, který element v sobě nese. Tohle je vše "lenivě vyhodnocováno":[/weblog/380-linq-a-lenive-vyhodnocovani.aspx], takže stále nemám vůbec nic. :) To až pomocí metody `Subscribe` se pověsím na příjem a čekám, až mi nějaký element (v tomto případě už obalový objekt) přilítne. Pak ten element vezmu, datum převedu na text typu *před 5 minutami* a aktualizuju element se třídou `text`. A je hotovo. :)
+
+Kompletní "ukázku kódu najdete na gitu":[http://gist.github.com/341201]. Ona se trošku liší a je malinko obšírnější, ale pro její pochopení, jsem tu snad naznačil dost. :) Enjoy!

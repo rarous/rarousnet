@@ -1,0 +1,31 @@
+---
+{:id 233,
+ :title "Chyba v kompilátoru C# 3.0",
+ :description
+ "Po prvních dnech s novým Visual Studiem 2008 jsem narazil na menší problém v kompilátoru C# 3.0.",
+ :author "Aleš Roubíček",
+ :tags #{"compilator" "csharp" "asp.net 2.0"},
+ :published "2007-11-27T11:28:04.070"}
+---
+
+Po prvních dnech s novým Visual Studiem 2008 jsem narazil na menší problém v kompilátoru C# 3.0. Když jsem si v práci otevřel náš Opus, nešel zkompilovat, ačkoli v 2005 je vše ok. Problém byl v tom, že nový kompilátor má problémy rozpoznat plné nesystémové namespacy a tak např. zápis `Atlas.Web...` chápe jako `Atlas.Opus.Atlas.Web...`. Takový namespace neexistuje a pak nejde kód zkompilovat.
+
+Ukázka zkráceného kódu, kde může nastat chyba:
+/--code csharp
+namespace Atlas.Opus.Web {
+  public class SomeClass {
+    // nejaky kod tridy
+    var value = Atlas.Web.Utils.Config.GetInt32("key"); // tady
+    // dalsi kod tridy
+  }
+}
+\--code
+
+
+Řešení se nabízejí přinejmenším dvě.
+
+1.  Použít globální identifikátor např. `global::Atlas.Web...`, čímž se problém vyřeší, ale zápis je ještě o kousek delší, než by musel být.
+2.  Tam, kde to jde, použít `using` namespace.
+3.  Tam, kde hrozí kolize názvů tříd, použít aliasy pomocí klíčového slova `using` např. `using utils = Atlas.Web.Utils;` a v kódu pak upravit volání na `utils::Config...`.
+
+Je to docela zajímavá vlastnost, že nová verze kompilátoru interpretuje namespacy jinak než předchozí verze. Naneštěstí je to vlastnost nepěkná a přináší v některých případech práci navíc.

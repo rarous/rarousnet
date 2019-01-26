@@ -1,0 +1,18 @@
+---
+{:id 238,
+ :title "Čekání na ASP.NET Extensions",
+ :description
+ "Dneska snad maj vyjít ASP.NET Extensions CTP, které mimo jiné obsahují i ASP.NET MVC framework. Těšim se jak malý dítě, ale protože tu ještě není, koukal jsem na přednášku o frameworku Nette. Taky pěkné.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "mvc" "nforms" "asp.net 2.0" "nette"},
+ :published "2007-12-07T20:12:33.900"}
+---
+
+Dneska snad maj vyjít ASP.NET Extensions CTP, které mimo jiné obsahují i ASP.NET MVC framework. Těšim se jak malý dítě, ale protože tu ještě není, koukal jsem na přednášku o frameworku Nette. Taky pěkné.
+
+"Pěknou přednáškou":[prednaska] v podání Davida Grudla ([dgx]), jsem se jenom namlsal (no ten --pitel--++pytel++ chipsů k tomu taky prasknul). No zatim jsem prolítnul ve čtečce příspěvky, který o ASP.NET MVC vyšly a udělal z nich stránku:[mvc]. Vybral jsem jen hodnotné, které jsou o něčem. :) No a když jsem udělal ten souhrn o "ASP.NET MVC":[mvc], tak proč bych ho neudělal i pro Nette:[nette]? Nevim... Tady:[nette] je.
+
+[prednaska]: http://www.avc-cvut.cz/avc.php?id=5258
+[mvc]: http://www.google.com/reader/shared/user/02522501341949674670/label/aspnet-mvc
+[nette]: http://www.google.com/reader/shared/user/02522501341949674670/label/nette
+[dgx]: http://dgx.cz/ -dgx-

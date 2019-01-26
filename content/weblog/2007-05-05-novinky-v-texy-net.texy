@@ -1,0 +1,35 @@
+---
+{:id 207,
+ :title "Novinky v Texy.net",
+ :description
+ "Není tajemstvím, že pracuju na Texy.net, což je komponenta, která umožňuje používat Texy! i na platformě .net. Tento článek by měl poodhalit jak bude vypadat příští verze, na které momentálně pracuji.",
+ :author "Aleš Roubíček",
+ :tags #{"texynet" "asp.net 2.0" "texy" "phalanger"},
+ :published "2007-05-05T09:06:29.393"}
+---
+
+Není tajemstvím, že pracuju na Texy.net, což je komponenta, která umožňuje používat [texy] i na platformě .net. Tento článek by měl poodhalit jak bude vypadat příští verze, na které momentálně pracuji.
+
+1.  Změna namespace z `Rarous.Texy` na `Rarous.TexyNet`. Důvodů mám hned několik. Zapré to lépe reflektuje název produktu, zadruhé bude smysluplnější kód při volání hlavní třídy `Rarous.TexyNet.Texy` než ten dosavadní v RC1 `Rarous.Texy.Texy`.
+2.  [*/data/obrazky/logo-texy-small.gif .(logo)[right]*] Logo :) Logo Texy.net vychází z nového ještě více sexy loga Texy2.
+3.  Vlastní stránky poběží na adrese www.gryphoon.net/texy/, protože Texy.net je nedílnou součástí Gryphoonu. Pravděpodobně poběží i wiki.
+4.  Deklarativní konfigurace zůstane zachována a pravděpodobně bude ještě rozšířena o nové možnosti.
+5.  Texy.net už nebude jen XML-RPC wrapper, ale pomocí provider modelu bude jednotným API pro několik možných poskytovatelů Texy! v dotnetu. Na tuto myšlenku mě navedl [tomasp] se svým pokusem zkompilovat "Texy! ve Phalangeru":[texy-phalanger]. Díky Texy.net a PhalangerProvideru bude použití Texy! více dotnetovské a sexy :) Další provider bude pro "Texy-WS přes SOAP":[clanek(64)] apod. Každý si bude moci vybrat, co mu více vyhovuje.
+6.  Rád bych dotáhl dokumentaci do kvalitnější formy, jen ještě nevím zda ji celou ponechat v MSDN like stylu nebo na wiki.
+7.  Dá-li [dgx], bude nová verze používat Texy2, přinejmenším v XML-RPC.
+
+== Související
+
+* [clanek(196)]
+* [clanek(64)]
+* [texy]
+* [texy-nastroje]
+* [texy-phalanger]
+
+[texy]: http://www.texy.info/ Texy!
+[clanek(196)]: /weblog/196-texy-net-release-candidate.aspx Texy.net RC1
+[clanek(64)]: /weblog/64-texy-web-service-ws.aspx Texy-WS
+[texy-nastroje]: http://www.dgx.cz/trine/item/paradni-texy-nastroje Parádní Texy nástroje
+[texy-phalanger]: http://tomasp.net/blog/aspnettexy.aspx Compiling Texy! with Phalanger
+[dgx]: http://www.dgx.cz/ DGX
+[tomasp]: http://tomasp.net/ Tomáš Petříček

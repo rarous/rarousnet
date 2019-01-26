@@ -1,0 +1,12 @@
+---
+{:id 112,
+ :title "URL Mania",
+ :description "O URL na mých stránkách.",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon"},
+ :published "2006-02-23T10:52:06.490"}
+---
+
+Včera jsem se konečně dokopal k tomu, abych zprovoznil URL Rewriting. Díky tomu přes noc nefungovaly webové služby včetně syndikační, ale teď už by mělo být vše v pořádku. Pokud naleznete nějakou chybu, napište mi prosím o ní.
+
+V současné době fungují na těchto stránkách asi tak čtyři verze URL krát dvě, protože vše jde requestovat i přes doménu rarous.aspweb.cz. To jen tak pro zajímavost. Říkám si, že takhle se kloudnýho PageRanku nedočkám, ale o ten mi stejně nejde :) Stejně to ještě neni finální podoba jakou bych si představoval, ale na tu už momentálně nezbýva čas...

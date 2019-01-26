@@ -1,0 +1,20 @@
+---
+{:id 95,
+ :title "Nová generace webu",
+ :description "Kam směřují webové aplikace, ale nejen ony.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2005-12-14T09:11:57.790"}
+---
+
+Nechci tu mluvit o aktivitách jako je Web 2.0, ale o současných nebo velmi brzkých technologiích. Určitě už jste slyšeli něco o AJAX((Asynchronous JavaScript and XML))u, ať už o tom fotbalovém nebo o tom webovém. Já o tom fotbalovém nic nevím, takže se chci věnovat tomu mě bližšímu.
+
+AJAX je buzword dneška, ačkoliv nejde o zas tak novou technologii, dnes prožívá svůj boom. Oblibu si získal asi díky GMailu:[http://www.gmail.com/], který je v něm napsaný. Pokud jde o nějakou zajímavou technologii, kterou AJAX bezesporu je, nebyl by to Microsoft:[http://www.microsoft.com], aby u toho chyběl. I Microsoft má svoje AJAXové aplikace a nemusíme chodit pro vodu daleko, stačí do adresního řádku napsat Start.com:[http://www.start.com] a máme tu hned jednu.
+
+**Start.com** je taková testovací laboratoř nápadů Microsoftích vývojářů. Prvotním úkolem bylo vytvoření personalizovaného portálu. Velice pěkná myšlenka, která funguje. Obdobnou věc potom spustil i Google:[http://www.google.com/ig] a posléze vznikla i betaverze "Windows Live":[http://www.live.com], která se Start.com značně podobá.
+
+**Live.com** je nový portál Microsoftu a podle všeho se jedná o transformaci MSN. Live.com je stránka, kde je hledací políčko, které hledá přes MSN Search. Tím by se asi oproti současnému MSN portálu značně degradovala, proto je zbytek stránky určen jen  vám a vy si s ním můžete dělat, co se vám zlíbí. Když namátkou vyberu "dlaždice", které mě zaujali, jako třeba hodiny, lokální počasí, RSS čtečka, kurzovní lístek a mnoho dalších, dojdu k omezenému počtu. Ovšem tento počet není limitním. Každý si může napsat vlastní "dlaždici", kterou si do stránky nainstaluje. Pokud nejste dostatečně fundovaní na to, abyste si napsali dlaždici vlastní, můžete navštívit stránky http://www.microsoftgadgets.com/, kde najdete spoustu dalších dlaždic z rukou komunitních vývojářů.
+
+**Atlas**. Teď konečně přicházím k tomu, proč tenhle spot píšu. Atlas:[http://atlas.asp.net] je totiž nový framework pro psaní JavaScriptových aplikací postavených nejen na AJAXu. Zatím existuje pouze v testovací verzi bez Go-live licence, ale i tak se s ním dají dělat velice zajímavé věci. On Atlas bude pravděpodobně součástí příští verze ASP.NET, proto se s nim dá pracovat jak na klientské části, tak i na serverové. Používá se zde do značné míry deklarativního programování, zavádí se určitá typovost, OOP a jednoduchý přístup k webovým službám. Na Atlasu jsou postaveny oba výše zmiňované portály, ale třeba i http://local.live.com, což je nová verze MSN Virtual Earth.
+
+Atlas je pro mě velice slibnou a zajímavou technologií a určitě o ní ještě něco napíšu - snad i něco praktičtějšího. Závěrem ještě malá vsuvka. Systém dlaždic je součástí nové plochy a Sidebaru ve Windows Vista. :)

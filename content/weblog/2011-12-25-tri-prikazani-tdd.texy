@@ -1,0 +1,15 @@
+---
+{:id 415,
+ :title "Tři přikázání TDD",
+ :description
+ "TDD není tak těžké jako život, stačí mu pouze tři přikázání.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "tdd"},
+ :published "2011-12-25T14:29:10.877"}
+---
+
+Volně přeloženo z knihy "The Clean Coder":[http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073]
+
+1. Nenapíšeš řádky produkčního kódu, aniž bys měl padající test.
+2. Nenapíšeš řádky testovacího kódu, pokud již nejsou aktuální řádky schopné projít (nezkompilovatelný kód také neprojde).
+3. Nenapíšeš řádky produkčního kódu, které nejsou nezbytně nutné, aby prošel aktuálně padající test.

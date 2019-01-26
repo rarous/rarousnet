@@ -1,0 +1,80 @@
+---
+{:id 441,
+ :title "Jeden balíček na všechno",
+ :description
+ "Taková historka ze života, jak jsem potřeboval vytvořit WebDeploy balíček, kterej nedeployuje jen Web.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "msdeploy"},
+ :published "2013-03-20T07:06:23.547"}
+---
+
+"Jak to vypadá s tím balíčkem pro Honzu?" "V pohodě, v podstatě je připravenej, jen tam přidám, aby se generovala rovnou i databáze a nainstalovala windows service..." Tak určitě. Já vůl. Prej jen...
+
+Nakonec to bylo o dost těžší než jsem čekal. Scénář, který jsem si představoval, zdál se být chvíli i nemožný. Ale vždyť to musí jít! Wizard to dokáže, tak proč bych to neměl dokázat já? Zakopanej pes byl nakonec v neštědře zdokumentované featůře.
+
+Již pár let používám k deployování webových aplikací MsDeploy (aka Web Deployment Tools). Většinou je peklo jen s tím, nastavit cílový server, aby vše běhalo jak má. Tedy hlavně nastavení nejrůznějších práv. To už se naštěstí za tu dobu změnilo a stačí jen "spustit pár PowerShellových scriptů":[http://www.iis.net/learn/publish/using-web-deploy/powershell-scripts-for-automating-web-deploy-setup]. Mám automatizovaný deploy jak webu, databáze, tak i instalaci windows služeb. Jinak mi to ani moje závislost na Continuous Delivery nedovolí.
+
+Jenže jedna věc je mít sadu scriptů pro stroj a druhá věc je mít instalační balíček, který je bez problémů schopný nasadit člověk. Ano, mohl by dostat sadu scriptů a hromadu souborů, se kterýma ty scripty pracují, ale potenciální možnost zanesení chyby je vysoká. A komfort velmi nízký.
+
+První pokus
+===========
+
+Nejprve jsem se snažil nasynchronizovat jednotlivé kroky do cílového balíčku. Nejprve jsem přes `MsBuild /t:Package` vytvořil balíček s webem. Databázové schema verzujeme pomocí databázového projektu ve Visual Studiu a tak pro deploy používám již zastaralý `dbSqlPackage` provider. Tak jsem se ho snažil `sync`nout do balíčku. Povedlo se, ale manifest v balíčku obsahoval, jen deploy databáze. Uáááá. Už jsem pomalu propadal beznaději a přemýšlel o tom, jak napíšu uživatelsky přívětivý script. To aby UX nepřišlo na úbytě.
+
+<blockquote class="twitter-tweet"><p>featury, který potřebuju, jsou vždycky nejmíň zdokumentovaný...</p>&mdash; Aleš Roubíček (@alesroubicek) <a href="https://twitter.com/alesroubicek/status/314035271136059392">March 19, 2013</a></blockquote>
+
+Popravdě, koho z vás by napadlo, že "tohleto může vést k cíli":[http://technet.microsoft.com/en-us/library/dd568976(v=ws.10).aspx]? Mně to trvalo asi hodinu. A docvaklo mi to až díky "tomuhle nešťastníkovi":[http://stackoverflow.com/questions/5408585/msdeploy-remoting-executing-manifest-twice].
+
+<blockquote class="twitter-tweet"><p>Po tom, co už jsem skoro nedoufal, přišel malý aha moment a jsem zase na stopě... :)</p>&mdash; Aleš Roubíček (@alesroubicek) <a href="https://twitter.com/alesroubicek/status/314023743024418817">March 19, 2013</a></blockquote>
+
+Jak na to?
+==========
+
+Základem je nevytvářet balíček rovnou, ale vytvořit si nejprve manifest, který obsahuje jednotlivé kroky deploymentu. Ten můj vypadá nějak tak:
+
+/--code xml
+<sitemanifest>
+  <dbDacFx path='$dbSource' />
+  <runCommand path='$presync' waitInterval='30000'/>
+  <dirPath path='$winSource' />
+  <runCommand path='$postsync' waitInterval='30000'/>
+  <IisApp path='$webSource' managedRuntimeVersion='v4.0'/>
+  <setAcl path='$webSource' setAclResourceType='Directory'/>
+  <setAcl path='$webSource' setAclResourceType='Directory' setAclUser='anonymousAuthenticationUser'/>
+</sitemanifest>
+\--code
+
+Můžete si povšimnout, že je parametrizovaný. To proto, že ho generuju v build scriptu pro konkrétní implementační projekt.
+
+`$dbSource` je cesta k `dacpac` souboru, který je výstupem databázového projektu.
+ `$winSource` je cesta k `bin` adresáři windows služby.
+ `$webSource` je cesta k `PackageTmp` adresáři, kde je připravená webová aplikace.
+
+A konečně `$presync` a `$postsync` jsou cesty k vygenerovaným `cmd` souborům, které se spustí na cílovém stroji. PreSync zastaví a odinstaluje již běžící službu:
+
+/--code
+net stop Svc_$instance
+$installUtil /u /name=Svc_$instance $destPath\$instance\Svc.exe
+\--code
+
+PostSync nainstaluje novou verzi a tu následně spustí:
+
+/--code
+$installUtil /name=Svc_$instance $destPath\$instance\Svc.exe
+net start Svc_$instance
+\--code
+
+Opět jsou generované scriptem pro konkrétní instance.
+
+Tím mám připravený manifest a všechno, co potřebuju pro úspěšné vytvoření balíčku. Nyní už jen stačí balíček vygenerovat:
+
+/--code powershell
+$source = "manifest=$manifest"
+$dest = "package=$pkgLocation"
+
+exec { msdeploy -verb:sync -source:$source -dest:$dest }
+\--code
+
+Kde `$manifest` je cesta k vygenerovanému manifestu a `$pkgLocation` je cesta, kde najdu vygenerovaný balíček. No a to je celá magie. Ani to moc nebolelo, když už se ví jak na to. :)
+
+Teď už jen zbývá umožnit Honzovi vyplnit konfigurační údaje pro konkrétní servery...

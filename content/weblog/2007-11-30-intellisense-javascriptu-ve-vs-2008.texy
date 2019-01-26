@@ -1,0 +1,85 @@
+---
+{:id 235,
+ :title "Intellisense JavaScriptu ve VS 2008",
+ :description
+ "Jednou z novinek nového Visual Studia je nesrovnatelně lepší Intellisense pro psaní JavaScriptů. Pojďme si ji trochu přiblížit na následujících řádcích.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"mootools" "documentation" "vs2008" "asp.net 2.0" "javascript" "vs"
+   "intellisense"},
+ :published "2007-11-30T22:15:59.783"}
+---
+
+Jednou z novinek "nového Visual Studia":[vs2008] je nesrovnatelně lepší Intellisense pro psaní JavaScriptů. Pojďme si ji trochu přiblížit na následujících řádcích.
+
+Kdysi byl pro mě JavaScript odporným jazykem bez ladu a skladu. Přibližně před rokem, se začala psát nová verze AMap:[amapy] postavená na API:[mapi] a frameworku Mootools:[mootools]. V rámci interního vzdělávání nás Dan zasvětil do tajů JavaScriptu a já pomalu začal objevovat jeho kouzlo. V průběh února jsem potřeboval psát nějaké AJAXové věci, a tak nastal čas se JavaScript naučit.
+
+Zjistil jsem, že s MooToolama je to celkem sranda a postupem času člověk začne chápat víc a víc v různých souvislostech. Čím víc toho pak píše, začne se poohlížet po něčem, co by mu psaní ulehčilo. Zkoušel jsem Aptanu:[aptana], ale ta mi moc nepomáhala, protože MooTooly  neuměla. Zkoušel jsem i beta verze Orcasu, ale stejně to nebylo ono, aspoň mi to teď tak připadá...
+
+Zkrátka, za poslední dva týdny jsem napsal JavaScriptu docela kopec, a poslední týden ve VS2008, takže můžu bezprostředně porovnat. No prostě s ním je to lepší. Konec románů a teď k věci.
+
+Intellisense
+============
+
+Intellisense se nově objevuje po prvním napsaném písmenku, ne až po tečce jako v předchozí verzi. Nabízí i klíčová slova, takže funguje moje oblíbené `ret` mezera. Okénky intellisense jde i zprůhlednit, pokud potřebujete kouknout na kód, který je pod ním. Stačí podržet klávesu **CTRL**.
+
+Intellisense je plněna parserem přilinkovaných JavaScriptů. Parser je podle mého názoru, ještě trošku v pubertě. Pokud píšete script, dokáže interpretovat, pouze to, co je před kurzorem. I když používá značnou cache, nedokáže vám nabídnout funkce, které jsou až dál.
+
+Jelikož je JavaScript dynamicky typovaný, je tu občas problém, že parser nerozpozná aktuální typ a tak vám intellisense nenabídne nic. :) Toto chování by se dalo značně minimalizovat díky dokumentačním komentářům, kde se např. u parametrů dají nastavit datové typy. Snad v příští verzi.
+
+Dokumentační komentáře
+======================
+
+Aby byla intellisense živena kvalitním obsahem, přichází nové studio s dokumentačními komentáři, ve stylu jak je známe v C#, také v JavaScriptu. Hlavní rozdíl je, že se komentáře píší do těla funkce, nikoli před ní. A je tu i další chybka parseru, nedokáže zobrazovat v intellisense obsah dokumentace ze stejného souboru.
+
+Jak tedy takové komentáře vypadají? Následovně:
+
+/--code javascript
+function add(node) {
+  /// <summary>Přidá uzel do stromu.</summary>
+  /// <param name="node" type="TreeNode">Uzel.</param>
+}
+\--code
+
+Dokumentační tag `summary` přidá popis funkce, v praxi to vypadá asi následovně:
+
+[* /data/obrazky/vs_js_summary.png *]
+
+Tag `param` popisuje parametr funkce a v tomto případě i jeho typ. Opět ukázka:
+
+[* /data/obrazky/vs_js_param.png *]
+
+
+Reference na scripty
+====================
+
+Pokud píšete něco většího, neobejdete se bez extrahování scriptů do samostatných souborů. V tom případě, ale intellisense neví, co je v ostatních souborech, a moc nám  toho neukáže. Naštěstí je tu pseudodokumentační tag `reference` pomocí něhož se jde odkazovat na další scripty, jejichž kód využíváme (tradičně JS frameworky), nebo dokonce i na `ScriptService` v projektu. Užití může být následující:
+
+/--code javascript
+/// <reference path="mootools.js" />
+/// <reference path="/services/ajax.svc" />
+\--code
+
+Tento kód napíšeme na začátku souboru a studio už bude vědět. Občas se mi ale stává, že pokud provedu změnu v referencovaném souboru, změna se v intellisense neprojeví. Za vinu to kladu cacheování. Zatím 100% řešením, zdá se, je soubor zavřít a znovu otevřít. Po přeparsování už by měla být intellisense aktuální.
+
+Uzávěr
+======
+
+Jak už jsem psal na začátku, podpora JavaScriptu ve Visual Studiu pokročila o pořádný kus dopředu, přesto má ale ještě pár much, které by stálo za to vychytat. S ohledem na to, jak Microsoft podporuje vývoj interpretů a kompilátorů pro dynamické jazyky, doufám, že se jejich podpora ve VS ještě zlepší.
+
+Související
+===========
+* [reference]
+* [comments]
+
+debuged by [mishak] .{font-size: 75%}
+
+[aptana]: http://www.aptana.com/
+[amapy]: http://www.amapy.cz/
+[mapi]: http://www.mapi.cz/
+[mootools]: http://www.mootools.net/
+[vs2008]: http://go.microsoft.com/?linkid=7729281
+
+[mishak]: http://www.mishak.net/ MiSHAK
+[reference]: http://blogs.msdn.com/webdevtools/archive/2007/11/06/jscript-intellisense-a-reference-for-the-reference-tag.aspx JScript IntelliSense: A Reference for the “Reference” Tag
+[comments]: http://weblogs.asp.net/bleroy/archive/2007/04/23/the-format-for-javascript-doc-comments.aspx The format for JavaScript doc comments

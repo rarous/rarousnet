@@ -1,0 +1,27 @@
+---
+{:id 350,
+ :title "Registrace svc handleru pro IIS7",
+ :description
+ "Občas se může stát, že vám na novém webovém serveru nepoběží WCF služby. Náprava je velice snadná. Tady je.",
+ :author "Aleš Roubíček",
+ :tags #{"svc" "webové služby" "iis7" "wcf" "dataservices"},
+ :published "2009-02-23T10:55:08.443"}
+---
+
+Náš intranet používá pro AJAXy ADO.NET Data Services, což je pěkný REST framework. Tento framework je postavený nad `IQueryable` (tedy LINQ((Language Integrated Query))) a také nad WCF((Windows Communication Foundation)). Nedávno jsme prováděli přeinstalace serverů a tak se stalo, že AJAXové dotazy začaly vracet 404.
+
+Bylo to divné, protože jinde to fungovalo a vždy stačil `xcopy` deployment. Tak jsem zkusil zadat adresu služby do prohlížeče a zase 404. Proč to nejde? Koukám na mapování handlerů v konfiguraci IIS7 a helemese chybí `svc` binding. Ale proč? Vždyť je všechno nainstalovaný jak má bejt.
+
+Po chvilce pátrání jsme našel jednoduché řešení. Stačí spustit registraci ručně:
+
+/--code
+"%systemroot%\Microsoft.NET\Framework\v3.0\Windows Communication Foundation\ServiceModelReg.exe –i"
+\--code
+
+Pro 64-bitové systémy pak:
+
+/--code
+"%systemroot%\Microsoft.NET\Framework64\v3.0\Windows Communication Foundation\ServiceModelReg.exe –i"
+\--code
+
+Dnes mi píše Radek, že přesouval intranet na Domain Controller, aby nebyl na našich vývojových strojích a že mu AJAXy vracej 404. Takže tohle je i tak trochu pro něj. 

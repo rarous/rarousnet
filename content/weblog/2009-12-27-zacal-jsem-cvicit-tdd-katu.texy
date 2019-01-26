@@ -1,0 +1,39 @@
+---
+{:id 375,
+ :title "Začal jsem cvičit TDD katu",
+ :description
+ "Zapojte se společně se mnou do cvičení TDD katy. Co to vlastně je? Proč to dělat?",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "kata" "tdd" "craftmanship"},
+ :published "2009-12-27T10:02:39.907"}
+---
+
+Co je to za blbost, říkáte si.
+
+Každý cvičí
+===========
+
+Když se podíváte do jakékoli oblasti lidského působení, zjistíte, že všichni mistři pravidelně cvičí, aby se zdokonalovali nebo jen udržovali formu. Proč by programátoři měli být něco extra? I programátoři musí cvičit! Jen cvičením dosáhnete požadované formy.
+
+Katy
+====
+
+Pro cvičení programátorů dnes vznikají různé katy:[http://en.wikipedia.org/wiki/Kata] (znáte z karate nebo juda), které jsou v podobě zadání, které byste měli zvládnout naimplementovat pomocí TDD za určitý čas. Cvičení takové katy by vám mělo přejít do krve, každý stisk klávesy by měl být zcela automatický a intuitivní, podobně jako se cvičí katy v karate. Abyste to vše stihli, musíte minimalizovat saháni na myš na úplné minimum((NESAHAT!)). Musíte se naučit ovládat vaše vývojové prostředí a dostat z něj maximum. Musíte se naučit dělat věci co nejjednodušeji, ale výsledek musí být uspokojivě kvalitní. *Čistý kód*.
+
+Hudba
+=====
+
+U katy byste měli mít správný rytmus, aby vše odsejpalo jak má. Proto je důležitý výběr správné hudby, která udává rytmus a podporuje správné flow vašeho cvičení. Mnozí si vybírají nějakou klasiku, třeba Rachmaninova. Já si vybral taneční klasiku "Pryda - Aftermath (Original Extended Mix)":[http://beatport.com/u/r4Z8], která má zajímavé progresivní pasáže a navíc trvá celých 15 minut. Na jedno 30minutové cvičení mi tedy vyjde poslech přesně 2x. Můj cíl, je dát celou katu na **jeden jediný poslech**.
+
+Výzva
+=====
+
+Když si vytyčíte nějaké cíle, musíte jim něco obětovat, sáhnout si na dno svých možností. Pojďte do toho také! Pojďte cvičit a staňte se mistry! Někteří budou nuceni doinstalovat lepší nástroje, které zvýší jejich produktivitu, jiní přijdou na to, že jazyk, ve kterém píší, je zdržuje a "budou muset switchnout na produktivnější"((true story)). :) Pojďte se poměřovat, každé ráno po cvičení hoďte svůj výsledek na štěbeták s tagem [tdd-kata-cz].
+
+Co cvičit
+=========
+
+Já osobně začínám cvičit [stringcalc] katu od Roye Osherova, ale je jich víc. Jsou tu katy na počítání prvočísel, výpočet výsledku bowlingu, převod římských čísel na arabská apod. Pokud se chcete inspirovat doporučuji navštívit stránky http://katas.softwarecraftsmanship.org/.
+
+[tdd-kata-cz]: http://twitter.com/#search?q=%23tddkatacz #tddkatacz
+[stringcalc]: http://osherove.com/tdd-kata-1/ StringCalculator

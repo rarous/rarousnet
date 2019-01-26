@@ -1,0 +1,41 @@
+---
+{:id 457,
+ :title "Velká pyramida",
+ :description
+ "Programátoři dostali na starost projekt na zelené louce: „Postavte pyramidu.“",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2014-07-04T12:00:00.663"}
+---
+
+
+Programátoři dostali na starost projekt na zelené louce: "Postavte pyramidu."
+
+Úkolu se chopili svědomitě. Architekturu rozdělili do tří vrstev,
+protože tak se to vždycky osvědčilo. Nejprve začali návrhem databázového
+modelu. Po dlouhosáhlých debatách, jestli použít Oracle nebo zkusit
+nějaké NoSQL řešení (třeba Mongo), zjistili, že pyramida žádnou databázi
+nepotřebuje.
+
+Pro jistotu naimplementovali doménovou vrstvu. "Ta tam být musí!" Byla
+to krásná "velká koule z bláta":[https://www.laputan.org/mud/]. Nic na
+plat, že koule ani zdaleka pyramidu nepřipomíná, ale takhle to prostě
+dělají. Několik borců přišlo s návrhem elegantního řešení: "Uděláme
+novou verzi, která bude hranatější! Tady kluci už mají prototyp
+postavený na kolejích." Nutno dodat, že to byl velice krásný
+dodekahedron.
+
+Pak přišla na řadu vrstva servisní, kde se použilo WCF, protože v něm
+lze prát RESTový i SOAP služby vpodstatě najednou. A tak se stalo, že
+nová vrstva okolo koule z bláta vypadala úplně jako, když si vytáhnete
+sluchátka po týdnu z kapsy - klubíčko neštěstí.
+
+Blížil se šibeniční termín a nikomu ta změt stále pyramidu
+nepřipomínala. Pozvali si tedy ostřílené konzultanty, kteří už měli za
+sebou zkušenosti se stavbou zemljanek a dětských hřišť. Po dlouhých
+debatách přišli s geniálním řešením: Потёмкин.
+
+Kouli z bláta obalenou změtí kabelů schovali za krásnou kulisu vyrobenou
+z fotky z Gízy. Detailu, že fotky z webu nejsou v dostatečným rozlišení
+pro tak velkou kulisu, si nevšímejte. Stačí nechodit moc blízko.
+    

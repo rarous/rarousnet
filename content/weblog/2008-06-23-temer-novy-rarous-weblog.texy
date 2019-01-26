@@ -1,0 +1,109 @@
+---
+{:id 284,
+ :title "Téměř nový rarouš.weblog",
+ :description
+ "Poslední týden jsem pilně pracoval na předělání tohoto blogu do nového kabátku. Pojďtě se podívat, jak to dopadlo.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"gravatar" "repository" "gryphoon" "nforms" "moje práce" "mvp"},
+ :published "2008-06-23T10:42:53.163"}
+---
+
+Poslední týden jsem trávil úpravami tohoto blogu. Měl jsem už nějaký nástřel grafiky už několik dní před tím, dokonce rozběhaný na "úvodní straně blogu":[weblog]. :) Jenže abych to mohl posunout dál i do článků, musel jsem šáhnout do šablon blogu. Jenže prezentační vrstva, byla napsaná tak nepoužitelně a každá změna vyžadovala dost práce.
+
+Měl jsem před sebou dvě možnosti. Nechat to být a počkat až napíšu nový systém, nebo upravit stávající. Jenže čekat sám na sebe, až něco napíšu, to bych se taky nemusel dočkat… ;) Nakonec jsem napsal zbrusu novou prezentační vrstvu nad "starým systémem":[gryphoon].
+
+Rozhodl jsem se pokračovat v započatém stylu, který jsem zvolil pro svoji homepage:[rarous], tedy "návrhový vzor MVP":[clanek(236)] pro prezentační část a Repository:[clanek(271)] pro datovou. Využil a trochu rozšířil některé entity modelu o další vlastnosti a přidal některé nové. Pro výpis článků a komentářů na stránce jsem napsal serverové prvky založené na "Generickém repeateru":[clanek(278)]. Pak jsem se dostal k formuláři pro přidávání komentářů. Aktuální WebForms implementace se mi moc nelíbila a tak jsem se rozhodl oprášit NForms:[clanek(245)] a povolat je do služby.
+
+Musel jsem odladit několik bugů, protože tohle bylo poprvé, co jsem je použil. :) Ale nakonec se z toho vyklubal celkem použitelný a elegantní kus softwaru. Proč elegantní? Líbí se mi "definování validačních pravidel":[clanek(247)] (sice zatím pouze serverových), znovupoužitelnost kódu apod.
+
+== NForms v akci
+
+Když jsem vymýšlel, jak vlastně budu nově komentáře zpracovávat, rozhodl jsem se pro handler, který bude obsluhovat požadavky na akce a zavolá správnou třídu, která má požadavek zpracovat – v tomto případě ukládač komentářů. (Tento model jsem zvolil protože, každá třída by měla dělat pouze jednu věc, proto komentáře nezpracovává ta samá, co prezentuje články.) Jenže teď jsem stál před problémem, že budu muset definovat ten samý formulář na dvou místech. Naštěstí u NForms to není třeba.
+
+Podědil jsem novou třídu `CommentForm` z formuláře NForms. V ní jsem nadefinoval, jaká políčka a s jakými pravidly se mají vytvořit. Kód vypadá nějak tak:
+
+/--code csharp
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using Rarous.NForms;
+using Rarous.NForms.Validation;
+
+namespace Rarous.Net.Components {
+  public class CommentsForm : Form {
+    public const string ArticleUrl = "comment_article_url";
+    public const string ArticleId = "comment_article_id";
+    public const string Validity = "comment_validity";
+    public const string Text = "comment_text";
+    public const string UserName = "comment_user_name";
+    public const string UserEmail = "comment_user_email";
+    public const string UserWeb = "comment_user_web";
+    public const string UserAnswer = "comment_user_answer";
+    public const string Submit = "comment_submit";
+
+    public CommentsForm()
+      :this(null) {
+    }
+
+    public CommentsForm(NameValueCollection data)
+      : this(data, null) {
+    }
+
+    public CommentsForm(NameValueCollection data, List<string> messages)
+      : base(data, messages) {
+      CreateForm();
+      BindData();
+    }
+
+    private void CreateForm() {
+      AddHidden(ArticleUrl);
+      AddHidden(ArticleId);
+      AddHidden(Validity);
+
+      AddTextArea(Text, "Text komentáře:", 10, 55).
+        Required("Text příspěvku je povinný.");
+      AddText(UserName, "Jméno:").
+        Required("Jméno je povinné.");
+      AddText(UserEmail, "E-mail:").
+        SetEmptyValue("@");
+      AddText(UserWeb, "Web:").
+        SetEmptyValue("http://");
+
+      AddText(UserAnswer, "Odpověď je pivo:").
+        AddRule("Zadejte pivo.", s => String.Compare("pivo", s, true) == 0);
+
+      AddSubmit(Submit, "Přidat komentář");
+    }
+  }
+}
+\--code
+
+Tento formulář pak použivám ve View i handleru. V handleru se vytváří s daty poslanými přes POST, která se pak validují a dále zpracovávají. Líbí se mi, že data se předávají jako `NameValueCollection`, díky tomu se dá bez problému načítat z `Request.Forms`, `Request.QueryString`, nebo z kolekce `Cookies.Values`. Těmi můžu data předvyplňovat, nebo je nechat validovat a tak. V budoucnu by mohlo přibýt i inteligentní vytváření objektů…
+
+== Další featury
+
+1. U komentářů jsem oprášil Gravatary, které jsem tu už kdysi míval. Použil jsem "implementaci z dotnetKicks":[gravatar], kde se používá lokální cachování.
+2. Bezpečnostní otázka se vyplňuje JavaScriptem, takže už vás nebude otravovat.
+3. Po letech jsem přidal stránkování v článcích. Jak na hlavní stránce blogu, tak v rubrikách.
+4. Zvýrazňovač syntaxe teď funguje jen napůl, protože už přestal stačit mým potřebám. Čekám na uvolnění zvýrazňavoče z Codeplexu, který by měl být o dost lepší.
+
+Jsou to takové drobnosti, ale mám z nich radost, protože jsem je dlouho dobu odbýval.
+
+== Závěrem
+
+Ještě mi zbývá pár věcí dopsat, aktualizovat odkazy v článcích na nové URL, ale už jsou to spíš drobnosti (doufám). Ještě bych chtěl závěrem poděkovat Davidovi:[latrine] a Honzovi:[filosof], protože u nich jsem se dost inspiroval. Taky děkuju Exíkovi:[exik] za hodnotné připomínky, Jerrymu:[jerrysohn] za hosting a naší zahradě za příjemné pracovní prostředí atd.
+
+[rarous]: / .{rel:me home}
+[weblog]: /weblog/
+[latrine]: http://www.latrine.cz/ .{rel:friend met}
+[filosof]: http://blog.filosof.biz/
+[exik]: http://www.exik.com/ .{rel:friend co-worker met}
+[jerrysohn]: http://www.jerrysohn.net/ .{rel:friend met}
+[gryphoon]: http://www.gryphoon.net/
+[gravatar]: http://dotnetkicks.googlecode.com/svn/trunk/DotNetKicks/Incremental.Kick/Web/Controls/User/Gravatar.cs
+[clanek(271)]: /weblog/271-active-record-vs-repository-pattern.aspx
+[clanek(278)]: /weblog/278-genericky-kontejner-a-repeater.aspx
+[clanek(247)]: /weblog/247-validace-v-nforms-pro-asp-net.aspx
+[clanek(245)]: /weblog/245-nforms-pro-asp-net.aspx
+[clanek(236)]: /weblog/236-mvc-unit-testy.aspx

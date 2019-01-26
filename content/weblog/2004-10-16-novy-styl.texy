@@ -1,0 +1,13 @@
+---
+{:id 32,
+ :title "Nový styl",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2004-10-16T00:00:00"}
+---
+
+Dneska jsem připravil nový styl pro tyhle stránky. Zátím je nastaven jako alternativní a jen pro tuto stránku. Takže pokud máte "Mozillu":[mozilla] nebo "Operu":[opera], zkuste se na to mrknou a hodit feedback co je špatně, zatim to ještě ladim...
+
+[mozilla]: http://www.mozilla.org/
+[opera]: http://www.opera.com/

@@ -1,0 +1,19 @@
+---
+{:id 66,
+ :title "Gryphoon verze 1.5",
+ :description "Pokusný příspěvek, po změnách v Gryphoonu.",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon"},
+ :published "2005-08-24T18:10:31"}
+---
+
+Po delší odmlce je tu další příspěvek o úpravách Gryphoonu. Nepsal jsem proto, že jsem značně upravil databázi a změny jsem prováděl pouze v prezentační části. Dneska jsem dostal editor do stavu, kdy už je schopnej publikovat, ale ještě neni zcela dopsaný. Po dokončení úprav administrace dojde k povýšení Gryphoonu na verzi 1.6. Dalšim krokem k plánované verzi 2.0 bude verze 1.7 s funkčním Rewritingem adres. Verze 1.8 bude již konečně pracovat u uživatelskými rolemi. Finální 2.0 bude podporovat více blogů a odolnější spamfiltering a tu pravděpodobně uvolnim pod GPL.
+
+==Novinky v současné verzi
+
+- Syndikační služba s podporou RSS 2.0, Atom 1.0 a Google SiteMap
+- TrackBack systém
+- Implementovaná Texy! jak v Administračním rozhranní, tak pro zadávání komentářů.
+- Zvýrazňování syntaxe
+- Převedení výkonného kódu aplikace do Assembly, SQL dotazy převedeny na uložené procedury
+- a další, na které si teď zrovna nevzpomenu

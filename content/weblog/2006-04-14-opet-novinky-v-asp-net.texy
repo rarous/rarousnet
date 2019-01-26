@@ -1,0 +1,14 @@
+---
+{:id 134,
+ :title "Opět novinky v ASP.NET",
+ :description "Pár novinek z ASP.NET.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-14T07:07:56.037"}
+---
+
+ASP.NET team dnes uvolnil kompletní zdrojové kódy všech Providerů. které jsou ASP.NET 2.0 k nalezení. Autoři věří, že to pomůže k vytváření vlastních providerů. Licence je k použití jak v komerčních, tak nekomerčních projektech. "K dostání u vašeho prodejce.":[http://download.microsoft.com/download/a/b/3/ab3c284b-dc9a-473d-b7e3-33bacfcc8e98/ProviderToolkitSamples.msi]
+
+Nedávno psal [ScottGu], aby vývojáři nenasazovali na produkční servery aplikace v *Debug modu*. Důvodů je hned několik. Aplikace je pomaleší (není optimalizovaný kód), žere víc paměti a v neposlední řadě se necachují zdroje předávané přes WebResource.axd. Toho si všiml i můj kolega Dan Steigerwald, když testoval Atlas. Takže pozor! Raději si zkontrolujte, zda máte ve vašem produkčním **web.config** souboru uvedeno `<compilation debug="false" />` a nezapomeňte vypnout i traceování, to rovněž ubírá na výkonu.
+
+[ScottGu]: http://weblogs.asp.net/scottgu/ ScottGu

@@ -1,0 +1,24 @@
+---
+{:id 281,
+ :title "Firefox použitelný i ve Vistě",
+ :description
+ "Jak nastavit Firefox 3.0, aby skutečně zapadl do systému Windows Vista? ",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "vista" "glasser" "firefox" "windows" "ie7" "flock"},
+ :published "2008-06-08T19:34:54.223"}
+---
+
+Za tu dobu, co "jsem na Vistě":[clanek(179)], jsem většinu času používal pouze Internet Explorer. Samozřejmě mám v systému Firefox, Operu i Safari. V naší branži je to nutnost. Před několika měsíci k nim "přibyl Flock":[clanek(252)], který se tak nějak stal mým hlavním prohlížečem. Firefox 2.0 jsem nepoužíval z několika důvodů.
+
+1. Ve Vistě je fakt hnusnej, nehodí se tam.
+2. Žere zbytečně pamět.
+3. Neměl pro mě žádnou přidanou hodnotu oproti kompaktnímu IE7.
+
+Ale blýská se na lepší časy. S příchodem Firefoxu 3.0 se mnohé mění. První beta verze sice byly ještě hnusnější než dvojka, ale už poslední bety vypadaly přívětivěji. Pak jsem objevil několik zajímavých rozšíření, který dodají Firefoxu 3.0 konečně **look & feel Windows Vista**. Prvním je [glasser], který dodá prostředí více skla subsystému Aero, a druhým [menu], který schová hlavní nabídkový pruh – vyvolat lze stiskem klávesy `Alt`. Konečně se nebojím Firefox zapínat! :)
+
+[clanek(179)]: /weblog/179-moje-prvni-zkusenosti-s-vistou.aspx
+[clanek(252)]: /weblog/252-v-zajeti-socialnich-siti.aspx V zajetí sociálních sítí
+
+[glasser]: http://jdem.cz/adp12 Glasser
+[menu]: http://jdem.cz/adp27 Hide menubar

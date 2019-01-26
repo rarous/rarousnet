@@ -1,0 +1,82 @@
+---
+{:id 231,
+ :title "Jak na PHP ve Vistě",
+ :description
+ "Možná už jste přešli na Vistu, nebo o tom přemýšlíte, a chtěli byste si zprovoznit PHP. Samozřejmě je tu možnost použít bundle s Apachem (neověřeno), ale tento článek bude o tom, jak to udělat na IIS 7.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "tutorial" "vista" "fastcgi" "php" "windows" "iis7"},
+ :published "2007-11-15T08:10:06.960"}
+---
+
+Možná už jste přešli na Vistu, nebo o tom přemýšlíte, a chtěli byste si zprovoznit PHP. Samozřejmě je tu možnost použít bundle s Apachem (neověřeno), ale tento článek bude o tom, jak to udělat na IIS 7.
+
+**Upozornění:** Následující postup vám *nebude fungovat* na **Home Basic** edici Windows Vista, protože její součástí je pouze omezené IIS((Internet Information Services)) pro provoz WCF((Windows Communication Foundation)).
+
+Microsoft a Zend nedávno podepsali dohodu o vzájemné podpoře, výsledkem je nový FastCGI modul pro IIS, na kterém by mělo PHP běžet stejně, ne-li lépe než na Apache. Na druhou stranu je tu podpora MS SQL pro PHP. Takže první plody tu máme a myslím, že k oboustranné spokojenosti.
+
+Instalace IIS
+=============
+
+Pokud ještě nemáte na Vistě IIS nainstalované, je tu vhodná chvíle to napravit. Otevřete si *Control panel* \ *Programs* a v sekci *Program and Features* klikněte na **Turn Windows features on or off**. Otevře se vám následující okno, kde zaškrtnete podporu CGI (není od věci si zapnout i ASP.NET, když už jsme tady).
+
+[* /data/obrazky/iis_features.gif .(nastavení komponent)*]
+
+Pokud chcete konzolu pro správu IIS najdete ji ve *Web Management Tools*, je tam jak stará šestková, tak nová sedmičková. Ale pro náši potřebu není bezpodmínečně nutná.
+
+Po odkliknutí tlačítka **OK** budete pravděpodobně vyzváni k restartu systému.
+
+Instalace PHP
+=============
+
+Pokud tedy máme IIS nainstalováno, přejdeme k instalaci PHP.
+
+1.  Stáhněte:[php] si zip balíček *Non-thread-safe Win32 binaries*.
+2.  Balíček rozbalte např. do `C:\PHP`.
+3.  Přejmenujte soubor `php.ini-recommended` na `php.ini`.
+4.  Upravte následující klíče:
+ -  `register_long_arrays = on`
+ -  `extension_dir = "C:\PHP\ext"`
+5.  Soubor uložte.
+
+Instalace FastCGI
+=================
+
+FastCGI je novinkou IIS7, ale není ještě ve Vistě (bude až v 2008 Serveru a možná i v Service Packu pro Vistu, který by měl vyjít současně se serverem), proto je nutné ho doinstalovat.
+
+1.  Stáhněte si zip balíček pro x86:[fastcgi86]  nebo x64:[fastcgi64] podle toho na jaké jste platformě.
+2.  Rozblate ho např. do `C:\PHP\FastCGI\`
+3.  Otevřete si příkazovou řádku (Win+“cmd“).
+4.  Pokračujte následovně:
+
+/---code console
+C:\Users\rarous\Downloads>cd c:\php\fastcgi
+
+c:\php\FastCGI>fcgisetup /install
+Stopping IIS services ...
+Copied files
+Registered FastCGI configuration section
+Installed FastCGI module
+Starting IIS services ...
+Success: Installation completed succesfully
+
+c:\php\FastCGI>fcgisetup /add c:\php\php-cgi.exe PHP
+Configured FastCGI pool
+Created handler mappings
+Success: Installation completed succesfully
+\---code
+
+Tím by mělo být hotovo. Pro ověření funkčnosti si vytvořte v `c:\inetpub\wwwroot\` soubor `index.php` do kterého zadáte následující kód:
+
+/---code php
+<?php phpinfo(); ?>
+\---code
+
+Uložíte a do browseru zadáte adresu `http://localhost/index.php`. Měla by se objevit standardní stránka s výpisem konfigurace PHP. Pro dnešek vše :)
+
+PS. FastCGI se dá doinstalovat i do "IIS 6":[fastcgi-iis6] na Windows 2003.
+
+[fastcgi86]: http://www.iis.net/default.aspx?tabid=1000052
+[fastcgi64]: http://www.iis.net/default.aspx?tabid=1000055
+[fastcgi-iis6]: http://www.iis.net/go/1521
+[php]: http://www.php.net/downloads.php

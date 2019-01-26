@@ -1,0 +1,142 @@
+---
+{:id 468,
+ :title "Budoucnost práce = Spolupráce",
+ :description
+ "Minulý týden proběhlo další tradiční TopMonks Caffè, tentokráte s podtitulem Budoucnost práce. Toto je jeho shrnutí.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "topmonks caffe"},
+ :published "2017-05-11T07:49:00.777"}
+---
+
+Minulý týden proběhlo další tradiční TopMonks Caffè, tentokráte s podtitulem Budoucnost práce.
+Po skvělých přednáškách o tom jaké je to pracovat ve svobodné firmě od Jána Lopuška
+a o remote práci od Jirky Pénzeše jsem si dali krátkou pauzu na čůrání a pak jsem nastoupil já
+s představou, že budu povídat něco o spolupráci.
+
+Jak to dopadlo se můžete "podívat na záznam":[https://youtu.be/Yf8V-4wJ3r4], pokud jste tam nebyli.
+Hlavní myšlenky, které z toho talku nemusí být patrné, raději shrnu zde.
+
+> Team. Team. Team. Team. Team. Team.
+> I even love saying the word team.
+> - **Denholm**
+
+## Teams vs. squads
+
+Slovo “team” je tak zprofanované a nadužívané, že se už ztratil jeho význam (podobně jako senior developer).
+Ale přesto, zkusme to zachránit a přestaňme lidem, kteří jsou alokovaní na nějaký projekt říkat team.
+Prosím. Na slovech jako “pracovní skupina” nebo družina (squad) není nic špatného a mnohem lépe popisují, o co jde.
+
+Proč mi na tom tak záleží? Protože slovo team popisuje určitou **úroveň vyspělosti skupiny**.
+
+V teamu funguje určitá chemie, empatie a pocit psychologického bezpečí. Členové teamu znají navzájem své
+silné i slabé stránky a využívají těchto znalostí k optimalizaci svého snažení. Team nemůže existovat bez důvěry.
+Team nemůže existovat bez účelu. Vytvořit team trvá nějakou dobu a ne vždy musí vést snažení o tvorbu teamu k úspěchu.
+
+Když dáte do hromady několik lidí, o kterých si myslíte, že jsou to experti ve svých doménách a dáte jim úkol,
+čeho mají dosáhnout, vůbec nemáte zaděláno na úspěch. Většinou přesně naopak. Experti a best performeři jsou často
+silné individuality, které často do teamů zapojit nelze. Nenuťte je do teamů, využijte jejich plný potenciál jinak.
+
+Další důležitou vlastností teamu je jeho **immutabilita**. Pokud do fungujícího teamu přidáte nového člena
+(nebo nějakého odeberete) vznikne nová družina, která se musí teamem zase stát. Odpracovat si to na **retrospektivách**,
+pilnou spoluprací a případně **couchingem**. Nečekejte, že když do fungujícího teamu přidáte jednoho, dva lidi,
+že team je natolik silnou entitou, že nováčky rychle asimiluje. I opak může být pravdou. Team je křehký.
+
+Z mých zkušeností můžu říct, že stačí jeden individualista, aby rozložil desetičlenný team.
+Případně vnější tlaky šéfů a manažerů na některé členy teamu, můžou mít velmi podobný efekt. Rozklad.
+
+> Jak chceme fungovat,
+> když neumíme ani komunikovat?!
+>- **Petr Severa**
+
+## Guildes
+
+Zájmové nebo oborové skupiny lidí, kteří spolu nutně neřeší stejný úkol, ale mají stejné zájmy.
+Pomáhají lidem ve squadech udržovat si kontakt s lidmi, kteří řeší stejný druh problémů jako oni,
+a dostávat tak kvalitní **zpětnou vazbu** s nadhledem. Zároveň takové skupiny mohou sloužit jako
+nástroj **šíření znalostí** a zkušeností - nástroj vzdělávání.
+
+Guildy přerůstají firmy a mohou z nich vznikat silná zájmová sdružení, jako třeba
+"Asociace UX":[http://www.asociaceux.cz/], "Prague Lambda":[https://www.meetup.com/Lambda-Meetup-Group/]
+nebo třeba veřejné "Coding Dojo":[http://www.codingdojo.cz/].
+
+## Remote vs. Colocated
+
+Remote práce není cool. Remote práce je náročná a není pro každého. Remote práce přináší určité
+trade-offs, kterých si musíte být vědomi. Ostatně, každý způsob práce je určitým kompromisem.
+Musíme vědět, jakou cenu platíme za nabyté svobody/výhody.
+
+Remote práce nám umožňuje pracovat tam, kde nám to nejvíce vyhovuje, kdy nám to nejvíce vyhovuje
+a s kým nám to nejvíce vyhovuje, ale za cenu toho, že to není se zbytkem pracovní skupiny.
+Tím nám vzniká nutnost **komunikačního overheadu**.
+
+Musíte víc času trávit psaním a zapisováním nejrůznějších konverzací a jejich rozhodnutí.
+Snižuje se dostupnost lidí, když je potřebujete, a **snižuje se předvídatelnost**. Mohou nám v tom pomoci
+některé nástroje, ale stále záleží na jednotlivcích, jak je budou používat.
+
+Nám se celkem osvědčili nástroje jako je Slack:[https://www.slack.com/], Github:[https://github.com/],
+Quip:[https://www.quip.com/] a "1password":[https://1password.com/teams/],
+které nám rozhodně remote práci usnadňují a umožňují fungovat mnohem agilněji. Ale v první řadě je to vždy
+o osobním přístupu. Nečekejte, že když dáte lidem přístup k informacím, že když jim dáte nástroje na snadné
+sdílení znalostí a informací, že budou sdílet nebo sami od sebe číst. Je to věc kultury. Ta se musí pěstovat.
+
+Kolokovaná práce nám bere nějaké osobní svobody - musím chodit do kanclu, být tam od devíti do pěti.
+Na druhou stranu nám přináší nutné **sociální interakce** se svými kolegy - podhoubí pro vznik teamů.
+Je nutné si uvědomit že všechny agilní metodiky byly navrženy na kolokovanou práci a nemůžeme čekat,
+že když se o ně budeme snažit vzdáleně, že budou fungovat. Většina agilních technik vám nebude remote fungovat.
+Určitě ne tak, jak byly zamýšleny. Skončíte jen u cargo cultu.
+
+## Knowledge workers
+
+Lidé, co se podílí na tvorbě software, jsou lidé, kteří pracují se znalostmi.
+Jejich práce se velice odlišuje od tvrdé práce, protože sice můžete věřit,
+že tenhle výkop je metr široký, ale můžete si to i snadno změřit.
+U abstrakcí se dají provádět měření nepřímo a často s velkou latencí.
+Abstrakce jsou často postavené na víře. Náše mozky jsou ovlivněny nespočtem logických lapsů a špatných zkušeností.
+Tato přesvědčení a pohledy na svět se často dostávají do konfliktu a není lehké takové konflikty řešit.
+Podívejte se na svaté války ohledně odsazování kódu...
+
+Co ovšem víme, je, že knowledge workers potřebují na práci prostředí, ve kterém dostali důvěru,
+že jim svěřený problém vyřeší. Mají také všechny potřebné prostředky a nástroje,
+aby mohli nést plnou zodpovědnost za svěřený úkol.
+
+Studie ukazují, že pokud jsou knowledge workers dlouhodobě řízeni - je jim vnucováno,
+jak mají svou práci dělat, protože někdo jiný ví lépe, jak mozek dotyčného funguje - ztrácí zájem.
+Jejich motivací přestává být práce samotná a jedinou odměnou je jim výplata.
+Což může být dostatečná odměna za překousnutí nějakých nepříjemností.
+Každopádně není takový stav dlouhodobě udržitelný, protože vede se zvýženému stresu.
+
+Krátkodobý stres může mít na některé lidi pozitivní efekty a vybičovat je k lepším výkonům.
+Dlouhodobý stres je však zhoubný a vede ke zdravotním komplikacím,
+které mohou vést až k vyhoření a ztrátě člověka.
+
+
+> You can be fast without being stressed.
+> You can be stressed without being fast.
+>- **Henrik Kniberg**
+
+## Alokace
+
+Když alokujeme práci na jednotlivce dostáváme se do problémů. Máme problém zastupitelností.
+Dále jednotlivec ztrácí nadhled, když je do problému ponořen příliš dlouho a sám.
+Jednotlivec se může cítit sám, odtržený a to narušuje základní lidské potřeby.
+
+Situaci ještě více zhoršuje, když jsou jednotlivci alokováni na více projektů najednou.
+Přepínání kontextů se sebou nese overhead. Mozek musí přepnout celou mentální mapu do jiné domény.
+Ze studií vyplývá, že takový context switch přináší overhead minimálně 15 %.
+
+[* /data/obrazky/alokace.png .(Graf ukazující vliv kontext switchingu na efektivitu)*]
+
+Efektivita se ztrácí celkem rychle. Pokud přeskakujete mezi čtyřmi projekty,
+trávíte více času přepínáním kontextu než samotným řešením problémů.
+U pěti a více projektů už jste efektivně neefektivní.
+
+A tím se dostáváme k potřebě pracovních skupin a teamů, které nám umožní práci alokovat
+a rozkládat na mnohem větší počet lidí, kteří jsou schopní se zastoupit (ne nutně plně),
+dávat si zpětnou vazbu, morálně se podržet a motivovat. Zároveň dostáváme mnohem větší
+predikovatelnost (lead time/sustainable pace).
+
+Proto **na teamech tolik záleží**. Protože přináší výhody jak jednotlivcům v teamu tak společnosti.
+Ano, má to i svou cenu, ale pro mě je ta cena přijatelná. Budoucnost práce je **spolupráce**.
+
+> *The future* is already *here* — *it's just not very evenly distributed*.
+>- **William Gibson**

@@ -1,0 +1,59 @@
+---
+{:id 295,
+ :title "Povídání o ASP.NET na WebExpu",
+ :description
+ "Na konferenci WebExpo budu společně s Borkem Bernardem přednášet o trendech v ASP.NET se spostou zajímavých ukázek. V tomto článku můžete obsah přednášky ovlivnit...",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "webexpo" "aspnet" "ajax" "mvc" "dynamicdata"
+   "dataservices"},
+ :published "2008-09-04T19:38:39.807"}
+---
+
+Je to už pár měsíců, co mě oslovil "Vašek Stoupa":[dvanula], zda bych nechtěl přednášet na WebExpu:[webexpo] o [mvc]. [*http://webexpo.cz/media/images/badge_webexpo150.gif  .(WebExpo 2008)[right] *]:[prednaska] Zprvu jsem váhal, protože nemám žádné prezentační zkušenosti a tak jsem to chtěl celé hodit na Borka:[borber]. Jenže pak jsem si vzpomněl na skvělé přednášky z MIXu, kde nebyl pouze jeden přednášející, ale tandem.
+
+Slovo dalo slovo, Vašek i  Borek souhlasili a my jsme zapsaní v programu konference. :) Protože ASP.NET MVC ještě není ve stabilní formě API (ta by měla být více méně stabilní v betafázi, která se blíží), domluvili jsme se na tom, že probereme více věcí.
+
+Doufám, že se Borek nebude zlobit, když prozradím naši předběžnou osnovu. Můžete se k ní vyjádřit v komentářích a my ji můžete případně vylepšit. :)
+
+Osnova
+======
+
+1. WebForms – povídání o tom, kde je vhodné použít klasické WebForms a  novinkách  ve verzi 3.5
+2. AJAX – povíme  si, jak je integrována podpora AJAXu v ASP.NET
+3. ADO.NET Data Service – bližší seznámení s REST službami postavenými nad ADO.NET a ukázka ve spojení s AJAXem
+4. Dynamic Data – povídání a ukázka dynamicky vytvářených administračních rozhraní ze schématu databáze.
+5. MVC – povídání a ukázka MVC frameworku, jak se liší od WebForms a možná i spojení s Dynamic Data, to jak zbyde čas.
+
+Pokud vás tato témata zajímají, "přijďte se na nás podívat":[registrace], pokud nezajímají, přijďte se podívat na koktajícího rarouše… ;) Každopádně tam bude spousta jiných zajímavých přednášek, třeba Davidův:[dg] evergreen o "Nette Frameworku":[nette].
+
+/--div .[#related hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* [prednaska]
+* [registrace]
+* [borber-webexpo]
+* [sindelka-webexpo]
+* [misantrop-webexpo]
+* [dagi]
+\--div
+
+Tagy: [tag-webexpo], [tag-aspnet], [tag-aspnetmvc]
+
+[tag-webexpo]: http://technorati.com/tag/webexpo WebExpo .{rel:tag}
+[tag-aspnet]: http://technorati.com/tag/aspnet Asp.Net .{rel:tag}
+[tag-aspnetmvc]: http://technorati.com/tag/aspnetmvc ASP.NET MVC .{rel:tag}
+
+[webexpo]: http://webexpo.cz/ WebExpo
+[dvanula]: http://dvanula.cz/
+[borber]: http://www.borber.com/ .{rel:friend met}
+[borber-webexpo]: http://www.borber.com/blog/webexpo-2008 Borek Bernard - WebExpo 2008
+[dg]: http://davidgrudl.com/ .{rel:friend met}
+[registrace]: http://webexpo.cz/registrace/#navstevnici  WebExpo - registrace na konferenci
+[mvc]: http://asp.net/mvc/ ASP.NET MVC
+[nette]: http://nettephp.com/
+[prednaska]: http://webexpo.cz/prednaska/asp-net/ WebExpo - ASP.NET 3.5 / futures .(Přednáška o ASP.NET na WebExpo 2008)
+[sindelka-webexpo]: http://www.sindelka.cz/cz/webexpo-2008/ Pavel Šindelka - WebExpo 2008
+[misantrop-webexpo]: http://www.misantrop.info/721398-webexpo-2008-a-web-2-0-expo-2008.php Webexpo 2008 a Web 2.0 Expo 2008
+[dagi]: http://www.sweb.cz/pichlik/archive/2008_10_05_archive.html#3982970343313795758 Prezentace Spring Framework - Enterprise Java s lidskou tváří

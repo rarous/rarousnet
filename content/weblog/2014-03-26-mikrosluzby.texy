@@ -1,0 +1,59 @@
+---
+{:id 455,
+ :title "Mikroslužby",
+ :description "Definice mikroslužeb.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2014-03-26T07:00:00.663"}
+---
+
+
+Máme tu jedinečnou příležitost definovat si **Mikroslužby** ne v tom,
+co nejsou, ale v tom co jsou.
+
+Tohle je má definice.
+
+## Definice
+
+**Mikroslužba** je **oddělený izolovaný** a **pojmenovaný** kus logiky,
+který konzumuje 0..N vstupů a produkuje 0..N výstupů, který je **vykonaný**
+za účelem přinést konzumentovi nějakou výhodu. Toto je poskytováno jako služba.
+
+## Oddělená
+
+Důvodem, proč to nazýváme Mikroslužbou a ne Službou, není počet řádek,
+který je menší než N, nebo velikost nasazované služby, která je maximálně
+N kilobajtů nebo žádná jiná libovolná metrika. Tím důvodem je nízký počet
+zodpovědností: jedna. *Dělá to jen jednu věc a tu dělá skvěle.*
+
+## Izolovaná
+
+Izolovaná znamená, že funguje odděleně od ostatních věcí, což z ní dělá
+*distribuovanou entitu.* Nezáleží na tom, kde konkrétně leží fyzický
+hardware nebo na jakém OS to běží. Pokud to spadne, zůstává to v izolaci.
+Předchází se tak kaskádovému šíření chyby. Navíc nám to umožňuje snadno
+vyvíjet a aktualizovat službu samostatně.
+
+## Pojmenovaná
+
+Jelikož jsou Mikroslužby izolované, potřebujeme na ně nějakým způsobem
+odkazovat. Jméno v kombinaci se vstupy a výstupy **Mikroslužby** nám
+definují signaturu nebo identifikátor **Mikroslužby**.
+
+## Vstupy a výstupy
+
+Pokud máme jazyk, který podporuje typové informace, vstupy a výstupy mohou
+být typové. Tyto typy by měly být reflektovány při manipulaci. Což znamená,
+že konzument služby by měl znát, co služba přijímá a co poskytuje.
+
+## Vykonání
+
+Protože konzument není ten, kdo vykonává logiku Mikroslužby, a Mikroslužby
+jsou přirozeně distribuované, volání nesmí konzumenta blokovat ve vykonávání
+jiných operací po dobu výkonu mikroslužby. Konzument nesmí být držen jako
+rukojmí, dokud mikroslužba nevyprodukuje svůj výstup. To znamená, že musejí
+být vytvořeny takové abstrakce, které nám umožní Mikroslužby *konzumovat
+asynchronně.*
+
+Překlad článku [Microservices](http://klangism.tumblr.com/post/80087171446/microservices) od Viktora Klanga
+    

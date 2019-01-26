@@ -1,0 +1,16 @@
+---
+{:id 389,
+ :title "Open Graph a jeho nasazení",
+ :description
+ "Dnes mi na Zdrojáku vyšel článek o novém protokolu sémantického webu. Tohle je malá upoutávka na něj ;)",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "opengraph"},
+ :published "2010-05-18T08:52:33.393"}
+---
+
+Pokud vás zajímají detaily o nasazení tlačítka **Like** na vašich i našich stránkách, doporučuji přečíst si článek [opengraph], který mi dnes vyšel na Zdrojáku. Krom základního popisu protokolu, tam nejdete i ukázky z reálného provozu a dal jsem si tu práci a prošel jsem pár implementací na českém webu a doporučil některá vylepšení. Třeba tam jsou i vaše stránky.
+
+Závěrem chci poděkovat Borkovi:[borber] za betatestování mého rozverného textu a zároveň za vyzkoušení, pro mne nové, cesty jak spolupracovat na dokumentu ve Wordu a v Live Mesh (a v Recycle Bin). :)
+
+[opengraph]: http://zdrojak.root.cz/clanky/open-graph-a-jeho-nasazeni/ Open Graph a jeho nasazení
+[borber]: http://www.borber.com/ 

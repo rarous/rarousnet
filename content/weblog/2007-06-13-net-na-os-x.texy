@@ -1,0 +1,15 @@
+---
+{:id 212,
+ :title ".NET na OS X",
+ :description
+ "Radek Hulán píše, že na OS X není žádný dotnet. Opak je pravdou.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "macos" "dotnet" "silverlight"},
+ :published "2007-06-13T11:51:31.147"}
+---
+
+Při zběžném prolétnutí RH článku o Safari pro Windows, jsem narazil na zajímavou větu:
+
+> OS X je stále minimální nabídka aplikací, téměř nula her, **žádný .NET**, výrazná nestabilita, padání a tuhnutí aplikací i systému, nedostatek ovladačů, neexistující kodeky pro video a audio, solidní přehrávač samotného videa, neexistující pořádný vypalovací software; jeho použitelnost se sice zvyšuje po instalaci Parallels či VMWare a virtualizovaných Windows, nicméně, proč spouštět Windows pomalu pod OS X, když to jde nativně?
+
+Přehlédněme teď její délku. Mě jako vývojáře .NET zarazila zvýraznená část textu. Tedy "žádný .NET". Milý Radku, na OS X můžeš již pár let používat MONO, což je OS implementace .NET. A čerstvě po lehké Silverlight masáži můžu odpřísáhnout, že existuje .NET pro OS X i přímo od Microsoftu, stačí si nainstalovat plug-in "Silverligh pro Safari":[http://www.silverlight.net] ;)

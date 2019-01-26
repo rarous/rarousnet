@@ -1,0 +1,43 @@
+---
+{:id 443,
+ :title "Traits v C#",
+ :description "Jak na implementaci traits v C#.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2013-03-23T08:34:39.990"}
+---
+
+Poměrně užtečným konceptem v  programovacích jazycích je trait. Můžete ho znát třeba ze Scaly, nebo se brzy objeví v PHP. Tyto jazyky mají pro traits prvotřídní podporu. Tedy, mají traits jako jazykový konstrukt. C# nic takového nemá. Nebo jo?
+
+Co je to trait?
+=========
+
+Trait je něco jako rozhraní. Umožňuje tedy vícenásobnou "dědičnost". Narozdíl od rozhraní, má však maximální možnou implementaci. Když se podíváme do dokumentace Scaly na malý příklad:
+
+/--code scala
+trait Similarity {
+  def isSimilar(x: Any): Boolean
+  def isNotSimilar(x: Any): Boolean = !isSimilar(x)
+}
+\--code
+
+Můžeme si všimnout, že trait obsahuje dvě metody, z toho jedna je abstraktní a druhá implementovaná pomocí té první. Koheze metod je důležitou vlastností traits. Ostatně by to tak mělo být i u definice rozhraní.
+
+Jak na to v C#?
+==========
+
+Není vám ten koncept trochu povědomý? Ne? A co třeba LINQ? Stačí, abyste implementovali metodu `GetEnumerator` a zbytek máte for free. Můžeme se tedy inspirovat u LINQu a podobně implementovat i `Similarity`:
+
+/--code csharp
+interface ISimilarity<T> {
+  bool IsSimilar(T other);
+}
+
+static class Similarity {
+  public static bool IsNotSimilar<T>(this ISimilarity<T> @this, T other) {
+    return !@this.IsSimilar(other);
+  }
+}
+\--code
+
+Kód sice není tak úsporný, jako v jazycích s prvotřídní podporou, ale funguje to a to je důležitý! :)

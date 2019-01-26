@@ -1,0 +1,25 @@
+---
+{:id 12,
+ :title "Zajímavé čtení",
+ :description "Pár tipů na dobré čtení.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2004-03-18T09:00:00"}
+---
+
+Na DevNetu vyšly zajímavé články pro webdesignery začínající s CSS.
+
+- [gradually]
+- [killer]
+
+Dále na intervalu vyšel článek o tvorbě layoutu, i když s nim úplně nesouhlasím, tak je to zajímavé čtení.
+
+- [teorie]
+- [praxe]
+
+No a teď už jdu radši na Tělocvik. Nejen čtením živ je člověk.
+
+[gradually]: http://www.adobe.com/devnet/dreamweaver/articles/css_gradually.html Gradually Implementing CSS in Your Site
+[killer]: http://www.adobe.com/macromedia/events/max/sessions/sa302w.html CSS Killer Tips for Dreamweaver
+[teorie]: http://interval.cz/clanky/tvorba-layoutu-webu-teoreticky-uvod/ Tvorba layoutu webu - teoretický úvod
+[praxe]: http://interval.cz/clanky/tvorba-layoutu-webu-prakticky-prehled/ Tvorba layoutu webu - praktický přehled

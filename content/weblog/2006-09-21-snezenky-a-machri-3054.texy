@@ -1,0 +1,17 @@
+---
+{:id 181,
+ :title "Sněženky a machři (30:54)",
+ :description
+ "Díky možnosti vidět do zákulisí služby Weblogy.cz mám k dispozici zajímavá statistická data ohledně správnosti RSS výstupu jednotlivých zdrojů. Více než půlka uspěla. To je ta dobrá zpráva.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "weblogy" "rss"},
+ :published "2006-09-21T12:55:14.787"}
+---
+
+Díky možnosti vidět do zákulisí služby Weblogy.cz mám k dispozici zajímavá statistická data ohledně správnosti RSS výstupu jednotlivých zdrojů. Více než půlka uspěla. To je ta dobrá zpráva.
+
+Většinou jde o výstupy kvalitních "redakčních systémů .(Nucleus, Gryphoon, Wordpress)" a veřejných blogovacích služeb. To jsou ti machři. A co naše sněženky?
+
+Nejčastější chybou je entitování entit, kdy v kódu najdete něco jako `&amp;nbsp;` na místě, kde by měla být nedělitelná mezera. Další častou chybou je vkládání HTML do `description` nebo ještě lépe HTML v description uzavřít do `<![CDATA[` `]]>` což je taktéž chybou. Další, již méně častou chybou, je použití jmenných entit, které nejsou v XML podporovány, bez použití *DOCTYPE*.
+
+Tak se milé sněženky polepšete, ať jste také mezi námi, machry :D

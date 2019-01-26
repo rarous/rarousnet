@@ -1,0 +1,26 @@
+---
+{:id 433,
+ :title "DIP, IoC a DI - díl třetí",
+ :description
+ "Závěrečný díl trošku sporné série o rosporech v zažitých technikách a obecných poučkách, jak dělat inverzi injekcí.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2012-10-26T21:20:00"}
+---
+
+Vidíte, vidíte? Máme za sebou dva krátké spoty plné nezodpovězených otázek. Nahlodaly vás aspoň trošku? Vyřešili jste některé? Dobře. Pojďme dál.
+
+V minulém díle jsme se zbavili závislosti na konkrétní implementaci repository a zavedli tak Inversion of Control (ok, taky zjednodušuju, ale základní rozdíl IoC od DI je v abstrakci). Ovšem pořád jsme nedosáhli DIP. "Jak to," ptáte se? No důvod je celkem prostý. Tu největší chybu jsme udělali hned na začátku. **Začali jsme datovou vrstvou!**
+
+Všimněte si, že naše doménová vrstva má stále závislost na té datové, i když jsme zavedli abstrakci a jakoby neznáme konkrétní implementaci. Problém je v tom, že abstrakce nepatří do vrstvy, kde je implementována. `IRepository<TEntity>` nepatří do `MyAwesomeApp.Data`, ale do "business layeru". Kdybychom dělali top-down design, samozřejmě by nám to z toho vylezlo samo. Ale protože jsme byli chytřejší a stavěli "od spoda" (bottom-up), dostali jsme se celkem do potíží...
+
+Takže, když uděláme tuhle malou změnu, tedy že přesuneme `IRepository<TEntity>` z data do business layeru, otočíme závislosti. Nyní, už doménová vrstva nezávisí na datové, ale naopak. Datová vrstva se nám stala plug-inem. A konečně máme i DIP!
+
+Top-down design
+===============
+
+Ještě bych se rád zastavil u jedné konfůznosti a tou je top-down design. Tj. design kdy začneme od shora a pokračujeme dolu. Jenže kde je to nahoře? Když si vybavíte běžná schémata tradiční třívrstvé aplikace, tak nahoře máte UI vrstvu, pod ní business vrstvu a pod ní vrstvu datovou. Tak je to jasný, ne? Top-down design začneme od UI vrstvy! Rovnou si dám facku, že jsem to vůbec napsal. *plesk*
+
+Tak zase špatně. Ve skutečnosti je nahoře vrstva s největší abstrakcí. Což by měla být asi ta doménová vrstva. :) UI i data jsou detaily, hodně konkrétní! Dneska máme běžné, že jedna a ta samá business vrstva žije za obrázkama na iPhonu, Androidu, Windows Phonu, desktopových i webových aplikací. Ano, ta samá. protože BL je to, co dělá vaši aplikaci aplikací. Je jedno, na jakým systému běží, jak přistupuje k datům, jakým způsobem data prezentuje.
+
+Abstrakce nám pomáhá odkládat řešení detailů do doby, kdy to bude nezbytné. Pomáhá nám být agilní a umožňuje nám pružně reagovat na změny požadavků. A změna je jedinou jistotou, na kterou se můžeme v naší branži spolehnout. Žádné smlouvy vás před ní neochrání. A nebraňme se ji, však jsme přece vývojáři.

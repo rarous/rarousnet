@@ -1,0 +1,13 @@
+---
+{:id 151,
+ :title "Intellisense pro SQL",
+ :description
+ "Skvělá věc, kterou potřebuje každý vývojář, který pracuje s T-SQL.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "intellisense" "sql"},
+ :published "2006-05-22T19:32:24.163"}
+---
+
+Red Gate vydali novou verzi "SQL Prompt":[sqlPrompt], což je skvělá utilitka, schovaná v trayi, které rozpozná, když píšete SQL dotazy v jakémkoli editoru, a vyhodí vám nabídku Intellisense s možnými keywordy, tabulkami, sloupcemi apod. Umí dokonce formátovát dotazy, aby byly přehlednější. Tak na co ještě čekáte, když "je to zdarma":[sqlPrompt]? :D
+
+[sqlPrompt]: http://www.red-gate.com/products/sql_prompt/index.htm

@@ -1,0 +1,17 @@
+---
+{:id 276,
+ :title "Chybka se vloudila",
+ :description
+ "V kódu, který jsem publikoval před nedávnem v článku Vyhledávání komponent v ASP.NET stránce, se vyskytla chyba. Za její odhalení děkuju Martinovi Davidovi (DaMa). Opravený kód jsem přepublikoval.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2008-05-26T12:59:34.820"}
+---
+
+V kódu, který jsem publikoval před nedávnem v článku [clanek(268)], se vyskytla chyba. Za její odhalení děkuju Martinovi Davidovi (DaMa). Opravený kód jsem přepublikoval.
+
+== V čem byla chyba?
+
+Mylně jsem se domníval, že všechny NamingContainery implementují rozhraní `INamingContainer`. Jenže je tu drobná past. `HtmlForm`, základní kámen WebForms, toto rozhraní neimplementuje a přesto slouží jako bariéra v rekurzivním prohledávání. Řešením nakonec bylo přidání do podmínky, kde kontroluju implementaci INamingContaineru i kontrolu na `HtmlContainerControl`. To je vše.
+
+[clanek(268)]: /weblog/268-vyhledavani-komponent-v-asp-net-strance.aspx Vyhledávání komponent v ASP.NET stránce

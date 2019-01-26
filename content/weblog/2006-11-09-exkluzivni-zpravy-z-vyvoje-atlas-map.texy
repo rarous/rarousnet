@@ -1,0 +1,42 @@
+---
+{:id 192,
+ :title "Exkluzivní zprávy z vývoje Atlas Map",
+ :description "Exkluzivní zprávy z vývoje Atlas Map",
+ :author "Daniel Steigerwald",
+ :tags #{"amapy" "webdesign" "atlas" "ajax"},
+ :published "2006-11-09T18:28:40.123"}
+---
+
+Vývoj map:[amapy] trval ultra krátkou dobu. Něco pod tři měsíce. Gattovi diagramy opět prokázali, že když chcete boha rozesmát – sdělte mu své plány. Dnes večer (ale raději až po půlnoci) mapy opět krapet dospějí. Lehká sumarizace, co je nového na Atlas mapách, doplněná stručným komentářem – z pohledu vývojáře.
+
+Nové funkce: GPS souřadnice, nasosnutí i vyhledání.
+
+Brouci:
+
+Opera
+=====
+
+Opera ano (skoro) – v průběhu celého vývoje map jsem testoval i v Opeře. Tento nejpomalejší prohlížeč (platí pro AJAX aplikace, které hooodně malují) používají skoro všichni mí přátelé, takže opomenout ho, dodám munici do debat svým názorovým oponentům – a to nechci :) Tak tento prohlížeč byl těsně před releasem map sestřelen unikátním fixem pro IE((Internet Explorer)), jež jediný ho donutí (kromě úpravy HTTP((Hypertext Transfer Protocol)) hlaviček) korektně "kešovat pozadí":[image caching].
+
+Takže pozor, fixem fixovat jen IE, jinak XmlHttpRequest v Opeře stávkovat bude.
+
+Další "problém" Opery. Její pedantské lpění na standardech bohužel způsobilo, že poslední dvě měřítka stále nefungují. DIV o šířce půl miliónu px prostě vadí :) Má ale štěstí holka, protože ten vadí i mě, a půjde-li vše ok, příští týden budou mapy šlapat pod Operou kompletně.
+
+PS: rychlost map v pořadí od nejrychlejšího prohlížeče: IE7, IE6, FF a Opera (nejpomalejší).
+
+PS2: Safari více méně funguje, ale věnovat více se mu budu týden přespříští.
+
+Kolečko myši
+============
+
+Po ostrých debatách mezi zastánci GIS a těmi co o GIS vůbec nic nevědí ;) kolečko otočeno (pro ostatní, teď se chová jako na mapách Googlu)
+
+PNG v Inernet Exploreru
+=======================
+
+Implementace PNG((Portable Network Graphic)) v IE7 se interně stále spoléhá na staré známé filtry IE6, jež mají tu pěknou vlastnost, že jich nelze aplikovat více přes sebe. (pro ostatní, bublina v IE7 už vypadá ok, bohužel jsme se museli rozloučit s efektem opacity)
+
+A to je zatím vše. O dalších opravených chybách se šířit nebudu ,-)
+
+[amapy]: http://amapy.cz/ AMapy
+[image caching]: http://evil.che.lu/2006/9/25/no-more-ie6-background-flicker

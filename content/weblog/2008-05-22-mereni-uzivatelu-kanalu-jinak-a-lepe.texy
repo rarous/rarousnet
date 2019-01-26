@@ -1,0 +1,33 @@
+---
+{:id 272,
+ :title "Měření uživatelů kanálů jinak a lépe",
+ :description
+ "Na blogu OVX píšou: Kdopak spadl do kanálu? A popisují jak měřit stahovanost RSS kanálu pomocí Google Analytics. Nápad to není špatný, ale na měření oblíbenosti vašich feedu je tu lepší služba.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2008-05-22T08:10:27.480"}
+---
+
+Na blogu OVX píšou: [kanal] A popisují jak měřit stahovanost RSS kanálu pomocí [analytics]. Nápad to není špatný, ale měřené výsledky jsou celkem zavádějící – měří se každý hit na feed.
+
+Pro měření oblíbenosti vašich feedů je tu mnohem lepší služba – [feedburner]. Kdysi placená služba je už nějaký ten pátek bezplatná. Co všechno tato služba nabízí?
+
+1.	Mirorování vašeho feedu – snížíte si trafik a zátěž serveru.
+2.	Měření počtu odběratelů.
+3.	Měření prokliku z feedu na vaše stránky.
+4.	Monetizaci pomocí reklam.
+5.	Mnoho dlaších služeb, které vám usnadní a zpříjemní práci s vašimi feedy.
+
+[*/data/obrazky/feedburner.png .(Statistiky ve FeedBurneru)*] .[image]
+
+Nevýhodou takového řešení je, že musíte změnit URL adresu feedu. Mně konverze uživatelů na novou adresu trvala asi dva až tři měsíce. Ale zas tolik jich nemám. Problém byl v tom, že jsem musel uživatele přimět k tomu, aby si URL feedu změnili sami, protože jsem z technických důvodů nemohl feed přesměrovávat na novou adresu. Ale lze docílit i hladkého přechodu pomocí trvalého přesměrování.
+
+Tagy: [tag-rss], [tag-feedburner], [tag-analytics]
+
+[tag-rss]: http://technorati.com/tag/rss RSS .{rel:tag}
+[tag-feedburner]: http://technorati.com/tag/feedburner FeedBurner .{rel:tag}
+[tag-analytics]: http://technorati.com/tag/analytics Analytics .{rel:tag}
+
+[analytics]: http://analytics.google.com/ Google Analytics
+[kanal]: http://www.ovx.cz/cz/polibek-story.php?zprava=111&rubrika=2 Kdopak spadl do kanálu?
+[feedburner]: http://www.feedburner.com/ FeedBurner

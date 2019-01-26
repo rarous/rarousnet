@@ -1,0 +1,13 @@
+---
+{:id 121,
+ :title "Atlas go Live",
+ :description "S chutí do života.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-03-20T21:17:06.707"}
+---
+
+Ano, konečně je to tady. Microsoft dnes (se zahájením konference MIX'06) uvolnil novou verzi "ASP.NET 'Atlas'":[http://atlas.asp.net/] s licencí k ostrému provozu. Nyní tedy může být Atlas zařazen do produkčních produktů :)
+
+* "Detaily releasu":[http://weblogs.asp.net/atlas/archive/2006/03/20/440631.aspx]
+* "Video s ukázkou vývoje v Atlasu":[mms://wm.microsoft.com/ms/uifx/asp_net_atlas.wmv]

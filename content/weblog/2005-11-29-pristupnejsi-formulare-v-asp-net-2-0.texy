@@ -1,0 +1,34 @@
+---
+{:id 84,
+ :title "Přístupnější formuláře v ASP.NET 2.0",
+ :description "Jak generovat přístupnější formuláře v ASP.NET 2.0",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2005-11-29T14:31:44.177"}
+---
+
+"Druhá" verze ASP.NET přináší krom jiného i podporu XHTML výstupu a rovněž podporu přístupnosti. Validátor na příslušné standardy je součástí VisualStudia 2005 a tak by pro vývojáře mělo být snazší najít prohřešky proti těmto doporučením.
+
+Když jsem ve verzi 1.x chtěl udělat přístupný formulář, který má popisky k formulářovým prvkům uzavřené v tagu `label`, nešlo k tomu využít serverového prvku `asp:Label`, který se logicky nabízel. Tento prvek se generuje jako `span`, tudíž nám je v tomto případě k ničemu. Musel jsem to obcházet a našel jsem si dva způsoby, vhodnějším se mi pak ukázal ten druhý.
+
+Tím prvním je uzavření formulářového prvku přímo do tagu `label`. specifikace toto použití připouští, ale ne vždy je možné ho použít.
+
+/---code xml
+<label>Popiska <asp:TextBox ID="TextBox1" runat="server" /></label>
+\---code
+
+V druhém případě se využije atribut `for` elementu `label`, který je referencí na `id` formulářového prvku. Protože se však ID prvků v uživatelských kontrolech, a nejen v nich, mění, nemůžeme napsat obsah atributu `for` natvrdo, ale musíme si pomoci programově. Každý WebControl má vlastnost `ClientID`, která vrací hodnotu atributu `id` po vyrenderování.
+
+/---code xml
+<label for="<%= TextBox1.ClientID %>">Popiska</label>
+<asp:TextBox ID="TextBox1" runat="server" />
+\---code
+
+Tak to byl můj starý způsob vytváření formulářových popisků. ASP.NET 2.0 přichází s novinkou. Nyní lze využít `asp:Label` k vytváření formulářových popisků a to pomocí vlastnosti `AssociatedControlID`! Pokud je tato vlastnost vyplněna patřičným ID, dojde k vyrenderování elementu `label` namísto `span`.
+
+/---code xml
+<asp:Label AssociatedControlID="TextBox1" runat="server">Popiska</asp:Label>
+<asp:TextBox ID="TextBox1" runat="server" />
+\---code
+
+Sami si vyberte způsob, který vám nejlépe vyhovuje...

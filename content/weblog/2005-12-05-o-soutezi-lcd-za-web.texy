@@ -1,0 +1,20 @@
+---
+{:id 90,
+ :title "O soutěži LCD za web",
+ :description "Pár slov o soutěži LCD za web.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2005-12-05T14:49:56.323"}
+---
+
+Dnes mi přišel e-mail, že moje aplikace splnila podmínky pro přijetí do soutěže "LCD za web":[http://www.lcdzaweb.cz/]. E-mail po mně požaduje kontaktní údaje, pro poslání trička a knihy. To jsem rád. Jal jsem se tedy prohlížet konkurenci v soutěži. Bohužel zajímavých aplikací, ať už funkčností nebo designem, jsem moc nenašel. Pár výjimek se však najde, jejich autorům gratuluji k pěkné práci.
+
+Bohužel většina přihlášených aplikací je postavena na Starter Kitu **Personal web page** nebo jeho klubové variantě. To by mi ani tak nevadilo, ale spousta lidí si ani nedala tu práci, aby něco změnila, třeba jenom text. Prostě si udělali nový projekt a uploadovali ho na server. Škoda, myslel jsem, že potkám spoustu zajímavých stránek od lidí, kteří jsou podobně postiženi jako já ;)
+
+Další várka prací je pro změnu nedostupná, buď obsahuje nějakou chybu – většinou ConnectionString na ASPWEBu:[http://www.aspweb.cz/] – nebo aplikace není vůbec.
+
+Ještě si neodpustím trochu jedovatou poznámku na adresu jednoho nešťastníka, který mi vykrádá obsah. Není to poprvé ani naposledy, ale smířit se s tím nehodlám. Psaní těch článků si vyžádalo nějaký můj čas i know-how a pak si je někdo zkopíruje, navíc ještě zkrátí, a podepíše se pod to. Nakonec se s tím přihlásí do stejné soutěže jako já a myslí si, že si toho nevšimnu. Dotyčnému už jsem napsal e-mail s **prosbou o nápravu**. Pokud tak v dohledné době neučiní, budu ho lynčovat po webovém způsobu…
+
+Ještě k mé účasti. Do soutěže jsem přihlásil svůj redakční systém Gryphoon, jenže z pochopitelných důvodů nemůžu nechat lidi procházet se v mojí administraci, ani kdybych jim ořezal práva. Proto bych hodnotící chtěl požádat, aby aplikaci hodnotili z frontendu, tedy takové věci, které mohou používat obyčejní čtenáři. Jsou tím například věci jako: Galerie, různé informační boxy, které se načítají z různých XML zdrojů, syndikační služba a další komponenty Gryphoonu. Děkuji za pochopení a držte mi palce, popřípadě "mi pošlete svůj hlas":[http://www.lcdzaweb.cz/hlasuj.aspx], mé soutěžní číslo je **1025**.
+
+[zlodej]: http://stalkers.aspweb.cz/kategorie/asp.aspx Zloděj .[člověk, co ukradl mé články]

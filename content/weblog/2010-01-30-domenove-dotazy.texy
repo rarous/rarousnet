@@ -1,0 +1,106 @@
+---
+{:id 377,
+ :title "Doménové dotazy",
+ :description
+ "Dneska se podíváme na zoubek dotazování nad doménovými objekty. Jak refaktorovat IRepository na autonomní query objekty...",
+ :author "Aleš Roubíček",
+ :tags #{"architecture" "design" "asp.net 2.0" "patterns" "linq"},
+ :published "2010-01-30T13:53:12.107"}
+---
+
+V každé aplikaci, kde se pracuje s daty, se dostaneme do situace, kdy se nad daty potřebujeme dotazovat. Pokud přijmeme za svůj vzor Repository, můžeme se dostat do situace, podobné té v následující ukázce:
+
+/--code csharp
+public interface IArticlesRepository {
+  Article FindById(long id);
+  IEnumerable<Article> FindAll(PagingInfo paging);
+  IEnumerable<Article> FindByCategory(Category category, PagingInfo paging);
+  IEnumerable<Article> FindByAuthor(User author, PagingInfo paging);
+  IEnumerable<Article> FindByTag(string tag, PagingInfo paging);
+}
+\--code
+
+Jak vidno s každým typem dotazu, rozšiřujeme rozhraní naší repository. Což porušuje [ocp] - jeden z pilířů Solidní:[solid] architektury. Ten nám říká, že objekt by měl být otevřený k rozšíření, ale uzavřený k modifikaci. Přidáváním dalších metod ho očividně rozšiřujeme. Jak na to?
+
+Jedním z možných řešení je zavedení dotazovacích objektů, kde využijeme kompozice k docílení lepšího návrhu. A protože jde o obecný mechanismus, můžeme ho pěkně generalizovat. Dále budu předpokládat, že pracujeme vůči datovému zdroji podporujícímu LINQ dotazování, jako je NHibernate.Linq, LINQ2SQL nebo EntityFramework.
+
+/--code csharp
+public interface IQueryObject<T> {
+  int Count(IQueryable<T> table);
+  IEnumerable<T> Fetch(IQueryable<T> table);
+  T FetchOne(IQueryable<T> table);
+}
+\--code
+
+Dotazovací objekt má tři metody. První spočítá kolik objektů splňuje podmínky dotazu. Druhá vrátí kolekci vybraných objektů a poslední vrací jedinečný záznam. K takovému rozhraní si můžeme vytvořit bázovou třídu, která nám pomůže s rychlejším vytvářením konkrétních dotazů.
+
+/--code csharp
+public abstract class QueryObjectBase<T> : IQueryObject<T> {
+
+  protected QueryObjectBase<T>(PagingInfo paging) {
+    Paging = paging;
+  }
+
+  public PagingInfo Paging { get; private set; }
+
+  protected abstract IQueryable<T> CreateQuery(IQueryable<T> table);
+
+  public virtual int Count(IQueryable<T> table) {
+    return CreateQuery(table).Count();
+  }
+
+  public virtual IEnumerable<T> Fetch(IQueryable<T> table) {
+    return CreateQuery(table).
+      Skip(Paging.Skip).
+      Take(Paging.PageSize).
+      ToArray();
+  }
+
+  public virtual T FetchOne(IQueryable<T> table) {
+    return CreateQuery(table).FirstOrDefault();
+  }
+}
+\--code
+
+Konkrétní dotazovací objekt pak ve většině případů implementuje jedinou metodu, která vrací LINQ dotaz. V případě potřeby si však konkrétní implementace může připravené metody změnit k obrazu svému. Máme zde zavedenou i konvenci stránkování, která předchází generování neomezených dotazů do databáze. A teď už nám zbývá jen zabalit to pěkně do nějakého DAO objektu.
+
+/--code csharp
+public interface IQueryExecutor<T> {
+  int Count(IQueryObject<T> query);
+  IEnumerable<T> Fetch(IQueryObject<T> query);
+  T FetchOne(IQueryObject<T> query);
+}
+\--code
+
+DAO objekt jediný zná konkrétní implementaci datového uložiště, kterou předává do dotazovacího objektu jako `IQueryable<T>`. Výsledné použití v praxi může pak vypadat následovně:
+
+/--code csharp
+var articles = _articlesDao.Fetch(new CategoryArticlesQuery(category, pagingInfo));
+\--code
+
+Kde konkrétní implementace dotazovacího objektu vypadá takto:
+
+/--code csharp
+public class CategoryArticlesQuery : QueryObjectBase<Article> {
+
+  public CategoryArticlesQuery(Category category, PagingInfo paging)
+    : base(paging) {
+    Category = category;
+  }
+
+  public Category Category { get; private set; }
+
+  protected override IQueryble<Article> CreateQuery(IQueryable<Article> table) {
+    return from article in table
+           where article.Category == Category
+              && article.IsPublished
+           orderby article.PublishDate descending
+           select article;
+  }
+}
+\--code
+
+Výhodou i je, že pokud potřebujeme upravit dotaz, děláme to vždy jen jednou na jednom místě.
+
+[ocp]: http://en.wikipedia.org/wiki/Open/closed_principle Open/closed principle
+[solid]: http://en.wikipedia.org/wiki/Solid_%28Object_Oriented_Design%29 Solid

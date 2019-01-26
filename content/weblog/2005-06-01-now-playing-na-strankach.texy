@@ -1,0 +1,95 @@
+---
+{:id 59,
+ :title "Now Playing na stránkách",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"webové služby"},
+ :published "2005-06-01T20:32:00"}
+---
+
+Dnes jsem přidal další box do pravého panelu. Jmenuje se **Právě poslouchám** a zobrazuje aktuální přehrávanou písničku nebo video v mém počítači. Funguje to díky plug-inu [songwriter] pro [wmp] 9 a novější, ten uploaduje přes FTP XML s požadovanými informacemi, a vlastnímu controlu pro výpis těchto informací.
+
+=== Jak na to
+
+Nejprve je nutné si nainstalovat plugin SongWriter a nastavit si co a kam se má generovat. Okno s nastavením na vás vyskočí po instalaci pluginu a zapnutí Media Playeru. Pokud by nevyskočilo najdete ho v menu Možnosti \ Nastavení \ Moduly Plug-in, Kategorie: Pozadí, SongWriter Plugin, Vlastnosti. Tady si navolíte vlastnosti, které chcete zobrazit, zvolíte formát XML a nastavíte vlastnosti FTP připojení (cesta nesmí končit lomítkem).
+
+Zkuzte, jestli je vše správně nakonfigurováno, nejlépe testem přímo na serveru, soubor se jmenuje **songout.xml**. Pro ty, co jsou ve zpracování XML, zde článek končí, neboť si data zpracují sami :) Ostatní nechť směle pokračují ve čtení.
+
+Nyní přistoupíme k tvorbě controlu. Předem upozorňuju, že je napsanej v ASP.NET 2 (beta 2), takže nemusí a ani nebude fungovat ve starších verzích.
+
+/--- code csharp
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.IO;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Xml;
+
+public partial class NowPlaying : System.Web.UI.UserControl
+{
+  public string Src
+  {
+    set
+    {
+      ViewState["nowplayingsrc"] = value;
+    }
+    get
+    {
+      return ViewState["nowplayingsrc"].ToString();
+    }
+  }
+
+  protected void Page_Load(object sender, EventArgs e)
+  {
+    NactiData();
+  }
+
+  protected void NactiData()
+  {
+    string path = Server.MapPath(Src);
+    XmlDocument doc = new XmlDocument();
+    doc.Load(path);
+
+    XmlNodeList media = doc.GetElementsByTagName("media");
+    XmlNode posledni = media[0];
+    XmlNode autor = posledni.SelectSingleNode("artist");
+    XmlNode pisen = posledni.SelectSingleNode("title");
+    XmlNode album = posledni.SelectSingleNode("album");
+
+    if (autor != null) {
+      if (autor.InnerText.ToLower() == "stopped") {
+        NowPlayingOut.Text = "<p>Zrovna nic.</p>";
+      } else {
+        if ((pisen != null) && (album != null))
+          NowPlayingOut.Text = String.Format("<dl><dt>Autor</dt><dd>{0}</dd><dt>Píseň</dt><dd>{1}</dd><dt>Album</dt><dd>{2}</dd></dl>", autor.InnerText, pisen.InnerText, album.InnerText);
+        else if ((pisen != null))
+          NowPlayingOut.Text = String.Format("<dl><dt>Autor</dt><dd>{0}</dd><dt>Píseň</dt><dd>{1}</dd></dl>", autor.InnerText, pisen.InnerText);
+      }
+    } else {
+      if ((pisen != null))
+        NowPlayingOut.Text = String.Format("<p>{0}</p>", pisen.InnerText.Replace('_',' '));
+    }
+  }
+}
+\--- code
+
+No a teď prezentační část.
+
+/--- code xml
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="NowPlaying.ascx.cs" Inherits="NowPlaying">
+<div class="box nowplaying">
+<h2>Právě poslouchám</h2>
+<asp:Literal ID="NowPlayingOut" runat="server"></asp:Literal>
+</div>
+\--- code
+
+Přeju hodně zábavy.
+
+[songwriter]: /files/SongWriter.zip SongWriter .(stáhnout archív s instalací plug-inu)
+[wmp]: http://www.windowsmedia.com/ Windows Media Player

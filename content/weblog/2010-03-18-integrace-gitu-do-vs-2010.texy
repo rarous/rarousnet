@@ -1,0 +1,32 @@
+---
+{:id 384,
+ :title "Integrace gitu do VS 2010",
+ :description
+ "Jak integrovat git do nového Visual Studia trochu netradiční cestou.",
+ :author "Aleš Roubíček",
+ :tags #{"visualstudio" "tuning" "powershell" "git"},
+ :published "2010-03-18T06:25:44.287"}
+---
+
+Bohužel i přes přítomnost skvělého [tortoisegit], který integruje funkce gitu přímo do Windowsího shellu, neexistuje pro git slušná integrace do Visual Studia ala VisualSVN. Dneska se podíváme na alternativní cestu.
+
+Visual Studio 2010
+============
+
+Visual Studio se v poslední verzi dočkalo značného přepsání. Krom toho, že bylo překlopeno do WPF((Windows Presentation Foundation)), stalo se i snadno rozšiřitelným díky MEF((Managed Extensibility Frmework)). Do samotného Visual Studa tak přibyl správce rozšíření podobný tomu, který znáte třeba z Firefoxu. Ano, včetně podpory pro procházení existujícími rozšířeními.
+
+PowerConsole
+=========
+
+Jedním z takovým rozšíření je i [console]. Tato konzola umožňuje psát scripty nad Visual Studiem a přímo v něm. Ke scriptování se nabízí hned několik jazyků: PowerShell, IronPython a IronRuby. Možnosti jsou omezeny pouze vaší představivostí, protože máte přístup jak k API Visual Studia, tak i k celému grafu MEF komponent. A samozřejmě v případě PowerShellu i ke všemu, co PS umí.
+
+POSH git
+======
+
+A tím se pomalu dostávám k "POSH gitu":[poshgit]. Je to sada scriptů pro PowerShell, která zpřehledňuje výpisy gitu, přidává TAB expansion pro rychlejší psaní git příkazů a taky přidává některé vlastní cmdletty.
+
+Když si spojíte všechny tři věci dohromady, máme tu integraci gitu do prostředí Visual Studia! Je to teprve začátek. Ale myslím si, že slibný. Myslím, že by se výstup gitu dal projektovat do Solution Exploreru. Zatím jsem si s tím hrát nestihl, ale vypdá to slibně...
+
+[console]: http://visualstudiogallery.msdn.microsoft.com/en-us/67620d8c-93dd-4e57-aa86-c9404acbd7b3 PowerConsole
+[poshgit]: http://github.com/dahlbyk/posh-git POSH git
+[tortoisegit]: http://code.google.com/p/tortoisegit/ TortoiseGit

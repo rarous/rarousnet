@@ -1,0 +1,17 @@
+---
+{:id 197,
+ :title "VS 2005 SP1",
+ :description
+ "Microsoft dnes uvolnil Service Pack 1 pro Visual Studio 2005.",
+ :author "Aleš Roubíček",
+ :tags #{"vs2005" "asp.net 2.0" "vs"},
+ :published "2006-12-15T12:02:00.360"}
+---
+
+Microsoft dnes uvolnil Service Pack 1 pro Visual Studio 2005. Update je jak pro "Express Edice":[http://www.microsoft.com/downloads/details.aspx?FamilyId=7B0B0339-613A-46E6-AB4D-080D4D4A8C4E], tak pro "Team Suite":[http://www.microsoft.com/downloads/details.aspx?FamilyId=BB4A75AB-E2D4-4C96-B39D-37BAF6B5B1DC]. Mezi novinky by měla patřit větší výkonost a stabilita a např. i "Web Application Project":[/clanek/144-web-application-project.aspx].
+
+Máte už někdo zkušenosti s instalací?
+
+== Update 1
+
+První poznatek z instalace: Nejprve odinstalujte Web Application Project, zkrátíte si tím dobu instalace. A radši pozavírejte všechna okna ať neriskujete jejich zavírání po půl hodině a opětovné nekonečné čekání...

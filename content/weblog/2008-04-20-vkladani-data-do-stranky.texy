@@ -1,0 +1,54 @@
+---
+{:id 267,
+ :title "Vkládání data do stránky",
+ :description
+ "Mikroformáty jsou určeny pro snadnější získávání dat ze stránek, jak pro lidi, tak pro stroje. Jedním z problémů je jak, vkládat data a časy, aby byly pochopitelné pro lidi i snadno vyparsovatelné strojem. Poradit jak na to, si klade za cíl tento spot.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "microformats" "xhtml" "aspnet" "html" "ISO8601"},
+ :published "2008-04-20T12:00:15.293"}
+---
+
+[microformats] jsou určeny pro snadnější získávání dat ze stránek, jak pro lidi, tak pro stroje. Jedním z problémů je, jak vkládat data a časy, aby byly pochopitelné pro lidi i snadno vyparsovatelné strojem.
+
+Způsobů zápisu data a času existuje nespočet. Snad každý stát/jazyk definuje jiná pravidla pro jejich zápis. Ruku na srdce, kdo z nás přesně ví, jak správně zapisovat datum a čas v naší mateřštině? Případ od případu se může lišit a i správných způsobů je hned několik. Pro přenos časové informace existují standardní formáty, ale ty jsou pro lidi mnohem méně srozumitelné. Jak skloubit snadnou čitelnost pro lidi i stroje?
+
+Mikroformáty na scénu
+=====================
+
+Kupodivu mnoho mikroformátů obsahuje i definici pro některý časový údaj. Naštěstí, každý to neřeší jinou cestou, ale používá se "návrhový vzor pro zápis data a času":[date-pattern]. V tomto vzoru se používá tag `abbr`, který uzavírá "lidskou interpretaci" data a času, a v atributu `title` jeho strojovou podobu dle [ISO8601]. Navíc se ještě využívá "návrhového vzoru třída":[class-pattern] pro definování, co datum právě vyjadřuje.
+
+Datum publikace článku můžeme zapsat následujícím způsobem:
+
+/--code xml
+Publikováno
+<abbr class="published"
+  title="2008-04-20T10:00:00Z">
+  20. dubna 2008 ve 12.00
+</abbr>.
+\--code
+
+V ukázce si můžete všimnout, že čas se v atributu `title` neshoduje s „lidskou“ podobou. Je to dáno tím, že jde o vyjádření tzv. univerzálního času UTC. Ekvivalentně lze zapsat jako středoevropský letní čas `2008-04-20T12:00:00+02:00`.
+
+Výpis v dotnetu
+===============
+
+V ASP.NET se dají pro správný výpis použít dvě metody třídy `System.DateTime`. Tou první je metoda `ToUniversalTime()`, která čas převede na UTC, a tou druhou je `ToString("s")`, která vytvoří textovou podobu tzv. seřaditelného času. Nezapomeňte však přidat písmeno Z, vyjadřující UTC.
+
+/--code xml
+<abbr class="published"
+  title="<%= item.DatePublished.ToUniversalTime().ToString("s") %>Z">
+  <%= item.DatePublished.ToString("f")%>
+</abbr>
+\--code
+
+Bohužel, žádný ze standardních formátů přesně neodpovídá tomu, který potřebujeme. Ale je tu možnost použít vlastní formát pro univerzální vyjádření času `yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'` nebo `yyyy'-'MM'-'dd'T'HH':'mm':'sszz` pro `System.DateTimeOffset`.
+
+Tagy: [tag-microformats], [tag-aspnet]
+
+[tag-microformats]: http://technorati.com/tag/microformats microformats .{rel:tag}
+[tag-aspnet]: http://technorati.com/tag/asp.net asp.net .{rel:tag}
+
+[microformats]: http://microformats.org/ Mikroformáty
+[date-pattern]: http://microformats.org/wiki/datetime-design-pattern
+[class-pattern]: http://microformats.org/wiki/class-design-pattern
+[ISO8601]: http://www.w3.org/TR/NOTE-datetime ISO 8601

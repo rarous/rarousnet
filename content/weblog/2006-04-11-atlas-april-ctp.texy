@@ -1,0 +1,12 @@
+---
+{:id 131,
+ :title "Atlas April CTP",
+ :description "Nová verze Atlasu.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-04-11T07:33:35.627"}
+---
+
+Dnes v noci vyšla nová verze Atlasu, stahovat můžete na "domovských stránkách":[Atlas]. Dubnová verze přináší především opravu chyb březnové a přináší trochu nové funkčnosti.
+
+[Atlas]: http://atlas.asp.net

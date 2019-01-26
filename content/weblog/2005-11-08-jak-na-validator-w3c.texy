@@ -1,0 +1,40 @@
+---
+{:id 78,
+ :title "Jak na validátor W3C",
+ :description
+ "Návod jak projít validací W3C Validatoru s&#160;ASP.NET 2.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2005-11-08T14:07:00"}
+---
+
+ASP.NET 2.0 ve finální verzi produkuje kód podle XHTML((Extensible Hypertext Markup Language)) 1.0 Transitional, takže by měl validátorem bez problémů projít - teda pokud neděláte v kódu prasárny. Já osobně preferuji Strict mode, takže od dob beta2 jedou tyhle stránky s doctypem XHTML 1.1, jenže generovaný kód už nedosahuje požadované kvality :) Naštěstí programátoři nezahodili striktní režim, ale pouze ho schovali za přepínač ve web.configu. Takže stačí přidat řádek `<xhtmlConformance mode="Strict" />` do sekce `<system.web>` a rázem bude výstup zase striktní! Ale pozor, nezapomínejme na adaptivní rendering ASP.NET, který je dobrým sluhou, ale i zlým pánem.
+
+Striktní výstup dostanou pouze prohlížeče, které mu rozumí (tohle moc nechápu, ale budiž). Pokud dáte validovat takovou stránku W3C Validátoru, tak nepochodíte. Vyskočej na vás přinejmenším tři chyby (atribut name a formu a dva inputy, které nejsou v blokovém elementu), je to způsobeno tím, že ASP.NET nezná user-agenta validátoru. Náprava je naštěstí jednoduchá, stačí si napsat vlastní **browser definition file** a uložit jej do adresáře *App_Browsers*. No a protože nerad dělám něco, co už někdo udělal, našel jsem "W3CValidator.browser":http://idunno.org/misc/w3cvalidator.browser na stránkách http://idunno.org za což jim velice děkuji. Teď už je zase výstup, jak má být, projde validací, a nepotřebuju k tomu ani žádné "OutputFiltry":http://www.aspnetresources.com/articles/HttpFilters.aspx :)
+
+== Update
+Dneska jsem zjistil, že zdrojové stránky asi nefungují, proto tady uvádím zdrojový kód W3CValidator.browser:
+
+/--- code xml
+<browsers>
+    <browser id="W3CValidator" parentID="Mozilla">
+        <identification>
+            <userAgent match="W3C_Validator" />
+        </identification>
+
+        <capabilities>
+            <capability name="tagwriter" value="System.Web.UI.HtmlTextWriter" />
+          <capability name="ecmascriptversion" value="1.5" />
+          <capability name="w3cdomversion" value="1.0" />
+          <capability name="css1" value="true" />
+          <capability name="css2" value="true" />
+        </capabilities>
+      </browser>
+
+    <browser refID="Mozilla">
+        <capabilities>
+            <capability name="xml" value="true" />
+        </capabilities>
+    </browser>
+</browsers>
+\---

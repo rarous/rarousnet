@@ -1,0 +1,54 @@
+---
+{:id 299,
+ :title "Stáhněte si Texy.net a NForms přes SVN",
+ :description
+ "Na Codeplexu zprovoznili serverovo variantu SVN bridge. Nyní si můžete stáhnout Texy.net, NForms nebo třeba ASP.NET MVC pohodlně přes SVN nástroje.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"snv" "opensource" "texynet" "aspnet" "codeplex" "nforms"
+   "asp.net 2.0" "vcs"},
+ :published "2008-09-13T16:02:58.277"}
+---
+
+Projekty, které se rozhodnu vypustit ven, většinou hostuju na CodePlexu:[codeplex]. Jeho UI mi přijde mnohem rychlejší než konkurenční [sourceforge] a přehlednější než [google-code]. Nevadí mi, že za tímto hostingem stojí velký zlý Microsoft, naopak to vítám. Tento projekt byl jedním z prvních krůčků na podporu OpenSource ze strany Microsoftu a navíc je místem, kde samotný Microsoft uveřejňuje spoustu zajímavých projektů. Například "budoucí části ASP.NET":[codeplex-aspnet].
+
+Ale zpět k tématu. Tento hosting je postaven na "Team Foundation Serveru":[tfs] (TFS), který je centrem pro týmovou práci, verzovacím systémem a v neposlední řadě i systémem pro vedení požadavků a úkolů. Tím se odlišuje od konkurence, která většinou používá tradiční SVN, což je po léta de-facto standard pro verzování OpenSource projektů. Komunita dlouho volala po tom, že chtějí SVN i CodePlexu. V MS nakonec udělali kompromis.
+
+SVN Bridge
+==========
+
+[svnbridge] byl první krok. Je to taková malá utilitka, kterou si spustíte na vašem počítači a ona překládá vaše SVN požadavky do řeči, které rozumí TFS. Můžete s ní pak používat oblíbené nástroje jako [tortoisesvn] nebo [visualsvn]. Ale pořád je tu nutnost donahrát si utilitu a ani URL repository  ve tvaru `http://localhost:8081/<tfs.server.name>/<projectname>` nejsou nějak úchvatná.
+
+Tento měsíc však došlo k zásadní změně. Na Codeplexu byl nasazen serverový SVN bridge, takže už nemusím pouštět lokální verzi, ale rovnou můžu pro snadný přístup přes SVN nástroje používat adresy následující:
+
+1. pro [nforms] `https://nforms.svn.codeplex.com/svn`
+2. pro [texynet] `https://texynet.svn.codeplex.com/svn`
+
+No a vy také ;)
+
+/--div .[#related hslice]
+Související .[entry-title]
+========
+.[entry-content]
+* [harman]
+* [clanek(209)]
+* [clanek(225)]
+* [clanek(291)]
+* [codeplex-blog]
+\--div
+
+[codeplex]: http://www.codeplex.com/ Codeplex
+[sourceforge]: http://www.sourceforge.net/ SourceForge
+[google-code]: http://code.google.com/ Google Code
+[codeplex-aspnet]: http://www.codeplex.com/aspnet ASP.NET na Codeplexu
+[svnbridge]: http://www.codeplex.com/SvnBridge SVN Bridge
+[tortoisesvn]: http://tortoisesvn.tigris.org/ TortoiseSVN
+[visualsvn]: http://www.visualsvn.com/ VisualSVN
+[tfs]: http://msdn.microsoft.com/en-us/tfs2008/default.aspx  Team Foundation Server
+[nforms]: http://www.codeplex.com/nforms NForms
+[texynet]: http://www.codeplex.com/texynet Texy.net
+[clanek(291)]: /weblog/291-nforms-na-codeplexu.aspx NForms na Codeplexu .{rel:bookmark}
+[clanek(209)]: /weblog/209-texy-net-na-codeplexu.aspx Texy.net na Codeplexu .{rel:bookmark}
+[clanek(225)]: /weblog/225-budoucnost-texy-net.aspx Budoucnost Texy.net .{rel:bookmark}
+[harman]: https://svnbridge.svn.codeplex.com/svn Subversion Support Comes to CodePlex… Sorta’
+[codeplex-blog]: http://blogs.msdn.com/codeplex/archive/2008/09/14/codeplex-launches-support-for-tortoisesvn.aspx CodePlex launches support for TortoiseSVN

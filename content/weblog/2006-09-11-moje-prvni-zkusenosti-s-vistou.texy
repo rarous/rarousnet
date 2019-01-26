@@ -1,0 +1,27 @@
+---
+{:id 179,
+ :title "Moje první zkušenosti s Vistou",
+ :description
+ "Konečně jsem se dostal k dlouho očekávanému vyzkoušení Windows Vista a jsem kupodivu spokojen :) ",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak" "vista" "windows"},
+ :published "2006-09-11T10:05:50.207"}
+---
+
+Konečně jsem se dostal k dlouho očekávanému vyzkoušení Windows Vista a jsem kupodivu spokojen :)
+
+Předběžné ohlasy z betafáze byli většinou  se smíšenými pocity. Přesto jsem si zaregistroval jedno licenční číslo k Beta 2 a chystal se jí instalovat na nový komp, ale do VirtualPC se mi instalace nezdařila, tak jsem od toho na nějaký čas upustil. Když se teď začaly na blozích oběvovat celkem kladné ohlasy na první Release Candidate verzi, začal jsem o Vistě znovu uvažovat, nakonec mě přesvědčili screenshoty od ScottaGu, kde mu běželo ve Vistách Visual Studio :) V tom nenasytném systému? No, šak víme.
+
+V práci jsem si tedy stáhl image Vista RC1, rozdělil disk na dvě partition (dualboot se po ředchozích zkušenostech zdál přece jen schůdnější variantou), a vložil instalační DVD do mechaniky. Autorun mi nabídl možnost otestovat kompatibilitu s novým systémem. Pár věcí vypadalo, že asi ve Vistách po upgradu nepůjde, ale upgrade jsem stejně v úmyslu neměl :) Restartoval jsem počítač, v bootmenu jsem vybral DVD mechaniku a... nic. „Že by ta image nebyla bootovatelná? To snad ne!“ Vyndal jsem DVD oprášil ho (ikdyž bylo čerstvě vypálený) a zkusil to znovu. Instalátor se už tentokrát chytl.
+
+Instalace se vás nazačátku zeptá na to jaké chcete používat prostředí, vybral jsem si české (pozor neplést s češtinou ;)), nastavil si svoji oblíbenou Czech (QWERTY) klávesnici. Pak jsem zadal svoje beta licenční číslo, vybral cílovou partition a jelo to. Docela svižně, akorát deformace obrazu na mém wide screenu byla trochu nepříjemná. :) Po zkopírování systémových souborů do počítače došlo k restartu a k dokončení instalace. Založení uživatelského účtu už bylo ve správně rozpoznaném rozlišení a dostal jsem na výběr i pěknou sadu pozadí pro wide screeny :) Pěkně, na detaily je dbáno už od začátku.
+
+Po přihlášení na mě čekalo Aero a Startup Manager, efekty běhaly plynule. Windows Experience Index 2,0. Není to moc (stahuje to dolu nVidia Grafika) :D Zapnul jsem WiFi kartu, u hodin se zobrazil ukazatel signálu jako na mobilu a zachvilku i bublia hlásící nalezené sítě. Pohoda, zatim jsem nepotřeboval instalovat jedinej ovladač a všechno funguje bez sebemenších problémů. Spustil jsem si Task Manager, zjišťuje něco kolem 470 MiB zabrané paměti systémem. Pro někoho je to hodně, ale s trochou matematické analýzy zjistíte, že jde o nepatrně vyšší číslo něž u Windows XP s nainstalovaným Windows Desktop Search, Windows Defenderem a s ovladačemi pro nejrůznější zařízení, která skrývá můj notebook ve svých útrobách.
+
+Každého programátora zajímá jestli jdou ty barvičky (Aero) vypnout. Ano jdou. To je ale asi očekávaná odpověď vždyť tu mám ještě Vista Basic režim. Docela rozšířeným mýtem je, že Vista Basic je nejvíce easy režim, kterej jde ve Vistě zapnout. Dobrá zpráva pro ortodoxní šediváky je, že režimy Windows Classic a Windows Standars známé z WinXP, zůstaly. No ale stejně jsem si zase vrátil Aero...
+
+První věc, kterou jsem doinstaloval, byla betaverze 2007 Microsoft Office System, jak jinak. Krásná grafitová barva se nastavila ve Vistě automaticky, což mi ulehčilo prácí s přenastavováním z azurové příšerky :) Takže Office je bez problémů.  Další věcí, která mě zajímala, bylo jak se Vista popere s Visual Studiem.  Musím říct, že bez problémů, dokonce mi subjektivně přišlo, že Studio běhá rychleji :D
+
+Tak to jsou mé první dojmy z Visty. V testování a přípravě na přechod budu určitě pokračovat a snad si i najdu chvilku na napsání pár řádků o zkušenostech s IIS7 a dalších vývojářských novinkách ve Vistě.
+
+Test proběhl na stroji Dell Latitude D620, Intel Core Duo T2300, 1 GiB RAM, nVidia Quadro NVS 110M 256 MiB.

@@ -1,0 +1,16 @@
+---
+{:id 186,
+ :title "Vyhledávač ve zdrojích o dotnetu",
+ :description
+ "Vyhledávejte ve zdrojích o dotnetu pomocí perzonalizovaného vyhledávání Googlu.",
+ :author "Aleš Roubíček",
+ :tags #{"google" "dotnet" "asp.net 2.0" "search"},
+ :published "2006-10-26T13:31:18.580"}
+---
+
+Možná už víte o možnosti postavit si vlastní vyhledávač postavený na Googlu. Tuto možnost nabízí Google v rámci projektu [coop]. Díky rychlé reakci dotnet komunity máme nyní možnost vyhledávat potřebné informace na speciálím [dotnetSearch] enginu a navíc si ho můžete integrovat:[integrate] do vašeho oblíbeného prohlížeče...
+
+
+[coop]: http://www.google.com/coop/ Google Co-op
+[integrate]: javascript:window.external.AddSearchProvider('http://static.dotnetkicks.com/tools/search/dotnetsearch.xml')
+[dotnetSearch]: http://www.google.com/coop/cse?cx=014414512506709758688%3Alw8tquo75fu .net Search

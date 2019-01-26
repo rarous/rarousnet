@@ -1,0 +1,14 @@
+---
+{:id 335,
+ :title "Lehký facelift",
+ :description "Dnes jsem trochu faceliftoval tyhle strány.",
+ :author "Aleš Roubíček",
+ :tags #{"design" "css" "moje práce"},
+ :published "2008-12-07T17:04:54.673"}
+---
+
+Dnes jsem zapracoval něktreté drobné změny designu, které jsem už delší dobu připravoval. Hlavním cílem změny byla patička webu, protože na ní jsem se při původním návrhu moc nesoustředil.
+
+Nyní by měla být trochu uspořádanější. Styl jsem tak trochu opajcnul ze slajdů PDC 2008. Homepage taky doznala lehké přeurovnání do mřížky. Další změnou jsou fonty. V boxu s agregací blogu, by měl být styl více podobný tomu, co je na blogu. Trochu se změnil i hledací formulář, který teď kopíruje aktuální styl Live Search, který je pro zdejší hledání použit.
+
+Změny to jsou jen kosmetické, ale i tak zabraly dost času. Každopádně to není ještě vše. Na blogu brzo přibude patičkový box pro agregaci. Další EVO by pak měla mít jeden stylopis pro celý web. Že by dárek k pátým narozeninám?

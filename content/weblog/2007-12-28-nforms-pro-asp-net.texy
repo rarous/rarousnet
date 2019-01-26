@@ -1,0 +1,141 @@
+---
+{:id 245,
+ :title "NForms pro ASP.NET",
+ :description
+ "Do vydání kompletního frameworku Nette je ještě asi daleko, ale to nevadí. My na ASP.NET bychom z něj stejně žádný užitek neměli. Tedy vlastně, proč by ne?",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "nforms" "asp.net 2.0"},
+ :published "2007-12-28T18:15:57.157"}
+---
+
+Do vydání kompletního frameworku Nette je ještě asi daleko, ale to nevadí. My na ASP.NET bychom z něj stejně žádný užitek neměli. Tedy vlastně, proč by ne?
+
+Vždyť Nette:[nette] je protkáno spoustou skvělých nápadů. A když jde o skvělé nápady proč je nezhmotnit že? :) Ukradl jsem Davidovo mentální bohatství a jal se implementovat NForms v C#. Jako inspirace mi sloužila skvělá "přednáška o Nette frameworku":[prednaska]. Zatím jsem ve fázi (po dvou dnech koukání na přednášku a přerušovaného psaní), kdy se formuláře hezky generují. To je tak čtvrtina úspěšné cesty, doufám.
+
+Nahlížíme pod pokličku
+======================
+
+Základem je něco, jako NHtml, třída `HtmlElement`, která se stará o generování kódu. Syntaxe částečně vychází z NHtml, ale vzhledem k rozdílnosti jazyků, jsem některé věci musel řešit odlišně. V podstatě jsem zde narážel na limity C# jako staticky typovaného jazyka.
+
+/--code csharp
+var input = new HtmlElement(
+  "input",
+  new { Name = "name", Id = "nameInput", Type = InputType.Text },
+  HtmlElement.SelfClosing
+);
+\--code
+
+V ukázce je vytvoření elementu `input` včetně některých atributů. Atributy se předávají pomocí vlastností anonymní třídy. Vygenerovaný kód vypadá následovně:
+
+/--code xml
+<input name="name" id="nameInput" type="Text" />
+\--code
+
+Další vlastnosti lze nastavovat přes indexer následujícím způsobem:
+
+/--code csharp
+input["MaxLength"] = 25;
+\--code
+
+Dále pak má metody pro přidávání potomků, nastavování textu nebo HTML, přidávání/odebírání CSS třídy a samotné renderování.
+
+Na tomto základě pak vyrůstá formulářová nadstavba. Snažil jsem se co nejvíce přiblížit API PHPčkovému vzoru, ale práce je v tomto směru velice těžká. Zlatej Microsoft a OpenXML ;) Vzorem je pár zachycených řádků na přednášce (David pekelně rychle mačká PgDown/PgUp) a vlastní fantazie ohledně zbytku.
+
+No prozatím jsem se dostal do následujícího stavu. Následná akce řadiče:
+
+/--code csharp
+[ControllerAction]
+public void Index() {
+  var genres = new ListItem[] {
+    new ListItem { Text = "muž", Value = 1 },
+    new ListItem { Text = "žena", Value = 2 }
+  };
+
+  Form form = new Form();
+  form.AddText("name", "Jméno:", 20, 50);
+  form.AddText("email", "E-mail", 20, 255);
+  form.AddHidden("skryte").SetValue("nějaká hodnota - skrytá");
+  form.AddRadio("pohlavi", "Pohlaví:", genres);
+  form.AddButton("submit", "Odeslat");
+  Form = form;
+  RenderView("Index");
+}
+\--code
+
+ve spojení se šablonou v pohledu:
+
+/--code xml
+<form method="post" action="">
+<div style="display:none"><%=Form["skryte"].Control %></div>
+<fieldset>
+  <legend>Osobní údaje</legend>
+<table>
+<tr>
+  <td><%=Form["name"].Label %></td>
+  <td><%=Form["name"].Control %></td>
+</tr>
+<tr>
+  <td><%=Form["email"].Label %></td>
+  <td><%=Form["email"].Control %></td>
+</tr>
+<tr>
+  <td><%=Form["pohlavi"].Label %></td>
+  <td><%=Form["pohlavi"].Control %></td>
+</tr>
+<tr>
+  <td></td>
+  <td><%=Form["submit"].Control %></td>
+</tr>
+</table>
+</fieldset>
+</form>
+\--code
+
+Vygeneruje následující kód:
+
+
+/--code xml
+<form method="post" action="">
+<div style="display:none">
+<input name="skryte" type="Hidden" value="nějaká hodnota - skrytá" />
+</div>
+<fieldset>
+  <legend>Osobní údaje</legend>
+<table>
+<tr>
+  <td><label for="name">Jméno:</label></td>
+  <td><input name="name" id="name" type="Text" size="20" maxlength="50" /></td>
+</tr>
+<tr>
+  <td><label for="email">E-mail</label></td>
+  <td><input name="email" id="email" type="Text" size="20" maxlength="255" /></td>
+</tr>
+<tr>
+  <td><label>Pohlaví:</label></td>
+  <td>
+    <input name="pohlavi" id="pohlavi0" type="Radio" value="1" />
+    <label for="pohlavi0">muž</label><br />
+    <input name="pohlavi" id="pohlavi1" type="Radio" value="2" />
+    <label for="pohlavi1">žena</label><br />
+  </td>
+</tr>
+<tr>
+  <td></td>
+  <td><input name="submit" type="Button" value="Odeslat" /></td>
+</tr>
+</table>
+</fieldset>
+</form>
+\--code
+
+A to je zatím vše. A proč to vlastně dělám a nepokračuju v "seriálu o Gryphoonu":[clanek(242)]? Inu, vlastně pokračuju, pokračuju...
+
+Tagy: [tag-gryphoon], [tag-nforms], [tag-aspnetmvc]
+
+[tag-gryphoon]: http://technorati.com/tag/gryphoon Gryphoon .{rel:tag}
+[tag-nforms]: http://technorati.com/tag/nforms NForms .{rel:tag}
+[tag-aspnetmvc]: http://technorati.com/tag/aspnetmvc aspnetmvc .{rel:tag}
+
+[prednaska]: http://www.avc-cvut.cz/avc.php?id=5258
+[nette]: http://nettephp.com
+[clanek(242)]: /weblog/242-redakcni-system-na-asp-net-mvc.aspx

@@ -1,0 +1,93 @@
+---
+{:id 287,
+ :title "Připravte se na výřezy",
+ :description
+ "Včera jsme se podívali na mikroformáty v Texy! Dnes si představíme novinku, kterou přináší Internet Explorer ve verzi 8. Tou novinkou jsou WebSlices – webové výřezy.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "microformats" "webslices" "ie8" "texy"},
+ :published "2008-06-25T15:00:46.097"}
+---
+
+Včera jsme se podívali na mikroformáty v Texy! Dnes si představíme novinku, kterou přináší Internet Explorer ve verzi 8. Tou novinkou jsou WebSlices – webové výřezy.
+
+==Praktické využítí
+
+Výřezy umožňují, aby uživatel mohl sledovat změny části webové stránky. Podobně jako u [rss] nebo [atom] jde o syndikaci obsahu malé části webové stránky. Prakticky to může vypadat třeba následovně.
+
+U svých článků často přidávám odkazy na související články. Jenže je všechny nezadám při publikaci článku, ale spíš postupně přidávám a třeba když narazím na nějaký pěkný článek k tématu, tak ho přidám. Jenže to už spousta lidí má dočteno a třeba se už nevrátí, nedozví se, že přibyly zajímavé odkazy na dané téma. S WebSlice:[webslice], můžu označit tento kousek článku k odběru a pokud má čitatel zájem, přidá si ho. Potom když přidám nějaký zajímavý odkaz, čtenář o tom bude vědět.
+
+Jiný příklad, který mě napadá. Stránky nějakého hudebního festivalu obsahují informace o ceně a množství volných vstupenek. Tyto informace se v čase mění – čím je fesťák blíž, tím cena roste a počet vstupenek klesá. Na takovou informaci je celkem zbytečné vytvářet RSS feed. Stačí ji prostě označit jako výřez. Já třeba ještě nejsem rozhodnutý, jestli půjdu, nebo chci vědět, kolik aktuálně vstupenka stojí a kolik jich zbývá, aby se mnou mohli jít i kamarádi. Tak se přihlásím k odběru takové informace.
+
+Uplatnění vidím i jinde.
+
+==Technické zpracování
+
+Výřezy jsou části stránky označené třídou `hslice` a **nějakým id** a obsahující elementy s třídou `entry-title` a `entry-content` z mikroformátu hAtom:[hatom]. Živý příklad ze "včerejšího článku":[clanek(286)] je lepší než tisíc slov:
+
+/--code texy
+  /--div .[#related hslice]
+== Související .[entry-title]
+.[entry-content]
+* [clanek(282)]
+* [clanek(267)]
+* [clanek(256)]
+* [microformats-cz]
+  \--div
+\--code
+
+Když uživatel najede nad tento kus článku, objeví se tlačítko pro subskripci:
+
+[*/data/obrazky/webslice.png .(zvýrazněný výřez stránky)*] .[image]
+
+Po jeho odsouhlasení se stránka přidá do oblíbených a do feedů. Po rozkliknutí se objeví náhledové okno s aktuálním výřezem:
+
+[*/data/obrazky/webslice2.png .(náhled výřezu stránky)*] .[image]
+
+==Další možnosti
+
+U výřezů funguje automatické nalezení podobně jako u RSS a Atom feedů, vlastně jsou ve stejné nabídce, ale jsou odlišeny fialovou ikonkou výřezu. Automaticky se vybere první nalezený výřez. Pokud ale chcete nabídnout k přihlášení jako první jiný výřez, lze to ovlivnit vložením `meta` tagu do hlavičky:
+
+/--code xml
+<link rel="default-slice" type="application/x-hatom" href="#related" />
+\--code
+
+Mění se pouze obsah atributu `href` v němž je cesta k výřezu. Jak jsem již říkal, ten musí být označen atributem `id` tudíž je přes jeho hodnotu odkazovatelný.
+
+Dále je možné omezit platnost výřezu pomocí date-patternu:[clanek(267)] s třídou `endtime` nebo periodu aktualizace za pomocí třídy `ttl`:
+
+/--code xml
+<p>Úryvek se aktualizuje jednou za <span class="ttl">60</span> minut.</p>
+\--code
+
+Lze i definovat vzhled výřezu a pracovat s nimi na úrovni JS API, ale to už je mimo rámec tohoto článku.
+
+==Formát hAtom
+
+Jak jsem již psal výše, výřezy jsou z části postavené na mikroformátu hAtom:[hatom]. Ten slouží k definování něčeho jako Atom feed ve stránce. Dají se jím celkem trefně popsat blogové zápisky, protože obsahuje téměř všechny třídy, které se můžou k popisu blogového zápisku hodit. Proto když budete dělat novou šablonu pro svůj blog, zkuste se u tohoto mikroformátu inspirovat.
+
+/--div .[#related hslice]
+==Související .[entry-title]
+.[entry-content]
+* [clanek(286)]
+* [clanek(267)]
+* [mraveniste]
+* [met]
+* [webslice]
+* [webslice2]
+* [hatom]
+\--div
+Tagy: [tag microformats], [tag webslice], [tag ie8]
+
+[tag microformats]: http://technorati.com/tag/microformats Microformats .{rel:tag}
+[tag webslice]: http://technorati.com/tag/webslice WebSlice .{rel:tag}
+[tag ie8]: http://technorati.com/tag/ie8 IE8 .{rel:tag}
+
+[rss]: http://cyber.law.harvard.edu/rss/rss.html RSS((Really Simple Sindycation))
+[Atom]: http://tools.ietf.org/html/rfc4287 Atom
+[webslice]: http://msdn.microsoft.com/en-us/library/cc304073(VS.85).aspx Specifikace WebSlice na MSDN
+[webslice2]: http://msdn.microsoft.com/en-us/library/cc196992(VS.85).aspx Další informace o WebSlice na MSDN
+[hatom]: http://microformats.org/wiki/hatom Mikroformát hAtom
+[mraveniste]: http://www1.mraveniste.org/weblog/2005/03/09-kotvy.html Jan Bien: Namísto kotvy úryvek .{rel:bookmark}
+[met]: http://met.blog.root.cz/2008/06/25/bbc-nasadilo-a-opet-odstranilo-mikroformaty/ Martin Hassman: BBC nasadilo a opět odstranilo mikroformáty
+[clanek(286)]: /weblog/286-zapisujeme-mikroformaty-pomoci-texy.aspx Zapisujeme mikroformáty pomocí Texy! .{rel:bookmark}
+[clanek(267)]: /weblog/267-vkladani-data-do-stranky.aspx Vkládání data do stránky

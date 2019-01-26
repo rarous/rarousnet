@@ -1,0 +1,11 @@
+---
+{:id 89,
+ :title "CSS šablony pro vaše projekty",
+ :description
+ "Microsoft publikoval několik CSS layoutů k volnému použití.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2005-12-05T09:08:48.110"}
+---
+
+Na "MSDN((Microsoft Developer Network))":[http://www.msdn.com] najdete "několik CSS šablon":http://msdn.microsoft.com/asp.net/reference/design/templates/default.aspx k volnému použití ve vašich ASP.NET projektech. Tyto balíčky jsou zejména vhodné pro začátečníky, kteří ještě neumí udělat design v CSS sami. 

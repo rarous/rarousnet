@@ -1,0 +1,19 @@
+---
+{:id 180,
+ :title "Personalizace RSS exportu z Weblogy.cz",
+ :description
+ "Nedokumentované přepínače pro RSS export oblíbené agregační služby.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "weblogy" "rss"},
+ :published "2006-09-14T13:21:44.800"}
+---
+
+V článku "Dobrý web je naším vzorem":[http://www.dgx.cz/trine/item/dobry-web-je-nasim-nedostiznym-vzorem] na La Trine došlo i na téma "Weblogy.cz":[http://www.weblogy.cz/] a personalizace. Někdo si posteskl, že se na této službě vyskytují články, o které nemá zájem, a že by některé zdroje neměly být v této službě agregovány.
+
+Pokud tedy nechcete články z některého ze zdrojů na Weblozích vidět, stačí si v "seznamu zdrojů":[http://www.weblogy.cz/zdroje/] nežádaný zdroj zablokovat pomocí volby blokovat, za jménem zdroje. Málo kdo však ví, že podobně jde personalizovat i RSS export z této služby.
+
+Konkrétně "DGX si posteskl":[http://www.dgx.cz/trine/item/dobry-web-je-nasim-nedostiznym-vzorem#comment-7646], že to nejde. No a dnešní článek je otom, že to jde. :) Jak na to?
+
+Například pokud se vám nelíbí články z mého blogu, přidejte si do adresy "RSS exportu Weblogů":[http://www.weblogy.cz/export/rss/] parametr `blacklist=146`. Kde 146 je id mého blogu. Toto id zjistíte právě v URL tlačítka blokovat. Takže výsledný export bez Rarouš Weblogu bude mít URL: `http://www.weblogy.cz/export/rss/?blacklist=146`. Parametr blacklist přijímá kolekci idček oddělených čárkou, takže tímto způsobem můžete zakázat více zdrojů.
+
+A to je vše.

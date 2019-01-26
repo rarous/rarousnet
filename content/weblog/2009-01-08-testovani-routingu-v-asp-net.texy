@@ -1,0 +1,44 @@
+---
+{:id 342,
+ :title "Testování routingu v ASP.NET",
+ :description
+ "Nejspíš poslední zastávka u routingu v ASP.NET bude o tom, jak jednoduše testovat pravidla v routovací tabulce.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "mvc" "routing"},
+ :published "2009-01-08T10:09:13.973"}
+---
+
+Nejspíš poslední zastávka u routingu v ASP.NET bude o tom, jak jednoduše testovat pravidla v routovací tabulce.
+
+Pokud váš projekt doroste do rozměrů, kdy máte spoustu routovacích pravidel a pomalu se v nich začínáte ztrácet, nebo se vybírá jiné pravidlo než byste si představovali, nebo jen chcete zjistit, jak to vlastně funguje, hodil by se nástroj, kterým by se to dalo snadno zvládnout. A takový existuje! Pojďme se na něj podívat.
+
+Routing debugger
+================
+
+Ten nástroj se jmenuje [debugger] a jeho autorem je samotný [haacked] product manager ASP.NET MVC, Routingu a integrace DLR do ASP.NET.
+
+Jeho užití je poměrně velice jednoduché. Nejprve je nutné si debbuger [download], rozbalit a přidat do projektu referenci na rozbalenou knihovnu. Pak už jen stačí do `Global.asax` přidat následující řádek (za registraci routovacích pravidel):
+
+/--code csharp
+protected void Application_Start() {
+  RegisterRoutes(RouteTable.Routes);
+  RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes);
+}
+\--code
+
+Odteď bude všechny požadavky požírat debbuger routingu. Když si projekt spustíme, uvidíme pěknou tabulku, kde jsou vypsaná jednotlivá pravidla, včetně příznaku, která jsou zrovna vhodná pro aktuální URL. Ano, vhodných pravidel může být povícero, ale vždy se vybere jen ta, která je **první v pořadí**. Dále pak jsou vidět hodnoty, které jsou z aktuální adresy získány, přednastavené výchozí hodnoty a zpřesňující pravidla.
+
+Snad se bude hodit :)
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [debugger]
+* [nette]
+\--div
+
+[haacked]: http://haacked.com/ Phil Haack
+[debugger]: http://haacked.com/archive/2008/03/13/url-routing-debugger.aspx ASP.NET Routing Debugger
+[download]: http://haacked.com/code/RouteDebug-Binary.zip stáhnout
+[nette]: http://phpfashion.com/testovani-routingu-v-nette-frameworku Testování routingu v Nette Frameworku

@@ -1,0 +1,59 @@
+---
+{:id 454,
+ :title "Legacy code writer - part 2",
+ :description "Druhá část povídánek o legacy kódu.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2013-06-02T11:27:45.663"}
+---
+
+Dostal jsi nový úkol, implementovat jednoduchou featuru do korporátního projektu. Jenže ten kód byl past vedle pasti.
+
+Produkoval jsi legacy kód, kvůli *Legacy code writerovi*.
+
+Nikdo nepíše legacy code od základu
+=======================
+
+Je dost možný, že vám "první díl":[http://rarous.net/weblog/453-legacy-code-writer-part-1.aspx] zněl trochu povědomně. Každý z nás se dost pravděpodobně v podobné situaci ocitl.
+
+Nyní, prosím, zkuste přehodnotit svou víru ve zlého *Legacy code writera*. Myslíte si, že opravdu existuje? Jste si jistí, že pokaždé když narazíte na legacy code, tak k němu existuje mystický můž, který to celé napsal od základu?
+
+Víte čemu věřím já? Že tento muž vůbec neexistuje, že je to jen velice příjemná a pohodlná zástěrka. Není tu žádná taková osoba, která by byla zodpovědná za celej ten bordel. Špatný programátor, Legacy code writer, je jen fiktivní postavou vytvořenou k tomu, aby nám pomohl obhájit naše malé, přetrvávající, hříchy.
+
+Došel jsem k názoru, že **psaní legacy code je distribuovanou aktivitou**. Každý z nás do tohoto vleklého procesu, třeba i nevědomky, přispívá.
+
+Zbytečně nezahazujte čas pátráním, kdo za to může, protože to **my všichni**. Každý z nás!
+
+Legacy code je jako prach
+================
+
+Pokud neuklízíte, neustále se usazuje a je jedno jestli se díváte nebo ne.
+
+Každý kus kódu, pokud je spravován více lidmi, tíhne k tomu stávat se špagetami nebo lasagněmi. Entropie má potřebu růst. Je to absolutně přirozený proces.
+
+Nevěříte?
+
+Zkuste se na to podívat z jiného úhlu pohledu: **Kód přirozeně netíhne k tomu být čím dál tím lepší pouhým přidáváním featur hordou programátorů.**
+
+Mně to zní jako jednoduchý přírodní zákon: **Živý kód tíhne k tomu, stávat se horším, dokud nedojde k záměrnému aplikování síly proti přirozené potřebě entropie růst.**
+
+Legacy code je to, co získáte, pokud nejste odhodlaný přísně aplikovat dobré zásady při správě kódu.
+
+Dvě špatná rozhodnutí se vzájemně nekompenzují. Komulují!
+======================================
+
+První verze byla pravděpodobně navržená dobře. Šlo to celkem snadno, před programátorem byl list nepopsaného papíru. :)
+
+> Každý dokáže navrhout dobrý kód na zelený louce a udržovat ho po dobu tří měsíců. Pouze profesionální vývojář to zvládne i po dobu následujících let.
+
+Nekritizujte prvního progrmátora, on možná odvedl velmi slušnou práci. Jenže jak na chvilku polevíte, začnou se objevovat první nepatrné částečky legacy kódu. Problém s částečkama legacy kódu je jako s korálama: mají potřebu se na sebe lepit až z nich nakonec vznikne nepropustná bariera pevná jako skála, se kterou už nepohnete.
+
+Zaveďte **dočasnou proměnnou** a vězte, že další programátor se bude cítit oprávněn na ní nalepit nějakou funkcionalitu. Udělejte **copy&paste** maličké pětiřádkové funkcionality a čekejte že vaše budoucí já v jedné z těch kopií změní dva řádky a připraví tak jeho nástupce, kteří se to pokusí refactorvat, o několik vlasů. Nejspíš to vzdají.
+
+**Vynechte unit test** a vězte, že další team si pomyslí:
+
+> Předchozí programátor si myslel, že pokrýt tuhle funkcionalitu testy je příliš nákladné. No, teď to určitě nebude o nic snažší. Takže se na to taky vyprdneme.
+
+A tady to začne chátrat. Taky se tomu taky říká "teorie rozbitého okna":[http://cs.wikipedia.org/wiki/Teorie_rozbit%C3%A9ho_okna]...
+
+

@@ -1,0 +1,15 @@
+---
+{:id 128,
+ :title "Zase klacky pod nohama",
+ :description
+ "Jak nám zákony mohou pomoci k větším penězům? Přidají nám práci na víc ;)",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2006-04-03T17:17:40.253"}
+---
+
+Možná jste si již všimli:[http://blog.filosof.biz/microsoft-active-x/], že díky skvělé patentové politice USA dojde k "znefunkčnění ActiveX prvků":[http://www.dgx.cz/trine/item/patent-co-polozi-pulku-webu] vkládaných do HTML stránek pomocí tagů `object` a `embed`. Tuto metodu má totiž patentovanou firma Eolas. Za dva měsíce bude nutné nejprve na takový prvek kliknout, aby se zobrazil. To je velice špatná zpráva pro servery, které se živí flashovou reklamou. První obětí je Microsoft, který zaplatil půl miliardy USD a musí předělat IE, tak aby splňovalo požadavky.
+
+Když už jsme u této problematiky. Konečně se někdo začne zabývat tímhle nesmyslem, kdy se do hypertextu vkládají aktivní objekty – kusy aplikací. Podle mě je to nešťastné řešení a mělo by se to řešit pomocí ECMAScriptu. Bohužel podpora ze strany prohlížečů je špatná. Nedávno jsem řešil, jak do stránky dynamicky vložit přehrávač zvuku (MediaPlayer) a ovládat ho pomocí skriptů. To jsem narazil. Mozilla v defaultu ActiveX nepodporuje a je potřeba nejprve nainstalovat ActiveX Plug-In, který je zdá se nestabilní a ne vždy funkční – alespoň v tomto případě se mine nepodařilo zprovoznit. Díky tomu nemáte šanci se dostat k vlastnostem a metodám takové prvku a ve stránce je zbytečný.
+
+Myslím, že je čas, aby se sešla rada pro výrobu webových prohlížečů, a vymysleli nějaký pořádný způsob, jak do stránek vkládat programové objekty pomocí JS a zároveň se ujednotily na nějakém způsoby zpřístupnění API takových objektů pro scriptování. Když žijeme v době, kdy se hlásí o slovo AJAX a nové webové aplikace si bez JS stejně neškrtnou, tak proč ne?

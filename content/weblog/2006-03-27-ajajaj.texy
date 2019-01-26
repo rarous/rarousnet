@@ -1,0 +1,13 @@
+---
+{:id 124,
+ :title "Ajajaj",
+ :description "O novinkách na mém webu.",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2006-03-27T17:36:53.897"}
+---
+
+Začal jsem si pohrávat s Atlasem:[http://atlas.asp.net/]. Mojí první aplikací je **Oblíbené čtení**, které možná najdete v pravém sloupci na titulní straně. Zatim je v *bataverzi* :) takže kdyby vám to nefungovalo, klidně mi to písněte (nejlépe na "MSN"((ales.roubicek@pbsoftware.cz)) nebo "ICQ"((226-449-424))). Taky jsel celý pravý sloupec redesignoval, aby vypadal víc jako aplikace než stream písmenek. V důsledku toho jsem předělal i výpis Archívu a Rubrik, ale zvolená technika (čistě CSS) asi neni ta nejvhodnější, asi to trochu rozšířím o nějakej script - ikdyž ty moc rád nemám, ale musim se někde začít učit i to :) - aby se to nechovalo tak divoce. Taky jsem si všimnul, že nějak přestaly funguvat články, takže to je teď bod č. 1, kterej musim pořešit.
+
+== Update 1
+Tak pořešeno - chyba byla v blbě nastaveným cachování. To jsem tupec. Taky jsem kvůli Atlasu změnil Content-type a Doctype, ve strictním XHTML prostě nefunguje :(

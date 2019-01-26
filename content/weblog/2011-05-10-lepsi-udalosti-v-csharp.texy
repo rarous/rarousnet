@@ -1,0 +1,77 @@
+---
+{:id 403,
+ :title "Lepší události v C#",
+ :description
+ "Každý, do přišel do styku s jazykem C#, jistě ví, jak se s události v něm pracuje. A taky jistě může potvrdit, že to není žádná slast. Pojďme se podívat, jak definovat události v C# o něco lépe.",
+ :author "Aleš Roubíček",
+ :tags #{"csharp" "asp.net 2.0" "rx"},
+ :published "2011-05-10T14:11:57.353"}
+---
+
+Když se "nedávno ptali Anderse Hejlsberga":[anders] na to, co by nejradši v C# změnil nebo udělal jinak, kdyby mohl, odpověděl, že by zrušil události. Přesněji, že by je spojil s konceptem vlastností. Na první pohled jsou totiž vlastnosti a události celkem podobné, ale na druhý zjistíte, že události mají poměrně složitou syntaxi a vyžadují psát ne moc pěkný kód.
+
+Dřív (C# 1.0) to asi o moc líp udělat nešlo, ale dnes tomuto přání můžeme plně vyhovět. Stačí události vystavovat jako vlastnosti typu `IObservable<T>`. Toto rozhraní je jednou z novinek BCL((Base Class Library)) .net 4.0 a hlavně reaktivních extenzí (Rx.net).
+
+Pokud píšete nový kód, zvažte užití `IObservable<T>` namísto událostí. Např. "F# má události takto řešené nativně":[fsharp].
+
+Ze starého na nový
+==================
+
+Vezměme si "ukázkovou deklaraci události v C#":[msdn]:
+
+Dříve jsme museli definovat vlastní typ delegáta události:
+
+/--code csharp
+public delegate void ChangedEventHandler(object sender, EventArgs e);
+\--code
+
+Pak vystavit událost tohoto typu:
+
+/--code csharp
+public event ChangedEventHandler Changed;
+\--code
+
+A nakonec někde v kódu událost odpálit:
+
+/--code csharp
+if (Changed != null)
+  Changed(this, e);
+\--code
+
+Nehledě na podivné přetížení operátoru pro zavěšení ovladače události:
+
+/--code csharp
+List.Changed += new ChangedEventHandler(ListChanged);
+\--code
+
+Nové verze jazyka a BCL nám přinesly mnohá usnadnění od `EventHandler<TEventArgs>`, přes automatického odvození typu delegáta až po lambda výrazy. To však nic nezměnilo na samotné koncepci událostí...
+
+A teď si to tedy přepišme na sjednocený model vlastností a událostí s užitím `IObservable<T>`:
+
+/--code csharp
+readonly Subject<Unit> changed = new Subject<Unit>();
+
+public IObservable<Unit> Changed {
+  get { return changed; }
+}
+\--code
+
+V kódu událost vyvoláme následovně:
+
+/--code csharp
+changed.OnNext(new Unit());
+\--code
+
+A ke zpracování události se přihlásíme takhle:
+
+/--code csharp
+List.Changed.Subscribe(ListChanged);
+\--code
+
+Krom čistšího kódu (všimněte si absence defenzivního kódu a přetěžování operátorů, které na první pohled nemusí být každému jasné, co dělá) máme i spoustu dalších výhod, které přináší reaktivní programování.
+
+PS. Třidy `Subject<T>` a `Unit` nejsou součástí BCL, ale zmiňovaných Rx.net. Do projektu si je přidáte pomocí **nuget** příkazu `Install-Package Rx-Main`.
+
+[msdn]: http://msdn.microsoft.com/en-us/library/aa645739(v=vs.71).aspx
+[fsharp]: http://msdn.microsoft.com/en-us/library/dd233189.aspx
+[anders]: http://channel9.msdn.com/Shows/Going+Deep/Anders-Hejlsberg-Questions-and-Answers

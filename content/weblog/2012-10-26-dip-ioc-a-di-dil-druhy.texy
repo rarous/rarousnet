@@ -1,0 +1,19 @@
+---
+{:id 432,
+ :title "DIP, IoC a DI - díl druhý",
+ :description
+ "V motivačním díle jsme se pustili do vytváření sprasené architektury, dle nejlepšího uvážení, držíce se chytrých pouček. Teď si ukážeme, co bylo špatně.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2012-10-26T14:47:16.777"}
+---
+
+"V minulém díle":[http://rarous.net/weblog/431-dip-ioc-a-di-dil-prvni.aspx] jsem si začal pohrávat s myšlenkou, že to, jak nedokážeme sdělovat to, co chceme říct, ovlivňuje schopnost chápat těch, kterým myšlenky směřujeme. Řešením je jistě dialog, ve kterém se snažíme dobrat k podstatě sdělení, ale v kódu a asi i na blogu dialog nějak pokulhává.
+
+Minule jsme se snažil naznačit, že i když se snažíme dodržovat domněle správné postupy a poučky, tak se stejně dostaneme do potíží. Čím to je? Vždyť nám to šlo tak hezky, proč to bylo špatně?
+
+Snažil jsem se také dokázat, že dependency injection nemá nic společnýho s DIP nebo IoC. Doufám, že vám v mnohých případech zatrnulo. Takže jsme ve stavu, kdy máme v aplikaci DI, ale po DIP nebo IoC ani památky. Teď se vrátím k poslednímu kroku, kde jsme zavedli závislost doménového modelu na datové vrstvě.
+
+Všimněte si, že vrstva, která by měla mít vyšší úroveň abstrakce si vytváří závislost na celkem konkrétní datové vrstvě. Když bychom aplikovali IoC, museli bychom změnit konstruktor našeho publikačního manažera na něco takového: `PublishingManager(IRepository<Article> repository)`. Tím jsme zavedli závislost na abstrakci (všimněte si, že nám nějak zmizely konkrétní dotazy z ArticleRepository), naše třída už nemá znalost, jaká implementace repository bude za běhu doručena. Ale stále jsme nezavedli DIP!
+
+Vždyť DIP je obecný princip. IoC je přeci vzor, podle kterého se DIP dosáhne a DI je jeho konkrétní implementací. Nebo to dost často někde čtu nebo slýchám. Jak to, že teda mám zavedenou DI, mám zavedený IoC, ale po DIP ani památky? Že by to všechno bylo jinak?

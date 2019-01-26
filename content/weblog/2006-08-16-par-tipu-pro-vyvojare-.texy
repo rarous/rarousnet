@@ -1,0 +1,21 @@
+---
+{:id 174,
+ :title "Pár tipů pro vývojáře.",
+ :description
+ "Několik novinek na poli Visual Studia a vývojových nástrojů za posledni dobu.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"vs2003" "sandcastle" "asp.net 2.0" "coderush" "vs" "refactor" "vcs"
+   "msbuild" "purecm"},
+ :published "2006-08-16T20:37:56.367"}
+---
+
+Microsoft vydal "service pack 1 pro Visual Studio 2003":[ http://www.microsoft.com/downloads/details.aspx?FamilyID=69d2219f-ce82-46a5-8aec-072bd4bb955e&DisplayLang=en] a do konce roku by snad mohl vyjít service pack i pro Visual Studio 2005.
+
+Sháníte source control? Ale nechce se vám složitě instalovat Subversion. Doporučuji PureCM:[http://www.purecm.com]. Instalace je velice jednoduchá a pokud vám budou stačit dvě současná připojení v jedné hodině, je i zcela zdarma. Ideální řešení pro jednotlivce i malé týmy. My ho v práci používáme už několik měsíců a i díky našemu feedbacku se produkt posunul o dost dopředu a odchytalo se i několik chyb. :)
+
+Znáte DXCore:[ http://www.devexpress.com/Downloads/NET/IDETools/DXCore/]? Ne? Škoda :) DXCore je framework integrující se do Visual Studia a poskytující API pro práci s kódem. Na DXCore jsou postaveny placené produkty CodeRush a Refactor!. Mě se docela zalíbil plug-in na "kotrolu dodržování konvencí":[http://joel.fjorden.se/static.php?page=CodeStyleEnforcer] pro psaní kódu. Další zajímavé pluginy se "dají najít":[http://del.icio.us/AndrewConnell/%22DXCore+Plugins%22] a nebo dopsat :)
+
+Už jste zkoušeli Sandcastle:[https://blogs.msdn.com/sandcastle/]? Jde o kompilátor dokumentace k dotnetovým assembly. Bohužel jeho použití není nejtriviálnější (zlatej nDoc). Naštěstí se našlo několik lidiček, kteří napsali shellové skripty, baťáky:[http://www.codeproject.com/useritems/SandcastleCreateBat.asp]  a podobně, ale i to se mi nelíbí  :) Nejelegantnějším řešením se mi zdá být MSBuild target a "Dokumentační projekt integrovaný přímo do Visual Studia":[http://blog.ljusberg.com/2006/08/sandcastle-visual-studio-project.html].
+
+Doufám, že aspoň něco zužitkujete ;)

@@ -1,0 +1,52 @@
+---
+{:id 453,
+ :title "Legacy code writer - part 1",
+ :description "Malý exkuz do produkce legacy kódu.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2013-06-01T18:50:30.303"}
+---
+
+Dostal jsi nový úkol. Zadání zní jasně:
+
+> Přidat jednoduchou featuru do korporátního projektu.
+
+ Sice o tom nic nevíš, ale požadavky zní rozumně a jednoduše. To přece zvládneš.
+
+Nebo si to aspoň myslíš. Dokud neotevřeš ty zpropadený zdrojáky.
+
+Nehoráznej bordel. Který prase tohle mohlo napsat? Na monitoru vidíš jen změť špaget a lasagní. Ach. Vypadá to, jako by někdo záměrně vytvořil sbírku všech známých anti-patternů.
+
+Vztek roste, pomalu začínáš nenávidět toho, kdo tohle zvěrstvo způsobil. Tahle hromada sraček ti nedovoluje pracovat tak, jak ti tvé svědomí káže a jak bys opravdu chtěl. Chceš přece dělat dobrý řemeslo, držet se oblíbených vzorů. Sám sobě jsi slíbil, že budeš psát kód s vysokou kohezí, volnými vazbami a ty sám nejlíp víš s čim... **Ale zkrátka to není možný.**
+
+Jak taky? Ten neschopnej blbec všude používá **globální proměnné**, skoro všechno je **statický**, **kód se na mnoha místech opakuje** a navíc **nikde žádný testy**!
+
+A hele, tady dokonce používá magický konstanty!
+
+/--code csharp
+int HRW_UND = 12;
+\--
+
+Co sakra může ta dvanáctka znamenat? A co je to `HRW_UND`? Uff. Ať schoří v pekle, ten bastard!
+
+Tak. Nemáš moc času, deadline se neúprosně blíží a tys měl přece jen přidat jednoduchou featuru a ne refactorovat celé to boží dopuštění. To přece není tvoje práce! Ne asi.
+
+Legacy kód vždycky vyhraje nad čistým kódem
+=============================
+
+Tak jo, ten dobrák, co udělal tuhle spoušť vyhrál. Přidáš tam tu featuru bez striktního dodržování svých zásad. Proč ne? Vždyť ty za tenhle bordel přece nemůžeš, tys ho neudělal, musíš akorát dokončit svůj úkol. O to tu jde.
+
+Byl jsi donucenej dělat pod svoje možnosti. Ale není to tvoje chyba. Máš dobré důvody, vždyť je to přece chyba autora legacy kódu.
+
+Tady bys chtěl předat závislost pomocí **dependency injection**, ale úsilí překopat celou tuhle šílenou věc by několikrát překročilo rámec tvé featury. Všechno je statický, nikde žádná rozhraní, brutální dědičnost a spousta výskytů operátoru `new`... Nemáš čas a ta šílená code base ti vůbec nepomáhá. *Srát na Inversion of Control*!
+
+Radši přidáš statickou metodu do service locatoru. Sice nenávidíš service locator, ale je prolezlej úplně všude a nejde se ho lehce zbavit.
+
+A tady je zas metoda, která řeší dvě různý věci najednou. Ty bys potřeboval jen jednu, ale celý je to tak propletený. Je to pěkně těžký oddělit tyhle dvě různý věci od sebe, protože ta třída ani nejde otestovat. Nakonec radši zkopíruješ tu část kódu, kterou potřebuješ a vložíš ji tam, kde se ti bude hodit.
+
+Hej! A co tahle 50 řádková metoda s 18 `if`ama? Proč ten vůl nepoužil strategii? Refactorovat celý to zvěrstvo, nebo přidat 19. `if`? :) Tak určitě! Ať původní autor shoří v pekle!
+
+Konečně. Teď ještě potřebuješ konfigurační parametr. Normálně bys to poslal přes property injection, ale původní autor použil `HRW_UND = 12`, tak tam prdneš `HRW_UND = 98`.
+
+**Je to jeho vina.**
+

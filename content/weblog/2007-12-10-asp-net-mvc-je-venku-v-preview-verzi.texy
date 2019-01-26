@@ -1,0 +1,19 @@
+---
+{:id 240,
+ :title "ASP.NET MVC je venku v preview verzi",
+ :description
+ "Je tomu pár hodin, co Microsoft uvolnil ASP.NET Extensions CTP.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "mvc" "rest" "silverlight"},
+ :published "2007-12-10T07:39:03.917"}
+---
+
+Je tomu pár hodin, co Microsoft uvolnil ASP.NET Extensions CTP. Součástí balíčku je ASP.NET MVC framework, nové extenze pro AJAX, podpora Silverlightu, Scraffolding framework pro WebForms i MVC a podpora REST like datových služeb.
+
+No není toho zrovna málo, jen škoda, že se to nevešelo do 3.5 frameworku. Paralelně má vyjít "Astoria" alias ADO.NET Entity Framework, což je ORM postavené nad LINQem.
+
+No nebudu déle zdržovat. Stáhnout si můžete [extensions] a ještě [toolkit]. Přečíst si o nich můžete tady: [mvc].
+
+[toolkit]: http://asp.net/downloads/3.5-extensions/MVCToolkit.zip MVC Toolkit
+[extensions]: http://asp.net/downloads/3.5-extensions/ ASP.NET Extensions
+[mvc]: http://www.google.com/reader/shared/user/02522501341949674670/label/aspnet-mvc Zdroje o ASP.NET MVC

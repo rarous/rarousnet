@@ -1,0 +1,69 @@
+---
+{:id 465,
+ :title "Moje malá anti-konference",
+ :description
+ "Tento víkend se konala jedna velká konference, jedna střední nekonference a jedna úplně malinká anti-konference.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2015-12-31T14:34:00.663"}
+---
+
+Tento víkend se konala jedna velká konference, jedna střední nekonference a jedna úplně malinká anti-konference.
+
+Jak taková anti-konference probíhá?
+
+Tak hlavně člověk je zalezlej sám a s nikým se nebaví, ani nepotkává cool týpky
+a nechodí na úplně úžasný přednášky, ze kterých si člověk odnese jen ten pocit, že to bylo úplně úžasný.
+
+Já tvrdím, že dobrá konference se pozná podle jejího hastag feedu na twitteru.
+Těžko soudit, zda opravdu žádné důležité myšlenky nedodali speakeři, nebo je jen nezachytilo
+a nezvěčnilo obecenstvo. Každopádně konferenci dělají lidé. Na obou stranách.
+
+No a pak si člověk může poskládat obsah jak potřebuje a jít na přednášku, kdy se mu to hodí.
+
+Já jsem začal talkem Davida Nolena o datovém formátu Transit. Transit je řešení problému, jak mít formát, který:
+
+1. Má rychlé parsery jako má dnes JSON
+2. Být rozšiřitelný jako XML
+3. Být efektivní v množství přenášených dat jako binární protokol
+
+Transit není pověstnou stříbrnou kulkou, ale pragmatický výsledek kvalitního inženýrství.
+Je to asi to nejlepší, co dnes můžeme pro přenos dat do browseru použít. Podobně jako React na renderování.
+
+https://www.youtube.com/watch?v=KBl8hoiuwQY
+
+Pokračoval jsem s Johnem Hughesem o testování věcí, na které je lidský mozek krátký.
+Generativní testování, aka Property based testing, je metoda, jak se ujistit,
+že náš kód neobsahuje chyby, které bychom hledali jen těžko. John je autorem QuickChecku,
+který dokáže vygenerovat sadu testovacích dat na základě formálního popisu očekávaných vlastností SUT.
+
+Netajím se tím, že jsem proti generovaným testům. Zdravím PEX. Tato technika vezme aktuální kód(!)
+a z něj vygeneruje sadu testů. Co je špatně? Ano, za specifikaci je považovaný samotný kód,
+ve kterém hledáme chyby. To je velice nebezpečné. Ale u QuickChecku, píšeme specifikaci my
+a QuickCheck generuje testy na základě této specifikace.
+
+Samozřejmě to nemusí být nutně 100% odolné vůči chybám, ale je to mnohem bezpečnější.
+Podobně jako podvojné účetnictví.
+
+https://www.youtube.com/watch?v=zi0rHwfiX1Q
+
+A zpátky k Davidu Nolenovi. Tentokrát o revoluci ve Front-endu. Je to takové klouzání
+po povrchu s odkazy na další zajímavé talky, které už jsem viděl nebo na nich byl osobně.
+Každopádně je to dobrý spouštěč přemýšlení o věcech, které považujeme za nutné zlo,
+jako o něčem, co není nezbytně nutné.
+
+Co je super, že to není o nějaké konkrétní technologii, ale o přístupu a principech.
+
+https://www.youtube.com/watch?v=nDNU2pmuJA8
+
+Dan North a jeho odhalení, že komplexita je všude kolem nás, je to výchozí stav,
+ale jednoduchost je vždycky možnou cestou. Jen je potřeba být konzistentní,
+naučit se hledat příčiny a nehasit jen symptomy.
+
+Uhašení stodoly, která se vznítila od okolo tekoucí lávy určitě přináší okamžitou úlevu
+od akutního problému, ale pořád v první řadě bydlíme příliš blízko sopky.
+
+https://www.youtube.com/watch?v=XqgwHXsQA1g
+
+
+

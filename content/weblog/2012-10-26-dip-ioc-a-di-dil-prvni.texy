@@ -1,0 +1,25 @@
+---
+{:id 431,
+ :title "DIP, IoC a DI - díl první",
+ :description
+ "První motivační díl z úžasného osvětového cyklu zaměřeného na rozbíjení zkostnatělých mítů a jiných blbostí.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2012-10-26T12:54:19.593"}
+---
+
+Zmatení pojmů je úžasná věc. Něco si myslíte a tak řeknete něco, co vás napadne jako první. A většinou je to blbost. Ale lidi se to naučili tolerovat, protože stejný blbosti děláme všichni. Nakonec si nikdo nerozumí, ale všichni dělaj, jako že jo. Nechtěj vypadat jako blbci.
+
+**Disclaimer:** *Článek si neklade za cíl se do někoho navážet, někoho ranit nebo zesměšňovat. Klade si za cíl otevřít otázky nad obecně přijímanými pravdami.*
+
+Dependency Inversion Principle, Inversion of Control a Dependency Injection mají tolik vzájemně společných slov, že musí být i blbci jasné, že spolu úzce souvisí. A přitom je to blbost. Existují jistá místa, kde se můžou vzájemně dotýkat, ale vůbec to tak nemusí být.
+
+Začněme jednoduchým příkladem z praxe. Běžně začneme tak, že si vytvoříme rozhraní pro repository `IRepository<TEntity>` a prdneme ho do projektu/namespace `MyAwesomeApp.Data`. To je jasný, repository přece patří do datový vrstvy! Ne asi. Pak si uděláme konkrétní implementace jako `MyAwesomeApp.Data.ArticleRepository : IRepository<Article>` a podobně. Každá si v konstruktoru vytvoří `DataContext`, který se nějak nakonfiguruje. Ten pak obalíme svejma metodama a spokojeně rozšiřujeme rozhraní třídy s každým dalším dotazem...
+
+Pak si někde přečteme, že testovatelnost, DI a tak, a tak teda uděláme přetížení konstruktoru, který bude brát `DataContext` odněkud z venku, ale abychom nechodili moc daleko, to venku bude původní přetížení, který jen zavolá tohle nové. Poor men's DI ve své nejčistší formě.
+
+Pro jistotu se zeptám: Vidíte tu nějaký Inversion of Control nebo uplatnění Dependency Inversion Principle? Houby s octem! DI s nimi tedy určitě nesouvisí. Pokud vám někdo tvrdí, že IoC je obecný princip a DI je jeho konkrétní implementace, neříká pravdu. :)
+
+Ok, pokračujeme dál. Vytvoříme si ten doménovej model. Vlastně to jsou jedna k jedný entity z databáze, ale who cares? Je třeba si z checklistu odškrtnout další zkratku začínající na D. Taková malá úlitba OO bohům. Na to si vytvoříme novej projekt `MyAwesomeApp.BusinessLogic`, aby bylo jasný, že děláme ten business a má to nějakou logiku. Sem krom entit z databáze nasereme taky všemožný "statický helpery":[/weblog/331-proc-jsou-staticke-helpery-zlo.aspx] a podobně, co zrovna budeme potřebovat znovu použít. No a protože některý helpery budou potřebovat naše entity ukládat do databáze a taky se na ně dotazovat, tak z nich uděláme teda instanční třídy a necháme si nainjektovat nějaký repository. Třeba tak: `PublishingManager(ArticleRepository repository)`.
+
+Držíme se dependency injection. No a proto, aby nám vůbec šla ta repository nainjectovat, přidáme referenci na naši datovou vrstvu. Tak určitě. Jak jinak byste to chtěli přece řešit?

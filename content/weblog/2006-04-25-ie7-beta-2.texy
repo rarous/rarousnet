@@ -1,0 +1,19 @@
+---
+{:id 140,
+ :title "IE7 beta 2",
+ :description
+ "Komentář k uvolnění skutečné Beta2 Internet Exploreru 7 s pár postřehy, co se změnilo.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2006-04-25T09:55:00"}
+---
+
+Je tomu tak právě byla vydáná **skutečná beta2** IE7. Verze, které byly dosud, byly pouze Beta2 Preview. Dnešní release by měl přinést opravu, chyb které byly reportovány díky Preview verzím. Beta 2, bude uvolněna i v němčině, arabštině, japonštině a finštině :) Čeština ve výčtu chybí ;) Dalšími důležitými releasy by měla být WinVi Beta 2, IE7 beta3, následovaná RCčkama a finální verze bychom se měli dočkat někdy v druhé půlce tohoto roku. (osobně tipuju konec listopadu)
+
+Pokud se rozhodnete pro "instalaci IE7b2":[http://www.microsoft.com/windows/ie/downloads/default.mspx] nezpoměňte nejprve "odinstalovat předchozí IE7":[http://www.dgx.cz/trine/item/jak-odinstalovat-ie7-beta/category/web-design] verze! Pokud se vám to, stejně jako mně, nepovede - smazal jsem si restorepointy :D - dejte vědět, přes mail vám napovím, jak na to ;)
+
+== Doplnění
+Tak už jsem vyzkoušel a tady jsou mé postřehy:
+- Lehká změna UI, nyní je decentnější, jemnější a konzistentnější, změna neji nikterak markatní, ale je příjemná
+- Renderovací chyby asi zůstaly : pořád se mi rozpadají kulaté rohy v GMailu:[http://www.gmail.com/], floatování taky ještě neni OK (viz taby na "titulce Atlasu":[http://www.atlas.cz/])
+- Pravděpodobně došlo k odstarnění některých chyb v JavaScriptu - začal mi fungovat "Google Reader":[http://reader.google.com/], který Preview verzi spolehlivě odstřelil.

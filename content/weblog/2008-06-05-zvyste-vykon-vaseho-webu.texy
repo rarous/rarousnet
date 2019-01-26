@@ -1,0 +1,79 @@
+---
+{:id 280,
+ :title "Zvyšte výkon vašeho webu",
+ :description
+ "Každý přenesený byte něco stojí, zkuste se zamyslet nad tím jak ušetřit. Pokusím se nadhodit několik tipů na snížení trafiku a zvýšení výkonu vaší webové aplikace/prezentace.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"apache" "webdesign" "compression" "xhtml" "css" "http" "cache"
+   "firebug" "etag" "iis7" "yslow" "javascript" "html"},
+ :published "2008-06-05T14:14:50.660"}
+---
+
+Výkon webových stránek můžeme obecně zvýšit snížením počtu dotazů na server, snížením objemu přenášených dat, optimalizacemi HTML kódu a v neposlední řadě optimalizací výkonného kódu aplikace. První tři pravidla lze uplatnit i na obyčejných prezentacích, proto se na ně podíváme blížeji.
+
+Snížení počtu dotazů na server
+==============================
+
+Prvním krokem v optimalizaci by mělo být snížení počtu dotazů na server. Čím víc dotazů, tím více se musí přenášet dat, tím více musí server vynaložit prostředků na jejich obsloužení.
+
+Snažte se snížit počet souborů, které vaše stránka tahá s sebou. Pokuste se sloučit externí skripty do jednoho souboru, stejně tak stylopisy. Místo toho, abyste měli zvláštní stylopis pro tisk, využijte pravidla `@media print`. Dále omezte `@import` pravidla na minimum. Další spoustu dotazů mají jistě na svědomí obrázky. Využijte chytře "techniku spojování obrázků":[sprite] a snižte tak počet dotazů na minimum.
+
+Dalším krokem ke snížení počtu dotazů je **správně nastavené kešování**. Většinou se setkávám s tím, že kešování není řízeno vůbec nebo je rovnou zakázáno. To považuju za velikou chybu. Místo zakázání kešování, zkuste nastavit cache na minutu, dvě. Nedělejte to však pomocí meta tagů, to nemá žádný význam. Posílejte HTTP hlavičky. Např. `Cache-Control: public, must-revalidate, proxy-revalidate, max-age=120` nastavuje veřejné kešování na dvě minuty a za tuto dobu musí jak lokální, tak proxy cache stránku obnovit.
+
+Dalším účinným pomocníkem je Entity Tag - **ETag**. ETag je hash obsahu. Pokud se obsah změní, změní se i hash. Tento hash je posílán v hlavičce klientovi a ten ho může připojit do opětovného dotazu. Pokud se obsah na serveru nezměnil, server odpoví kódem `304 Not Modified`. V takovém případě je odpověď krátká a přenáší se jen několik bajtů a klient ví, že může použít lokální verzi.
+
+Správným nastavením hlaviček `Cache-Control` a `ETag` můžete svému serveru hodně odlehčit.
+
+Snížení objemu přenášených dat
+==============================
+
+Když už máme snížený počet dotazů – tedy zátěž serveru, ve druhém kroku bychom se měli pokusit snížit trafic – množství přenášených dat. Zkoušel jsem několik technik. Rád používám XHTML((Extensible hypertext markup language)) protože ho pak můžu zpracovávat pomocí obecného XML readeru. A XHTML vyžaduje oproti HTML o dost bajtů navíc. Proto jsem si udělal takový malý benchmark mojí "titulní stránky":[/]. Rozdíl mezi HTML a XHTML verzí je cca 3 %. Pak jsem zkusil ořezat přebytečné bílé znaky. Tam už to bylo o něco lepší úspora 13 %. Kombinace HTML bez bílých znaků pak je na šestnácti 16%. Je to sice pěkné číslo, ale zase taková úspora to není.
+
+[*/data/obrazky/komprese.png .(graf porovnání různé komprese stránky)*]
+
+Proto jsem nasadil kompresi. Ta konečně přinesla kýžený výsledek - **úspora 64 %**. Docela "zajímavý nástroj":[compression], který vám zjistí, zda kompresi používáte a kolik byste byli schopní uspořit, najdete na stránkách www.aspnetresources.com.  Zkoušel jsem pokusně české portály a kompresi používá pouze [seznam]. Přitom zcela jistě ji dříve používal i [atlas], nechápu, proč už není zapnutá.
+
+Jak zprovoznit kompresi na vašem serveru? Pokud máte IIS 6 a možnost nastavit si server sám, tak detaily najdete v článku [iis6], v případě IIS 7 zase v článku [iis7]. Pokud k nastavení serveru přístup nemáte, můžete použít "HttpModul pro kompresi":[aspnet]. Uživatelé Apache jistě znají [mod_deflate] a [mod_gzip].
+
+Správně nastavenou kompresí ušetříte trafik. Ať už platíte vy nebo váš poskytovatel, je nejen ekonomické ale i solidární mít kompresi zapnutou.
+
+Optimalizace kódu stránky
+=========================
+
+Správně napsaným kódem se dá zrychlit vykreslování stránky.
+* Pokud je vaše stránka well-formed a je validní, může být její vykreslení mnohem rychlejší.
+* Pokud nastavíte obrázkům rozměry, bude vykreslování stránky plynulejší a nebude se nepříjemně natahovat.
+* Pokud u dlouhých tabulek správně použijete `thead`, `tfoot` a vícero `tbody`, taktéž docílíte rychlejšího zpracování stránky.
+* Pokud externí skripty a jiné větší objekty, na jejichž zpracování musí prohlížeč čekat, připojíte až na konec stránky, nebude se na ně zbytečně čekat na začátku nebo uprostřed. Je to třeba častý nešvar magazínů, kde se vám načte perex, pod ním se 20 sekund načítá reklama a pak najednou nablikne zbytek stránky.
+
+Spoustu zajímavých tipů na zrychlení najdete ve vývojářské části Yahoo v článku [rules]. Užitečný nástroj ze stejné dílny, který vám stránku zkontroluje přímo ve vašem prohlížeči je Add-on do  [firebug]u s názvem [yslow].
+
+Mnoho z vás si jistě řekně, „k čemu bych měl optimalizovat, když moje stránky navštěvuje pár lidí denně?“ Já jsem toho názoru, že plýtvat se nemá. Doma taky určitě nemáte neustále otevřený vodovodní kohoutek…
+
+/--div .[hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(269)]
+* [vrana]
+* [tutorial]
+\--div
+
+[clanek(269)]: /weblog/269-hlavicka-pragma-a-jeji-misto-v-html.aspx Hlavička Pragma a její místo v HTML
+[sprite]: http://www.alistapart.com/articles/sprites/
+[compression]: http://www.aspnetresources.com/tools/httpcompression.aspx
+[iis6]: http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/d52ff289-94d3-4085-bc4e-24eb4f312e0e.mspx?mfr=true Enabling HTTP Compression (IIS 6.0)
+[iis7]: http://blogs.iis.net/ksingla/archive/2006/06/13/changes-to-compression-in-iis7.aspx Changes to compression in IIS7
+[aspnet]: http://www.blowery.org/code/HttpCompressionModule.html
+[mod_deflate]: http://httpd.apache.org/docs/2.0/mod/mod_deflate.html mod_deflate
+[mod_gzip]: http://sourceforge.net/projects/mod-gzip/ mod_gzip
+
+[seznam]: http://www.seznam.cz/ Seznam.cz
+[atlas]: http://www.atlas.cz/ Atlas.cz
+
+[rules]: http://developer.yahoo.com/performance/rules.html  Best Practices for Speeding Up Your Web Site
+[yslow]: http://developer.yahoo.com/yslow/ Y-Slow
+[firebug]: http://www.getfirebug.com/ Firebug
+[vrana]: http://php.vrana.cz/skoleni-vykonnost-webovych-aplikaci.php Školení Jakuba Vrány: Výkonnost webových aplikací
+[tutorial]: http://www.mnot.net/cache_docs/ Caching Tutorial for Web Authors & Webmasters

@@ -1,0 +1,181 @@
+---
+{:id 332,
+ :title "Inversion of Control v ASP.NET MVC",
+ :description
+ "Dneska si ukážeme, jak využít modularity ASP.NET MVC k tomu, abychom mohli snadno integrovat IoC kontejner. Ten pak bude sloužit k tvorbě controllerů a injekci jejich závislostí (dependecy injection). ",
+ :author "Aleš Roubíček",
+ :tags #{"castle" "binsor" "windsor" "mvc" "asp.net 2.0" "boo" "ioc"},
+ :published "2008-11-24T10:30:02.140"}
+---
+
+Dneska si ukážeme, jak využít modularity ASP.NET MVC((Model View Controller)) k tomu, abychom mohli snadno integrovat IoC((Inversion of Control)) kontejner. Ten pak bude sloužit k tvorbě controllerů a injekci jejich závislostí (dependecy injection). Jako kontejner použijeme Castle Windsor a konfigurační DSL((Domain Specific Language)) v jazyce Boo:[boo] – Binsor.
+
+[aspnetmvc] je framework, který si za cíl bere jasné rozdělení odpovědností, modularitu, snadnou rozšiřitelnost a snadnou testovatelnost aplikací nad ním postavených. Což jsou nejpalčivější neduhy „klasického ASP.NET.“
+
+Inversion of Control a Dependency Injection
+===========================================
+
+"Inversion of Control":[ioc] (IoC) je tak trochu jiný pohled na programování. Když píšete aplikaci, nepíšete ji jako program, ale jako sadu komponent, kterým „vdechnete život“ pomocí konfiguračního skriptu. Každá komponenta má v systému svoji úlohu, a pokud nám přestane její funkcionalita vyhovovat, lze ji velice snadno nahradit zásahem na jednom místě. Aby to bylo opravdu tak snadné, musí nahrazovaná komponenta splňovat určitý kontrakt – implementovat rozhranní.
+
+Přes tato rozhranní mezi sebou jednotlivé komponenty komunikují, využívají deklarované služby, posílají si data. Jenže, jak mají vědět, kterou komponentu mají za daným rozhranním hledat. Ony to vědět nemusejí, tedy, vlastně by vůbec neměly.
+
+Tak potom kdo? IoC kontejner!
+
+Kontejner je mozkem aplikace. Je to ten jediný, který ví, které komponenty splňují určité kontrakty. Jak se to doví? Při startu kontejner nacpeme komponentami a on nám je později na vyžádání vrací. Dokonce jde tak daleko, že pokud si vyžádáme komponentu, vrátí nám ji včetně všech jejích závislostí a závislosti závislostí. :) Dostanete kompletní graf objektů, které jsou pro danou chvíli potřeba k vykonání dané činnosti a jsou v kontejneru zaregistrované.
+
+Kontejner se tedy stará o **dependency injection**. Ale není to jediná služba, kterou nám dokáže poskytnout. Jeho další schopností je **řídit životnost** komponent. Už nikdy více nemusíte psát singletony! Pokud potřebujete singleton, řeknete kontejneru a on se o to postará.
+
+Castle Windsor
+==============
+
+[windsor] je jedním z takových kontejnerů určený pro dotnet. Jistě najdete spoustu alternativních jako [spring], [structuremap], [unity] nebo [ninject]. Každý z nich má své výhody, jiné postupy, ale i omezení. Windsor jsem si vybral z několika důvodů:
+
+1. Je součástí opensource projektu Castle,
+2. tudíž má celkem velkou komunitu uživatelů i vývojářů
+3. a navíc dokáže s dalšími projekty z Castle spolupracovat.
+4. Má širokou škálu způsobů konfigurace: programově, programově přes fluent interface, XML((Extensible Markup Language)) a hlavně pomocí Binsor.
+
+Na toto téma jsem měl menší vnitrofiremní prezentaci. Slajdy z ní si může také prohlédnout.
+
+{{ flash: http://static.slideshare.net/swf/ssplayer2.swf?doc=sexy-infrastruktura-1224961364748731-9&stripped_title, 520, 434 }}
+
+O Binsoru je ve slajdech také zmínka a jednou "už jsem o něm psal":[clanek(293)].
+
+Integrace s ASP.NET MVC
+=======================
+
+A konečně se dostávám k tomu, o čem tento spot vlastně je. Jak integrovat Windsor kontejner do naší webové aplikace?
+
+Předpokládám, že máte ASP.NET MVC projekt již ve svém studiu. Pak je nutné mít binárky Windsoru. Pravděpodobně budou stačit ty z RC3:[castle-rc3]. Osobně používám aktuální verzi z trunku:[castle-trunk]. Přidejte si reference na knihovny `Castle.Core`, `Castle.DynamicProxy`, `Castle.MicroKernel` a `Castle.Windsor`. Pak si budeme muset vytvořit novou továrnu na výrobu controllerů. Vlastně nemusíme, již je součástí [mvccontrib], jen jsem jí trochu zjednodušil.
+
+/--code csharp
+using System;
+using System.Web.Mvc;
+using System.Web.Routing;
+using Castle.Windsor;
+
+namespace BlogSpots.Infrastructure {
+  public class WindsorControllerFactory : IControllerFactory {
+
+    private IWindsorContainer _container;
+
+    public WindsorControllerFactory(IWindsorContainer container) {
+      if (container == null) {
+        throw new ArgumentNullException("container");
+      }
+      _container = container;
+    }
+
+    public virtual IController CreateController(RequestContext context, string controllerName) {
+      controllerName = controllerName.ToLower() + "controller";
+      return (IController)_container.Resolve(controllerName);
+    }
+
+    public virtual void ReleaseController(IController controller) {
+      var disposable = controller as IDisposable;
+      if (disposable != null) {
+        disposable.Dispose();
+      }
+
+      _container.Release(controller);
+    }
+  }
+}
+\--code
+
+Tato továrna bude fungovat pro Windsor. Ještě ale chci přidat podporu pro Binsor, který je součástí "Rhino.Commons":[rhino-trunk]. K těm se dostanete přes SVN((Subversion)) a spolu s nimi dostanete i aktuální verzi Windsoru. Do projektu si ještě přidáme reference na `Rhino.Commons` a `Rhino.Commons.Binsor`. Pak si ještě vytvoříme "statický helper":[clanek(331)] pro práci s kontejnerem.
+
+/--code csharp
+using System;
+using System.Web.Mvc;
+
+using Castle.Windsor;
+using Rhino.Commons;
+
+namespace BlogSpots.Infrastructure {
+  public static class IoC {
+    private static readonly IWindsorContainer _container;
+
+    static IoC() {
+      _container = new RhinoContainer("windsor.boo");
+    }
+
+    public static IWindsorContainer Container {
+      get {
+        return _container;
+      }
+    }
+  }
+}
+
+\--code
+
+Tím jsme si nainicializovali kontejner s konfigurací v souboru `windsor.boo`. Tak, a teď už nám zbývá jen zaregistrovat továrnu pro naši aplikaci a napsat konfigurační skript.
+
+V `Global.asax` zaregistrujeme továrnu na controllery následovně:
+
+/--code csharp
+protected void Application_Start() {
+  ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(IoC.Container));
+}
+\--code
+
+Do `web.config` přidáme registraci modulu, který nám umožní nastavit životnost objektu na jeden request:
+
+/--code xml
+<system.webServer>
+  <modules>
+    <add name="PerRequestLifestyle"
+      type="Castle.MicroKernel.Lifestyle.PerWebRequestLifestyleModule, Castle.MicroKernel" />
+  </modules>
+</system.webServer>
+\--code
+
+*Tato registrace je pouze pro IIS((Internet Information Services)) 7 integrated mode, je nutné ji ještě přidat do `system.web\httpModules`, aby vám fungovala i na DevServeru.*
+
+Boo na scénu
+============
+
+Tímto máme za sebou vše důležité, pro napsání konfiguračního skriptu a spuštění aplikace. Pokud chcete přidat do VisualStudia podporu pro Boo, ve kterém jsou Binsor konfigurační skripty psané, doporučuju stáhnout si a doinstalovat [boolangstudio].
+
+Pojďme tedy k vytvoření konfiguračního souboru! V rootu aplikace si vytvořte soubor `Windsor.boo` a nastavíme mu vlastnost `Build Action` na **Content**, aby se nám pěkně kopíroval při publikování projektu. Do konfiguráku zadejte následující řádky:
+
+/--code boo
+import System.Web.Mvc from System.Web.Mvc
+
+for controller in AllTypesBased of Controller("<nazev assembly MVC projektu>"):
+  component controller.Name.ToLower(), controller:
+    lifestyle PerWebRequest
+\--code
+
+Takto jsme do kontejneru zaregistrovali všechny controllery v našem MVC projektu. Postupně můžeme registrovat další komponenty a budovat naší aplikaci, ale o tom zas někdy jindy. Tedy snad…
+
+/--div .[#related hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(293)]
+* [clanek(336)]
+* [clanek(338)]
+* [ioc]
+* [boo]
+\--div
+
+[clanek(293)]: /weblog/293-binsor-sila-konfigurace.aspx Binsor síla konfigurace .(Binsor síla konfigurace){rel:bookmark}
+[clanek(331)]: /weblog/331-proc-jsou-staticke-helpery-zlo.aspx Proč jsou statické helpery zlo? .(Proč jsou statické helpery zlo?){rel:bookmark}
+[clanek(336)]: /weblog/336-model-binders-v-asp-net-mvc.aspx Model binders v ASP.NET MVC .(Model binders v ASP.NET MVC){rel:bookmark}
+[clanek(338)]: /weblog/338-dsl-pro-konfiguraci-url-routingu-v-asp-net-mvc.aspx DSL pro konfiguraci URL Routingu v ASP.NET MVC .(DSL pro konfiguraci URL Routingu v ASP.NET MVC){rel:bookmark}
+
+[aspnetmvc]: http://asp.net/mvc ASP.NET MVC
+[boolangstudio]: http://www.codeplex.com/boolangstudio BooLang Studio
+[boo]: http://boo.codehaus.org/ Jazyk Boo
+[castle-rc3]: http://switch.dl.sourceforge.net/sourceforge/castleproject/CastleProject-1.0-RC3.msi
+[castle-trunk]: http://svn.castleproject.org:8080/svn/castle/trunk/
+[rhino-trunk]: https://rhino-tools.svn.sourceforge.net/svnroot/rhino-tools/trunk/rhino-commons/
+[ioc]: http://martinfowler.com/articles/injection.html Martin Fowler: Inversion of Control
+[windsor]: http://www.castleproject.org/container/index.html Windsor
+[spring]: http://www.springframework.net/ Spring.Net
+[structuremap]: http://structuremap.sourceforge.net/ StructureMap
+[unity]: http://www.codeplex.com/unity Unity
+[ninject]: http://ninject.org/ Ninject
+[mvccontrib]: http://www.codeplex.com/MVCContrib MVC Contrib

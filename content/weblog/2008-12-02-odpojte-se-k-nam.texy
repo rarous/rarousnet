@@ -1,0 +1,53 @@
+---
+{:id 334,
+ :title "Odpojte se k nám!",
+ :description
+ "Sháníme posily do našeho týmu. Pokud znáš dobře dotnet nebo Javu a chceš se učit novým věcem, tak čti dál.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "aspnet" "mvc" "csharp" "twareg" "wcf" "velocity"},
+ :published "2008-12-02T08:29:53.647"}
+---
+
+Sháníme posily do našeho týmu. Pokud znáš dobře dotnet nebo Javu a chceš se učit novým věcem, tak čti dál.
+
+Představení
+===========
+
+Jsme [twareg] (čteme tuareg, ale někdy i tvarek), firma zabývající se vývojem webových aplikací, které jsou výkonné, dostupné a škálovatelné. K tomu primárně užíváme platformu [dotnet] (C#, ASP.NET). Používáme nejmodernější technologie (např. "ASP.NET MVC":[tag mvc], Dynamic Data, WCF((Windows Communication Foundation)), „Velocity“) a snažíme se o moderní postupy při vývoji našeho software. Všichni máme zkušenosti z portálu [atlas] a jsme ochotní se o ně podělit. Když řeknu, že jsme dynamický tým, asi bych lhal. Představte si dynamický tým a svou představu vynásobte deseti. :)
+
+Naše kancelář je vybavena různobarevnými pěnovými míčky, a když vás někdo naštve, můžete si po něm hodit. Dostáváme stravenky a chodíme je společně projíst někam na Anděla. Věhlasný je také náš rituál vaření, který jsme si přinesli z Atlasu.
+
+Pokud hledáte naše webové stránky, --tak vězte, že jsme si žádné ještě nestihli udělat, ale máme to v plánu.-- ++najdete je na adrese "www.twareg.com":[twareg].++ Pokud vás zajímá naše zázemí, tak vězte, že jsme spřátelenou společností Ataxa:[ataxo] a sídlíme ve stejné budově.
+
+Na čem děláme
+=============
+
+Našim hlavním produktem je codename "Hyas". Je to reklamní systém, který si klade za cíl poučit se z chyb konkurenčních systémů, zachovat si jejich výhody a přinést něco nového. Být prostě lepší. Jak prosté. Nyní máme téměř připravené jádro systému, které půjde brzo do testování. Potřebujeme ale další lidi, kteří by nám pomohli nad ním napsat veřejné API (SOAP, REST), administrační/uživatelské rozhranní a další potřebné komponenty. Pokud vás toto zajímá, neváhejte mě kontaktovat:[kontakt]!
+
+Pokud byste raději dělali na webech, je tady ta možnost také. Děláme na Web 2.0 projektech založených na znovupoužitelných komponentách (a tím rozhodně nemyslím jen server controly). Aktuálně děláme katalog nightlife podniků se silnou integrací sociálních prvků. A ve frontě čekaj další neméně zajímavé. Pokud se na nich chcete podílet, "ozvěte se mi":[kontakt]!
+
+Koho hledáme
+============
+
+Předně schopné vývojáře. Takové, co mají chuť se učit novým věcem a chtějí se o své poznatky dělit. :) Takové, co mají týmového ducha, kterým nevadí zůstat občas v práci dýl a zahrát si třeba Wiičko nebo jít společně do kina, na bowling nebo jenom na jedno.
+
+/--div .[#related hslice]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(288)]
+* [clanek(300)]
+\--div
+
+[clanek(288)]: /weblog/288-konec-dobry-vsechno-dobre.aspx Konec dobrý, všechno dobré!
+[clanek(300)]: /weblog/300-vyvojova-infrastruktura.aspx Vývojová infrastruktura
+
+[tag mvc]: /weblog/tag/mvc.aspx
+
+[kontakt]: /#kontakt .{rel:me}
+
+[twareg]: http://www.twareg.com/ Twareg
+[atlas]: http://www.atlas.cz/ Atlas.cz
+[ataxo]: http://www.ataxo.cz/ Ataxo
+[dotnet]: http://www.microsoft.com/net/ Microsoft .NET

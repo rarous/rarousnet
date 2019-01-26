@@ -1,0 +1,106 @@
+---
+{:id 445,
+ :title "Asynchronní vs. paralelní zpracování úloh",
+ :description
+ "Dnes se podíváme na zoubek asynchronnímu a paralelnímu zpracování.",
+ :author "Aleš Roubíček",
+ :tags #{"async" "moje práce"},
+ :published "2013-03-26T12:42:52.607"}
+---
+
+S příchodem `async/await` do C# 5.0 se nám
+v různých APIs objevily asynchronní metody, které vracejí `Task`
+nebo `Task<T>` a jejich název je vybaven kouzelným postfixem
+`Async`. Jde o takzvaný "Task-based Asynchronous Pattern
+(TAP)":[http://msdn.microsoft.com/en-us/library/hh873175.aspx]. A
+protože je postavený na datové struktuře `Task` může svádět k vlastním
+implementacím, které nejsou tak říkajíc *zrovna optimální*.
+
+<blockquote class="twitter-tweet"><p>That's an <a href="https://twitter.com/search/%23async">#async</a> implementation! Not! <a href="http://t.co/sHBSxhfthj" title="http://ow.ly/jjzrf">ow.ly/jjzrf</a> <a href="https://twitter.com/search/%23sqlite">#sqlite</a></p>&mdash; Jiri Cincura (@cincura_net) <a href="https://twitter.com/cincura_net/status/315067029021413376">March 22, 2013</a></blockquote>
+
+Začneme malou ukázkou z praxe. V předchozím tweetu Jirka ukazuje na "asynchronní" implementaci metody `ToFirstAsync()` ze SQLite:
+
+/--code csharp
+public Task<T> ToFirstAsync ()
+{
+  return Task<T>.Factory.StartNew(() => {
+    using (((SQLiteConnectionWithLock)_innerQuery.Connection).Lock ()) {
+      return _innerQuery.ToFirst ();
+    }
+  });
+}
+\--code
+
+Co je na ní špatného?
+
+Když pominu maďarské podtržítko, mezery před závorkama, zbytečné složené závorky a vůbec... Zkrátka vidíme ukázkový pokus o implementaci TAP pomocí "Task Parallel Library (TPL)":[http://msdn.microsoft.com/en-us/library/dd460717.aspx]. A to je **špatně**. Ve skutečnosti nejde o asynchronní operaci, ale o operaci odpálenou na jiném threadu.
+
+Asynchronní vs. paralelní
+=========================
+
+Nejprve bychom si asi měli ujasnit, jaký rozdíl je mezi asynchronním a paralelním zpracováním, protože to stále většině lidí není jasné. Ano, i já se v tom občas ztrácím, ale snažím se. :)
+
+Představte si dlouhotrvajících operaci. Řekněme takovou, která není přímo spojená s výpočtem (CPU-bounded), ale takovou, která si šahá na některé ze vstupně/výstupních zařízení (IO-bounded).
+Tak tedy vězte, že asynchronní operace je taková, která běží v tomto zařízení. Pokud třeba čteme z disku, databáze nebo z cloudu, pošleme požadavek na zařízení a **nečekáme na odpověď** přímo, ale necháme zařízení **ať se nám ozve samo**, až bude jeho odpověď připravená. Mezi tím se může aplikace věnovat jiným úlohám. Žádná vlákna zde není třeba zmiňovat.
+
+Pokud zadáme úlohu ke zpracování jinému vláknu, zavádíme paralelizaci. Ukázka výše odstartuje nový Task, který se s největší pravděpodobností spustí na jiném threadu a záhy ho zamkne. Sice neblokuje vlákno, ze kterého operaci voláme, ale blokujeme vlákno jiné. Jaký je účel? A náklady?
+
+Paralelizace je vhodná tam, kde máme **výpočetně náročné operace** a dají se rozdělit na několik kroků, které mohou běžet zároveň. Tj. nesdílí stav a slouží třeba jako mezivýsledky v nějakém větším výpočtu. Typickým příkladem může být Map/Reduce. Mapování může běžet paralelně, redukce pak proběhne po doběhnutí mapování, případně může také probíhat paralelně v nějakých clusterech dat.
+
+Tak, snad je to už jasné. :)
+
+Dalším velkým rozdílem je, že paralelizace zpracování je implementační detail, a ten by jako takový neměl prosakovat do APIs. Pokud tedy uvidíte metodu, která vrací `Task` nebo `Task<T>` a v její implementaci je `Task.Run` potažmo starší verze `Task.Factory.StartNew`, považujte to za smell.
+
+Taky jsem ji měl
+================
+
+Popravdě, taky jsem takovou metodu měl. Zjednodušeně vypadala asi nějak tak:
+
+/--code csharp
+class Client : ConsumerOf<Message> {
+  readonly ManualResetEvent sync = new ManualResetEvent(false);
+
+  public Task<Result> QueryAsync(Request request) {
+    return Task.Factory.StartNew(() => {
+      SendQuery(request.ToQuery());
+      sync.Wait();
+      return Result;
+    });
+  }
+
+  public void Consume(Message msg) {
+    sync.Set();
+    Result = msg.ToResult();
+  }
+}
+\--code
+
+Jak vidíte, spouští se tu nový Task, který odešle dotaz a čeká na odpověď. Dotaz i odpověď jsou zprávy cestující po service busu. Všimněte si *synchronizace* (sic!) pomocí signální události. Navenek se to tváří jako asynchronní, ale je to celkem pěkně drahá sranda. Jak to udělat opravdu asynchronně?
+
+Lepší řešení
+============
+
+Klíčem k úspěchu je využití třídy `TaskCompletionSource`:
+
+
+/--code csharp
+class Client : ConsumerOf<Message> {
+  readonly TaskCompletionSource tcs = new TaskCompletionSource();
+
+  public Task<Result> QueryAsync(Request request) {
+    SendQuery(request.ToQuery());
+    return tcs.Task;
+  }
+
+  public void Consume(Message msg) {
+    tcs.TrySetResult(msg.ToResult());
+  }
+}
+\--code
+
+Task nevytváříme pomocí `TaskScheduler`u, který ho alokuje někde na ThreadPoolu, ale pomocí `TaskCompletionSource`. Result se nastaví ve chvíli, kdy přijde odpověď. Nepotřebujeme žádné semafory, vše funguje pěkně asynchronně. Můžeme snadno přidat řešení chybových stavů, timeout nebo cancellation. Dle potřeb a celkem levně.
+
+Závěr
+=====
+
+Asynchronní APIs má cenu vystavovat pouze u IO operací. Výpočetně náročné operace můžeme vnitřně paralelizovat, ale nikdy tento detail nezveřejňujeme v APIs. Pro asynchronní operace nepoužíváme `TaskFactory` ani synchronizační objekty, ale `TaskCompletionSource`. Já už si to budu pamatovat. Doufám, že i vy. :)

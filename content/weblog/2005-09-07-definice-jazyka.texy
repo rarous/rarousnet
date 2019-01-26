@@ -1,0 +1,18 @@
+---
+{:id 69,
+ :title "Definice jazyka",
+ :description "Jak správně definovat jazyk XHTML dokumentu.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2005-09-07T11:38:21"}
+---
+
+Na webstandards.org vyšel pěkný článek o tom "jak správně definovat jazyk":[clanek] v XHTML dokumentech.
+
+1.  Pokud je stránka jednojazyčná nebo napsaná převážně v jednom jazyce definujte jazyk dokumentu pomocí `<html xml:lang="cs" ...`. Nikdy tak nečiňte pomocí `<body>`.
+2.  Nepoužívejte meta tag *Content-Language*.
+3.  Pokud se v textu vyskytují fragmenty v jiném jazyce než je definován v `<html>`, tak je označte atributem `xml:lang`, buďto u třeba u celého odstavce `<p xml:lang="en">` nebo jen vybranou frázi uzavřete do `<span xml:lang="en">english words</span>`.
+
+Tyto pravidla platí pro XHTML 1.1 publikované jako **aplication/xhtml+xml**. Pokud používáte XHTML 1.0 publikované jako **text/html** musíte deklaraci zdvojit přidáním atributu `lang`. U HTML se zase neuvádí `xml:lang`, ale pouze `lang`. Je to celkem sranda, asi proto nemám rád XHTML 1.0. Začínám přemýšlet o tom, že budu tyhle stránky nabízet jako HTML 4.0 pro prohlížeče, které XHTML 1.1 neznají :)
+
+[clanek]: http://www.webstandards.org/buzz/archive/2005_09.html#a000558

@@ -1,0 +1,41 @@
+---
+{:id 417,
+ :title "Texy.js - první dojmy",
+ :description "První dojmy a reakce na čerstvě rozběhnutý projekt.",
+ :author "Aleš Roubíček",
+ :tags #{"js" "moje práce" "texy"},
+ :published "2012-03-11T09:37:51.527"}
+---
+
+Posledních pár týdnů jsem koketoval s myšlenkou zase se pokusit o vlastní implementaci Texy!, abych jí mohl pohodlnějš používat na svých projektech. [texynet] sice funguje, ale má své neduhy. [texyws] jsem používal na několika projektech, ale zas jí chybí pořádné API. Proto jsem chtěl něco nativního. Portovat to ale do C# už se mi nechtělo. Rozhodoval jsem se mezi implementací v F# nebo v JavaScriptu.
+
+Vyhrál JavaScript
+===========
+
+JavaScript je dneska všude a ať budu svůj další projekt chtít psát v čemkoli je velká pravděpodobnost, že [texyjs] využiju. Tak, jako před lety bylo pro původní Texy! PHP jasnou volbou - PHP bylo na většině serverů, dnes je jasnou volbou JavaScript. Běží jak v browseru, což může mnoho věcí, co se dají s Texy! dělat, zpříjemnit, tak na serverech - ať už v podobě Node.js nebo implementací pro VM.
+
+JavaScript je navíc jazyk, který dokáže psát/číst kde kdo. Je velká šance, že se do "otevřeného vývoje":[texyjs] zapojí další lidé, kteří nejsou nutně sběhlí v F# nebo dotnetu. Navíc je JavaScript celkem pěkným jazykem, ikdyž si to lidé často nemyslí. Rozhodl jsem se psát to v ECMA Scriptu 5, řídit vývoj pomocí TDD  a držet čistý kód. Zároveň se nebojím toho, že někdo objeví moji chybu, proto když píšu tak i často pushuju. Čím dřív někdo chybu objeví, tím líp. Chyby děláme všichni, důležité je na to přijít co nejdříve.
+
+JavaScript není objektovým jazykem, ale zato je slušným funkcionálním jazykem, proto v kódu zatím moc typů nenajdete, spíš hodně funkcí.  Měla by to být taková skládačka jednoduchých a čistých funkcí. Texy.js chce být minimalistická a neexpanzivní.
+
+Borkův boj
+========
+
+Od začátku dostávám od @borekb spoustu dotazů, ale vzhledem k našim opačným biorytmům se moc nestřetáváme, abych mohli vést kvalitní dialog. :) Tady se pokusím osvětlit několik jeho dotazů.
+
+Texy.js píšu ve WebStormu:[webstorm] a pro běh testů požívám [jstestdriver], který je součástí poslední verze. Projekt zatím není moc contributors friendly, protože jsem na něm trávil zatím jen pár hodin minulý víkend. A v tomto omezeném čase jsem chtěl mít připravenou nějakou funkčnost nad kterou se dá dál stavět a nezaobírat se věcma, jako je chybějící README s návody jak si pustit testy. IMO by toho měl být každý vývojář schopnej - Google je náš kamarád. Časem, až bude projekt víc stable, se tyhle věci jistě doplní. Už jsem se zmiňoval, že přijímám příspěvky? ;) Ano i README je hodnotným příspěvkem!
+
+Texy.js píšu tak, že si čtu "Texy! na githubu":[texygithub] a přemýšlím, co tím chtěl básník říct. Když na něco příjdu, napíšu na to test a snažím se ho naimplementovat. Ikdyž mám jiný názor na to, jak by měl vypadat srozumitelný kód a jak dělat návrh, snažím se držet původních myšlenek a produkovat na 99,999 % stejné výsledky. Ta mírná odchylka není zaokrouhlovací chybou, jen se mi tam nechce cpát ten reklamní komentář.
+
+Texy! vnitřně pracuje s UTF-8, využívá speciální znaky apod. Chci co nejvíc použít myšlenky (a někdy i kód) z původní implementace, proto Texy.js taky vnitřně pracuje v UTF-8. JavaScript nic pořádnýho na práci s různými kódováními nemá, proto jsem zaintegroval kus chytrého kódu, který převádí UTF-16 na UTF-8 a zase zpátky. Jo, není to moc clean code. Je to dost low level, ale taková už práce s kódováním je...
+
+Odpověď na otázku, proč Texy.js nahrazuje A se stříškou je snadná: Soft Hyphen (alias  `&shy;`) se v UTF-16 zapisuje jako `\u00AD`, ale v UTF-8 jsou to dva byty `\xC2\xAD`.
+
+To je prozatím odemě vše. Pokud máte dotazy nebo názory, nebojte se je napsat do komentářů. Pokud máte nápady na vylepšení, nebojte se udělat fork a poslat pull-request. Pokud bude dobrý, zaintegrujeme. Pokud ne, určitě vám napíšu, co se mi nezdálo. :) Pokud máte zájem o nějakou featuru, pošlete pull-request s padajícím testem.
+
+[texyjs]: https://github.com/rarous/Texy.js Texy.js
+[texygithub]: https://github.com/dg/texy
+[texyws]: http://rarous.net/weblog/64-texy-web-service-ws.aspx Texy WS
+[texynet]: http://texynet.codeplex.com/ Texy.net
+[webstorm]: http://www.jetbrains.com/webstorm/
+[jstestdriver]: http://code.google.com/p/js-test-driver/ JsTestDriver

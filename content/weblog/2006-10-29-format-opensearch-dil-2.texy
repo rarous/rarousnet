@@ -1,0 +1,77 @@
+---
+{:id 189,
+ :title "Formát OpenSearch – díl 2.",
+ :description
+ "Po úvodním dílu, který nám ukázal jak si přidat vlastní vyhledávací modul do prohlížeče, si probereme formát OpenSearch Description trochu podrobněji.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "opensearch" "firefox" "ie7" "rss"},
+ :published "2006-10-29T12:01:14.770"}
+---
+
+OpenSearch je otevřený formát založený na XML, jehož vývoj iniciovala a podporuje firma Amazon. V současné době existuje Draft 3 verze 1.1, kterou implementují i nejnovější verze oblíbených prohlížečů [ie7] a [firefox2] nebo vyhledávač [a9] právě od Amazonu. OpenSearch je sada specifikací z nichž nejdůležitější jsou formáty OpenSearch Description a OpenSearch Response. Tyto formáty jsou určeny k popisu vyhledávaciho stroje a popisu nalezených výsledků.
+
+OpenSearch Description
+======================
+
+Tento formát je, jak už název napovídá, určen k popisu vyhledávacího stroje. Základní elementy patří do jmenného prostoru `http://a9.com/-/spec/opensearch/1.1/` a kořenovou značkou je `OpenSearchDescription`. Tato obsahuje následující subelementy:
+
+ShortName:
+ - Název vyhledávacího stroje
+ - Musí být v dokumentu právě jednou a jeho obsah je omezen na 16 znaků čistého textu.
+Description:
+ - Popis vyhledávacího stroje
+ - Musí být v dokumentu právě jednou a jeho obsah je omezen na 1024 znaků čistého textu.
+Url:
+ - URL hledaného datazu
+ - Musí být v dokumentu alespoň jednou, nejedná se o párovou značku, obsah je definován následujícímí atributy.
+ - povinný atribut *template* definuje šablonu url datazu, šablona je parametrizována pomocí "OpenSearch URL template syntaxe":[#template], povinný je parametr `{searchTerms}`, který je nahrazován hledanou frází
+ - povinný atribut *type* určuje MIME typ výstupu hledání
+ - nepovinné atriuty *indexOffset* a *pageOffset* slouží k posunutí indexu prvního výsledku nebo první stránky, oba jsou přednastaveny na jedničku. Ovlivňují počítání nepovinných parametrů `{startIndex?}` a `{startPage?}`.
+Contact:
+ - Nepovinný element definující kontakt na adminstrátorara. Element může obsahovat pouze e-mailovou adresu a v dokumentu se může vyskytovat maximálně jednou.
+Tags:
+ - Nepovinný element obasující klíčová slova oddělená mezerou. Délka je omezena na 255 znaků a element se může v dokumentu vyskytovat maximálně jednou.
+LongName:
+ - Název vyhledávacího stroje ve formě čitelné pro lidi
+ - Může se v dokumentu vyskytovat maximálně jednou a měl by být preferovaný pro zobrazování před ShortName. Délka je omezena na 48 znak.
+Image:
+ - Ubsahuje URL obrázku, grafické ikonky, spojené s vyhledávačem.
+ - Počet výskytů není omezen, jednotlivé obrázky se mohou lišit ve velikosti a MIME typu, které jsou specifikovány následujícími volitelnými atributy.
+ - Atribut *width* určuje šířku obrázku
+ - Atribut *height* určuje šířku obrázku
+ - Atribut *type* určuje MIME typ obrázku
+Language:
+ - Definuje jazyk výsledku hledání, obsah může obsahovat pouze zkratku jazyka podle XML nebo asterix (*) pro všechny jazyky.
+InputEncoding:
+ - Znaková sada přijímaná vyhledávacím strojem. Pokud nejí určeno použije se UTF-8 kódování.
+OutputEncoding:
+ - Znaková sada výstupu hledání.
+
+Sepecifikace definuje ještě několik dalších elementů pro definici práv k dokumentu, ochrana mladistvích apod. které se používají ve specifických případech a jejich použití není zas tak běžné. Nyní si ještě doplníme výčet URL parametru.
+
+OpenSearch URL parameters .[#template]
+=========================
+
+Parametry se používají v atributu `template` značky `Url` a jsou nahrazovány konkrétními daty dotazu. Syntaxe  parametru je velice jednoduchá: název pramatru je uzavřen ve složených závrokách a nepovinnost parametru je vyjádřena otazníkem před uzavírací závorkou. Příklad: `{povinnyParametr}` a `{nepovinnyParametr?}`. Parametry mohou být rozšířeny o vlastní sady pomocí XML jmenných prostorů. Ukázka `<Url xmlns:moje="urn:moje-rozsireni" template="http://example.com/?q={searchTerms}&amp;neco={moje:neco}" ...`.
+
+searchTerms:
+ - Parametr je nahrazen hledanou frází
+count:
+ - Parametr je nahrazen počtem výsledků na stránku
+startIndex:
+ - Parametr je nahrazen indexem výsledku
+startPage:
+ - Parametr je nahrazen číslem stránky
+language:
+ - Parametr je nahrazen jazykem
+inputEncoding:
+ - Parametr je nahrazen vstupním kódováním
+outputEncoding:
+ - Parametr je nahrazen výstupním kódováním
+
+Ukázku kódu najdete v "prvním díle":[clanek(185)] této mini série. Tímto bych ukončil popis formátu OpenSearch Description a příště bych rád něco o formátu OpenSearch Response.
+
+[ie7]: http://www.microsoft.com/cze/windows/ie/default.mspx  Internet Explorer 7
+[firefox2]: http://www.firefox.cz/ Firefox 2.0
+[a9]: www.a9.com A9
+[clanek(185)]: /clanek/185-format-opensearch-dil-1.aspx

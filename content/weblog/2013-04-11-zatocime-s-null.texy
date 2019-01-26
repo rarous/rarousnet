@@ -1,0 +1,112 @@
+---
+{:id 447,
+ :title "Zatočíme s null",
+ :description
+ "Malé zastavení nad \"chytrými\" způsoby řešení problematiky null pointerů.",
+ :author "Aleš Roubíček",
+ :tags #{"monad" "moje práce" "nooo" "patterns"},
+ :published "2013-04-11T13:29:00"}
+---
+
+Chtěl bych se v takové kratké sérii blogů dostat k jednotlivým bodům "NOOO manifesta a jeho principům":[/weblog/444-manifest-nejen-objektove-orientovaneho-vyvoje.aspx]. V této sérii, bych chtěl vyjádřit, proč se k tomuto manifestu hlásím, a i ukázat pár praktických důsledků v hodnotách a principech obsažených.
+
+Dnes se zastavíme u toho, proč preferuji **Option** před *null* a proč:
+
+> Upřednostňujeme reprezentaci invariant na úrovni typů před reprezentací na úrovni hodnot.
+
+Problematika null
+=================
+
+Snad každý, kdo se zabývá programováním narazil na problém s `null` hodnotami. Většinou se projevuje tak, že z ničeho nic dostaneme někde `NullReferenceException` (NRE) a máme po ptákách. Tento problém je celkem častý a "odhaduje se, že každý rok má za následek ztrátu $1B":[http://blogs.msdn.com/b/dsyme/archive/2013/03/25/quote-of-the-week-quot-what-can-c-do-that-f-cannot-quot.aspx]. To je pro představu 1 000 000 000 USD. Ztráta je způsobena jak samotným projevem, tak i náklady vynaloženými na obranu před `NRE`.
+
+Obrana
+======
+
+Jistě znáte techniky defenzivního programování, jako jsou *Code Contracts* v jejich různých mutacích, které efektivně zvyšují náklady na tvorbu a správu přebujelé code base, v který aby se čert vyznal. Další se snaží o zavedení nového syntaktického prvku, který vypadá následovně: `foo?bar()` a dělá to samé co `if (foo != null) foo.bar();`. Pořád jen to jen maskování symptomů. Ne řešení problému.
+
+Prevence
+========
+
+Další možností je používat jazyky, jako je třeba F#, které `null` nemají. (Ok, F# zná `null`, ale musíte si explicitně o něj říct a označit tak potenciálně nebezpečný kód, jinak by asi moc nemohl pracovat s již existujícími .net knihovnami.) Většinou se jedná o funkcionální jazyky se sofistikovanými typovými systémy.
+
+Nechme se inspirovat některými dobrými vzory:
+
+Null Object
+===========
+
+Pokud děláte TDD, nebo se zajímáte o návrhové vzory, jistě už jste na tento vzor narazili. Jde o to, že ve vašem systému máte definované "implementační" třídy, které nemají žádnou implementaci, nebo prostě jen nikdy nevyhazují výjimky. Slouží pouze k tomu, že pokud systému nenabídneme nějakou jinou funkční implementaci, nemusíme se obávat `NRE`, protože tu máme bezpečný *Null Object*.
+
+Já ho třeba používám vždycky, když implementuji logování:
+
+/--code csharp
+ILogger logger = NullLogger.Instance;
+public ILogger Log {
+  get { return logger; }
+  set { logger = value ?? NullLogger.Instance; }
+}
+\--code
+
+Po inicializaci je logger nastaven na instanci `NullLogger`u. Logger je možné injektovat, ale pokud se někdo pokusí podstrčit `null`, tak si podržíme `NullLogger`. Za předpokladu, že se `logger` nepoužívá nikde jinde, než v property, máme bezpečno a nemusíme psát spoustu defenzivního kódu jako:
+
+/--code csharp
+if (Log != null) Log.Info("foo");
+\--code
+
+Samozřejmě to není jediný případ užití. Další, z možných implementací, je vyjádření speciálního stavu, jako třeba:
+
+/--code csharp
+public class AsyncResult {
+  public AsyncResult(XElement response) {
+    Response = response;
+  }
+  public XElement Response { get; set; }
+}
+
+public class QueryInProgress : AsyncResult {
+  public QueryInProgress() : base(null) { }
+}
+\--code
+
+Tohle je *Null Object* implementovaný v SOA. Systém dostane ke zpracování nějaký požadavek (dotaz) a když se následně zeptá na výsledek, dostane buď Null Object `QueryInProgress`, který říká, že dotaz se ještě zpracovává, nebo už samostatnou odpověď. **Null Object může mít i sémantický význam.**
+
+Option
+======
+
+Jazyky, které podporují pattern-matching, umožňuji práci s typem Option:
+
+/--code fsharp
+let exists (x : int option) =
+    match x with
+    | Some(x) -> true
+    | None -> false
+\--code
+
+`None` nám nahrazuje `null`, ale nejedná se o hodnotu, ale o typ. Typ `Option` je totiž definován jako generické disjunktivní sjednocení:
+
+/--code fsharp
+type Option<'T> =
+  | None
+  | Some of 'T
+\--code
+
+Na rozdíl od vzoru `Null Object` tu neztrácíme nutnost rozhodování se, jak se v případě `None` zachovat. Nadruhou stranu, máme speciální případ explicitně sémanticky vyjádřen na úrovni typu.
+
+Maybe
+=====
+
+`Maybe` je v případě užití celkem podobný `Option` s tím rozdílem, že jde o monad. Krom toho, že je opět parametricky polymorfní (generický), splňuje i požadavky na monadičnost. Monadičnost nám *umožňuje kompozici* a můžeme i využít vlastostí jazyka jako je LINQ, který je postavený nad sekvenčním monadem, ale nic nám nebrání ho použít i nad jinými. Třeba právě nad maybe.
+
+Nepotřebujeme však nutně Haskell, abychom mohli využívat všech výhod. Tohle je třeba C#:
+
+/--code csharp
+return TryGetCachedData(message, metadata, request).Match(
+  some: data => CachedResult(message.RequestId, data, stats),
+  none: () => Result(message, context, metadata, request, stats));
+\--code
+
+Implementaci `Maybe` monadu z ukázky najdete "v tomto gistu":[https://gist.github.com/rarous/5355792].
+
+Závěr
+=====
+
+Null je zlo. Je možné s ním bojovat silou nebo inteligencí. Já byl vždycky slabý a líný, proto preferuji výše zmíněné *možnosti* prevence před samotnou obranou. Náš projekt sice není úplně imuní vůči `null`, ale díky *Null Objectu* a *Maybe monadu*, které se dají krásně kombinovat, je kód čistší a méně náchylný k chybám. Snad. :)

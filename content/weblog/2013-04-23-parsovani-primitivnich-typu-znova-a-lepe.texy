@@ -1,0 +1,72 @@
+---
+{:id 449,
+ :title "Parsování primitivních typů znova a lépe",
+ :description "Praktické využití těch šílených monád.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2013-04-23T17:10:57.920"}
+---
+
+Způsobů, jak parsovat primitivní typy z texu, je celá řada. Každý typ má svou statickou metodu `Parse`, která vyhodí výjimku, když se jí to nepovede. Pak tu máme modul `Convert`, který dokáže parsovat poměrně bezpečně, ale ne vždy chceme dostávat `default` hodnoty, když se mu podstrčí nic.
+
+Občas zkrátka potřebujeme mít absenci nějaké hodnoty vyjádřenou v logice kódu. Proto často nezbývá než se vrhnout po hlavě do šíleného vzoru, který je v BCL((Base Class Library)) rozšířen jak mor v době temna - `TryParse`. Protože tyto metody vznikly někdy v době, kdy si ještě mohlo CLR((Common Language Runtime)) o generikách nechat zdát, je práce s ní celkem neohrabaná a plná nepěkných věcí, jako `out` parametry nebo porušení základního objektového principu *tell don't ask*.
+
+/--code csharp
+int? TryParse(string input) {
+  int result;
+  if (Int32.TryParse(input, out result)) return result;
+  return null;
+}
+\--code
+
+Tohle je jednoduchá ukázka, kterou jistě ve svém kódu najdete nespočetněkrát. Proč už něco takovýho není v BCL od verze 2? Každopádně má to své mouchy, třeba teď to pro změnu "vrací null":[/weblog/447-zatocime-s-null.aspx]! A to jsme jeden problém vyřešili zavedením jiného.
+
+Tak se necháme inspirovat u F#, které nemá podporu pro `out` parametry. Ten to řeší nějak tak:
+
+/--code csharp
+Tuple<bool, int> TryParse(string input) {
+  int result;
+  bool success = Int32.TryParse(input, out result);
+  return Tuple.Create(success, result);
+}
+\--code
+
+Bohužel C# není jazyk, který by prvotřídně podporoval `Tuple`s. Můžeme se ptát proč, ale je to asi taky zbytečný. Každopádně, nemáme problém s `null`, ale typ samotný nám toho taky moc neřekne. Co je ten `bool`? Nevíme, dokud se nepodíváme do dokumentace - kódu. Musí to jít i lépe! Maybe. ;)
+
+/--code csharp
+Maybe<int> TryParse(string input) {
+  int result;
+  bool success = Int32.TryParse(input, out result);
+  return success ? result.ToMaybe() : new Nothing<int>();
+}
+\--code
+
+Nyní máme existenci hodnoty vyjádřenou na úrovni typu a můžeme s ní bezpečně pracovat. Můžeme využít funkcionální kompozice, a hodnotu, pokud existuje, dále zpracovávat. Nikde (skoro), však nemusíme ověřovat, jestli ji máme nebo ne. Kód se tak krásně vyčistí.
+
+Celé řešení můžeme nakonec pěkně generalizovat a vytvořit si vlastní modul pro parsování:
+
+/--code csharp
+public static class ParseEx {
+  public delegate bool ParserDelegate<T>(string input, out T result);
+
+  public static Maybe<T> Parse<T>(string input, ParserDelegate<T> parser) {
+    T result;
+    bool isSuccess = parser(input, out result);
+    return isSuccess ? result.ToMaybe() : new Nothing<T>();
+  }
+
+  public static Maybe<DateTime> ParseDateTime(string input) {
+    return Parse<DateTime>(input, DateTime.TryParse);
+  }
+
+  public static Maybe<int> ParseInt32(string input) {
+    return Parse<int>(input, Int32.TryParse);
+  }
+}
+\--code
+
+Máme jednu parametricky polymorfní metodu, která nám umožňuje parsovat libovolná data, pomocí předaného delegáta. Tu pak používáme k vytvoření specifických parsovacích metod, které nám umožní opět kód pročistit.
+
+Kdybyste hledali implementaci `Maybe`, "najdete ji v tomhle gistu":[https://gist.github.com/rarous/5355792] i se spoustou šikovných extenzí.
+
+Toto řešení může mít u některých performance hunterů některé efekty, ze kterých by nemuseli klidně spát. Hlavně ty alokace na heapu, když jsme mohli zůstat v klidu na zásobníku. No jo. V tohle případě je však zisk z čitelnosti a korektnosti o tolik řádů větší než pár ušetřených cyklů levného výpočetního výkonu, že to snad ani nemá cenu zase v komentářích řešit, co? ;)

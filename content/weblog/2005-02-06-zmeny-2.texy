@@ -1,0 +1,15 @@
+---
+{:id 46,
+ :title "Změny 2",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon"},
+ :published "2005-02-06T12:00:00"}
+---
+
+Pokračování seriálu o změnách začnu pro mě změnou nejdůležitější a tou je změna mého zevnějšku. Už jsem začal přemýšlet o tom že budu muset měnit fotku na titulní stráce, protože jsem vypadal už úplně jinak, ale nakonec jsem zvolil cestu jednodušší. Vrátil jsme se ke svému starému osvědčenému vzhledu, takžeje ta fotka zase aktuální :) Pro porovnání se můžete podívat jak jsem byl zarostlej na "mikových stránkách":[svatba].
+
+Další změnu jsem avizoval již v předchozích spotech. Pracuju na
+kompletním přepracování těchto stránek. Už mám připravenou databázi a napsanou větší část bussiness logiky nové verze redakčního systému Gryphoon. Ta bude umět vést několik blogů zároveň - prozradim jen, že připravuji novou sekci věnovanou muzice - lepší podporu pro publikování několika autorů zároveň včetně uživatelských rolí. Systém by měl být velice odolný proti komentářovému spamu, bude podporovat dynamickou správu stylů a bude mít zcela nový editor příspěvků. Publikování bude možné z webového rozhranní,  e-mailem nebo pomocí webové služby prakticky jakkoliv. No a celé to poběží na ASP.NET 2. Tak ja se jdu učit na zkoušku z X36DSA.
+
+[svatba]: http://pluto.pslib.cz/malym/fotky/krutec/?show=2005-01-25-svatba

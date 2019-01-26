@@ -1,0 +1,91 @@
+---
+{:id 271,
+ :title "Active Record vs. Repository pattern",
+ :description
+ "Dnes se podíváme na dva návrhové vzory z oblasti přístupu k datům, které používají zcela odlišnou filosofii, ale nakonec si ukážeme, že jejich kombinací, můžeme získat celkem zajímavé výsledky.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"castle" "activerecord" "repository" "asp.net 2.0" "patterns"},
+ :published "2008-05-21T12:38:25.493"}
+---
+
+Dnes se podíváme na dva návrhové vzory z oblasti přístupu k datům, které používají zcela odlišnou filosofii, ale nakonec si ukážeme, že jejich kombinací, můžeme získat celkem zajímavé výsledky.
+
+Active Record
+=============
+
+Návrhový vzor [activerecord] staví na předpokladu, že základem aplikace je databázový model a od něj se vše odvíjí. Každý řádek tabulky je reprezentován konkrétní instancí objektu. Většinou je takový objekt odvozen od bázové třídy, která implementuje potřebné rozhranní pro persistenci objektu – typicky CRUD((Create, Read, Update, Delete))  metody.
+
+[*/data/obrazky/activerecord.png .(Diagram vzoru ActiveRecord)*]
+
+Tento vzor se hojně využívá v různých ORM frameworcích. Je součástí dnes velmi módních frameworků [ror], [django] nebo [castle], které na něm stavějí svůj datový model a díky velice snadnému mapování dokážete napsat (vygenerovat) kostru databázové aplikace během několika málo minut.
+
+Pro velice jednoduché aplikace může být tento vzor, díky své jednoduchosti, vhodný. Jenže porušuje několik pravidel dobrého objektového návrhu (persistence ignorance, [singleres], pevně daná bázová třída, atd.).
+
+Repository
+==========
+
+Návrhový vzor Repository je základním kamenem doménou řízeného návrhu. Model aplikace nemá ponětí o tom, jakým způsobem je persistován. O to se stará právě Repository. Navíc díky tomu, že se o persistenci stará cizí objekt, stačí nám znát pouze jeho rozhranní a v případě potřeby ho snadno nahradit jiným.
+
+[*/data/obrazky/repository.png .(Diagram vzoru Repository)*]
+
+Kombinace
+=========
+
+Teď zabrousím do konkrétnějších implementací a to do ActiveRecord:[castle] z projektu Castle. Tako konkrétní implementace je postavená na běhovém prostření dotnet a jako svůj základ používá ORM nástroj [nhibernate].
+
+Nejpřímější cesta jak s ním pracovat, je podědit třídu z bázové třídy `ActiveRecordBase` a označit ji a její vlastnosti patřičnými atributy:
+
+/--code csharp
+[ActiveRecord]
+public class User : ActiveRecordBase<User> {
+  [PrimaryKey] public int Id { get; set; }
+  [Property] public string Name { get; set; }
+  [Property] public string Email { get; set; }
+  [Property] public string Login { get; set; }
+  [Property] public string Password { get; set; }
+}
+\--code
+
+A můžeme pracovat. Autoři si však byli vědomi toho, že vzor Active Record nemusí vyhovovat všem a přidali statickou třídu `ActiveRecordMediator`, který dokáže posloužit jako základ pro Repository. Třída pak nemusí dědit z `ActiveRecordBase`:
+
+/--code csharp
+[ActiveRecord]
+public class User {
+  [PrimaryKey] public int Id { get; set; }
+  [Property] public string Name { get; set; }
+  [Property] public string Email { get; set; }
+  [Property] public string Login { get; set; }
+  [Property] public string Password { get; set; }
+}
+
+public class UsersRepository : IRepository<User> {
+  public User Load(int id) {
+    return ActiveRecordMediator<User>.FindByPrimaryKey(id);
+  }
+  public void Save(User obj) {
+    ActiveRecordMediator<User>.Save(obj);
+  }
+  public void Delete(User  obj) {
+    ActiveRecordMediator<User>.Delete(obj);
+  }
+}
+\--code
+
+To už je o něco lepší, ale stále máme v aplikačním modelu silnou vazbu na datový model. Můžeme se posunout o level dál a zkombinovat oba vzory tak, abychom z nich vytěžili co nejvíce. Základní myšlenkou je to, že v aplikaci budeme mít jak datový model, tak doménový. Datový model se bude pomocí Active Record starat o persistenci a Repository poslouží k transformaci doménového modelu na ten datový.
+
+Něco podobného můžete najít v seriálu:[conery], který píše Rob Conery, kde používá zjednodušenou Repository, `IQueryable` jako filtry a LINQ2SQL jako datový model. Velice zajímavé, doporučuji ke shlédnutí.
+
+Tagy: [tag-activerecord], [tag-repository], [tag-orm]
+
+[tag-activerecord]: http://technorati.com/tag/activerecord ActiveRecord .{rel:tag}
+[tag-repository]: http://technorati.com/tag/repository Repository .{rel:tag}
+[tag-orm]: http://technorati.com/tag/orm ORM .{rel:tag}
+
+[activerecord]: http://www.martinfowler.com/eaaCatalog/activeRecord.html Active Record
+[singleres]: http://en.wikipedia.org/wiki/Single_responsibility_principle single responsibility
+[ror]: http://wiki.rubyonrails.org/rails/pages/ActiveRecord Ruby on Rails
+[django]: http://www.djangoproject.com/documentation/db-api/ django
+[castle]: http://www.castleproject.org/activerecord/index.html Castle
+[nhibernate]: http://www.hibernate.org/343.html NHibernate
+[conery]: http://blog.wekeroad.com/mvc-storefront/mvcstore-part-10/

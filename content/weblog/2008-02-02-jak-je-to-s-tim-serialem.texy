@@ -1,0 +1,21 @@
+---
+{:id 253,
+ :title "Jak je to s tím seriálem?",
+ :description
+ "Před Vánocema jsem slíbil seriál o tom, jak napsat redakční systém nad ASP.NET MVC pomocí TDD. Mám pár dílů na disku, tak proč nejsou venku?",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "cssx" "mvc" "nforms" "asp.net 2.0"},
+ :published "2008-02-02T09:58:46.227"}
+---
+
+Před Vánocema jsem slíbil seriál o tom, jak napsat "redakční systém nad ASP.NET MVC((Model View Controller))":[clanek(242)] pomocí TDD((Test Driven Development)). Mám pár dílů na disku, tak proč nejsou venku?
+
+No při psaní jsem narazil na pár problémů, ať je to ještě nezralost ASP.NET MVC, nedostatek času a tak. Rozhodně však nejde o další mrtvý projekt. Pokusím se ho dopsat společně s návazností na NForms:[clanek(245)] a CSSX:[clanek(250)], protože to jsou věci, od kterých si slibuju mnohem jednodušší a rychleší tvorbu webíků.
+
+Ale psát kód a zároveň tvořit článek, kterému by rozuměl i macík, je dost časově náročné. A protože musim chodit občas pařit, nebou skouknout nějakej ten film a nebo prostě jenom relaxovat, tak asi blognu až jenom finál...
+
+Přišli jste sem z RSS čtečky? Zkontrolujte si prosím, zda máte správnou URL feedu http://feeds.feedburner.com/rarous-weblog. Děkuji
+
+[clanek(242)]: /weblog/242-redakcni-system-na-asp-net-mvc.aspx
+[clanek(245)]: /weblog/245-nforms-pro-asp-net.aspx
+[clanek(250)]: /weblog/250-cssx.aspx

@@ -1,0 +1,64 @@
+---
+{:id 236,
+ :title "MVC na ASP.NET – Testování jednotek",
+ :description
+ "Již delší dobu jsem chtěl napsat článek o tom, proč je MonoRail lepší, když chceme, aby se projekt dal testovat. Jenže vždycky nějak nebyl čas. Navíc se blíží vypuštění ASP.NET MVC, takže nakonec z toho bude trošku obecnější...",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "castle" "aspnet" "monorail" "mvc" "unittesting"
+   "webforms" "mvp"},
+ :published "2007-12-01T16:15:14.103"}
+---
+
+Již delší dobu jsem chtěl napsat článek o tom, proč je MonoRail lepší, když chceme, aby se projekt dal testovat. Jenže vždycky nějak nebyl čas. Navíc se blíží vypuštění ASP.NET MVC, takže nakonec z toho bude trošku obecnější pojednání než jsem původně plánoval.
+
+WebForms testování
+==================
+
+Než si ukážeme jak snadné je testovat MVC, nejprve si povíme, že i WebForms se dají testovat. Ano, ale vyžaduje to větší kázeň a víc práce. :) Většinou stejně použijete MVP pattern nebo jeho blízké příbuzné. Pokud tedy nechcete psát testy, které simulují livecycle stránky a dekódují ViewState. (Ano, dotahuju to ad absurdum, ale i tak to může vypadat.)
+
+Aby se tedy kód dal snadno testovat, měl by se co nejvíce oddělit od stránky.
+
+Klasickým modelem tedy je využití MVP vzoru, kdy aspx stránka obsahuje pouze logiku pro prezentaci dat a implementuje rozhranní View, přes které komunikuje s Presenterem. Díky tomu, že Presenter obsahuje téměř veškerou logiku, je ideálním místem pro zacílení našich testů. Pro účely testů pak implementujeme stub nebo mock rozhranní view. Na něm pak sledujeme jak ho Presenter ovlivňuje.
+
+[* /data/obrazky/mvp.png *]
+
+Předchozí diagram ukazuj, že Presenter zná rozhranní View. Stránka, která toto rozhranní implementuje, se však musí postarat o to, aby byl presenter ve správnou chvíli zavolán. Možný scénář zachycuje ukázka kódu.
+
+/--code csharp
+public class BlogViewPage : System.Web.UI.Page, IBlogView {
+  BlogPresenter presenter;
+
+  protected void Page_Init(object sender, EventArgs e) {
+    presenter = new BlogPresenter(this); // injekce View
+  }
+
+  protected void Page_Load(object sender, EventArgs e) {
+    presenter.LoadArticles();
+  }
+
+  // implementace IBlogView ...
+}
+\--code
+
+Na to, že to stránka udělá správně, se už musíme spolehnout. Otestovat i takto jednoduchý kód, je už trošku náročnější práce...
+
+MVC testování
+=============
+
+MVC frameworky jako MonoRail nebo ASP.NET MVC, přicházejí s podobným schématem **by default**. V podstatě nás přímo nutí psát web tak, aby se dal lépe testovat. :) Nebudu přehánět, když řeknu, že ASP.NET MVC byl psán se zřetelí na velice snadné testování a obsahuje i sadu mock objektů (např. pro `HttpContext`). MonoRail dokonce přináší i Fixtures a Asserty pro snadnější testování – bohužel jsou psané pouze pro NUnit, který nepoužívám.
+
+[* /data/obrazky/mvc.png *]
+
+Tento diagram se od předchozího mírně liší. Controller např. netuší jaké má View rozhranní, proto s ním nikterak nepracuje. Prostě zavolá `RenderView(*název*, *objekt s daty*)` a spoléhá se na ViewFactory že všechno zařídí. Navíc stránka do poslední chvíle netuší, jestli něco bude dělat. Tady totiž proces zpracování začíná u routingu, který vybere správný controller, viz "předchozí díl":[clanek(220)].
+
+Dostáváme se i k lepšímu objektovému návrhu, kde každá třída je zodpovědná za provedení pouze jednoho úkolu (stránka v MVP těch úkolů řeší hned několik). To se opět lépe testuje. Máme sadu několika komponent s jednoduchými závislostmi a každá má na starosti pouze jednu část z procesu.
+
+Pro dnešek to tady ukrouhnu. Bude-li nějaké příště, ukážeme si nějaké praktické ukázky. Možná :)
+
+Související
+===========
+* [mvp]
+
+[clanek(220)]: /weblog/220-jak-funguje-monorail.aspx
+[mvp]: http://blog.vuscode.com/malovicn/archive/2007/10/25/model-view-presenter-mvp-design-pattern-close-look-part-1-passive-view.aspx Model View Presenter (MVP) design pattern close look - Part 1 (Supervising Controller)

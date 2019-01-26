@@ -1,0 +1,11 @@
+---
+{:id 225,
+ :title "Budoucnost Texy.net",
+ :description
+ "Chtěl bych projekt Texy.net rozšířit o vlastní parser napsaný v C# 2.0. Bude mít komunita o něj zájem? Chce se na něm podílet? To jsou otázky, jejichž zodpovězení čeká na vás a rozhodne o dalším osudu tohoto projektu.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "texynet"},
+ :published "2007-10-02T14:05:19.147"}
+---
+
+Chtěl bych začít pracovat na parseru Texy napsaném v C#. Než s tím začnu chci se zeptat, jestli to vůbec má cenu, má někdo o něco takového zájem? Samozřejmě to bude open source hostovaný na CodePlexu:[http://www.codeplex.com/texynet], kdy je source control a issue tracker. Pokud bude zájem o dotnetí parser Texy, bude mít někdo zájem na projektu spolupracovat? Vyzkoušet si práci v týmu, agilní vývoj na otevřeném projektu. Pokud máte zájem, dejte o sobě vědět buďto v komentářích nebo na můj mejl.

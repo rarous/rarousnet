@@ -1,0 +1,249 @@
+---
+{:id 470,
+ :title "Sémantické šablonování",
+ :description
+ "Tvorba šablon pro dynamicky měnící se markup stále není dořešeným problémem.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "clojure" "moje práce"},
+ :published "2015-05-23T11:10:00.663"}
+---
+
+Tvorba šablon pro dynamicky měnící se markup stále není dořešeným problémem.
+Každou chvíli se může stát, že neodborným zásahem dojde k rozbití výstupního kódu.
+Každý to určitě zažil a kdo říká, že ne, děje se mu to i dnes.
+
+Když se ohlédneme zpátky, jak se dostávala data z aktivních scriptů do HTML,
+vidíme Perlové CGI scripty, které spojovaly řetězce a pomocí regulárních výrazů nahrazovaly podřetězce.
+
+/--code perl
+#!/usr/bin/perl
+
+print "Content-type:text/html\r\n\r\n";
+print '<html>';
+print '<head>';
+print '<title>Hello Word - First CGI Program</title>';
+print '</head>';
+print '<body>';
+print '<h2>Hello Word! This is my first CGI program</h2>';
+print '</body>';
+print '</html>';
+
+1;
+\--code
+
+Perl má jistě spoustu silných nástrojů na práci s řetězci, ale čas ukázal, že takový přístup
+není dlouhodobě udržitelný a udržovatelný. A tak přišla na řadu nová generace šablonovacích
+nástrojů jako PHP/ASP, kde HTML nebylo pouhým řetězcem v kódu, ale kusy kódy se vkládaly přímo do HTML.
+
+/--code xml
+<!DOCTYPE html>
+<html>
+<body>
+<%
+response.write("My first ASP script!")
+%>
+</body>
+</html>
+\--code
+
+/--code php
+<?php if ($items): ?>
+    <?php $counter = 1 ?>
+    <ul>
+    <?php foreach ($items as $item): ?>
+        <li id="item-<?php echo $counter++ ?>"><?php
+        echo htmlSpecialChars(mb_convert_case($item, MB_CASE_TITLE)) ?>
+        </li>
+    <?php endforeach ?>
+    </ul>
+<?php endif?>
+\--code
+
+Míchání logiky s markupem se nakonec taky neosvědčilo. Programátoři s tím sice dokázali dělat kouzla
+a dokonce na tom dokázalo pracovat i více než jeden člověk, ale stále to nebylo ono.
+Často docházelo k tomu, že velké kusy logiky byly promíchány s ještě většími kusy markupu.
+Velkým problémem také byla nutnost encodovat data zapisovaná do HTML, aby se předešlo
+spoustě bezpečnostních rizik. To se často nedařilo a byly to žně nejen XSS útoků.
+Tak přišly na řadu komponentové frameworky jako Coldfusion/ASP.NET, které měly eliminovat
+imperativní kód z šablon a zanést bezpečnost by default.
+
+/--code xml
+<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
+    DataKeyNames="ProductID" DataSourceID="ObjectDataSource1"
+    EnableViewState="False">
+    <Columns>
+        <asp:BoundField DataField="ProductName"
+         HeaderText="Product" SortExpression="ProductName" />
+        <asp:BoundField DataField="CategoryName"
+          HeaderText="Category" ReadOnly="True"
+          SortExpression="CategoryName" />
+        <asp:BoundField DataField="SupplierName"
+          HeaderText="Supplier" ReadOnly="True"
+          SortExpression="SupplierName" />
+        <asp:BoundField DataField="UnitPrice"
+          DataFormatString="{0:c}" HeaderText="Price"
+            HtmlEncode="False" SortExpression="UnitPrice">
+            <ItemStyle HorizontalAlign="Right" />
+        </asp:BoundField>
+        <asp:CheckBoxField DataField="Discontinued"
+          HeaderText="Discontinued" SortExpression="Discontinued">
+            <ItemStyle HorizontalAlign="Center" />
+        </asp:CheckBoxField>
+    </Columns>
+</asp:GridView>
+\--code
+
+To vedlo k tvorbě supergeniálních a předražených komponent, které fungovaly jen v IE6 a nikde jinde.
+A kód který to generovalo, by nikdo z vás ladit opravdu nechtěl. Pamětníci možná pamatují,
+že se podobnou cestou se snažilo vydat i Nette:
+
+/--code xml
+<?nette class="MyPage3"?>
+<html>
+<head>
+  <title>Blog</title>
+</head>
+
+<body>
+  <h1>The best blog</h1>
+  <div>
+    <com:DataGrid.pager name="mygrid" id="horni" />
+
+    <hr />
+
+    <com:DataGrid.items name="mygrid">
+       ...
+       ...
+    </com:DataGrid.items>
+
+    <h3>Dále pokračujte:</h3>
+
+    <com:DataGrid.pager name="mygrid" />
+  </div>
+</body>
+</html>
+\--code
+
+Následovala vlna MVC frameworků a návrat k míchání kódu do markupu. Tentokrát však v přívětivějším obalu.
+Vznikla spousta šablonovacích jazyků. Jistě znáte třeba Latte, Mustache, Liquid, Razor a mnoho dalších.
+
+/--code html
+<ul n:if="$items">
+{foreach $items as $item}
+    <li id="item-{$iterator->counter}">{$item|capitalize}</li>
+{/foreach}
+</ul>
+\--code
+
+Konvence je, že v šablonách je minimum programového kódu, který je celkem bezpečný,
+protože už v základu encoduje výstupy, Latte dokonce i kontextově! Ale stále jsou takové
+šablony náchylné k rozbíjení, protože nejde o čisté HTML, ale mix jiným jazykem, který musí kodér ovládat.
+
+Schválně jsem úplně vynechal oblíbené hrátky s XSLT. Čest těm, kteří musí do dneška takový kód udržovat.
+Míchání několika dialektů XML s HTML a dalšími speciálními jazyky jako XPath vyžaduje už pořádný skill
+a hledat a ladit v tom chyby, mno. Asi tak.
+
+Geneze šablonování na klientu (tj. v JavaScriptu) je celkem, ze záhadného důvodu, podobná té na serveru,
+jen o několik let zpožděná. Ale vlny doprovází podobný jásot a nenaplněná očekávání jako na serverech.
+Imperativní kód se stále míchá s markupem a přináší to problémy.
+
+## Trocha nostalgie
+
+Když jsme se Steidou vymýšleli, jak udělat šablony snadno spravovatelné přímo kodéry bez nutnosti
+je učit nějaký nový speciální šablonovací jazyk, nebo jakýkoliv existující, došli jsme k tomu,
+že jim dáme obrovskou volnost, ať si v kódu dělají, co potřebují, krom pár míst, kam budeme nalejvat obsah.
+Tato místa byla označena standardním `data-*` atributem. Šablony tak může tvořit kdokoliv, kdo umí jen HTML.
+Systém takové šablony zpracovával pomocí SGML readeru a dokázal se ve struktuře stránky orientovat
+a čistý markup obohacovat o prvky šablonovacího jazyku, aby s tím dokázal pracovat serverový kód.
+Viz výše. No, fungovalo to...
+
+## Pak jsme potkal Clojure
+
+Clojure je zajímavý jazyk, který je navržen tak, aby jsme si vytvářeli vlastní mini jazyky specifické
+pro řešení našeho problému. A spousta programátorů to bere jako výzvu napsat si interní DSL
+na všechno od SQL po HTML. To není nic nového, to Rubisti jistě moc dobře znají (HAML a spol).
+Jenže v Clojure je i silný názor, že je lepší používat silné externí DSL, kde jen to je možné.
+
+Když se podíváme třeba na SQL, je nějaká interní DSL (potažmo ORM), která by byla mocnější než SQL samotný? Těžko.
+
+Je nějaký lepší jazyk na popis HTML šablon, než HTML samotné? Neznám takový.
+A protože jsem odkojený HTML/CSS kodéřinou ještě z dob, kdy CSS byla heretická technologie
+a vše se dělalo v rámcích a tabulkách, rád využiji svůj 16 let posilovaný skillset.
+A pokud trochu znáte moji práci, víte, že jsem se vždy snažil, aby moje HTML kódy byly sémanticky obohacené
+a data se dala snadno strojově zpracovávat.
+
+Když tedy skloubíme sémantický kód (mikroformáty jsem nahradil "HTML Microdata":[http://www.w3.org/TR/microdata/]),
+externí DSL a striktní oddělení kódu od markupu, dojdeme k celkem robustnímu řešení, které se mi za rok používání
+na několika projektech osvědčilo.
+
+## Jak to vypadá?
+
+Nebudeme chodit moc daleko a podíváme se "pod pokličku tohoto blogu":[https://github.com/rarous/rarousnet/tree/master/src/rarousnet/weblog].
+Šablony jsou čisté HTML se sémantickou informací vyjádřenou pomocí microdat a "schema.org":[http://schema.org/]:
+
+/--code html
+<article role="article" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="name"></h1>
+        <p class="info">
+            <time pubdate itemprop="datePublished" datetime=""></time> |
+            <strong itemprop="articleSection"></strong></p>
+    </header>
+    <div itemprop="articleBody"></div>
+    <footer itemprop="author" itemscope itemtype="http://schema.org/Person">
+        Autor: <strong itemprop="name"></strong> <span class="noprint"> |
+        <a class="comment" href="#novy-komentar" onclick="ga('send','event','button','click','new-comment')">Přidej komentář</a> |
+        <a rel="bookmark" href="#" itemprop="url" title="Permalink">#</a> </span>
+    </footer>
+</article>
+\--code
+
+Šablony jsou pak načteny jako virtuální DOM a upravovány na místech vybraných pomocí CSS selektorů:
+
+/code clojure
+(defsnippet article "weblog/blogpost.html" [:article]
+  [{:keys [title author category html published] :as article}]
+  (microdata "BlogPosting" "name") (html/content title)
+  (microdata "BlogPosting" "datePublished") (html/do->
+                                              (html/content (long-date published))
+                                              (html/set-attr :datetime (utc-date published)))
+  (microdata "BlogPosting" "articleSection") (html/content category)
+  (microdata "BlogPosting" "articleBody") (html/html-content html)
+  (microdata "BlogPosting" "Person" "name") (html/content author)
+  (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
+\--code
+
+“Kde jsou ty CSS selektory,” říkáte si? Schované do funkce `microdata`. Ale popořadě, jak to celé funguje?
+Vytvořím si snippet pro článek, který se načte z HTML souboru `weblog/blogpost.html`
+a vybere se element `article`, který je v předchozí ukázce. Dalším parametrem jsou data která dostanu,
+tedy samotný článek, a pomocí destrukturalizace si vyberu ty atributy, které mě zajímají.
+Dále následuje sada selektorů a transformací. Selektor `microdata` vznikl následnou kompozicí
+selektorů `itemprop` a `itemtype`:
+
+/--code clojure
+(defn- itemprop [name] (html/attr= :itemprop name))
+(defn- itemtype [name] (html/attr= :itemtype (str "http://schema.org/" name)))
+(defn- microdata
+  ([type prop] [(itemtype type) (itemprop prop)])
+  ([type subtype prop] [(itemtype type) (itemtype subtype) (itemprop prop)]))
+\--code
+
+Zápis `(html/attr= :itemprop name)` je jinak zapsaný CSS selektor `[itemprop = name]`.
+Tohle je bohužel pořád ještě interní DSL pro CSS selektory enlive:[https://github.com/cgrand/enlive],
+ale autor pomalu pracuje na nástupci enliven:[https://github.com/cgrand/enliven],
+který již používá zápis z CSS. Enliven by měl navíc podporovat šablonování i na klientu (v ClojureScriptu),
+ale projekt zatím navenek spí. Mezi tím je možné pro klientské šablonování používat
+kioo:[https://github.com/ckirkendall/kioo]. Tolik k technickým detailům.
+
+## Proč to všechno?
+
+Máme tu další způsob jak do HTML dostat programově data. V čem je lepší než ostatní?
+
+1. Striktně oddělené HTML od logiky, která do něj sype data.
+2. Sémantické HTML umožňuje snadné strojové čtení.
+3. HTML jako datová struktura, ne kusy textových řetězců.
+4. Dobře strukturovaný kód se dá nejen snadno plnit daty, ale i stylovat.
+5. Díky selektorům přes sémantickou strukturu můžu snadno upravovat HTML aniž bych potřeboval myslet na to, abych nerozbil logiku vkládající data. Elementy můžu libovolně přehazovat, obalovat dalšími elementy a vše stále funguje jak má.
+6. Tento přístup umožňuje mít "jednostránkový přehled všech funkčních prvků website":[http://alistapart.com/article/creating-style-guides] a ty znovupoužít pomocí sady snippetů jak na straně serveru, tak na klientu. Opravdové komponenty, které se snadno udržují.
+
+

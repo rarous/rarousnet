@@ -1,0 +1,66 @@
+---
+{:id 434,
+ :title "Technologický radar",
+ :description
+ "Technology radar sleduji již nějaký ten rok. Srovnávám si sním svůj pohled na to, co vypadá perspektivně a co ne. Často se dost shodujeme, občas rozcházíme. Ale takový je život. Já tu vypíchnu věci, který mě překvapily nebo zaskočily.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2012-10-31T10:07:08.620"}
+---
+
+"Miro se na devblogu trošku rozepsal":[http://devblog.cz/2012/10/thoughtworks-technology-radar-2012-10/] o tom, co ho zaujalo "v poslední vydání Technology Radaru":[http://www.thoughtworks.com/articles/technology-radar-october-2012] a na závěr vyzval k reakci. Tož tady je ta má.
+
+Technology radar sleduji již nějaký ten rok. Srovnávám si sním svůj pohled na to, co vypadá perspektivně a co ne. Často se dost shodujeme, občas rozcházíme. Ale takový je život. Já tu vypíchnu věci, který mě překvapily nebo zaskočily.
+
+Nědělejte feature banching
+=================
+
+S tímhle se ztotožňuji a preferuji chytřejší návrh, který umožňuje pružné nasazování featur změnou konfigurace a podle potřeby i za běhu. U služeb nebo produktů se tedy branchování vyhýbejte. Ale jak už to tak bývá, existují výjimky, kde se tato praktika naopak hodí. Jednou z nich jsou pull-requesty do OSS. Zde patří k etice odklonovat, odbranchovat a pak až dělat změny.
+
+Micro služby
+=========
+
+Tahle technika souvisí s předchozím bodem na úrovni komponent. Místo komponent máme malé nezávislé služby, které spolu spolupracují. Umožňuje to rozpadnout velké aplikace na dílčí služby, které se samy o sobě lépe udržují i vyvýjí. Zajímavé je, že ESB je naproti tomu v hold. Z mého pohledu micro služby s ESB souvisí a nebo jsem jen zatim nenašel lepší způsob provázání micro služeb.
+
+Automatizace vývojářské infrastruktury
+=========================
+
+Tohle je technika, kterou mi přineslo Continuous delivery. Na Webmiu jsme ji celkem slušně prověřili a dneska si bez ní nedovedu představit, že bych mohl pracovat. Rozhodně ne efektivně. Což pro změnu zase souvisí s následujícím bodem:
+
+Rake pro automatizaci Java i .net
+====================
+
+S tímhle bodem bych byl schopnej souhlasit u projektu, kde je zapotřebí buildit i na jiných platformách, než jsou Windows. Jako mackař, bych občas uvítal, možnost dělat všechno v MacOS a nemuset do Parallels. Nadruhou stranu mi syntaxe Psake a fakt, že má za sebou kompletní PowerShell, vyhovuje tak, že to jsem schopný skousnout. :)
+
+Takže tady se držím Psake, s kterým automatizuju nejem integrační build, ale i vývojářskou infrastrukturu. Jednoduchá syntaxe, mocný shell, snadná dokumentace scriptu, značná vyspělost tohoto  nástroje a dostupnost na všech windows jsou pro mě jednoznačná plus.
+
+Angular a Knockout
+=============
+
+U mě jasně hraje prim AngularJS. Můj přístup k vývoji aplikací je s ním velmi kompatibilní. Naproti tomu KO vychází ze zmetku MVVM, který vychází z nepochopení MVC/MVP. Dále je vidět, že autor je webem nepolíbený a všechno co dělá to akorát zdůrazňuje. Viz neprefixovaný `data-bind` atribut, syntaxe v něm použitá, vlastní "elementy" definované pomocí komentářů a další podobná zvěrstva. Jo, jsou to detaily, ale pro ortodoxního webaře nepřekonatelný. :)
+
+Meteor.js a Dart
+==========
+
+Meteor je v sekci hold a s tím souhlasím. Zatím tento framework ve mně vyvolává spíš rozpaky než nadšení. Dart se taky drží v holdu. Mě Dart zajímá z pohledu language designu a iženýringu, proč, co a jak dělaj. Ale že bych ho v následujích letech měl používat si nedovedu představit...
+
+== F#
+
+Bohužel F# se na radaru moc nepohnul (stále trial) a myslím, že je to škoda. Doufám, že se to do příště změní, přesto, že Microsoft má F# spíš jako inkubátor zajímavých věcí (generics, type inference, async, type providers, immutable), který pak flákne do mainstreamových jazyků jako C# a VB. Mnozí si myslí, že jeho budoucnost a případné rozšíření je na Monu. MonoDevelop už má stabilní language binging, který si člověk nemusí ručně buildit. Mono má `fsc` i `fsi` v základní distribuci.
+
+F# je čistý jazyk, ve kterém jdou složité koncepty vyjadřovat jednoduše. Netrpí obskurní alegorickou dekorativností a při blbé inicializaci fieldu přes kontruktor nemusím psát třikrát stejný kód (sice ho za mě píše CodeRush, ale pořád je ve zdrojácích). V práci pořád C#, ale osobní projekty rozhodně v F#.
+
+NuGet
+=====
+
+Na předchozím projektu jsme NuGet používali pouze pro správu externích závislostí. Aktuálně ho používám i interně pro balíčkování komponent a tvorbu různých konfigurací produktu. K tomuhle tématu se snad ještě vrátím v samostatném spotu.
+
+Konfigurace v DNS
+============
+
+Na tohle se musim podívat blíž. Mám tušení, že to brzy použiju a snad se k tomu vrátím i tady na blogu. :)
+
+Závěr
+====
+
+Tak to je můj zkrácený pohled na technologický radar. Jak ho vidíte vy?

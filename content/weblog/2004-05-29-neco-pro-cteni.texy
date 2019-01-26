@@ -1,0 +1,14 @@
+---
+{:id 21,
+ :title "Něco pro čtení",
+ :description "Tipy pro čtení.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2004-05-29T21:06:01"}
+---
+
+Po dlouhé době vyšly na Intervalu:[interval] zase nějaké články, které mě zaujaly. Za prvé je to [css], kde se dozvíte, jak byste mohli formátovat CSS, aby bylo lépe čitelné. Déle je to článek [typo], který vás zasvětí do tajů webové typografie. Doporučuji přečíst i hutnou diskusi k článku.
+
+[interval]: http://interval.cz/
+[css]: http://interval.cz/clanky/jak-psat-css-prehledne-a-logicky/ Jak psát CSS přehledně a logicky
+[typo]: http://interval.cz/clanky/webdesignerovy-poznamky-z-typografie/ Webdesignerovy poznámky z typografie

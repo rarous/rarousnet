@@ -1,0 +1,54 @@
+---
+{:id 368,
+ :title "Seznamte se s Tropem",
+ :description
+ "Pomalu do světa pouštíme naši novou službu – Trop. O co vlastně jde? Je to sociální platforma pro snadnou výměnu zkušeností z různých míst. Začínáme s tím, co je nám nejbližší. Začínáme v Praze a to s hospodami, restauracemi a kluby. :)",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "trop"},
+ :published "2009-11-13T14:29:16.590"}
+---
+
+Pomalu do světa pouštíme naši novou službu – [trop]. O co vlastně jde? Je to sociální platforma pro snadnou výměnu zkušeností z různých míst. Začínáme s tím, co je nám nejbližší. Začínáme v Praze a to s hospodami, restauracemi a kluby. :)
+
+Zatím jsme pořád v betě, protože každou chvíli něco rozbiju, nebo pokazim, ale snažíme se chyby vychytávat a rychle opravovat. Technologicky to je celé postavené na kombu [aspnetmvc], [nhibernate], "Castle Windsor":[castle], MS SQL 2008 a IIS7. O některých věcech, které mě potkaly už jsem psal ([mvc], [binsor]), jiným se chci věnovat v budoucnu.
+
+Kolik účtů máš, tolikrát jsi otrokem
+====================================
+
+Vím, že někteří z vás tam již účet mají, a tak to pro ně není žádným překvapením. Ti, co ještě účet na Tropu nemají, mají hned několik možností, jak si ho vytvořit. Nechcem po vás žádné složité vyplňování registrace. Asi nejjednodušší je využít možnosti přihlášení pomocí Twitteru ([oauth]), kdy se vám automaticky vytvoří profil dle vašich údajů na Twitteru, pěkně i s vaší profilovou fotkou. Pak už můžete normálně Trop používat. Podobně funguje i vytváření účtu pomocí [openid].
+
+V blízké době se objeví i možnost přihlašování pomocí [connect]. S touto novinkou přibude i jednodušší správa napojených účtů a možnost publikace vašich recenzí na Twitter a Facebook. (Dnes můžete sdílet místa a akce).
+
+Místa blízká i vzdálená
+=======================
+
+Teď, když už u nás máte účet, tak můžete napsat nějakou recenzi na vaše oblíbené či neoblíbené místo. Využijte našeho hledání! Pokud už vaše místo někdo zadal, mělo by být ve výsledcích hledání. Pak stačí kliknout na tlačítko `Napiš recenzi` a začít psát. Nezapomeňte zadat vaše hodnocení! :) Pokud chcete, aby vaše recenze byly více sexy, zkuste psát s [texy] Pokud místo nalezeno nebylo, tak ho prostě přidejte. :)
+
+Akce
+====
+
+Jedna z věcí, která mi na internetu chyběla, bylo řešení následujícího scénáře: Chceme se sejít s kámošema v nějaký hospodě. První věc, je vybrat správnou hospodu. Většinou je to nějaká, kterou známe, někteří však třeba ještě ne. Tak místo máme, pokusíme se najít jeho stránky, abychom mohli udělat rezervaci a ti, co to tam ještě neznají, aby se podívali. Pak je tu další krok, poslat místo neznalým na mapě, aby tam trefili a ještě raději všechny obeslat e-mailem s ical v příloze, aby nezapomněli.
+
+Takový mail obsahuje spoustu odkazů. :) Kdo je bude proklikávat? No však víme, takže budete řešit ještě deset telefonů, kvuli datu a pak navigaci na místo. Teď když mám [trop], tak většinu věcí najdu na jednom místě. Některé věci ještě sice nejsou dotažené do podoby, jakou bych si představoval, ale věřím, že brzy přibudou. A pak bude organizace větší sešlosti hračkou. :)
+
+Zkoušejte
+=========
+
+Tak zkoušejte, zkoušejte. Dejtě vědět, jak se líbí, nebo co případně vylepšit. Nejlepší cestou jak přijít s nápadem je "naše user voice forum":[uservoice], kde můžete zadávat vaše nápady a hlasovat pro jiné, které se vám líbí. Samozřejmě hlašte i chybky, ale snad už jich moc neni.
+
+Pokud chcete sledovat, co se na Tropu děje, můžete na FriendFeedu:[ff], Twitteru:[tw] nebo na Facebooku:[fb]. A nebo taky tady.
+
+[trop]: http://www.trop.cz/ Trop
+[texy]: http://texy.info/ Texy!
+[mvc]: /weblog/tag/mvc.aspx MVC
+[binsor]: /weblog/tag/binsor.aspx Binsor
+[nhibernate]: http://nhforge.org/ NHibernate
+[aspnetmvc]: http://asp.net/mvc/ ASP.NET MVC
+[castle]: http://www.castleproject.org/
+[oauth]: http://oauth.net/ OAuth
+[openid]: http://openid.net/ OpenId
+[connect]: http://developers.facebook.com/connect.php Facebook Connect
+[uservoice]: http://trop.uservoice.com/
+[ff]: http://friendfeed.com/troppraha
+[tw]: http://twitter.com/tropcz
+[fb]: http://www.facebook.com/pages/Trop/103373591895

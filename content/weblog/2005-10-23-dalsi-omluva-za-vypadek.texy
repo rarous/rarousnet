@@ -1,0 +1,14 @@
+---
+{:id 75,
+ :title "Další omluva za výpadek",
+ :description "Omlouvám se za dlouhý výpadek stránek.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2005-10-23T21:24:20"}
+---
+
+Chtěl bych se všem čtenářům omluvit za výpade těchto stránek. Na vině bylo nekvalitní FTP((File Transfer Protocol)) připojení a podivné chování IIS((Internet Information Service)), kdy se mi nepovedlo uploadovat aktualizovanou verzi assembly na server a IIS mi pak nechtělo povolit tu assembly smazat nebo přepsat. Když admin tento problém vyřešil tak se mi to povedlo znovu :) Bohužel zrovna nefungovalo forum, kde bych problém nahlásil, proto takové zdržení...
+
+V současné době připravujeme přechod na profi hosting, kde bude lepší technická podpora. Taky jsem zakoupil "novou doménu":[rarous] a budu muset znovu budovat svoje pozice ve vyhledávačích :)
+
+[rarous]: http://rarous.net

@@ -1,0 +1,23 @@
+---
+{:id 152,
+ :title "Evoluce ve webovém vývoji",
+ :description "Jeden z možných směrů vývoje AJAXových aplikací.",
+ :author "Aleš Roubíček",
+ :tags #{"ajax" "csharp" "asp.net 2.0" "scriptsharp" "javascript"},
+ :published "2006-05-23T07:57:31.347"}
+---
+
+Možná jste si všimli, že se v poslední době pouští Microsoft do AJAXu. Jejich "Atlas framework":[/clanek/129-zaciname-s-atlasem.aspx] je zatím v alfa stádiu, ale i tak je plně použitelný a funkční – až na pár bugů. Tímto frameworkem otevírá dveře vývojářům serverside aplikací (typicky píšících v C#, Javě, VB.NET nebo i v PHP) ke vstupu na klienta. Atlas se snaží přinést do JavaScriptu i jakousi podporu OOP, takže můžete používat namespacy, classy, interfejsy (fuj to je hnusný slovo – zdravím doc. Müllera), dědičnost a další vymoženosti, na které jsem zvyklý ze C#.
+
+Problém je ovšem v tom, že pořád musím psát v JavaScriptu. Nemám rád tenhle jazyk. Občas v něm něco napíšu, ale je to peklo – právě proto že v něm málo píšu, ho tak dobře neumím, a protože ho tak dobře neumím, tak v něm málo píšu. :) Atlas naštěstí přináší i deklarativní metodu psaní aplikací pomocí "XML-Scriptu":[/clanek/138-prvni-prakticka-ukazka-pouziti-atlasu.aspx], který je mi podstatně bližší. Ale stejně v něm nejde napsat vše – hlavně vlastní komponenty.
+
+Protože bude Atlas součástí příští verze Visual Studia „Orcas“, přemýšlejí soudruzi v Microsoftu, jakým způsobem zjednodušit vývoj aplikací v Atlasu, připravit kvalitní vývojové nástroje se všemi vymoženostmi (Intellisense, debugging apod.). Vzhledem k tomu, že je JavaScript dynamicky typovaný, je s Intellisence celkem problém – dneska se ve studiu objeví jen zřídka. To by ale nebyl Microsoft, kdyby nepřišel s něčím novým…
+
+== Na scénu přichází Script#
+Ano, je tu to, na co jsem dlouho čekal, konečně může psát klientské skripty v pořádném jazyku. O co tedy jde? O zimních prázdninách si Nikhil Kothari – duchovní otec Atlas frameworku – uvědomil, že se v JS píše fakt blbě a že by bylo lepší psát v C# i skripty. Jenže jak donutit prohlížeče, aby zpracovali C#? To je prakticky nemožné. Nikhil na to šel od lesa a napsal vlastní kompilátor, který místo MSIL generuje JS. Přidal k tomu ještě sscorelib a máme tu **Script#** (skriptšárp). Script# je fakticky C#, nemusíte se učit žádný nový jazyk (teda pokud umíte C# "jako já .(pozor mimoděkismus)"). Navíc dostanete v balení knihovnu, která obsahuje standardní DOM a vůbec vše, co můžete najít v JavaSriptu. Kompilátor generuje JS kód určený pro Atlas framework, takže výsledkem může být jak `js` soubor, tak `dll`, kde jsou skripty jako resource – stejně jako je tomu u poslední verze Atlasu. Kompilátor zvládá DEBUG – včetně preprocesoru – i minimalizovat kód (a to jak ořezání bílých znaků, tak i náhradu jmen proměnných za zkratky jako `$0`). Je toho moc, nejlépe, když si to "vyzkoušíte sami":[http://www.nikhilk.net/Content/Samples/ScriptSharp.zip] nebo se podíváte na desetiminutovou "video ukázku":[http://www.nikhilk.net/Content/Video/ScriptSharpIntro.wmv]. Zatím je kompilátor ve fázi funkčního prototypu a k dokonalosti potřebuje ještě hodně práce, ale jako ukázka možného směru je to bomba.
+
+== Zajímavost závěrem
+Docela zajímavé je, že soudruzi v Google přemýšlejí podobně a podstatě totéž přinášejí ve svém Web Toolkitu.
+
+== Zdroj
+"Nikhil Kothari - Script# Prototype":[http://www.nikhilk.net/Entry.aspx?id=121]

@@ -1,0 +1,66 @@
+---
+{:id 427,
+ :title "Deploytime feature toggles",
+ :description
+ "Často se při vývoji setkáme s potřebou některé featury zapínat a vypínat dle potřeby. Malá ukázka, jak to vypínat featury při deployi.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "deployment"},
+ :published "2012-08-30T12:38:43.723"}
+---
+
+Často se při vývoji setkáme s potřebou některé featury zapínat a vypínat dle potřeby. Pokud děláme službu, tak se jistě hodí zainvestovat do systému "feature toggles":[http://rarous.net/weblog/404-prepinani-featur-a-vetveni-abstrakci.aspx], které jde zapínat/vypínat on-line nejlépe z administrativního rozhraní.
+
+Možnost výběru omezeného okruhu uživatelů a nebo vzorků  podle nějakého kritéria jistě také není na škodu. Dá se tak dělat postupný deployment a featuru testovat na omezeném vzorku uživatelů, ale taky se to může hodit při A/B testování. Možnost z produkce stáhnout nefunkční/spadlou featuru bez nutného redeploye také ocení asi každý. Feature toggles jsou dobro. :)
+
+Ale co my, co zrovna neděláme služby a deployujeme k různým zákazníkům, různé featury, nás se to netýká? Ale ano. Koukneme se na jednu z možných technik deploytime feature toggles.
+
+Deploytime feature toggles jsou méně flexibilní, každá změna vyžaduje redeploy aplikace. Na druhou stranu nás můžou ochránit před nechtěným užíváním featur, které zákazník nemá zakoupené a náhodou objevil, jak se k nim dostat. Jak tedy na to?
+
+MSDeploy
+========
+
+Začnu předpokladem, že deployment neděláte ručně přes FTP (SSH, VPN/RD) nebo E-mail. Teď neposlouchám...
+
+Ok. :) Dobře takže každý používá nějakou automatizaci deploye, nejlépe tu, kterou mu poskytuje jeho platforma. Ve Visual Studiu/IIS7 je nástroj zvaný MsDeploy, který slouží nejen k balíčkování, konfiguraci a deploymentu na webový server. Umí toho celkem dost, ale nám bude zatím stačit schopnost vytvářet deployovací balíčky. Je to taková ta funkce, která se skrývá v kontextové nabídce webového projektu pod názvem `Build Deployment Package`.
+
+Feature Toggles
+===============
+
+Pro deploytime feature toggles nebudeme vymýšlet nějaké složitosti a využijeme to, co nám platforma nabízí. Využijeme integraci s MsBuildem. Já vím, psát deployovací scripty v XML je špatné, ale tohle je tak snadné, že to snad zvládne každý. Jdeme trošku pod povrch, takže zamávejte dialogům a GUI a zapněte si svůj oblíbený XML editor a otevřete si projektový soubor webového projektu (nebo prostě dejte `Unload Project` a pak `Edit *FooBar*.csproj` přes kontextovou nabídku nad projektem). Taky vám začalo být srdce rychleji? :)
+
+Dalším předpokladem je, že vývojová verze obsahuje všechny featury a toggles slouží jen k odebírání. Proto si nadefinujeme vlastnosti, které budou sloužit jako příznak pro odebrání featury.
+
+/--code xml
+<PropertyGroup>
+  <RemoveFoo Condition=" '$(RemoveFoo)'=='' ">false</RemoveFoo>
+  <RemoveBar Condition=" '$(RemoveBar)'=='' ">false</RemoveBar>
+</PropertyGroup>
+\--code
+
+V aplikaci máme dvě featury `Foo` a `Bar`. **Foo** je featura, která je třeba jednou ASPX stránkou. **Bar** je pro změnu složena z controlleru a sady jeho views.
+
+/--code xml
+<PropertyGroup>
+  <ExcludeFilesFromDeployment Condition=" '$(RemoveFoo)' == 'true' ">
+      $(ExcludeFilesFromDeployment);Foo.aspx</ExcludeFilesFromDeployment>
+  <ExcludeFoldersFromDeployment Condition=" '$(RemoveBar)' == 'true' ">
+      $(ExcludeFoldersFromDeployment);Views\Bar</ExcludeFoldersFromDeployment>
+</PropertyGroup>
+\--code
+
+`ExcludeFilesFromDeployment` a `ExcludeFoldersFromDeployment` jsou extension pointy pro balíčkovací target, kde můžete říct, co nemá být součástí výsledného balíčku. Můžete tak odebírat nejen stránky, ale i styly, scripty, assemblies... Prostě, co zrovna nepotřebujete. V ukázce používám `Conditional` atribut, kde se ptáme na hodnotu vlastností definovaných výše. Navíc, díky zanořené referenci `$(ExcludeFilesFromDeployment);` můžete mít takových toggles kolik potřebujete a hezky se poskládají podle konfigurace.
+
+Dost bylo hrabání se v XML a přejděme k té hezčí práci. :) K příkazové řádce.
+
+/--code
+msbuild FooBar.csproj /t:Package /p:RemoveFoo=true
+\--code
+
+Vypínání jednotlivých featur v balíčku řídíme pomocí parametrů MsBuildu, zde konkrétně máme vypnutou featuru *Foo*. S příchodem deployovacích profilů ve VS 2012, to možná půjde udělat ještě líp, ale to jsem zatím nezkoumal.
+
+Závěr
+=====
+
+Tohle samozřejmě funguje jen na fyzické odebírání featur z aplikace. Pokud potřebujete i logické odebírání, můžete k tomu využít třeba "vlastní transformace konfigurace":[http://rarous.net/weblog/424-vlastni-transformace-konfiguracnich-souboru.aspx].
+
+Příjemné deployování!

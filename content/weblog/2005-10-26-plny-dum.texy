@@ -1,0 +1,17 @@
+---
+{:id 76,
+ :title "Plný dům",
+ :description "Aneb jak nacpat 20 lidí do 3+KK.",
+ :author "Aleš Roubíček",
+ :tags #{"kamarádi"},
+ :published "2005-10-26T12:41:33.423"}
+---
+
+Již včera přijely přítelkyně - Monika a Tereza - mých spolubydlících k nám na návštěvu a usadily se tu na delší dobu, takže dnes nás spalo v jednom pokoji pět. Dnes večer se má dostavit další várka lidí na oslavy narozenin několika byvalých spolubydlících. Takže tu bude v jeden čas něco okolo 15 až 20 lidí a to už stojí za to! Ještě že s přibývajícím množstvím lidí bude přibývat i alkoholu :o) jinak nevim jak bych to já, konzervativní a samotářský typ, zvládl...
+
+Včera jsme konečně naplno zprovoznili nový hosting a adresu stránek, takže si prosim změňte záložky a RSS((Really Simple Syndication)) na novou adresu www.rarous.net. Až se mi povede zbavit se zakésnuté dll na AspWebu:[aspweb], budou fungovat i staré adresy na nové stránky. Tím bych měl mít vyřešeno i ono indexování vyhledávačema, protože to bude posílat HTTP 301 Moved Permanently :)
+
+No ještě bych zapoměl, "mike se včera skoro zabil":[tabletka]...
+
+[tabletka]: http://www.mikemaly.net/clanek/8-neni-tabletka-jako-tabletka.aspx
+[aspweb]: http://www.aspweb.cz/

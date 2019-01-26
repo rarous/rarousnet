@@ -1,0 +1,25 @@
+---
+{:id 257,
+ :title "Nový rarouš.net",
+ :description
+ "Právě jsem spustil první beta verzi homepage rarouš.net. Po letech jsem se vrátil k homepagi oddělené od blogu, když ne tak úplně. Nová verze by měla v krátkosti informovat o mně.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2008-02-17T12:40:37.727"}
+---
+
+Právě jsem spustil první beta verzi homepage [rarous]. Po letech jsem se vrátil k homepagi oddělené od blogu, když ne tak úplně. Nová verze by měla v krátkosti informovat o mně. Je na ní [kontakt], poslední články z blogu, poslední alba na picase, poslední zápich z twittru, co zrovna poslouchám a co mě zaujalo ve čtečce.
+
+Všechny tyto informace jsou agregované a k jejich načítání používám nové třídy z .net frameworku 3.5 (LINQ to XML a Syndication services). Aby nedocházelo k přetěžování, tak jsou data cachována na 5min.
+
+Zajímavé je, že to málo mi zabralo celé tři dny práce – vymyšlení konceptu, návrh grafiky, nakódování šablony a programování. Jenže zdaleka ještě nejsem hotov. :)
+Ještě mi zbývá přidat hledání, udělat celou patičku a dovymyslet způsob agregování muziky z [music].
+
+No ještě je toho dost, ale teď je načase nejakej relax…
+
+==Update
+Tak patička je snad hotová.
+
+[rarous]: http://rarous.net/ rarouš.net
+[kontakt]: http://rarous.net/#kontakt kontakt .{rel:me}
+[music]: http://rarousmusic.com/ raroušmusic.com

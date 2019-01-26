@@ -1,0 +1,86 @@
+---
+{:id 354,
+ :title "Zdroje o ASP.NET MVC pro začátečníky",
+ :description
+ "Možná hledáte nějaký materiál, který vám pomůže začít s ASP.NET MVC. O pár možná vim, tak se pojďme podívat, jaké máte možnosti. ",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "mvc"},
+ :published "2009-03-11T18:51:04.013"}
+---
+
+Možná hledáte nějaký materiál, který vám pomůže začít s ASP.NET MVC. Pojďme se podívat, jaké máte možnosti.
+
+Knihy
+=====
+
+Asi nejčastějšími studijními materiály jsou knihy. Protože je ASP.NET MVC ještě hodně mladý framework, který ještě nebyl oficiálně vydán (produkční verze), žádná kniha ještě nevyšla. Ale minimálně na dvou se usilovně již několik měsíců pracuje. Ještě lepší zprávou je, že jejich rozpracované verze jsou už nyní k dispozici!
+
+Za první knihou **ASP.NET MVC Framework Unleashed** stojí Senior Program Manager ASP.NET MVC a autor jedné z nejprodávanějších knih o ASP.NET  - [walther]. Jednotlivé kapitoly publikuje na svém blogu. Ty budou po jejím dokončení z blogu staženy. Publikovány byly zatím tyto kapitoly:
+
+1.	[walther 1]
+2.	[walther 2]
+3.	[walther 3]
+4.	[walther 4]
+5.	[walther 5]
+6.	[walther 6]
+7.	[walther 9]
+
+Další knihou je **Professional ASP.NET MVC 1.0** z rukou pánů [scottgu], [haacked], [scottha] a [conery]. Pokud nevíte, kdo jsou tito pánové zač, tak byste to měli rychle dohnat. ScottGu je autorem ASP.NET a dnes je vicepresidentem vývojářské divize Microsoftu. Phil je Senior Program Manager ASP.NET MVC, Routingu a integrace dynamických jazyků do ASP.NET. ScottHa byl první, kdo loni na MIXu ASP.NET MVC presentoval a Rob Conery je autorem ukázkové aplikace - a především poučných screencastů z její tvorby - StoreFront, která je postavená na MVC frameworku. Z knihy byla zatím uvolněna "první kapitola":[professional], která je průvodcem krok za krokem jak začít stavět aplikaci s ASP.NET MVC.
+
+Ukázkové aplikace
+==============
+
+Pokud se vám dobře učí čtením zdrojových kódů, není nic lepšího, než si "zdrojové kódy ASP.NET MVC":[source] stáhnout na CodePlexu. Z nich můžete pochytit ledasco, ale jak s tím dělat aplikace už moc ne. Proto tu jsou ukázkové aplikace. Tou první a asi nejrozsáhlejší je [storefront]. Jenže její zdrojáky byly chvíli na CodePlexu, pak je Rob smazal a slibuje, že brzy budou nové – aktuální. Další ukázková aplikace vznikla pro potřeby druhé jmenované knihy a jmenuje se [nerd].
+
+Webcasty
+========
+
+Když ještě nejsou k [storefront] zdrojáky, tak vězte, že k němu je asi pětadvacet screencastů! Rob zde provádí vývojem e-shopu. Během té doby prozkoumává různá zákoutí webového vývoje, vylepšuje design aplikace, užívá užitečných komponent atd. Rozhodně stojí za zhlédnutí.
+
+Další videa, která vám snad pomohou s MVC frameworkem začít, najdete přímo na stránkách [aspnetmvc].
+
+Záznamy přednášek
+==================
+
+Doporučení hodné jsou záznamy z loňského MIXu a PDC, konkrétně tyto:
+
+1.	[t22]
+2.	[pc21]
+
+Na letošním MIX, který bude již příští týden, bude asi 5 přednášek věnovaných ASP.NET MVC a očekává se, že tam bude také uvedena jeho finální verze.
+
+Na loňském WebExpu jsem měli s Borkem "přednášku o ASP.NET Futures a o MVC":[webexpo] jsem také mluvili. Přednáška se natáčela, a pokud bude záznam zveřejněn, tak tam možná najdete pár zajímavých informací. :)
+
+Blogy
+======
+
+Zatím největším zdrojem a zároveň nejroztříštěnějším jsou blogspoty. Nejvíc informací najdete na blozích již výše zmiňovaných pánů. Do jejich společnosti se rád vloudím i "se svojí troškou do mlýna":[/weblog/tag/mvc.aspx], ale troufnu si tvrdit, že v některých už jde o trošičku pokročilejší témata a pro jejich pochopení byste už něco měli mít načteno a nazkoušeno. :)
+
+No koukám, že se mi tady z toho stává pěkná linkfarma, tak to raději ukončím a doufám, že se máte od čeho odrazit…
+
+
+
+[scottgu]: http://weblogs.asp.net/scottgu/ Scott Guthrie
+[scottha]: http://www.hanselman.com/ Scott Hanselman
+[haacked]: http://haacked.com/ Phil Haack
+[conery]: http://blog.wekeroad.com/ Rob Conery
+[walther]: http://stephenwalther.com/blog/ Stephen Walther
+
+[aspnetmvc]: http://asp.net/mvc/ ASP.NET MVC
+
+[source]: http://aspnet.codeplex.com/SourceControl/changeset/view/21528
+[nerd]: http://nerddinner.codeplex.com/ Nerddinner
+[storefront]: http://blog.wekeroad.com/mvc-storefront/ MVC Storefront
+
+[professional]: http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf
+[walther 1]: http://stephenwalther.com/blog/archive/2009/02/05/chapter-1-an-introduction-to-asp.net-mvc.aspx Chapter 1 - An Introduction to ASP.NET MVC
+[walther 2]: http://stephenwalther.com/blog/archive/2009/02/07/chapter-2-building-a-simple-asp.net-mvc-application.aspx Chapter 2 - Building a Simple ASP.NET MVC Application
+[walther 3]: http://stephenwalther.com/blog/archive/2009/02/13/chapter-3-understanding-controllers.aspx Chapter 3 - Understanding Controllers
+[walther 4]: http://stephenwalther.com/blog/archive/2009/02/21/chapter-4-understanding-views.aspx Chapter 4 - Understanding Views
+[walther 5]: http://stephenwalther.com/blog/archive/2009/02/27/chapter-5-understanding-models.aspx Chapter 5 - Understanding Models
+[walther 6]: http://stephenwalther.com/blog/archive/2009/03/03/chapter-6-understanding-html-helpers.aspx Chapter 6 - Understanding HTML Helpers
+[walther 9]: http://stephenwalther.com/blog/archive/2009/02/06/chapter-2-understanding-routing.aspx Chapter 9 - Understanding Routing
+
+[pc21]: http://channel9.msdn.com/pdc2008/PC21/ ASP.NET MVC : A New Framework for Building Web Applications
+[t22]: http://sessions.visitmix.com/?selectedSearch=T22 Developing ASP.NET Applications Using the Model View Controller Pattern
+[webexpo]: http://2008.webexpo.cz/prednaska/asp-net/

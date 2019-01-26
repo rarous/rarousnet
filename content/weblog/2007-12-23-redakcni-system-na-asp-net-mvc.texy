@@ -1,0 +1,111 @@
+---
+{:id 242,
+ :title "Redakční systém na ASP.NET MVC",
+ :description
+ "Rozhodl jsem se, že, jako praktickou ukázku použití TDD a ASP.NET MVC, budu psát seriálek, výsledkem něhož bude základ třetí verze redakčního systému Gryphoon.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "activerecord" "aspnet" "codeplex" "mvc" "gryphoon"
+   "xunit" "rhinomocks" "texy"},
+ :published "2007-12-23T18:56:11.140"}
+---
+
+Rozhodl jsem se, že, jako praktickou ukázku použití TDD a [mvc] (dále jen MVC), budu psát seriálek, výsledkem něhož bude základ třetí verze redakčního systému [gryphoon].
+
+**Upozornění:** Je možné, že některým věcem nebudete v průběhu čtení rozumět. Dopuručuji si přečíst "související články":[#souvisejici], na jejichž základě tento seriál staví.
+
+Už z této podstaty vyplívá, že půjde o OSS. Projekt je hostován na Codeplexu:[gryphoon] pod MS-PL((Microsoft Public Licence)). Dalším důležitým znakem je použití [texy.net] jako základního kamene systému, spojení s databází bude zajišťovat [active record], pro testování použiji [xunit] a [rhino mocks]. Tím jsou nastíněny základní prvky architektury a můžeme se pomalu dát do práce.
+
+Struktura projektu
+==================
+
+Prozatím to vypadá na tři projekty v řešení:
+1.  Rarous.Gryphoon – Knihovna, jádro systému, které bude obsahovat objekty doménového modelu, konfiguraci a další potřebné komponenty.
+2.  Rarous.Gryphoon.Spec – Knihovna s jednotkovými testy. xUnit.net místo termínu test používá fakt, proto bude brát tento projekt jako specifikaci zbylých částí.
+3.  Rarous.Gryphoon.Web – Webová aplikace. Projekt bude obsahovat webovou část tj. Controllery a View (řadiče a pohledy) a Helpery (pomocníky).
+
+První řádky specifikace
+=======================
+
+Naší jedinou specifikací bude projekt Rarous.Gryphoon.Spec. Tím co je v něm dáno, by se měly řídit oba zbylé projekty. Dobrým zvykem v TDD je navrhovat systém od shora dolů. První věc, se kterou přijdete do styku, je URL. Zatím nebudu výchozí schéma URL měnit, proto ani nebudu psát testy na Routování (zatím). Defaultní schéma URL by mělo být už milionkrát otestované v rámci MVC projektu.
+
+Takže budeme pokračovat dál a to k řadiči článku (`ArticleController`). Ten by měl být zodpovědný za vytváření článků nových, jejich následnou editaci, zobrazování a v poslední řadě i mazání.
+
+V prvním CTP, zatím nejsou předdefinované Mock Objekty pro controllery, proto použijeme Test subclass pattern, pro ověření činnosti controlleru. Controller bude mít následující rozhranní:
+
+[*/data/obrazky/IArticleController2.png .(Diagram IArticleController)*]
+
+A třída pro testování vypadá následovně:
+
+/--code csharp
+public class TestArticleController : ArticleController {
+  public string ActualViewName { get; set; }
+  public string RedirectViewName { get; set; }
+  public string ActualMasterName { get; set; }
+  public object ActualViewData { get; set; }
+
+  protected override void RenderView(string viewName, string masterName,
+                                     object viewData) {
+    ActualViewName = viewName;
+    ActualMasterName = masterName;
+    ActualViewData = viewData;
+  }
+
+  protected override void RedirectToAction(object values) {
+    RedirectViewName = values.ToDictionary()["Action"];
+  }
+}
+\--code
+
+Teď můžeme napsat první test, který ověří, že pokud přijdeme na adresu `/article/` otevře se nám editor nového článku. Pozn. Využívám výchozího schématu routeru `[controller]/[action]/[id]` -Pokud není *action* definovaná vybere se **Index**. V budoucnu ho změním na lepší, ale pro začátek stačí.
+
+/--code csharp
+[Fact]
+public void ArticleController_DefaultActionShouldShowEditor() {
+  TestArticleController controller = new TestArticleController();
+
+  controller.Index();
+
+  Assert.Equal("Editor", controller.ActualViewName);
+}
+\--code
+
+Spustíme test – neprojde. Aby test prošel, musíme doimplementovat metodu `ArticleController.Index`.
+
+/--code csharp
+[ControllerAction]
+public void Index() {
+  RenderView("Editor");
+}
+\--code
+
+Teď už by měl test projít. Jenže aby to fungovalo i na webu, musíme ještě dopsat View `/Views/Article/Editor.aspx`... Do příště za domácí úkol.
+
+Závěrem
+=======
+
+Aktuální stav je na codeplexu ke stažení, ale zdaleka není funkční. :) Průběžně ho budu s dalšími díly doplňovat. Příště tedy uděláme ukládání nových příspěvků a editaci. Když se pozorně podíváte na zdrojáky, zjistíte, že tak trochu cheatuju :)
+
+Jo abych nezapoměl, pokud jste sem přišli přes RSS a ještě jste si "nezměnili adresu feedu":[clanek(241)], učiňte tak zavčasu. Děkuji
+
+== Související .[#souvisejici]
+* [clanek(219)]
+* [clanek(220)]
+* [clanek(236)]
+
+Tagy: [tag-aspnetmvc], [tag-gryphoon]
+
+[tag-aspnetmvc]: http://technorati.com/tag/aspnetmvc aspnetmvc .{rel:tag}
+[tag-gryphoon]: http://technorati.com/tag/gryphoon gryphoon .{rel:tag}
+
+[mvc]: http://asp.net/downloads/3.5-extensions/ ASP.NET MVC
+[gryphoon]: http://www.codeplex.com/gryphoon Gryphoon
+[texy.net]: http://www.codeplex.com/texynet Texy.net
+[active record]: http://www.castleproject.org/activerecord/index.html  Castle ActiveRecord
+[xunit]: http://www.codeplex.com/xunit xUnit.net
+[rhino mocks]: http://www.ayende.com/projects/rhino-mocks.aspx Rhino Mocks
+[clanek(219)]: /weblog/219-zaciname-s-jednokolejkou.aspx Začínáme s jednokolejkou
+[clanek(220)]: /weblog/220-jak-funguje-monorail.aspx Jak funguje MonoRail
+[clanek(236)]: /weblog/236-mvc-unit-testy.aspx MVC na ASP.NET - testování jednotek
+[clanek(241)]: /weblog/241-pozor-zmena-feedu.aspx
+

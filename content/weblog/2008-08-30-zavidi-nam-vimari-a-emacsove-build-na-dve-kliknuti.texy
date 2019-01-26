@@ -1,0 +1,17 @@
+---
+{:id 294,
+ :title "Závidí nám vimaři a emacsové build na dvě kliknutí?",
+ :description
+ "Často se v diskusích/flamech o vývoji v Atlasu dočítám, že jsme blbý klikači, co se neobejdou bez wizárdů a podobných věcí. Jak je to tedy?",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2008-08-30T10:58:29.407"}
+---
+
+Často se v diskusích/flamech o vývoji v Atlasu dočítám, že jsme byli blbý klikači, co se neobejdou bez wizárdů a podobných věcí. Jak je to tedy?
+
+Pravdou je, že jsem velice poholdný až líný a nemám rád zbytečnej oser s příkazovou řádkou. Ne že bych jí nepoužíval, hodně úkolů se dá rychle zvládnout právě z ní, ale přece jen kompilace z Visual Studia na dvě kliknutí nebo spouštění build scriptu z příkazovky je dost o něčem jiném.
+
+Nejen že na dvě kliknutí provedu build ale provedou se mi unit testy nebo vzdálený předtestovaný build a případě úspěchu i commit do repository. Upřímně písmenkáři, kdo z vás to má?
+
+PS. Vím, že jde buildit i na jedno kliknutí nebo přes klávesovou zkratku, ale já mám rád kontextovou nabídku ;)

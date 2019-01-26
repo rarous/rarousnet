@@ -1,0 +1,23 @@
+---
+{:id 145,
+ :title "PHP, brzda internetu?",
+ :description
+ "Proč se PHP nasazuje do scénářů, pro které není evidentně určeno?",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2006-05-09T20:59:25.223"}
+---
+
+ Nechci tímto článkem rozpoutávat flamewar, ani polemiky, zda je lepší PHP nebo ASP.NET – každé má své využití v odlišných scénářích. To jen tak pro začátek. Tenhle článek se pozastavuje nad tím, jak jsou některé věci (PHP) znásilňovány k jiným věcem, na které nejsou vhodné (SOAP služby).
+
+Kolega Filip – ten, díky němuž jsem šel na školení :) – řeší zajímavý problém. V rámci spolupráce s jednou firmou (není podstatné s jakou) potřebuje vzdáleně volat jejich API a to je poskytnuto pomocí webové služby na protokolu SOAP. To je super. Háček je v tom, že zase tak super to není, protože vzdálená implementace nerespektuje standardy. A to navíc standardy, které osobně považuji za mnohem důležitější než (X)HTML a CSS – modly spousty webdesignérů. Konkrétně jde o WSDL.  WSDL je formát, který formálně popisuje rozhraní služby, struktury využívané při vzdálené komunikaci a datové typy vlastností struktur. Podle tohoto popisu můžete nechat vygenerovat Proxy třídy pro komunikaci se službou, tak že se služba chová jako jedna z tříd vašeho projektu. A pomalu se dostáváme k nadpisu :) Jelikož PHP formálně nezná datové typy – je typované dynamicky – nedochází ke správné interpretaci typů vlastností struktur. To by zase tak úplně nevadilo, že místo Integerů a Booleanů vám choděj Stringy, to se dá přežít, ale horší je, že PHP přidává do SOAP zpráv elementy, které nejsou ve WSDL popsány a tudíž se s nimi nepopere parser.
+
+Můj odhad je, že služba je napsaná v PHP 5, které má podporu SOAPu, vlastní zkušenosti s tím ale nemám. Na PHP 4 jsem zkoušel framework nuSOAP, který má trochu odlišné výstupy než zmiňovaná služba. PHP 5, tedy přináší možnost vytvářet a konzumovat webové služby běžící na protokolu SOAP, ale jeho výstupy si pravděpodobně neodpovídají. WSDL by totiž měl popisovat, jak bude výsledná SOAP zpráva vypadat a konzument se na to spoléhá, ale výstupní zpráva má úplně jiný formát. To pěkně děkuju. To si mám napsat vlastní WSDLko, abych mohl konzumovat cizí službu, na kterou se nemohu spolehnout, nebo ručně parsovat hodnoty z příchozích zpráv a skládat zprávy odchozí? A co když se za čas služba pozmění? Bodejď by pak WS nebyly považovány za další webovou bublinu, s tímhle přístupem to ani jinak nejde…
+
+== Slovníček
+SOAP:[http://www.w3.org/TR/soap12-part0/]:
+ - Simple Object Access Protocol
+ - XML protokol pro podporu komunikace webových služeb nejen přes HTTP
+WSDL:[http://www.w3.org/TR/wsdl20-primer/]:
+ - Web Service Description Language
+ - XML jazyk, využívající XSD k formálnímu popisu rozhraní webových služeb

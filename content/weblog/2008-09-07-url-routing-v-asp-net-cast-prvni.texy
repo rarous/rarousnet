@@ -1,0 +1,114 @@
+---
+{:id 296,
+ :title "URL Routing v ASP.NET – část první",
+ :description
+ "Důležitou novinkou v ASP.NET 3.5 SP1 je URL Routing, který je základním kamenem nejen MVC frameworku. Jak funguje a jak ho využít ve WebForms? ",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "webexpo" "aspnet" "mvc" "routing"},
+ :published "2008-09-07T10:56:59.537"}
+---
+
+První vlašťovkou z hnízda MVC frameworku, která se objevila v produkční verzi .net frameworku, je knihovna `System.Web.Routing`. Objevila se s příchodem SP1 verze 3.5 a to proto, že jí využívají ASP.NET Dynamic Data, které jsou taktéž novinkou service packu. No a protože routing je důležitou součástí ASP.NET MVC a jeho výhod lze využít i v klasickém ASP.NET, pojďme se na něj podívat trochu blíž.
+
+Jak to funguje
+==============
+
+Základem routingu je `HttpModul`, který vezme URL adresu požadavku a snaží se ho napárovat na některou z rout, které se registrují při startu aplikace. Pokud najde, získá z adresy požadované parametry a předá zpracování patřičnému *RouteHandleru*, který má za úkol vytvořit `HttpHandler` a předat mu získaná data. V případě MVC se vytvoří  `MvcHttpHandler` a data se přidávají kontextu, v klasickém ASP.NET je to jen na vás.
+
+Routovací handler pro WebForms může vypadat třeba následovně:
+
+/--code csharp
+public class WebFormRouteHandler<T> : IRouteHandler where T : IHttpHandler, new() {
+  public string VirtualPath { get; set; }
+
+  public WebFormRouteHandler(string virtualPath) {
+    VirtualPath = virtualPath;
+  }
+  public IHttpHandler GetHttpHandler( RequestContext requestContext ) {
+    foreach (var value in requestContext.RouteData.Values) {
+      requestContext.HttpContext.Items[value.Key] = value.Value;
+    }
+
+    return (VirtualPath != null)
+      ? (IHttpHandler)BuildManager.CreateInstanceFromVirtualPath(VirtualPath, typeof(T))
+      : new T();
+  }
+}
+\--code
+
+Routovací handler projde kolekci dat získaných z aktuální URL požadavku, nacpe je do kontextu a nakonec vytvoří a vrátí `IHttpHandler`.
+
+Routovací tabulky
+=================
+
+Pro naše aplikace je asi nejdůležitější nadefinovat routovací tabulky. Definice tabulky se vytváří při startu aplikace, tudíž využijeme události `Application_Start` v Global.asax nebo vlastním HttpModulu.
+
+/--code csharp
+public class MvcApplication : System.Web.HttpApplication {
+  public static void RegisterRoutes(RouteCollection routes) {
+    routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+    routes.MapRoute(
+        "Default",                                              // Route name
+        "{controller}/{action}/{id}",                           // URL with parameters
+        new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
+    );
+  }
+  protected void Application_Start() {
+    RegisterRoutes(RouteTable.Routes);
+  }
+}
+\--code
+
+Ukázka tvorby routovací tabulky při startu webové aplikace. Metoda `MapRoute` je extension metodou z MVC frameworku, která za nás vytvoří `MvcHttpHandler`, který bude požadavek zpracovávat. Získané parametry z routy jsou: název řadiče, který přebere řízení, jeho akce, která požadavek zpracuje a dále pak parametr id.
+
+U WebForms by routovací tabulka např. pro můj blog mohla vypadat následovně:
+
+/--code csharp
+public class Global : System.Web.HttpApplication {
+  public static void RegisterRoutes(RouteCollection routes) {
+    var routeHandler = new WebFormRouteHandler<Page>("~/Weblog/Article.aspx");
+    var route = new Route("weblog/{id}-{url}.aspx", routeHandler) {
+      Constraints = new RouteValueDictionary {
+       {"id", "\d{1-3}"}
+     }
+    };
+    routes.Add(route);
+  }
+  protected void Application_Start(object sender, EventArgs e) {
+    RegisterRoutes(RouteTable.Routes);
+  }
+}
+\--code
+
+Zaregistroval jsem do tabulky routu, která bere URL ve tvaru `weblog/{id}-{url}.aspx` a ověřuje se, že `id` je jedno až tříciferné číslo.
+
+Shrnutí
+=======
+
+> "Pane Aloisi, když dovolíte, já bych si to v závěru celé shrnul."
+>
+> "Tak, jestli vám to udělá dobře, tak si to celý schrntě."
+>: http://www.youtube.com/watch?v=cZtC6LLimF4
+
+Tak tedy, tento spotík se snažil nastínit jak funguje routing v ASP.NET, jak si zaregistrovat routy a jak z nich získávat data. Mohlo by se zdát, že to je vše čeho jsme schopní dosáhnout, ale není tomu tak. Routing je v ASP.NET dvoucestný, ale cestu zpět si ukážeme zas někdy příště… Třeba na WebExpu:[clanek(295)]!
+
+/--div .[#related hslice]
+Související .[entry-title]
+========
+.[entry-content]
+* [haacked]
+* [cavanagh]
+* [clanek(295)]
+* [clanek(220)]
+\--div
+
+Tagy: [tag-aspnet], [tag-aspnetmvc], [tag-routing]
+
+[tag-aspnet]: http://technorati.com/tag/aspnet ASP.NET .{rel:tag}
+[tag-aspnetmvc]: http://technorati.com/tag/aspnetmvc ASP.NET MVC .{rel:tag}
+[tag-routing]: http://technorati.com/tag/Routing Routing .{rel:tag}
+
+[haacked]: http://haacked.com/archive/2008/03/11/using-routing-with-webforms.aspx Phil Haack - Using Routing with WebForms
+[cavanagh]: http://chriscavanagh.wordpress.com/2008/04/25/systemwebrouting-with-webforms-sample/ Chris Cavanagh – System.Web.Routing with WebForms sample
+[clanek(295)]: /weblog/295-povidani-o-asp-net-na-webexpu.aspx Povídání o ASP.NET na WebExpu .{rel:bookmark}
+[clanek(220)]: /weblog/220-jak-funguje-monorail.aspx Jak funuje MonoRail .{rel:bookmark}

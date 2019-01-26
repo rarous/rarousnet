@@ -1,0 +1,61 @@
+---
+{:id 458,
+ :title
+ "Proč je [programovací jazyk X] rozhodně lepší než [programovací jazyk Y]",
+ :description
+ "Pojďme si jednou pro vždy ujasnit, proč je jazyk [X] rozhodně lepší než jazyk [Y].",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2014-07-16T11:00:00.663"}
+---
+
+
+Poslední dobou můžete najít spoustu srovnání, proč je [X] lepší než [Y],
+často ale může být pozorný čtenář ještě víc zmaten. Nakonec, vždyť oba
+jazyky jsou [pardigma] orientované, které běží na [platforma] a usnadňují
+programovat [styl] stylem, zatímco ponechávají dostatek flexibility,
+abyste mohli psát [sračkoidní kód].
+
+Jelikož jsem napsal [jednoduchý CRUD backend] v obou jazycích, cítím se
+být dostatečně kvalifikovaný na to, aboch některé věci  vyjasnil.
+Představte si [jednoduchý problém, který byste zadali páťákovi, který se
+učí programovat]. Implementace v [Y] by mohla vypdat nějak tak:
+
+/--code
+[Opravdu špatný kód v Y ]
+\--
+
+Naproti tomu v [X] by to mohlo vypadat jen takhle:
+
+/--code
+[Vyleštěný kód v X, který předvádí syntaktický cukr]
+\--
+
+Je celkem jasné, že druhá ukázka je mnohem snažší na pochopení a
+odolnější vůči chybám.
+
+Nebo třeba typové systémy. [Přesvědčení o tom, jaké relativní výhody a
+nevýhosy přináší statické/dynamické typování.] Jistě, [Y] nám dává
+[výhody Y typového systému nebo naopak jeho absence], ale vyváží to
+[nevýhody Y typového systému nebo jeho absence]? Jistě, že ne!
+
+Dále se musíme podívat na buildovací nástroje. Zatímco [Y] používá
+[nástroj, kerý jsem se neobtěžoval pochopit], [X] používá mnohem
+vychytanější [nástroj, který jsem trošku pochopil]. To už je dostatečný
+důvod na switch!
+
+Podívejme se na to obšírněji. [X] má úžasnou [featura specifická pro X
+IDE, která je stále v alpha verzi] a také má skvělou integraci do [asi
+50 let starý textový editor, jehož klávesové zkratky vycházejí z
+klingonštiny] a do [IDE, které všichni používají a z hlouby duše
+nenávidí]. Jistě, [Y] taky můžete psát v některém z nich, ale je to
+mnohem složitější a bolestivější.
+
+Nakonec, ikdyž je tu místo pro vícejazyčnost na platformě [platform],
+bylo by lepší, kdyby se šli [Y] programátoři někam zahrabat, nebo
+switchli na [X] a soupeřili s náma o hrstku [X] pracovních míst. Počkat,
+beru zpět. Jazyk [Y] je úžasný!
+
+Volný překlad článku od "Joela Gruse - Why [Programming Language X] Is
+Unambiguously Better than [Programming Language Y]":[http://joelgrus.com/2013/12/24/why-programming-language-x-is-unambiguously-better-than-programming-language-y/]
+    

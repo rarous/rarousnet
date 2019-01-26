@@ -1,0 +1,56 @@
+---
+{:id 250,
+ :title "CSSX",
+ :description
+ "Tento člán je pouze spekulativní, píšu ho, abych si utřídil myšlenky a rozvedl jeden možná úplně blbý nápad.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "css" "cssx"},
+ :published "2008-01-18T21:00:17.073"}
+---
+
+Tento člán je pouze spekulativní, píšu ho, abych si utřídil myšlenky a rozvedl jeden možná úplně blbý nápad.
+
+Jak tak pročítám weblůžky:[weblogy] narazil jsem na dva články: [pixy] a [misantrop]. A uvědomil jsem si, že podpoře lepšího psaní CSS((kaskádové styly Macíku)), nebo spíš jeho použitelnosti a usnadnění práce kodérů, se moc pozornosti nevěnuje.
+
+Rozhodl jsem se, že bych mohl napsat vlastní preprocesor pro asp.net, který rozšíří syntaxi CSS o některé nové možnosti, ale zůstane zpětně kompatibilní s lexikálními pravidly CSS. Preprocesor by měl také umožňovat komprimaci stylopisu, jak textovou, tak GZip. Měl by umět slučovat importované stylopisy a snížit tak počet http požadavků. Dále cachování a další nezbytnosti. :)
+
+Proměnné
+========
+
+Prvním vylepšením CSSX jsou proměnné, které se definují na začátku dokumentu (kvůli lepší přehlednosti). Deklarace proměnné začíná zavináčovým pravidlem `@var` následuje název proměnné začínající na znak dolaru, např. `$firemni-modra` následuje dvojtečka a přiřazená hodnota. Deklaraci uzavírá středník. V praxi to může vypadat třeba následovně:
+
+/--code css
+/* definice proměnných */
+@var $firemni-modra: #2465B7;
+@var $firemni-zelena: #A0B424;
+
+a{color:$firemni-modra;}
+a:hover{color:$firemni-zelena;}
+
+/* další pravidla… */
+\--code
+
+V syntaxi využívám lexikální pravidla CSS, např. to, že neznámá zavináčová pravidla jsou ignorována až k následujícímu středníku nebo se ignoruje následující blok uzavřený ve složených závorkách.
+
+Podmínky
+========
+
+Podmínky slouží k definování podmíněného bloku pravidel. Podmínky se definují pomocí zavináčového pravidla `@if` následovaného symbolem a blokem s definicemi:
+
+/--code css
+@if IE6 {
+/* pravidla pouze pro IE6 */
+}
+
+@if BLUE {
+/* pravidla pro pozadavek  style.cssx?symbols=blue */
+}
+\--code
+
+Symboly jsou definovány jednak pomocí „browser caps“ z asp.net a druhak pomocí GET parametru `symbols`. Podmínky jsou proto vhodné pro validní hackování stylopisu pro určité prohlížeče nebo pro skinování. Užití určitě může být povícero.
+
+Pokud máte další nápady na rozšíření nebo vylepšení mých návrhů, klidně to písněte do komentářů, diskusi se nebráním. :)
+
+[weblogy]: http://www.weblogy.cz/ Weblogy.cz
+[misantrop]: http://www.misantrop.info/645101-parametrizovane-css.php Parametrizované CSS
+[pixy]: http://pixy.cz/pixynergia/2008/what-im-missing-in-css/ What I’m missing in CSS

@@ -1,0 +1,13 @@
+﻿.wai a {
+  position:absolute;
+  top:-1000px;
+  left:-1000px;
+}
+.wai a:focus, .wai a:active {
+  margin:.6em 1em;
+  padding:.2em .4em;
+  background:#FFC;
+  z-index:100;
+  top:0;
+  left:0;
+}

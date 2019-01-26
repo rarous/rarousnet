@@ -1,0 +1,36 @@
+---
+{:id 41,
+ :title "Desktopsidebar",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"tuning"},
+ :published "2005-01-27T00:00:00"}
+---
+
+Od té doby, co jsem připojen na internet více méně permanentně, jsem začal používat několik užitečných aplikací s on-line životem
+spojených. Jenže těch aplikací začínalo být mnoho a ve změti okének jsem se začal pomalu ztrácet. Po tom, co jsem viděl screenshoty z budoucích Windows Longhorn, mi padl do oka sidebar a hledal jsem něco podobného, co by fungovalo v mých XP.
+
+Po dlouhém hledání a zkoušení různých imitací, jsem narazil
+na [sidebar]. Je to freeware se silnou uživatelskou podporou. V základní instalaci získáte několik panelů, skinů, editor skinů a SDK. Další skiny a panely se dají stáhnou na [exchange].
+
+== Panely, které mě zaujaly
+
+V první řadě, každého zaujmou analogové hodiny. Panel **hodiny** má dva módy – analog a digital. V digital modu můžete zobrazovat buďto pouze hodiny, nebo si nechat zobrazit datum. Podporuje rovněž standardní zástupné znaky, pro vlastní formát zobrazovaného času a data.
+
+Dále tam mám panel **počasí**, který zobrazuje aktuální a budoucí počasí, dokonce podporuje i česká města. Klasika je panel **snadného spuštění**, který je ekvivalentní s tím co je ve Windowsech. Pak používám ve stacku tyto panely, mezi kterými si přepínám pro lepší přehlednost.
+
+1) **Novinky** – Geniální RSS čtečka, novinky máte hned po ruce, bez překlikávání.
+2) **Kalendář** – Napojení na Outlook Kalendář
+3) **Úkoly** – Napojení na Outlook Úkoly
+4) **Poznámky** – Napojení na Outlook Poznámky
+5) **Miranda** – Mám po ruce všechny své kontakty, které jsou on-line (existuje i panel ICQ a MS Messenger)
+
+Já ještě používám panel **zatížení systému,** kde je pěkně vidět, jak můj stroj trápí.
+
+Pro Desktop Sidebar existuje spousta dalších panelů, já jsem
+tu popsal pouze ty, které se mi časem osvědčily. Namátkou z těch které jsem kdy zkoušel: MediaPlayer, WinAMP, Azureus, IP Address, Color Picker, Shutdown.
+
+Aplikace je lokalizovaná i do češtiny a funguje na Windows 98 a novějších. Pokud máte dostatek paměti (RAM) a trochu času na vyladění podle vlastních potřeb, odměna ve smyslu urychlení vaší práce vás nemine. Je to opravdu užitečná aplikace.
+
+[sidebar]: http://www.desktopsidebar.com/ Desktop Sidebar
+[exchange]: http://www.desktopsidebar.com/fileforum.php Extension Exchange Page

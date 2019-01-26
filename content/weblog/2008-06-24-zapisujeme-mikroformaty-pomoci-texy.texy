@@ -1,0 +1,99 @@
+---
+{:id 286,
+ :title "Zapisujeme mikroformáty pomocí Texy!",
+ :description
+ "Mým oblíbeným značkovacím jazykem je Texy! Léta jsme na ní zvyklý, ostatně používám ji i tady na blogu. Mikroformáty jsou téma, které mě zajímá v poslední době. Pojďme si přiblížit jejich užití v Texy!",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "hcard" "microformats" "xfn" "rel-tag" "haudio" "texy"},
+ :published "2008-06-24T08:49:21.033"}
+---
+
+Mým oblíbeným značkovacím jazykem je [texy] Léta jsme na ní zvyklý, ostatně používám ji i tady na blogu. Mikroformáty jsou téma, které mě zajímá v poslední době. Pojďme si přiblížit jejich užití v Texy!
+
+O tom, co jsou mikrofomáty se třeba dočtete na [microformats-cz]. Pokud se vám to nechce dohledávat, tak vězte, že jde o kusy (X)HTML((Hypertext Markup Language)) kódu, které mají vyšší sémantiku. Začněme tedy s jednoduchými ukázkami.
+
+==rel-design-pattern
+Jedním z nejjednodušších vzorů je užití atributu `rel` u odkazů. Tento atribut se používá k označení vztahu k odkazovanému dokumentu. Odkazy se dají v Texy zapsat několika způsoby, já s oblibou využívám reference, které vypisuju na konci dokumentu. Pro mne je to pak mnohem přehlednější, mít všechny odkazy na jednom místě.
+
+/--code texy
+ [rarous]: http://rarous.net/#kontakt Aleš Roubíček .{rel:me}
+ [david]: http://davidgrudl.com/ David Grudl .{rel:friend met}
+ [tag microformats]: http://technorati.com/tag/microformats Microformats .{rel:tag}
+ [clanek(282)]: /weblog/282-mikroformaty-v-hledani-yahoo.aspx Mikroformáty v hledání Yahoo .{rel:bookmark}
+\--code
+
+V předchozí ukázce jsem použil "vzor rel":[rel-pattern] při definici mikroformátů [xfn], [rel-tag] a permalink z HTML4.
+
+==vizitky hCard
+O něco pokročilejším mikroformátem je [hCard].
+
+/--code texy
+  /--div .[vcard]
+==Aleš Roubíček .[fn]
+vývojář webových aplikací .[job]
+
+Web:
+    - [rarous]
+E-mail:
+    - [email]
+Telefon:
+    - +420737461283 .[tel]
+  \--div
+
+ [rarous]: http://rarous.net/ .[url]{rel:me}
+ [email]: ales@roubicek.name .[email]
+\--code
+
+Takto nějak může být v Texy zapsaná vizitka - kontaktní informace. Je to zkrácená verze, toho co mám "v kontaktu":[kontakt] na titulce.
+
+==tracklisty hAudio
+Dalším mikroformátem, který se může hodit je [hAudio], sloužící k popisu hudebních děl.
+
+/--code texy
+  /--div .[haudio]
+1. "Dubfire .[contributor]"  - "Emissions .[title]"  .[item]
+2. "Steve Angello .[contributor]"  - "Trix .[title]"  .[item]
+3. "Delete .[contributor]"  - "Flight Schedule .[title]"  .[item]
+4. "Gui Borato .[contributor]"  - "The Rivington .[title]"  .[item]
+5. "Lutzenkirchen .[contributor]"  - "Kobalt .[title]"  .[item]
+6. "Solaris Heights .[contributor]"  - "No Trance .[title]"  (Popof Remix) .[item]
+7. "System 7 .[contributor]"  - "Space Bird .[title]"  (Dubfire Remix) .[item]
+
+Ke stažení "dj set .[category]" [download] (MP3 128 kbps; 36,4 MiB)
+  \--div
+
+ [download]: http://rarousmusic.com/mp3/alessio_busta_-_seven-rm.mp3 "Alessio Busta .[contributor]" - "Seven .[title]" .{rel:enclosure}
+\--code
+
+Tohle je například živá ukázka ze včerejšího "vydání setu Seven":[clanek(285)].
+
+==Závěr
+Doufám, že jsem předvedl pár praktických ukázek užití mikroformátů v Texy! Nejsem si jistý, zda lze syntaxí Texy pokrýt všechny možné nuance mikroformátu, ale ona k tomu ani není přímo určena. Každopádně mnohé lze užívat bez problémů. Zajímavým cvičením dnes pro mne bylo, jak v Texy zapisovat Texy :)
+
+/--div .[hslice #related]
+== Související .[entry-title]
+.[entry-content]
+* [clanek(282)]
+* [clanek(267)]
+* [clanek(256)]
+* [microformats-cz]
+\--div
+
+Tagy: [tag microformats], [tag texy]
+
+
+[tag microformats]: http://technorati.com/tag/microformats Microformats .{rel:tag}
+[tag texy]: http://technorati.com/tag/texy Texy! .{rel:tag}
+[kontakt]: /#kontakt .{rel:me}
+[microformats-cz]: http://www.microformats.cz/ Microformats.cz
+[reference]: http://texy.info/cs/syntax-podrobne#toc-reference
+[xfn]: http://gmpg.org/xfn XFN((XHTML Friends Network))
+[rel-tag]: http://microformats.org/wiki/rel-tag rel-tag
+[rel-pattern]: http://microformats.org/wiki/rel-design-pattern
+[hCard]: http://microformats.org/wiki/hcard hCard
+[hAudio]: http://microformats.org/wiki/haudio hAudio
+[clanek(285)]: /weblog/285-alessio-busta-seven.aspx Alessio Busta - Seven .{rel:bookmark}
+[clanek(282)]: /weblog/282-mikroformaty-v-hledani-yahoo.aspx Mikroformáty v hledání Yahoo .{rel:bookmark}
+[clanek(267)]: /weblog/267-vkladani-data-do-stranky.aspx Vkládání data do stránky .{rel:bookmark}
+[clanek(256)]: /weblog/256-mikroformaty-duvod-proc-pouzivat-xhtml.aspx Mikroformáty - důvod proč používat XHTML .{rel:bookmark}

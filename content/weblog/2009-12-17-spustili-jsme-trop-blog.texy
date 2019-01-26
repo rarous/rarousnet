@@ -1,0 +1,33 @@
+---
+{:id 373,
+ :title "Spustili jsme Trop blog",
+ :description
+ "Už je tomu tak, každá správná sociální služba se má šířit všema kanálama a dnes přibyl další.",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon" "trop"},
+ :published "2009-12-17T16:22:17.063"}
+---
+
+Už je tomu tak, každá správná sociální služba se má šířit všema kanálama a dnes přibyl další.
+
+Dneska najdete Trop skoro všude:
+* "Trop na Facebooku":[facebook]
+* "Trop na Twitteru":[twitter]
+* "Trop na Friendfeedu":[friendfeed]
+* "Trop Blog":[blog]
+
+Původně jsem chtěl blog nasadit na některý z existujících redakčních systémů. Výbíral jsem z Wordpressu:[wordpress], [oxite], [atom] a nakonec nevybral ani jeden. :) Instalovat na server další databázový stroj (MySQL) jen kvůli blogu mi přišlo zbytečné – Wordpress padl. Oxite se zdá být zajímavým, protože na něm jsou postaveny prezentační weby Microsoftích konferencí a navíc je to napsaný v ASP.NET MVC (stejně jako Trop:[trop]). Bohužel je to celé dost nepoužitelné a navíc chybí podpora pro správu uživatelů. Což je velký problém, kterým trpí i jinak zajímavě vypadající AtomSite.
+
+Velké ostřílené distribuce jako SubText, BlogEngine.net nebo dasBlog se mi už zkoušet nechtělo a sáhl jsem po tom s čím dokážu dělat snadno a rychle. Ano, po "stařičkém Gryphoonovi":[gryphoon], který pohání i tento blog. Chtělo to jen pár drobných úprav a frontend, který byl jen a pouze na tomto blogu, už je nasaditelný i na jiné domény než rarouš.net. :) Možná ho o prázdninách dám nějak do kupky a vydám bastl hybrid Gryphoon 1.90. :)
+
+Stay tuned.
+
+[atom]: http://atomsite.net/ AtomSite
+[wordpress]: http://www.wordpress.org/ Wordpress
+[oxite]: http://oxite.codeplex.com/  Oxite
+[gryphoon]: http://www.gryphoon.net/
+[trop]: http://www.trop.cz/
+[blog]: http://blog.trop.cz/
+[twitter]: http://www.twitter.com/TropCZ
+[friendfeed]: http://friendfeed.com/troppraha
+[facebook]: http://www.facebook.com/pages/Trop/103373591895

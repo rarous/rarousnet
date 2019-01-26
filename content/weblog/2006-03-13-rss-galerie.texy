@@ -1,0 +1,10 @@
+---
+{:id 118,
+ :title "RSS Galerie",
+ :description "Zprovoznil jsem nový RSS export.",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon"},
+ :published "2006-03-13T07:41:39.517"}
+---
+
+Dnes jsem zprovoznil nový RSS export pro syndikaci galerií na mém webu. Pro ty, co mají zájem: "RSS galerie":/ws/syndikace.asmx/RssGalerie

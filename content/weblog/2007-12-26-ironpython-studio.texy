@@ -1,0 +1,24 @@
+---
+{:id 244,
+ :title "IronPython Studio",
+ :description
+ "S tím, jak byl uvolněn Visual Studio Shell, začínají se objevovat zajímavé aplikace na něm postavené. Jednou z nich je IronPython Studio.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0" "vs" "ironpython"},
+ :published "2007-12-26T08:31:58.657"}
+---
+
+S tím, jak byl uvolněn Visual Studio Shell, začínají se objevovat zajímavé aplikace na něm postavené. Jednou z nich je [codeplex].
+
+Tato implementace je postavená na jednom ze samplů VS SDK, jímž je integrace IronPythonu do VS. Co všechno to umí? Namátkou:
+
+* Intellisense
+* Zvýrazňování syntaxe
+* Debugování
+* Předdefinované šablony projektů
+* Code snippets
+* Python konzole přímo ve VS
+
+Celý projekt je i se zdrojovými kódy a může sloužit jako inspirace pro integraci dalších jazyků.
+
+[codeplex]: http://www.codeplex.com/IronPythonStudio IronPython Studio

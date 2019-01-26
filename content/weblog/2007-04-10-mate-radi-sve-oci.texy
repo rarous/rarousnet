@@ -1,0 +1,25 @@
+---
+{:id 205,
+ :title "Máte rádi své oči?",
+ :description
+ "Návod jak si vylepšit pracovní prostředí Visual Studia, aby vás nebolela oka.",
+ :author "Aleš Roubíček",
+ :tags #{"tuning" "cleartype" "theme" "vs"},
+ :published "2007-04-10T16:52:46.203"}
+---
+
+Jako programátor koukám velkou část dne do monitoru, ztoho asi 70% času do Visual Studia (VS). Problém je, že VS nemá ve výchozím nastavení zrovna nejergonomičtější barvy a fonty. Font je pravděpodobně věcí osobního vkusu a kvality zraku, ale obrovské bílé jasně svítící plochy nejsou pro oči to nejslepší. Jednoho dne, kdy už jsem docela slzel a pálili mě oči, jsem se rozhodl, že musím změnit theme :) A to nejlépe na nějaký málo kontrastní a nejlépe s tmavým pozadím.
+
+Přenesení themu není naštěstí ve VS2005 veliký problém a najít ten správný, již předpřipravený jistě ulehčí stránka [ide-hot]. Mě osobně nejvíce sedí [borland] od Borlandu. A font? Do teď jsem používal *Fixedsys*, ale pro změnu jsem se vrátil ke Consolasu:[consolas], který se na LCDčku s ClearTypem čte asi nejlépe.
+
+[* /data/obrazky/code.png .(ukázka tématu) *]
+
+Jak naimportovat theme
+======================
+
+Stáhněte si požadovaný theme. Rozbalte ho do adresáře s vašim nastavením pro VS2005  (obvykle `%My Documents%\Visual Studio 2005\Settings`). Ve Studiu pak postupujete po ose
+`Tools > Import and Export setting` `Next`, tady můžete zazálohovat své aktuální nastavení nebo dát *No* a `Next`, vyberete v sekci *My Setting* stažený theme a `Finish`.
+
+[ide-hot]:  http://idehotornot.ning.com/ Is your IDE hot or not?
+[borland]: http://idehotornot.ning.com/index.php/index/show?id=2046192 oldschool theme alá Turbo IDE
+[consolas]: http://www.microsoft.com/downloads/details.aspx?familyid=22e69ae4-7e40-4807-8a86-b3d36fab68d3&displaylang=en

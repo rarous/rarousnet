@@ -1,0 +1,113 @@
+---
+{:id 397,
+ :title "Single Responsibility Principle in the wild",
+ :description
+ "Dneska jsme narazil na jeden příklad, který byl opět ukázkou špatného návrhu a tak mě inspiroval. Inspiroval k jednoduché ukázce, jak špatný návrh krapet vylepšit.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2010-11-20T13:31:55.940"}
+---
+
+Tak jsem se tak koukal na "poslední CloudCover":[cloudcover], kde představovali novou službu Windows Azure AppFabric Caching. Služba je to jistě zajímavá a je jednou z možností jak zajistit *session state affinity* v Azure. Ale proč o tom píšu.
+
+Součástí epizody byla i živá ukázka, jak přidat cachování do existující aplikace.
+
+> Teď to možná některé [nhibernate] znalé veterány zaskočí, ale v Microsoftím světě ORM si o něčem jako 2nd level cache můžete nechat zdát. Vůbec tam spoustu krásných věcí nemají, ale o tom třeba až jindy.
+
+No prostě tam měli repository (používat repository, tam kde je LINQ, je už samo o sobě obskurní, ale budiž), která vypadala nějak tak:
+
+/--code csharp
+public class ProductsRepository : IProductsRepository {
+
+  public List<string> GetProducts() {
+
+    List<string> products = null;
+
+    NorthwindEntities context = new NorthwindEntities();
+    var query = from product in context.Products
+                select product.ProductName;
+
+    products = query.ToList();
+
+    return products;
+  }
+}
+\--code
+
+Mno, měli tedy respository produktů, která vracela názvy všech produktů přímo z databáze. No a pak se jali přidat cachování takového listu:
+
+/--code csharp
+public class ProductsRepository : IProductsRepository {
+
+  DataCacheFactory dcf;
+
+  public ProductsRepository() {
+    dcf = new DataCacheFactory();
+  }
+
+  public List<string> GetProducts() {
+
+    List<string> products = null;
+
+    DataCache dc = dcf.GetDefaultCache();
+
+    products = dc.Get("products");
+
+    if (products != null) {
+      return products;
+    }
+
+    NorthwindEntities context = new NorthwindEntities();
+    var query = from product in context.Products
+                select product.ProductName;
+
+    products = query.ToList();
+
+    dc.Put("products", products);
+
+    return products;
+  }
+}
+\--code
+
+Úžasné! Jenže tím jsme porušili "princip jediné zodpovědnosti":[srp]. Teď se nám repository účastní hned na dvou záležitostech - na své původní (načíst data z databáze) a nově na cachování načtených dat. Takže to smrdí. **It smels like refactoring time!**
+
+Jak na to?
+==========
+
+*Cachování je věc hodná vlastního aspektu.* Když se podíváme na výsledný kód, zjistíme, že jsme neudělali nic jiného než, že jsme odekorovali načítání dat logikou pro cachování. Tudíž zvolíme vzor **dekorátor**! Repository vrátíme do původního stavu, protože ten svůj účel splňuje a přidáme další třídu s jedinou zodpovědností:
+
+/--code csharp
+public class CachedProductsRepository : IProductsRepository {
+
+  const string ProductsKey = "products";
+
+  readonly DataCacheFactory cacheFactory;
+  readonly IProductsRepository repository;
+
+  public CachedProductsRepository(DataCacheFactory cacheFactory, IProductsRepository repository) {
+    this.cacheFactory = cacheFactory;
+    this.repository = repository;
+  }
+
+  public List<string> GetProducts() {
+
+    var cache = cacheFactory.GetDefaultCache();
+    var products = cache.Get(ProductsKey);
+
+    if (products == null) {
+      products = repository.GetProducts();
+      dc.Put(ProductsKey, products);
+    }
+
+    return products;
+  }
+}
+\--code
+
+No a máme to! Dokonce si teď můžeme vybrat, kdy chceme používat cache nebo sahat do databáze přímo. A to vše díky díky dodržování [ocp] a jednoduché kompozici objektů, které dělají jen a pouze to, co mají. :)
+
+[cloudcover]: http://channel9.msdn.com/posts/Cloud-Cover-Episode-32-AppFabric-Caching
+[nhibernate]: http://www.nhforge.org/ NHibernate
+[ocp]: http://en.wikipedia.org/wiki/Open/closed_principle Open/Closed principle
+[srp]: http://en.wikipedia.org/wiki/Single_responsibility_principle

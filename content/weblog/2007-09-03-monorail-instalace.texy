@@ -1,0 +1,58 @@
+---
+{:id 222,
+ :title "MonoRail – Instalace",
+ :description
+ "Na jednu zásadní věc jsem v prvním díle zapomněl – tedy spíš jsem s ní počítal, ale nakonec jsem jí nedal prostor – a tou je instalace.",
+ :author "Aleš Roubíček",
+ :tags #{"castle" "monorail" "mvc" "asp.net 2.0"},
+ :published "2007-09-03T13:27:07.427"}
+---
+
+Na jednu zásadní věc jsem v "prvním díle":[clanek(220)] zapomněl – tedy  spíš jsem s ní počítal, ale nakonec jsem jí nedal prostor – a tou je instalace.
+
+Existují, přinejmenším, tři možné způsoby získání MonoRailu, potažmo celého projektu Castle. Buďto si stáhnete instalátor:[instalator] (aktuálně verze --RC2-- ++RC3++, která vyšla --někdy koncem minulého roku-- ++koncem září++), nebo využijete služeb "build serveru":[build server] a stáhnete si "poslední stabilní build":[last stable build] vývojové verze. Třetí možností je získat aktuální zdrojové kódy ze Subversion:[svn] a celý projekt sestavit s NAntem.
+
+Instalátor je klasický balíček MSI, který za vás udělá špinavou práci:
+
+- Nahraje všechny potřebné soubory na disk,
+- Zaregistruje potřebné knihovny do GAC((Global Assembly Cache)),
+- Zaregistruje na lokálním IIS příponu `.rails` pro ISAPI filtr ASP.NET,
+- Přidá dva nové projekty (MonoRail a ActiveRecord) a průvodce do Visual Studia (2003, 2005 SP1).
+
+--Nevýhodou tohoto řešení, je neaktuálnost celého kompletu--, na druhou stranu je výhodou, že nám zamete cestičku a můžeme rovnou vyvíjet.
+
+Z build serveru si můžete stáhnout aktuální stabilní verzi knihoven v ZIP balíčku. Je to mužnost oba postupy zkombinovat, ale možná se vyplatí používat prozatím RC2 verzi a počkat si na "verzi RC3":[clanek(229)], která by již brzy měla spatřit světlo světa.
+
+Update
+------
+
+14 dní po vydání toho článku spatřila světlo světa RC3 verze Castle, takže některé výše zmíněné věty ztratili na aktuálnosti. :)
+
+Založení projektu
+====================
+
+Předpokládám, že jsme si Castle nainstalovali pomoci MSI balíčku. Máme Visual Studio 2005 ve verzi Standard a vyšší s nainstalovaným WebApplication projektem nebo SP1. Dáme vytvořit nový projekt a zobrazí se nám obrazovka podobná té následující:
+
+[* /data/obrazky/monorail_project_new.png .(Nový projekt) *]
+
+Červeně označené jsou nově přidané projekty
+1.  Knihovna s podporou persistence pomocí ActiveRecord
+2.  Webová aplikace MonoRail
+
+Pro začátek si vystačíme pouze s MonoRail projektem, protože i ten má podporu pro ActiveRecord a tak můžeme model později přesunout do samostatné knihovny. Takže dáme vytvořit nový MonoRail projekt. Spustí se nám jednoduchý průvodce, který nám přednastaví projekt podle našich potřeb.
+
+V prvním kroku si  vybereme, který View Engine chceme používat (samozřejmě jde změnit později v konfiguraci), jestli chceme zapnout integraci s Windsor kontejnerem a jestli zapnout podporu pro routing.
+
+Ve druhém kroku se nás průvodce zeptá, jestli chceme vytvořit také testovací projekt (NUnit s podporou pro testování MonoRail). Samozřejmě chceme :) Průvodce nám vytvoří základní strukturu projektu podobnou následujícímu obrázku.
+
+[* /data/obrazky/monorail_project_structure.png  .(Struktura projektu) *]
+
+V takovéto kostře si můžete vyzkoušet ukázky z předešlých dílů, snad by měly fungovat...
+
+
+[clanek(220)]: /weblog/220-jak-funguje-monorail.aspx
+[clanek(229)]: /weblog/229-castle-rc3-a-microsoft-mvc.aspx
+[instalator]: http://switch.dl.sourceforge.net/sourceforge/castleproject/CastleProject-1.0-RC3.msi
+[build server]: http://builds.castleproject.org/cruise/index.castle
+[last stable build]: http://builds.castleproject.org/cruise/DownloadBuild.castle?number=525
+[svn]: http://svn.castleproject.org:8080/svn/castle/trunk/

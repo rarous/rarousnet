@@ -1,0 +1,46 @@
+---
+{:id 464,
+ :title "Strasti a pasti HTML5",
+ :description
+ "Ačkoliv je HTML5 dnešní realitou, tak není vůbec růžová. Jak se vyhnout zbytečným problémům?",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2015-07-13T10:05:00.663"}
+---
+
+Poprvé jsem o HTML5 slyšel víc někdy v roce 2008 na konferenci
+[WebCamp od Martina Hassmana](http://a.met.cz/webcamp/html5/). Tenkrát mi to přišlo všechno strašně divný.
+Vždyť jedinou správnou cestou mělo být XHTML a mělo sloužit k popisu dokumentů, ne aplikací.
+Ale trh šel jinam.
+
+Dneska je HTML5 realitou a je výchozím formátem pro moje aktivity už 5 let. A nejen pro moje.
+HTML5 je de facto mainstream. Přesto může pro mnohé znamenat spoustu zapeklitých situací,
+protože ne všichni implementují všechno a stejně.
+
+## Jak problémům předejít?
+
+První otázka, která vám přijde na mysl je "[co můžu použít](http://caniuse.com/)?"
+
+Pak zjistíme, že někde nějaká featura chybí úplně, jinde je nedodělaná a jinde ani netušili,
+že nějaké HTML5 vůbec bude. A všechno to má nezanedbatelný podíl na trhu.
+
+*Ono vůbec s těmi podíly je to takový ošemetný. Web má být přístupný pro všechny, ne jen pro
+vámi definovanou skupinu vyvolených, abyste si ušetřili práci. Ale o tom jindy...*
+
+Největším problémem je asi podpora v Internet Explorerech. Stále nemrtvé IE8 vůbec nezná nové
+sémantické značky a tak nejdou ani nastylovat. Každá HTML5 stránka musí obsahovat
+[HTML5 Shiv](https://github.com/afarkas/html5shiv) nebo jinou knihovnu, která ho používá.
+
+Možná vás to překvapí, ale ani některé nejmodernější prohlížeče nerenderují všechno správně.
+Abyste se vyhnuli nepříjemným překvapením, doporučuji projít si
+[Normalize.css](https://necolas.github.io/normalize.css/) a buď ho rovnou použít celý,
+nebo integrovat vybrané moduly. Všechny deklarace jsou hezky zdokumentované.
+
+Tím máme základní sadu problémů vyřešenou a můžeme se začít trápit
+[s podporou APIs](http://caniuse.com/#cats=JS%20API) a
+[jednotlivých jazykových featur](https://kangax.github.io/compat-table/es6/).
+S tím nám hodně pomůže [Babel.js](https://babeljs.io/) a [spousta polyfillů](http://caniuse.com/#cats=JS%20API).
+Ale pozor ať vám díky edge featurám implementovaným v JS nenabobtná výsledek
+do obludných rozměrů a performance killeru.
+
+Užívejte jako léky nebo koření.

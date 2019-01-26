@@ -1,0 +1,14 @@
+---
+{:id 91,
+ :title "Aktuálně",
+ :description "Co se dneska událo.",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2005-12-06T15:26:48.510"}
+---
+
+Dneska, ačkoliv nemám žádnou školu, mám docela našlapáno. Ráno jsem zkoumal statistiky na Google Analytics a byl to šok. Za včerejšek nárůst návštěvnosti o 1 200%. Důvodem je již zmiňovaná účast v soutěži. jsem rád, že se sem tolik lidí podívalo, ale nikdo sem nenapsal ani čárku :( Škoda. Nemyslim si že píšu o tak nezajímavých tématech. No nic, třeba se časem moje články zalíbí nebo naopak a nějakou odezvu mi zanechá.
+
+Konečně jsem dostal od mika:[http://mikemaly.net] "fotky z páteční akce v Hegeši":/galerie.aspx?show=2005-12-03_Heges, takže jsem se konečně dokopal k tomu abych dopsal další kus Gryphoonu, tentokrát pro upload souborů na server. Upload je doplněn o možnost nahrávání zazipovaných složek s jejich automatickou dekompresí na server. Tohle jsem potřeboval kvůli uploadu galerií na web. Na našem Wifi prostě nedostanu přes FTP soubor velikosti fotky, ani kdybych se zbláznil. Teď si export z Picasy:[http://picasa.google.com] zabalím, přes Gryphoona nahraju a už vše běhá tak, jak má.
+
+Kromě programových změn, jsem pročistil kategorie a některé přidal tak, aby byla navigace trochu přehlednější - sám jsem se v tom občas ztrácel :) No a to je asi pro dnešek všechno, protože musim udělat projekt na Ekonomiku pro podnikatele a domácí úkol na Architekturu počítačových systémů.

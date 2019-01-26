@@ -1,0 +1,16 @@
+---
+{:id 37,
+ :title "Změny",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2005-01-22T22:10:00"}
+---
+
+Právě mám zkouškové období a hned jak mi zkoušky zkončí vrhnu se do práce. Čeká mě brigáda v Benteleru. Budu dodělávat Skladovou aplikaci, kterou jsem jim programoval v srpnu. Za tu dobu se objevili, některé věci, které je třeba doplnit nebo upravit. Hlavní věcí bude udělat tiskové sestavy a protože je to celý psaný v ASP.NET, tak to snad nebude taková práce. Budu muset udělat a odladit tiskový styly pro databázový reporty.
+
+Možná jste si všimli, že začal přispívat můj kamarád **dekan**. Bude psát převážně svoje povídky, je fakt dobrej. Proto chci předělat admin sekci. Nevyhovuje už dnešním požadavkům. Hlavně potřebuju udělat uživatelské role a doplnit některé věci, které mě za ten rok napadly. Možná udělám přispívání pomocí Webové služby a e-mailu, ale to závisí na čase, který mi na to zbyde.
+
+Drobné změny jsem provedl na serveru. Mám hodně přístupů, kvůli semestrálním pracem a školním věcem vůbec, ale některé requesty jsou na adresy, které jsem používal před třičtvrtě rokem, kdy jsem udělal restrukturalizaci adresářové struktury. Tak jsem udělal přesměrování ze starých adres na nové. Taky jsem přidal robots.txt a další drobnůstky, které nejsou na venek vidět.
+
+Tak přeji pěknou zimu a zachvejte mi přízeň.

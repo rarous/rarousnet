@@ -1,0 +1,16 @@
+---
+{:id 396,
+ :title "Můj pohled na F# se mění",
+ :description "Krátké zamyšlení k mému postoji k jazyku F#",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0" "fsharp"},
+ :published "2010-11-09T14:04:37.770"}
+---
+
+Za posledních pár měsíců se mi celkem změnil pohled na F#. Ještě do nedávna jsem si myslel, na co další jazyk, když C# zvládá funkcionální paradigma taky obstojně?
+
+Ale pak jsem psal v C# pár aplikací, kde docházelo k masivnímu přelívání dat a jejich transformaci. V podstatě jednoduchý funkcionální kód jsem obaloval poměrně košatou objektovou strukturou. A pak jsem začal číst knihu "Expert F# 2.0":[book] a měl pár pěkných *aha momentů*. A začal jsem vidět, jak jsem si mohl spoustu práce ušetřit...
+
+Teoreticky. :)
+
+[book]: http://www.amazon.com/Expert-2-0-Experts-Voice-Syme/dp/1430224312

@@ -1,0 +1,48 @@
+---
+{:id 198,
+ :title "Přínáší Microsoft novou generaci webu?",
+ :description
+ "Je tomu již pár týdnů, co Microsoft uvolnil první ukázkovou verzi zajímavé technologie pod krkolomným kódovým označením WPF/E.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "plugin" "silverlight" "wpf"},
+ :published "2006-12-23T17:46:09.140"}
+---
+
+Je tomu již pár týdnů, co Microsoft uvolnil první ukázkovou verzi zajímavé technologie pod krkolomným kódovým označením "WPF/E":[wpfe]. Tato technologie si klade za cíl umožnit provozování technologie WPF((Windows Presentation Foundation)), přesněji řečeno jeho omezenou část, i na systémech kde neběží *.NET Framework 3.0*, jehož je WPF součástí.
+
+První komunitní preview (December CTP) funguje na Windows v prohlížečích Internet Explorer a Firefox a na OS X v Safari (a možná i ve Firefoxu). Podpora WPF/E je prohlížečích zajištěna pomocí 1MiB plug-inu, který zprostředkovává i podporu pro přehrávání *Windows Media Audio & Video*. V tom je prozatím také asi největší síla WPF/E.
+
+O co tedy jde
+=============
+
+WPF je technologií pro tvorbu tzv. **rich UI**, novou generací WinForms a podle Microsoftu i webu. A vlastně proč ne? Web, takový jaký ho známe dnes, byl původně vytvořen pro hypertext, nad kterým se časem vybudovala nadstavba pro aplikace (WebForms, JavaScript, AJAX). Z jiného úhlu pohledu se prostředí webu využívá jako transportní vrstva pro WebServices. A na to navazuje WPF. WPF přináší "rich" aplikace chovající se stejně jako nativní aplikace v systému s možností přenosu přes web. Všechny prvky a chování je možno popsat v XML dialektu zvaném XAML((eXtensible Application Markup Language)), složitější logiku vykonává buďto nějaká webová služba nebo klientský kód napsaný v libovolném jazyce, který je podporovaný platformou **.net**.
+
+WPF/E =Everywhere
+=================
+
+WPF/E bere určitou podmnožinu jazyka XAML a umožňuje jeho vykonání v okně prohlížeče. Prozatím se jedná o subset pro vykreslování vektorové grafiky, přehrávání multimédí a tvorbu animací. Podpora pro složotější formaláře zatím chybí a je otázkou, zda bude doplněna. To WPF/E staví do role možné konkurence pro Flash. Vím, pravděpodobně k ohrožení pozice Flashe nedojde, ale mně se líbí možnost výběru, obvzlášť, když se jedná o XML, ke kterému mám jako programátor mnohem blíž.
+
+Co se týče aplikační logiky, ta je prozatím tvořena pomocí JavaScriptu, takže můžete plně využívat vašich AJAXových služeb a frameworků. V dalších verzích by se měla objevit i podpora pro dotnetí jazyky.
+
+Výhody a nevýhody
+=================
+
+Za hlavní výhodu, oproti Flashi, považuju, jak už jsem psal, že jde o XML. To má nesporné výhody v možnosti editace, validace, transformace, ale i s prací pomocí DOM. A protože se jedná o XML mohou být animované nebo antialisované texty indexovány vyhledávači (absence indexace je asi největší slabina flashe na webu). Další výhodou je platformavá nezávislost (ikdyž zatím jde pouze o dva operační systémy a tři prohlížeče, oproti flashi nepatrný zlomek) a vkládání multimédií přímo do stránek. Nevýhodou může být to, že jde o technologii Microsoftu, k němuž má značná část „odborné“ internetové populace averzi. Pro někoho může být nevýhodou i to, že se kdokoli může snadno podívat na zdrojáky vaší práce, což je u flashe kompilací značně stíženo. Další nevýhodou je, že zatím nejde o finální produkt, tudíž jeho podpora, možnosti a rozšířenost jsou teprve na začátku.
+
+Ukázky použití
+==============
+
+Já jsem si při zkoušení možností WPF/E vytvořil "jednoduchý přehrávač":[/ukazky/Player.aspx] hudebních souborů. Jeho výslednou podobu si můžete prohlédnout:[/ukazky/Player.aspx]. Co umí? :) No, přehrává WMA soubory a ukazuje názvy tracků, umí mezi stopami přeskakovat, pauzovat, zastavovat a znovu spouštět a ještě zobrazuje průběh přehrávání. Chtěl jsem i zprovoznit přeskakování v rámci aktuální skladby, ale nakonec se mi nepodařilo donutit MediaElement ke změně pozice :( Ještě by šlo udělat změnu hlasitosti, zobrazování délky stopy i celý playlist, zobrazování progressu downloadu apod. To už si zkuste sami, pokud chcete...
+
+Celkem slušný přehled ukázek WPF/E najdete na stránce [ukazky].
+
+Dokumentaci, pluginy a šablony do VisualStudia si "stáhněte na MSDN":[download].
+
+Související
+===========
+* [borber]
+
+[borber]: http://www.borber.com/blog/prvni-detaily-o-wpf-e Borek Bernard: První detaily o WPF/E
+[wpfe]: http://msdn2.microsoft.com/en-us/asp.net/bb187358.aspx
+[download]: http://msdn2.microsoft.com/en-us/asp.net/bb187452.aspx
+[ukazky]: http://weblogs.asp.net/mschwarz/archive/2006/12/14/a-short-list-of-wpf-e-exmaples.aspx A short list of WPF/E examples

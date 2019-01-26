@@ -1,0 +1,18 @@
+---
+{:id 147,
+ :title "Webcasty z Mix06",
+ :description "Linky na zajímavá videa z konference Mix06.",
+ :author "Aleš Roubíček",
+ :tags #{"asp.net 2.0"},
+ :published "2006-05-11T16:31:32.367"}
+---
+
+O [mix06] jsem se už zmiňoval v souvislosti s "ASP.NET Atlas":[atlas] a tento týden byly uvolněny "záznamy přednášek":[zaznamy]. Záznamy jsou zpracovány velice slušně, po celou dobu vidíte jak přednášejícího, tak prezentaci a dema. Osobně doporučuji sérii věnovanou Atlasu:
+
+- "Developing a Better User Experience with Atlas":[http://sessions.mix06.com/view.asp?sessionChoice=2001&disc=&pid=NGW014&yearChoice=2005] by Shanku Niyogi
+- "Designing a Better User Experience with AJAX and Atlas":[http://sessions.mix06.com/view.asp?sessionChoice=2001&disc=&pid=NGW052&yearChoice=2005] by Rick Spencer
+- "Building Components and Services for the Programmable Web":[http://sessions.mix06.com/view.asp?sessionChoice=2001&disc=&pid=NGW002&yearChoice=2005] by Nikhil Kothari
+
+[atlas]: http://atlas.asp.net/
+[mix06]: http://www.mix06.com/ Mix06
+[zaznamy]: http://sessions.mix06.com/

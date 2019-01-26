@@ -1,0 +1,62 @@
+---
+{:id 258,
+ :title "Pár postřehů k nové HP",
+ :description "Pár postřehů z tvorby nové homepage rarouš.net.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2008-02-20T21:02:41.147"}
+---
+
+O tom, že jsem spustil novýho "rarouše na net":[http://rarous.net], jste se mohli dočíst minule:[clanek(257)]. Teď ještě pár postřehů s odstupem času...
+
+== Hledání
+Jednou z plánovaných funkcí je hledání. Používám kustomizované Live Search. Stačí mi přidat jen malý formulář, ale zatím se mi nechce. Vždyť většina návštěvníků má stejně prohlížeč s hledacím políčkem a může si "snadno přidat můj plugin":[clanek(185)].
+
+== Styly
+Wow, napsal jsem to celý ve standard modu s CSS 2.1 selektorama a vůbec jsem to nikterak neladil a funguje to všude stejně - pokud to teda umí CSS 2.1... ;) Pak jsem kolegovi diktoval adresu a najednou se ubjevila nějaká žumpa, heh bylo to v IE6. Je to hnus velebnosti, ale upravovat to nebudu.
+
+== Hlavní sloupec
+Lukáš Mačí mi jako reakci na mou novou homepage sdělil:
+
+> na muj vkus je docela potlacenej ten hlavni sloupek
+
+No netušil jsem, kterej hlavní sloupec myslí, já totiž žádnej sloupec za hlavní nepovažuju. Proto maj oba obsahový boxy přidělenou stejnou část obrazovky.
+
+
+== Agregace
+Pro načítání většiny dat na HP je použita agregace z různých kanálů - proto je ta stránka taková sociální. Celý kód pro načítání všech boxů je asi na 10 řádek a dost z toho zabíra metoda pro načtení feedu. :) Všechno je to úžasně jednoduché, díky novému 3.5 frameworku.
+
+Novinkou v 3.5 je totiž nový namespace `System.ServiceModel.Syndication`, který obsahuje abstrahovaný model nad RSS 2.0 a Atom 1.0. Pro oba formáty lze použít pouze jednu třídu [feed], s níž jde práce jak po másle. Načtení feedu pak vypadá asi následovně:
+
+/--code csharp
+private static SyndicationFeed GetFeed(string feedUrl) {
+  var reader = XmlReader.Create(feedUrl);
+  var feed = SyndicationFeed.Load(reader);
+  return feed;
+}
+\--code
+
+Naštěstí jsou zdroje, ze kterých čerpám, wellformed a validní. Jak si tahle třída poradí s prasokódem fakt netuším a ani jsem to nezkoušel.
+
+Nejvíc jsem se zapotil u načítání galerií z picasy, protože jsem chtěl čerpat data z Media RSS Extensions. Původně jsem napsal asi 20 řádkový strašidelný kód, který načítal pouze adresu náhledového obrázku a stejně nefungoval. Postupně jsem se však přibližoval k cíli a nakonec jsem skončil u celkem elegantní konstrukce:
+
+/--code csharp
+private static string GetThumbnailUrl(SyndicationItem item) {
+  var reader = item.ElementExtensions[0].GetReader();
+  var group = XElement.ReadFrom(reader) as XElement;
+
+  var url = group.
+    Element(XName.Get("thumbnail", "http://search.yahoo.com/mrss/")).
+    Attribute(XName.Get("url")).Value;
+
+  return url;
+}
+\--code
+
+== Na závěr
+Nakonec jsem se rozhodl, že i na agregovanou HP nasadím [texy]. Zatim tam není, ale důvody pro ni jsou jasné: z twittru nechoděj URL jako odkazy, typografický pravidla nejsou vůbec nikde. Takže k tomu bude Texy! dobrá. Možná mě to donutí napsat tu novou Texy-WS a patřičného providera pro [texy-net]. Ale možná taky ne!
+
+[feed]: http://msdn2.microsoft.com/en-us/library/system.servicemodel.syndication.syndicationfeed.aspx SyndicationFeed
+[clanek(185)]: /weblog/185-format-opensearch-dil-1.aspx
+[clanek(257)]: /weblog/257-novy-rarous-net.aspx
+[texy-net]: http://www.codeplex.com/texynet Texy.net

@@ -1,0 +1,57 @@
+---
+{:id 228,
+ :title "Nový Unit Test Framework pro dotnet",
+ :description
+ "Na půdě Microsoftu vzniká nový open source framework pro \"jednotkové testy.\" Díky jeho eleganci se dají dělat i některé dosud těžko proveditelné testy.",
+ :author "Aleš Roubíček",
+ :tags #{"untitesting" "asp.net 2.0" "xunit" "rhinomocks"},
+ :published "2007-10-07T19:35:28.923"}
+---
+
+Přibližně před dvěma týdny byla vypuštěna první beta verze nového testovacího frameworku [xunit]. Spousta lidí si říká, k čemu další framework - vždyť tu máme NUnit, MbUnit, MsTest - a navíc syntakticky nekompatibilní?
+
+xUnit.net přináší eleganci, jednoduchost a zdravý rozum. Byly zrušeny *SetUp*y a *TearDown*y a nahrazuje je **IDisposable pattern a konstruktor** (jednoduše elegantní), pro každý test je vždy vytvořena **nová instance testovací třídy**. *Assert*y byly revidovány a duplicitní či zbytečné byly odebrány.
+
+Framework je navržen tak, aby byl snadno rozšiřitelný o vlastní atributy, kterými můžete specifikovat vlastní akce (např. Authetifikaci) či požadavky. Součástí frameworku není žádný *mock*vací nástroj. K čemu také, když už tu máme skvělé [rhino mock]?
+
+Nové možnosti
+=============
+
+Běžnou praxí je na testy zakládat samostatný projekt, takže jsou testy v samostatné assembly. Pokud jste chtěli mít testy společně v jednom projektu s výkonným kódem mohli jste tak taktéž učinit. Jenže pořád je tu problém, pokud z nějakého důvodu potřebujete testovat privátní věci. Sice to je ukázka toho, že něco smrdí, ale stejně se to občas může hodit.
+
+xUnit.net totiž ruší atribut `TestFixture/TestClass` a při spouštění test prohledává všechny třídy na přítomnost metod s atributem `Test`. To nám umožňuje mít testovací metody v jedné třídě společně s výkonným kódem a testovat tak privátní členy bez nutnosti používat reflexi. Když už se k něčemu takovému rozhodnete je dobré ještě využít `partial class` a testy přesunout do samostatného souboru např. `Class.tests.cs`
+
+Soubor SomeClass.cs:
+/--code csharp
+public partial class SomeClass {
+  private bool _isDirty;
+  private string _someText;
+
+  public string SomeText {
+    set {
+      _isDirty = true;
+      _someText = value;
+    }
+  }
+}
+\--code
+
+Soubor SomeClass.tests.cs
+/--code csharp
+public partial class SomeClass {
+  [Test]
+  private void SettingSomeTextMakesSomeClassDirty() {
+    var testInstance = new SomeCLass();
+    Assert.False(testInstance._isDirty);
+    testInstance.SomeTest = "text";
+    Assert.True(testInstance._isDirty);
+  }
+}
+\--code
+
+Také je celkem dobré nechat takové testovací metody skryté před vnějším světem, tak že jim nastavíme modifikátor viditelnosti na `private`. xUnit.net umí spouštět i privátní a interní metody za účelem testování (platí pro beta2 a novější).
+
+Osobně se mi tento framework velice líbí a už jsem na něj přepsal "testy pro Texy.net":[http://www.codeplex.com/texynet/SourceControl/ListDownloadableCommits.aspx].
+
+[xunit]: http://www.codeplex.com/xunit xUnit.net
+[rhino mock]: http://www.ayende.com/projects/rhino-mocks.aspx Rhino Mocks

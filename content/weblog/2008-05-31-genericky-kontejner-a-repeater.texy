@@ -1,0 +1,131 @@
+---
+{:id 278,
+ :title "Generický kontejner a repeater",
+ :description
+ "V několika předchozích článcích jsem prezentoval některé ponocníky pro tvorbu serverovývh ovládacích prvků. Dnes si ukážeme jejich bratříčka - generický kontejner",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "asp.net 2.0" "genericcontainer" "repeater"},
+ :published "2008-05-31T11:55:54.243"}
+---
+
+Zrovna předevčírem jsem měl v plánu napsat tenhle článek, ráno jsem si napsal ukázkovou třídu, kterou najdete níže, a pak šel do práce. Připravoval jsem dva celkem důležité stagingy a nakonec ještě ta Havana Party. No, a když jsem se vrátil z nákupu, zastihl jsem přímý přenos ze spouštění [latrine]. A bylo po článku. Teda jen dočasně, protože i včera jsem měl nějakou snahu, tak jsem napsal první půlku článku.
+
+Někdy před rokem jsem publikoval ukázku, jak si vytvořit vlastní kontrol s [clanek(213)]. Před pár týdny zase pomocníka na "vyhledávání komponent ve stránce i mimo jmenný kontejner":[clanek(268)]. To jsou takoví pomocníci, kteří mi usnadňují tvorbu serverových ovládacích prvků. A dneska si ukážeme jejich dalšího bratříčka - **generický kontejner**.
+
+== Kontejner
+
+Kontenery se používají u šablonovaných prvků svázaných s daty. Slouží jako držitel dat pro konkrétní instanci šablony. Jistě jste se setkali s **Eval**ováním, když jste prováděli databinding. Problém je v tom, že s sebou přináší značnou režii spojenou s boxingem. Výhodnější je používat plně typový kontejner. Zvýšíte tím nejen výkon stránky, ale i zístkáte vyšší komfort v podobě Intellisense v šabloně.
+
+Já jako základ takových kontejnerů používám generický kontejner, který má následující rozhraní.
+
+/--code csharp
+public interface IGenericContainer<T> : INamingContainer {
+  T DataItem { get; }
+}
+\--code
+
+Toto rozhraní pak implementuju následovně:
+
+/--code csharp
+public class GenericContainer<T> : Control, IGenericContainer<T> {
+  public GenericContainer<T>(T dataItem) {
+    DataItem = dataItem;
+  }
+  public T DataItem { get; priváte set; }
+}
+\--code
+
+Dalším vhodným kontejnerem je prázdný kontejner:
+
+/--code csharp
+public class EmptyContainer : Control, INamingContainer {
+}
+\--code
+
+S těmito kontejnery se dá pokrýt obrovské množství potřeb. Jak je využít v praxi si ukážeme v následující části.
+
+== Generický repeater
+
+Nyní vezmu kostičky naší stavebnice a postavím z nich základ pro vypisovače silně typových dat.
+
+
+/--code csharp
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Rarous.Web.UI {
+  [ParseChildren(true)]
+  public abstract class GenericRepeaterBase<T> : CompositeControl, ILayoutTemplateable {
+
+    protected bool IsBound { get; set; }
+
+    public IEnumerable<T> DataItem { get; set; }
+
+    public abstract ITemplate ItemTemplate { get; set; }
+
+    public abstract ITemplate AlternatingItemTemplate { get; set; }
+
+    [DefaultValue(typeof(ITemplate), "")]
+    [PersistenceMode(PersistenceMode.InnerProperty)]
+    [TemplateContainer(typeof(INamingContainer))]
+    [TemplateInstance(TemplateInstance.Multiple)]
+    public ITemplate SeparatorTemplate { get; set; }
+
+    #region ILayoutTemplateable Members
+    [PersistenceMode(PersistenceMode.Attribute)]
+    public string LayoutContainerId { get; set; }
+
+    [DefaultValue(typeof(ITemplate), "")]
+    [PersistenceMode(PersistenceMode.InnerProperty)]
+    [TemplateContainer(typeof(INamingContainer))]
+    [TemplateInstance(TemplateInstance.Single)]
+    public ITemplate LayoutTemplate { get; set; }
+    #endregion
+
+    #region CompositeControl Members
+    protected override void CreateChildControls() {
+      Control container = TemplatingHelper.CreateLayoutContainer(this, this);
+
+      bool alternate = false;
+      foreach (T item in DataItem) {
+        ITemplate template = alternate ? AlternatingItemTemplate ?? ItemTemplate : ItemTemplate;
+        TemplatingHelper.Instantiate(new GenericContainer<T>(item), template, container);
+        TemplatingHelper.Instantiate(new EmptyContainer(), SeparatorTemplate, container);
+        alternate = !alternate;
+      }
+    }
+    public override void DataBind() {
+        base.DataBind();
+        IsBound = true;
+    }
+    protected override void OnInit(EventArgs e) {
+      EnableViewState = false;
+      base.OnInit(e);
+    }
+    protected override void OnPreRender(EventArgs e) {
+      if (IsBound == false) {
+        DataBind();
+      }
+      base.OnPreRender(e);
+    }
+    protected override void Render(HtmlTextWriter writer) {
+      base.RenderContents(writer);
+    }
+    #endregion
+  }
+}
+\--code
+
+Na takovémto základě se dá stavět už slušná řada konkrétních ovládacích prvků, kde už jen doplníme šablonový typ a můžeme přidat další vlastnosti dle potřeby.
+
+V ukázce si můžete povšimnout, že jako typ kontejneru šablony uvádím pouze rozhraní. Dělám to kvůli zpřehlednění IntelliSense. Když pak používám výraz pro svázání s daty v šabloně, dostanu pouze vlastnosti a metody kontejneru, které jsou definovány rozhraním, nikoli spoustu zbytečných vlastností a metod, které sebou nese třída `Control` ze které musí být kontejner poděděný.
+
+Doufám, že se bude hodit a pokud najdete nějakou chybu, neváhejte a reportujte :)
+
+
+[clanek(213)]: /weblog/213-layout-template.aspx Layout Template
+[clanek(268)]: /weblog/268-vyhledavani-komponent-v-asp-net-strance.aspx Vyhledávání komponent v ASP.NET stránce
+[latrine]: http://www.latrine.cz/ La Trine

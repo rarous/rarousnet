@@ -1,0 +1,234 @@
+---
+{:id 355,
+ :title "Vlastní serverové ovládací prvky v ASP.NET MVC",
+ :description
+ "Povídání o tom, jak zlepšit čitelnost vašich šablon za pomocí serverových ovládacích prvků.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "aspnet" "mvc" "genericcontainer" "repeater"},
+ :published "2009-03-29T10:32:54.430"}
+---
+
+Motto: `foreach` je fajn na prototypování, ale většinou mu za chvíli dojde dech a svádí k zanášení příliš logiky do kódu šablony. A to je špatně.
+
+Už jsem se zmiňoval o tom, že "v ASP.NET MVC lze užívat serverové ovládací prvky":[clanek(349)], takže je využijeme k zapouzdření složitější zobrazovací logiky.
+
+Motivace
+=========
+
+Jednou z hlavních nevýhod, kterou jsem viděl na MVC, byl přístup ke skládání šablon. Jednotlivé kusy šablony jsou rozházeny v MasterPage, ViewPage (aspx) a ViewUserControlech (ascx). V Atlasu jsme razili teorii, že šablona by měla být pokud možno co nejcelistvější, aby se nemuselo nikde nic hledat a kodér rychle udělal potřebné změny. Proto existovala sada serverových ovládacích prvků, které byly plně šablonovatelné.
+
+Když naběhlo CH((Středové držení)) s Ellou:[ella], nechápali jsme, jak to může někdo používat. Každičká část šablony byla (v té době, jak je to dnes - nevím) byla rozeseta v hierarchii složek (podle dědičnosti). A to je v podstatě hlavní rozdíl mezi ASP.NET a architekturou MVC. Tedy pokud jste omezeni view enginem, který používáte.
+
+Již nějaký pátek pracuji na web 2.0 aplikaci, která je postavená mj. na ASP.NET MVC. Měl jsem tedy možnost vyzkoušet hodně možných postupů: od logiky v šabloně, přes HTML helpery, `RenderPartial` a `RenderAction` až po vlastní serverové ovládací prvky. A ty nakonec vítězí na plné čáře! Pojďme se podívat, jak si napsat elegantní serverové ovládací prvky pro ASP.NET MVC.
+
+Evoluce logiky v šabloně
+========================
+
+Začínal jsem s nadšením s jednoduchou logikou v kódu, tak jak to vidíte v ukázkách či na prezentacích o ASP.NET MVC. Složitější věci jsem se snažil přesunout do HtmlHelperu pomocí vlastních extenzí. Když jsem pak narazil na helpery, které zanáší do view „lambda hell“, trochu mě zamrazilo. Vyberu jen dva příklady: Philův [haacked repeater] a Jardův [jirava fieldset]. Nebojte, podobných programátorských krás najdete povícero. Bohužel, je to nepoužitelné pro kodéra. Navíc jsem zastáncem myšlenky minima kódu v šabloně.
+
+
+Další věcí, která mě tak trochu děsí, je jakým způsobem se předvádí generování HTML formuláře.
+
+/--code xml
+<% using(Html.BeginForm("Send", "Comments")) { %>
+  <!-- prvky formuláře -->
+<% } %>
+\--code
+
+Je to krásná ukázka "užití vzoru `IDisposable`":[clanek(265)], ale do šablony nepatří. Helpery uživát jen jako dobré koření – po špetkách.
+
+/--code xml
+<form action='<%= Url.Action("Send", "Comments")) %>' method="post">
+  <!-- prvky formuláře -->
+</form>
+\--code
+
+Myslím, že takovýto zápis je mnohem srozumitelnější a přitom dělá to samé. Jako bonus můžete ve vašem HTML editoru využívat scope collapsing. Vhodnější by ještě bylo použít helper `Url.RouteUrl`, který hledá routy podle klíče a tudíž je o dost výkonnější (pokud máte definováno více rout).
+
+Opusťme teď formulář a pokročme k vypisování dat.
+
+Prvním způsobem, jak vypisovat data, je `foreach`. Je silně typový, což považuju za obrovskou výhodu, a nepřináší overhead v podobě instanciování tříd a parsování šablon serverových ovládacích prvků.
+
+/--code xml
+<ul>
+<% foreach (var user in Model.Users) { %>
+<li><%= user.Name %></li>
+<% } %>
+</ul>
+\--code
+
+Tím však jeho možnosti končí. Pokud potřebujeme např. odlišit každou druhou položku, nebo vypsat něco jiného, pokud nejsou žádná data, musíme kód znepřehledňovat, nebo zvolit jiné řešení. Philův repeater už jsem zmiňoval. Další možností je využít `asp:Repeater` nebo `mvc:Repeater`. Ani jeden mi nevyhovuje. První se musí nějak nalít daty a pak s nimi svázat (nutnost codebehind nebo script runat=server), druhý zase pracuje s ViewData slovníkem a evalováním. Takže nezbývá než si napsat vlastní.
+
+Silně typový repeater v ASP.NET MVC
+=============================
+
+Základem je jednoduchá myšlenka. Použít `MvcControl` z futures a view model opatřit kontrakty.
+
+/--code csharp
+public interface IHaveUsers {
+  IEnumerable<User> Users { get; }
+}
+
+public class UsersListViewData : IHaveUsers {
+  public IEnumerable<User> Users { get; set; }
+  // další vlastnosti view modelu
+}
+\--code
+
+Zavedli jsme si view model třídu, která se nejspíš bude posílat na pohled **Index** řadičem **UsersController**. Možná. Každopádně jsme si zavedli jednoduchou abstrakci a možnost znovupoužití v podobě rozhranní `IHaveUsers`. Snad můžeme dál.
+
+/--code csharp
+using Microsoft.Web.Mvc;
+using Rarous.Web.UI;
+
+[ParseChildren(true)]
+public partial class UsersRepeater : MvcControl, ILayoutTemplateable {
+
+  [DefaultValue(typeof(ITemplate), "")]
+  [PersistenceMode(PersistenceMode.InnerProperty)]
+  [TemplateContainer(typeof(IGenericContainer<User>))]
+  [TemplateInstance(TemplateInstance.Multiple)]
+  public ITemplate ItemTemplate { get; set; }
+
+  [DefaultValue(typeof(ITemplate), "")]
+  [PersistenceMode(PersistenceMode.InnerProperty)]
+  [TemplateContainer(typeof(IGenericContainer<User>))]
+  [TemplateInstance(TemplateInstance.Multiple)]
+  public ITemplate AlternatingItemTemplate { get; set; }
+
+  [DefaultValue(typeof(ITemplate), "")]
+  [PersistenceMode(PersistenceMode.InnerProperty)]
+  [TemplateContainer(typeof(INamingContainer))]
+  [TemplateInstance(TemplateInstance.Multiple)]
+  public ITemplate SeparatorTemplate { get; set; }
+
+  public string LayoutContainerId { get; set; }
+
+  [DefaultValue(typeof(ITemplate), "")]
+  [PersistenceMode(PersistenceMode.InnerProperty)]
+  [TemplateContainer(typeof(INamingContainer))]
+  [TemplateInstance(TemplateInstance.Single)]
+  public ITemplate LayoutTemplate { get; set; }
+}
+\--code
+
+Podědili jsme si MvcControl, který mimo jiné zpřístupňuje `ViewData`, a implementovali nějaké šablony.
+
+/--code csharp
+public partial class UsersRepeater {
+  private class UsersViewDataFetcher {
+    public IEnumerable<User> GetUsers(object model) {
+      var result = model as IHaveUsers;
+      if (result != null) {
+        return result.Users;
+      }
+      return null;
+    }
+  }
+}
+\--code
+
+Jednoduchý helper pro získávání dat z modelu. Zkouší využít kontraktu `IHaveUsers`, který jsme si zavedli výše, k získání dat z modelu. Zde je místo pro budoucí rozšíření o další možné zdroje. Pokud nic nenajdeme, vrátíme `null`.
+
+/--code csharp
+public partial class UsersRepeater {
+  protected override void OnPreRender(EventArgs e) {
+    base.OnPreRender(e);
+
+    var fetcher = new UsersViewDataFetcher(ViewData.Model);
+    var users = fetcher.GetUsers();
+    if (users == null) {
+      return; // nebo verenderovat NoDataTemplete
+    }
+
+    Controls.Clear();
+
+    Control layoutContainer = TemplatingHelper.CreateLayoutContainer(this, this) ?? this;
+
+    var iterator = new ItemsIterator<User>(users);
+    foreach (var user in iterator.Iterate()) {
+      if (iterator.IsFirst == false) {
+        TemplatingHelper.Instantiate(new EmptyContainer(), SeparatorTemplate, layoutContainer);
+      }
+      ITemplate template = iterator.IsAlternate ? AlternatingItemTemplate ?? ItemTemplate : ItemTemplate;
+      TemplatingHelper.Instantiate(new GenericContainer<User>(user), template, layoutContainer);
+    }
+
+    layoutContainer.DataBind();
+  }
+}
+\--code
+
+Nakonec přepíšeme metodu `OnPreRender`, ve které získaná data proměníme pomocí šablon na výstupní kód. Používám zde spoustu věcí, které jsem "použil již dříve":[clanek(278)]. Jedinou novinkou je třída `ItemsIterator`, která zaobaluje logiku, pro zjišťování, zda jde o první prvek, alternativní prvek a počítá aktuální index prvku.
+
+/--code csharp
+public class ItemsIterator<T> {
+
+  private readonly IEnumerable<T> _items;
+
+  public ItemsIterator(IEnumerable<T> items)
+    : this(items, 0) {
+  }
+
+  public ItemsIterator(IEnumerable<T> items, int firstIndex) {
+    _items = items;
+    IsFirst = true;
+    IsAlternate = false;
+    CurrentIndex = firstIndex;
+  }
+
+  public bool IsFirst { get; private set; }
+  public bool IsAlternate { get; private set; }
+  public int CurrentIndex { get; private set; }
+
+  public IEnumerable<T> Iterate() {
+    foreach (var item in _items) {
+      yield return item;
+      IsFirst = false;
+      IsAlternate = !IsAlternate;
+      CurrentIndex++;
+    }
+  }
+}
+\--code
+
+Jednoduchá věcička, která je určená k eliminaci otrocky opakovaného kódu.
+
+Užití takového repeateru je pak jednoduché:
+
+/--code xml
+<rarous:UsersRepeater runat="server" LayoutContainerId="UsersPlaceHolder">
+  <LayoutTemplate>
+    <ul>
+      <asp:PlaceHolder ID="UsersPlaceHolder" runat="server"/>
+    </ul>
+  </LayoutTemplate>
+  <ItemTemplate>
+    <li><%# Container.DataItem.Name %></li>
+  </ItemTmplate>
+</rarous:UsersRepeater>
+\--code
+
+Závěr
+=====
+
+Snažil jsem se sdělit svůj názor, že v šablonách by mělo být jen tolik programového kódu, kolik je nezbytně nutné. Zároveň se držet zásady jediné zodpovědnosti tříd a znuvupoužitelnosti s využitím generického pomocníka pro iteraci a kontraktů ve view modelu. Zároveň maximálně využít kód, který jsem už psal v předchozích spotech. Je možné, že jsem nepoužil dostatečně kvalitní názvy tříd nebo metod, připomínky klidně piště i k nim.
+
+/--div .[hslice #related]
+Související .[entry-title]
+==========
+.[entry-content]
+* [clanek(349)]
+* [clanek(278)]
+* [clanek(265)]
+\--div
+
+
+
+[clanek(265)]: /weblog/265-using-pattern.aspx Using pattern .(Using pattern){rel:bookmark}
+[clanek(278)]: /weblog/278-genericky-kontejner-a-repeater.aspx Generický kontejner a repeater .(Generický kontejner a repeater){rel:bookmark}
+[clanek(349)]: /weblog/349-serverove-ovladaci-prvky-v-asp-net-mvc.aspx Serverové ovládací prvky v ASP.NET MVC .(Serverové ovládací prvky v ASP.NET MVC){rel:bookmark}
+
+[haacked repeater]: http://haacked.com/archive/2008/05/03/code-based-repeater-for-asp.net-mvc.aspx Code based Repeater for ASP.NET MVC
+[jirava fieldset]: http://simplemvccontrols.codeplex.com/ Simple MVC controls
+[ella]: http://ellaproject.stdout.cz/

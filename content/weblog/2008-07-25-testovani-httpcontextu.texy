@@ -1,0 +1,24 @@
+---
+{:id 290,
+ :title "Testování HttpContextu",
+ :description
+ "Jak otestovat věci, které volají HttpContext.Current aniž bychom spouštělí nějaký HttpRuntime?",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "asp.net 2.0" "unittesting"},
+ :published "2008-07-25T13:56:07.123"}
+---
+
+Píšu nějaké podpůrné třídy pro naše nové projekty a zrovna jsem u utilitek pro webové aplikace. Teď jsem se dostal k jedné třídě, která volá `HttpContext.Current` ve statických metodách. Chci na to napsat testy, jenže jak mám podstrčit HttpContext?
+
+Řešení je nakonec jednodušší než jsem čekal...
+
+/--code csharp
+public static void CreateContext() {
+  CallContext.HostContext = new HttpContext(
+    new HttpRequest("default.aspx", "http://rarous.net/", "test1=test"),
+    new HttpResponse(new StringWriter())
+  );
+}
+\--code
+
+Stačí zavolat tuto metodu, kterou se do threadu nastaví podvržený kontext a můžete směle testovat. :)

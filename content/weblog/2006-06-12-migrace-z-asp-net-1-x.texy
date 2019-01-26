@@ -1,0 +1,13 @@
+---
+{:id 159,
+ :title "Migrace z ASP.NET 1.x",
+ :description
+ "Jak co nejefektivaněji přemigrovat ASP.NET 1.x weby na 2.0.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "asp.net 2.0"},
+ :published "2006-06-12T10:49:39.377"}
+---
+
+Pokud stojíte před rozhodnutím přemigrovat vaše staré ASP.NET 1.x aplikace do dvojky nebo už jste se rozhodli, doporučuji vám zabrowsdat na následující stránku: "Upgrade from ASP.NET 1.x":[http://msdn.microsoft.com/asp.net/reference/migration/upgrade/]. Najdete zde několik praktyckých článků, jak přemigrovat pomocí "Web Application Projectu":[/clanek/144-web-application-project.aspx] nebo pomocí Web Site Projectu. Najdete zde také odkaz na záplatu "Web Project Conversion Wizard":[http://www.microsoft.com/downloads/details.aspx?familyid=7cecd652-fc04-4ef8-a28a-25c5006677d8&displaylang=en], který opravuje několik chyb v konverzi, která je součástí Visual Studia 2005.
+
+Z vlastních zkušeností musím doporučit nainstalovat Web Application Project, který převod usnadňuje obrovsky a u rozsáhlejších projektů je dosažení uspokojivých výsledků s Web Site Projectem skoro nemožné nebo velice zdlouhavé ;)

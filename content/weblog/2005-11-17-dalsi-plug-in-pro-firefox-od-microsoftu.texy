@@ -1,0 +1,13 @@
+---
+{:id 80,
+ :title "Další plug-in pro Firefox od Microsoftu",
+ :description
+ "Jak se zdá, Microsoft změnil svůj postoj ke konkurečním prohlížečům.",
+ :author "Aleš Roubíček",
+ :tags #{"tuning"},
+ :published "2005-11-17T07:20:07.143"}
+---
+
+Dnes ráno jsem do dověděl, že i Microsoft má svůj vlastní plug-in (ne rozšíření) a to plug-in, který má usnadnit použití *Nástroje na ověření pravosti systému Windows.* Dosud byli uživatelé prohlížečů odvozených od Mozilly nuceni požít alternativní utilitku, která generovala klíč, který pak musel uživatel ručně zadat do formulářového pole, což se dá zneužít k podstrčení validního klíče. Microsoft však přichází s novinkou, která má ověřování pravosti zautomatizovat podobně jako tomu je u InternetExploreru se zapnutým ActiveX.
+
+Nakonec ještě "link na instalační stránku":[http://www.microsoft.com/genuine/downloads/Validate.aspx]. Zde se můžete dozvědět více (v češtině) a stáhnout instalátor pluginu. Doufám, že brzo vyjde i plug-in na použití WindowsUpdate :)

@@ -1,0 +1,124 @@
+---
+{:id 352,
+ :title "Implementace tag cloudu",
+ :description
+ "Zajímavé je, jak se problematice celkem rozšířené vlastnosti webových aplikací v éře Webu 2.0, kterou tag cloud bezesporu je, věnuje málo prostoru. Pojďme to trochu napravit.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "microformats" "tagcloud"},
+ :published "2009-02-28T18:53:49.357"}
+---
+
+Zajímavé je, jak se problematice celkem rozšířené vlastnosti webových aplikací v éře Webu 2.0, kterou "tag cloud":[tagcloud] bezesporu je, věnuje málo prostoru. Protože pracuju na jednom sociálním webu a k implementaci tag cloudu jsem se také dostal, tak se na něj pojďme podívat.
+
+Top-down design
+==============
+
+Začneme implementací na výstupu. To je to, co vidí uživatel. Porozhlédněme se nejprve po nějakém vhodném mikroformátu. Na snadě je `rel-tag`, který slouží k označování odkazů tagu. Když budeme hledat dál, jistě narazíme na **hTagCloud**. Tento mikroformát je sice ve stádiu návrhu, ale dá se říct, že je použitelný v praxi. Jak vypadá?
+
+hTagCloud
+=========
+
+Cloud je vyznačen elementem s třídou `hTagCloud`. Tento element by měl obsahovat seznam tagů. Seznam můžeme označit třídou, zda jde je seřazen podle abecedy (`class="alphabetical"`) nebo podle popularity (`class="popularity"`). Popularitu jednotlivých tagů označíme posléze třídou. Základní úroveň popularity vyznačuje třída `popular`. Oblíbenější tagy mají třídu `v-popular`. Nejoblíbenější tagy pak třídou `vvvv-popular`. Můžeme takto tedy odlišit pět úrovní popularity.
+
+Ukázka mikroformátu přímo z wiki autorů:
+
+/--code xml
+<div class="hTagCloud">
+  <ul class="popularity">
+    <li class="vvvv-popular"><a href="/tags/Web+Standards+Group">Web Standards Group</a></li>
+    <li class="vvv-popular"><a href="/tags/accessibility">accessibility</a></li>
+    <li class="popular"><a href="/tags/beta+tester">beta tester</a></li>
+    <li class="vvv-popular"><a href="/tags/css">css</a></li>
+    <li class="v-popular"><a href="/tags/ex-coder">ex-coder</a></li>
+    <li class="vv-popular"><a href="/tags/usability">usability</a></li>
+    <li class="vvvv-popular"><a href="/tags/wsg">wsg</a></li>
+  </ul>
+</div>
+\--code
+
+To bychom měli HTML kód, teď ještě nastylovat, aby z toho opravdu cloud byl:
+
+/--code css
+.hTagCloud {text-align:center}
+.hTagCloud ul{list-style-type:none;padding:0;margin:0}
+.hTagCloud li{display:inline;font:.6875em sans-serif;margin:0;padding:0}
+.hTagCloud .v-popular{font-size:1.273em}
+.hTagCloud .vv-popular{font-size:1.818em}
+.hTagCloud .vvv-popular{font-size:2.545em}
+.hTagCloud .vvvv-popular{font-size:3em}
+\--code
+
+Máme tedy připraveno to, co uvidí uživatelé. Teď ještě potřebujeme logiku, která rozhodne, jak populární tagy vlastně jsou.
+
+Implementace na serveru
+=======================
+
+Nejprve si vytvoříme třídu reprezentující tag. Ta bude obsahovat text tagu a jeho četnost.
+
+/--code csharp
+public class Tag {
+  public string Text { get; set; }
+  public int Count { get; set; }
+}
+\--code
+
+Teď budeme potřebovat vypočítat, jak populární vlastně konkrétní tag je. Tady se dostáváme k poměrně zajímavému problému. Nejprve potřebujeme spočítat váhu tagu v cloudu a tu pak promítnout na pětistupňové škále. Praxí je ověřeno, že hezky cloud vypadá, když se použije logaritmická distribuční funkce. Proto si vytvoříme jednoduchý helper, který nám bude váhu tagu vypočítávat a rovnou nám vrátí CSS třídu vhodnou pro hTagCloud.
+
+/--code csharp
+using System;
+using System.Linq;
+using System.Text;
+
+public static class TagCloudExtensions {
+  private const int MostPopular = 5;
+  private const int MorePopular = 2;
+  private const int Popular = 1;
+
+  public static string GetCssClass(this IEnumerable<Tag> tags, Tag tag) {
+    int minOccurs = tags.Min(t => t.Count);
+    int maxOccurs = tags.Max(t => t.Count);
+
+    int distribution = CountDistribution(tag.Count, minOccurs, maxOccurs);
+
+    return GetCssClass(distribution).ToString();
+  }
+
+  private static StringBuilder GetCssClass(int distribution) {
+    if (distribution < MorePopular) {
+      return new StringBuilder("popular");
+    }
+    if (distribution == MorePopular) {
+      return GetCssClass(--distribution).Insert(0, "v-");
+    }
+    return GetCssClass(--distribution).Insert(0, "v");
+  }
+
+  private static int CountDistribution(int currentOccurences, int minOccurs, int maxOccurs) {
+    if (minOccurs < Popular) {
+      throw new ArgumentOutOfRangeException("There must be atleast one occurence.");
+    }
+
+    double weight = (Math.Log(currentOccurences) - Math.Log(minOccurs))
+      / (Math.Log(maxOccurs) - Math.Log(minOccurs));
+    int distribution = Popular + (int)Math.Round(weight * (MostPopular - Popular));
+
+    return distribution;
+  }
+}
+\--code
+
+Tento helper rozšiřuje kolekci tagů o metodu o metodu, která vrátí CSS třídu pro konkrétní tag. A to je vše. Happy tagging!
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [htagcloud]
+* [dekoh]
+* [echo]
+\--div
+
+[tagcloud]: http://en.wikipedia.org/wiki/Tag_cloud Tag cloud
+[htagcloud]: http://microformats.org/wiki/tagcloud-brainstorming tagcloud-brainstorming
+[dekoh]: http://blogs.dekoh.com/dev/2007/10/29/choosing-a-good-font-size-variation-algorithm-for-your-tag-cloud/ Choosing a good font size variation algorithm for your tag cloud
+[echo]: http://www.echochamberproject.com/node/247 Tag Cloud Font Distribution Algorithm

@@ -1,0 +1,59 @@
+---
+{:id 282,
+ :title "Mikroformáty v hledání Yahoo",
+ :description
+ "Dnes se podíváme na jedno z praktických užití mikroformátů – sémantické hledání.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "yahoo" "microformats" "search"},
+ :published "2008-06-10T14:26:12.010"}
+---
+
+Dnes se podíváme na jedno z praktických užití mikroformátů:[microformats] – sémantické hledání. Možná jste si už položili otázku, k čemu vlastně ty mikroformáty jsou dobré. Ok, mají přidávat nějakou sémantiku do dokumentu, u hCard je přínos zřejmý, ale co dál? Jednou z možností jak využít sémanticky obohacené dokumenty je bohatší hledání.
+
+== Aktivace modulů
+
+[search] nedávno přišlo s takzvaným uživatelsky upravitelným hledáním. Registrovaný uživatel si může do hledání přidat sémantické moduly, které upraví interpretaci výsledků. V základu jsou však aktivní pouze tři moduly upravující výsledky z Flickeru, Videa a Yahoo Travel.  Zbylé si uživatel musí aktivovat sám. Jak na to?
+
+1. Přejděte na "stránku s výsledky":[result].
+2. Rozbalte nabídku *Customize*
+3. Vyberte *Browse Gallery*
+4. Zaškrtněte si třeba LinkedIn a stiskněte *Add*
+5. Pak tlačítko *Add* zmáčkněte ještě jendou
+6. A pak zmáčkněte tlačítko *Save*
+
+No nyní už můžete využívat sémanticky bohatší výsledky z LinkedIn ve výsledcích hedání. Aktivace modulů není to, zrovna procházka růžovým sadem, Yahoo by mělo trochu zapracovat na použitelnosti. Ale ve výsledku to funguje a to je hlavní.
+
+== Jak to vypadá v praxi
+
+V základu tedy máte generické výsledky fulltextu.
+
+[*/data/obrazky/y_generic.png 580x76 .(generický výsledek hledání)*] .[image]
+
+Po aktivaci sémantického modulu **LinkedIn**, se struktura výsledku změní .
+
+[*/data/obrazky/y_semantic.png 377x115 .(sémantický výsledek hledání)*] .[image]
+
+Po aktivaci sémantického modulu **Last.fm** vypadá výsledek interpreta následovně.
+
+[*/data/obrazky/y_music.png 578x214 .(sémantický výsledek hledání)*] .[image]
+
+Zatím je to jedna z prvních vlaštovek, tuším, že mikroformáty používá v hledání i [technorati], ale každý jiným způsobem. [google] má něco podobného pro Youtube a obrázky. V [live] jsem nic podobného nepostřehl… Pro mě osobně je zajímavé sledovat vývoj na tomto poli a jsem zvědavý, jakých implementací se dočkáme dále.
+
+==Související
+
+* [clanek(267)]
+* [clanek(256)]
+
+Tagy: [tag-microformats], [tag-search]
+
+
+[clanek(267)]: /weblog/267-vkladani-data-do-stranky.aspx Vkládání data do stránky
+[clanek(256)]: /weblog/256-mikroformaty-duvod-proc-pouzivat-xhtml.aspx Mikroformáty - důvod proč používat XHTML
+[tag-microformats]: http://technorati.com/tag/microformats Microformats .{rel:tag}
+[tag-search]: http://technorati.com/tag/search Search .{rel:tag}
+[microformats]: http://www.microformats.org/ Mikrofomáty
+[google]: http://www.google.cz/ Google
+[live]: http://search.live.com/ Live Search
+[search]: http://search.yahoo.com/ Yahoo Search
+[result]: http://jdem.cz/adsb5
+[technorati]: http://www.technorati.com/ Technorati

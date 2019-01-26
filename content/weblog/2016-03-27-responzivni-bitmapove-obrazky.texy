@@ -1,0 +1,111 @@
+---
+{:id 467,
+  :title "Responzivní bitmapové obrázky",
+  :description
+  "S rozmachem zařízení s dipleji s vysokou hustotou pixelů a nejrůznějších rozměrů nastala potřeba nějak pracovat
+   s bitmapovými obrázky, aby dobře vypadaly a přizpůsobovaly se aktuálnímu layoutu.",
+  :author "Aleš Roubíček",
+  :tags #{"webdesign"},
+  :published "2016-03-27T11:31:00.777"}
+---
+
+S rozmachem zařízení s dipleji s vysokou hustotou pixelů a nejrůznějších rozměrů nastala
+potřeba nějak pracovat s bitmapovými obrázky, aby dobře vypadaly a přizpůsobovaly se aktuálnímu layoutu.
+
+Nejrozšířenějším řešením je přístup **ignorant**, kdy se do stránky vloží obrázek o velikosti 2 MB
+a pak se pomocí `width="100%"` nechá krásně responzivně měnit dle rozměrů nadřazeného elementu.
+Tohle řešení funguje krásně, když stránky testujeme na lokálním disku bez síťových latencí a přísného FUP.
+Jinak jde o zcela nahovnózní řešení, za které vás nebude mít rád žádný z vašich návštěvníků a vlastně ani ten,
+kdo bude takový web hostovat.
+
+## Správné rozměry
+
+Ještě před pár lety byl tohle celkem slušný oříšek. Jak poslat browseru obrázek,
+který bude vycházet z aktuálních rozměrů layoutu? Na snadě je použít JavaScript,
+spočítat potřebné rozměry a na základě výsledků poskládat URL obrázku. Krom toho,
+že máme nepříjemnou latenci, kdy musíme čekat, až se sestaví DOM a spočítá se layout,
+abychom mohli spočítat rozměry obrázku, tak dojde nejspíše k layout trashingu,
+až se obrázek do DOMu vloží. Výsledkem je nepříjemné problikávání a přeskakování.
+
+Žijeme v roce 2016 a většina browserů podporuje `media-queries`, které nám práci velmi usnadní.
+Další věcí, která je dnes široce rozšířená, je podpora elementu `picture`:[http://caniuse.com/#feat=picture]
+a atributu `srcset`:[http://caniuse.com/#feat=srcset]. Jejich vhodnou kombinací můžeme podchytit většinu
+případů užití a když ne, tak pořád máme v HTML možnost fallbacku na starý dobrý `img`.
+
+Správné velikosti obrázků bychom měli odvozovat od breakpointů layoutu. Vyhneme se tím tak potřebě,
+generovat nekonečnou řadu rozměrů obrázků.
+
+/--code html
+<picture>
+    <source media="(max-width: 480px)"
+            srcset="phone-1x.jpg,
+                    phone-2x.jpg 2x,
+                    phone-3x.jpg 3x">
+    <source media="(min-width: 481px) and (max-width: 640px)"
+            srcset="tablet-1x.jpg,
+                    tablet-2x.jpg 2x,
+                    tablet-3x.jpg 3x">
+    <source media="(min-width: 641px) and (max-width: 840px)"
+            srcset="desktop-1x.jpg,
+                    desktop-2x.jpg 2x">
+    <source media="(min-width: 840px)"
+            srcset="fullhd-1x.jpg,
+                    fullhd-2x.jpg 2x">
+    <img alt="Ukázka" src="fallback.jpg" width="100%">
+</picture>
+\--code
+
+Máme definované zdroje obrázku, které se aktivují, když je splněna podmínka media query
+v atributu `media`. Dále dokážeme požádat o různé velikosti obrázku na základě hustoty
+pixelů na displeji a to v atributu `srcset`. Musíme ale kvůli jednomu obrázku nařezat **jedenáct** variant.
+Ačkoliv se to dá - třeba ve Sketchi - pěkně automatizovat, tak to stejně není moc udržitelné.
+
+## Cloudinary
+
+Naštěstí na trhu existuje několik služeb, které usnadňují řezání různých velikostí obrázků.
+Mně se nejlépe osvědčila služba Cloudinary:[http://cloudinary.com/]. Originál - v co nejlepším rozlišení -
+nahrajeme do této služby a pak už si jen řekneme, co s ním chceme udělat:
+
+/--code
+https://res.cloudinary.com/*my-account*/image/upload/**dpr_2.0,w_640**/v1449739319/*original.jpg*
+\--code
+
+Zde jsme přidali transformace pro ořez na šířku 640 px ve verzi pro retina displeje s 2x hustotou pixelů.
+"Popis všech transformací":[http://cloudinary.com/documentation/image_transformations] najdete v dokumentaci.
+
+## Optimální formáty
+
+Ačkoliv je formát JPEG stále nejrozšířenějším formátem pro obrázky na webu, přece jen je tu s námi od roku 1992.
+Od té doby se na poli komprese a kódovacích algoritmů přece jen něco událo. Naneštěstí ještě nedošlo k širokému
+konsensu, který z formátů by ho měl nahradit. A tak máme v Chrome podporu WebP:[https://en.wikipedia.org/wiki/WebP],
+v Edge zase "JPEG XR":[https://en.wikipedia.org/wiki/JPEG_XR] a v Safari "JPEG 2000":[https://en.wikipedia.org/wiki/JPEG_2000]...
+
+Naštěstí Cloudinary umí i doručování v efektivnějších formátech a tak stačí, rozšířit sadu našich zdrojů
+ještě o nějaké ty formáty:
+
+/--code html
+<picture>
+    <!--- Chrome -->
+    <source type="image/webp"
+            srcset="https://res.cloudinary.com/*my-account*/image/upload/**w_640**/v1449739319/*original.***webp**,
+                    https://res.cloudinary.com/*my-account*/image/upload/**dpr_2.0,w_640**/v1449739319/*original.***webp **2x">
+    <!-- Edge -->
+    <source type="image/vnd.ms-photo"
+            srcset="https://res.cloudinary.com/*my-account*/image/upload/**w_640**/v1449739319/original.**jxr**,
+                    https://res.cloudinary.com/*my-account*/image/upload/**dpr_2.0,w_640**/v1449739319/original.**jxr** 2x">
+    <!-- Safari -->
+    <source type="image/jp2"
+            srcset="https://res.cloudinary.com/*my-account*/image/upload/**w_640**/v1449739319/*original.***j****p2**,
+                    https://res.cloudinary.com/*my-account*/image/upload/**dpr_2.0,w_640**/v1449739319/*original.***j****p2 **2x">
+    <!-- Zbytek -->
+    <source type="image/jpeg"
+            srcset="https://res.cloudinary.com/*my-account*/image/upload/**w_640**/v1449739319/*original.*jpg,
+                    https://res.cloudinary.com/*my-account*/image/upload/**dpr_2.0,w_640**/v1449739319/*original.*jpg** **2x">
+    <!-- Fallback ... -->
+</picture>
+\--code
+
+Teď si uděláme kartézský součin s potřebnými media queries a vidíme, kolik práce nám Cloudinary ušetří
+s řezáním obrázků! Bohužel komplexita kódu, který se nám stará o natažení správného obrázku, nám krapet
+prolítla střechou. To se samozřejmě dá řešit nějakou komponentou,  která nám kód hezky vygeneruje,
+ale o tom třeba někdy příště. Každopádně bacha, aby jen vložení obrázku nebylo větší než obrázek samotný! :)

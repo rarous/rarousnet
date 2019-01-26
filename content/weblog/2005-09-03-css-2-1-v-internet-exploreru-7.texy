@@ -1,0 +1,15 @@
+---
+{:id 67,
+ :title "CSS 2.1 v Internet Exploreru 7",
+ :description "Jak to bude s CSS v novém prohlížeči od Microsoftu.",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign"},
+ :published "2005-09-03T11:14:29"}
+---
+
+Včera vyšel "článek na ieblogu":[blog], který přináší k diskusi několik vlastností parseru CSS((Cascading Style Sheet)) v připravovaném IE((Internet Explorer)). Zajímavé je, že zpracování stylů bude odlišné pro Standard mod od Quirk modu. Quirk mode bude spracovávat CSS stejně jako to dělá IE6 s všemi chybami, což by mělo zajistit funkčnost současného kódu i v novém prohlížeči. Naproti tomu Standard mode se na nic ohlížet nebude a pojede "podle standardu":[css21]. V důsledku by neměli fungovat různé hacky, kterými dnes kodéři odlišují IE od moderních prohlížečů.
+
+Doufám, že implementace Standard modu bude dostatečně kvalitní, že hacky nebudou nadále potřeba. Držim Microsoftu palce - hlavně kvůli sobě ;).
+
+[blog]: http://blogs.msdn.com/ie/archive/2005/09/02/460115.aspx
+[css21]: http://www.w3.org/TR/CSS21/

@@ -1,0 +1,60 @@
+---
+{:id 261,
+ :title "WebCamp za námi",
+ :description
+ "Poslední dva dny jsem strávil na konferenci pro webové tvůrce pořádané Vilémem Málkem a Jakubem Vránou. Jaké to tam bylo a o co jste pravděpodobně přišli? Dozvíte se dále.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"html5" "webdesign" "webcamp" "aspnet" "dynamicdata" "php"
+   "silverlight" "texy" "flex"},
+ :published "2008-03-29T11:56:31.210"}
+---
+
+Poslední dva dny jsem strávil na konferenci pro webové tvůrce pořádané "Vilémem Málkem":[interval] a "Jakubem Vránou":[vrana]. Jaké to tam bylo a o co jste pravděpodobně přišli?
+
+O WebCampu:[webcamp] jsem věděl už před pár týdny. Nezaujal mě ani tak program, jako někteří přednášející. Už nějakou dobu jsme měl potřebu se setkat s "Davidem Grudlem":[dgx] (všimněte si, není Grundl a ani DGX) a "Borkem Bernardem":[borber]. Vzhledem k tomu, že oba na této konferenci měli přednášet a navíc v Dejvicích, byla to jedinečná příležitost. :)
+
+Psal jsem Borkovi, ať se mi večer ozve, že bych s nimi zašel "na jedno." Pak mi v úterý přišel mejl od "Honzy Biena":[mraveniste], že je pozvaný u může si vzít hosta, ať tedy jdu s ním. No měl jsem zrovna dovolenou a pohyboval jsem se v Praze - tak jsem souhlasil.
+
+Den první - webový vývoj
+========================
+
+První den byl věnován webovému vývoj a to především v PHP. Na konec jsem na konferenci našel několik i pro mne zajímavých témat. Na začátku bylo téma o podpoře PHP v produktech Microsoftu (o tom jak rozběhat "PHP 5 v IIS na Vistě":[clanek(231)] jsem už psal). Přednáška o budoucnosti PHP byla spíše zábavnou (alespoň z mého C# pohledu). Jakub ať se nezlobí, ale jeho "generátor administračních rozhranní":[adminer] se mi vůbec nelíbil. ;)
+
+Borek pak prezentoval celkem ze široka, jaké možnosti pro webové vývojáře dnes existují. Jako serverou alternativu prezentoval ASP.NET (v "Dynamic Data":[dynamicdata] měl admina stejně rychle hotového jako Jakub, navíc vč. doménových objektů). U RIA se Borek zmínil o Silverlightu:[silverlight] 2 a Flexu:[flex]. Dále o možnosti psát na serveru klientským způsobem a trendu sbližování technologií pro tvorbu tenkých klientů (browser, plugin, Java/.net, native). Pak jsme šli na pivo do Budvarky.
+
+Vrátili jsme se až na závěrečnou část přednášky "Tomáše Petříčka":[tomasp], která byla o Phalangeru:[phalanger] v Silverlightu. Myslím, že ta dost přítomných vývojářů zaujala, alespoň podle pozdějších reakcí v hospodě. Na konec byl zlatý hřeb večera - přednáška --DGX--++Davida++ o "Texy!":[texy] (z pohledu programátora).
+
+Nakonec jsme se přesunuli o patro níž, kde je i hospoda. Tam jsme nakonec s Davidem a Štěpánem stvrdli až do tří nebo tak nějak. :D
+
+Den druhý - budoucnost a přístupnost webu
+=========================================
+
+Ráno jsme přišli dost zničení (po třech a půl hodinách spánku) a zachytili jsme začátek přednášky "Davida Špinara":[pristupnost] o "pravidlech přístupnosti":[pravidla] pro weby státní správy. Následovala další přednáška o snaze o "bezbariérový Seznam":[seznam] a další o tom jakým způsobem používají web handicapovaní uživatelé a praktickou ukázkou hlasové čtečky.
+
+V odpoledním bloku vystoupil Chamurappi:[webylon] a představil svůj "český validátor":[validator]. "Patrick Zandl":[marigold] měl velice zajímavou přednášku o Stream.cz:[stream] a na závěr vystoupil "Martin Hassman":[html456] s tématem HTML5.
+
+Všechno to byla zajímavá témata, ale díky únavě z předchozího dne, to mohlo vypadat, že mě to nezajímá, opakem byla pravda. Návštěvnost konference asi neodpovídala představám pořadatelů, ale možná to bylo i tím, že se o ní málo mluvilo - já jsem jí zaregistroval, díky službě [weblogy] - nebo dosti vysoké ceně. Snad bude mít příští akce větší komerční úspěch.
+
+[weblogy]: http://www.weblogy.cz/ W3B
+[mraveniste]: http://www.mraveniste.org/
+[webcamp]: http://www.webcamp.cz/
+[dgx]: http://www.davidgrudl.com/
+[borber]: http://www.borber.com/
+[tomasp]: http://www.tomasp.net/
+[marigold]: http://www.marigold.cz/
+[pristupnost]: http://pristupnost.nawebu.cz/
+[pravidla]: http://www.pravidla-pristupnosti.cz/
+[html456]: http://html456.blogspot.com/
+[vrana]: http://php.vrana.cz/
+[stream]: http://www.stream.cz/
+[adminer]: http://adminer.cz/
+[validator]: http://validator.w3.cz/
+[webylon]: http://www.webylon.info/
+[interval]: http://interval.cz/
+[dynamicdata]: http://forums.asp.net/1145.aspx
+[phalanger]: http://www.php-compiler.net/
+[silverlight]: http://www.microsoft.com/silverlight/
+[flex]: http://www.adobe.com/flex/
+[seznam]: http://seznam.sblog.cz/2008/03/28/33
+[clanek(231)]: /weblog/231-jak-na-php-ve-viste.aspx

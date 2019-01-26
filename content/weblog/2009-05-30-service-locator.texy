@@ -1,0 +1,94 @@
+---
+{:id 357,
+ :title "Service Locator",
+ :description
+ "Znáte vzor Service Locator? Pravděpodobně jste s ním setkali nespočetněkrát aniž byste o tom věděli.",
+ :author "Aleš Roubíček",
+ :tags #{"servicelocator" "asp.net 2.0" "pattern" "ioc"},
+ :published "2009-05-30T11:44:44.580"}
+---
+
+Znáte vzor Service Locator? Pravděpodobně jste s ním setkali nespočetněkrát aniž byste o tom věděli.
+
+Update
+======
+
+Service locator je **code smell**. Následující řádky jsou zajímavé jako programátorské cvičení, nedoporučuji ho však používat v praxi. Třída by měla mít co nejméně závislostí a pokud chceme zredukovat počet parametrů konstruktoru, není následující řešení řešením vhodným! Měli bychom přemýšlet o změně návrhu.
+
+--------------
+
+[service locator] je návrhový vzor, který je součástí techniky dependency injection / inversion of control. Jeho úkolem je dodat hotové instance služeb na vyžádání. Můžeme si ho představit nějak tak:
+
+/--code csharp
+public interface IServiceLocator {
+  TService GetService<TService>();
+  IEnumerable<TService> GetServices<TService>();
+}
+\--code
+
+Jeho úkolem je poskytnout službu daného typu nebo všechny služby, které splňují danný kontrakt. K čemu je to dobré? Dobré je to především pro konfigurovatelné a rozšiřitelné aplikace. Řekněme, že budu chtít do svého redakčního systému přidat možnost oznámení na e-mail, když někdo zadá komentář. První řešení bude nejspíš to přímočaré:
+
+/--code csharp
+public class CommentsController : Controller {
+  public ActionResult AddComment(Comment comment) {
+    // validace a persistence komentáře
+
+    var notificator = new EmailNotificator();
+    notificator.send(new CommentNotification(comment));
+
+    return Json(comment);
+  }
+}
+\--code
+
+Proč nepřidat možnost odesílání SMSek? Tak jo:
+
+/--code csharp
+public class CommentsController : Controller {
+  public ActionResult AddComment(Comment comment) {
+    // validace a persistence komentáře
+
+    var emailNotificator = new EmailNotificator();
+    emailNotificator.send(new CommentNotification(comment));
+
+    var smsNotificator = new SmsNotificator();
+    smslNotificator.send(new CommentNotification(comment));
+
+    return Json(comment);
+  }
+}
+\--code
+
+Skvěle, teď ještě posílání na [twitter] nebo na [friendfeed] a akce nám krásně roste... :) Takže se oprostíme od toho, že dopředu víme, kudy všudy se chceme nechat informovat o nových komentářích a využijeme Service Locator:
+
+/--code csharp
+public class CommentsController : Controller {
+
+  private readonly IServiceLocator _serviceLocator;
+
+  public CommentsController(IServiceLocator serviceLocator) {
+    _serviceLocator = serviceLocator;
+  }
+
+  public ActionResult AddComment(Comment comment) {
+    // validace a persistence komentáře
+
+    var newCommentNotification = new CommentNotification(comment);
+    var notificators = _serviceLocator.GetServices<INotificator>();
+    notificators.Each(notificator => notificator.send(newCommentNotification));
+
+    return Json(comment);
+  }
+}
+\--code
+
+Tím jsme také vyřešili problém vznikající při **constructor injection** a to rostoucí počet parametrů konstruktoru s rostoucími závislostmi. Protože service locator nám dokáže obstarat potřebné služby, nemusíme je injektovat zvlášť.
+
+Ještě se vrátím k poznámce v úvodu, kde jsem psal, že jste se určitě s tímto vzorem setkali, aniž byste si toho byli vědomi. O co jde? O Singleton! :) Singleton je speciální případ service locatoru, který vrací službu jediného typu s řízeným životním stylem jedináčka.
+
+To je všechno pěkné, ale jak tedy service locator ví, jak ty služby získat a jakej mají životní styl? Pokud používáte IoC kontejner, odpověd je snadná: service locator si udělám jako fasádu nad kontejnerem a tu do něj zaregistrujeme. Pokud žádný IoC kontejner nepoužíváte, tak si honem nějaký sežeňte! :)
+
+[service locator]: http://martinfowler.com/articles/injection.html#ADynamicServiceLocator Service Locator
+[twitter]: http://www.twitter.com/ Twitter
+[friendfeed]: http://friendfeed.com/ FriendFeed
+

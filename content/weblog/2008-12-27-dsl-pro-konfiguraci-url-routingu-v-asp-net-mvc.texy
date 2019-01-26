@@ -1,0 +1,195 @@
+---
+{:id 338,
+ :title "DSL pro konfiguraci URL Routingu v ASP.NET MVC",
+ :description
+ "Binsor je skvělou konfigurační DSL pro Windsor IoC kontejner. Proč nevyužít možností, které nám využití jazyka Boo přináší a nerozšířit si Binsor o pár dalších pravidel pro konfiguraci routingu v ASP.NET MVC?",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "bindor" "aspnet" "mvc" "routing" "boo"},
+ :published "2008-12-27T15:11:56.423"}
+---
+
+Binsor je skvělou "konfigurační DSL pro Windsor IoC":[clanek(332)] kontejner. Proč nevyužít možností, které nám využití jazyka [boo] přináší a nerozšířit si Binsor o pár dalších pravidel pro konfiguraci "routingu v ASP.NET MVC":[clanek(296)]?
+
+Routing v ASP.NET MVC
+=====================
+
+`System.Web.Routing` je jedním ze základních kamenů ASP.NET MVC. Přijímá parametry z URL a posílá je `MvcRouteHandler`u, který vybere controller a jeho akci, která má požadavek zpracovat. Routing je na MVC nezávislý a využívá se třeba i v ASP.NET Dynamic Data.
+
+Pokud chceme routing nakonfigurovat, máme několik možností, jak toho dosáhnout. Tou první je využít standardní API:
+
+/--code csharp
+public void Application_Start() {
+  RouteTable.Routes.Add(
+    new Route("{resource}.axd/{*pathInfo}", new StopRoutingHandler())
+  );
+
+  RouteTable.Routes.Add("default",
+    new Route("{controller}/{action}/{id}", new MvcRouteHandler()) {
+      Defaults = new RouteValueDictionary(new {
+        controller = "Home",
+        action = "Index"
+      })
+    }
+  );
+}
+\--code
+
+Jak jistě vidíte, psát takto routovací pravidla je celkem na dlouho. Kód obsahuje zbytečně mnoho šumu a můžete snadno něco opomenout. Proto je součástí MVC frameworku několik extenzí, které mají konfiguraci usnadnit:
+
+/--code csharp
+public void Application_Start() {
+  RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+  RouteTable.Routes.MapRoute(
+    "default",
+    "{controller}/{action}/{id}",
+    new { controller = "Home", action = "Index" }
+  );
+}
+\--code
+
+Takový kód už je o poznání kratší, většina šumu už je pryč, ale stejně tu zůstává několik zbytečných znaků a na první pohled není vidět, co vlastně je ta anonymní třída. Navíc jde o konfiguraci a ta by si zasloužila být v konfiguračním souboru. Změna routy si pak nevyžádá rekompilaci aplikace, ale pouze restart… Proto jsem se rozhodl vytvořit si vlastní konfigurační DSL((Domain Specific Language)) a to za pomocí Boo.
+
+Krok první: návrh DSL
+=====================
+
+Začněme tedy s tím, jak by taková DSL měla vypadat. To, co má dělat, je už nastíněno výše. První můj návrh vypadal asi takto:
+
+/--code boo
+ignore:
+  route "{resource}.axd/{*pathInfo}"
+
+map:
+  route "Default", "{controller}/{action}/{id}":
+    defaults:
+      controller = "Home"
+      action = "Index"
+\--code
+
+Bloky `ignore` a `map` by mohli mít vícero potomků `route`. Tuto variantu jsem však záhy zapověděl, protože vyžaduje zbytečné odsazení navíc a v delších konfiguracích už nemusí být jasné, jestli zrovna jsme v bloku `ignore` nebo `map` popřípadě jiném. Tak jsem nad tím přemýšlel a nakonec zvolil následující variantu:
+
+/--code boo
+ignore_route "{resource}.axd/{*pathInfo}"
+
+map_route "Default", "{controller}/{action}/{id}":
+  defaults:
+    controller = "Home"
+    action = "Index"
+\--code
+
+Takže syntaxi bych měl, teď přijde ta veselejší část: implementace.
+
+Krok druhý: implementace DSL
+============================
+
+Jedním z důvodů proč jsou oblíbené dynamické jazyky jako Ruby a Python je meta programování. Meta programování nám umožňuje vytvářet nové programové konstrukce v jazyku, zkrátka obohatit jeho sémantiku. Já si pro implementaci vybral Boo.
+
+Ačkoli je Boo statický jazyk, díky otevřenému konceptu kompilátoru, můžeme jazyk obohacovat stejně efektivně, jako v jazyce dynamickém. Výhodou je, že gramatickou správnost našich rozšíření můžeme ověřit při kompilaci. Základním kamenem při tvorbě vlastních DSL jsou *meta funkce*, které jsem však nepoužil, a *makra*.
+
+Makro:[boo-macros] je třída. Ano lze ho napsat v jakémkoli jazyce nad CLI((Common Laguage Infrastructure)). Stačí nám implementovat rozhraní `IAstMacro` a třídu pojmenovat s konvenčním přídomkem `Macro`, např. `Map_routeMacro`. V implementovaných metodách si pak můžete dle libosti hrát s AST((Abstract Syntax Tree)). Takhle je v C# napsanej třeba Binsor. Já jsem však k implementaci routovacích maker zvolil přímo jazyk Boo, který má od verze 0.8.1 podporu pro snadné psaní maker přímo v jazyce.
+
+Začneme jednodušším makrem pro ignorování routy:
+
+/--code boo
+import Boo.Lang.Extensions
+import Boo.Lang.Compiler
+import Boo.Lang.Compiler.Ast
+import Boo.Lang.Compiler.Ast.Visitors
+
+macro ignore_route:
+  path, = ignore_route.Arguments
+  block = Block()
+  block.Add([| RouteTable.Routes.Add(Route($path, StopRoutingHandler())) |])
+  return block
+\--code
+
+Pro snadnější pochopení si kód trochu popíšeme. Na prvních řádkách si naimportujeme potřebné jmenné prostory. Klíčovým slovem `macro` zahájíme psaní makra a v zápětí mu přiřadíme jméno, protože, co dokážeme pojmenovat, dokážeme ovládat. Pak si načteme první parametr a uložíme si ho do proměnné `path`. Pak si vytvoříme nový blok kódu. A teď začíná magic. Všechno co je v bloku `[| … |]` je normální kód v Boo, který se převede na AST. Pomocí `$` lze do toho kódu zasahovat zvenčí, takže místo `$path` bude v kódu obsah proměnné `path`. Připravený blok kódu pak vrátíme kompilátoru.
+
+Díky našemu makru se kód `ignore_route "test"` přeloží na `RouteTable.Routes.Add(Route("test", StopRoutingHandler()))` a pokud je naimportován jmenný prostor `System.Web.Routing`, kompilátor všemu rozumí a máme jednoduchou syntaxi pro definování ignorovaných rout.
+
+Bylo to celkem snadné, že? Satačí pochopit základní princip. Ono totiž klíčové slovo `macro` není nic jiného než makro, které bere jako první parametr název makra a následující blok je de facto implementací metody `Expand`. :)
+
+Postoupíme dál. Makro `map_route` už bude o něco větší oříšek, protože může obsahovat vnořené bloky `defaults`, kde jsou vypsané výchozí hodnoty parametrů routy, a `constraints`, kde jsou podmínky, které tyto parametry musejí splňovat.
+
+/--code boo
+macro map_route:
+  name, path = map_route.Arguments
+  defaults = map_route["defaults"] as MacroStatement or MacroStatement()
+  constraints = map_route["constraints"] as MacroStatement or MacroStatement()
+
+  block = Block()
+  block.Add([| route = Route($path, MvcRouteHandler()) |])
+  block.Add([| route.Defaults = RouteValueDictionary() |])
+  block.Add([| route.Constraints = RouteValueDictionary() |])
+
+  for exp as ExpressionStatement in defaults.Block.Statements:
+    binary = exp.Expression as BinaryExpression
+    block.Add([| route.Defaults.Add($(binary.Left.ToString()), $(binary.Right)) |])
+
+  for exp as ExpressionStatement in constraints.Block.Statements:
+    binary = exp.Expression as BinaryExpression
+    block.Add([| route.Constraints.Add($(binary.Left.ToString()), $(binary.Right)) |])
+
+  block.Add([| RouteTable.Routes.Add($name, route) |])
+
+  return block
+
+macro defaults:
+  allowedParents as List = [ "map_route" ]
+  parent as MacroStatement = defaults.GetAncestor(NodeType.MacroStatement)
+  assert allowedParents.Contains(parent.Name)
+
+  parent["defaults"] = defaults
+
+macro constraints:
+  allowedParents as List = [ "map_route", "ignore_route" ]
+  parent as MacroStatement = constraints.GetAncestor(NodeType.MacroStatement)
+  assert allowedParents.Contains(parent.Name)
+
+  parent["constraints"] = constraints
+\--code
+
+
+Makro `map_route` je trošku rozšířenou obdobou `ignore_route`, podívejme se na makro `defaults`, které přináší něco jiného. Zprvu si nadefinujeme, jaká makra mohou toto makro obsahovat, a následně ověříme, že opravdu není v jiném makru. Pak vezmeme kód tohoto makra a pošleme ho ke zpracování nadřazenému makru. Žádný kód generovat nebudeme. Makro `constraints` je na tom téměr stejně, jen předpokládá, že bude i v `ignore_route`, což zatím není implementováno, ale budiž.
+
+Vraťme se k makru `map_route` a konkrétně k `for` cyklům. Tam totiž projíždíme předané kusy kódu. Jednotlivé řádky považujeme za výrazy. Konkrétně výraz přiřazení, což je binární výraz. Binární výraz má vždy pravou a levou stranu a operátor. Na levé straně máme klíče do `RouteValueDictionary`, což jsou řetězce. Proto levou stranu musíme převést na řetězec metodou `ToString()`. Pravá strana je hodnota přidružená ke klíči a může to být cokoli (`object`). Takže tam i cokoli pošleme.
+
+Vezmeme oba kusy kódu a uložíme je do souboru `RoutingMacros.boo`
+
+Krok třetí: užívání DSL
+=======================
+
+Než začneme makra využívat, musíme si je nejprve naimportovat. Na začátek souboru `Windsor.boo` přidáme řádky:
+
+/--code boo
+import file from RoutingMacros.boo
+import System.Web.Routing
+import System.Web.Mvc
+\--code
+
+No a potom už můžeme na konci souboru přidávat routovací pravidla.
+
+Update
+======
+
+Kompletní skripty pro routování naleznete v článku [clanek(341)], kde jsem provedl několik oprav v makru `ignore_route` a lehký refactoring.
+
+/--div .[hslice #related]
+Související .[entry-title]
+===========
+.[entry-content]
+* [clanek(296)]
+* [clanek(332)]
+* [clanek(336)]
+* [clanek(341)]
+* [boo]
+* [boo-macros]
+\--div
+
+[clanek(296)]: /weblog/296-url-routing-v-asp-net-cast-prvni.aspx URL Routing v ASP.NET MVC .(URL Routing v ASP.NET MVC){rel:bookmark}
+[clanek(332)]: /weblog/332-inversion-of-control-v-asp-net-mvc.aspx Inversion of Control v ASP.NET MVC .(Inversion of Control v ASP.NET MVC){rel:bookmark}
+[clanek(336)]: /weblog/336-model-binders-v-asp-net-mvc.aspx Model Binders v ASP.NET MVC .(Model Binders v ASP.NET MVC){rel:bookmark}
+[clanek(341)]: /weblog/341-oprava-predchozich-clanku.aspx Oprava předchozích článků .(Oprava předchozích článků){rel:bookmark}
+
+[boo]: http://boo.codehaus.org/ Boo
+[boo-macros]: http://boo.codehaus.org/Syntactic%20Macros Boo Macros

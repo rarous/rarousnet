@@ -1,0 +1,110 @@
+---
+{:id 329,
+ :title "REST aplikace pomocí ASP.NET MVC",
+ :description
+ "Jednou z důležitých novinek v beta verzi ASP.NET MVC je bezesporu možnost přetěžování akcí a ve spolupráci s filtry na typ požadavku můžeme přejít na REST full přístup k architektuře webové aplikace. Jak na to?",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "mvc" "rest" "asp.net 2.0"},
+ :published "2008-10-26T11:20:59.783"}
+---
+
+Jednou z důležitých novinek v beta verzi ASP.NET MVC je bezesporu možnost přetěžování akcí a ve spolupráci s filtry na typ požadavku můžeme přejít na REST přístup k architektuře webové aplikace.
+
+Ačkoli si mnoho lidí myslí, že když píšou v ASP.NET MVC, mají rovnou REST((Representational state transfer)) out of the box, není tomu tak. V plném RESTu se totiž nedostávají do URL slovesa (akce), nýbrž pouze předměty. Typický scénář CRUD((Create Read Update Delete)) operací může vypadat následovně:
+
+/--code
+POST /Customers/Create/
+GET /Customers/Detail/1
+POST /Customers/Update/1
+GET /Customers/Delete/1
+\--code
+
+Takovéto akce snadno pokryjeme s výchozí routou `/{controller}/{action}/{id}` a řadič `CustomersController` může vypadat nějak tak:
+
+/--code csharp
+public class CustomersController : Controller {
+  public ActionResult Create(Customer customer) {
+    // TODO: create customer
+  }
+
+  public ActionResult Detail(int id) {
+    // TODO: find customer by id
+  }
+
+  public ActionResult Update(int id, Customer customer) {
+    // TODO: update customer
+  }
+
+  public ActionResult Delete(int id) {
+    // TODO: delete customer
+  }
+}
+\--code
+
+Jenže POSTování a GETování je jen slabou podmnožinou povolených operací na HTTP protokolu. Správný REST přístup pro CRUD operace by měl vypadat následovně:
+
+/--code
+POST /Customers
+GET /Customers/1
+PUT /Customers/1
+DELETE /Customers/1
+\--code
+
+Co je pro to třeba udělat?
+====================
+
+Začneme od routy. Přidáme novou routu pro `CustomersController`:
+
+/--code csharp
+routes.MapRoute(
+  "REST Customers",
+  "Customers/{id}",
+  new { controller = "Customers", action = "Rest", id = "" }
+);
+\--code
+
+A původní kód obohatíme o pár atributů:
+
+/--code csharp
+public class CustomersController : Controller {
+
+  [ActionName("Rest")]
+  [HttpPost]
+  public ActionResult Create(Customer customer) {
+    // TODO: save Customer to database
+    return new HttpStatusCodeResult((int)HttpStatusCode.OK);
+  }
+
+  [ActionName("Rest")]
+  [HttpGet]
+
+  public ActionResult Detail(int id) {
+    // TODO: load Customer from database
+    return View("Detail");
+  }
+
+  [ActionName("Rest")]
+  [HttpGet]
+  public ActionResult Index() {
+    // TODO: load Customers from database
+    return View("Index");
+  }
+
+  [ActionName("Rest")]
+  [HttpPut]
+  public ActionResult Update(int id, Customer customer) {
+    // TODO: update Customer in database
+    return new HttpStatusCodeResult((int)HttpStatusCode.OK);
+  }
+
+  [ActionName("Rest")]
+  [HttpDelete]
+  public ActionResult Delete(int id) {
+    // TODO: delete Customer from database
+   return new HttpStatusCodeResult((int)HttpStatusCode.OK);
+  }
+}
+\--code
+
+A máme REST :)
+

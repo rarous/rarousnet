@@ -1,0 +1,10 @@
+---
+{:id 105,
+ :title "Osečenské stránky",
+ :description "Provedl jsem redesign obecních stránek.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2006-02-03T08:05:55.963"}
+---
+
+Během včerejška jsem pověsil na web novou verzi "stránek obce Osečná":[http://www.osecna.info]. Kromě změny vzhledu došlo ke kompletní změně struktury a technologie. Nyní běží stránky z 90% na redakčním systému Gryphoon Obce a 100% na ASP.NET 2.0. Ještě mě čeká dodělávka několika modulů, ale to až po zkouškách...

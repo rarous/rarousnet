@@ -1,0 +1,52 @@
+---
+{:id 378,
+ :title "Facebook Connect na Trop.cz",
+ :description
+ "Po delší době přicházíme s dalším buildem Tropu, který je tentokrát ve znamení Facebook Connect. ",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "connect" "facebook" "trop" "openid"},
+ :published "2010-02-01T20:00:51.753"}
+---
+
+Po delší době přicházíme s dalším buildem Tropu, který je tentokrát ve znamení Facebook Connect. Od dnešního dne se můžete na [trop] přihlašovat pomocí vašeho Facebook účtu. Facebook se tak zařadil mezi Seznam, Google, Twitter a další OpenId poskytovatele přihlašování, kteří už na Tropu jsou.
+
+Facebook Connect
+================
+
+Stávající uživatelé
+-------------------
+
+Stávající uživatelé si mohou svůj účet "propojit s Facebookem v editaci profilu":[uprava]. Jak na to, se můžete podívat v následujícím krátkém videu: [screencast].
+
+Můžete si všimnout, že jsem potvrzoval práva na publikování. To proto, že Trop nyní umí **posílat vaše recenze na zeď**. Pokud při propojování s facebookem potvrdíte publikování, budou se vaše nové recenze posílat i na Facebook. Nemusíte psát, že se vám někde líbilo/nelíbilo dvakrát, stačí to napsat na Trop a vaši přátelé se o tom dozvědí.
+
+Noví uživatelé
+-------------
+
+Noví, ještě neregistrovaní uživatelé mají nyní další možnost, jak "se snadno na trop zaregistrovat":[fb-registrace] a nezatěžovat se s vyplňováním profilu. Vše potřebné se vyplní z Facebooku.
+
+Recenze
+=======
+
+Dalších změn se dočkaly recenze. Nyní konečně můžete vaši recenzi zpětně upravit včetně tagů a rozšířených hodnocení. Textové pole pro editaci je nyní větší a úprava je mnohem pohodlnější. Další z novinek je **hodnocení recenzí**. Pokud se vám něčí recenze líbí, můžete jí posunout nahoru svým hlasem. Samozřejmě můžete poslat dolu i recenze, které nemají žádnou užitnou hodnotu. Každý registrovaný uživatel má právo jednou zahlasovat k recenzi někoho druhého.
+
+Tlačítka pro editaci a hlasování najdete v pravém horním rohu po najetí na recenzi.
+
+Twitter
+=======
+
+Ode dneška můžete sledovat, co se o Tropu štěbetá na Twitteru. Na domovské stránce máme nyní widget s Twitterem. Podobně přibyl widget s Twitterem na profilové stránky uživatelů, kteří mají svůj Twitter spojený s Tropem. Můžete tam snadno vidět, čím se tropáci zabývají i mimo psaní zajímavých recenzí. :) Pokud chcete vědět, co "štěbetá Trop":[trop-twitter], můžete ho sledovat také. Najdete zde mimo jiné i seriál tipů na zajímavá místa.
+
+Přání a oprava bugů
+===================
+
+Snažili jsme se splnit vaše přání, která nám můžete posílat (a posíláte) na náš [uservoice]. Některé z nich jsem již zmínil výše, mezi dalšími je oprava hledání, nyní opět můžete hledat i mimo Prahu. Byl vylepšen "způsob jakým se posílají chybové stránky":[clanek(374)], nyní už by měly být jednotné a brzy i o něco použitelnější.
+
+
+[screencast]: http://screencast.com/t/OTBjMWYy Jak propojit účet s Facebookem
+[trop]: http://www.trop.cz/ Trop.cz
+[trop-twitter]: http://www.twitter.com/tropcz/
+[uservoice]: http://trop.uservoice.com/ uservoice
+[fb-registrace]: http://www.trop.cz/registrace#facebook
+[uprava]: http://www.trop.cz/users/edit#accounts
+[clanek(374)]: /weblog/374-osetreni-chybovych-stavu-v-asp-net-mvc.aspx 

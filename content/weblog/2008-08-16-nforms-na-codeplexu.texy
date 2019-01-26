@@ -1,0 +1,53 @@
+---
+{:id 291,
+ :title "NForms na Codeplexu",
+ :description
+ "Vydal jsem první veřejnou verzi zdrojových kódů formulářového pomocníka NForms pro ASP.NET. Najdete ji na Codeplexu.",
+ :author "Aleš Roubíček",
+ :tags #{"codeplex" "nforms" "asp.net 2.0"},
+ :published "2008-08-16T13:59:02.903"}
+---
+
+Na Codeplexu se objevil nový opensource projekt a není to nic menšího než [nforms]. Zatím jste se o nich mohli jen dočíst u mě na blogu a prakticky vyzkoušet taktéž tady – přidávání komentářů frčí na NForms. Nyní však máte jedinečnou možnost stáhnout si zdrojáky, poučit se z nich, "nahlásit chyby":[issue] nebo "diskutovat":[discussion] náměty na vylepšení, zkompilovat, spustit testy a konečně nasadit a používat ve vlastních projektech.
+
+No není to skvělé?
+
+== K čemu je to dobré?
+
+NForm jsem napsal jako programátorské cvičení. Líbila se mi Davidova:[dgx] myšlenka, chtěl jsem napsat něco v C# 3.0… Jenže je to taky docela užitečná věc. Daj se pomocí toho snadno vytvářet znovupoužitelné formuláře nezávislé na infrastruktuře. Můžete je používat jak v klasickém [aspnet] modelu (můžete použít více než jeden formulář na stránce), tak v MVC:[aspnetmvc] nebo MVP:[mvp] modelu.
+
+== Další vývoj
+
+Aktuálně připravuju podrobnější "dokumentaci na wiki":[nforms], ale pro začátek jistě bude stačit pár mých spotíků tady na blogu, příklady užití najdete v Unit Testech, popřípadě další moudra najdete v nedokonalých XML komentářích v samotném kódu.
+
+Při psaní wiki jsem už našel nějaké možnosti pro vylepšení, tak až bude připraveno, hodím je zase na Codeplex. Stay tuned…
+
+Časem bych chtěl přidat podporu validace na straně klienta. Zatím se generují jen některé třídy, na které lze napojit vlastní implementace v JavaScriptu, ale není to nic pro složitější validaci…
+
+== Credits
+
+Musím "poděkovat Davidovi":[davidek] za inspiraci, NForms jsou značně obšlehnuté od "Nette::Forms":[nette] (dříve známé jako NForms), trochu inspirace jsem pobral i u "New Forms z djanga":[django], některé zajímavé nápady, jak využít novinky C# 3.0 pro změnu z [aspnetmvc]. Takže díky!
+
+/--div .[#related hslice]
+==Související .[entry-title]
+.[entry-content]
+* [clanek(245)]
+* [clanek(247)]
+* [clanek(284)]
+* [nette]
+* [django]
+\--div
+
+[clanek(245)]: /weblog/245-nforms-pro-asp-net.aspx NForms pro ASP.NET .{rel:bookmark}
+[clanek(247)]: /weblog/247-validace-v-nforms-pro-asp-net.aspx Validace v NForms pro ASP.NET .{rel:bookmark}
+[clanek(284)]: /weblog/284-temer-novy-rarous-weblog.aspx#toc-nforms-v-akci NForms v akci .{rel:bookmark}
+[nette]: http://nettephp.com/ PHP framework Nette
+[django]: http://www.djangoproject.com/documentation/forms/ django New Forms
+[nforms]: http://www.codeplex.com/nforms NForms
+[issue]: http://www.codeplex.com/nforms/WorkItem/List.aspx NForms Issue Tracker
+[discussion]: http://www.codeplex.com/nforms/Thread/List.aspx
+[aspnet]: http://asp.net/ ASP.NET
+[aspnetmvc]: http://asp.net/mvc  ASP.NET MVC
+[mvp]: http://www.codeplex.com/websf/Release/ProjectReleases.aspx?ReleaseId=8812
+[dgx]: http://davidgrudl.com/
+[davidek]: http://www.latrine.cz/vyzva-udelejme-davidkovi-radost

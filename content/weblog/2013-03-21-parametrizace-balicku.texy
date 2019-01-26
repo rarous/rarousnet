@@ -1,0 +1,70 @@
+---
+{:id 442,
+ :title "Parametrizace balíčku",
+ :description
+ "Balíček k nasazení je připravený, ale je potřeba ho ještě nakonfigurovat. Jedna možnost je projít ručně konfigurační soubory na file systému...",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "msdeploy"},
+ :published "2013-03-21T11:40:57.403"}
+---
+
+Balíček "je připravený k nasazení":[/weblog/441-jeden-balicek-na-vsechno.aspx], ale je potřeba ho ještě nakonfigurovat. Jedna možnost je projít ručně konfigurační soubory na file systému... Počkat, kam se to vlastně nahrálo!?
+
+Pokud vezmete balíček tak, jak byl, a nainstalujete ho přes IIS manager, dostanete možnost vyplnit pár vydedukovaných parametrů:
+
+[* http://content.screencast.com/users/rarous/folders/Jing/media/94830720-0673-43cc-88e2-b4998a8643c8/2013-03-20_1024.png *]
+
+Tak jako dobrý, ale je tam spousta duplicit a co je to **Parameter 1**? Moc uživatelsky příjemné to teda není. Navíc, když to potvrdíme a pokračujeme dál, tak to spadne na instalaci windows služby. Proč? Protože ve scriptu je jiná cesta ke službě než kam se ve výsledku nakopírovala. Problémy, jen samé problémy. Naštěstí jdou snadno vyřešit.
+
+Parameters.xml
+==============
+
+MS Deploy naštěstí umí "definovat a následně i nastavovat parametry":[http://technet.microsoft.com/en-us/library/dd569084(v=ws.10).aspx]. Můžeme to udělat buď pomocí parametrů z příkazové řádky nebo pomocí XML souboru s definicí parametrů. Já zvolil druhou variantu:
+
+/--code xml
+<parameters>
+  <parameter tags='IisApp' defaultValue='MultiConnector\$instance' name='IIS Web Application Name'>
+    <parameterEntry kind='ProviderPath' scope='IisApp'
+      match='^$($webSource.Replace(`"\`", `"\\`").Replace(`".`", `"\.`"))$'/>
+    <parameterEntry kind='ProviderPath' scope='setAcl'
+      match='^$($webSource.Replace(`"\`", `"\\`").Replace(`".`", `"\.`"))$'/>
+  </parameter>
+  <parameter tags='WinSvc' defaultValue='$destPath\$instance' name='Windows service path'>
+    <parameterEntry kind='ProviderPath' scope='dirPath'
+      match='^$($winSource.Replace(`"\`", `"\\`").Replace(`".`", `"\.`"))$'/>
+    <parameterEntry kind='TextFile' scope='Presync\.cmd$'
+      match='$($destPath.Replace(`"\`", `"\\`").Replace(`".`", `"\.`"))\\$instance'/>
+    <parameterEntry kind='TextFile' scope='Postsync\.cmd$'
+      match='$($destPath.Replace(`"\`", `"\\`").Replace(`".`", `"\.`"))\\$instance'/>
+  </parameter>
+  <parameter tags='SqlConnectionString' defaultValue='$connString' name='Connection String'
+      description='MultiConnector Connection String used in web.config by the application to access the database.'>
+    <parameterEntry kind='XmlFile' scope='Web\.config$'
+      match='//connectionStrings/add[@name=`"MultiConnector`"]/@connectionString'/>
+    <parameterEntry kind='XmlFile' scope='Svc\.exe\.config$'
+      match='//connectionStrings/add[@name=`"MultiConnector`"]/@connectionString'/>
+    <parameterEntry kind='ProviderPath' scope='dbDacFx'
+      match='^$($dbSource.Replace(`"\`", `"\\`").Replace(`".`", `"\.`"))$'/>
+  </parameter>
+</parameters>
+\--code
+
+V UI jsou definována políčka pro tři parametry.
+
+1. Nastavuje název webové aplikace v IIS
+2. Nastavuje cestu k windows service
+3. Nastavuje connection string aplikace
+
+Tyto parametry jsou použity na několika místech (zbavili jsem se duplicit v UI). Například cesta k windows service se aktualizuje i ve vygenerovaných `cmd` souborech a tak se nám úspěšně nainstaluje  windows služba i když změníme cestu k ní. Connection string určuje, kam se nadeployuje DB a aktualizuje se jak ve webové aplikaci, tak ve windows službě.
+
+Při volání MsDeploy pro tvorbu balíčku z manifextu, přidáme následující parametr a máme vystaráno:
+
+/--code
+-declareParamFile:$paramFile
+\--code
+
+A výsledek vypadá nějak tak:
+
+[* http://content.screencast.com/users/rarous/folders/Jing/media/8a8f1b3b-2bb5-499d-8aef-782e7e1f08ff/2013-03-21_1200.png *]
+
+A máme uživatelsky přívětivý balíček, který nasadí databázi, web i windows službu, která se nainstaluje a rovnou i spustí. Life's good, dokonce i pro deployment specialisty. ;)

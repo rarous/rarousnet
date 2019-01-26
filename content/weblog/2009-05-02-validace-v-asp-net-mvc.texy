@@ -1,0 +1,48 @@
+---
+{:id 356,
+ :title "Validace v ASP.NET MVC",
+ :description "Pojďme se podívat na validaci v ASP.NET MVC.",
+ :author "Aleš Roubíček",
+ :tags #{"aspnet" "mvc" "asp.net 2.0" "validace"},
+ :published "2009-05-02T13:56:31.313"}
+---
+
+Bezpodmínečnou nutností každé aplikace, která zpracovává data z neznámých zdrojů, je validace vstupních dat. V ASP.NET je poměrně sofistikovaná sada komponent, které přidají k vašim vstupním polím validační podmínky a v případě jejich nesplnění je uživatel informován. Validace probíhá jak na straně klienta (pomocí JavaScriptu), tak i na straně serveru. Jenže tyto komponenty jsou plně závislé na serverovém formuláři a v ASP.NET MVC je tedy nelze použít.
+
+Nyní mírně odbočím. Z předchozího odstavce jste si mohli odnést jednu myšlenku. A to, že validace je součástí UI vrstvy aplikace. Pokud však píšete aplikaci, která obsahu spoustu business pravidel, není to úplně nejšťastnější, když máte validační pravidla v UI a pak ještě někde ve vašem modelu. Jedno ze základních pravidel dobrého návrhu říká DRY (don’t repeat yourself – neopakuj se).
+
+ModelState
+===========
+
+ASP.NET MVC tedy nepřináší validátory, ale infrastrukturu, která umožňuje v případě chyby uživatele upozornit. Tato infrastruktura je postavená na stavu modelu (`ModelState`). Stav modelu má vlastnost `IsValid` a metodu `AddModelError`. V HtmlHelperu pak najdete dvě extenze `ValidationMessage` a `ValidationSummary`, které vypisují chybové hlášky pro konkrétní pole nebo sumář pro všechny. A to je vše, co nám MVC poskytuje. Další práce už je jen na nás.
+
+Jak pracovat se stavem modelu na nejnižší úrovni ukazuje jeden z tutoriálů: [tutorial1]. Možná vám to bude stačit, ale pro mne je to příliš práce navíc a ani trochu mi to nepřijde sexy. :) Jaké máme další možnosti?
+
+Můžeme využít vlastní validační vrstvu naší business logiky a napojit jí na stav modelu, tak, jak to ukazuje následující tutoriál: [tutorial2]. Nebo vyžijeme existujících validačních frameworků. Dnes se podíváme na System.ComponentModel.DataAnnotations a příště na Caste.Components.Validators.
+
+DataAnnotations
+==============
+
+Anotace dat je novinka z ASP.NET Dynamic Data, která usnadňuje automatické generování ASP.NET validátorů na základě modelu. Tyto anotace se dále rozšiřují a v .net 4.0 by to měla  být hodně použitelná věcička, která bude v ASP.NET DD, ASP.NET MVC a dokonce i v .net RIA Services. Každopádně nemusíme čekat na velký release platformy a využít anotací již dnes. Jak to tedy funguje?
+
+Jediné, co musíte udělat, je označit vlastnosti vašeho modelu atributy:
+
+/--code csharp
+[Required]
+public string Name { get; set; }
+
+[RegularExpression("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$ ")]
+public string Email { get; set; }
+\--code
+
+Dalším krokem je zaregistrovat nový model binder ` DataAnnotationsModelBinder`, který na základě anotací provede validaci modelu a nastaví případně jeho stav na nevalidní. O víc už se starat nemusíme. Kde tento model binder získat a další potřebné informace najdete v článku Brada Wilsona [annotations].
+
+Protože jsem DataAnnotations použil v jedné aplikaci, tak mám několik zkušeností, o které se můžu podělit. DataAnnotationsModelBinder má problém s komplexními typy, které mají vlastnosti taktéž komplexních typů. Jedním z možných řešení, je hacknout tento model binder a přidat podmínku na ověření komplexní vlastnosti, nebo používat DTO((Data Transfer Objects)) pouze pro účely formulářů ve view (ano, opět návrat k validaci pouze ve view vrstvě). Anotace podporují vracení chybových hlášek z resource souborů, tak nezapomeňte raději všechny hlášky přepsat, protože ty výchozí nevypadají zrovna nejlépe.
+
+Tak, to bychom měli jeden model binder, který už je hotový. Ale jak si napsat vlastní? To si ukážeme někdy příště na Caste.Components.Validators. :)
+
+
+[tutorial1]: http://www.asp.net/learn/mvc/tutorial-36-cs.aspx Performing Simple Validation
+[tutorial2]: http://www.asp.net/learn/mvc/tutorial-38-cs.aspx Validating with a Service Layer
+[annotations]: http://bradwilson.typepad.com/blog/2009/04/dataannotations-and-aspnet-mvc.html DataAnnotations and ASP.NET MVC
+[xval]: http://blog.codeville.net/2009/01/10/xval-a-validation-framework-for-aspnet-mvc/ 

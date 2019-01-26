@@ -1,0 +1,12 @@
+---
+{:id 81,
+ :title "Práce na Gryphoonu",
+ :description "pomalu ale jistě se blížím k 2.0 :)",
+ :author "Aleš Roubíček",
+ :tags #{"gryphoon"},
+ :published "2005-11-23T11:44:32.337"}
+---
+
+Předchozí a tenhle víkend jsme strávil pracema na Gryphoonu. Konečně se začíná podobat mojim představám a musím říct, že se i držim "osnovy":/clanek.aspx/66/dalsi-test, kterou jsem si předsevzal již dříve. Zvýšenou aktivitu zapříčinil i další uživatel Gryphoonu. Bude jim mike:[http://www.mikemaly.net], který přešel na nový hosting. Jsem zvědav, jak se nám povede migrace dat z Textpatternu:[http://www.textpattern.com], na kterém běží dosavadní verze jeho stránek.
+
+Co se změnilo? No kompletně jsem refaktoroval administrační rozhranní, přešel jsme na ASP.NET 2 Membership, refaktoroval a rozšířil databázi, doplnil SEO((Search Engine Optimalization)) URL k článkům a další drobné změny.

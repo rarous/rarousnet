@@ -1,0 +1,43 @@
+---
+{:id 414,
+ :title "Strava pro vaše oči, uši a mozek",
+ :description
+ "Pár tipů na velmi zajímavá videa s problematikou funkcionálního programování.",
+ :author "Aleš Roubíček",
+ :tags #{"video" "moje práce" "linq"},
+ :published "2011-12-25T09:26:59.807"}
+---
+
+Už je tomu nějakej ten pátek, co jsem Marianovi:[http://blog.think-forth.com/] slíbil, že napíšu článek s videama, o kterých si myslím, že jsou velmi dobrá na procvičování funkcionálního programování a abstraktního myšlení vůbec. Tak tady jsou:
+
+MinLINQ
+=======
+
+První z nich ukazuje implementaci LINQ operátorů pomocí funkcionální kompozice tří základních operátorů Ana, Bind a Cata:
+
+
+<iframe style="height:288px;width:512px;display:block" src="http://channel9.msdn.com/Shows/Going+Deep/Bart-De-Smet-MinLINQ-The-Essence-of-LINQ/player?w=512&h=288" frameBorder="0" scrolling="no" ></iframe>
+
+Rx pod kapotou
+==========
+
+Další se zabývá velice zajímavými koncepty asynchroního a konkurenčního přístupu v reaktivních extenzích:
+
+<iframe style="height:288px;width:512px;display:block" src="http://channel9.msdn.com/Shows/Going+Deep/E2E-Erik-Meijer-and-Wes-Dyer-Reactive-Framework-Rx-Under-the-Hood-1-of-2/player?w=512&h=288" frameBorder="0" scrolling="no" ></iframe>
+<iframe style="height:288px;width:512px;display:block" src="http://channel9.msdn.com/Shows/Going+Deep/E2E-Erik-Meijer-and-Wes-Dyer-Reactive-Framework-Rx-Under-the-Hood-2-of-2/player?w=512&h=288" frameBorder="0" scrolling="no" ></iframe>
+
+Design programovacích jazyků
+===================
+
+Poněkud starší video o tom, jak se vaří programovací jazyky, s lidmi, kteří je opravdu navrhují. Erik Meijer je jedním z mistrů Haskellu a mimo jiné i mozkem za LINQ a Rx ve světě dotnetu. Gilad Bracha je toho času součástí týmu tvořícího Dart:[http://www.dartlang.org/]. A Mads je v teamu tvořící C#. Takže samí zajímaví lidé se zajímavými pohledy na jazyky.
+
+<iframe style="height:288px;width:512px;display:block" src="http://channel9.msdn.com/Shows/Going+Deep/Erik-Meijer-Gilad-Bracha-Mads-Torgersen-Perspectives-on-Programming-Language-Design-and-Evolution/player?w=512&h=288" frameBorder="0" scrolling="no" ></iframe>
+
+Fukcionální programování
+=================
+
+Další video s Erikem "you know" Meijerem. :) Také staršího data, ale to na kvalitě neubírá, představuje koncepty funkcionálního programování v dotnetu.
+
+<iframe style="height:288px;width:512px;display:block" src="http://channel9.msdn.com/Shows/Going+Deep/Erik-Meijer-Functional-Programming/player?w=512&h=288" frameBorder="0" scrolling="no" ></iframe>
+
+A komu to přijde málo a má chuť (a čas) se do funkcionálního programování opravdu obout, tak doporučuju celou "13 dílnou serii Erikových lekcí":[http://channel9.msdn.com/search?term=Functional+Programming+Fundamentals&type=Shows]. Často jsou ukázky v Haskellu, ale tady jde o koncepty a nakonec není od věci podívat se i na jiný programovací jazyk, že.

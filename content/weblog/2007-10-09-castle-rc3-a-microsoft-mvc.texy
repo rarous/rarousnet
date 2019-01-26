@@ -1,0 +1,24 @@
+---
+{:id 229,
+ :title "Castle RC3 a Microsoft MVC",
+ :description
+ "Vůbec jsem si toho nevšiml, ale RC3 verze Castle je již několik týdnů venku. Microsoft chystá vlastní MVC framework.",
+ :author "Aleš Roubíček",
+ :tags
+ #{"webdesign" "castle" "activerecord" "aspnet" "windsor" "monorail"
+   "ajax" "mvc" "ioc"},
+ :published "2007-10-09T07:48:31.907"}
+---
+
+Vůbec jsem si toho nevšiml, ale RC3 verze Castle je již několik týdnů venku. Stáhnout si jí můžete "ze SourceForge":[http://switch.dl.sourceforge.net/sourceforge/castleproject/CastleProject-1.0-RC3.msi].
+
+Další zajímavou zprávou je. že Microsoft pracuje na vlastním ASP.NET MVC frameworku, který bude umožňovat plnou testovatelnost, IoC kontejnery, ASPX jako view bez ViewState a Page lifecyklu a spoustu zajímavých vychytávek využívajících generika a nové možnosti C#3. První CTP by se měla objevit do konce roku a releas někdy na jaře roku příštího. Release by měl být podobný jako AJAX Extensions, časem se pak zařadí přímo do .net frameworku.
+
+Zajímavý je pohled vývojářů MonoRailu. Vítají zdravou konkurenci a podle všeho se budou snažit využít všech výhod ASP.NET MVC a MonoRail budovat dále nad ním.
+
+== Související
+* Scott Guthrie: "ASP.NET MVC Framework":[http://weblogs.asp.net/scottgu/archive/2007/10/14/asp-net-mvc-framework.aspx]
+* "Monarail - Instalace":[/weblog/222-monorail-instalace.aspx]
+* Scott Hanselman: "ScottGu MVC Presentation and ScottHa Screencast from ALT.NET Conference":[http://feeds.feedburner.com/~r/ScottHanselman/~3/167273939/ScottGuMVCPresentationAndScottHaScreencastFromALTNETConference.aspx]
+* Jeffrey Palermo: "Scott Guthrie announces ASP.NET MVC framework at Alt.Net Conf":[http://codebetter.com/blogs/jeffrey.palermo/archive/2007/10/05/altnetconf-scott-guthrie-announces-asp-net-mvc-framework-at-alt-net-conf.aspx]
+* Phil Haack: "Why Is Microsoft Removing My MVP Status?":[http://haacked.com/archive/2007/09/17/why-is-microsoft-removing-my-mvp-status.aspx]

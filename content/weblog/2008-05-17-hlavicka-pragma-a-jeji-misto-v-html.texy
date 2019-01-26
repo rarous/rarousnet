@@ -1,0 +1,40 @@
+---
+{:id 269,
+ :title "Hlavička Pragma a její místo v HTML",
+ :description
+ "Zajímavým fenoménem je používání HTTP hlavičky Pragma v meta HTML dokumentu. Proč je to úplná zbytečnost? ",
+ :author "Aleš Roubíček",
+ :tags #{"webdesign" "xhtml" "http" "caching" "pragma" "html"},
+ :published "2008-05-17T09:51:36.420"}
+---
+
+Velmi často se ve zdrojových kódech HTML stránek potkávám se zajímavým mýtem a to s následujícím tagem:
+
+/---code xml
+<meta http-equiv="pragma" content="no-cache">
+\--code
+
+Autor se tím pravděpodobně pokouší docílit toho, aby se jeho stránka necachovala. Přejdu-li to, že vypnutí cachování je nesmysl už z pohledu škálování výkonu webové aplikace, tak stejně užití pragmy nemá hlubšího významu.
+
+Proč je použití Pragma:no-cache nesmysl
+=======================================
+
+1. Hlavička `Pragma` s hodnotou `no-cache` je "součástí specifikace HTTP 1.1":[pragma] z **historických důvodů** a je dnes plně nahrazena hlavičkou `Cache-Control`.
+2. Hlavička `Pragma` je **pouze hlavičkou požadavku** a v odpovědi nemá opodstatnění.
+
+Hlavičku Pragma:no-cache posílali klienti HTTP/1.0 když nechtěli dostat cachovanou odpověď z lokální nebo proxy cache, ale přímo od serveru, který volali. Posílat ji tedy v odpovědi (natož v HTML) nemá žádný význam. Někdo by mohl podotknout, že mu to funguje. "Mícrosoft na to říká":[msie]: strkejte si pragmu do HTML, ale my vás stejně budem cachovat. Mozilla raději řídí "cachování pomocí HTTP hlaviček":[mozilla] a tento tag také ignoruje.
+
+Závěr
+=====
+
+Nejprve si rozmyslete, zda je pro vás zakázání cachování opravdu přínosné - v 99% případů nebude. Pokud stejně nebudete chtít cachovat (každý požadavek bude váš server muset vždy zpracovat, bude muset protéct po vaší lince atd.), posílejte HTTP hlavičku `Cache-control` s hodnotou `no-cache`. Vkládání do meta stránky nemá opodstatnění, zbytečně tak zvětšíte opověď a prohlížeče to stejně většinou ignorují.
+
+Tagy: [tag-html], [tag-pragma], [tag-cache]
+
+[tag-html]: http://technorati.com/tag/html HTML .{rel:tag}
+[tag-pragma]: http://technorati.com/tag/pragma Pragma .{rel:tag}
+[tag-cache]: http://technorati.com/tag/cache Cache .{rel:tag}
+
+[pragma]: http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.32
+[msie]: http://support.microsoft.com/kb/222064
+[mozilla]: http://www.mozilla.org/projects/netlib/http/http-caching-faq.html

@@ -1,0 +1,15 @@
+---
+{:id 44,
+ :title "Programátorská soutěž",
+ :description "",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2005-02-02T00:00:00"}
+---
+
+Dnes mi přišel e-mail od "ASPWEBu":[aspweb], že pořádají s "Microsoftem":[microsoft] soutěž v programování webových služeb. To mi přišlo vhod, právě provádím rekonstrukci svého redakčního systému Gryphoon a plánuji i publikování prostřednictvím WS a e-mailu. Tak to je pro mě aspoň o důvod víc se do toho pustit. :)
+
+Navíc je nyní možné na ASPWEBu provozovat "dvojkové" aplikace! Tak se mi z plánováného upgradu redakčního systému Gryphoon vyklubala kompletní migrace na ASP.NET 2.0! To mám radost. Tak teď hůrá do práce.
+
+[aspweb]: http://www.aspweb.cz
+[microsoft]: http://www.microsoft.com
