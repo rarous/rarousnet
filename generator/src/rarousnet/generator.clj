@@ -184,63 +184,68 @@
 
 (defn articles-rss [content]
   (println "Generating RSS feed...")
-  (->>
-    content
-    (pmap (convert article-meta))
-    (sort-by :published)
-    (take-last 10)
-    (rss-template)
-    (apply str)
-    (assoc {:file-name "articles.rss"} :html)
-    (write-file)))
+  (time
+    (->>
+      content
+      (map (convert article-meta))
+      (sort-by :published)
+      (take-last 10)
+      (rss-template)
+      (apply str)
+      (assoc {:file-name "articles.rss"} :html)
+      (write-file))))
 
 (defn articles-entries [articles results]
   (println "Generating articles...")
-  (dorun
-    (->>
-      articles
-      (group-by :file-name)
-      (map (fn [[k [v]]] (assoc v :html (results k))))
-      (map #(assoc % :html (apply str (blogpost-template %))))
-      (map write-file))))
+  (time
+    (dorun
+      (->>
+        articles
+        (group-by :file-name)
+        (map (fn [[k [v]]] (assoc v :html (results k))))
+        (map #(assoc % :html (apply str (blogpost-template %))))
+        (map write-file)))))
 
 (defn articles-index [articles results]
   (println "Generating landing page...")
-  (dorun
-    (->>
-      articles
-      (map #(assoc % :timestamp (tc/to-long (:published %))
-                     :html (results (:file-name %))))
-      (sort-by :timestamp >)
-      (take 5)
-      (index-template)
-      (apply str)
-      (assoc {:file-name "index.html"} :html)
-      (write-file))))
+  (time
+    (dorun
+      (->>
+        articles
+        (map #(assoc % :timestamp (tc/to-long (:published %))
+                       :html (results (:file-name %))))
+        (sort-by :timestamp >)
+        (take 5)
+        (index-template)
+        (apply str)
+        (assoc {:file-name "index.html"} :html)
+        (write-file)))))
 
 (defn tags [content]
   (println "Generating tag index pages...")
-  (dorun
-    (->>
-      content
-      (pmap (convert article-meta))
-      (mapv #(->> % :tags (map (fn [x] [x [%]])) (into {})))
-      (apply merge-with concat)
-      (map (fn [[tag items]]
-             [tag (->> items
-                       (group-by (comp time/year from-date :published))
-                       (map (partial zipmap [:year :articles]))
-                       (sort-by :year >))]))
-      (map (fn [[tag items]]
-             (let [file-name (str "tag/" (slug tag) ".html")
-                   html (apply str (tag-template {:title tag :url file-name :years items}))]
-               {:file-name file-name
-                :html html})))
-      (map write-file))))
+  (time
+    (dorun
+      (->>
+        content
+        (map (convert article-meta))
+        (mapv #(->> % :tags (map (fn [x] [x [%]])) (into {})))
+        (apply merge-with concat)
+        (map (fn [[tag items]]
+               [tag (->> items
+                         (group-by (comp time/year from-date :published))
+                         (map (partial zipmap [:year :articles]))
+                         (sort-by :year >))]))
+        (map (fn [[tag items]]
+               (let [file-name (str "tag/" (slug tag) ".html")
+                     html (apply str (tag-template {:title tag :url file-name :years items}))]
+                 {:file-name file-name
+                  :html html})))
+        (map write-file)))))
 
 (defn static-content [src dest]
   (println "Copying static content to distribution folder...")
-  (sh "cp" "-pR" src dest))
+  (time
+    (sh "cp" "-pR" src dest)))
 
 (defn -main [& args]
   (let [root (second args)]
