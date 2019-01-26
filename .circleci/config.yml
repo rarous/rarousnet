@@ -28,7 +28,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: dist
-  s3-deploy:
+  s3_deploy:
     docker:
       - image: cibuilds/aws:latest
     steps:
