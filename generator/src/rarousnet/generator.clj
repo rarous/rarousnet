@@ -10,8 +10,9 @@
     [cheshire.core :as json]
     [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate]])
   (:import
-    (java.util Locale)
-    (java.io File))
+    (java.io File)
+    (java.text Normalizer Normalizer$Form)
+    (java.util Locale))
   (:gen-class))
 
 (set! *warn-on-reflection* true)
@@ -19,9 +20,17 @@
 (def blog-relative-url "/weblog/")
 (def blog-url (str "https://www.rarous.net" blog-relative-url))
 
-(defn slug [^String e-mail]
-  (-> e-mail
+(defn remove-diacritics
+  "Remove diacritical marks from the string `s`, E.g., 'żółw' is transformed
+  to 'zolw'."
+  [^String s]
+  (let [normalized (Normalizer/normalize s Normalizer$Form/NFD)]
+    (.replaceAll normalized "\\p{InCombiningDiacriticalMarks}+" "")))
+
+(defn slug [^String s]
+  (-> s
       (.toLowerCase)
+      (remove-diacritics)
       (string/replace #"\." "-")
       (string/replace #"@.*" "")))
 
