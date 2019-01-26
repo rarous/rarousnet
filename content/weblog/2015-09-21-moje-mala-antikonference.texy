@@ -30,7 +30,7 @@ Já jsem začal talkem Davida Nolena o datovém formátu Transit. Transit je ře
 Transit není pověstnou stříbrnou kulkou, ale pragmatický výsledek kvalitního inženýrství.
 Je to asi to nejlepší, co dnes můžeme pro přenos dat do browseru použít. Podobně jako React na renderování.
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=KBl8hoiuwQY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KBl8hoiuwQY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Pokračoval jsem s Johnem Hughesem o testování věcí, na které je lidský mozek krátký.
 Generativní testování, aka Property based testing, je metoda, jak se ujistit,
@@ -45,7 +45,7 @@ a QuickCheck generuje testy na základě této specifikace.
 Samozřejmě to nemusí být nutně 100% odolné vůči chybám, ale je to mnohem bezpečnější.
 Podobně jako podvojné účetnictví.
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=zi0rHwfiX1Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zi0rHwfiX1Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 A zpátky k Davidu Nolenovi. Tentokrát o revoluci ve Front-endu. Je to takové klouzání
 po povrchu s odkazy na další zajímavé talky, které už jsem viděl nebo na nich byl osobně.
@@ -54,7 +54,7 @@ jako o něčem, co není nezbytně nutné.
 
 Co je super, že to není o nějaké konkrétní technologii, ale o přístupu a principech.
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=nDNU2pmuJA8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nDNU2pmuJA8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Dan North a jeho odhalení, že komplexita je všude kolem nás, je to výchozí stav,
 ale jednoduchost je vždycky možnou cestou. Jen je potřeba být konzistentní,
