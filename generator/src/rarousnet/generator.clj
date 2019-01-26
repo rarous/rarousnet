@@ -252,7 +252,7 @@
                     (file-seq (io/file (str content "/weblog"))))
           articles (eduction (map (convert article)) content)
           results (texy (into {} (map #(vector (:file-name %) (:texy %))) articles))]
-
+      (println)
       (println "Copying static content to distribution folder...")
       (time (static-content static dist))
       (println)
