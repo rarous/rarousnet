@@ -43,5 +43,6 @@ workflows:
     jobs:
       - generate
       - s3_deploy:
+          context: aws
           requires:
             - generate
