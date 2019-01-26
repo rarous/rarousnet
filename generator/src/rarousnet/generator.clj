@@ -191,7 +191,7 @@
         articles
         (group-by :file-name)
         (map (fn [[k [v]]] (assoc v :html (results k))))
-        (map #(apply str (blogpost-template %)))
+        (map #(assoc % :html (apply str (blogpost-template %)))
         (map write-file)))
     (dorun
       (->>
