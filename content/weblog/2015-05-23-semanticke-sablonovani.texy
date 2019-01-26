@@ -200,7 +200,7 @@ Nebudeme chodit moc daleko a podíváme se "pod pokličku tohoto blogu":[https:/
 
 Šablony jsou pak načteny jako virtuální DOM a upravovány na místech vybraných pomocí CSS selektorů:
 
-/code clojure
+/--code clojure
 (defsnippet article "weblog/blogpost.html" [:article]
   [{:keys [title author category html published] :as article}]
   (microdata "BlogPosting" "name") (html/content title)
