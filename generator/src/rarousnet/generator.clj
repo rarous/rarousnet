@@ -167,6 +167,7 @@
              :published (date (:published %)))))))
 
 (defn write-file [{:keys [file-name html]}]
+  (println "Writing file" (str "/dist/weblog/" file-name))
   (io/make-parents "../dist/weblog/" file-name)
   (spit (io/file "../dist/weblog/" file-name) html))
 
@@ -189,7 +190,8 @@
       (->>
         articles
         (group-by :file-name)
-        (map (fn [[k [v]]] (assoc v :html (apply str (blogpost-template (results k))))))
+        (map (fn [[k [v]]] (assoc v :html (results k))))
+        (map #(apply str (blogpost-template %)))
         (map write-file)))
     (dorun
       (->>
