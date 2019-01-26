@@ -23,7 +23,7 @@ Začalo to jednoduchým zaškrtnutím checkboxu v nastavení repository an Githu
 “Ano, kontrolujte mi prosím závislosti, jestli nemají známé bezpečnostní díry.”
 A jejda, najednou se ukázalo, že některé projekty, které byly několik měsících bez údržby
 (zdánlivě ji nepotřebovaly), mají bezpečnostní díry. To nám, ale ve skutečnosti náklady na
-maintenance ještě zvýšilo, lid museli začít řešit problémy, které byly u ledu...
+maintenance ještě zvýšilo, lidi museli začít řešit problémy, které byly u ledu...
 
 [* /data/obrazky/dependabot.jpg .(Screenshot Pull Requestu od Dependabota){max-width: 90%} *]
 
