@@ -26,7 +26,7 @@ function hashStyles() {
 }
 
 function updateReferences() {
-  return src("./dist/*.html")
+  return src("./dist/**/*.html")
     .pipe(references("./out/assets-manifest.json"))
     .pipe(dest("./dist"));
 }
