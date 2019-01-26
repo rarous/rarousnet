@@ -167,8 +167,8 @@
              :published (date (:published %)))))))
 
 (defn write-file [{:keys [file-name html]}]
-  (io/make-parents "./dist/weblog/" file-name)
-  (spit (io/file "./dist/weblog/" file-name) html))
+  (io/make-parents "../dist/weblog/" file-name)
+  (spit (io/file "../dist/weblog/" file-name) html))
 
 (defn articles-rss [content]
   (->>
@@ -223,13 +223,13 @@
       (map write-file))))
 
 (defn static-content []
-  (sh "cp" "-pR" "./static/" "./dist"))
+  (sh "cp" "-pR" "../static/" "../dist"))
 
 (defn -main [& args]
   (time
     (let [content (eduction
                     (remove (fn [^File f] (.isDirectory f)))
-                    (file-seq (io/file "./content/weblog")))]
+                    (file-seq (io/file "../content/weblog")))]
       (static-content)
       (articles content)
       (articles-rss content)
