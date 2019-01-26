@@ -235,6 +235,51 @@
                 :html html})))
       (map (partial write-file dist)))))
 
+(defn daybook [year month]
+  (fn [[day items]]
+    (let [file-name (str year "/" (format "%02d" month) "/" (format "%02d" day) "/index.html")
+          articles (->> items (sort-by (juxt :month :day)) reverse)
+          html (apply str (tag-template {:title "Denník" :url file-name :years [{:year year :articles articles}]}))]
+      {:file-name file-name
+       :html html})))
+
+(defn monthbook [year]
+  (fn [[month items]]
+    (let [file-name (str year "/" (format "%02d" month) "/index.html")
+          articles (->> items (map second) flatten (sort-by (juxt :month :day)) reverse)
+          html (apply str (tag-template {:title "Měsíčník" :url file-name :years [{:year year :articles articles}]}))]
+      (conj
+        (map (daybook year month) items)
+        {:file-name file-name
+         :html html}))))
+
+(defn yearbook [[year items]]
+  (let [file-name (str year "/index.html")
+        articles (->> items (map second) (mapcat vals) flatten (sort-by (juxt :month :day)) reverse)
+        html (apply str (tag-template {:title "Ročenka" :url file-name :years [{:year year :articles articles}]}))]
+    (conj
+      (mapcat (monthbook year) items)
+      {:file-name file-name
+       :html html})))
+
+(defn indexes [content dist]
+  (dorun
+    (->>
+      content
+      (map (convert article-meta))
+      (map #(select-keys % [:published :file-name :title]))
+      (map #(assoc % :year (-> % :published from-date time/year)
+                     :month (-> % :published from-date time/month)
+                     :day (-> % :published from-date time/day)))
+      (group-by :year)
+      (map (fn [[year items]]
+             [year (->>
+                     (group-by :month items)
+                     (map (fn [[month items]]
+                            [month (group-by :day items)])))]))
+      (mapcat yearbook)
+      (map (partial write-file dist)))))
+
 (defn static-content [src dest]
   (sh "cp" "-pR" src dest))
 
@@ -243,7 +288,7 @@
         dist (str root "dist")
         static (str root "static")
         content (str root "content")]
-    (println )
+    (println)
     (println "Gryphoon 3.0 - static website generator")
     (println)
     (println "Reading content...")
@@ -267,7 +312,9 @@
       (println)
       (println "Generating tag index pages...")
       (time (tags content dist))
-      ;; TODO: years/months/days indexes
+      (println)
+      (println "Generating years/months/days index pages...")
+      (time (indexes content dist))
       ;; TODO: redirects
       ;; TODO: comments
       (println)
