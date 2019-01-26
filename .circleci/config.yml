@@ -8,12 +8,27 @@ jobs:
       - image: rarous/cci-openjdk11-php7-clojure-tools-deps:latest
     steps:
       - checkout
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          name: Restore deps cache
+          keys:
+            - v3-dependencies-{{ checksum "generator/deps.edn" }}
       - run:
           name: Generate static web site content
           command: |
             pushd generator
             clojure -m rarousnet.generator
             popd
+      - save_cache:
+          name: Store deps cache
+          key: v3-dependencies-{{ checksum "generator/deps.edn" }}
+          paths:
+            - ~/.m2
+            - generator/.cpcache
+      - persist_to_workspace:
+          root: .
+          paths: dist
 
   test:
     docker:
