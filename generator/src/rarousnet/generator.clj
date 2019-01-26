@@ -144,11 +144,13 @@
   (->> s tc/from-string tc/to-date))
 
 (defn texy [data]
-  (let [input (json/generate-string data)
-        {:keys [exit err out] :as result} (sh "php" "index.php" :in input)]
-    (if (zero? exit)
-      (json/parse-string out)
-      (throw (ex-info "Error occurred" result)))))
+  (println "Converting Texy files...")
+  (time
+    (let [input (json/generate-string data)
+          {:keys [exit err out] :as result} (sh "php" "index.php" :in input)]
+      (if (zero? exit)
+        (json/parse-string out)
+        (throw (ex-info "Error occurred" result))))))
 
 (defn article [input]
   (let [[_ meta & text] (string/split input #"---")]
@@ -195,6 +197,7 @@
   (let [articles (eduction (map (convert article)) content)
         data (into {} (map #(vector (:file-name %) (:texy %))) articles)
         results (texy data)]
+    (println "Generating articles...")
     (dorun
       (->>
         articles
@@ -202,6 +205,7 @@
         (map (fn [[k [v]]] (assoc v :html (results k))))
         (map #(assoc % :html (apply str (blogpost-template %))))
         (map write-file)))
+    (println "Generating landing page...")
     (dorun
       (->>
         articles
@@ -215,6 +219,7 @@
         (write-file)))))
 
 (defn tags [content]
+  (println "Generating tag index pages...")
   (dorun
     (->>
       content
@@ -234,20 +239,23 @@
       (map write-file))))
 
 (defn static-content []
+  (println "Copying static content to distribution folder...")
   (sh "cp" "-pR" "../static/" "../dist"))
 
 (defn -main [& args]
-  (time
-    (let [content (eduction
-                    (remove (fn [^File f] (.isDirectory f)))
-                    (file-seq (io/file "../content/weblog")))]
-      (static-content)
-      (articles content)
-      (articles-rss content)
-      (tags content)
-      ;; TODO: years/months/days indexes
-      ;; TODO: redirects
-      ;; TODO: comments
-      )))
+  (println "Gryphoon 3.0 - static website generator")
+  (println)
+  (println "Reading content...")
+  (let [content (eduction
+                  (remove (fn [^File f] (.isDirectory f)))
+                  (file-seq (io/file "../content/weblog")))]
+    (static-content)
+    (articles content)
+    (articles-rss content)
+    (tags content)
+    ;; TODO: years/months/days indexes
+    ;; TODO: redirects
+    ;; TODO: comments
+    ))
 
 
