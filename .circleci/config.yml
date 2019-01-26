@@ -8,12 +8,12 @@ jobs:
       - image: rarous/cci-openjdk11-php7-clojure-tools-deps:latest
     steps:
       - checkout
-    run:
-      name: Generate static web site content
-      command: |
-        pushd generator
-        clojure -m rarousnet.generator
-        popd
+      - run:
+          name: Generate static web site content
+          command: |
+            pushd generator
+            clojure -m rarousnet.generator
+            popd
 
   test:
     docker:
@@ -57,6 +57,7 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
+      - generate
       - test
       - build:
           requires:
