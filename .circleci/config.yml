@@ -28,6 +28,29 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: dist
+  postprocess:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          name: Restore yarn cache
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: Postprocess resources
+          command: yarn && yarn build
+      - save_cache:
+          name: Store yarn cache
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn
+            - node_modules
+      - persist_to_workspace:
+          root: .
+          paths: dist
   s3_deploy:
     docker:
       - image: cibuilds/aws:latest
@@ -42,7 +65,10 @@ workflows:
   build_and_deploy:
     jobs:
       - generate
+      - postprocess:
+          requires:
+            - generate
       - s3_deploy:
           context: aws
           requires:
-            - generate
+            - postprocess

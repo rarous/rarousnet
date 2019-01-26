@@ -9,6 +9,17 @@
     "@pulumi/pulumi": "latest"
   },
   "devDependencies": {
+    "autoprefixer": "^9.4.6",
+    "cssnano": "^4.1.8",
+    "gulp": "^4.0.0",
+    "gulp-hash": "^4.2.2",
+    "gulp-hash-references": "^3.0.1",
+    "gulp-postcss": "^8.0.0",
+    "http-server": "^0.11.1",
     "prettier": "^1.15.3"
+  },
+  "scripts": {
+    "build": "gulp -p",
+    "serve": "http-server ./dist"
   }
 }
