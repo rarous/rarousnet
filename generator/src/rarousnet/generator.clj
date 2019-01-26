@@ -177,95 +177,100 @@
              :file-name (file-name f)
              :published (date (:published %)))))))
 
-(defn write-file [{:keys [file-name html]}]
-  (println "Writing file" (str "/dist/weblog/" file-name))
-  (io/make-parents "../dist/weblog/" file-name)
-  (spit (io/file "../dist/weblog/" file-name) html))
+(defn write-file [dist {:keys [file-name html]}]
+  (let [weblog (str dist "/weblog/")]
+    (println "Writing file" (str "/dist/weblog/" file-name))
+    (io/make-parents weblog file-name)
+    (spit (io/file weblog file-name) html)))
 
-(defn articles-rss [content]
-  (println "Generating RSS feed...")
-  (time
+(defn articles-rss [content dist]
+  (->>
+    content
+    (map (convert article-meta))
+    (sort-by :published)
+    (take-last 10)
+    (rss-template)
+    (apply str)
+    (assoc {:file-name "articles.rss"} :html)
+    (write-file dist)))
+
+(defn articles-entries [articles results dist]
+  (dorun
+    (->>
+      articles
+      (group-by :file-name)
+      (map (fn [[k [v]]] (assoc v :html (results k))))
+      (map #(assoc % :html (apply str (blogpost-template %))))
+      (map (partial write-file dist)))))
+
+(defn articles-index [articles results dist]
+  (dorun
+    (->>
+      articles
+      (map #(assoc % :timestamp (tc/to-long (:published %))
+                     :html (results (:file-name %))))
+      (sort-by :timestamp >)
+      (take 5)
+      (index-template)
+      (apply str)
+      (assoc {:file-name "index.html"} :html)
+      (write-file dist))))
+
+(defn tags [content dist]
+  (dorun
     (->>
       content
       (map (convert article-meta))
-      (sort-by :published)
-      (take-last 10)
-      (rss-template)
-      (apply str)
-      (assoc {:file-name "articles.rss"} :html)
-      (write-file))))
-
-(defn articles-entries [articles results]
-  (println "Generating articles...")
-  (time
-    (dorun
-      (->>
-        articles
-        (group-by :file-name)
-        (map (fn [[k [v]]] (assoc v :html (results k))))
-        (map #(assoc % :html (apply str (blogpost-template %))))
-        (map write-file)))))
-
-(defn articles-index [articles results]
-  (println "Generating landing page...")
-  (time
-    (dorun
-      (->>
-        articles
-        (map #(assoc % :timestamp (tc/to-long (:published %))
-                       :html (results (:file-name %))))
-        (sort-by :timestamp >)
-        (take 5)
-        (index-template)
-        (apply str)
-        (assoc {:file-name "index.html"} :html)
-        (write-file)))))
-
-(defn tags [content]
-  (println "Generating tag index pages...")
-  (time
-    (dorun
-      (->>
-        content
-        (map (convert article-meta))
-        (mapv #(->> % :tags (map (fn [x] [x [%]])) (into {})))
-        (apply merge-with concat)
-        (map (fn [[tag items]]
-               [tag (->> items
-                         (group-by (comp time/year from-date :published))
-                         (map (partial zipmap [:year :articles]))
-                         (sort-by :year >))]))
-        (map (fn [[tag items]]
-               (let [file-name (str "tag/" (slug tag) ".html")
-                     html (apply str (tag-template {:title tag :url file-name :years items}))]
-                 {:file-name file-name
-                  :html html})))
-        (map write-file)))))
+      (mapv #(->> % :tags (map (fn [x] [x [%]])) (into {})))
+      (apply merge-with concat)
+      (map (fn [[tag items]]
+             [tag (->> items
+                       (group-by (comp time/year from-date :published))
+                       (map (partial zipmap [:year :articles]))
+                       (sort-by :year >))]))
+      (map (fn [[tag items]]
+             (let [file-name (str "tag/" (slug tag) ".html")
+                   html (apply str (tag-template {:title tag :url file-name :years items}))]
+               {:file-name file-name
+                :html html})))
+      (map (partial write-file dist)))))
 
 (defn static-content [src dest]
-  (println "Copying static content to distribution folder...")
-  (time
-    (sh "cp" "-pR" src dest)))
+  (sh "cp" "-pR" src dest))
 
 (defn -main [& args]
-  (let [root (second args)]
-    (println args)
+  (let [root (or (first args) "../")
+        dist (str root "dist")
+        static (str root "static")
+        content (str root "content")]
+    (println )
     (println "Gryphoon 3.0 - static website generator")
     (println)
     (println "Reading content...")
     (let [content (eduction
                     (remove (fn [^File f] (.isDirectory f)))
-                    (file-seq (io/file "../content/weblog")))
+                    (file-seq (io/file (str content "/weblog"))))
           articles (eduction (map (convert article)) content)
           results (texy (into {} (map #(vector (:file-name %) (:texy %))) articles))]
-      (static-content "../static/" "../dist")
-      (articles-entries articles results)
-      (articles-index articles results)
-      (articles-rss content)
-      (tags content)
+
+      (println "Copying static content to distribution folder...")
+      (time (static-content static dist))
+      (println)
+      (println "Generating articles...")
+      (time (articles-entries articles results dist))
+      (println)
+      (println "Generating landing page...")
+      (time (articles-index articles results dist))
+      (println)
+      (println "Generating RSS feed...")
+      (time (articles-rss content dist))
+      (println)
+      (println "Generating tag index pages...")
+      (time (tags content dist))
       ;; TODO: years/months/days indexes
       ;; TODO: redirects
       ;; TODO: comments
-      )))
+      (println)
+      (println "DONE"))))
 
 
