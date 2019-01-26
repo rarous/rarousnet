@@ -32,7 +32,7 @@
       (.toLowerCase)
       (remove-diacritics)
       (string/replace #"\." "-")
-      (string/replace #"@.*" "")))
+      (string/replace #"\s+" "-")))
 
 (def long-date-format
   (with-locale (formatter "HH.mm - d. MMMM yyyy") (Locale. "cs")))
