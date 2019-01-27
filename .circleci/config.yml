@@ -2,6 +2,18 @@ version: 2.1
 orbs:
   pulumi: pulumi/pulumi@1.0.0
 jobs:
+  provision:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - pulumi/login
+      - run:
+          name: Install Pulumi packages
+          command: yarn install --pnp --prod
+      - pulumi/update:
+          stack: prod
+          skip-preview: true
   generate:
     docker:
       - image: rarous/cci-openjdk11-php7-clojure-tools-deps:latest
@@ -68,7 +80,16 @@ workflows:
       - postprocess:
           requires:
             - generate
+      - provision:
+          context: pulumi
+          filters:
+            branches:
+              only: master
       - s3_deploy:
           context: aws
           requires:
+            - provision
             - postprocess
+          filters:
+            branches:
+              only: master
