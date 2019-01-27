@@ -4,39 +4,69 @@
  :description
  "Pár poznámek k aktuálně vydanému technologickému radaru.",
  :author "Aleš Roubíček",
- :tags #{"webdesign" "clojure" "moje práce"},
+ :tags #{"webdesign" "radar" "clojure" "react" "moje práce"},
  :published "2014-12-19T16:45:00.663"}
 ---
 
-
-Na sklonku roku 2014 Thoughtworks vydávají svůj tradiční technologický radar. Rád bych z něj vypíchnul některé zajímavé body.
+Na sklonku roku 2014 Thoughtworks vydávají svůj tradiční technologický radar.
+Rád bych z něj vypíchnul některé zajímavé body.
 
 ## NoPSD
 
-NoPSD je snaha o continuous design. Grafický návrh by neměl končit dodáním dokonalého statického obrázku. Grafický návrh by měl být, stejně jako softwarový návrh, dělán postupně po jednotlivých featurách a iterativně uhlazován na základě zpětné vazby. Tohle, myslím, úzce souvisí s dalším bodem.
+NoPSD je snaha o continuous design. Grafický návrh by neměl končit dodáním
+dokonalého statického obrázku. Grafický návrh by měl být, stejně jako softwarový návrh,
+dělán postupně po jednotlivých featurách a iterativně uhlazován na základě zpětné vazby.
+Tohle, myslím, úzce souvisí s dalším bodem.
 
 ## Živá příručka CSS stylů
 
-Jistě znáte Bootstrap nebo třeba Semantic UI. Jejich dokumentace je dokonalou ukázkou tohoto konceptu. Všechny prvky, které máte ve vaší webové aplikaci, by měly být nározně vyvedeny v jednom dokumentu. Samozřejmě, by to němělo být PSD, ale HTML. Udržování takové příručky může vypadat jako lehký overhead, ale máte spustitelnou dokumentaci vašeho grafického a interakčního návrhu, která je prevencí nekonzistentnímu vzhledu a programátorských divočinek v UI.
+Jistě znáte Bootstrap nebo třeba Semantic UI. Jejich dokumentace je dokonalou ukázkou
+tohoto konceptu. Všechny prvky, které máte ve vaší webové aplikaci, by měly být nározně
+vyvedeny v jednom dokumentu. Samozřejmě, by to němělo být PSD, ale HTML.
+Udržování takové příručky může vypadat jako lehký overhead, ale máte spustitelnou dokumentaci
+vašeho grafického a interakčního návrhu, která je prevencí nekonzistentnímu vzhledu
+a programátorských divočinek v UI.
 
 ## Clojure
 
-Tento radar je prošpikován nejrůznějšími nástroji a knihovnami z Clojure. Jmenujme třeba Om, Datomic, core.async, Cursive, Gorilla REPL atd. Clojure je big thing. Ne v tom, kolik lidí ji už aktivně používá (více něž 200 - to je číslo o kterém uvažoval Rich Hickey, když s ní přišel na svět), ale v tom jak moc ulehčuje práci. Z osobní zkušenosti z několika projektů můžu říct jen: V Clojure se neperete s problémy, které na vás připravuje jazyk nebo knihovna, ale s těmi opravdovými, které potřebujete řešit.
+Tento radar je prošpikován nejrůznějšími nástroji a knihovnami z Clojure.
+Jmenujme třeba Om, Datomic, core.async, Cursive, Gorilla REPL atd. Clojure je big thing.
+Ne v tom, kolik lidí ji už aktivně používá (více něž 200 - to je číslo o kterém uvažoval Rich Hickey,
+když s ní přišel na svět), ale v tom jak moc ulehčuje práci. Z osobní zkušenosti z několika projektů
+můžu říct jen: **V Clojure se neperete s problémy, které na vás připravuje jazyk nebo knihovna,
+ale s těmi opravdovými, které potřebujete řešit.**
 
-Je to skoro rok a půl, co jsem se rozhodl, že se Clojure podívám na zoubek. Strávil jsem půl roku intenzivním učením a byla to jedna z nejlepších investic v mé dosavadní kariéře. Pokud máte zájem taky se seznámit, tak budeme mít na konci ledna takovou "seznamovací seanci v Hradci Králové":[https://plus.google.com/u/0/events/c3754trnb0436i7f1r60j412kv8]. Určitě přijďte.
+Je to skoro rok a půl, co jsem se rozhodl, že se Clojure podívám na zoubek.
+Strávil jsem půl roku intenzivním učením a byla to jedna z nejlepších investic v mé dosavadní kariéře.
+Pokud máte zájem taky se seznámit, tak budeme mít na konci ledna takovou
+"seznamovací seanci v Hradci Králové":[https://plus.google.com/u/0/events/c3754trnb0436i7f1r60j412kv8].
+
+Určitě přijďte.
 
 ## React.js
 
-Je zajímavé, že v radaru je přijetí Reactu o dost vlažnější, než je tomu u Omu, který na něm staví. Po osobních zkušenostech s oběmi technologiemi to ale celkem chápu. React je super, o tom žádná, ale je to mnohem větší boj než s Omem, ikdyž použijete třeba Immutable-js a Kefir, pořád je to JavaScript. Je to zlehka prosekaná, ale stále trnitá cesta. Nemám žádné iluze, že by tvorba UI mohla být snadná - to nikdy nebude, protože je to těžký problém -  ale zkusil jsem si, že to jde bez toho trní. Jen je to pořád hodně do kopce.
+Je zajímavé, že v radaru je přijetí Reactu o dost vlažnější, než je tomu u Omu, který na něm staví.
+Po osobních zkušenostech s oběmi technologiemi to ale celkem chápu. React je super, o tom žádná,
+ale je to mnohem větší boj než s Omem, ikdyž použijete třeba Immutable-js a Kefir,
+pořád je to JavaScript. Je to zlehka prosekaná, ale stále trnitá cesta. Nemám žádné iluze,
+že by tvorba UI mohla být snadná - to nikdy nebude, protože je to těžký problém -
+ale zkusil jsem si, že to jde bez toho trní. Jen je to pořád hodně do kopce.
 
 ## Synchronizace local storage
 
-Když děláte SPA nebo jiné browser heavy aplikace, je potřeba pracovat s velkým množstvím dat. Dělat kvůli každé operaci roundtrip na server je trochu velký luxus. Obvzlášť, když dnes musíme počítat s mobilními klienty, které nemají stálé a kvalitní připojení. Data potřebujeme držet na klientu. Ať už je držíme v `localstorage` a nebo v `IndexedDB`, potřebujeme tato data občas synchronizovat. Mobile-first musí dnes počítat s Offline-first přístupem.
+Když děláte SPA nebo jiné browser heavy aplikace, je potřeba pracovat s velkým množstvím dat.
+Dělat kvůli každé operaci roundtrip na server je trochu velký luxus.
+Obvzlášť, když dnes musíme počítat s mobilními klienty, které nemají stálé a kvalitní připojení.
+Data potřebujeme držet na klientu. Ať už je držíme v `localstorage` a nebo v `IndexedDB`,
+potřebujeme tato data občas synchronizovat. Mobile-first musí dnes počítat s Offline-first přístupem.
 
-V ClojureScriptu můžeme snadno využít atomů, které pomocí watches [persistujeme v lokálním uložišti](https://github.com/alandipert/storage-atom) a jednou za čas pošleme změny na server - když máme připojení.
+V ClojureScriptu můžeme snadno využít atomů, které pomocí watches
+[persistujeme v lokálním uložišti](https://github.com/alandipert/storage-atom) a jednou za čas pošleme
+změny na server - když máme připojení.
 
 ## Generátory statických webů
 
-Z nějakýho důvodu se nám vrací technika z 90. let a to staticky vygenerované weby. Někde to jistě dává smysl. Vzhledem k tomu, že jsme za poslední rok udělal dva dynamický weby, který vlastně nemaj žádnou DB, budu o tom víc přemýšlet. :)
+Z nějakýho důvodu se nám vrací technika z 90. let a to staticky vygenerované weby.
+Někde to jistě dává smysl. Vzhledem k tomu, že jsme za poslední rok udělal dva dynamický weby,
+který vlastně nemaj žádnou DB, budu o tom víc přemýšlet. :)
 
-    

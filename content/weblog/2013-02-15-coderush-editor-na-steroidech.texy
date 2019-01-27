@@ -4,11 +4,14 @@
  :description
  "Borek měl pár pěkných výtek, k editoru kódu ve Visual Studiu. Jsou to veci nepříjemné, ale já si je díky CodeRushi neuvědomuju. Proč? Čtěte dál.",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "CodeRush"},
+ :tags #{"moje práce" "tuning" "CodeRush"},
  :published "2013-02-15T10:18:53.813"}
 ---
 
-V čem "musím s Borkem souhlasit":[http://devblog.cz/2013/02/co-mi-vadi-na-visual-studiu/] je, že Visual Studio má opravdu debilní editor kódu. Jenže je to věc, kterou si uvědomuju pouze ve chvílích, kdy sedím před studiem, které nemá nainstalovaný CodeRush:[http://www.devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/index.xml].
+V čem "musím s Borkem souhlasit":[http://devblog.cz/2013/02/co-mi-vadi-na-visual-studiu/] je,
+že Visual Studio má opravdu debilní editor kódu. Jenže je to věc, kterou si uvědomuju pouze ve chvílích,
+kdy sedím před studiem, které nemá nainstalovaný
+CodeRush:[http://www.devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/index.xml].
 
 CodeRush toho podobně jako ořezávátko umí celkem hodně, ale v čem opravdu vyniká je editace kódu.
 
