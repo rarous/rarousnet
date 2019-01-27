@@ -81,7 +81,7 @@ workflows:
           requires:
             - generate
       - provision:
-          context: pulumi
+          context: aws
           filters:
             branches:
               only: master
