@@ -25,8 +25,8 @@ body {
 
 h2,
 article h1 {
-  font: 2.4em Georgia, "New York CE", utopia, serif;
-  letter-spacing: -2px;
+  font: 2.5em Futura,Georgia, "New York CE", utopia, serif;
+  letter-spacing: -1px;
   margin: 0;
   z-index: 20;
 }
@@ -35,19 +35,17 @@ h2 a {
 }
 h3 {
   color: #666;
-  font: 1.4em "Times New Roman", times, serif;
+  font: 1.5em Futura,"Times New Roman", times, serif;
   letter-spacing: -1px;
-  font-variant: small-caps;
-  text-transform: capitalize;
-  margin: 1.2em 0 0;
+  margin: 1.5em 0 0;
 }
 
 p,
 ul,
 ol,
 dl {
-  font: 1.06em/1.4 Cambria, Georgia, "New York CE", utopia, serif;
-  margin: 0.1em 0 1em;
+  font: 1em/1.5 "Iosevka Slab", Cambria, Georgia, "New York CE", utopia, serif;
+  margin: 0.125em 0 1em;
   padding: 0;
 }
 blockquote {
@@ -55,7 +53,7 @@ blockquote {
   color: #666;
   margin: 0.3em 0 0.6em;
   padding: 0.4em 2em 0.2em;
-  font-family: Constantia, Palatino, "palatino linotype", serif;
+  font-family: Garamond, Constantia, Palatino, "palatino linotype", serif;
 }
 img.right {
   float: right;
@@ -234,7 +232,7 @@ div.image {
 }
 
 .menu {
-  font: 900 1.6em "Arial Black", "Roboto", sans-serif;
+  font: 900 1.6em Futura, "Arial Black", "Roboto", sans-serif;
   text-transform: uppercase;
   letter-spacing: -3px;
   position: absolute;
@@ -255,7 +253,7 @@ div.image {
 
 .info,
 article > footer {
-  font: 0.68em "Arial Narrow", sans-serif;
+  font: 0.68em Futura, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0.56em 0 0.9em;
@@ -280,7 +278,7 @@ article > footer strong {
 }
 article .entry-content > p:first-child:first-letter {
   color: #c00;
-  font-size: 3.4em;
+  font-size: 3.5em;
   line-height: 0.6em;
   padding: 0.06em 0.1em 0 0;
   float: left;
