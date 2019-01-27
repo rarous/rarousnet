@@ -56,7 +56,7 @@ blockquote {
 }
 blockquote,
 blockquote p {
-  font-family: Garamond, Constantia, Palatino, "palatino linotype", serif;
+  font: 1.5em Garamond, Constantia, Palatino, "palatino linotype", serif;
 }
 img.right {
   float: right;
