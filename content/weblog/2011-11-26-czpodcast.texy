@@ -1,13 +1,17 @@
 ---
 {:id 411,
- :title "CZpodcast",
+ :title "CZ Podcast",
  :description
- "Filemon a Dagi si mě pozvali na slovíčko do CZpodcastu, abychom si popovídali o vývoji jak ho vidím já.",
+ "Filemon a Dagi si mě pozvali na slovíčko do CZ Podcastu, abychom si popovídali o vývoji jak ho vidím já.",
  :author "Aleš Roubíček",
- :tags #{"agile" "podcast" "jen tak" "azure" "coderetreat"},
+ :tags #{"agile" "czpodcast" "jen tak" "azure" "coderetreat"},
  :published "2011-11-26T08:59:21.740"}
 ---
 
-Filemon:[http://www.jirifabian.net/] a Dagi:[http://www.dagblog.cz/] si mě pozvali "na slovíčko do CZpodcastu":[http://java.cz/article/cz-podcast-57-pokec-s-alesem-roubickem-o-windows-azure-code-retreat-a], abychom si popovídali o vývoji jak ho vidím já.
+Filemon:[http://www.jirifabian.net/] a Dagi:[https://dagblog.cz/] si mě pozvali
+"na slovíčko do CZ Podcastu":[http://java.cz/article/cz-podcast-57-pokec-s-alesem-roubickem-o-windows-azure-code-retreat-a],
+abychom si popovídali o vývoji jak ho vidím já.
 
-Pokud vás to zajímá, můžete "přiložit své ucho sem":[http://s3-eu-west-1.amazonaws.com/czpodcast-1/czpodcast57.mp3].
+Pokud vás to zajímá, můžete přiložit své ucho sem:
+
+<iframe width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Falesroubicek%2Fcz-podcast-57-pokec-s-ale%C5%A1em-roub%C3%AD%C4%8Dkem-o-windows-azure-code-retreat-a-agile-v%C3%BDvoji%2F" frameborder="0" ></iframe>

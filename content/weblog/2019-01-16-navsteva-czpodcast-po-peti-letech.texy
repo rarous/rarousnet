@@ -1,15 +1,15 @@
 ---
 {:id 471,
- :title "Návštěva v CZPodcast po pěti letech",
+ :title "Návštěva v CZ Podcastu po pěti letech",
  :description
- "Jedno lednového odpoledne mi Filemon povídá, že jde točit CZ Podcast a že nemaj hosta. Jestli nechci povědět něco o Pull Requestech.",
+ "Jednoho lednového odpoledne mi Filemon povídá, že jde točit CZ Podcast a že nemaj hosta. Jestli nechci povědět něco o Pull Requestech.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "topmonks", "czpodcast"},
  :published "2019-01-16T12:00:00.000"}
 ---
 
-Jedno lednového odpoledne mi Filemon povídá, že jde točit CZ Podcast a že nemaj hosta.
-Jestli nechci povědět něco o Pull Requestech. A já si řekl proč ne? Tak jsem se po pěti letech
-vrátil k jejich mikrofonu a výsledek si můžete poslechnout:
+Jednoho lednového odpoledne mi Filemon:[http://www.jirifabian.net] povídá, že jde s Dagim:[https://dagblog.cz]
+točit "CZ Podcast":[https://soundcloud.com/czpodcast-1] a že nemaj hosta. Jestli nechci povědět něco o Pull Requestech.
+A já si řekl: "proč ne?" Tak jsem se po pěti letech vrátil k jejich mikrofonu a výsledek si můžete poslechnout tady:
 
 <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/559804521&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
