@@ -25,7 +25,7 @@ body {
 
 h2,
 article h1 {
-  font: 600 2.5em Futura,Georgia, "New York CE", utopia, serif;
+  font: 800 2.5em futura-pt, Futura, Georgia, "New York CE", utopia, serif;
   letter-spacing: -1px;
   margin: 0;
   z-index: 20;
@@ -35,7 +35,7 @@ h2 a {
 }
 h3 {
   color: #000;
-  font: 1.25em Futura, "Times New Roman", times, serif;
+  font: 1.25em futura-pt, Futura, "Times New Roman", times, serif;
   letter-spacing: -1px;
   margin: 1.5em 0 0.25em;
 }
@@ -236,7 +236,7 @@ div.image {
 }
 
 .menu {
-  font: 900 1.6em Futura, "Arial Black", "Roboto", sans-serif;
+  font: 800 1.6em futura-pt, Futura, "Arial Black", "Roboto", sans-serif;
   text-transform: uppercase;
   letter-spacing: -3px;
   position: absolute;
@@ -257,7 +257,7 @@ div.image {
 
 .info,
 article > footer {
-  font: 0.68em Futura, "Arial Narrow", sans-serif;
+  font: 0.625em futura-pt, Futura, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0.5em 0 1em;
@@ -339,7 +339,8 @@ article .entry-content > p:first-child:first-letter {
 }
 .footer p,
 .footer ul {
-  font: 1.25em Futura,"Segoe UI", "Trebuchet MS", "Geneva CE", lucida, sans-serif;
+  font: 1.25em futura-pt, Futura, "Segoe UI", "Trebuchet MS", "Geneva CE",
+    lucida, sans-serif;
   text-align: left;
   padding: 0;
   margin: 0;
@@ -388,7 +389,7 @@ article .entry-content > p:first-child:first-letter {
 .footer .box h2 {
   background: transparent;
   color: #ccc;
-  font: 2em Futura Calibri, sans-serif;
+  font: 2em futura-pt, Futura, Calibri, sans-serif;
   font-weight: 600;
   letter-spacing: normal;
   margin: 0 0 0.3em;
