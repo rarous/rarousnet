@@ -34,10 +34,10 @@ h2 a {
   text-decoration: none;
 }
 h3 {
-  color: #666;
-  font: 1.5em Futura,"Times New Roman", times, serif;
+  color: #000;
+  font: 1.25em Futura, "Times New Roman", times, serif;
   letter-spacing: -1px;
-  margin: 1.5em 0 0;
+  margin: 1.5em 0 0.25em;
 }
 
 p,
@@ -53,6 +53,9 @@ blockquote {
   color: #666;
   margin: 0.3em 0 0.6em;
   padding: 0.4em 2em 0.2em;
+}
+blockquote,
+blockquote p {
   font-family: Garamond, Constantia, Palatino, "palatino linotype", serif;
 }
 img.right {
@@ -67,8 +70,9 @@ acronym {
 
 code {
   background: #f7f7ee;
-  font: 0.85em Iosevka, Monaco, "Source Code Pro", Consolas, "Lucida Console",
+  font: 1em Iosevka, Monaco, "Source Code Pro", Consolas, "Lucida Console",
     "Monaco CE", fixed, monospace;
+  padding: 0 0.125em;
 }
 
 pre {
@@ -244,7 +248,7 @@ div.image {
   padding: 0 0.2em;
 }
 .menu a {
-  color: #efefef;
+  color: #ddd;
   text-decoration: none;
 }
 .menu a:hover {
@@ -256,7 +260,7 @@ article > footer {
   font: 0.68em Futura, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 0.56em 0 0.9em;
+  margin: 0.5em 0 1em;
 }
 
 article > footer {
@@ -264,7 +268,7 @@ article > footer {
   border-bottom: 3px double #666;
   text-indent: 1em;
   line-height: 2;
-  margin: 2.2em 0 2.4em;
+  margin: 2em 0 6em;
   word-spacing: 2px;
 }
 article > footer a {
@@ -332,7 +336,7 @@ article .entry-content > p:first-child:first-letter {
 }
 .footer p,
 .footer ul {
-  font: 1.16em "Segoe UI", "Trebuchet MS", "Geneva CE", lucida, sans-serif;
+  font: 1.25em Futura,"Segoe UI", "Trebuchet MS", "Geneva CE", lucida, sans-serif;
   text-align: left;
   padding: 0;
   margin: 0;
@@ -381,8 +385,8 @@ article .entry-content > p:first-child:first-letter {
 .footer .box h2 {
   background: transparent;
   color: #ccc;
-  font: 2.16em Calibri, sans-serif;
-  font-weight: 200;
+  font: 2em Futura Calibri, sans-serif;
+  font-weight: 600;
   letter-spacing: normal;
   margin: 0 0 0.3em;
   padding: 0;
