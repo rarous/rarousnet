@@ -1,3 +1,53 @@
+@font-face {
+  font-family: "Iosevka Slab Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+  src: url("iosevka-slab-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Slab Web";
+  font-weight: 400;
+  font-style: italic;
+  font-display: fallback;
+  src: url("iosevka-slab-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Slab Web";
+  font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+  src: url("iosevka-slab-bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Slab Web";
+  font-weight: 700;
+  font-style: italic;
+  font-display: fallback;
+  src: url("iosevka-slab-bolditalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+  src: url("iosevka-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 400;
+  font-style: italic;
+  font-display: fallback;
+  src: url("iosevka-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+  src: url("iosevka-bold.woff2") format("woff2");
+}
+
 html,
 body {
   margin: 0;
@@ -44,7 +94,7 @@ p,
 ul,
 ol,
 dl {
-  font: 1em/1.5 "Iosevka Slab", Cambria, Georgia, "New York CE", utopia, serif;
+  font: 1em/1.5 "Iosevka Slab Web", Cambria, Georgia, "New York CE", utopia, serif;
   margin: 0.125em 0 1em;
   padding: 0;
 }
@@ -70,7 +120,7 @@ acronym {
 
 code {
   background: #f7f7ee;
-  font: 1em Iosevka, Monaco, "Source Code Pro", Consolas, "Lucida Console",
+  font: 1em "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console",
     "Monaco CE", fixed, monospace;
   padding: 0 0.125em;
 }
@@ -94,7 +144,7 @@ pre.console {
   color: #c0c0c0;
 }
 pre.console code {
-  font-family: "Iosevka Term", Fixedsys, monospace;
+  font-family: "Iosevka Web", Fixedsys, monospace;
   color: #c0c0c0;
   background: transparent;
 }
@@ -103,7 +153,7 @@ code[class*="language-"],
 pre[class*="language-"] {
   color: black;
   text-shadow: 0 1px white;
-  font-family: Iosevka, Monaco, "Source Code Pro", Consolas, Monaco,
+  font-family: "Iosevka Web", Monaco, "Source Code Pro", Consolas, Monaco,
     "Andale Mono", monospace;
   text-align: left;
   white-space: pre;
@@ -289,7 +339,7 @@ article .entry-content > p:first-child:first-letter {
 }
 
 .category-listing {
-  font-family: Iosevka, sans-serif;
+  font-family: "Iosevka Web", sans-serif;
 }
 .category-listing h2 {
   margin-bottom: 1em;
@@ -505,7 +555,7 @@ article .entry-content > p:first-child:first-letter {
 
   code {
     background: transparent;
-    font: 0.85em Iosevka, Monaco, "Source Code Pro", Consolas, "Lucida Console",
+    font: 0.85em "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console",
       "Monaco CE", fixed, monospace;
   }
 
@@ -521,7 +571,7 @@ article .entry-content > p:first-child:first-letter {
     color: black;
   }
   pre.console code {
-    font-family: "Iosevka Term", Fixedsys, monospace;
+    font-family: "Iosevka Web", Fixedsys, monospace;
     color: black;
   }
   pre code {
