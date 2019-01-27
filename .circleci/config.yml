@@ -10,7 +10,7 @@ jobs:
       - pulumi/login
       - run:
           name: Install Pulumi packages
-          command: yarn install --pnp --prod
+          command: yarn install --prod
       - pulumi/update:
           stack: prod
           skip-preview: true
