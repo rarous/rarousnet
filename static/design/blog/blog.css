@@ -288,6 +288,9 @@ article .entry-content > p:first-child:first-letter {
   float: left;
 }
 
+.category-listing {
+  font-family: Iosevka, sans-serif;
+}
 .category-listing h2 {
   margin-bottom: 1em;
 }
@@ -301,16 +304,16 @@ article .entry-content > p:first-child:first-letter {
 .category-listing article {
   position: relative;
   left: 11em;
-  padding-bottom: 1.6em;
+  padding-bottom: 1.5em;
 }
 .category-listing article h1 {
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 .category-listing article time {
   position: absolute;
   top: 0;
-  left: -5em;
-  font-size: 1.18em;
+  left: -5.5em;
+  font-size: 1em;
 }
 
 .box {
