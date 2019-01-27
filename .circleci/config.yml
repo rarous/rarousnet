@@ -74,7 +74,7 @@ jobs:
           command: aws s3 sync "dist/" "s3://www.rarous.net/"
       - run:
           name: Update MIME types
-          command: aws s3 cp --exclude "*" --include "*.rss" --content-type="application/rss+xml" --metadata-directive="REPLACE" --recursive s3://www.rarous.net/ s3://www.rarous.net/
+          command: aws s3 cp --exclude "*" --include "*.rss" --content-type="application/rss+xml; charset=utf-8" --metadata-directive="REPLACE" --recursive s3://www.rarous.net/ s3://www.rarous.net/
 
 workflows:
   build_and_deploy:
