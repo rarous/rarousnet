@@ -4,7 +4,7 @@
  :description
  "První motivační díl z úžasného osvětového cyklu zaměřeného na rozbíjení zkostnatělých mítů a jiných blbostí.",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce" "cleancode"},
  :published "2012-10-26T12:54:19.593"}
 ---
 

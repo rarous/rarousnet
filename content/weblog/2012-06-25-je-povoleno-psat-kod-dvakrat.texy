@@ -4,34 +4,62 @@
  :description
  "Ve světe pragmatických programátorů vládné všudepřítomné sucho. Někdy až příliš velké sucho.",
  :author "Aleš Roubíček",
- :tags #{"xp" "moje práce" "tdd"},
+ :tags #{"xp" "moje práce" "tdd" "cleancode"},
  :published "2012-06-25T10:52:22.627"}
 ---
 
-Ve světe pragmatických programátorů vládné všudepřítomné sucho (DRY((Don't Repeat Yourself))), které rozlévají, kam až oko dohlédne. Jenže aplikovat jakoukoli poučku bez rozmyslu je cesta do sraček. :)
+Ve světe pragmatických programátorů vládné všudepřítomné sucho (DRY((Don't Repeat Yourself))),
+které rozlévají, kam až oko dohlédne. Jenže aplikovat jakoukoli poučku bez rozmyslu je cesta do sraček. :)
 
-Již nějakou dobu si dopřávám odpočinku a mám dost času přemýšlet. Přemýšlím i tom, kde děláme jako vývojáři chybu. Proč je většina kódu špatná? Vždyť se snažíme ho udržovat čistý, trávíme týdny refaktorováním, jen aby byl kód fit, a hlavně se neopakujeme! Ano, neopakujeme, neopakujeme, neopak...
+Již nějakou dobu si dopřávám odpočinku a mám dost času přemýšlet. Přemýšlím i tom,
+kde děláme jako vývojáři chybu. Proč je většina kódu špatná? Vždyť se snažíme ho udržovat čistý,
+trávíme týdny refaktorováním, jen aby byl kód fit, a hlavně se neopakujeme!
+Ano, neopakujeme, neopakujeme, neopak...
 
 > Repetitio mater studiorum
+> .<>
 
 Tak určitě a je v tom pěkný bordel.
 
-Už se vám určitě stalo, že jste celý den, dva něco psali, pak jste o to blbou náhodou přišli. Zálohy žádný. Co teď? Musíte to napsat znovu. A najednou vám to zabere jen hodinu nebo tři, ale ne celý den. Dokonce jste s výsledkem možná spokojenější. Čím to, sakra, je?
+Už se vám určitě stalo, že jste celý den, dva něco psali, pak jste o to blbou náhodou přišli.
+Zálohy žádný. Co teď? Musíte to napsat znovu. A najednou vám to zabere jen hodinu nebo tři,
+ale ne celý den. Dokonce jste s výsledkem možná spokojenější. Čím to, sakra, je?
 
-"Vývojařina není psaní kódu!":[http://blog.8thlight.com/dave-moore/2012/06/20/what-do-developers-do-all-day.html] Jde o mix zkoumání problému, hledání jeho "možných řešení .(ano, více)", návrh výsledného řešení, samotná realizace a následné ověření. No, zní to trochu jako vodopád, ale někteří lidé potřebují sekvenční schema. Jiní na poslední tři (někdy i na všechny) použijí TDD((Test Driven Development)).
+"Vývojařina není psaní kódu!":[http://blog.8thlight.com/dave-moore/2012/06/20/what-do-developers-do-all-day.html]
+Jde o mix zkoumání problému, hledání jeho "možných řešení .(ano, více)", návrh výsledného řešení,
+samotná realizace a následné ověření. No, zní to trochu jako vodopád, ale někteří lidé potřebují sekvenční schema.
+Jiní na poslední tři (někdy i na všechny) použijí TDD((Test Driven Development)).
 
-Když, děláme CodeReatreaty:[http://coderetreat.cz/], tak první session je určená právě na zkoumání problému a hledání možných řešení. Každý by se nad problémem měl zamyslet, dekomponovat ho na podproblémy a zkusit najít obrysy schůdné cesty. Na víc mu čas stejně nezbyde. Vzhledem k tomu, že je tam dalších 10, 15 lidí, kteří zkoumají ten samý problém a každý má jiný pohled na věc, vznikne z toho zajímavý den, proplněný různými implementacemi stejného problému. Kód se za každou session zahazuje a začíná se vždy načisto. Nové nápady, jak psát lepší kód, nejsou zadušeny starou implementací.
+Když, děláme CodeReatreaty:[http://coderetreat.cz/], tak první session je určená právě na zkoumání problému
+a hledání možných řešení. Každý by se nad problémem měl zamyslet, dekomponovat ho na podproblémy
+a zkusit najít obrysy schůdné cesty. Na víc mu čas stejně nezbyde. Vzhledem k tomu, že je tam dalších 10, 15 lidí,
+kteří zkoumají ten samý problém a každý má jiný pohled na věc, vznikne z toho zajímavý den,
+proplněný různými implementacemi stejného problému. Kód se za každou session zahazuje a začíná se vždy načisto.
+Nové nápady, jak psát lepší kód, nejsou zadušeny starou implementací.
 
-Důležité je se naučit zahazovat "špatný kód .(můj kód nemůže být nikdy špatný, vždyť jsem ho psal já)". Opakovat se, psát ho znovu.
+Důležité je se naučit zahazovat "špatný kód .(můj kód nemůže být nikdy špatný, vždyť jsem ho psal já)".
+Opakovat se, psát ho znovu.
 
-Většina softwaru trpí tím, že programátoři jsou spokojeni, když najdou jedno fungující řešení a jdou od válu. Celý den lepili kousíčky různě vygooglenýho kódu, aby vyřešili problém a teď by to měli **zahodit? Ano!** Víte, tohleto googlení a lepení je právě **průzkumná fáze**, kdy se tepreve učíte a **nic dobrého z toho nevyleze**. Pokud průzkumnou fází projdete s řešením, víte, že tudy cesta vede. Vraťte se na začátek a začněte se kochat. :) Sedněte si s někým do páru a použijte v klidu osvědčené techniky.
+Většina softwaru trpí tím, že programátoři jsou spokojeni, když najdou jedno fungující řešení
+a jdou od válu. Celý den lepili kousíčky různě vygooglenýho kódu, aby vyřešili problém
+a teď by to měli **zahodit? Ano!** Víte, tohleto googlení a lepení je právě **průzkumná fáze**,
+kdy se tepreve učíte a **nic dobrého z toho nevyleze**. Pokud průzkumnou fází projdete s řešením, víte,
+že tudy cesta vede. Vraťte se na začátek a začněte se kochat. :)
+Sedněte si s někým do páru a použijte v klidu osvědčené techniky.
 
 Kent Beck říká něco takového:
 
-> Není nic špatného na tom psát kód sám a bez testů, pokud zrovna zkoumáte zajímavý problém a hledáte, zda má vůbec řešení. Jakmile to řešení najdete, ok, víte, že cesta tudy vede. Smažte ten kód, sežente si partnera a napište to společně pomocí TDD.
+> Není nic špatného na tom psát kód sám a bez testů, pokud zrovna zkoumáte zajímavý problém a hledáte,
+> zda má vůbec řešení. Jakmile to řešení najdete, ok, víte, že cesta tudy vede. Smažte ten kód,
+> sežente si partnera a napište to společně pomocí TDD.
 
 A já s ním naprosto souhlasím.
 
-A vám, "teď probliklo hlavou .(zdravím Dušane)", "ale můj PM s tím souhlasit nebude. Vždyť všechno píšu dvakrát, sežere to mnohem víc času." Kdepak! Pokud se shodnem na tom, že když píšeme kód podruhé, píšeme ho rychleji a lépe, tak to znamená, že příští průzkumničení bude díky menším překážkám rychlejší! Ve výsledku budete trávit možná stejně času, možná o málo víc, nad stejnými úkoly jako dřív, ale budete mít *mnohem* - **mnohem** - kvalitnější software. Nebo snad chcete dál odevzdávat makety a prototypy?
+A vám, "teď probliklo hlavou .(zdravím Dušane)", "ale můj PM s tím souhlasit nebude.
+Vždyť všechno píšu dvakrát, sežere to mnohem víc času." Kdepak! Pokud se shodnem na tom,
+že když píšeme kód podruhé, píšeme ho rychleji a lépe, tak to znamená, že příští průzkumničení
+bude díky menším překážkám rychlejší! Ve výsledku budete trávit možná stejně času, možná o málo víc,
+nad stejnými úkoly jako dřív, ale budete mít *mnohem* - **mnohem** - kvalitnější software.
+Nebo snad chcete dál odevzdávat makety a prototypy?
 
 Pište kód dvakrát, ale nezanechávejte duplicity!

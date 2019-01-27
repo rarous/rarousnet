@@ -4,7 +4,7 @@
  :description
  "Znáte vzor Service Locator? Pravděpodobně jste s ním setkali nespočetněkrát aniž byste o tom věděli.",
  :author "Aleš Roubíček",
- :tags #{"servicelocator" "asp.net 2.0" "pattern" "ioc"},
+ :tags #{"cleancode" "pattern" "ioc"},
  :published "2009-05-30T11:44:44.580"}
 ---
 

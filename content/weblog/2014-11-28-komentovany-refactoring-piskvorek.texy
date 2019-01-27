@@ -4,7 +4,7 @@
  :description
  "Podrobný průvodce refactoringem Clojure kódu, aby byl více idiomatický, funkcionální a dodržovat pravidla jednoduchého návrhu.",
  :author "Aleš Roubíček",
- :tags #{"clojure" "moje práce" "refactoring"},
+ :tags #{"clojure" "moje práce" "refactoring" "functional" "cleancode"},
  :published "2014-11-28T18:30:00.663"}
 ---
 
@@ -294,4 +294,3 @@ Můžeme zvolit manuální cestu a napsat si testy na jednotlivé případy, kte
 Na začátku byla výzva “jak bys to napsal ty?” Ale tohle není moje řešení, jak bych to napsal já. [Tohle je ukázka, jak bych to refactoroval](https://gist.github.com/rarous/695e486df9bd0d4ff2ba), se zaměřením na použití malinko pokročilejších technik, které Clojure nabízí. Vyplivnout hotové řešení na zelené louce (plné bugů) dokáže kde kdo. I já. Ale nebudu to dělat (možná někdy v [coding dojo](http://srazy.info/coding-dojo-prague)). Doufám, že tahle cesta byla pro někoho alespoň lehkou inspirací jak a proč psát jednodušší kód.
 
 PS. Jednoduchost neznamená, že je to pro všechny snadné pochopit.
-    

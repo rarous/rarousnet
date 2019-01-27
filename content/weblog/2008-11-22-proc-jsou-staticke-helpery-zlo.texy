@@ -4,7 +4,7 @@
  :description
  "Minulý týden psal Arthur spotík o takovém tom víkendovém programování, ve kterém šlo hlavně o to, že přešel na Vistu, vytvořil si gadget pro přehrávání ČRo a taky editor hosts souboru. Napsal ho v C# a zmínil se o tom, že použil techniku, se kterou nejsem",
  :author "Aleš Roubíček",
- :tags #{"static" "csharp" "asp.net 2.0" "ioc" "oop"},
+ :tags #{ "csharp" "cleancode"},
  :published "2008-11-22T10:53:52.983"}
 ---
 

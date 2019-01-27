@@ -4,7 +4,7 @@
  :description
  "Zapomeňte na Dependency injection, osvoboďte svou mysl od nepodstatných detailů a ochutnejte nirvánu v podobě IoC.",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "ioc"},
+ :tags #{"moje práce" "ioc" "cleancode"},
  :published "2012-09-27T11:29:29.253"}
 ---
 

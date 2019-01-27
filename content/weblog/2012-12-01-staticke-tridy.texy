@@ -3,40 +3,67 @@
  :title "Statické třídy",
  :description "Dnes se půjdeme poprat se statickýma třídama. ",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce" "cleancode"},
  :published "2012-12-01T08:39:42.370"}
 ---
 
-Často se setkávám s celkem nepěkným nešvarem, kterým je hrůzostrašné pojmenování **statická třída.**  Tenhle problém se dotýká především C# vývojářů a trochu zasahuje i do Javy. Když se podíváte na na ASP.NET, tak tam to je jedna statická třída vedle druhý. Celý framework jsou nudle statických APIs a Singletonů. Co je na tom tak špatnýho?
+Často se setkávám s celkem nepěkným nešvarem, kterým je hrůzostrašné pojmenování **statická třída.**
+Tenhle problém se dotýká především C# vývojářů a trochu zasahuje i do Javy. Když se podíváte na na ASP.NET,
+tak tam to je jedna statická třída vedle druhý. Celý framework jsou nudle statických APIs a Singletonů.
+Co je na tom tak špatnýho?
 
 Co je to statická třída?
-===================
+========================
 
-Tak v první řadě je to blbost. Statická třída je špatné pojmenování pro koncept obecně známý jako **modul.** A nemusíme chodit zrovna daleko. Naši nechtění "bratia z VB.NET tento koncept mají":[http://msdn.microsoft.com/en-us/library/aaxss7da.aspx] pojmenovaný správně. ;) Modul by ideálně měl být souborem čistých funkcí. V ideálním (funkcionálním) světě bez vedlejších efektů ale nežijeme a tak dochází k ovlivňování vnějšího světa a v modulu máme i nějaké ty procedury. S tím se ještě dá žít.
+Tak v první řadě je to blbost. Statická třída je špatné pojmenování pro koncept obecně známý jako **modul.**
+A nemusíme chodit zrovna daleko. Naši nechtění "bratia z VB.NET tento koncept
+mají":[http://msdn.microsoft.com/en-us/library/aaxss7da.aspx] pojmenovaný správně. ;)
+Modul by ideálně měl být souborem čistých funkcí. V ideálním (funkcionálním) světě bez vedlejších efektů,
+ale nežijeme a tak dochází k ovlivňování vnějšího světa a v modulu máme i nějaké ty procedury.
+S tím se ještě dá žít.
 
 Singleton
-========
+=========
 
-Problém nastává, když začneme do našich modulů cpát stav, tak jak jsme zvyklí u objektů. Tento koncept máme také již dávno zmapovaný a pojmenovaný. Ano, jde o debilní (nechtěl jsme psát naivní) implementaci Singletonu. Například Scala má pro singleton podporu přímo na úrovni jazyka. Jenže na rozdíl od statické třídy může implementovat rozhraní. Tudíž je to celkem dobrý koncept slučitelný s OO principy. Ne však statická třída.
+Problém nastává, když začneme do našich modulů cpát stav, tak jak jsme zvyklí u objektů.
+Tento koncept máme také již dávno zmapovaný a pojmenovaný. Ano, jde o debilní (nechtěl jsme psát naivní)
+implementaci Singletonu. Například Scala má pro singleton podporu přímo na úrovni jazyka.
+Jenže na rozdíl od statické třídy může implementovat rozhraní. Tudíž je to celkem dobrý koncept
+slučitelný s OO principy. Ne však statická třída.
 
-Statická třída se nechová polymorfně (aka dynamic dispatch). Statická třída nemůže implementovat rozhraní. Statická třída dost často brání konkurenci a je těžké u nich dosáhnout mezivláknové bezpečnosti. Takže statickou třídu jako náhradu singletonu nebrat! :)
+Statická třída se nechová polymorfně (aka dynamic dispatch). Statická třída nemůže implementovat rozhraní.
+Statická třída dost často brání konkurenci a je těžké u nich dosáhnout mezivláknové bezpečnosti.
+Takže statickou třídu jako náhradu singletonu nebrat! :)
 
 Mixin
 =====
 
-Další možné uplatnění statické třídy je definice extenzních metod. Pokud jsou extenze opravdu pouze rozšířením rozhraní pomocí čistých funkcí, vše je ok. Ale netahejte tam žádný stav, jinak se vracíme zpátky k předchozímu bodu, a hledání takových chyb je snad ještě vypečenější.
+Další možné uplatnění statické třídy je definice extenzních metod.
+Pokud jsou extenze opravdu pouze rozšířením rozhraní pomocí čistých funkcí, vše je ok.
+Ale netahejte tam žádný stav, jinak se vracíme zpátky k předchozímu bodu,
+a hledání takových chyb je snad ještě vypečenější.
 
 Fluent API
-=========
+==========
 
-Statické třídy můžeme využívat jako syntaktické vstupní body pro plynulá rozhraní. Jde jen o syntaktický cukr v DSL. Pokud jsou pocukrovaná API dostupná i běžnými OO přístupy, pak je vše ok. Ale bacha ať nedopadnete jako ASP.NET, kde alternativy neexistují a pak jste pěkně v...
+Statické třídy můžeme využívat jako syntaktické vstupní body pro plynulá rozhraní.
+Jde jen o syntaktický cukr v DSL. Pokud jsou pocukrovaná API dostupná i běžnými OO přístupy,
+pak je vše ok. Ale bacha ať nedopadnete jako ASP.NET, kde alternativy neexistují a pak jste pěkně v...
 
 Modul
-======
+=====
 
-Posledním užitím, které mě teď napadá (protože mám slabou představivost na zrůdnosti), je již na začátku zmiňovaný modul. Z pohledu funkcionálního přístupu je modul soubor funkcí, které operují nad stejnými datovými strukturami. V lepších jazycích se dají moduly otvírat a pak můžeme jejich funkce používat jako kostrukty jazyka. Ale to bychom po C# chtěli už moc. Vlatně proč? Vžyť to umí i Java. ;)
+Posledním užitím, které mě teď napadá (protože mám slabou představivost na zrůdnosti),
+je již na začátku zmiňovaný modul. Z pohledu funkcionálního přístupu je modul soubor funkcí,
+které operují nad stejnými datovými strukturami. V lepších jazycích se dají moduly otvírat
+a pak můžeme jejich funkce používat jako kostrukty jazyka. Ale to bychom po C# chtěli už moc.
+Vlatně proč? Vžyť to umí i Java. ;)
 
 Závěr
-======
+=====
 
-`static class` je jen implementační detail několika různých konstruktů a proto by se v našem vyjadřování tento pojem neměl často vyskytovat. Raději zmiňujte koncept, který máte konkrétně na mysli. Budou vám rozumět jak programátoři z jiných jazyků, tak bude i snadněji pochopitelné o co konkrétně vám jde. A nezapomeňte statická třída není typ a už vůbec ne objekt. ;)
+`static class` je jen implementační detail několika různých konstruktů
+a proto by se v našem vyjadřování tento pojem neměl často vyskytovat.
+Raději zmiňujte koncept, který máte konkrétně na mysli. Budou vám rozumět jak programátoři
+z jiných jazyků, tak bude i snadněji pochopitelné o co konkrétně vám jde.
+A nezapomeňte statická třída není typ a už vůbec ne objekt. ;)

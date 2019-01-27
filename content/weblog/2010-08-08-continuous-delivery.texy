@@ -3,7 +3,7 @@
  :title "Continuous Delivery",
  :description "Pozvánka na WebExpo.",
  :author "Aleš Roubíček",
- :tags #{"agile" "xp" "webdesign" "webexpo"},
+ :tags #{"ci" "xp" "webdesign" "cleancode"},
  :published "2010-08-08T08:45:53.350"}
 ---
 

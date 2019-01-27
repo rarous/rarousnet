@@ -4,18 +4,19 @@
  :description
  "Volný překlad manifestu Nejen Objektově Orientovaného Vývoje.",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce" "cleancode"},
  :published "2013-03-25T14:01:23.110"}
 ---
 
-Narazil jsem na velmi zajímavý "manifest Nejen objektově orientovaného vývoje":[http://notonlyoo.org/] a myslím, že by neměl ujít pozornosti ani tady v československu.
+Narazil jsem na velmi zajímavý "manifest Nejen objektově orientovaného vývoje":[http://notonlyoo.org/]
+a myslím, že by neměl ujít pozornosti ani tady v československu.
 
 Překlad Manifestu
-===========
+==================
 
 Objevujeme lepší způsoby vývoje software tím,
-že jej tvoříme a pomáháme při jeho tvorbě ostatním.
-Při této práci jsme dospěli k těmto hodnotám:
+ že jej tvoříme a pomáháme při jeho tvorbě ostatním.
+ Při této práci jsme dospěli k těmto hodnotám:
 
 * **Funkce a typy** před třídami
 * **Čistota** před mutacemi
@@ -26,7 +27,7 @@ Při této práci jsme dospěli k těmto hodnotám:
 Tak jest, přestože je v bodech napravo hodnota (kromě `null`), bodů nalevo si ceníme více.
 
 Principy
-======
+========
 
 Ctíme následující principy:
 

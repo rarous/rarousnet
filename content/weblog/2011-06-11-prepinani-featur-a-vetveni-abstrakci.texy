@@ -4,25 +4,45 @@
  :description
  "Jistě mi dáte za pravdu, že správa verzí rozsáhlého systému není žádná slast a je poměrně nákladná. Dnes si ukážeme dvě techniky, které by nám měli umožnit snížit náklady a zvýšit flexibilitu systému.",
  :author "Aleš Roubíček",
- :tags #{"agile" "ci" "moje práce" "ioc" "oop"},
+ :tags #{"ci" "moje práce" "cleancode"},
  :published "2011-06-11T09:01:43.860"}
 ---
 
-Správa několika verzí aplikace vždy přináší komplexitu, která zvyšuje náklady na vývoj i na údržbu. Běžnou praktikou je, že se zdrojové kódy v repositoři větví (branching) v určitých Milestonech, které se potom stabilizují a po releasu udržují, zatím co v hlavní větvi (trunk, main) se pokračuje ve vývoji. S příchodem DVCS((Distributed Version Control System)) se rozmohlo lokální větvení po featurách, čímž se různorodost verzí aplikace ještě víc rozrostla.
+Správa několika verzí aplikace vždy přináší komplexitu, která zvyšuje náklady na vývoj i na údržbu.
+Běžnou praktikou je, že se zdrojové kódy v repositoři větví (branching) v určitých Milestonech,
+které se potom stabilizují a po releasu udržují, zatím co v hlavní větvi (trunk, main) se pokračuje ve vývoji.
+S příchodem DVCS((Distributed Version Control System)) se rozmohlo lokální větvení po featurách,
+čímž se různorodost verzí aplikace ještě víc rozrostla.
 
-Naproti tomu tu máme agilní praktiky jako je Continuous Integration a Continuous Delivery, které nám říkají, že všichni commitují často do hlavní větve, čímž se předchází integračním problémům. Continuous Delivery navíc říká, že "aplikace má pouze **jedinou verzi** - tu **aktuální**." Jak to ale udělat, když rozsah některých featur přesahuje rámec sprintu? Ano, můžeme udělat feature branch, ale tím porušujeme pravidlo, že všechno je v hlavní větvi! Poslední verze TeamCity sice podporuje workflow s personal buildy vůči feature branchi, ale to je integrační smell.
+Naproti tomu tu máme agilní praktiky jako je Continuous Integration a Continuous Delivery,
+které nám říkají, že všichni commitují často do hlavní větve, čímž se předchází integračním problémům.
+Continuous Delivery navíc říká, že "aplikace má pouze **jedinou verzi** - tu **aktuální**."
+Jak to ale udělat, když rozsah některých featur přesahuje rámec sprintu? Ano, můžeme udělat feature branch,
+ale tím porušujeme pravidlo, že všechno je v hlavní větvi! Poslední verze TeamCity sice podporuje workflow
+s personal buildy vůči feature branchi, ale to je integrační smell.
 
 Branch by abstraction
 ==============
 
-Existuje "lepší řešení!":[BBA] Proč nevyužít technik OOP((Object Oriented Programming)) jako je polymorfismus a IoC((Inversion of Control))? Je to krapet složitější, než branchování v repositoři, ale zároveň nás to donutí zamyslet se nad architekturou aplikace a ve výsledku bude IMO lepší. V aplikaci můžeme mít nekolik implementací požadované funkcionality, které jsou následně injektovány na základě konfigurace. Některé mohou být stabilní a používat se v produkčním prostředí, zatímco u vývojáře poběží aktuální edge implementace, na které se pracuje.
+Existuje "lepší řešení!":[BBA] Proč nevyužít technik OOP((Object Oriented Programming))
+jako je polymorfismus a IoC((Inversion of Control))? Je to krapet složitější, než branchování v repositoři,
+ale zároveň nás to donutí zamyslet se nad architekturou aplikace a ve výsledku bude IMO lepší.
+V aplikaci můžeme mít nekolik implementací požadované funkcionality,
+které jsou následně injektovány na základě konfigurace. Některé mohou být stabilní a používat se
+v produkčním prostředí, zatímco u vývojáře poběží aktuální edge implementace, na které se pracuje.
 
 Takže implementaci kódu máme vyřešenou, ale jak na to v uživatelském rozhraní?
 
 Feature toggles
-===========
+===============
 
-Pokud naše UI není přímo generováno aplikačním kódem, kde by se dala využít předchozí technika, musíme sáhnout po nečem trochu jiném - "přepínačích featur":[FeatureToggle]. Začneme tím, že každá feature má svůj jedinečný identifikátor. Každá featura je zařazena do uživatelského rozhraní s tímto identifikátorem a na základě konfigurace je opět rozhodnuto, zda dojde k jejímu zobrazení uživateli nebo ne. Takto se dají nejen snadno odříznout nestabilní featury z produkčního prostředí, ale dá se to využít i k takovým věcem, jako je A/B testování, čí postupné spouštění featury do produkce, jak to znáte z oblíbených služeb jako je Facebook nebo Twitter. ;)
+Pokud naše UI není přímo generováno aplikačním kódem, kde by se dala využít předchozí technika,
+musíme sáhnout po nečem trochu jiném - "přepínačích featur":[FeatureToggle]. Začneme tím,
+že každá feature má svůj jedinečný identifikátor. Každá featura je zařazena do uživatelského rozhraní
+s tímto identifikátorem a na základě konfigurace je opět rozhodnuto, zda dojde
+k jejímu zobrazení uživateli nebo ne. Takto se dají nejen snadno odříznout nestabilní featury
+z produkčního prostředí, ale dá se to využít i k takovým věcem, jako je A/B testování,
+či postupné spouštění featury do produkce, jak to znáte z oblíbených služeb jako je Facebook nebo Twitter. ;)
 
 [FeatureToggle]: http://martinfowler.com/bliki/FeatureToggle.html
 [BBA]: http://continuousdelivery.com/2011/05/make-large-scale-changes-incrementally-with-branch-by-abstraction/

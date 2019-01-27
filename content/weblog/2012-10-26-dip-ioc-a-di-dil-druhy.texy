@@ -4,7 +4,7 @@
  :description
  "V motivačním díle jsme se pustili do vytváření sprasené architektury, dle nejlepšího uvážení, držíce se chytrých pouček. Teď si ukážeme, co bylo špatně.",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce" "cleancode"},
  :published "2012-10-26T14:47:16.777"}
 ---
 

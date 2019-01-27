@@ -4,7 +4,7 @@
  :description
  "Dneska jsme narazil na jeden příklad, který byl opět ukázkou špatného návrhu a tak mě inspiroval. Inspiroval k jednoduché ukázce, jak špatný návrh krapet vylepšit.",
  :author "Aleš Roubíček",
- :tags #{"asp.net 2.0"},
+ :tags #{"cleancode"},
  :published "2010-11-20T13:31:55.940"}
 ---
 

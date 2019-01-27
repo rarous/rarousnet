@@ -3,7 +3,7 @@
  :title "Pryč se stromečky!",
  :description "Malá předvánoční agitace za lepší svět. ",
  :author "Aleš Roubíček",
- :tags #{"asp.net 2.0" "refactoring"},
+ :tags #{"cleancode" "refactoring"},
  :published "2010-12-21T16:44:43.483"}
 ---
 

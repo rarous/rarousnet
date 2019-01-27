@@ -4,7 +4,7 @@
  :description
  "Jak zacházet s odsazováním kódu a komentáři, aby byl kód co nejčitelnější?",
  :author "Aleš Roubíček",
- :tags #{"asp.net 2.0"},
+ :tags #{"cleancode"},
  :published "2009-09-20T20:42:31.070"}
 ---
 

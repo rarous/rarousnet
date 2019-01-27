@@ -4,7 +4,7 @@
  :description
  "Zapojte se společně se mnou do cvičení TDD katy. Co to vlastně je? Proč to dělat?",
  :author "Aleš Roubíček",
- :tags #{"webdesign" "kata" "tdd" "craftmanship"},
+ :tags #{"cleancode" "tdd"},
  :published "2009-12-27T10:02:39.907"}
 ---
 

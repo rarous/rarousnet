@@ -3,41 +3,71 @@
  :title "Repository je anti-pattern",
  :description "Z vrchu křupavé, vevnitř šťavnaté...",
  :author "Aleš Roubíček",
- :tags #{"asp.net 2.0" "solid" "architektura"},
+ :tags #{"cleancode"},
  :published "2011-09-10T10:04:35.577"}
 ---
 
-Žádný vzor není špatný. Vezměme si chudáčka Singletona. Skvělý vzor pro udržení jediné instance v požadovaném scope. Jenže pak se dočtete, že "Singleton je neslučitelný s Dependency Inversion Principle":[http://zdrojak.root.cz/clanky/antipatterny-smradlavy-kod-a-peteruv-princip-v-it/nazory/18291/]. Opravdu? Jak to, že používám DIP:[http://en.wikipedia.org/wiki/Dependency_inversion_principle] i Singletonty už léta? On je problem někde jinde. U lidí co nepřemýšlí. :) Fakt.
+Žádný vzor není špatný. Vezměme si chudáčka Singletona. Skvělý vzor pro udržení jediné instance v požadovaném scope.
+Jenže pak se dočtete, že "Singleton je neslučitelný s Dependency Inversion
+Principle":[http://zdrojak.root.cz/clanky/antipatterny-smradlavy-kod-a-peteruv-princip-v-it/nazory/18291/].
+Opravdu? Jak to, že používám DIP:[http://en.wikipedia.org/wiki/Dependency_inversion_principle] i Singletonty už léta?
+On je problem někde jinde. U lidí co nepřemýšlí. :) Fakt.
 
-Mějme třídu, kde se na pěti místech v jejím kódu vyskytuje `HttpContext.Current`. Opravdu je to problem Singletonu? Ale kdepak, je to problem v užití, potažmo neschopností dělat čistý design. Přitom stačí nadefinovat členskou proměnnou typu `HttpContext` (lépe `HttpContextBase`) a tu si nechat naservírovat pomocí konstruktoru.
+Mějme třídu, kde se na pěti místech v jejím kódu vyskytuje `HttpContext.Current`.
+Opravdu je to problem Singletonu? Ale kdepak, je to problem v užití, potažmo neschopností dělat čistý design.
+Přitom stačí nadefinovat členskou proměnnou typu `HttpContext` (lépe `HttpContextBase`)
+a tu si nechat naservírovat pomocí konstruktoru.
 
-Volání `HttpContext.Current` bude v aplikaci **pouze na jednom místě** – v "Composition rootu":[http://blog.ploeh.dk/2011/07/28/CompositionRoot.aspx] aplikace (popř. V konfiguraci IoC kontejneru.) Zbytkem aplikace nám bude protékat právě tato instance.
+Volání `HttpContext.Current` bude v aplikaci **pouze na jednom místě** –
+v "Composition rootu":[http://blog.ploeh.dk/2011/07/28/CompositionRoot.aspx] aplikace
+(popř. V konfiguraci IoC kontejneru.) Zbytkem aplikace nám bude protékat právě tato instance.
 
 Doufám, že jsem na těchto pár řádcích dokázal, že Singleton není anti-pattern. Že **anti-pattern jsou programátoři.**
 
 Říkám repository, myslím Data Mapper
 ==============================
 
-A pomalu se dostáváme k jádru našeho problému. Vzory jsou tu od toho, aby sjednotili slovník, aby každý hned věděl o čem se bavíme. Jenže v případě Repository:[http://martinfowler.com/eaaCatalog/repository.html] to došlo tak daleko, že lidé říkají Repository, ale 99 % myslí "Data Mapper":[http://martinfowler.com/eaaCatalog/dataMapper.html].
+A pomalu se dostáváme k jádru našeho problému. Vzory jsou tu od toho, aby sjednotili slovník,
+aby každý hned věděl o čem se bavíme. Jenže v případě Repository:[http://martinfowler.com/eaaCatalog/repository.html]
+to došlo tak daleko, že lidé říkají Repository, ale 99 % myslí "Data Mapper":[http://martinfowler.com/eaaCatalog/dataMapper.html].
 
-Repository nám schovává datový zdroj za rozhraní kolekce a umožňuje nad ním spouštět "doménové dotazy":[/weblog/377-domenove-dotazy.aspx]. Světe div se, v dotnetu už něco takového máme. Ano, je to `IEnumerable` a LINQ((Language Integrated Query))!
+Repository nám schovává datový zdroj za rozhraní kolekce a umožňuje nad ním spouštět
+"doménové dotazy":[/weblog/377-domenove-dotazy.aspx]. Světe div se, v dotnetu už něco takového máme.
+Ano, je to `IEnumerable` a LINQ((Language Integrated Query))!
 
-V praxi se však setkáme s repository, která přímo skládá SQL dotazy, menežuje život entit a má tlusté rozhraní jako prase. Proč? Protože opět selhaly schopnosti návrhu. Zde konkrétně "Single Responsibility Principle":[http://en.wikipedia.org/wiki/Single_responsibility_principle] a "Interface Segregation Principle":[http://en.wikipedia.org/wiki/Interface_segregation_principle].
+V praxi se však setkáme s repository, která přímo skládá SQL dotazy, menežuje život entit
+a má tlusté rozhraní jako prase. Proč? Protože opět selhaly schopnosti návrhu.
+Zde konkrétně "Single Responsibility Principle":[http://en.wikipedia.org/wiki/Single_responsibility_principle]
+a "Interface Segregation Principle":[http://en.wikipedia.org/wiki/Interface_segregation_principle].
 
 Tlustá rozhraní
 ============
 
-Tlustá rozhraní u “Repository” vznikají z potřeby zapouzdřit často používané dotazy do znovupoužitelné jednotky. Bohužel i v 21. století je jednotkou znovupoužitelnosti procedura. A tak s každým novým dotazem přidáme na rozhraní “Repository” další a další metodu. To nám spokojeně roste a roste. A opět porušujeme Interface Segregation Principle, Single Responsibility Principle a navíc i "Open Closed Principle":[http://en.wikipedia.org/wiki/Open/closed_principle] -- a vytváříme "krásnou kuličku sraček":[http://www.laputan.org/mud/].
+Tlustá rozhraní u “Repository” vznikají z potřeby zapouzdřit často používané dotazy do znovupoužitelné jednotky.
+Bohužel i v 21. století je jednotkou znovupoužitelnosti procedura. A tak s každým novým dotazem přidáme
+na rozhraní “Repository” další a další metodu. To nám spokojeně roste a roste.
+A opět porušujeme Interface Segregation Principle, Single Responsibility Principle a navíc
+i "Open Closed Principle":[http://en.wikipedia.org/wiki/Open/closed_principle] --
+a vytváříme "krásnou kuličku sraček":[http://www.laputan.org/mud/].
 
-Třída, která toto rozhraní implementuje mívá nezřídka tisíc řádků a dá se v nít “snadno orientovat” pomocí "stromečků":[/weblog/398-pryc-se-stromecky.aspx]. Jenže, "jak praví Uncle Bob":[http://cleancoder.posterous.com/clean-code-episode-iii-contents-and-release-n]:
+Třída, která toto rozhraní implementuje mívá nezřídka tisíc řádků a dá se v nít “snadno orientovat”
+pomocí "stromečků":[/weblog/398-pryc-se-stromecky.aspx]. Jenže, "jak praví Uncle Bob":[http://cleancoder.posterous.com/clean-code-episode-iii-contents-and-release-n]:
 
 > “V každé velké metodě se schovávají malé třídy!”
 
-Ale málem bych zapomněl na "Liskov Substitution Principle":[http://en.wikipedia.org/wiki/Liskov_substitution_principle]. Určitě jste všichni někdy narazili na potřebu cachovat. :)
+Ale málem bych zapomněl na "Liskov Substitution Principle":[http://en.wikipedia.org/wiki/Liskov_substitution_principle].
+Určitě jste všichni někdy narazili na potřebu cachovat. :)
 
 Dekorováním za čistší kód!
 =====================
 
-A tak, když dospějeme k závěru, že tenhle dotaz se provádí dost často a přitom se data takřka nemění, budeme cachovat. První věc, co nás napadne, je "nasrat tu cache přímo do *repository*":[/weblog/397-single-responsibility-principle-in-the-wild.aspx]. *Tak to bude transparentí a nikde to nemusím měnit.* **Au.** Lepším řešením je udělat třídu se stejným rozhraním, která v konstruktoru přijímá to samé rozhraní a potřebné metody odekoruje cachováním. Zbylé volá přímo na dekorovaném objektu.
+A tak, když dospějeme k závěru, že tenhle dotaz se provádí dost často a přitom se data takřka nemění,
+budeme cachovat. První věc, co nás napadne, je "nasrat tu cache přímo do
+*repository*":[/weblog/397-single-responsibility-principle-in-the-wild.aspx].
+*Tak to bude transparentí a nikde to nemusím měnit.* **Au.** Lepším řešením je udělat třídu se stejným rozhraním,
+která v konstruktoru přijímá to samé rozhraní a potřebné metody odekoruje cachováním.
+Zbylé volá přímo na dekorovaném objektu.
 
-Netvrdím, že jde o dokonalý návrh, ale jde rozhodně o mnohem čistší řešení. A to vše díky dodržování principů "SOLIDní architektury":[http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)]. Opakuju se tu o tom už léta, ale asi je to stale potřeba. ;)
+Netvrdím, že jde o dokonalý návrh, ale jde rozhodně o mnohem čistší řešení.
+A to vše díky dodržování principů "SOLIDní architektury":[http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)].
+Opakuju se tu o tom už léta, ale asi je to stale potřeba. ;)

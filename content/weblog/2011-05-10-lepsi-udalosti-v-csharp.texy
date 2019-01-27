@@ -4,7 +4,7 @@
  :description
  "Každý, do přišel do styku s jazykem C#, jistě ví, jak se s události v něm pracuje. A taky jistě může potvrdit, že to není žádná slast. Pojďme se podívat, jak definovat události v C# o něco lépe.",
  :author "Aleš Roubíček",
- :tags #{"csharp" "asp.net 2.0" "rx"},
+ :tags #{"csharp" "reactive" "rx" "cleancode"},
  :published "2011-05-10T14:11:57.353"}
 ---
 

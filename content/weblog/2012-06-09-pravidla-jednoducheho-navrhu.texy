@@ -3,7 +3,7 @@
  :title "Pravidla jednoduchého návrhu",
  :description "Čtyři pravidla jednoduché návrhu.",
  :author "Aleš Roubíček",
- :tags #{"xp" "design" "moje práce"},
+ :tags #{"xp" "design" "moje práce" "cleancode"},
  :published "2012-06-09T12:59:32.310"}
 ---
 

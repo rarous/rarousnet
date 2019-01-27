@@ -4,7 +4,7 @@
  :description
  "Včera jsme si předvedli jak pomocí několika základních refaktoringů snížit cyklomatickou komplexitu, zpřehlednit tak kód a snížit riziko výskytu chyb. Dnes se posuneme ještě o kousek dál a zbavíme se nadbytečného imperativního kódu.",
  :author "Aleš Roubíček",
- :tags #{"asp.net 2.0" "rx" "linq"},
+ :tags #{"cleancode" "reactive" "functional" "rx" "linq" "refactoring"},
  :published "2010-12-22T07:35:42.090"}
 ---
 

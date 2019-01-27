@@ -4,7 +4,7 @@
  :description
  "Nejčastější chybou při psaní zdrojových kódů je psaní kódu zbytečného. Zbytečný kód narušuje kontinuitu čtení, skrývá jasné myšlenky, neřeší problémy.",
  :author "Aleš Roubíček",
- :tags #{"csharp" "asp.net 2.0" "refactoring"},
+ :tags #{"csharp" "cleancode" "refactoring"},
  :published "2009-08-03T07:19:19.083"}
 ---
 

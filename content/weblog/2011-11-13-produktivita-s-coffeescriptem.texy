@@ -8,6 +8,9 @@
  :published "2011-11-13T09:10:29.420"}
 ---
 
-CoffeeScript může zvýšit produktivitu pouze v případě že JavaScript píšete v primitivním editoru typu Notepad. Kdo to s produktivitou v JavaScriptu myslí vážně, investuje pár tisícovek do pořádného IDE s podporou doplňování kódu, type hintingu, refactoringu a integrovaného test runneru.
+CoffeeScript může zvýšit produktivitu pouze v případě že JavaScript píšete v primitivním editoru typu Notepad.
+Kdo to s produktivitou v JavaScriptu myslí vážně, investuje pár tisícovek do pořádného IDE
+s podporou doplňování kódu, type hintingu, refactoringu a integrovaného test runneru.
 
-Kvalitní nástroje jsou něco, co CoffeeScript ještě dlouho mít nebude. A kvalitní nástroje jsou to, co opravdu zvyšuje vaši produktivitu, ne obskurní syntaxe.
+Kvalitní nástroje jsou něco, co CoffeeScript ještě dlouho mít nebude.
+A kvalitní nástroje jsou to, co opravdu zvyšuje vaši produktivitu, ne obskurní syntaxe.

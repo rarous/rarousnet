@@ -3,35 +3,100 @@
  :title "Test Driven Development - příběh nezbedného vývojáře",
  :description "Uff to jsem se zas rozepsal. :)",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "tdd"},
+ :tags #{"moje práce" "tdd" "cleancode"},
  :published "2012-10-06T08:52:31.963"}
 ---
 
-Lukáš napsal spot "Pokud jde kód špatně otestovat, je špatně navržený":[http://blog.krecan.net/2012/10/04/pokud-jde-kod-spatne-otestovat-je-spatne-navrzeny/], který mě donutil se zamyslet ("občas to dělám":[http://rarous.net/clanek/413-k-cemu-vlastne-tdd.aspx]). Zmyslet se nad tím, proč je u nás málo článků o TDD. Je to věc, která souvisí s přesvědčením. Obecně panuje přesvědčení, že psaní testů je práce navíc, že to prodlužuje dobu dodání, že je to peklo a nuda. Takové přesvědčení je hluboce zakořeněné a je velmi nebezpečné.
+Lukáš napsal spot "Pokud jde kód špatně otestovat, je špatně
+navržený":[http://blog.krecan.net/2012/10/04/pokud-jde-kod-spatne-otestovat-je-spatne-navrzeny/],
+který mě donutil se zamyslet ("občas to dělám":[http://rarous.net/clanek/413-k-cemu-vlastne-tdd.aspx]).
+Zamyslet se nad tím, proč je u nás málo článků o TDD. Je to věc, která souvisí s přesvědčením.
+Obecně panuje přesvědčení, že psaní testů je práce navíc, že to prodlužuje dobu dodání, že je to peklo a nuda.
+Takové přesvědčení je hluboce zakořeněné a je velmi nebezpečné.
 
-V podstatě to vypovídá o povaze takových stoupenců. Jsou to lidé, kteří jsou spokojení s tím co dělají, jsou to dříči. Nevadí jim opakovat dokola stále stejné chyby. Nevadí jim sedět v práci dlouho do noci, dělat víkendy nebo si tahat práci domů. Práce, kterou dělají je složitá a oni za to dostávají slušně zaplaceno. Tak to je. Proč něco měnit? Upřímně, já nevím.
+V podstatě to vypovídá o povaze takových stoupenců. Jsou to lidé, kteří jsou spokojení s tím co dělají,
+jsou to dříči. Nevadí jim opakovat dokola stále stejné chyby. Nevadí jim sedět v práci dlouho do noci,
+dělat víkendy nebo si tahat práci domů. Práce, kterou dělají je složitá a oni za to dostávají slušně zaplaceno.
+Tak to je. Proč něco měnit? Upřímně, já nevím.
 
-Netvrdím, že všechen kód píšu tak, že si na něj nejdřív vytvořím testy. On je to i nesmysl. Někteří považují za TDD:[http://rarous.net/clanek/415-tri-prikazani-tdd.aspx] to, že napíšou 100 testů a k nim kód a mají hotovo. Blbost. Tohle je stejně špatný přístup jako nakreslit si to nejdřív v UML. Potřeba tvořit velkolepá díla do našeho řemesla nepatří. Musíme se naučit spokojit s málem. Pak možná zjistíme, že ty malé kousky, které dávají smysl, se dají "zázračně propojit":[http://rarous.net/clanek/428-inversion-of-control.aspx] a najednou máme velký celek, který je často kvalitnější a funguje.
+Netvrdím, že všechen kód píšu tak, že si na něj nejdřív vytvořím testy. On je to i nesmysl.
+Někteří považují za TDD:[http://rarous.net/clanek/415-tri-prikazani-tdd.aspx] to,
+že napíšou 100 testů a k nim kód a mají hotovo. Blbost. Tohle je stejně špatný přístup
+jako nakreslit si to nejdřív v UML. Potřeba tvořit velkolepá díla do našeho řemesla nepatří.
+Musíme se naučit spokojit s málem. Pak možná zjistíme, že ty malé kousky, které dávají smysl,
+se dají "zázračně propojit":[http://rarous.net/clanek/428-inversion-of-control.aspx] a najednou máme velký celek,
+který je často kvalitnější a funguje.
 
-Nedílnou součástí dobrého návrhu je i prototypování. "Prototypování je cesta":[http://rarous.net/clanek/422-je-povoleno-psat-kod-dvakrat.aspx] jak prozkoumávat průchozí uličky. Důležité u prototypu je, že ten nikdy nejde do produkce. **Nikdy!** Ano, stálo to čas, ale získali jsme cenné zkušenosti. Teď je na čase sepsat si itinerář bodů, které chceme na cestě potkat a podle něj začít psát první testy a implementovat kód, který jimi prochází. "Po malých krůčcích.":[http://blog.kolman.cz/2012/04/tdd-as-if-you-meant-it.html] Kochat se a hlavně uklízet za sebou. Na refactoring:[http://rarous.net/clanek/406-refaktoring.aspx] je čas v každém okamžiku. A vězte, že i když nevidíte, že by se něco dalo refactorovat, neznamená to, že by to nešlo.
+Nedílnou součástí dobrého návrhu je i prototypování.
+"Prototypování je cesta":[http://rarous.net/clanek/422-je-povoleno-psat-kod-dvakrat.aspx] jak prozkoumávat
+průchozí uličky. Důležité u prototypu je, že ten nikdy nejde do produkce.
+**Nikdy!** Ano, stálo to čas, ale získali jsme cenné zkušenosti. Teď je na čase sepsat si itinerář bodů,
+které chceme na cestě potkat a podle něj začít psát první testy a implementovat kód, který jimi prochází.
+"Po malých krůčcích.":[http://blog.kolman.cz/2012/04/tdd-as-if-you-meant-it.html] Kochat se a hlavně uklízet za sebou.
+Na refactoring:[http://rarous.net/clanek/406-refaktoring.aspx] je čas v každém okamžiku.
+A vězte, že i když nevidíte, že by se něco dalo refactorovat, neznamená to, že by to nešlo.
 
-Je důležité mít každou chvilku funkční kód. Je to neskutečně povzbuzující a člověk nepropadá často zoufalství. Má to obrovský dopad na produktivitu. Zoufalí lidé dělají zoufalé věci. Uchylují se pak snadno k prasečinkám a celé snažení posílají v prdel. Neježe pak nestíhají termíny, ale dodávají nekvalitní produkty. Spirála smrti. To, že chvátáte, neznamená, že jdete rychle. Určitě ne k cíli. Věřte mi, sám jsem si to několikrát prožil.
+Je důležité mít každou chvilku funkční kód. Je to neskutečně povzbuzující a člověk nepropadá často zoufalství.
+Má to obrovský dopad na produktivitu. Zoufalí lidé dělají zoufalé věci.
+Uchylují se pak snadno k prasečinkám a celé snažení posílají v prdel. Neježe pak nestíhají termíny,
+ale dodávají nekvalitní produkty. Spirála smrti. To, že chvátáte, neznamená, že jdete rychle.
+Určitě ne k cíli. Věřte mi, sám jsem si to několikrát prožil.
 
 Můj příběh
-========
+==========
 
-Můj kód není dokonalý. Obsahuje chyby. Do produkce jsem hodněkrát nechal nasadit nefungující kód. Neotestovaný kód. V důsledku toho se třeba na celém Atlase ztratily všechny obrázky u zpráv. To není malá chyba. Je to celkem průser a taky nálepka, která se špatně strhává. To byl pro mne bod zlomu. Začal jsem se zajímat o to, jak něčemu takovému předejít. Hehe, ale pak přišla registrace do Atlasu Firem. Měl jsem měsíc na to, abych udělal nad technologií, která byla teprve v plenkách, produkt. To byla obrovská bolest. Neskutečné záseky. Jednou jsme se Steidou seděli nad pomalejma javascriptama do dvou do rána v kanclu. A zase to byl fail. Sice se to stihlo a běželo to, ale byly tam chyby a s tím kódem se nedalo dělat vůbec nic. Tam probíhala magie.
+Můj kód není dokonalý. Obsahuje chyby. Do produkce jsem hodněkrát nechal nasadit nefungující kód.
+Neotestovaný kód. V důsledku toho se třeba na celém Atlase ztratily všechny obrázky u zpráv.
+To není malá chyba. Je to celkem průser a taky nálepka, která se špatně strhává. To byl pro mne bod zlomu.
+Začal jsem se zajímat o to, jak něčemu takovému předejít. Hehe, ale pak přišla registrace do Atlasu Firem.
+Měl jsem měsíc na to, abych udělal nad technologií, která byla teprve v plenkách, produkt.
+To byla obrovská bolest. Neskutečné záseky. Jednou jsme se Steidou seděli nad pomalejma javascriptama
+do dvou do rána v kanclu. A zase to byl fail. Sice se to stihlo a běželo to, ale byly tam chyby
+a s tím kódem se nedalo dělat vůbec nic. Tam probíhala magie.
 
-V podstatě stejný kus kódu jsem za nedlouho psal znovu - registrace odkazů do katalogu. Tentokrát řízený pomocí testů. Trvalo to asi stejně, možná o týden o dva dýl (testovat jsem se teprve učil, s tím i inversion of control a MVP pattern). Kód obsahoval asi jednu chybu. A "za výsledek se ani po pěti letech nestydím":[https://gist.github.com/2836140]. Mám k němu spousty výhrad, to ano, ale byl to dobrý kód. Pak jsem pomocí TDD psal i novou prezentační část, která tahala data jak ze starého katalogu, tak z nové technologie a věci, které jsem se na registraci naučil se mi náramně hodili.
+V podstatě stejný kus kódu jsem za nedlouho psal znovu - registrace odkazů do katalogu.
+Tentokrát řízený pomocí testů. Trvalo to asi stejně, možná o týden o dva dýl
+(testovat jsem se teprve učil, s tím i inversion of control a MVP pattern).
+Kód obsahoval asi jednu chybu. A "za výsledek se ani po pěti letech nestydím":[https://gist.github.com/2836140].
+Mám k němu spousty výhrad, to ano, ale byl to dobrý kód. Pak jsem pomocí TDD psal i novou prezentační část,
+která tahala data jak ze starého katalogu, tak z nové technologie a věci,
+které jsem se na registraci naučil se mi náramně hodili.
 
-Pak jsem trochu ztratil důslednost a začal testovat až potom. Byl jsem přesvědčenej, že dokážu dělat dobrej testovatelnej design i bez psaní testů předem. Taky jsem nechtěl nejdřív vytvářet ty šílený mocky. Hloupý jsem byl. Ano, testování je práce navíc a trvá to dýl. S tímhle přístupem rozhodně.
+Pak jsem trochu ztratil důslednost a začal testovat až potom. Byl jsem přesvědčenej,
+že dokážu dělat dobrej testovatelnej design i bez psaní testů předem.
+Taky jsem nechtěl nejdřív vytvářet ty šílený mocky. Hloupý jsem byl. Ano, testování je práce navíc
+a trvá to dýl. S tímhle přístupem rozhodně.
 
-Přeskočím šedé období zamazané popelem a nedůsledností, přeskočím čtyři roky až do Hradeckého "Code Retreatu":[http://coderetreat.cz]. To byl můj první Code Retreat, kde jsem byl jako plnohodnotný účastník. Už na GDCR jsem si "pěkně zapároval s Danem Kolmanem v F#":[https://gist.github.com/3897226]. Tam jsem zjistil, jak může vést TDD k zajímavému poznání a naučit se jazyk, který ještě moc neovládám. Zpátky do Hradce. Měl jsem tu možnost dělat dvě session v páru s Marianem. První session jsem byl dost mimo a docela ztracenej, ale pomalu se mi začínalo otevírat myšlení. Druhá session už byla fajn a celkem nám to šlo.
+Přeskočím šedé období zamazané popelem a nedůsledností, přeskočím čtyři roky až do Hradeckého
+"Code Retreatu":[http://coderetreat.cz]. To byl můj první Code Retreat, kde jsem byl jako plnohodnotný účastník.
+Už na GDCR jsem si "pěkně zapároval s Danem Kolmanem v F#":[https://gist.github.com/3897226].
+Tam jsem zjistil, jak může vést TDD k zajímavému poznání a naučit se jazyk, který ještě moc neovládám.
+Zpátky do Hradce. Měl jsem tu možnost dělat dvě session v páru s Marianem. První session jsem byl dost
+mimo a docela ztracenej, ale pomalu se mi začínalo otevírat myšlení. Druhá session už byla fajn a celkem nám to šlo.
 
-Pak jsem se rozhodl, že se musím vrátit k počátkům a přečetl si "TDD by Example od Kenta Becka":[http://www.amazon.com/Test-Driven-Development-By-Example/dp/0321146530]. Najednou jsem viděl, kde jsme s Marianem dělali chyby, naučil jsem se mnoha triků a hlavně osvobodil svou mysl. Přístupů k TDD existuje mnoho a každý z nich může být vhodný na jiný problém. Někdy je dobré držet se malých krůčků a být v krátké smyčce zpětné vazby (no to je dobré pořád), někdy ale můžu být ty krůčky klidně větší, ale až když se naučíte dělat ty malé. To máte jako když se učíte násobit.
+Pak jsem se rozhodl, že se musím vrátit k počátkům a přečetl si
+"TDD by Example od Kenta Becka":[http://www.amazon.com/Test-Driven-Development-By-Example/dp/0321146530].
+Najednou jsem viděl, kde jsme s Marianem dělali chyby, naučil jsem se mnoha triků a hlavně osvobodil svou mysl.
+Přístupů k TDD existuje mnoho a každý z nich může být vhodný na jiný problém.
+Někdy je dobré držet se malých krůčků a být v krátké smyčce zpětné vazby (no to je dobré pořád).
+Někdy ale můžu být ty krůčky klidně větší, ale až když se naučíte dělat ty malé.
+To máte jako když se učíte násobit.
 
-Dneska píšu službu, která nemá zatím klienta. Skládá se z několika subsystémů a já vím že funguje, ikdyž jsem to zatím pořádně nezkoušel. :) Tuhle důvěru mi ale dodává 250 unit testů a 60 integračních testů. Volím různé strategie. Někdy píšu čistě TDD, někdy prototypuju. Prototyp mi pak slouží jako vzor pro TDD, protože už vím, co chci udělat. Díky unit testům mám zhruba 90% code coverage. Je to díky filtrům. Protože mám z CC vyloučené věci jako adaptery kódu třetí strany, composition rooty a podobné. To jsou věci, který mi pokrývaj Integrační testy nebo jdou ověřit spuštěním služby.
+Dneska píšu službu, která nemá zatím klienta. Skládá se z několika subsystémů a já vím že funguje,
+i když jsem to zatím pořádně nezkoušel. :) Tuhle důvěru mi ale dodává 250 unit testů a
+60 integračních testů. Volím různé strategie. Někdy píšu čistě TDD, někdy prototypuju.
+Prototyp mi pak slouží jako vzor pro TDD, protože už vím, co chci udělat. Díky unit testům
+mám zhruba 90% code coverage. Je to díky filtrům. Protože mám z CC vyloučené věci jako adaptery
+kódu třetí strany, composition rooty a podobné. To jsou věci, který mi pokrývaj Integrační testy nebo
+jdou ověřit spuštěním služby.
 
-Jsem v celkem raný fázi vývoje a tohle mi umožňuje věci měnit. Testy se mi neboří, protože nejsou zaměřený na detaily, ale na chování. Proto můžu věci měnit a hned (do 10 sekund) vím, jestli jsem něco nepodělal. Ještě před pár týdny jsem měl CC kolem 40 %. A tak jsem začal kód přestrukturovávat tak, aby se coverage zvedla. Žádná honba za spoustou testů.  Tímhle způsobem jsem se dostal na 60 %. Pak jsem začal dopisovat testy tam, kde chyběly. Bylo potřeba upravit návrh, protože ty věci nešly moc dobře otestovat. Samozřejmě jsem odhalil několik chyb a vyloženejch blbostí. Ale teď mám 90% CC, méně chyb, lepší návrh a mnohem větší sebevědomí a vůli věci měnit.
+Jsem v celkem raný fázi vývoje a tohle mi umožňuje věci měnit. Testy se mi neboří,
+protože nejsou zaměřený na detaily, ale na chování. Proto můžu věci měnit a hned
+(do 10 sekund) vím, jestli jsem něco nepodělal. Ještě před pár týdny jsem měl CC kolem 40 %.
+A tak jsem začal kód přestrukturovávat tak, aby se coverage zvedla. Žádná honba za spoustou testů.
+Tímhle způsobem jsem se dostal na 60 %. Pak jsem začal dopisovat testy tam, kde chyběly.
+Bylo potřeba upravit návrh, protože ty věci nešly moc dobře otestovat. Samozřejmě jsem odhalil
+několik chyb a vyloženejch blbostí. Ale teď mám 90% CC, méně chyb, lepší návrh a mnohem větší
+sebevědomí a vůli věci měnit.
 
 Dopřejte to i sobě. Zasloužíte si to!

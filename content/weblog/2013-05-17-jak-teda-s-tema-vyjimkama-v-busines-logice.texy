@@ -3,13 +3,16 @@
  :title "Jak teda s těma výjimkama v busines logice?",
  :description "Jak to vidím s výjimkama v business logice já.",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce", "cleancode", "functional", "fsharp"},
  :published "2013-05-17T14:11:33.710"}
 ---
 
-Na develu se rozvíjí debaty o tom, zda je zpátečnické odrazovat od vyhazování výjimek. Já patřím mezi zpátečníky. :) Tady je moje odpovědˇ, kterou je IMO škoda nemít veřejně dostupnou, takže ji publikuju i tady na blogu.
+Na develu se rozvíjí debaty o tom, zda je zpátečnické odrazovat od vyhazování výjimek.
+Já patřím mezi zpátečníky. :) Tady je moje odpověď, kterou je IMO škoda nemít veřejně dostupnou,
+takže ji publikuju i tady na blogu.
 
-Na  začátek je dobré se opřít o nějakou autoritu, proto tady pro začátek ocituju <a href="http://blogs.msdn.com/b/kcwalina/archive/2005/03/16/396787.aspx">.net Framework Design Guidelines doporučení k výjimkám</a>:
+Na  začátek je dobré se opřít o nějakou autoritu, proto tady pro začátek ocituju
+<a href="http://blogs.msdn.com/b/kcwalina/archive/2005/03/16/396787.aspx">.net Framework Design Guidelines doporučení k výjimkám</a>:
 
 <ol>
 <li>Nevracejte chybové kódy. K tomuto účelu jsou určeny výjimky.
@@ -29,11 +32,17 @@ Na  začátek je dobré se opřít o nějakou autoritu, proto tady pro začátek
 <li>Používejte vzory jako TryParse, které snižují negativní dopady na výkon způsobené vyhazováním výjimek.
 </ol>
 
-Z texu je zřejmé, že vyhazování výjimek má své opodstatnění. Důležité je však v jakých scénářích se výjimky vyhazovat mají a v jakých ne.
+Z texu je zřejmé, že vyhazování výjimek má své opodstatnění. Důležité je však v jakých scénářích
+se výjimky vyhazovat mají a v jakých ne.
 
 Často se tu objevují příklady s validací vstupních hodnot nebo třeba autentikace uživatele. Začněme validátorem:
 
-Primární zodpovědností validátoru je validovat hodnoty. Je nevalidní hodnota příčinou nemožnosti korektní práce validátoru (důvodem k vyhození výjimky)? Není (viz bod <code>2</code>). Můžeme to řešit vracením primitivy jako je <code>bool</code>. Já si však myslím, že taková hodnota je nedostatečná. Potřebujeme výsledek validace zpropagovat někam, kde se s ním bude dále pracovat. Vyhodíme tedy výjimku a tu pak odchytíme? Tím se ale dostáváme k bodu <code>4</code>. Lepším řešením je definovat komplexní návratový typ:
+Primární zodpovědností validátoru je validovat hodnoty. Je nevalidní hodnota příčinou nemožnosti
+korektní práce validátoru (důvodem k vyhození výjimky)? Není (viz bod <code>2</code>).
+Můžeme to řešit vracením primitivy jako je <code>bool</code>. Já si však myslím, že taková hodnota je nedostatečná.
+Potřebujeme výsledek validace zpropagovat někam, kde se s ním bude dále pracovat.
+Vyhodíme tedy výjimku a tu pak odchytíme? Tím se ale dostáváme k bodu <code>4</code>.
+Lepším řešením je definovat komplexní návratový typ:
 
 /--code fsharp
 type ValidationResult =
@@ -41,7 +50,14 @@ type ValidationResult =
   | Invalid of ValidationError list
 \--code
 
-Pokračujme s autentikací uživatele. Běžnou praxí je vyhazování <code>SecurityException</code> pokud se nepovede uživatele autentikovat. Výjimka se pak nechá probublat do UI vrstvy, kde se ošetří a uživateli se zobrazí hláška, že zadal špatné jméno nebo heslo. Opět však jde o porušení 4. bodu. Autentikace tam může vracet opět <code>bool</code> nebo rovnou instanci <code>User</code> a v případě nevydařené autentikace <code>null</code>. Tím se zbavíme bezpečnostních výjimek, ale zase si zavedeme potenciální chybu v podobě <code title="NullReferenceException">NRE</code>...  Proto si opět myslím, že by se měl vracet adekvátní typ:
+Pokračujme s autentikací uživatele. Běžnou praxí je vyhazování <code>SecurityException</code>
+pokud se nepovede uživatele autentikovat. Výjimka se pak nechá probublat do UI vrstvy,
+kde se ošetří a uživateli se zobrazí hláška, že zadal špatné jméno nebo heslo.
+Opět však jde o porušení 4. bodu. Autentikace tam může vracet opět <code>bool</code>
+nebo rovnou instanci <code>User</code> a v případě nevydařené autentikace <code>null</code>.
+Tím se zbavíme bezpečnostních výjimek, ale zase si zavedeme potenciální chybu v podobě
+<code title="NullReferenceException">NRE</code>...
+Proto si opět myslím, že by se měl vracet adekvátní typ:
 
 /--code fsharp
 type AuthenticationResult =
@@ -49,5 +65,7 @@ type AuthenticationResult =
   | Authenticated of User
 \--code
 
-Autentikační modul samozřejmě může vyhazovat výjimky, ale většinou budou spojené s nefungující infrastrukturou (LDAP, SQL nebo jinej auth provider), to je totiž validní důvod, proč nemůže autentikace doběhnout.
+Autentikační modul samozřejmě může vyhazovat výjimky, ale většinou budou spojené
+s nefungující infrastrukturou (LDAP, SQL nebo jinej auth provider),
+to je totiž validní důvod, proč nemůže autentikace doběhnout.
 

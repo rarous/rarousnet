@@ -4,24 +4,37 @@
  :description
  "Jedna z pozitivních věcí, se kterou přišel publikační nástroj ve VS 2010, byla automatizovaná transformace web.configu podle zvolené build konfigurace.",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "psake"},
+ :tags #{"moje práce" "psake" "ci"},
  :published "2012-08-17T11:29:28.133"}
 ---
 
-Jedna z pozitivních věcí, se kterou přišel publikační nástroj ve VS 2010, byla automatizovaná transformace `web.config`u podle zvolené build konfigurace. Od začátku jsem ji úspěšně používal, jak na Tropu, tak později i na Webmiu, při automatizovaném deploymentu do dev/staging/production prostředí. Používal jsem k tomu "jednoduchý PowerShell":[ https://github.com/rarous/WebTools/blob/master/Deployment.ps1] script, který vyčistí projekt, sbuildí ho ve vybrané konfiguraci, včetně transformace web.configu, vytvoří MsDeploy balíček a pošle ho na cílový server. Je pravda, že pro Azure se používá jiný balíčkovací systém, ale princip je stejný.
+Jedna z pozitivních věcí, se kterou přišel publikační nástroj ve VS 2010, byla automatizovaná transformace
+`web.config`u podle zvolené build konfigurace. Od začátku jsem ji úspěšně používal, jak na Tropu,
+tak později i na Webmiu, při automatizovaném deploymentu do dev/staging/production prostředí.
+Používal jsem k tomu "jednoduchý PowerShell":[ https://github.com/rarous/WebTools/blob/master/Deployment.ps1] script,
+který vyčistí projekt, sbuildí ho ve vybrané konfiguraci, včetně transformace web.configu,
+vytvoří MsDeploy balíček a pošle ho na cílový server. Je pravda, že pro Azure se používá jiný balíčkovací systém,
+ale princip je stejný.
 
-Tohle všechno je super, pokud máte jednu nebo málo cílových instancí. Pokud máme víc produkčních deloyovacích konfigurací, je zbytečné vytvářet pro každou i build konfiguraci, která může být pro všechny stejná. A tím se pomalu dostáváme k potřebě oddělit transformace konfiguračního souboru od build konfigurací.
+Tohle všechno je super, pokud máte jednu nebo málo cílových instancí. Pokud máme víc produkčních
+deloyovacích konfigurací, je zbytečné vytvářet pro každou i build konfiguraci,
+která může být pro všechny stejná. A tím se pomalu dostáváme k potřebě oddělit transformace
+konfiguračního souboru od build konfigurací.
 
 Transformace
 ============
-Transformace konfiguračního souboru jsou zdánlivě zapečené do webového projektu. Dokonce jsem do některých konzolovek linkoval `WebApplication.target`, abych mohl transformovat i `app.config`. Přitom je to samostatný MsBuild task:
+Transformace konfiguračního souboru jsou zdánlivě zapečené do webového projektu.
+Dokonce jsem do některých konzolovek linkoval `WebApplication.target`, abych mohl transformovat i `app.config`.
+Přitom je to samostatný MsBuild task:
 
 /--code xml
 <UsingTask TaskName="TransformXml"
     AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.Tasks.dll"/>
 \--code
 
-Ovšem, psát build script v XML, je tak neproduktivní a nehodné 21. století. Vytvoříme si jen jednoduchý znovupoužitelný wrapper, který budeme volat z psake:[https://github.com/psake/psake] nebo jiného vhodnějšího buildovacího DSL.
+Ovšem, psát build script v XML, je tak neproduktivní a nehodné 21. století.
+Vytvoříme si jen jednoduchý znovupoužitelný wrapper, který budeme volat z psake:[https://github.com/psake/psake]
+nebo jiného vhodnějšího buildovacího DSL.
 
 /--code xml
 <Project ToolsVersion="4.0" DefaultTargets="Transform" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -48,12 +61,17 @@ Parametr `$destination` je volitelný, pokud není zadaný přepíše se zdrojov
 
 Použití v praxi
 ===============
-Ve výsledku tohle používám pro transformace configu pro různé instance. V aplikaci mám složku `Configurations` kde jsou jednotlivé transformace `web.instance.config`, kde instance je proměnná. Pokud potřebuju rychle přepnout na jinou instance napíšu do konzoly:
+Ve výsledku tohle používám pro transformace configu pro různé instance.
+V aplikaci mám složku `Configurations` kde jsou jednotlivé transformace `web.instance.config`,
+kde instance je proměnná. Pokud potřebuju rychle přepnout na jinou instance napíšu do konzoly:
 
 /--code powershell
 .\psake.ps1 TransformConfig –properties @{ instance = 'instance' }
 \--code
 
-A mám switchnuto. `TransformConfig` je task v psake scriptu, který volá výše vytvořenou funkci. Při balíčkování se dá využít běžných transformací jako `Web.Release.config`, který nastaví konfiguraci pro běh v ostrém prostředí v kombinaci s vlastními transformacemi pro různé instance. Mám tak oddělená nastavení specifická pro prostředí od těch, která specifikují konfiguraci instance.
+A mám switchnuto. `TransformConfig` je task v psake scriptu, který volá výše vytvořenou funkci.
+Při balíčkování se dá využít běžných transformací jako `Web.Release.config`,
+který nastaví konfiguraci pro běh v ostrém prostředí v kombinaci s vlastními transformacemi pro různé instance.
+Mám tak oddělená nastavení specifická pro prostředí od těch, která specifikují konfiguraci instance.
 
 Samozřejmě se to dá využít i na `app.config` nebo jakékoli jiné XML. To už záleží jen na vaší představivosti. :)

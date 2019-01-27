@@ -4,7 +4,7 @@
  :description
  "Závěrečný díl trošku sporné série o rosporech v zažitých technikách a obecných poučkách, jak dělat inverzi injekcí.",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce" "cleancode"},
  :published "2012-10-26T21:20:00"}
 ---
 

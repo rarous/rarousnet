@@ -4,7 +4,7 @@
  :description
  "Pár tipů, jak psát přehlednější kód, kterému rozumí i někdo jiný, než autor.",
  :author "Aleš Roubíček",
- :tags #{"cleancode" "asp.net 2.0"},
+ :tags #{"cleancode"},
  :published "2011-04-08T14:59:43.163"}
 ---
 

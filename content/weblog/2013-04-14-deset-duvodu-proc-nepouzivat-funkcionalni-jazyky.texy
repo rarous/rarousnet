@@ -4,7 +4,7 @@
  :description
  "Máte už plný zuby toho šílenýho povyku okolo funkcionálních jazyků? Já teda jo. Myslím, že je načase sepsat pár rozumných důvodů, proč se od něho držet dál. ",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce" "functional"},
  :published "2013-04-14T10:15:12.213"}
 ---
 

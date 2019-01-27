@@ -4,7 +4,7 @@
  :description
  "Dneska se dá solidně funkcionálně programovat i v JavaScriptu. Malá ukázka z praxe, jak na Immutabilní datové struktury za pomocí transducerů.",
  :author "Aleš Roubíček",
- :tags #{"immutable" "moje práce" "transducers" "javascript"},
+ :tags #{"immutable" "moje práce" "transducers" "javascript" "functional"},
  :published "2014-12-01T19:15:00.663"}
 ---
 
@@ -66,4 +66,3 @@ Funkce `withMutations` nám umožňuje efektivně (díky "transient kolekcím":[
 Funkce `transduce` vezme již vytvořený transducer pro nalezení `id` prvků k odebrání. Pak definujeme krok redukce, tj. vezmeme kolekci z předchozího kroku a odebereme z ní jeden prvek, jehož `id` zrovna máme. Následuje počáteční hodnota redukce, tou tedy je kolekce po odebrání `foo`. A nakonec data, nad kterými to celé probíhá a to jsou jednotlivé `bar`y, kterými krmíme transducer `xform`, z kterého lezou `id`čka pro step function. A tím se kruh uzavřel.
 
 Tak a teď se jděte projít.
-    

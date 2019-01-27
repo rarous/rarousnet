@@ -4,25 +4,37 @@
  :description
  "Spouštění a psaní testů v F# 3.0 je celkem snadné, po pár prvních zaškobrtnutích. :) ",
  :author "Aleš Roubíček",
- :tags #{"fsunit" "vs2012" "moje práce" "xunit" "fsharp"},
+ :tags #{"moje práce" "xunit" "fsharp" "functional" "cleancode"},
  :published "2012-06-05T10:47:28.137"}
 ---
 
-Začít s unit testování v F# je cekem snadné. Stačí si vytvořit `Class Library` a do ní zareferencovat váš oblíbený testovací framework. Ten můj je xUnit.net a jak se ukazuje má to i své výhody.
+Začít s unit testování v F# je cekem snadné. Stačí si vytvořit `Class Library`
+a do ní zareferencovat váš oblíbený testovací framework. Ten můj je xUnit.net a jak se ukazuje má to i své výhody.
 
 xUnit.net ve Visual Studiu 2012
 ===================
 
-Vítanou novinkou nového Visual Studia je podpora i jiných testovacích frameworků než je MsTest. Takže prvním krokem je přidat xUnit provider do Visual Studia 2012. Otevřete si `Extensions and Updates` (`Ctrl+Q` `exte` `Enter`) a v Online sekci dejte vyhledat `xUnit`. Nainstalujet si *xUnit.net runner for Visual Studio 2012*. Restartujte Studio.
+Vítanou novinkou nového Visual Studia je podpora i jiných testovacích frameworků než je MsTest.
+Takže prvním krokem je přidat xUnit provider do Visual Studia 2012. Otevřete si
+`Extensions and Updates` (`Ctrl+Q` `exte` `Enter`) a v Online sekci dejte vyhledat `xUnit`.
+Nainstalujet si *xUnit.net runner for Visual Studio 2012*. Restartujte Studio.
 
-Nyní můžeme spouštět xUnit.net testy přímo ve Visual Studiu pomocí zkratky `Ctrl+R, T`. Doporučuju si zobrazit okno *Test Explorer*.
+Nyní můžeme spouštět xUnit.net testy přímo ve Visual Studiu pomocí zkratky `Ctrl+R, T`.
+Doporučuju si zobrazit okno *Test Explorer*.
 
 FsUnit a xUnit
-=========
+==============
 
-Takže máme přidanou podporu pro test runner. Teď ještě přidat samotný testovací framework a když už jsme u toho i krapet lepší assertovací framework. Takže si vytvoříme nový projekt typu *Class Library*. Otevřeme si *Package Manager Console* (využijte `Ctrl+Q`) a doinstalujeme si nuget balíček. Vzhledem k vyřešeným závislostem stačí napsat `Install-Package FsUnit.Xunit` a jsme skoro ready. Skoro. FsUnit referencuje `FSharp.Core 4.0.0.0`, ale aktuální verze je `FSharp.Core 4.3.0.0`, proto do konzole napíšeme ještě `Add-BindingRedirect *název projektu*`, který zajistí přesměrování na používanou verzi. No a můžeme psát! :)
+Takže máme přidanou podporu pro test runner. Teď ještě přidat samotný testovací framework
+a když už jsme u toho i krapet lepší assertovací framework. Takže si vytvoříme nový projekt typu *Class Library*.
+Otevřeme si *Package Manager Console* (využijte `Ctrl+Q`) a doinstalujeme si nuget balíček.
+Vzhledem k vyřešeným závislostem stačí napsat `Install-Package FsUnit.Xunit` a jsme skoro ready. Skoro.
+FsUnit referencuje `FSharp.Core 4.0.0.0`, ale aktuální verze je `FSharp.Core 4.3.0.0`,
+proto do konzole napíšeme ještě `Add-BindingRedirect *název projektu*`, který zajistí přesměrování na používanou verzi.
+No a můžeme psát! :)
 
-Co se mi líbí na xUnit.net, je že nemusíte dekorovat testovací třídy a podobné nesmysle. Prostě si vytvoříme modul a rovnou píšeme testy:
+Co se mi líbí na xUnit.net, je že nemusíte dekorovat testovací třídy a podobné nesmysle.
+Prostě si vytvoříme modul a rovnou píšeme testy:
 
 /--code fsharp
 module Tests.``ukázka xUnit a FsUnit``
@@ -43,6 +55,9 @@ let ``Test tautologie v FsUnit`` ()=
     true |> should be True
 \--code
 
-První věc, co by vás měla zaujmout, je zápis názvů testovacích metod a modulů pomocí přirozeného jazyka. To je úžasná vlastnost F#, která zpřehledňuje testy. Další poznatek: F# má funkci `assert`, což je alias pro `System.Diagnostics.Debug.Assert()`, občas se může hodit. Druhý test používá klasické asserty z xUnit.net. Třetí používá DSL FsUnit.
+První věc, co by vás měla zaujmout, je zápis názvů testovacích metod a modulů pomocí přirozeného jazyka.
+To je úžasná vlastnost F#, která zpřehledňuje testy. Další poznatek: F# má funkci `assert`, což je alias pro
+`System.Diagnostics.Debug.Assert()`, občas se může hodit. Druhý test používá klasické asserty z xUnit.net.
+Třetí používá DSL FsUnit.
 
 Tak s chutí do testování!

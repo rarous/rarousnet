@@ -3,7 +3,7 @@
  :title "Mikroslužby",
  :description "Definice mikroslužeb.",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce", "cleancode"},
  :published "2014-03-26T07:00:00.663"}
 ---
 
@@ -56,4 +56,3 @@ být vytvořeny takové abstrakce, které nám umožní Mikroslužby *konzumovat
 asynchronně.*
 
 Překlad článku [Microservices](http://klangism.tumblr.com/post/80087171446/microservices) od Viktora Klanga
-    

@@ -8,26 +8,42 @@
  :published "2011-07-23T09:31:11.890"}
 ---
 
-Poslední dobou se mi velmi často stává, že narážím na hlášky typu “od devíti refaktoruju a furt to nemá konce,” “refaktoring mi zabere asi tři dny, udělej mi na to task do backlogu” nebo „refaktoroval jsem to a nějak to přestalo fungovat.“ Tohle všechno jsou lži, ať už plynoucí z neznalosti, co to je refaktoring nebo trendy nadužívání  tohoto slova v nepatřičných situacích.
+Poslední dobou se mi velmi často stává, že narážím na hlášky typu “od devíti refaktoruju a furt to nemá konce,”
+“refaktoring mi zabere asi tři dny, udělej mi na to task do backlogu” nebo
+„refaktoroval jsem to a nějak to přestalo fungovat.“ Tohle všechno jsou lži, ať už plynoucí z neznalosti,
+co to je refaktoring nebo trendy nadužívání  tohoto slova v nepatřičných situacích.
 
 Co je to refaktoring?
 =====================
 
-Refaktoring:[http://en.wikipedia.org/wiki/Code_refactoring] je pojem, který je definován poměrně přesně. Je to krátká **atomická operace** nad kódem, která **nemění jeho funkci**, pouze **strukturu**. Z definice jasně vyplývá, že věty z úvodu jsou lži.
+Refaktoring:[http://en.wikipedia.org/wiki/Code_refactoring] je pojem, který je definován poměrně přesně.
+Je to krátká **atomická operace** nad kódem, která **nemění jeho funkci**, pouze **strukturu**.
+Z definice jasně vyplývá, že věty z úvodu jsou lži.
 
-Refaktoring patří k základní hygieně čistého kódu. Měli byste ho používat neustále. Není to věc, kterou byste měli zahrnovat do plánů jako něco extra, podobně jako testy, jsou jejich nedílnou součástí. A sluší se je zahrnout do časových odhadů jednotlivých úkolů. Ne však jako samostatné úkoly!
+Refaktoring patří k základní hygieně čistého kódu. Měli byste ho používat neustále.
+Není to věc, kterou byste měli zahrnovat do plánů jako něco extra, podobně jako testy,
+jsou jejich nedílnou součástí. A sluší se je zahrnout do časových odhadů jednotlivých úkolů.
+Ne však jako samostatné úkoly!
 
 Říkám refaktoring, myslím redesign
 ==================================
 
-Refaktoring se stal trendy pojmem. Manažeři mu nerozumí a programátoři se sním furt ohánějí. „Proč ti to trvalo tak dlouho?“ „Ještě jsem musel udělat refaktoring tohodle a tamtoho.“ Jenže jak jsme si řekli v definici, refaktoring je krátká operace! Velmi krátká, pokud máte dobré nástroje, netrvá více než pár stisků kláves. Řádově trvá jednotky sekund.
+Refaktoring se stal trendy pojmem. Manažeři mu nerozumí a programátoři se sním furt ohánějí.
+„Proč ti to trvalo tak dlouho?“ „Ještě jsem musel udělat refaktoring tohodle a tamtoho.“
+Jenže jak jsme si řekli v definici, refaktoring je krátká operace! Velmi krátká, pokud máte dobré nástroje,
+netrvá více než pár stisků kláves. Řádově trvá jednotky sekund.
 
-Refaktoring má navíc tu vlastnost, že i když děláte velkou sérii - provádíte redesign – můžete kdykoli přestat a aplikace stále funguje. Ano, je to tak. Opět to vyplívá jasně z definice. Pokud ne, děláte jenom redesign.
+Refaktoring má navíc tu vlastnost, že i když děláte velkou sérii - provádíte redesign –
+můžete kdykoli přestat a aplikace stále funguje. Ano, je to tak. Opět to vyplívá jasně z definice.
+Pokud ne, děláte jenom redesign.
 
 Redesign
 ========
 
-„Musíme to přepsat.“ Ta slova nemají manažeři rádi. Znamená to spoustu promarněných (z jejich pohledu - my přece víme, že se to musí udělat a že se to vrátí) hodin/dní (někdy i měsíců a let) práce. A tak se místo redesignování začalo „refaktrovat.“ Přestaňme si lhát. I když třeba během redesignu použijeme nějaký ten refaktoring, pořád je to redesign. Redesignovat můžeme přinejmenším dvěma způsoby:
+„Musíme to přepsat.“ Ta slova nemají manažeři rádi. Znamená to spoustu promarněných
+(z jejich pohledu - my přece víme, že se to musí udělat a že se to vrátí) hodin/dní (někdy i měsíců a let) práce.
+A tak se místo redesignování začalo „refaktrovat.“ Přestaňme si lhát. I když třeba během redesignu použijeme
+nějaký ten refaktoring, pořád je to redesign. Redesignovat můžeme přinejmenším dvěma způsoby:
 
 1. Hurá redesign, kdy se původní kód zahodí a napíše se to znova a občas se něco z toho původního copy&pastene. Tohle se často dnes nazývá refactoring. A většinou z toho vypadne podobná sračka, jako byla před tím, jen bude mít jiný tvar.
 2. Můžeme postupně refaktorovat a časem se dostat k lepšímu designu. Ale nezapomínejte, vždycky tenhle proces můžete přerušit  a aplikace funguje. Stačí, že změny jsou good enough. Váš kód nikdy nebude dokonalý.

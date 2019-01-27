@@ -4,7 +4,7 @@
  :description
  "Všetšinou se totiž vyplatí abstrahovat z imperativního zápisu na deklarativní.",
  :author "Aleš Roubíček",
- :tags #{"asp.net 2.0" "linq"},
+ :tags #{"cleancode" "linq" "functional"},
  :published "2010-12-26T07:30:48.117"}
 ---
 

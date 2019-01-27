@@ -3,7 +3,7 @@
  :title "Traits v C#",
  :description "Jak na implementaci traits v C#.",
  :author "Aleš Roubíček",
- :tags #{"moje práce"},
+ :tags #{"moje práce" "cleancode"},
  :published "2013-03-23T08:34:39.990"}
 ---
 

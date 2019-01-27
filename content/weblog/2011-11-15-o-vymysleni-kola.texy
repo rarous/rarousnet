@@ -7,13 +7,17 @@
  :published "2011-11-15T13:48:38.447"}
 ---
 
-V pátek jsem si utvítl, že "Psát virtuální distribuovanej file systém je challenge." a hned jsem dostal reakce, že jsem další v řadě a že znova vymýšlím kolo a další parafráze mých výroků.
+V pátek jsem si utvítl, že "Psát virtuální distribuovanej file systém je challenge."
+a hned jsem dostal reakce, že jsem další v řadě a že znova vymýšlím kolo a další parafráze mých výroků.
 
 Jak to tedy je? :)
 
 Challenge pro vás
 =================
 
-Ukažte mi implementaci `VirtualPathProvider`u, který má správně vyřešené cachování a škáluje přes více než jeden webový front-end.
+Ukažte mi implementaci `VirtualPathProvider`u, který má správně vyřešené cachování
+a škáluje přes více než jeden webový front-end.
 
-Když se vám to povede, veřejně mě můžete prohlásit za hlupáka, který neumí hledat a znovu vynalézá kolo. Když se vám to nepovede, můžete se mě snažit uplatit, abych vám prozradil pikantní podrobnosti.
+Když se vám to povede, veřejně mě můžete prohlásit za hlupáka, který neumí hledat
+a znovu vynalézá kolo. Když se vám to nepovede, můžete se mě snažit uplatit,
+abych vám prozradil pikantní podrobnosti.

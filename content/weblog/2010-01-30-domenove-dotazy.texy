@@ -4,7 +4,7 @@
  :description
  "Dneska se podíváme na zoubek dotazování nad doménovými objekty. Jak refaktorovat IRepository na autonomní query objekty...",
  :author "Aleš Roubíček",
- :tags #{"architecture" "design" "asp.net 2.0" "patterns" "linq"},
+ :tags #{"cleancode" "patterns" "linq"},
  :published "2010-01-30T13:53:12.107"}
 ---
 

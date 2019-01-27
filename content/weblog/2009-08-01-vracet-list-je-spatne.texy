@@ -4,7 +4,7 @@
  :description
  "Občas pohodlnost vyhrává a zadělává na zasmrádnutý kód, který přináší problémy. Pojďme vymítit jednu ze zhůvěřilostí \"kreativního\" návrhu. ",
  :author "Aleš Roubíček",
- :tags #{"csharp" "asp.net 2.0" "refactoring"},
+ :tags #{"csharp" "cleancode" "refactoring"},
  :published "2009-08-01T08:51:21.480"}
 ---
 
