@@ -11,13 +11,13 @@ Na proběhnuvším CodeRetreatu:[http://coderetreat.cz/] jsme se a pány Kolmane
 o tom k čemu vlastně je TDD((Test Driven Development)), jaký má přínos?
 
 Michal argumentoval tím, že dělá testable design a testy píše potom a že je s tím cajk,
-že nevidí důvod, proč dělat TDD. S Danem jsme nahazovali okřídleané pravdy o výhodách TDD,
+že nevidí důvod, proč dělat TDD. S Danem jsme nahazovali okřídlené pravdy o výhodách TDD,
 které Michal zašlapal. A tak jsme nenašli správnou argumentaci. A já o tom musel přemýšlet.
 Přece tam musí být nějakej zásadní rozdíl!
 
 A on je. Ta největší devíza TDD je **iterativní přístup k vývoji.** Pakliže se držíte nějaké agilní
-metodiky a jednou za iteraci máte funkční produkt, který může jít potenciálně do produkce.
+metodiky, tak jednou za iteraci máte funkční produkt, který může jít potenciálně do produkce.
 S TDD jste v takovém stavu takřka každou chvíli (po dokončení kolečka Red-Green-Refactor).
-Kdykoli za vámi někdo přijde, že chce vidět jak na tom jste, tak nemusíte říkat "těd to nejde,
+Kdykoli za vámi někdo přijde, že chce vidět, jak na tom jste, tak nemusíte říkat "těd to nejde,
 zrovna mám něco rozdělanýho a nefunguje to." S TDD vám aplikace funguje takřka pořád.
 Sice nemá všechny požadované vlastnosti, ale **je funkční.**

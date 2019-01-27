@@ -8,16 +8,16 @@
  :published "2012-10-09T09:09:01.727"}
 ---
 
-Když pár týdnů nazpět, vyhlásilo @czpodcast call to action na téma
-"continuous delivery":[http://java.cz/article/czpodcast-continuous-delivery].
-Trapně jsem se obratem ozval. Rok se pomalu s rokem sešel a už jsem zase seděl ve
-Vendavo s @_dagi:[https://twitter.com/_dagi] a @jirifabian:[https://twitter.com/jirifabian].
-Bohužel nikdo další se asi nepřihlásil, tak jsme si dali 69 ve třech.
+Když pár týdnů nazpět vyhlásil @czpodcast:[https://twitter.com/czpodcast] call to action na téma
+"continuous delivery":[http://java.cz/article/czpodcast-continuous-delivery] -
+trapně jsem se obratem ozval. Rok se pomalu s rokem sešel a už jsem zase seděl ve
+Vendavu s @_dagi:[https://twitter.com/_dagi] a @jirifabian:[https://twitter.com/jirifabian].
+Bohužel, nikdo další se asi nepřihlásil, tak jsme si dali 69 ve třech.
 Jak to nakonec dopadlo si můžete poslechnout sami:
 
 <iframe width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Falesroubicek%2Fczpodcast-69-continuous-delivery%2F" frameborder="0" ></iframe>
 
-Dost věcí, co jsme tam probírali jste si už tady na blogu mohli
+Dost věcí, co jsme tam probírali, jste si už tady na blogu mohli
 "trochu přečíst":[http://rarous.net/weblog/405-nejsem-schopny-dopsat-clanek-o-continuous-integration.aspx].
 Nebo "slyšet na WebExpu":[http://rarous.net/weblog/394-continuous-delivery.aspx].
 Samozřejmě jsem opět klouzal po povrchu.
@@ -26,6 +26,6 @@ Pokud si myslíte, že je to nějak kontroverzní nebo nenasaditelná praktika,
 vězte, že většinu o čem jsem tam mluvil mám ověřenou v praxi.
 Ať už jde o mainline vývoj, automatizaci buildu, testování i deploymentu, včetně
 "feature toggles a větvení abstrakcí":[http://rarous.net/weblog/404-prepinani-featur-a-vetveni-abstrakci.aspx].
-To jsou věci, které nejen propaguju, ale i prakticku uplatňuju. ;)
+To jsou věci, které nejen propaguju, ale i prakticky uplatňuju. ;)
 
 A vám v tom taky nic nebrání. Pouze lenost (pohodlnost to být nemůže). Tak šup, čím dneska začnete?

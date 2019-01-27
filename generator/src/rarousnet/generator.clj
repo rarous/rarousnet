@@ -234,7 +234,7 @@
                        (sort-by :year >))]))
       (map (fn [[tag items]]
              (let [file-name (str "tag/" (slug tag) ".html")
-                   html (apply str (tag-template {:title tag :url file-name :years items}))]
+                   html (apply str (tag-template {:title tag :url file-name :years items}))] ;; TODO: sort by date
                {:file-name file-name
                 :html html})))
       (map (partial write-file dist)))))

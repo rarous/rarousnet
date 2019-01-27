@@ -4,7 +4,7 @@
  :description
  "Jednoho lednového odpoledne mi Filemon povídá, že jde točit CZ Podcast a že nemaj hosta. Jestli nechci povědět něco o Pull Requestech.",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "topmonks", "czpodcast"},
+ :tags #{"moje práce", "topmonks", "czpodcast", "ci"},
  :published "2019-01-16T12:00:00.000"}
 ---
 

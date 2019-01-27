@@ -90,7 +90,7 @@ mám zhruba 90% code coverage. Je to díky filtrům. Protože mám z CC vylouče
 kódu třetí strany, composition rooty a podobné. To jsou věci, který mi pokrývaj Integrační testy nebo
 jdou ověřit spuštěním služby.
 
-Jsem v celkem raný fázi vývoje a tohle mi umožňuje věci měnit. Testy se mi neboří,
+Jsem v celkem ranné fázi vývoje a tohle mi umožňuje věci měnit. Testy se mi neboří,
 protože nejsou zaměřený na detaily, ale na chování. Proto můžu věci měnit a hned
 (do 10 sekund) vím, jestli jsem něco nepodělal. Ještě před pár týdny jsem měl CC kolem 40 %.
 A tak jsem začal kód přestrukturovávat tak, aby se coverage zvedla. Žádná honba za spoustou testů.
