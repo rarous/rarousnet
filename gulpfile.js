@@ -15,7 +15,8 @@ function css() {
   ];
   return src("./static/**/*.css")
     .pipe(postcss(plugins))
-    .pipe(dest("./dist/"));
+    .pipe(dest("./dist/"))
+    .pipe(browserSync.stream());
 }
 
 function hashStyles() {
