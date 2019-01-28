@@ -2,35 +2,51 @@
 {:id 448,
  :title "Deset důvodů proč nepoužívat funkcionální jazyky",
  :description
- "Máte už plný zuby toho šílenýho povyku okolo funkcionálních jazyků? Já teda jo. Myslím, že je načase sepsat pár rozumných důvodů, proč se od něho držet dál. ",
+ "Máte už plný zuby toho šílenýho povyku okolo funkcionálních jazyků? Já teda jo.
+  Myslím, že je načase sepsat pár rozumných důvodů, proč se od něho držet dál.",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "functional"},
+ :tags #{"moje práce" "functional" "cleancode"},
  :published "2013-04-14T10:15:12.213"}
 ---
 
-Máte už plný zuby toho šílenýho povyku okolo funkcionálních jazyků? Já teda jo. Myslím, že je načase sepsat pár rozumných důvodů, proč se od něho držet dál. **Funkcionální programování není pro každého.** To je důležité zmínit hned na začátku.
+Máte už plný zuby toho šílenýho povyku okolo funkcionálních jazyků? Já teda jo.
+Myslím, že je načase sepsat pár rozumných důvodů, proč se od něho držet dál.
+**Funkcionální programování není pro každého.** To je důležité zmínit hned na začátku.
 
-Pro jistotu, když píšu "staticky typovaný funkcionální jazyk," mám na mysli jazyk, který i dokáže odvozovat typy, jeho datové struktury nepodporují mutace, a podobné nesmysly. V praxi to znamená, že myslím zcela nepraktické (akademické) jazyky jako je Haskell nebo jazyky z rodiny ML (jako OCaml nebo F#).
+Pro jistotu, když píšu "staticky typovaný funkcionální jazyk," mám na mysli jazyk,
+který i dokáže odvozovat typy, jeho datové struktury nepodporují mutace, a podobné nesmysly.
+V praxi to znamená, že myslím zcela nepraktické (akademické) jazyky jako je
+Haskell nebo jazyky z rodiny ML (jako OCaml nebo F#).
 
 Důvod první: Nemám zájem sledovat poslední výstřelky
-==================================
+====================================================
 
-Jako většina programátorů, jsem přirozeně konzervativní a nerad se učím nové věci. To je také důvod proč jsem si vybral kariéru v IT.
+Jako většina programátorů, jsem přirozeně konzervativní a nerad se učím nové věci.
+To je také důvod proč jsem si vybral kariéru v IT.
 
-Rozhodně nejančím z každé žhavé novinky, jen proto, že všichni frajeři se z ním můžou podělat. Já si radši počkám, až ten výstřelek trochu dospěje a ukáže se trochu perspektivním. Pro mě tu není funkcionální programování dostatečně dlouho, aby mě přesvědčilo, že tu s námi ještě nějakou dobu bude.
+Rozhodně nejančím z každé žhavé novinky, jen proto, že všichni frajeři se z ním můžou podělat.
+Já si radši počkám, až ten výstřelek trochu dospěje a ukáže se trochu perspektivním.
+Pro mě tu není funkcionální programování dostatečně dlouho, aby mě přesvědčilo, že tu s námi ještě nějakou dobu bude.
 
-Ano, někteří se nás mohou snažit přesvědčovat, že ML nebo Haskell tu byly asi tak stejně dlouho jako naše staré známé oblíbené jazyky, jako je Java nebo PHP, ale já o Haskellu, slyšel poprvé celkem nedávno, takže s tímhle argumentem na mě nechoďte.
+Ano, někteří se nás mohou snažit přesvědčovat, že ML nebo Haskell tu byly asi tak stejně
+dlouho jako naše staré známé oblíbené jazyky, jako je Java nebo PHP, ale já o Haskellu,
+slyšel poprvé celkem nedávno, takže s tímhle argumentem na mě nechoďte.
 
-A podívejte na to batole, F#. Vždyť je teprve sedm let starý! Jistě, to může být dost dlouhá doba pro geology, ale na internetu? Sedm let!? To je skoro okamžik.
+A podívejte na to batole, F#. Vždyť je teprve sedm let starý! Jistě, to může být dost
+dlouhá doba pro geology, ale na internetu? Sedm let!? To je skoro okamžik.
 
-Tak, jak říkám, radši budu opatrný a ještě si pár dekád počkám, jestli tu ještě tohle to funkcionální programování bude, nebo jestli se to nakonec neukáže jako výstřelek doby.
+Tak, jak říkám, radši budu opatrný a ještě si pár dekád počkám, jestli tu ještě tohle
+to funkcionální programování bude, nebo jestli se to nakonec neukáže jako výstřelek doby.
 
 Důvod druhý: Jsem placen od řádky kódu
-================================
+======================================
 
-Já teda nevím jak vy, ale čím víc řádek napíšu, tím víc se cítím produktivní. Pokud můžu za den vychrlit 500 řádků kódu, mám ze sebe dobrý pocit. To byla dobře odvedená práce. Moje commity jsou velké a můj šéf může jasně vidět, že jsem byl opravdu vytíženej.
+Já teda nevím jak vy, ale čím víc řádek napíšu, tím víc se cítím produktivní.
+Pokud můžu za den vychrlit 500 řádků kódu, mám ze sebe dobrý pocit. To byla dobře odvedená práce.
+Moje commity jsou velké a můj šéf může jasně vidět, že jsem byl opravdu vytíženej.
 
-Když porovnám kód napsaný ve funkcionálním jazyce s kódem ve starém dobrém céčkovém jazyce, chybí tam tolik kódu, že mě to až děsí.
+Když porovnám kód napsaný ve funkcionálním jazyce s kódem ve starém dobrém céčkovém jazyce,
+chybí tam tolik kódu, že mě to až děsí.
 
 No, podívejte se sami na kód napsaný v povědomém jazyce:
 
@@ -61,12 +77,16 @@ let square x = x * x
 let sumOfSquares n = [1..n] |> List.map square |> List.sum
 \--code
 
-To je 17 řádek ku 2. "Představte si ten rozdíl, když to rozložíte na celý projekt!":[http://www.simontylercousins.net/journal/2013/2/22/does-the-language-you-choose-make-a-difference.html] Kdybych takhle přistupoval k psaní mých programů, moje produktivita by drasticky klesla. Brrr, lepší si to ani nepředstavovat.
+To je 17 řádek ku 2. "Představte si ten rozdíl, když to rozložíte na celý
+projekt!":[http://www.simontylercousins.net/journal/2013/2/22/does-the-language-you-choose-make-a-difference.html]
+Kdybych takhle přistupoval k psaní mých programů, moje produktivita by drasticky klesla.
+Brrr, lepší si to ani nepředstavovat.
 
 Důvod třetí: Miluju složené závorky
-==========================
+===================================
 
-A to taky dost nepobírám. Co je jako na těch jazycích, co se snaží zbavit všech těch závorek? Jak je pak vůbec můžeme považovat za opravdové programovací jazyky?
+A to taky dost nepobírám. Co je jako na těch jazycích, co se snaží zbavit všech těch závorek?
+Jak je pak vůbec můžeme považovat za opravdové programovací jazyky?
 
 Pojďme si ukázat, co mám na mysli. Tady je kus kódu se starejma dobrejma složenejma závorkama:
 
@@ -104,13 +124,16 @@ type Squarer() =
 Vidíte to? Já teda nevím jak vám, ale mně ta druhá ukázka přijde dost znepokojující, jako by tam něco důležitého chybělo. Ruku na srdce, jsem celkem ztracený, když se mé oko nemůže odpíchnout od povědomých složených závorek.
 
 Důvod čtvrtý: Chci vidět explicitní typy
-============================
+========================================
 
-Zastánci funkcionálního programování tvrdí, že odvozování typů, dělá kód čistším, protože ho nemusíte pořád zanášet typovými deklaracemi.
+Zastánci funkcionálního programování tvrdí, že odvozování typů, dělá kód čistším,
+protože ho nemusíte pořád zanášet typovými deklaracemi.
 
-Abych byl upřímný, já typové deklarace vidět chci. Necítím se ve své kůži, když nevidím jakého typu parametr přesně je. To je také důvod, proč mám rád Javu.
+Abych byl upřímný, já typové deklarace vidět chci. Necítím se ve své kůži,
+když nevidím jakého typu parametr přesně je. To je také důvod, proč mám rád Javu.
 
-Tady je signatůra funkce z nějakýho ML dialektu. Nejsou tam vůbec žádný deklarace typů. Všechny jsou odvozený automagicky:
+Tady je signatůra funkce z nějakýho ML dialektu. Nejsou tam vůbec žádný deklarace typů.
+Všechny jsou odvozený automagicky:
 
 /--code fsharp
 let GroupBy source keySelector =
@@ -127,44 +150,57 @@ public IEnumerable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(
     ...
 \--code
 
-Já teda nevím jak vám, ale mně se víc líbí druhá ukázka. Pro mě je velice důležité, abych viděl, že ta funkce vrací `IEnumerable<IGrouping<TKey, TSource>>`.
+Já teda nevím jak vám, ale mně se víc líbí druhá ukázka. Pro mě je velice důležité,
+abych viděl, že ta funkce vrací `IEnumerable<IGrouping<TKey, TSource>>`.
 
-Tak určitě. Kompilátor jako zjistí, co je to za typ a upozorní mě, když to nesedí, ale proč by to, proboha, měl dělat kompilátor? Od čeho mám svůj mozek?
+Tak určitě. Kompilátor jako zjistí, co je to za typ a upozorní mě, když to nesedí,
+ale proč by to, proboha, měl dělat kompilátor? Od čeho mám svůj mozek?
 
-Přiznávám, že pokud pracujete s generiky, lambda výrazy a s funkcemi, které vracejí funkce a s dalšíma cool novinkama, tak pak asi můžou být typové declarace trochu fousaté a komplexní. Může to být trochu těžké, napast správný typ. Ale na druhou stranu, existuje na to jednoduchý lék: **Nepoužívejte generika a nepředávejte si funkce.** Vaše signatury budou o dost jednodušší!
+Přiznávám, že pokud pracujete s generiky, lambda výrazy a s funkcemi, které vracejí funkce
+a s dalšíma cool novinkama, tak pak asi můžou být typové declarace trochu fousaté a komplexní.
+Může to být trochu těžké, napast správný typ. Ale na druhou stranu, existuje na to jednoduchý lék:
+**Nepoužívejte generika a nepředávejte si funkce.** Vaše signatury budou o dost jednodušší!
 
 Důvod pátý: Rád opravuju bugy
-=======================
+=============================
 
-Neznám nic napínavějšího než je lov - vystopovat a zlikvidovat pořádnou bugu. A když najdu bugu v produkci, ještě líp, protože navíc budu ještě za hrdinu.
+Neznám nic napínavějšího než je lov - vystopovat a zlikvidovat pořádnou bugu.
+A když najdu bugu v produkci, ještě líp, protože navíc budu ještě za hrdinu.
 
 Četl jsem, že "se staticky typovnými funkcionálními jazyky, je mnohem těžší zanést chybu.":[http://www.simontylercousins.net/journal/2013/3/7/why-bugs-dont-like-f.html]
 
 No tě pic.
 
 Důvod šestý: V debuggeru jsem jako doma
+=======================================
 
-================================
+A když už jsem u toho lovení bugů. Většinu dne trávím v debuggeru, krokováním kódu.
+Já vím, měl bych psát unit testy. Jenže to se snadnějš řekne, než dělá…
 
-A když už jsem u toho lovení bugů. Většinu dne trávím v debuggeru, krokováním kódu. Já vím, měl bych psát unit testy. Jenže to se snadnějš řekne, než dělá…
-
-Každopádně, podle všeho, "pokud se vám ve staticky typovaném funkcionálním jazyce podaří program zkompilovat, většinou i funguje":[http://www.haskell.org/haskellwiki/Why_Haskell_just_works]. Prej musíte většinu času zabít tím, aby jste správně poladili typy, aby to pěkně sedělo a pak máte hotovo. Co je na tom zábavného?
+Každopádně, podle všeho, "pokud se vám ve staticky typovaném funkcionálním jazyce podaří
+program zkompilovat, většinou i funguje":[http://www.haskell.org/haskellwiki/Why_Haskell_just_works].
+Prej musíte většinu času zabít tím, aby jste správně poladili typy, aby to pěkně sedělo a pak máte hotovo.
+Co je na tom zábavného?
 
 Což mě přivádí k…
 
 Důvod sedmý: Nechci přemýšlet nad každým detailem
-=========================================
+=================================================
 
 Všechno to ladění typů a ujišťování se, že všechno perfektně sedí, zní celkem nudně.
 
-Dokonce jsem někde slyšel, že jste nucený přemýšlet o každém možném hraničním případu, všech možných chybových stavech a já nevím, co se ještě může zvrtnout. A to všechno od samého začátku. Prostě nemůžeš být línej a nechat to na pozdějc.
+Dokonce jsem někde slyšel, že jste nucený přemýšlet o každém možném hraničním případu,
+všech možných chybových stavech a já nevím, co se ještě může zvrtnout.
+A to všechno od samého začátku. Prostě nemůžeš být línej a nechat to na pozdějc.
 
 Radši se zaměřuju na to, aby (většinou) všechno prošlo tak jak má a bugy řeším, až když se ukážou.
 
 Důvod osmý: Rád ověřuju null
-=======================
+============================
 
-Jsem "velmi svědomitý v případě ověřování `null` a to v každé metodě":[http://stackoverflow.com/questions/7585493/null-parameter-checking-in-c-sharp]. Celkem mě uspokojuje pocit, že vím, že můj kód je ve výsledku úplně neprůstřelný.
+Jsem "velmi svědomitý v případě ověřování `null` a to v každé
+metodě":[http://stackoverflow.com/questions/7585493/null-parameter-checking-in-c-sharp].
+Celkem mě uspokojuje pocit, že vím, že můj kód je ve výsledku úplně neprůstřelný.
 
 /--code csharp
 void SomeMethod(SomeClass x)
@@ -177,44 +213,66 @@ void SomeMethod(SomeClass x)
 
 Kecám. Samozřejmě to nedělám úplně všude, to bych vůbec nic jinýho neudělal.
 
-Ale, nakonec se mi stalo jen jednou, že jsem musel řešit pád, kvůli `NRE`. Ani jsme nepřišli o moc peněz za těch pár tejdnů, kdy jsem hledal, kde je vlastně problém. Fakt nechápu, proč se z toho "dělá taková věda":[http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare].
+Ale, nakonec se mi stalo jen jednou, že jsem musel řešit pád, kvůli `NRE`.
+Ani jsme nepřišli o moc peněz za těch pár tejdnů, kdy jsem hledal, kde je vlastně problém.
+Fakt nechápu, proč se z toho "dělá taková
+věda":[http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare].
 
 Důvod devátý: Rád aplikuju návrhové vzory, kde je to možné
 =============================================
 
-Poprvý jsem o návrhových vzorech četl v knize "Návrhové vzory":[http://knihy.cpress.cz/navrhove-vzory.html] (z nějakýho důvodu se občas označuje jako GoF vzory, ale fakt netušim proč) a od tý doby je fakt pilně aplikuju na všechny problémy. Můj kód pak vypadá líp a má "enterprise" nádech. A to se mému šéfovi líbí.
+Poprvý jsem o návrhových vzorech četl v knize "Návrhové vzory":[http://knihy.cpress.cz/navrhove-vzory.html]
+(z nějakýho důvodu se občas označuje jako GoF vzory, ale fakt netušim proč) a od tý doby
+je fakt pilně aplikuju na všechny problémy. Můj kód pak vypadá líp a má "enterprise" nádech.
+A to se mému šéfovi líbí.
 
-Ale ještě jsem ani náznakem neslyšel o nějakých vzorech ve funkcionálním programování. Jak vůbec můžete udělat něco užitečnýho bez "Strategie":[http://www.algoritmy.net/article/1639/Strategy], "Abstraktní továrny":[http://www.algoritmy.net/article/1403/Abstract-factory], "Dekorátoru":[http://www.algoritmy.net/article/1629/Decorator], "Proxy":[http://objekty.vse.cz/Objekty/Vzory-Proxy] nebo dalších?
+Ale ještě jsem ani náznakem neslyšel o nějakých vzorech ve funkcionálním programování.
+Jak vůbec můžete udělat něco užitečnýho bez "Strategie":[http://www.algoritmy.net/article/1639/Strategy],
+"Abstraktní továrny":[http://www.algoritmy.net/article/1403/Abstract-factory],
+"Dekorátoru":[http://www.algoritmy.net/article/1629/Decorator],
+"Proxy":[http://objekty.vse.cz/Objekty/Vzory-Proxy] nebo dalších?
 
 Možná o nich funkcionální programátoři ani neslyšeli…
 
 Důvod desátý: Je tam příliš matematiky
-=============================
+======================================
 
-Tady je další ukázka počítání mocnin. IMO je dost těžký pochopit, o co vlastně jde, protože je tam sousta nesmyslných symbolů:
+Tady je další ukázka počítání mocnin. IMO je dost těžký pochopit, o co vlastně jde,
+protože je tam sousta nesmyslných symbolů:
 
 /--code
 ss=: +/ @: *:
 \--code
 
 
-Dobře, omlouvám se, moje chyba, tohle je "kód v J":[http://en.wikipedia.org/wiki/J_(programming_language)]. Ale stejně jsem viděl, jak je ten funkcionální kód plnej různých `<*>` a `>>=` a vůbec takových divných konceptů jako jsou "monády" a "funktory".
+Dobře, omlouvám se, moje chyba, tohle je "kód v J":[http://en.wikipedia.org/wiki/J_(programming_language)].
+Ale stejně jsem viděl, jak je ten funkcionální kód plnej různých `<*>` a `>>=` a vůbec takových
+divných konceptů jako jsou "monády" a "funktory".
 
-Fakt nechápu, proč tihle funkcionalisti nemohli nechat věci, který už dobře znám -- jasné symboly jako `++` nebo `!=` a jednoduché koncepty jako je "dědičnost" a "polymorfismus".
+Fakt nechápu, proč tihle funkcionalisti nemohli nechat věci, který už dobře znám -- jasné
+symboly jako `++` nebo `!=` a jednoduché koncepty jako je "dědičnost" a "polymorfismus".
 
 Shrnutí: Fakt to nechápu
 ===================
 
 Víte co? Fakt to nechápu. Nechápu, co by mohlo být na funkcionálním programování užitečný.
 
-Jediný oč žádám je, aby mi někdo "ukázal skutečné benefity na jedný stránce":[http://fsharpforfunandprofit.com/why-use-fsharp/], místo chrlení příliš spousty nesourodých informací.
+Jediný oč žádám je, aby mi někdo "ukázal skutečné benefity na jedný
+stránce":[http://fsharpforfunandprofit.com/why-use-fsharp/], místo chrlení příliš spousty nesourodých informací.
 
-**Update:** Tak jsem si přečetl tu stránku "vše co potřebujete vědět na jediné stránce." Ale je to "příliš krátké a zjednodušující":[http://www.devbook.cz/jak-zacit-programovat-tvorit-aplikace-programy], aby mi to dávlo smysl. Fakt hledám něco, co "má trochu hloubku":[http://programujte.com/clanek/2006032503-co-je-to-funkcionalni-programovani/], něco, co by mě "fakt chytlo":[http://www.knesl.com/articles/view/jak-se-pustit-do-ukolu-ktery-se-vam-nechce-delat].
+**Update:** Tak jsem si přečetl tu stránku "vše co potřebujete vědět na jediné
+stránce." Ale je to "příliš krátké a zjednodušující":[http://www.devbook.cz/jak-zacit-programovat-tvorit-aplikace-programy],
+aby mi to dávlo smysl. Fakt hledám něco, co "má trochu
+hloubku":[http://programujte.com/clanek/2006032503-co-je-to-funkcionalni-programovani/], něco, co by
+mě "fakt chytlo":[http://www.knesl.com/articles/view/jak-se-pustit-do-ukolu-ktery-se-vam-nechce-delat].
 
-A ne, fakt nemám chuť "číst tutoriály":[http://learnyouahaskell.com/], "hrát si s ukázkama":[http://www.tryfsharp.org/Learn] a psát vlastní kód. Chci tomu jen přijít na kloub, bez toho, abych musel dělat všechny ty zbytečný věci.
+A ne, fakt nemám chuť "číst tutoriály":[http://learnyouahaskell.com/], "hrát si s
+ukázkama":[http://www.tryfsharp.org/Learn] a psát vlastní kód. Chci tomu jen přijít na kloub, bez toho,
+abych musel dělat všechny ty zbytečný věci.
 
 **Nechci měnit to, jak myslím, jen se chci naučit to nové paradigma.**
 
-*článek je volným překladem "Ten reasons not to use a statically typed functional programming language":[http://fsharpforfunandprofit.com/posts/ten-reasons-not-to-use-a-functional-programming-language/] od Scotta Wlaschina*
+*článek je volným překladem "Ten reasons not to use a statically typed functional programming
+language":[http://fsharpforfunandprofit.com/posts/ten-reasons-not-to-use-a-functional-programming-language/] od Scotta Wlaschina*
 
 
