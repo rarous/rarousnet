@@ -51,6 +51,7 @@ jobs:
           name: Restore yarn cache
           keys:
             - v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn install
       - run:
           name: Generate Twitter Card images
           command: |
@@ -58,7 +59,7 @@ jobs:
             node ./cards/generator "file://`pwd -P`/cards/card.html"
       - run:
           name: Postprocess resources
-          command: yarn && yarn build
+          command: yarn build
       - save_cache:
           name: Store yarn cache
           key: v1-dependencies-{{ checksum "yarn.lock" }}
