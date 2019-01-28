@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.4.6",
+    "browser-sync": "^2.26.3",
     "cssnano": "^4.1.8",
     "gulp": "^4.0.0",
     "gulp-hash": "^4.2.2",
@@ -20,6 +21,7 @@
   },
   "scripts": {
     "build": "gulp -p",
-    "serve": "http-server ./dist"
+    "serve": "http-server ./dist",
+    "start": "gulp dev"
   }
 }

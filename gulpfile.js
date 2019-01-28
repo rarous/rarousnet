@@ -1,10 +1,11 @@
 "use strict";
 
-const { src, dest, parallel, series } = require("gulp");
+const { src, dest, parallel, series, watch } = require("gulp");
 const hash = require("gulp-hash");
 const references = require("gulp-hash-references");
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
+const browserSync = require("browser-sync");
 const cssnano = require("cssnano");
 
 function css() {
@@ -31,4 +32,14 @@ function updateReferences() {
     .pipe(dest("./dist"));
 }
 
+function run() {
+  browserSync.init({
+    server: "./dist"
+  });
+
+  watch("static/**/*.css", css);
+  watch("dist/**/*.html").on("change", browserSync.reload);
+}
+
+exports.dev = parallel(css, run);
 exports.default = series(css, hashStyles, updateReferences);
