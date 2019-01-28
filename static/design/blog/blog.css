@@ -102,7 +102,8 @@ p,
 ul,
 ol,
 dl {
-  font: 1em/1.5 "Iosevka Slab Web", Cambria, Georgia, "New York CE", utopia, serif;
+  font: 1em/1.5 "Iosevka Slab Web", Cambria, Georgia, "New York CE", utopia,
+    serif;
   margin: 0.125em 0 1em;
   padding: 0;
 }
@@ -313,32 +314,23 @@ div.image {
   color: #fff;
 }
 
-.info,
-article > footer {
+#content:not(.category-listing) article {
+  border-bottom: 6px solid #555;
+  padding-bottom: 1em;
+  margin-bottom: 3em;
+}
+#content:not(.category-listing) article + article {
+  margin-top: 8em;
+}
+
+article .info {
   font: 0.625em futura-pt, Futura, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0.5em 0 1em;
 }
 
-article > footer {
-  border-top: 1px solid #666;
-  border-bottom: 3px double #666;
-  text-indent: 1em;
-  line-height: 2;
-  margin: 2em 0 6em;
-  word-spacing: 2px;
-}
-article > footer a {
-  text-decoration: none;
-  padding: 0 0.4em;
-}
-article > footer strong {
-  font: bold 1em "Segoe Script", "Handwriting - Dakota", "Lucida Handwriting",
-    "URW Chancery L", cursive;
-  text-transform: none;
-}
-article div[itemprop=articleBody]>p:first-child::first-letter {
+article div[itemprop="articleBody"] > p:first-child::first-letter {
   color: var(--primary-dark-color);
   font: 600 3.5em futura-pt, sans-serif;
   float: left;
@@ -407,8 +399,8 @@ article div[itemprop=articleBody]>p:first-child::first-letter {
   text-decoration: underline;
 }
 .footer .footer__copyright {
-  background-color: rgba(0, 0, 0, .35);
-  padding: .25em 1.5em;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 0.25em 1.5em;
   box-sizing: border-box;
 }
 
@@ -497,8 +489,8 @@ article div[itemprop=articleBody]>p:first-child::first-letter {
 
   code {
     background: transparent;
-    font: 0.85em "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console",
-      "Monaco CE", fixed, monospace;
+    font: 0.85em "Iosevka Web", Monaco, "Source Code Pro", Consolas,
+      "Lucida Console", "Monaco CE", fixed, monospace;
   }
 
   pre {
