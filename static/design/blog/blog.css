@@ -338,7 +338,7 @@ article > footer strong {
     "URW Chancery L", cursive;
   text-transform: none;
 }
-article div[itemprop=articleBody] p:first-child::first-letter {
+article div[itemprop=articleBody]>p:first-child::first-letter {
   color: var(--primary-dark-color);
   font: 600 3em futura-pt, sans-serif;
   line-height: 1em;
