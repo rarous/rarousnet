@@ -13,6 +13,7 @@ console.log("");
 (async () => {
   console.log("Starting Puppeteer...");
   const browser = await puppeteer.launch({
+    // We need to disable Sandbox to be able to run in CircleCI environment
     args: ["--no-sandbox", "--disable-setuid-sandbox"]
   });
   const page = await browser.newPage();
@@ -20,15 +21,28 @@ console.log("");
   const card = await page.$("#twitter-card");
   console.log("Will generate " + data.length + " images");
   for (let post of data) {
-    await card.$eval("#title", (el, s) => (el.innerText = s), post.title);
-    await card.$eval("#name", (el, s) => (el.innerText = s), post.name);
-    await card.$eval("#date", (el, s) => (el.innerText = s), post.date);
     console.log(`Generating file ./dist/weblog/${post.fileName}`);
-    const outputPath = path.resolve(`./dist/weblog/${post.fileName}`);
-    await fs.promises
-      .mkdir(path.dirname(outputPath), { recursive: true })
-      .catch(err => {});
-    await card.screenshot({ path: outputPath });
+    await changeCardContent(card, post);
+    await card.screenshot({ path: await prepareOutputPath(post) });
   }
+  console.log("");
+  console.log("DONE");
   await browser.close();
 })().catch(err => console.error(err));
+
+async function changeCardContent(card, post) {
+  const setContent = (el, s) => (el.innerText = s);
+  await Promise.all([
+    card.$eval("#title", setContent, post.title),
+    card.$eval("#name", setContent, post.name),
+    card.$eval("#date", setContent, post.date)
+  ]);
+}
+
+async function prepareOutputPath(post) {
+  const outputPath = path.resolve(`./dist/weblog/${post.fileName}`);
+  await fs.promises
+    .mkdir(path.dirname(outputPath), { recursive: true })
+    .catch(err => { /* ignore errors */});
+  return outputPath;
+}
