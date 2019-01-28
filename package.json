@@ -1,7 +1,7 @@
 {
   "name": "rarousnet",
   "description": "rarous.net website program",
-  "main": "index.ts",
+  "main": "index.js",
   "license": "EPL-2.0",
   "dependencies": {
     "@pulumi/aws": "latest",

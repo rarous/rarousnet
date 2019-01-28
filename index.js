@@ -1,6 +1,7 @@
 "use strict";
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+
+const pulumi = require("@pulumi/pulumi");
+const aws = require("@pulumi/aws");
 
 const domain = "www.rarous.net";
 
@@ -31,5 +32,5 @@ const bucketPolicy = new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
   })
 });
 
-export const bucketUri = bucket.bucket.apply(x => `s3://${x}`);
-export const websiteUri = bucket.websiteEndpoint.apply(x => `http://${x}`);
+exports.bucketUri = bucket.bucket.apply(x => `s3://${x}`);
+exports.websiteUri = bucket.websiteEndpoint.apply(x => `http://${x}`);
