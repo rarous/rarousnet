@@ -42,7 +42,7 @@ jobs:
           paths: dist
   postprocess:
     docker:
-      - image: circleci/node:11
+      - image: circleci/node:11-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -50,7 +50,7 @@ jobs:
       - restore_cache:
           name: Restore yarn cache
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v2-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run:
           name: Generate Twitter Card images
@@ -62,7 +62,7 @@ jobs:
           command: yarn build
       - save_cache:
           name: Store yarn cache
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn
             - node_modules
