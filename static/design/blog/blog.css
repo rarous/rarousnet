@@ -340,10 +340,12 @@ article > footer strong {
 }
 article div[itemprop=articleBody]>p:first-child::first-letter {
   color: var(--primary-dark-color);
-  font: 600 3em futura-pt, sans-serif;
-  line-height: 1em;
-  padding: 0 2px 0 0;
+  font: 600 3.5em futura-pt, sans-serif;
   float: left;
+  font-size: 52px;
+  line-height: 46px;
+  padding-top: 2px;
+  padding-right: 8px;
 }
 
 .category-listing {
