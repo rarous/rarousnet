@@ -1,0 +1,76 @@
+---
+{:id 472,
+:title "Nový život pro rarouš.weblog",
+:description
+"Do roku 2019 jsem si předsevzal, že se vrátím opět k blogování.",
+:author "Aleš Roubíček",
+:tags #{"jen tak", "moje práce"},
+:published "2019-01-28T09:00:00.000"}
+---
+
+Kdysi dávno (už to bude 15let) jsem vytvořil blogovadlo postavený nad ASP.NET a s tím jsem začal i blogovat.
+Původně se blog (po vzoru Mraveniště:[https://web.archive.org/web/20070831095238/http://www1.mraveniste.org/weblog/]
+a "Sovy v síti":[]) jmenoval "Liščí nora":[https://web.archive.org/web/20040414085014/http://rarous.aspweb.cz/].
+Což moc dlouho nevydrželo a za nějakou dobu se ustálil název **rarouš.weblog**.
+
+Blogovadlo fungovalo celkem dlouho, ale časem jsem ztratil přístup k serveru,
+na kterém běželo a postupně stránky začínaly uhnívat. Po tom, co se mi podařilo získat dumpy databáze
+a kompletního obsahu ze serveru, jsem vytvořil "svůj první Clojure program":[https://github.com/rarous/rarousnet-converter],
+který vzal XML((Extensible Markup Language)) dump z MSSQL a vygeneroval z něj EDN((Extensible Data Notation)) s články.
+Následoval "můj první Clojure web":[https://github.com/rarous/rarousnet/tree/ea9a752af0b90212c082a54149e919c10c7e847b],
+který z toho EDN on demand generoval stránky. Výhoda byla, že jsem byl schopný zachovat
+původní URL((Unified Resource Locator)) - vč. fallbacků do historie. Hostoval jsme to na Heroku
+a pak jsem to přesunul do Docker Cloudu.
+
+Problém ale byl s psaním nových článků. Publikování nového článku spočívalo v ruční editaci XML dumpu,
+kam jsem musel vložit článek v Texy formátu a zároveň i HTML verzi, kterou jsem získal na http://texy.info/try.
+To všechno jsem musel XML encodovat. Zkrátka s tím bylo sraní a přestalo mě to bavit.
+Tak jsem skoro přestal psát. Občas jsem něco vypustil přímo z Quipu:[https:///www.quip.com/], kde píšu většinu všeho.
+
+Během loňského jara jsem začal psát nový generátor, který vzal původní dump a vygeneroval
+z něj soubory pro každý článek zvlášť i s jejich metadaty. Výstupem je Texy soubor s hlavičkou,
+ve které je EDN. Protože nesnáším YAML. A protože jsem měl 450+ článků napsaných v Texy.
+
+V létě jsem přestal používat Facebook, zavřel LinkedIn a vracím se ke starým návykům, používat
+Feedly a Pocket. Vypnout informační šum a naladit se na kvalitu ručního výběru.
+
+Fast forward do konce loňského roku, kdy jsem začal psát
+"generátor webu":[https://github.com/rarous/rarousnet/tree/master/generator]. První problém byl,
+jak přetavit Texy do HTML? Původní myšlenka byla, že vytvořím AWS lambdu, kde poběží Texy
+a bude mi vracet HTML na základě mých požadavků. No, není to moc schůdná cesta,
+protože není úplně jednoduché dostat do lambdy PHP extenze. Druhá myšlenka byla,
+místo lambdy využít Fargate a mít to v kontejneru.
+
+Vzdálená volání jsou ale drahá. Nejen na čas, ale v případě Fargate i na peníze.
+Takže jsem skončil u volání Texy scriptu přes shell. Navíc volat Texy pro každý článek zvlášť neslo
+taky slušný overhead. Nakonec jsem to vyřešil jedním batch-callem, kterej zprocesuje
+všechny články najednou. Rázem jsem se dostal z desítek minut na desítky sekund.
+Nakonec jsem musel připravit Docker image pro běh v CircleCI, který podporuje jak Clojure Tools Deps, tak PHP.
+
+A už to lítá.
+
+## Nový backend
+
+Základem je Pulumi:[https://wwww.pulumi.com/] program, který připraví infrastrukturu.
+Zatím tam je jen S3 bucket a patřičná Policy, ale až dodělají
+"podporu Cloudflare":[https://github.com/pulumi/pulumi/issues/1538],
+bude se správa CDN((Content Delivery Network)) a DNS((Domain Name System)) provádět tudy.
+Druhá část, jak už jsme naznačil, je "Circle CI":[https://github.com/rarous/rarousnet/blob/master/.circleci/config.yml],
+které spustí script generátoru a v dalším kroku provede Gulpové transformace nad assety.
+V posledním kroku se udělá sync do S3((Simple Storage Service)) a je to venku.
+
+[* /data/obrazky/cci-rarousnet.png .(Screenshot: Delivery pipeline){max-width: 100%}<> *]
+
+## Upravený frontend
+
+Moc věcí se nezměnilo, hlavně jsem obměnil typografii. Na další věci se dostane postupně.
+Co se změnilo zásadně, je struktura adres a stránek blogu. Přešel jsem na hierarchický model `rok/měsíc/den/slug`.
+Když si odmažete jednotlivé segmenty najdete tam indexy pro vybrané časové období.
+Taky jsme přešel z nesmyslných kategorií na štítky. Ačkoliv jsem se dříve snažil štítkovat,
+tak v tom moc žádný systém nebyl. Proto jsem značnou část článků prošel a přeštítkoval.
+Vznikly tak nové rubriky, tématicky doufám vytříbenější, které najdete dole v patičce.
+Ta se asi brzo taky dočká značné aktualizace. :)
+
+Spousta věcí je spíchnutá narychlo, vím o spoustě drobných vad, ale psaní a čtení nejsou na překážku.
+
+Oprašte své RSS:[https://feeds.feedburner.com/rarous-weblog] čtečky, je čas se vrátit ke kořenům!
