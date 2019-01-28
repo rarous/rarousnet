@@ -12,7 +12,9 @@ console.log("");
 
 (async () => {
   console.log("Starting Puppeteer...");
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  });
   const page = await browser.newPage();
   await page.goto(url);
   const card = await page.$("#twitter-card");
