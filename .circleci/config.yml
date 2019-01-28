@@ -52,6 +52,11 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "yarn.lock" }}
       - run:
+          name: Generate Twitter Card images
+          command: |
+            mv ./dist/weblog/data.json ./cards
+            node ./cards/generator "file://`pwd -P`/cards/card.html"
+      - run:
           name: Postprocess resources
           command: yarn && yarn build
       - save_cache:

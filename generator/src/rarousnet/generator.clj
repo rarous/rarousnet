@@ -105,6 +105,7 @@
   [(meta-n "twitter:creator")] (html/set-attr :content (author-twitter article))
   [(meta-n "twitter:title")] (html/set-attr :content title)
   [(meta-n "twitter:description")] (html/set-attr :content description)
+  [(meta-n "twitter:image")] (html/set-attr :content (str/replace (permalink article) #"\.html" ".png"))
   [(meta-p "article:published_time")] (html/set-attr :content (utc-date published))
   [(meta-p "article:section")] (html/set-attr :content category)
   [(link "canonical")] (html/set-attr :href (permalink article))
@@ -305,6 +306,20 @@
       (map #(assoc % :html (apply str (redirect-template %))))
       (map (partial write-file dist)))))
 
+(defn twitter-images [content dist]
+  (dorun
+    (->>
+      content
+      (map (convert article-meta))
+      (map #(-> {:title (:title %)
+                 :name (author-twitter %)
+                 :date (last (str/split (long-date (:published %)) #" - "))
+                 :fileName (str/replace (:file-name %) #".html" ".png")}))
+      (into [])
+      (json/generate-string)
+      (assoc {:file-name "data.json"} :html)
+      (write-file dist))))
+
 (defn static-content [src dest]
   (sh "cp" "-pR" src dest))
 
@@ -343,6 +358,9 @@
       (println)
       (println "Generating redirect pages...")
       (time (redirects content dist))
+      (println)
+      (println "Generating data for Twitter images...")
+      (time (twitter-images content dist))
       ;; TODO: comments
       (println)
       (println "DONE"))))
