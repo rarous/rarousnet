@@ -51,7 +51,7 @@ A už to lítá.
 
 ## Nový backend
 
-Základem je Pulumi:[https://wwww.pulumi.com/] program, který připraví infrastrukturu.
+Základem je Pulumi:[https://www.pulumi.com/] program, který připraví infrastrukturu.
 Zatím tam je jen S3 bucket a patřičná Policy, ale až dodělají
 "podporu Cloudflare":[https://github.com/pulumi/pulumi/issues/1538],
 bude se správa CDN((Content Delivery Network)) a DNS((Domain Name System)) provádět tudy.
