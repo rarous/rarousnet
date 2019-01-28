@@ -56,6 +56,7 @@ jobs:
           name: Generate Twitter Card images
           command: |
             mv ./dist/weblog/data.json ./cards
+            rm -rf ./dist/weblog/
             node ./cards/generator "file://`pwd -P`/cards/card.html"
       - save_cache:
           name: Store yarn cache
