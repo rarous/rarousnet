@@ -25,7 +25,8 @@ Tak, nápad by byl, teď už jen jak ho realizovat?
 
 Nejprve jsem si říkal, že bych mohl udělat "šablonu ve Figmě":[https://www.figma.com/file/cGbv8Z8IQ6hQuEJQKv4O6uPN/Untitled?node-id=0:1]
 a přes "jejich API":[https://www.figma.com/developers/docs] generovat obrázky. Jenže se mi nechce (zatím)
-učit se jejich API a zavádět vzdálená volání do generátoru, když jsem se jim tak šikovně vyhnul u obsahu.
+učit se jejich API a zavádět vzdálená volání do generátoru, když jsem se jim tak 
+"šikovně vyhnul":[https://www.rarous.net/weblog/2019/01/28/novy-zivot-pro-rarous-weblog.html] u obsahu.
 Ok, tak zkusím generovat obrázky pomocí Clojure. To se mi zase nechce low level komponovat bitmapa a navíc,
 jak dostanu Futuru na integrační server? Přes SVGčko? Sakra...
 
@@ -35,4 +36,4 @@ a obrázky budu típat pomocí Puppeteera:[https://pptr.dev/]! Doplnil jsem do g
 aby připravil JSON((JavaScript Object Notation)) s daty, které budu potřebovat pro generování obrázků.
 Pak jsem napsal script:[https://github.com/rarous/rarousnet/blob/master/cards/generator.js], kterej otevře stránku
 a ve smyčce, projde data z JSONu, vloží je do DOMu a udělá screenshot. Není to úplně nejrychlejší řešení,
-ale 30 s není taky úplně nejhorší čas.
+ale 30 s na cca 470 článků není taky úplně nejhorší čas.
