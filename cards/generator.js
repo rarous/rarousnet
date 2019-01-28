@@ -19,7 +19,7 @@ console.log("");
   const page = await browser.newPage();
   await page.goto(url);
   const card = await page.$("#twitter-card");
-  console.log("Will generate " + data.length + " images");
+  console.log(`Will generate ${data.length} images`);
   for (let post of data) {
     console.log(`Generating file ./dist/weblog/${post.fileName}`);
     await changeCardContent(card, post);
@@ -43,6 +43,8 @@ async function prepareOutputPath(post) {
   const outputPath = path.resolve(`./dist/weblog/${post.fileName}`);
   await fs.promises
     .mkdir(path.dirname(outputPath), { recursive: true })
-    .catch(err => { /* ignore errors */});
+    .catch(err => {
+      /* ignore errors */
+    });
   return outputPath;
 }
