@@ -19,7 +19,7 @@ asi těžko souviset. Takže jsem musel vymyslet něco jinýho. Docela se mi lí
 prezentace ze Speakerdecku. A protože se mi vyloženě líbí, jak vypadaj "moje prezentace":[https://speakerdeck.com/rarous],
 tak jsem se rozhodl, že to obšlehnu. Aby se na první pohled dalo poznat, že nejde o prezentaci,
 ale o blog, rozhodl jsem se pro "jinou barvu pozadí .{background: #f77146;color: #fff}".
-Ale bílá "futura .{font: futura-pt}" zůstává. :)
+Ale bílá "futura .{font-family: futura-pt}" zůstává. :)
 
 Tak, nápad by byl, teď už jen jak ho realizovat?
 
