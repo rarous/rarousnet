@@ -22,6 +22,7 @@
   "scripts": {
     "build": "gulp -p",
     "serve": "http-server ./dist",
-    "start": "gulp dev"
+    "start": "gulp dev",
+    "sync": "aws s3 sync --profile rarous s3://www.rarous.net ./dist\n"
   }
 }
