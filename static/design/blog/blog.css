@@ -377,6 +377,30 @@ article div[itemprop="articleBody"] > p:first-child::first-letter {
 }
 
 @media screen and (min-width: 701px) {
+  #top {
+    position: relative;
+    overflow: hidden;
+  }
+  #top::before {
+    content: "2004– 2019";
+    font-size: 56px;
+    text-align: right;
+    font-weight: 800;
+    display: block;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 40px;
+    top: 0;
+    background: #FFBC6A;
+    color: #004b6f;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding-top: 1.3em;
+    padding-right: 0.3em;
+    transform: rotate(-65deg);
+  }
+
   #top > .footer {
     margin-top: 1.4em;
   }
