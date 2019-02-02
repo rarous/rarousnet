@@ -31,14 +31,17 @@ Takže na tomto webu jsem se pokusil ukázat, jak se dělá routing, jak je ten 
 
 Co se týče mého vystoupení, tak moc spokojený nejsem, vůbec se to nedostalo ani na spodní hranici mých představ o dobré přednášce – naštěstí tam byl Borek, aby to zachránil.
 
-{{flash: http://www.authorstream.com/player.swf?p=99567_633604576063437500, 520, 434}}
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/zMr4uBPWRmPmA" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
-[AuthorStream] ty slajdy trochu rozsypal, ale lepší než nic. Jinak pokud si chcete slajdy nebo ukázky stáhnout, pokračujte na [clanek(326)]. Pokud vás toto téma zajímá určitě najdete spoustu zajímavých "futures bits na Codeplexu":[codeplex-aspnet]. Některá témata z přednášky bych rád rozebral podrobněji tady na blogu, ale až někdy jindy.
+Jinak pokud si chcete slajdy nebo ukázky stáhnout, pokračujte na [clanek(326)]. Pokud vás toto téma zajímá
+určitě najdete spoustu zajímavých "futures bits na Codeplexu":[codeplex-aspnet]. Některá témata z přednášky bych
+rád rozebral podrobněji tady na blogu, ale až někdy jindy.
 
 Shlédnuté prezentace
 ====================
 
-Na WebExpu jsem naštěstí nebyl jen jako pokus o přednášejícího, ale i jako divák. Oproti původnímu plánu jsem nakonec navštívil trochu jiné přednášky. Jako opravdu výbornou můžu označit "přednášku Juraje Michálka o Flexu":[webexpo-flex]. Hodně dobrá byla nejspíš i "Karmiho přednáška o Ruby on Rails":[webexpo-rails], ale zastihl jsem jen asi posledních 25 min. "Přednáška o Nette":[webexpo-nette] z úst nejzasvěcenějšího:[davidek] byla zábavná, nicméně s plánovaným "školením PHP frameworky":[skoleni] na paměti značně zredukovaná.
+Na WebExpu jsem naštěstí nebyl jen jako pokus o přednášejícího,
+ale i jako divák. Oproti původnímu plánu jsem nakonec navštívil trochu jiné přednášky. Jako opravdu výbornou můžu označit "přednášku Juraje Michálka o Flexu":[webexpo-flex]. Hodně dobrá byla nejspíš i "Karmiho přednáška o Ruby on Rails":[webexpo-rails], ale zastihl jsem jen asi posledních 25 min. "Přednáška o Nette":[webexpo-nette] z úst nejzasvěcenějšího:[davidek] byla zábavná, nicméně s plánovaným "školením PHP frameworky":[skoleni] na paměti značně zredukovaná.
 
 Mezi pro mě obsahově hodnotné a pořád dobře odprezentované bych ještě rád zařadil "Dagiho přednášku o Springu":[webexpo-spring], "přednášku Vlastimila Pečínky o architektuře v Seznamu":[webexpo-seznam] a "přednášku o SproutCore od Antonína Hildebranda":[webexpo-sprout]. Sice jsem nedostal odpověď na otázku, jestli to funguje i bez JavaScriptu, ale i tak přednášku hodnotím jako přínosnou a můžu rubistům tiše závidět ;).
 

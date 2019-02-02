@@ -30,7 +30,7 @@ Snížení objemu přenášených dat
 
 Když už máme snížený počet dotazů – tedy zátěž serveru, ve druhém kroku bychom se měli pokusit snížit trafic – množství přenášených dat. Zkoušel jsem několik technik. Rád používám XHTML((Extensible hypertext markup language)) protože ho pak můžu zpracovávat pomocí obecného XML readeru. A XHTML vyžaduje oproti HTML o dost bajtů navíc. Proto jsem si udělal takový malý benchmark mojí "titulní stránky":[/]. Rozdíl mezi HTML a XHTML verzí je cca 3 %. Pak jsem zkusil ořezat přebytečné bílé znaky. Tam už to bylo o něco lepší úspora 13 %. Kombinace HTML bez bílých znaků pak je na šestnácti 16%. Je to sice pěkné číslo, ale zase taková úspora to není.
 
-[*/data/obrazky/komprese.png .(graf porovnání různé komprese stránky)*]
+[* komprese.png .(graf porovnání různé komprese stránky)*]
 
 Proto jsem nasadil kompresi. Ta konečně přinesla kýžený výsledek - **úspora 64 %**. Docela "zajímavý nástroj":[compression], který vám zjistí, zda kompresi používáte a kolik byste byli schopní uspořit, najdete na stránkách www.aspnetresources.com.  Zkoušel jsem pokusně české portály a kompresi používá pouze [seznam]. Přitom zcela jistě ji dříve používal i [atlas], nechápu, proč už není zapnutá.
 

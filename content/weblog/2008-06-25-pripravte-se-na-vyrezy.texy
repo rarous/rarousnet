@@ -37,11 +37,11 @@ Výřezy jsou části stránky označené třídou `hslice` a **nějakým id** a
 
 Když uživatel najede nad tento kus článku, objeví se tlačítko pro subskripci:
 
-[*/data/obrazky/webslice.png .(zvýrazněný výřez stránky)*] .[image]
+[* webslice.png .(zvýrazněný výřez stránky)*] .[image]
 
 Po jeho odsouhlasení se stránka přidá do oblíbených a do feedů. Po rozkliknutí se objeví náhledové okno s aktuálním výřezem:
 
-[*/data/obrazky/webslice2.png .(náhled výřezu stránky)*] .[image]
+[* webslice2.png .(náhled výřezu stránky)*] .[image]
 
 ==Další možnosti
 

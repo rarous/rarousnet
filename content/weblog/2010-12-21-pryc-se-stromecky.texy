@@ -18,7 +18,7 @@ Možná si říkáte, "co to ten Roubíček zase vymejšlí? Vždyť takovej kó
 
 Jak moc? No hrozně moc. Fakt! Ono se to totiž dá krásně změřit, např. pomocí metriky [cyclomaticcomplexity].
 
-[* /data/obrazky/cyclomatic.png *]
+[* cyclomatic.png *]
 
 Když se podíváme na tuto metriku u ukázkového příkladu, zjistíme, že metoda  `GetRouteData` dosahuje hodnoty **17**. Co to znamená? Když si přečtete odkazovaný popis metriky, dozvíte se také, že její hodnota určuje míru možného výskytu chyb. Čím větší je cyklomatická komplexita, tím více toho modul dělá a zvyšuje se riziko přehlédnutých chyb. Doporučuje se mít komplexitu do deseti a tady tuto hodnotu překračujeme takřka dvojnásobně.
 
@@ -59,7 +59,7 @@ public override RouteData GetRouteData(HttpContextBase httpContext) {
 
 Není to žádná nádhera, ale je mnohem přehlednější, než originál. A v řeči čísel:
 
-[* /data/obrazky/cyclomatic-2.png *]
+[* cyclomatic-2.png *]
 
 Rozplétáme podmínky
 ===================

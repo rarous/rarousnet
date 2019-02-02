@@ -16,7 +16,7 @@ Active Record
 
 Návrhový vzor [activerecord] staví na předpokladu, že základem aplikace je databázový model a od něj se vše odvíjí. Každý řádek tabulky je reprezentován konkrétní instancí objektu. Většinou je takový objekt odvozen od bázové třídy, která implementuje potřebné rozhranní pro persistenci objektu – typicky CRUD((Create, Read, Update, Delete))  metody.
 
-[*/data/obrazky/activerecord.png .(Diagram vzoru ActiveRecord)*]
+[* activerecord.png .(Diagram vzoru ActiveRecord)*]
 
 Tento vzor se hojně využívá v různých ORM frameworcích. Je součástí dnes velmi módních frameworků [ror], [django] nebo [castle], které na něm stavějí svůj datový model a díky velice snadnému mapování dokážete napsat (vygenerovat) kostru databázové aplikace během několika málo minut.
 
@@ -27,7 +27,7 @@ Repository
 
 Návrhový vzor Repository je základním kamenem doménou řízeného návrhu. Model aplikace nemá ponětí o tom, jakým způsobem je persistován. O to se stará právě Repository. Navíc díky tomu, že se o persistenci stará cizí objekt, stačí nám znát pouze jeho rozhranní a v případě potřeby ho snadno nahradit jiným.
 
-[*/data/obrazky/repository.png .(Diagram vzoru Repository)*]
+[* repository.png .(Diagram vzoru Repository)*]
 
 Kombinace
 =========

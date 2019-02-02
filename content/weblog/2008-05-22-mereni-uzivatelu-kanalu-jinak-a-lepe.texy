@@ -18,7 +18,7 @@ Pro měření oblíbenosti vašich feedů je tu mnohem lepší služba – [feed
 4.	Monetizaci pomocí reklam.
 5.	Mnoho dlaších služeb, které vám usnadní a zpříjemní práci s vašimi feedy.
 
-[*/data/obrazky/feedburner.png .(Statistiky ve FeedBurneru)*] .[image]
+[* feedburner.png .(Statistiky ve FeedBurneru)*] .[image]
 
 Nevýhodou takového řešení je, že musíte změnit URL adresu feedu. Mně konverze uživatelů na novou adresu trvala asi dva až tři měsíce. Ale zas tolik jich nemám. Problém byl v tom, že jsem musel uživatele přimět k tomu, aby si URL feedu změnili sami, protože jsem z technických důvodů nemohl feed přesměrovávat na novou adresu. Ale lze docílit i hladkého přechodu pomocí trvalého přesměrování.
 

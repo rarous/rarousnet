@@ -21,7 +21,7 @@ Aby se tedy kód dal snadno testovat, měl by se co nejvíce oddělit od stránk
 
 Klasickým modelem tedy je využití MVP vzoru, kdy aspx stránka obsahuje pouze logiku pro prezentaci dat a implementuje rozhranní View, přes které komunikuje s Presenterem. Díky tomu, že Presenter obsahuje téměř veškerou logiku, je ideálním místem pro zacílení našich testů. Pro účely testů pak implementujeme stub nebo mock rozhranní view. Na něm pak sledujeme jak ho Presenter ovlivňuje.
 
-[* /data/obrazky/mvp.png *]
+[* mvp.png *]
 
 Předchozí diagram ukazuj, že Presenter zná rozhranní View. Stránka, která toto rozhranní implementuje, se však musí postarat o to, aby byl presenter ve správnou chvíli zavolán. Možný scénář zachycuje ukázka kódu.
 
@@ -48,7 +48,7 @@ MVC testování
 
 MVC frameworky jako MonoRail nebo ASP.NET MVC, přicházejí s podobným schématem **by default**. V podstatě nás přímo nutí psát web tak, aby se dal lépe testovat. :) Nebudu přehánět, když řeknu, že ASP.NET MVC byl psán se zřetelí na velice snadné testování a obsahuje i sadu mock objektů (např. pro `HttpContext`). MonoRail dokonce přináší i Fixtures a Asserty pro snadnější testování – bohužel jsou psané pouze pro NUnit, který nepoužívám.
 
-[* /data/obrazky/mvc.png *]
+[* mvc.png *]
 
 Tento diagram se od předchozího mírně liší. Controller např. netuší jaké má View rozhranní, proto s ním nikterak nepracuje. Prostě zavolá `RenderView(*název*, *objekt s daty*)` a spoléhá se na ViewFactory že všechno zařídí. Navíc stránka do poslední chvíle netuší, jestli něco bude dělat. Tady totiž proces zpracování začíná u routingu, který vybere správný controller, viz "předchozí díl":[clanek(220)].
 

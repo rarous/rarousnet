@@ -2,8 +2,14 @@
 <html lang="cs">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Accept-CH" content="DPR,Viewport-Width,Width">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title></title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="dns-prefetch" href="//apis.google.com">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<link rel="dns-prefetch" href="//use.typekit.net">
 <link rel="home" href="/weblog/">
 <link rel="canonical" href="">
 <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous-weblog" title="rarouš.weblog - poslední články">
@@ -16,8 +22,22 @@
   ga('create', 'UA-90726-1', 'auto');
   ga('send', 'pageview');
 </script>
-<!--[if lt IE 9]><script src=https://html5shim.googlecode.com/svn/trunk/html5.js></script><![endif]-->
-<link rel="stylesheet" href="https://use.typekit.net/kwv2yxs.css">
+<script>
+WebFontConfig = {
+  typekit: { id: 'xhz7oko' },
+  custom: {
+    families: ['Iosevka Web:n4,i4,n7', 'Iosevka Slab Web:n4,i4,n7,i7'],
+    urls: ['/design/blog/iosevka.css']
+  }
+};
+(function(d) {
+  var wf = d.createElement('script'), s = d.scripts[0];
+  wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+  wf.async = true;
+  s.parentNode.insertBefore(wf, s);
+})(document);
+</script>
+<!--[if lt IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
 <link rel="stylesheet" href="/design/blog/blog.css">
 <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
 

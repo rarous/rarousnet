@@ -20,7 +20,7 @@ Instalace IIS
 
 Pokud ještě nemáte na Vistě IIS nainstalované, je tu vhodná chvíle to napravit. Otevřete si *Control panel* \ *Programs* a v sekci *Program and Features* klikněte na **Turn Windows features on or off**. Otevře se vám následující okno, kde zaškrtnete podporu CGI (není od věci si zapnout i ASP.NET, když už jsme tady).
 
-[* /data/obrazky/iis_features.gif .(nastavení komponent)*]
+[* iis_features.gif .(nastavení komponent)*]
 
 Pokud chcete konzolu pro správu IIS najdete ji ve *Web Management Tools*, je tam jak stará šestková, tak nová sedmičková. Ale pro náši potřebu není bezpodmínečně nutná.
 

@@ -27,15 +27,15 @@ No nyní už můžete využívat sémanticky bohatší výsledky z LinkedIn ve v
 
 V základu tedy máte generické výsledky fulltextu.
 
-[*/data/obrazky/y_generic.png 580x76 .(generický výsledek hledání)*] .[image]
+[* y_generic.png 580x76 .(generický výsledek hledání)*] .[image]
 
 Po aktivaci sémantického modulu **LinkedIn**, se struktura výsledku změní .
 
-[*/data/obrazky/y_semantic.png 377x115 .(sémantický výsledek hledání)*] .[image]
+[* y_semantic.png 377x115 .(sémantický výsledek hledání)*] .[image]
 
 Po aktivaci sémantického modulu **Last.fm** vypadá výsledek interpreta následovně.
 
-[*/data/obrazky/y_music.png 578x214 .(sémantický výsledek hledání)*] .[image]
+[* y_music.png 578x214 .(sémantický výsledek hledání)*] .[image]
 
 Zatím je to jedna z prvních vlaštovek, tuším, že mikroformáty používá v hledání i [technorati], ale každý jiným způsobem. [google] má něco podobného pro Youtube a obrázky. V [live] jsem nic podobného nepostřehl… Pro mě osobně je zajímavé sledovat vývoj na tomto poli a jsem zvědavý, jakých implementací se dočkáme dále.
 

@@ -9,7 +9,7 @@
 ---
 
 == Update
-[*/data/obrazky/texy-net.png .(Texy.net logo)[right]*]
+[* texy-net.png .(Texy.net logo)[right]*]
 Beta 2 respektuje změny v rozhranní "Texy! XML-RPC":[texy-rpc] a již plně podporuje definování povolených classů, stylů a tagů. Zatím nevyřešenou věcí je komprese přenášeného textu. **Verze beta 1 již není funkční a je nutné jí nahradit betou 2!**
 
 == Ke stažení

@@ -4,13 +4,13 @@
  :description
  "Konečně jsem se dostal k tomu abych nahrál slajdy z naší přednášky na web.",
  :author "Aleš Roubíček",
- :tags #{"webdesign" "webexpo" "aspnet" "mvc"},
+ :tags #{"webdesign" "webexpo"},
  :published "2008-10-19T12:58:14.843"}
 ---
 
 Konečně jsem se dostal k tomu abych nahrál slajdy z naší přednášky na web.
 
-{{flash: http://www.authorstream.com/player.swf?p=99567_633604576063437500, 520, 434 }}
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/zMr4uBPWRmPmA" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
 Tady tedy jsou:
 * [slajdy] (1,00 MiB, PPSX)
@@ -18,7 +18,5 @@ Tady tedy jsou:
 * [ukazky] (19,44 MiB, ZIP)
 
 [slajdy]: /files/webexpo/webexpo-aspnet-3.5-futures.ppsx.zip slajdy pro PowerPoint .{onclick:t._trackPageview('/files/webexpo/webexpo-aspnet-3.5-futures.ppsx.zip')}
-
 [pdf]: /data/soubory/webexpo-aspnet-3.5-futures.pdf slajdy pro Adobe Reader .{onclick:t._trackPageview('/files/webexpo/webexpo-aspnet-3.5-futures.pdf')}
-
 [ukazky]: /files/webexpo/webexpo-aspnet-3.5-futures.zip ukázky .{onclick:t._trackPageview('/files/webexpo/webexpo-aspnet-3.5-futures.zip')}

@@ -33,7 +33,7 @@ Založení projektu
 
 Předpokládám, že jsme si Castle nainstalovali pomoci MSI balíčku. Máme Visual Studio 2005 ve verzi Standard a vyšší s nainstalovaným WebApplication projektem nebo SP1. Dáme vytvořit nový projekt a zobrazí se nám obrazovka podobná té následující:
 
-[* /data/obrazky/monorail_project_new.png .(Nový projekt) *]
+[* monorail_project_new.png .(Nový projekt) *]
 
 Červeně označené jsou nově přidané projekty
 1.  Knihovna s podporou persistence pomocí ActiveRecord
@@ -45,7 +45,7 @@ V prvním kroku si  vybereme, který View Engine chceme používat (samozřejmě
 
 Ve druhém kroku se nás průvodce zeptá, jestli chceme vytvořit také testovací projekt (NUnit s podporou pro testování MonoRail). Samozřejmě chceme :) Průvodce nám vytvoří základní strukturu projektu podobnou následujícímu obrázku.
 
-[* /data/obrazky/monorail_project_structure.png  .(Struktura projektu) *]
+[* monorail_project_structure.png  .(Struktura projektu) *]
 
 V takovéto kostře si můžete vyzkoušet ukázky z předešlých dílů, snad by měly fungovat...
 

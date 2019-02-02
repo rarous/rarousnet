@@ -1,53 +1,3 @@
-@font-face {
-  font-family: "Iosevka Slab Web";
-  font-weight: 400;
-  font-style: normal;
-  font-display: fallback;
-  src: url("iosevka-slab-regular.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Iosevka Slab Web";
-  font-weight: 400;
-  font-style: italic;
-  font-display: fallback;
-  src: url("iosevka-slab-italic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Iosevka Slab Web";
-  font-weight: 700;
-  font-style: normal;
-  font-display: fallback;
-  src: url("iosevka-slab-bold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Iosevka Slab Web";
-  font-weight: 700;
-  font-style: italic;
-  font-display: fallback;
-  src: url("iosevka-slab-bolditalic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Iosevka Web";
-  font-weight: 400;
-  font-style: normal;
-  font-display: fallback;
-  src: url("iosevka-regular.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Iosevka Web";
-  font-weight: 400;
-  font-style: italic;
-  font-display: fallback;
-  src: url("iosevka-italic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Iosevka Web";
-  font-weight: 700;
-  font-style: normal;
-  font-display: fallback;
-  src: url("iosevka-bold.woff2") format("woff2");
-}
-
 /* https://material.io/tools/color/#!/?view.left=1&view.right=1&primary.color=F77146&secondary.color=33769D&primary.text.color=ffffff */
 :root {
   --primary-color: #f77146;
@@ -67,7 +17,7 @@ body {
 body {
   border-top: 2px solid #333;
   border-bottom: 2px solid #333;
-  font: 16px futura-pt, sans-serif;
+  font: 16px Futura, "Trebuchet MS", Arial, sans-serif;
   -webkit-font-kerning: normal;
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero;
@@ -83,7 +33,7 @@ body {
 
 h2,
 article h1 {
-  font: 800 2.5em futura-pt, Futura, sans-serif;
+  font: 800 2.5em Futura, "Trebuchet MS", Arial, sans-serif;
   letter-spacing: -1px;
   margin: 0;
   z-index: 20;
@@ -93,20 +43,34 @@ h2 a {
 }
 h3 {
   color: #000;
-  font: 600 1.5em futura-pt, Futura, sans-serif;
+  font: 600 1.5em Futura, "Trebuchet MS", Arial, sans-serif;
   letter-spacing: -1px;
   margin: 1.5em 0 0.25em;
+}
+
+.wf-active body,
+.wf-active article h1,
+.wf-active h2,
+.wf-active h3 {
+  font-family: futura-pt, sans-serif;
 }
 
 p,
 ul,
 ol,
 dl {
-  font: 1em/1.5 "Iosevka Slab Web", Cambria, Georgia, "New York CE", utopia,
-    serif;
+  font: 1em/1.5 Cambria, Georgia, "New York CE", utopia, serif;
   margin: 0.125em 0 1em;
   padding: 0;
 }
+
+.wf-active p,
+.wf-active ul,
+.wf-active ol,
+.wf-active dl {
+  font-family: "Iosevka Slab Web", serif;
+}
+
 blockquote {
   border-left: 2px solid #efefef;
   color: #666;
@@ -115,7 +79,12 @@ blockquote {
 }
 blockquote,
 blockquote p {
-  font: 1.5rem Garamond, Constantia, Palatino, "palatino linotype", serif;
+  font: 1.5rem Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text",
+    "Times New Roman", serif;
+}
+.wf-active blockquote,
+.wf-active blockquote p {
+  font-family: cormorant-garamond, serif;
 }
 img.right {
   float: right;
@@ -129,9 +98,13 @@ acronym {
 
 code {
   background: #f7f7ee;
-  font: 1em "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console",
+  font: 1em Iosevka, Monaco, "Source Code Pro", Consolas, "Lucida Console",
     "Monaco CE", fixed, monospace;
   padding: 0 0.125em;
+}
+
+.wf-active code {
+  font-family: "Iosevka Web", monospace;
 }
 
 pre {
@@ -295,7 +268,7 @@ div.image {
 }
 
 #content {
-  background-color: #FFF;
+  background-color: #fff;
   color: #111;
 }
 

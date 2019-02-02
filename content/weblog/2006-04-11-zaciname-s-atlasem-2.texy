@@ -7,7 +7,7 @@
  :published "2006-04-11T09:05:00"}
 ---
 
-[*/data/obrazky/atlas_server.png .(Diagram serverové části Atlasu)>]
+[* atlas_server.png .(Diagram serverové části Atlasu)>]
 V "minulém díle":[clanek(129)] jsme si představili, co to Atlas je, jakou má zhruba strukturu a k čemu se hodí. Jak jsem slíbil budeme se dnes věnovat serverové části Atlasu a ukážeme si, jak jednoduše přetvořit stávající ASP.NET 2.0 aplikaci na AJAXovou. Tak s chutí do toho :)
 
 V minulém díle jsem popsal, jakou má strukturu klientská část Atlasu, v tomto se podíváme na zoubek té serverové. Součástí serverové části jsou komponenty – Extendery, které obohacují současné ASP.NET komponenty o interaktivní chování podobné tomu, jak se chovají komponenty WinForms. Krom extenderů jsou zde ještě komponenty `ScriptManger` - popsaný v minulém díle - `UpdatePanel` a `UpdateProgress` zajišťující a informující o průběhu komunikace klientského skriptu s aplikací na serveru.

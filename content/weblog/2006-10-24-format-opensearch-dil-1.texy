@@ -42,7 +42,7 @@ Pak stačí přidat do vašich stránek element `link`, který odkazuje na soubo
       title="Example Search" />
 \---code
 
-[* /data/obrazky/search.png .(rozsvícené tlačítko)[right]*]
+[* search.png .(rozsvícené tlačítko)[right]*]
 Pokud pak navštívíte takovou stránku, prohlížeč vám dá vědět, že našel modul rozsvícením tlačítka pro výběr modulu.
 
 Další možností, jak modul vytvořit je použít generátor:[http://www.searchplugins.net/generate.aspx].

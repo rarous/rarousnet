@@ -43,11 +43,11 @@ function add(node) {
 
 Dokumentační tag `summary` přidá popis funkce, v praxi to vypadá asi následovně:
 
-[* /data/obrazky/vs_js_summary.png *]
+[* vs_js_summary.png *]
 
 Tag `param` popisuje parametr funkce a v tomto případě i jeho typ. Opět ukázka:
 
-[* /data/obrazky/vs_js_param.png *]
+[* vs_js_param.png *]
 
 
 Reference na scripty

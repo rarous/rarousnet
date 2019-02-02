@@ -33,7 +33,7 @@ Takže budeme pokračovat dál a to k řadiči článku (`ArticleController`). T
 
 V prvním CTP, zatím nejsou předdefinované Mock Objekty pro controllery, proto použijeme Test subclass pattern, pro ověření činnosti controlleru. Controller bude mít následující rozhranní:
 
-[*/data/obrazky/IArticleController2.png .(Diagram IArticleController)*]
+[* IArticleController2.png .(Diagram IArticleController)*]
 
 A třída pro testování vypadá následovně:
 

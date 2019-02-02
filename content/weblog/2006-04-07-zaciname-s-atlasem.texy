@@ -12,7 +12,7 @@ Atlas:[Atlas] je kódové označení pro --budoucí verzi ASP.NET, ale v součas
 Atlas se koncepčně dělí na dvě části – klientskou a serverovou. *Klientská část* může bez problémů fungovat bez serverové, naopak to ale neplatí. Základem Atlasu je tedy JavaScriptový framework, který si klade za cíl ulehčit vývoj tzv. AJAXových aplikací. Podobnou iniciativou je např. Prototype:[Prototype], který vznikl u tvůrců Ruby on Rails.
 
 Framework samotný je rozdělen do několika vrstev:
-[*/data/obrazky/atlas_klient.png >]
+[* atlas_klient.png >]
 Vrstva kompatibility:
  - Má na starosti vyrovnat rozdíly v implementaci JavaScriptu v různých prohlížečích. V současnosti podporuje InternetExplorer, Mozillu/Firefox a Safari. Opera je zatím mimo hru, ale snad se to s příchodem deváté verze změní (ta už by měla podporovat objekt XmlHTTPRequest).
 
