@@ -16,11 +16,15 @@
     "gulp-hash-references": "^3.0.1",
     "gulp-postcss": "^8.0.0",
     "http-server": "^0.11.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.15.3",
     "puppeteer": "^1.11.0"
   },
   "scripts": {
-    "build": "gulp -p",
+    "prebuild:website": "docker build -t rarousnet ./.circleci/docker/cci-openjdk11-php7-clojure-tools-deps",
+    "build:website": "docker run -v `pwd`:/usr/app/src -t rarousnet /bin/sh -c \"cd /usr/app/src/generator && clojure -m rarousnet.generator ../\"",
+    "build:assets": "gulp -p",
+    "build": "run-s build:*",
     "serve": "http-server ./dist",
     "start": "gulp dev",
     "sync": "aws s3 sync --profile rarous s3://www.rarous.net ./dist\n"
