@@ -59,7 +59,7 @@ jobs:
             node ./cards/generator "file://`pwd -P`/cards/card.html"
       - run:
           name: Postprocess resources
-          command: yarn build
+          command: yarn build:assets
       - save_cache:
           name: Store yarn cache
           key: v2-dependencies-{{ checksum "yarn.lock" }}
