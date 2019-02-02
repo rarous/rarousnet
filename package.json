@@ -14,6 +14,7 @@
     "gulp": "^4.0.0",
     "gulp-hash": "^4.2.2",
     "gulp-hash-references": "^3.0.1",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-postcss": "^8.0.0",
     "http-server": "^0.11.1",
     "npm-run-all": "^4.1.5",
