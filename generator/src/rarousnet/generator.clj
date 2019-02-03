@@ -155,7 +155,7 @@
       (json/parse-string out)
       (throw (ex-info "Error occurred" result)))))
 
-(defn article [input]
+(defn ->article [input]
   (let [[_ meta & text] (string/split input #"---")]
     (assoc (edn/read-string meta)
       :texy (-> (string/join "---" text)))))
@@ -182,17 +182,16 @@
         :month (-> article :published from-date time/month)
         :day (-> article :published from-date time/day)))))
 
-
 (defn static-content [src dest]
   (sh "cp" "-pR" src dest))
 
+(def entries
+  (comp
+    (remove (fn [^File f] (.isDirectory f)))
+    (map (convert ->article))))
+
 (defn read-articles [content]
-  (let [articles
-        (into []
-              (comp
-                (remove (fn [^File f] (.isDirectory f)))
-                (map (convert article)))
-              (file-seq (io/file (str content "/weblog"))))
+  (let [articles (into [] entries (file-seq (io/file (str content "/weblog"))))
         html (texy (into {} (map #(vector (:file-name %) (:texy %))) articles))
         with-html #(assoc % :html (-> % :file-name html))]
     (into [] (map with-html) articles)))
@@ -216,106 +215,154 @@
       {:file/name (file-name article)
        :file/content redirect-page})))
 
+(defn latest [n articles]
+  (->>
+    articles
+    (sort-by :timestamp >)
+    (take n)))
+
 (defn articles-rss [articles write-file-ch]
-  (let [last-10-articles
-        (->>
-          articles
-          (sort-by :timestamp >)
-          (take 10))
-        rss (apply str (rss-template last-10-articles))]
-    (go
-      (>! write-file-ch {:file/name "articles.rss" :file/content rss}))))
+  (let [rss (apply str (rss-template (latest 10 articles)))]
+    (go (>! write-file-ch
+            {:file/name "articles.rss"
+             :file/content rss}))))
+
+(defn page-with-redirects [article]
+  (conj
+    (redirect-names article)
+    {:file/content (apply str (blogpost-template article))
+     :file/name (:file-name article)}))
 
 (defn articles-pages [articles write-file-ch]
   (->>
     articles
-    (mapcat #(conj (redirect-names %)
-                   {:file/content (apply str (blogpost-template %))
-                    :file/name (:file-name %)}))
+    (mapcat page-with-redirects)
     (async/onto-chan write-file-ch)))
 
 (defn articles-index [articles write-file-ch]
-  (let [last-5-articles
-        (->>
-          articles
-          (sort-by :timestamp >)
-          (take 5))
-        html (apply str (index-template last-5-articles))]
-    (go
-      (>! write-file-ch {:file/name "index.html" :file/content html}))))
+  (let [html (apply str (index-template (latest 5 articles)))]
+    (go (>! write-file-ch
+            {:file/name "index.html"
+             :file/content html}))))
+
+(defn tag-page [[tag items]]
+  (let [file-name (str "tag/" (slug tag) ".html")
+        data {:title tag
+              :url file-name
+              :years items}
+        html (apply str (tag-template data))]
+    {:file/name file-name
+     :file/content html}))
+
+(defn articles-by-tag [[tag items]]
+  [tag (->>
+         items
+         (sort-by :timestamp >)
+         (group-by :year)
+         (map #(zipmap [:year :articles] %))
+         (sort-by :year >))])
 
 (defn tag-indexes [articles write-file-ch]
-  (let [files
+  (let [pages
         (->>
           articles
           (map #(into {} (map (fn [x] [x [%]])) (:tags %)))
           (apply merge-with concat)
-          (map (fn [[tag items]]
-                 [tag (->> items
-                           (sort-by :timestamp >)
-                           (group-by :year)
-                           (map #(zipmap [:year :articles] %))
-                           (sort-by :year >))]))
-          (map (fn [[tag items]]
-                 (let [file-name (str "tag/" (slug tag) ".html")
-                       html (apply str (tag-template {:title tag :url file-name :years items}))] ;; TODO: sort by date
-                   {:file/name file-name
-                    :file/content html}))))]
-    (async/onto-chan write-file-ch files false)))
+          (map articles-by-tag)
+          (map tag-page))]
+    (async/onto-chan write-file-ch pages false)))
 
-(defn daybook [year month]
+(defn day-index [year month]
   (fn [[day items]]
     (let [file-name (str year "/" (format "%02d" month) "/" (format "%02d" day) "/index.html")
-          articles (->> items (sort-by (juxt :month :day)) reverse)
-          html (apply str (tag-template {:title "Denník" :url file-name :years [{:year year :articles articles}]}))]
+          articles
+          (->>
+            items
+            (sort-by (juxt :month :day))
+            (reverse))
+          data {:title "Denník"
+                :url file-name
+                :years [{:year year :articles articles}]}
+          html (apply str (tag-template data))]
       {:file/name file-name
        :file/content html})))
 
-(defn monthbook [year]
+(defn month-index [year]
   (fn [[month items]]
     (let [file-name (str year "/" (format "%02d" month) "/index.html")
-          articles (->> items (map second) flatten (sort-by (juxt :month :day)) reverse)
-          html (apply str (tag-template {:title "Měsíčník" :url file-name :years [{:year year :articles articles}]}))]
+          articles
+          (->>
+            items
+            (map second)
+            (flatten)
+            (sort-by (juxt :month :day))
+            (reverse))
+          data {:title "Měsíčník"
+                :url file-name
+                :years [{:year year :articles articles}]}
+          html (apply str (tag-template data))]
       (conj
-        (map (daybook year month) items)
+        (map (day-index year month) items)
         {:file/name file-name
          :file/content html}))))
 
-(defn yearbook [[year items]]
+(defn year-index [[year items]]
   (let [file-name (str year "/index.html")
-        articles (->> items (map second) (mapcat vals) flatten (sort-by (juxt :month :day)) reverse)
-        html (apply str (tag-template {:title "Ročenka" :url file-name :years [{:year year :articles articles}]}))]
+        articles
+        (->>
+          items
+          (map second)
+          (mapcat vals)
+          (flatten)
+          (sort-by (juxt :month :day))
+          (reverse))
+        data {:title "Ročenka"
+              :url file-name
+              :years [{:year year :articles articles}]}
+        html (apply str (tag-template data))]
     (conj
-      (mapcat (monthbook year) items)
+      (mapcat (month-index year) items)
       {:file/name file-name
        :file/content html})))
+
+(defn articles-by-month [[month items]]
+  [month (group-by :day items)])
+
+(defn articles-by-year [[year items]]
+  [year (->>
+          items
+          (group-by :month)
+          (map articles-by-month))])
 
 (defn time-indexes [articles write-file-ch]
   (let [files
         (->>
           articles
           (group-by :year)
-          (map (fn [[year items]]
-                 [year (->>
-                         items
-                         (group-by :month)
-                         (map (fn [[month items]]
-                                [month (group-by :day items)])))]))
-          (mapcat yearbook))]
+          (map articles-by-year)
+          (mapcat year-index))]
     (async/onto-chan write-file-ch files false)))
 
+(defn article->image [article]
+  {:title (:title article)
+   :name (author-twitter article)
+   :date (last (string/split (long-date (:published article)) #" - "))
+   :fileName (string/replace (:file-name article) #".html" ".png")})
+
 (defn twitter-images [articles write-file-ch]
-  (let [images-meta
-        (into []
-              (map #(array-map
-                      :title (:title %)
-                      :name (author-twitter %)
-                      :date (last (string/split (long-date (:published %)) #" - "))
-                      :fileName (string/replace (:file-name %) #".html" ".png")))
-              articles)
+  (let [images-meta (into [] (map article->image) articles)
         json (json/generate-string images-meta)]
-    (go
-      (>! write-file-ch {:file/name "data.json" :file/content json}))))
+    (go (>! write-file-ch
+            {:file/name "data.json"
+             :file/content json}))))
+
+(def generators
+  [twitter-images
+   articles-rss
+   articles-index
+   tag-indexes
+   time-indexes
+   articles-pages])
 
 (defn -main [& args]
   (let [root (or (first args) "../")
@@ -332,13 +379,7 @@
     (let [articles (read-articles content)
           write-file-ch (async/chan)]
       (println "Generating content...")
-      (async/thread (twitter-images articles write-file-ch))
-      (async/thread (articles-rss articles write-file-ch))
-      (async/thread (articles-index articles write-file-ch))
-      (async/thread (tag-indexes articles write-file-ch))
-      (async/thread (time-indexes articles write-file-ch))
-      (async/thread (articles-pages articles write-file-ch))
-      ;; TODO: comments
+      (run! #(async/thread (% articles write-file-ch)) generators)
       (<!! (go-loop []
              (when-let [file (<! write-file-ch)]
                (write-file dist file)
