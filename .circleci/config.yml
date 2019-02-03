@@ -55,12 +55,12 @@ jobs:
       - restore_cache:
           name: Restore cards cache
           keys:
-            - v1-cards-{{ checksum "dist/weblog/data.json" }}
+            - v1-cards-{{ checksum "dist/weblog/data.json" }}
       - run:
           name: Generate Twitter Card images
           command: |
             mv ./dist/weblog/data.json ./cards
-            if [ -e ./cards/data.json.sha1 ]; then prev_sha = `cat ./cards/data.json.sha1`; else prev_sha = ""; fi
+            if [ -e ./cards/data.json.sha1 ]; then prev_sha=`cat ./cards/data.json.sha1`; else prev_sha=""; fi
             sha1sum ./cards/data.json > ./cards/data.json.sha1
             curr_sha = `cat ./cards/data.json.sha1`
             if [ "$prev_sha" != "$curr_sha" ]; then node ./cards/generator "file://`pwd -P`/cards/card.html"; fi
@@ -75,7 +75,7 @@ jobs:
             - node_modules
       - save_cache:
           name: Store cards cache
-          key: v1-cards-{{ checksum "cards/data.json" }}
+          key: v1-cards-{{ checksum "cards/data.json" }}
           paths:
             - cards/data.json.sha1
       - persist_to_workspace:
