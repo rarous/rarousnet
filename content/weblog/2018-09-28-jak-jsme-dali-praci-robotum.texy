@@ -19,7 +19,7 @@ Aniž bychom kvůli tomu museli nabírat více lidí nebo přetěžovat lidi, co
 
 [* github-security-checks.jpg .(Screenshot nastavení Github Security Checku){max-width: 90%} *]
 
-Začalo to jednoduchým zaškrtnutím checkboxu v nastavení repository an Githubu.
+Začalo to jednoduchým zaškrtnutím checkboxu v nastavení repository na Githubu.
 “Ano, kontrolujte mi prosím závislosti, jestli nemají známé bezpečnostní díry.”
 A jejda, najednou se ukázalo, že některé projekty, které byly několik měsíců bez údržby
 (zdánlivě ji nepotřebovaly), mají bezpečnostní díry. To nám, ale ve skutečnosti náklady na
