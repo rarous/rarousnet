@@ -60,9 +60,9 @@ jobs:
           name: Generate Twitter Card images
           command: |
             mv ./dist/weblog/data.json ./cards
-            prev_sha=$([ -f ./cards/data.json.sha1 ] && cat ./cards/data.json.sha1 || "")
+            prev_sha="" && [ -f ./cards/data.json.sha1 ] && $(< ./cards/data.json.sha1)}
             sha1sum ./cards/data.json > ./cards/data.json.sha1
-            curr_sha=`cat ./cards/data.json.sha1`
+            curr_sha=$(< ./cards/data.json.sha1)
             if [ "$prev_sha" != "$curr_sha" ]; then node ./cards/generator "file://`pwd -P`/cards/card.html"; fi
       - run:
           name: Postprocess resources
