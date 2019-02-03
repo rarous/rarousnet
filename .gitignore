@@ -6,3 +6,6 @@ target/
 .nrepl*
 dist/
 out/
+yarn-error.log
+generator/.cpcache/
+cards/data.json
