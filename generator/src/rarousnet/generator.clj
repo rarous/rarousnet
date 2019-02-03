@@ -206,7 +206,7 @@
       (group-by :file-name)
       (map (fn [[k [v]]] (assoc v :html (results k))))
       (map #(assoc % :html (apply str (blogpost-template %))))
-      (map (partial write-file dist)))))
+      (map #(write-file dist %)))))
 
 (defn articles-index [articles results dist]
   (dorun
@@ -231,14 +231,14 @@
       (map (fn [[tag items]]
              [tag (->> items
                        (group-by (comp time/year from-date :published))
-                       (map (partial zipmap [:year :articles]))
+                       (map #(zipmap [:year :articles] %))
                        (sort-by :year >))]))
       (map (fn [[tag items]]
              (let [file-name (str "tag/" (slug tag) ".html")
                    html (apply str (tag-template {:title tag :url file-name :years items}))] ;; TODO: sort by date
                {:file-name file-name
                 :html html})))
-      (map (partial write-file dist)))))
+      (map #(write-file dist %)))))
 
 (defn daybook [year month]
   (fn [[day items]]
@@ -283,7 +283,7 @@
                      (map (fn [[month items]]
                             [month (group-by :day items)])))]))
       (mapcat yearbook)
-      (map (partial write-file dist)))))
+      (map #(write-file dist %)))))
 
 (def weblog-pattern
   #(str (:id %) "-" (str/replace (last (str/split (:file-name %) #"/")) #"html" "aspx/index.html")))
@@ -304,7 +304,7 @@
       (map (convert article-meta))
       (mapcat redirect-names)
       (map #(assoc % :html (apply str (redirect-template %))))
-      (map (partial write-file dist)))))
+      (map #(write-file dist %)))))
 
 (defn twitter-images [content dist]
   (dorun
