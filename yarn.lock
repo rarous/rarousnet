@@ -67,24 +67,7 @@
     read-package-tree "^5.2.1"
     resolve "^1.7.1"
 
-"@pulumi/pulumi@^0.16.11":
-  version "0.16.14"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.14.tgz#b8a569a364e46560db0942ac02fe65e3e2288abc"
-  integrity sha512-/tPH0CYe/jig28aAkkt9kdb6isXJ98yfRTv0qj13pZGg3t214JGvEz6KEy0Os6StnsXoSjpxGQIMXhDN4KYH+Q==
-  dependencies:
-    google-protobuf "^3.5.0"
-    grpc "^1.12.2"
-    minimist "^1.2.0"
-    normalize-package-data "^2.4.0"
-    protobufjs "^6.8.6"
-    read-package-tree "^5.2.1"
-    require-from-string "^2.0.1"
-    source-map-support "^0.4.16"
-    ts-node "^7.0.0"
-    typescript "^3.0.0"
-    upath "^1.1.0"
-
-"@pulumi/pulumi@latest":
+"@pulumi/pulumi@^0.16.11", "@pulumi/pulumi@latest":
   version "0.16.14"
   resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.14.tgz#b8a569a364e46560db0942ac02fe65e3e2288abc"
   integrity sha512-/tPH0CYe/jig28aAkkt9kdb6isXJ98yfRTv0qj13pZGg3t214JGvEz6KEy0Os6StnsXoSjpxGQIMXhDN4KYH+Q==
@@ -4099,10 +4082,10 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@^1.15.3:
-  version "1.15.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
-  integrity sha512-gAU9AGAPMaKb3NNSUUuhhFAS7SCO4ALTN4nRIn6PJ075Qd28Yn2Ig2ahEJWdJwJmlEBTUfC7mMUSFy8MwsOCfg==
+prettier@^1.16.4:
+  version "1.16.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
+  integrity sha512-ZzWuos7TI5CKUeQAtFd6Zhm2s6EpAD/ZLApIhsF9pRvRtM1RFo61dM/4MSRUA0SuLugA/zgrZD8m0BaY46Og7g==
 
 pretty-hrtime@^1.0.0:
   version "1.0.3"
