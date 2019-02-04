@@ -56,21 +56,21 @@
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
 "@pulumi/aws@latest":
-  version "0.16.5"
-  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-0.16.5.tgz#b8c2701b0b43fbf7f105c315134871b4a3036009"
-  integrity sha512-ptV/HK0/yO/sqv1qtQUfoZrxhrPgt+0YurzIUouxj7mhSZvJlyDqmPMdgL/ygQf/rZqGnc2wQs3HclR0XUltVQ==
+  version "0.16.7"
+  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-0.16.7.tgz#723d205bf2674aa26ef87a06cf50b9831353afd0"
+  integrity sha512-RQV4XCgf3QnEJvrRfHkCZzGKJA3xuJrOdNTWIHLC4QTGH9tZOK5aLcP6yGPp7kKMm44bV08JnAPOooG+U4mi0w==
   dependencies:
-    "@pulumi/pulumi" dev
+    "@pulumi/pulumi" "^0.16.11"
     aws-sdk "^2.0.0"
     builtin-modules "3.0.0"
     mime "^2.0.0"
     read-package-tree "^5.2.1"
     resolve "^1.7.1"
 
-"@pulumi/pulumi@dev":
-  version "0.16.10-dev.1546038363"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.10-dev.1546038363.tgz#b73c3e5ae95e5e9b858cf0d882fd1ee3192e0c00"
-  integrity sha512-Gzrj5RqqpWdkI1dT9YHtfQefLOD85fYaqrDs/vi3uLwWvVJfGDC3lHRVzjUMPcYFx1++Y2JjMgjCSKogjeGL7Q==
+"@pulumi/pulumi@^0.16.11":
+  version "0.16.14"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.14.tgz#b8a569a364e46560db0942ac02fe65e3e2288abc"
+  integrity sha512-/tPH0CYe/jig28aAkkt9kdb6isXJ98yfRTv0qj13pZGg3t214JGvEz6KEy0Os6StnsXoSjpxGQIMXhDN4KYH+Q==
   dependencies:
     google-protobuf "^3.5.0"
     grpc "^1.12.2"
@@ -4456,17 +4456,10 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@^1.4.0:
+resolve@^1.1.6, resolve@^1.1.7, resolve@^1.4.0, resolve@^1.7.1:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.10.0.tgz#3bdaaeaf45cc07f375656dfd2e54ed0810b101ba"
   integrity sha512-3sUr9aq5OfSg2S9pNtPA9hL1FVEAjvfOC4leW0SNf/mpnaakz2a9femSd6LqAww2RaFctwyf1lCqnTHuF1rxDg==
-  dependencies:
-    path-parse "^1.0.6"
-
-resolve@^1.7.1:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.9.0.tgz#a14c6fdfa8f92a7df1d996cb7105fa744658ea06"
-  integrity sha512-TZNye00tI67lwYvzxCxHGjwTNlUV70io54/Ed4j6PscB8xVfuBJpRenI/o6dVk0cY0PYTY27AgCoGGxRnYuItQ==
   dependencies:
     path-parse "^1.0.6"
 
