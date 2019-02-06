@@ -1,0 +1,49 @@
+---
+{:id 472,
+:title "TypeScript a typový sebeklam",
+:description
+"Malý ranní hejt na typový sebeklam a nekritické přijímání marketingových bludů.",
+:author "Aleš Roubíček",
+:tags #{"moje práce"},
+:published "2019-02-06T06:45:00.000"}
+---
+
+Tak, jak je to v historii už zvykem, světová scéna opět konverguje k řešení, které je nešťastné.
+Ať už je to "nepochopitelný vzestup Pythonu":[https://www.economist.com/graphic-detail/2018/07/26/python-is-becoming-the-worlds-most-popular-coding-language],
+kvůli Data Science, na který je objektivně nevhodným jazykem, nebo TypeScript na poli web developmentu.
+Programátoři podléhají módním trendům více než vědě a inženýrskému přístupu.
+
+Lidí "bez patřičných znalostí Computer Science":[https://insights.stackoverflow.com/survey/2018/#education]
+a praktických zkušeností je "moře, které neustále zvedá
+svou hladinu":[https://insights.stackoverflow.com/survey/2018/#experience].
+Většina podléhá efektu stáda a rozhoduje se na základě marketingových masáží výrobců "špatných
+IDE":[https://code.visualstudio.com/] a jazyků:[https://www.typescriptlang.org/]
+a "drahých konzultačních služeb":[https://www.microsoft.com/en-SG/enterprise/services].
+V davu přetrvává přesvědčení, že silné statické typy zlepšují návrh a zaručují funkčnost.
+Ve skutečnosti návrh neskutečně komplikují a to co dokáží, je eliminovat chyby na úrovni překlepů.
+Realita je taková, že tyto jazyky a frameworky jsou navržené tak, aby generovaly práci
+lidem zvaným XY Developer Evangelist a Enterprise XY Consultant, kteří jsou generátory nemalých zisků těchto výrobců.
+
+Nástroje typu TypeScript slibují statickou analýzu a typovou bezpečnost v silně dynamickém světě.
+Tam, kde je agilita a dynamičnost vaší konkurenční výhodou, si dobrovolně lámete ruce pomocí enterprise
+návrhových vzorů, zavíráte dveře "jednoduchému návrhu":[/2012/06/09/pravidla-jednoducheho-navrhu.html],
+kvůli schopnosti odhalit pár překlepů. TypeScript vám nepomůže se správným/lepším návrhem architektury,
+který má 100x větší dopad na vaši produktivitu a "výslednou efektivitu":[https://clojure.org/guides/repl/introduction].
+Místo toho vám "dodává pocit falešného bezpečí":[https://blog.jayway.com/2016/05/06/typescript-web-and-the-illusive-type-safety-advantage/].
+Ano, falešného, protože "TypeScript nemá vliv na runtime":[https://stackoverflow.com/search?q=typescript+runtime+error],
+kde stále existují coercions a dynamičnost, kde vám (nejen) po drátě přijde úplně něco jinýho, než říkají vaše typy.
+TypeScript vás dokonce nenechá přeložit "naprosto korektní program":[https://github.com/rarous/rarousnet/blob/e454d7b73c0dc042abea271d8231778835511e1d/index.js#L5-L6],
+který neodpovídá jeho omezené schopnosti popsat skutečné typy.
+
+Lidi raději věří lži než aby žili v nejistotě...
+
+Související studijní materiál
+==============================
+
+Typové systémy v dynamických jazycích
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JBmIQIZPaHY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Efektivní programování s dynamickými jazyky
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2V1FtfBDsLU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
