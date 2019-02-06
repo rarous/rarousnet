@@ -26,7 +26,7 @@ lidem zvaným XY Developer Evangelist a Enterprise XY Consultant, kteří jsou g
 
 Nástroje typu TypeScript slibují statickou analýzu a typovou bezpečnost v silně dynamickém světě.
 Tam, kde je agilita a dynamičnost vaší konkurenční výhodou, si dobrovolně lámete ruce pomocí enterprise
-návrhových vzorů, zavíráte dveře "jednoduchému návrhu":[/2012/06/09/pravidla-jednoducheho-navrhu.html],
+návrhových vzorů, zavíráte dveře "jednoduchému návrhu":[/weblog/2012/06/09/pravidla-jednoducheho-navrhu.html],
 kvůli schopnosti odhalit pár překlepů. TypeScript vám nepomůže se správným/lepším návrhem architektury,
 který má 100x větší dopad na vaši produktivitu a "výslednou efektivitu":[https://clojure.org/guides/repl/introduction].
 Místo toho vám "dodává pocit falešného bezpečí":[https://blog.jayway.com/2016/05/06/typescript-web-and-the-illusive-type-safety-advantage/].
