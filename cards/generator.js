@@ -28,7 +28,10 @@ console.log("");
   console.log("");
   console.log("DONE");
   await browser.close();
-})().catch(err => console.error(err));
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 async function changeCardContent(card, post) {
   const setContent = (el, s) => (el.innerText = s);
