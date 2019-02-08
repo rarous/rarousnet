@@ -16,8 +16,7 @@ function css() {
   ];
   return src("./static/**/*.css")
     .pipe(postcss(plugins))
-    .pipe(dest("./dist/"))
-    .pipe(browserSync.stream());
+    .pipe(dest("./dist/"));
 }
 
 function hashStyles() {
@@ -53,8 +52,10 @@ function run() {
   });
 
   watch("static/**/*.css", css);
+  watch("dist/**/*.css").on("change", browserSync.reload);
+  watch("dist/**/*.js").on("change", browserSync.reload);
   watch("dist/**/*.html").on("change", browserSync.reload);
 }
 
-exports.dev = parallel(css, run);
+exports.dev = series(css, run);
 exports.default = series(css, hashStyles, html);
