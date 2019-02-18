@@ -46,15 +46,18 @@ function html() {
     .pipe(dest("./dist"));
 }
 
-function run() {
+function run(done) {
   browserSync.init({
     server: "./dist"
   });
 
   watch("static/**/*.css", css);
-  watch("dist/**/*.css").on("change", browserSync.reload);
-  watch("dist/**/*.js").on("change", browserSync.reload);
-  watch("dist/**/*.html").on("change", browserSync.reload);
+  watch([
+    "dist/**/*.css",
+    "dist/**/*.js",
+    "dist/**/*.html"
+  ]).on("change", browserSync.reload);
+  done();
 }
 
 exports.dev = series(css, run);
