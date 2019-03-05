@@ -68,9 +68,9 @@
     resolve "^1.7.1"
 
 "@pulumi/pulumi@<=1.0", "@pulumi/pulumi@^0.16.14":
-  version "0.16.18"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.18.tgz#05e87eeb71c737986e33dc3113284630f20410c0"
-  integrity sha512-VBOvH47WcoSjQu1rxvizcqMZlLl9+LKidrCxz4Xt0qVF75Ue3TEvLPRf2eMpYnurJsUtv02J9AeGVsNKuw2YcA==
+  version "0.16.19"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.19.tgz#32f377b003d94196ccd5507273d9d1947eb64cb2"
+  integrity sha512-wbI+u2dvgfZpGeS7E3D21ZvtPt50LiLImCU3QrJTRZqpaNXE2/6sPeI31M1L9fWRciDLy8AMZLV8e4YEoiu7og==
   dependencies:
     google-protobuf "^3.5.0"
     grpc "^1.12.2"
