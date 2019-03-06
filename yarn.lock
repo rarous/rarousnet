@@ -56,21 +56,21 @@
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
 "@pulumi/aws@<=1.0":
-  version "0.16.10"
-  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-0.16.10.tgz#d9b13db82cfa670f5a09cc349d3b6802e9d2b4a8"
-  integrity sha512-9vzbjPxUjbvXTUv6lmN0j7o6j4WYfkDbXvpCVOGl2C06udJizXRO5V/QyK8vLwNre/Kl8OY8ruwcNzI5Yn5ToA==
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-0.17.0.tgz#f032f5ed55151f80cc49bd98d191a6845a8a4dca"
+  integrity sha512-GlB/g7E8ogEZtptsusobnDAHvqMVu8yTrDfM6A8z3yKlkLWK71KLzaL6mfOICaE8MfnrA+agXTRqvNRavWoQQA==
   dependencies:
-    "@pulumi/pulumi" "^0.16.14"
+    "@pulumi/pulumi" "^v0.17.0"
     aws-sdk "^2.0.0"
     builtin-modules "3.0.0"
     mime "^2.0.0"
     read-package-tree "^5.2.1"
     resolve "^1.7.1"
 
-"@pulumi/pulumi@<=1.0", "@pulumi/pulumi@^0.16.14":
-  version "0.16.19"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.16.19.tgz#32f377b003d94196ccd5507273d9d1947eb64cb2"
-  integrity sha512-wbI+u2dvgfZpGeS7E3D21ZvtPt50LiLImCU3QrJTRZqpaNXE2/6sPeI31M1L9fWRciDLy8AMZLV8e4YEoiu7og==
+"@pulumi/pulumi@<=1.0", "@pulumi/pulumi@^v0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.17.0.tgz#3d39fcf98de3fff2051fe33f176fc1d35a79d948"
+  integrity sha512-lTmNJOBoPYlOU31OwxPJOjkgcqhdcQrR5TlGhUo/COMSa8Ifak8neuM1txW6II0ENxXlQtRmS+WL9Nxm/cXmMg==
   dependencies:
     google-protobuf "^3.5.0"
     grpc "^1.12.2"
