@@ -8,7 +8,7 @@
     "@pulumi/pulumi": "<=1.0"
   },
   "devDependencies": {
-    "autoprefixer": "^9.4.10",
+    "autoprefixer": "^9.5.0",
     "browser-sync": "^2.26.3",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.0",
