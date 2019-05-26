@@ -1,0 +1,63 @@
+---
+{:id 473,
+:title "Bezpečnější Traefik",
+:description
+"Jak nastavit HSTS a silnější šifrování na reverzní proxy Traefik?",
+:author "Aleš Roubíček",
+:tags #{"moje práce"},
+:published "2019-05-26T09:10:00.000"}
+---
+
+V našich Docker Swarm clusterech používáme pro řízení provozu reverzní proxy Traefik. 
+Traefik se stará o autodiscovery služeb v clusteru, jejich routování a terminaci TLS 
+(vč. generování certifikátů pomocí Let's Encrypt).
+
+Ve výchozím nastavení je však TLS v režimu široké kompatibility. To znamená, 
+že jsou povoleny starší (a nebezpečnější) verze protokolu a také sady šifer,
+které už "dnešním požadavkům nedostačují":[https://www.michalspacek.cz/vypnete-tls-1.0-a-1.1-uz-dnes].
+Musíme tedy sáhnout po ruční konfiguraci, abych dosáhli lepšího výsledku.
+
+## TLS v1.2 a silnější šifry
+
+Pro konfiguraci Traefiku používáme CLI argumenty v `docker-compose.yml`, základní nastavení TLS endpointu vypadá takto:
+
+```
+"--entrypoints=Name:https Address::443 TLS Compress:true"
+```
+
+Pro omezení starších verzí přidáme konfiguraci minimální verze:
+
+```
+TLS.MinVersion:VersionTLS12
+```
+
+A pro silnější šifry podle [Mozilla Modern](https://wiki.mozilla.org/Security/Server_Side_TLS):
+
+```
+TLS.CipherSuites:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+```
+
+Výsledná konfigurace pak vypadá takto:
+
+```
+"--entrypoints=Name:https Address::443 TLS TLS.MinVersion:VersionTLS12 TLS.CipherSuites:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 Compress:true"
+```
+
+Poznámka: TLS v1.3 není v Traefik 1.x podporovaná. Připravovaná verze 2.x již podporu pro TLS v1.3 obsahuje.
+
+## HTTP Strict Transport Security
+
+Silnější šifry a modernější protokol s lepšími hashovacími funkcemi jsou super, 
+ale ne tak moc, když vám je někdo po cestě odstraní. Je dobré dát světu vědět, 
+že fakt chcete komunikovat po TLS. A  k tomu slouží HTTP hlavička `Strict-Transport-Security`. 
+V Traefiku nejde zapnout globálně, ale musí se nastavit na každém endpointu zvlášť. 
+My to opět, kvůli autodiscovery, děláme pomocí `deploy\labels` sekce v `docker-compose.yml`:
+
+```
+        traefik.frontend.headers.forceSTSHeader: 'true'
+        traefik.frontend.headers.STSSeconds: 315360000
+        traefik.frontend.headers.STSIncludeSubdomains: 'true'
+        traefik.frontend.headers.STSPreload: 'true'
+```
+
+Více informací o "HSTS najdete v přednášce Michala Špačka":[https://www.michalspacek.cz/prednasky/hsts-develcz].
