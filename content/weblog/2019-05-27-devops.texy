@@ -73,12 +73,12 @@ Lead Time je dán vyspělostí celé organizace. Schopností komunikovat a spolu
 pomocí automatizace má v ranné části adopce DevOps pramalé dopady, protože většina času (řádově měsíce) 
 je propálena na byznys procesech, nikoliv v IT. Tohle je věc change managementu a je na adopci DevOps to nejtěžší, 
 protože vyžaduje spolupráci napříč odděleními. Práce nutně musí opustit sila a musí se začít organizovat 
-podle jednotlivých value streamů. Společnost musí pro úspěšnou adopci DevOps přejít na Lean myšlení 
-- změnit způsob jakým vede účetnictví, jakým přiděluje zdroje, jak oceňuje vzniklou hodnotu atd.
+podle jednotlivých value streamů. Společnost musí pro úspěšnou adopci DevOps přejít na Lean myšlení - změnit
+způsob jakým vede účetnictví, jakým přiděluje zdroje, jak oceňuje vzniklou hodnotu atd.
 
-V této fázi dokážeme zmapovat neoficiální organizační strukturu a pomoci nalézt agenty změny 
-- klíčové lidi, kteří jsou schopní celý proces transformace pohřbít nebo pomoci s jeho úspěchem. 
+V této fázi dokážeme zmapovat neoficiální organizační strukturu a pomoci nalézt agenty změny - klíčové lidi,
+kteří jsou schopní celý proces transformace pohřbít nebo pomoci s jeho úspěchem. 
 Například náš nástroj "Frank":[https://www.purposefly.com/frank] a naši koučové vám pomůžou tyto lidi včas identifikovat
 a pracovat s nimi tak, aby se snížila rizika přechodu na DevOps. Protože většina velkých transformací
 selhává právě na lidském faktoru a odporu vůči změnám, je potřeba s lidmi pracovat, vše jim vysvětlit 
-a do procesu je zapojit od samotného začátku. Jak už jsem psal, DevOps je kultura spolupráce.
+a do procesu je zapojit od samotného začátku. Jak už jsem psal, **DevOps je kultura spolupráce**.
