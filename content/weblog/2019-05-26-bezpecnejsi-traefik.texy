@@ -8,7 +8,7 @@
 :published "2019-05-26T09:10:00.000"}
 ---
 
-V našich Docker Swarm clusterech používáme pro řízení provozu reverzní proxy Traefik. 
+V našich Docker Swarm clusterech používáme pro řízení provozu reverzní proxy Traefik:[https://traefik.io/]. 
 Traefik se stará o autodiscovery služeb v clusteru, jejich routování a terminaci TLS 
 (vč. generování certifikátů pomocí Let's Encrypt).
 
