@@ -35,7 +35,7 @@ Snížením objemu dosáhneme i dalšího efektu: Čím jsou změny menší, tí
 a snáze se odhalují chyby. Nebo je mnohem menší prostor pro zanesení chyb. To může mít pozitivní
 vliv na výslednou kvalitu.
 
-[* /data/obrazky/devops-frekvence.png .{max-width: 100%} <>]
+[* /data/obrazky/devops-frekvence.png .(Rozdíl mezi rizikem při vysoké a nízké kadenci deploye){max-width: 100%} <>]
 
 Ve výsledku můžeme být lokálně schopni dodávat častěji řešení požadavků a ve větší kvalitě 
 - pokud se splní předpoklad snížení objemu dodávek a nastolení jejich pravidelného rytmu dodávání. 
@@ -44,7 +44,7 @@ Bude schopná ustát případný velký zájem zákazníků? Jak je řešení v 
 Jak poznají lidé, co budou systém provozovat, že je vše v pořádku, případně, co se v něm děje
 a jak na to mají reagovat?
 
-[* /data/obrazky/devops-kanban.png .{max-width: 100%} *]:[https://vimeo.com/274514331]
+[* /data/obrazky/devops-kanban.png .(Kanban s kroky přes celou organizaci){max-width: 100%} *]:[https://vimeo.com/274514331]
 
 DevOps:[https://www.thoughtworks.com/radar/techniques/devops] nejde zavést nařízením shora. 
 Největší část DevOps tvoří kultura. Kultura učení se a sdílení. 
@@ -66,7 +66,7 @@ Tím bychom vytvořili další silo, kterých se v DevOps chceme zbavit, protož
 3. *Mean Time to Restore* - průměrná doba potřebná za zotavení z produkčního incidentu
 4. *Change Fail Percentage* - procento nepovedených nasazení do produkce
 
-[* https://faasandfurious.com/pages/silos.png 320x338 <]:[https://faasandfurious.com/80]
+[* https://faasandfurious.com/pages/silos.png .(Cartoon - Siloes){margin-right: 2em} 320x338 <]:[https://faasandfurious.com/80]
 
 Proč jsou tyto metriky pro DevOps klíčové? Protože celkem komplexně měří důležité aspekty byznysové agility. 
 Lead Time je dán vyspělostí celé organizace. Schopností komunikovat a spolupracovat. Optimalizace lead time 
