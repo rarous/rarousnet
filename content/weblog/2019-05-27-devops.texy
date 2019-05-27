@@ -37,8 +37,8 @@ vliv na výslednou kvalitu.
 
 [* /data/obrazky/devops-frekvence.png .{max-width: 100%;margin: 0 auto} *]
 
-Ve výsledku můžeme být lokálně schopni dodávat častěji řešení požadavků a ve větší kvalitě 
-- pokud se splní předpoklad snížení objemu dodávek a nastolení jejich pravidelného rytmu dodávání. 
+Ve výsledku můžeme být lokálně schopni dodávat častěji řešení požadavků a ve větší kvalitě - pokud
+se splní předpoklad snížení objemu dodávek a nastolení jejich pravidelného rytmu dodávání. 
 Co nám však chybí je big picture. Děláme správnou věc? Budou o ni mít zákazníci zájem? 
 Bude schopná ustát případný velký zájem zákazníků? Jak je řešení v takovém případě schopné škálovat? 
 Jak poznají lidé, co budou systém provozovat, že je vše v pořádku, případně, co se v něm děje
