@@ -1,0 +1,82 @@
+---
+{:id 474,
+:title "DevOps",
+:description "Vlhkým snem všech moderních společností je vyvíjet software rychleji.",
+:author "Aleš Roubíček",
+:tags #{"moje práce"},
+:published "2019-05-27T08:00:00.000"}
+---
+
+Vlhkým snem všech moderních společností je vyvíjet software rychleji. Nechávají se opít vidinou,
+že zavedením Agile se rapidně zrychlí a zlevní vývoj software a zázračně dojde ke zvýšení kvality.
+Tím, že se zvýší množství rituálních meetingů, se vývoj nezrychlí, ani se zásadně nezmění kvalita. 
+Problém totiž není v IT organizacích firem, ale v samotném prostředí firmy. 
+
+Firmy vytvářejí nákladová střediska a odpovědnostní sila. Proč? Protože se mnohem snadněji rozděluje moc.
+Tento manažer je zodpovědný za chod vývoje, tento za operations, tento za sales, jiný za marketing...
+A to jsou pole jejich moci. Takové pole si opečovávají a řídí, podle svého nejlepšího uvážení.
+Jsou hodnoceni za výkon (rostoucí KPIs) jím svěřených oddělení a proto se snaží z nich vyždímat co nejvíce. 
+Zvyšuje se efektivita, osekávají se nálady a to vše v rámci sila dané specializace.
+
+Tito manažeři se schází v pravidelných intervalech na schůzkách, kde rozhodují o tom, jaká bude strategie, 
+jaký bude plán činností na další časové období a kolik na to uvolní prostředků. Také si stanoví deadlines, 
+aby se vědělo, kdy to má být hotové.
+
+Zavedením Agile do určité části organizace se často povede zavést element predikovatelnosti. 
+Dokážete totiž měřit kolik práce je tým schopný odbavit za nějakou časovou jednotku. 
+Tým se zlepšuje ve schopnosti odhadovat časovou náročnost zadávaných úkolů tím, že to dělá pravidelně 
+v poměrně krátkých časových rozestupech a že je nucen pracovat v rámci omezeného času. 
+V důsledku je tým nucen se naučit dělit požadavky na menší jednotky, které je schopný v omezeném čase dodat. 
+Tím postupně vzniká kadence dodávané hodnoty. Často mylně považovaná za vyšší rychlost vývoje. 
+Rychlost vývoje se nemění, jen dochází ke zvýšení frekvence dodání, ale zároveň ke snížení objemu
+dodávané hodnoty.
+
+Snížením objemu dosáhneme i dalšího efektu: Čím jsou změny menší, tím jsou snáze pochopitelnější 
+a snáze se odhalují chyby. Nebo je mnohem menší prostor pro zanesení chyb. To může mít pozitivní
+vliv na výslednou kvalitu.
+
+[* /data/obrazky/devops-frekvence.png *]
+
+Ve výsledku můžeme být lokálně schopni dodávat častěji řešení požadavků a ve větší kvalitě 
+- pokud se splní předpoklad snížení objemu dodávek a nastolení jejich pravidelného rytmu dodávání. 
+Co nám však chybí je big picture. Děláme správnou věc? Budou o ni mít zákazníci zájem? 
+Bude schopná ustát případný velký zájem zákazníků? Jak je řešení v takovém případě schopné škálovat? 
+Jak poznají lidé, co budou systém provozovat, že je vše v pořádku, případně, co se v něm děje
+a jak na to mají reagovat?
+
+[* /data/obrazky/devops-kanban.png *]:[https://vimeo.com/274514331]
+
+DevOps:[https://www.thoughtworks.com/radar/techniques/devops] nejde zavést nařízením shora. 
+Největší část DevOps tvoří kultura. Kultura učení se a sdílení. 
+Než se pustíte do zásadních změn, musíte se začít zaměřovat na bolesti a problémy, které máte. 
+Často vidíme jen příznaky problémů. Proto je nutné zavést zpětnovazební systémy, které podpoří Kaizen. 
+Dále je nutné se naučit analyzovat problémy tak, abychom se dostali k jejich podstatě.
+K tomu by nám měly pomoci "agilní retrospektivy":[http://www.funretrospectives.com/] a třeba 
+"metoda Pěti proč":[https://kanbanize.com/lean-management/improvement/5-whys-analysis-tool/]. 
+Jakmile chápeme, kde máme problémy a co s nimi můžeme dělat, můžeme nahajrovat několik DevOps
+inženýrů a máme problém vyřešený...
+
+Samozřejmě si dělám legraci. "DevOps je kultura":[https://martinfowler.com/bliki/DevOpsCulture.html] 
+úzké spolupráce Developers a IT Operations lidí, nikoliv nahrazení dvou specialistů jedním univerzálem.
+Tím bychom vytvořili další silo, kterých se v DevOps chceme zbavit, protože mají negativní dopad na 
+"čtyři klíčové metriky":[https://www.thoughtworks.com/radar/techniques/four-key-metrics]:
+
+1. *Lead Time* - čas od vzniku požadavku zákazníka do jeho uspokojení
+2. *Deployment Frequency* - frekvence nasazení nových verzí do produkce
+3. *Mean Time to Restore* - průměrná doba potřebná za zotavení z produkčního incidentu
+4. *Change Fail Percentage* - procento nepovedených nasazení do produkce
+
+[* https://faasandfurious.com/pages/silos.png .< 320x338 *]:[https://faasandfurious.com/80]
+
+Proč jsou tyto metriky pro DevOps klíčové? Protože celkem komplexně měří důležité aspekty byznysové agility. 
+Lead Time je dán vyspělostí celé organizace. Schopností komunikovat a spolupracovat. Optimalizace lead time 
+pomocí automatizace má v ranné části adopce DevOps pramalé dopady, protože většina času (řádově měsíce) 
+je propálena na byznys procesech, nikoliv v IT. Tohle je věc change managementu a je na adopci DevOps to nejtěžší, 
+protože vyžaduje spolupráci napříč odděleními. Práce nutně musí opustit sila a musí se začít organizovat 
+podle jednotlivých value streamů. Společnost musí pro úspěšnou adopci DevOps přejít na Lean myšlení 
+- změnit způsob jakým vede účetnictví, jakým přiděluje zdroje, jak oceňuje vzniklou hodnotu atd.
+
+V této fázi dokážeme zmapovat neoficiální organizační strukturu a pomoci nalézt agenty změny 
+- klíčové lidi, kteří jsou schopní celý proces transformace pohřbít nebo pomoci s jeho úspěchem. 
+Náš nástroj "Frank":[https://www.purposefly.com/frank] a naši koučové vám pomůžou tyto lidi včas identifikovat
+a pracovat s nimi tak, aby se snížila rizika přechodu na DevOps.
