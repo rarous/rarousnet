@@ -68,9 +68,9 @@
     resolve "^1.7.1"
 
 "@pulumi/pulumi@<=1.0", "@pulumi/pulumi@^0.17.8":
-  version "0.17.13"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.17.13.tgz#361a319ecb169ae0e295881af94f1c0c1d7985a7"
-  integrity sha512-C7n2Defy97iKHJCvh5X8sjLgoHW0feCkw9TLiPSwNJ5HDkOc9Sud5hjMLlHOvGHP9bfOqPsrg+GkLmgohWnj2A==
+  version "0.17.14"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.17.14.tgz#44edca698e0806591b96975b803e7ccf85053d66"
+  integrity sha512-FtCa5tnQ5kgcs+ybYiaM/LWEt0Hcbh4TMuYAnpF/O79UcdOCL16lITTtBxKBub/eL/WVu97m1uJEvwSe9hIq2Q==
   dependencies:
     google-protobuf "^3.5.0"
     grpc "^1.20.2"
@@ -79,9 +79,10 @@
     protobufjs "^6.8.6"
     read-package-tree "^5.2.1"
     require-from-string "^2.0.1"
+    semver "^6.1.0"
     source-map-support "^0.4.16"
     ts-node "^7.0.0"
-    typescript "^3.4.1"
+    typescript "^3.0.0"
     upath "^1.1.0"
 
 "@types/long@^4.0.0":
@@ -4378,6 +4379,11 @@ semver-greatest-satisfied-range@^1.1.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   integrity sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==
 
+semver@^6.1.0:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.1.tgz#53f53da9b30b2103cd4f15eab3a18ecbcb210c9b"
+  integrity sha512-rWYq2e5iYW+fFe/oPPtYJxYgjBm8sC4rmoGdUOgBB7VnwKt6HrL793l2voH1UlsyYZpJ4g0wfjnTEO1s1NP2eQ==
+
 send@0.16.2:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/send/-/send-0.16.2.tgz#6ecca1e0f8c156d141597559848df64730a6bbc1"
@@ -5020,7 +5026,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.4.1:
+typescript@^3.0.0:
   version "3.4.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
   integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
