@@ -68,10 +68,11 @@
     resolve "^1.7.1"
 
 "@pulumi/pulumi@<=1.0", "@pulumi/pulumi@^0.17.8":
-  version "0.17.14"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.17.14.tgz#44edca698e0806591b96975b803e7ccf85053d66"
-  integrity sha512-FtCa5tnQ5kgcs+ybYiaM/LWEt0Hcbh4TMuYAnpF/O79UcdOCL16lITTtBxKBub/eL/WVu97m1uJEvwSe9hIq2Q==
+  version "0.17.15"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-0.17.15.tgz#69b34cc5695a53a5a0f6e52ff357c7f3b28c7b62"
+  integrity sha512-lfJHHLHz04/LRyXykspeq1fFEiAf+8N9S77pAjOUwbhnCgj4r0qCwoD0eyxmQQBDCvx47VoitbKJq9ZT4/EEQw==
   dependencies:
+    "@pulumi/query" "^0.3.0"
     google-protobuf "^3.5.0"
     grpc "^1.20.2"
     minimist "^1.2.0"
@@ -84,6 +85,11 @@
     ts-node "^7.0.0"
     typescript "^3.0.0"
     upath "^1.1.0"
+
+"@pulumi/query@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@pulumi/query/-/query-0.3.0.tgz#f496608e86a18c3dd31b6c533408e2441c29071d"
+  integrity sha512-xfo+yLRM2zVjVEA4p23IjQWzyWl1ZhWOGobsBqRpIarzLvwNH/RAGaoehdxlhx4X92302DrpdIFgTICMN4P38w==
 
 "@types/long@^4.0.0":
   version "4.0.0"
