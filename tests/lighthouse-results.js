@@ -9,17 +9,17 @@ const assertThreshold = ({ score }, threshold) => t =>
 
 test(
   "Lighthouse Accessibility",
-  assertThreshold(results.categories.accessibility, 0.75)
+  assertThreshold(results.categories.accessibility, 0.9)
 );
 
 test(
   "Lighthouse Best practices",
-  assertThreshold(results.categories["best-practices"], 0.75)
+  assertThreshold(results.categories["best-practices"], 0.9)
 );
 
 test(
   "Lighthouse Performance",
-  assertThreshold(results.categories.performance, 0.75)
+  assertThreshold(results.categories.performance, 0.9)
 );
 
-test("Lighthouse SEO", assertThreshold(results.categories.seo, 0.75));
+test("Lighthouse SEO", assertThreshold(results.categories.seo, 0.9));
