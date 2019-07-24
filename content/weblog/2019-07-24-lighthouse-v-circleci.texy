@@ -14,7 +14,7 @@ Na třetí možnost se podíváme dnes a integrujeme si ho do naší Continuous 
 
 Příkladem budiž tento web, který je čistě statický, generovaný v době integrace.
 "K buildům používám CircleCI":[https://circleci.com/gh/rarous/rarousnet].
-Chci přidat krok, který mi spustí Lighthouse auditya potom otestuje výsledky,
+Chci přidat krok, který mi spustí Lighthouse audity a potom otestuje výsledky,
 zda odpovídají nastaveným kritériím. Pokud ne, testy selžou a nedovolí se deploy do produkce.
 
 ## Webový server
@@ -67,8 +67,8 @@ ale nám teď bude stačit toto. Nyní se můžeme pustit do testování výsled
 
 ## Testování
 
-Pro spouštění testů použijeme test runner AVA a výsledek testů budeme chtít pro
-další použití ve formátu xunit.xml:
+Pro spouštění testů použijeme "test runner AVA":[https://github.com/avajs/ava]
+a výsledek testů budeme chtít pro další použití ve formátu xunit.xml:
 
 /--code
 yarn add --dev ava tap-xunit
@@ -112,7 +112,7 @@ test("Lighthouse SEO", assertThreshold(results.categories.seo, 0.9));
 
 Nejprve si naimportujeme testovací funkci z balíčku `ava` a výsledky z Lighthouse
 testů ve formátu JSON. Potom si vytvoříme testovací helper funkci na ověření,
-že je výsledné skóre vyšší nebo rovno než nastavená laťka. Pak už si definujeme testy na
+že je výsledné skóre vyšší nebo rovno nastavené laťce. Pak už si definujeme testy na
 jednotlivé kategorie s laťkou nastavenou dostatečně vysoko.
 
 Nyní máme připraveno vše, co budeme potřebovat ke spuštění na integračním serveru.
