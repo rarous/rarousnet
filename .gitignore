@@ -9,3 +9,6 @@ out/
 yarn-error.log
 generator/.cpcache/
 cards/data.json
+.pnp
+.DS_Store
+/results/

@@ -4,7 +4,7 @@ orbs:
 jobs:
   provision:
     docker:
-      - image: circleci/node:11
+      - image: circleci/node:12
     steps:
       - checkout
       - pulumi/login
@@ -42,7 +42,7 @@ jobs:
           paths: dist
   postprocess:
     docker:
-      - image: circleci/node:11-browsers
+      - image: circleci/node:12-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -69,6 +69,38 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: dist
+  test:
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          name: Restore yarn cache
+          keys:
+            - v2-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install self-signed cert for localhost
+          command: |
+            sudo apt-get install libnss3-tools
+            mkdir -p $HOME/.pki/nssdb
+            certutil -d $HOME/.pki/nssdb -N --empty-password
+            certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n lws-cert -i ./node_modules/lws/ssl/lws-cert.pem
+      - run:
+          name: Serve site content
+          command: yarn serve
+          background: true
+      - run:
+          name: Test site with Lighthouse
+          command: |
+            mkdir results
+            yarn test:lighthouse
+            yarn test:ava
+      - store_artifacts:
+          path: ./results
+      - store_test_results:
+          path: ./results
   s3_deploy:
     docker:
       - image: cibuilds/aws:latest
@@ -94,11 +126,14 @@ workflows:
           filters:
             branches:
               only: master
+      - test:
+          requires:
+            - postprocess
       - s3_deploy:
           context: aws
           requires:
             - provision
-            - postprocess
+            - test
           filters:
             branches:
               only: master
