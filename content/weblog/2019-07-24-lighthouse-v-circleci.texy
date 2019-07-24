@@ -17,6 +17,8 @@ Příkladem budiž tento web, který je čistě statický, generovaný v době i
 Chci přidat krok, který mi spustí Lighthouse auditya potom otestuje výsledky,
 zda odpovídají nastaveným kritériím. Pokud ne, testy selžou a nedovolí se deploy do produkce.
 
+## Webový server
+
 Protože jde o vygenerovanou statickou website, budeme nejprve potřebovat webový server,
 který umí servřit HTTP/2 a komprimovat pomocí gzipu, protože to tak mám i na produkci.
 Poměrně slušným je balíček `local-web-server`:[https://github.com/lwsjs/local-web-server]:
@@ -31,6 +33,8 @@ kde je výstup generátoru statické website:
 /--code
 "serve": "ws --compress --http2 -d ./dist",
 \--code
+
+## Auditování
 
 Dále si nainstalujeme samotný Lighthouse:
 
@@ -60,6 +64,9 @@ z výchozího nastavení, ale vypneme kategorii testů pro PWA, protože jde o w
 
 "Možností konfigurace je spousta":[https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md],
 ale nám teď bude stačit toto. Nyní se můžeme pustit do testování výsledků.
+
+## Testování
+
 Pro spouštění testů použijeme test runner AVA a výsledek testů budeme chtít pro
 další použití ve formátu xunit.xml:
 
@@ -109,6 +116,9 @@ testů ve formátu JSON. Potom si vytvoříme testovací helper funkci na ověř
 jednotlivé kategorie s laťkou nastavenou dostatečně vysoko.
 
 Nyní máme připraveno vše, co budeme potřebovat ke spuštění na integračním serveru.
+
+## CircleCI
+
 Otevřeme si `.circleci/config.yml` a vytvoříme nový job:
 
 /--code yaml
