@@ -3,6 +3,11 @@
   "description": "rarous.net website program",
   "main": "index.js",
   "license": "EPL-2.0",
+  "browserslist": [
+    "> 5%",
+    "last 4 versions",
+    "IE 8"
+  ],
   "dependencies": {
     "@pulumi/aws": "<=1.0",
     "@pulumi/pulumi": "<=1.0"

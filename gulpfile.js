@@ -15,7 +15,7 @@ const cssnano = require("cssnano");
 
 function css() {
   const plugins = [
-    autoprefixer({ browsers: ["> 5%", "last 4 versions", "IE 8"] }),
+    autoprefixer(),
     cssnano()
   ];
   return src("./static/**/*.css")
