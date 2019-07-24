@@ -1,0 +1,174 @@
+---
+{:id 475,
+:title "Kontinuální testování webů pomocí Lighthouse a CircleCI",
+:description "Lighthouse je skvělý nástroj na automatizované auditování webových stránek a aplikací. Ukážeme si, jak ho přidat do kontinuální integrace.",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "webdesign" "ci"},
+:published "2019-07-24T09:00:00.000"}
+---
+
+Lighthouse je skvělý "nástroj na automatizované auditování webových stránek a aplikací":[https://github.com/GoogleChrome/lighthouse/],
+který najdete v DevTools každého Chrome na záložce Audits.
+Taky běží online na "web.dev":[https://web.dev/] nebo se dá nainstalovat jako npm balíček.
+Na třetí možnost se podíváme dnes a integrujeme si ho do naší Continuous Deployment pipeline.
+
+Příkladem budiž tento web, který je čistě statický, generovaný v době integrace.
+"K buildům používám CircleCI":[https://circleci.com/gh/rarous/rarousnet].
+Chci přidat krok, který mi spustí Lighthouse auditya potom otestuje výsledky,
+zda odpovídají nastaveným kritériím. Pokud ne, testy selžou a nedovolí se deploy do produkce.
+
+Protože jde o vygenerovanou statickou website, budeme nejprve potřebovat webový server,
+který umí servřit HTTP/2 a komprimovat pomocí gzipu, protože to tak mám i na produkci.
+Poměrně slušným je balíček `local-web-server`:[https://github.com/lwsjs/local-web-server]:
+
+/--code
+yarn add --dev local-web-server
+\--code
+
+Vytvoříme si v `package.json` script, který nám spustí server ve vybrané složce,
+kde je výstup generátoru statické website:
+
+/--code
+"serve": "ws --compress --http2 -d ./dist",
+\--code
+
+Dále si nainstalujeme samotný Lighthouse:
+
+/--code
+yarn add --dev lighthouse
+\--code
+
+A opět si připravíme script, který spustí Lighthouse v Headless módu proti webovému serveru
+definovanému v předchozím kroce. Výsledkem bude report jak ve formátu JSON (pro další strojové zpracování),
+tak ve formátu HTML (pro lidské pozorování výsledků):
+
+/--code
+"test:lighthouse": "lighthouse https://localhost:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/lh.html --chrome-flags=\"--headless\""
+\--code
+
+Dále budeme potřebovat konfigurační soubor `.lighthouse.json`, kde výjdeme
+z výchozího nastavení, ale vypneme kategorii testů pro PWA, protože jde o website nikoliv o aplikaci:
+
+/--code javascript
+{
+  "extends": "lighthouse:default",
+  "settings": {
+    "onlyCategories": ["performance", "accessibility", "best-practices", "seo"]
+  }
+}
+\--code
+
+"Možností konfigurace je spousta":[https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md],
+ale nám teď bude stačit toto. Nyní se můžeme pustit do testování výsledků.
+Pro spouštění testů použijeme test runner AVA a výsledek testů budeme chtít pro
+další použití ve formátu xunit.xml:
+
+/--code
+yarn add --dev ava tap-xunit
+\--code
+
+Opět si vytvoříme script pro snadné spouštění:
+
+/--code
+"test:ava": "ava --tap | tap-xunit > ./results/ava.xml",
+\--code
+
+A nyní si napíšeme testy. Vytvoříme soubor `tests/lighthouse-results.js` s následujícím kódem:
+
+/--code javascript
+import test from "ava";
+import results from "../results/lh.report.json";
+
+const assertThreshold = ({ score }, threshold) => t =>
+  t.true(
+    score >= threshold,
+    `Score should be at least ${100 * threshold}%. Actual: ${100 * score}%`
+  );
+
+test(
+  "Lighthouse Accessibility",
+  assertThreshold(results.categories.accessibility, 0.9)
+);
+
+test(
+  "Lighthouse Best practices",
+  assertThreshold(results.categories["best-practices"], 0.9)
+);
+
+test(
+  "Lighthouse Performance",
+  assertThreshold(results.categories.performance, 0.9)
+);
+
+test("Lighthouse SEO", assertThreshold(results.categories.seo, 0.9));
+\--code
+
+Nejprve si naimportujeme testovací funkci z balíčku `ava` a výsledky z Lighthouse
+testů ve formátu JSON. Potom si vytvoříme testovací helper funkci na ověření,
+že je výsledné skóre vyšší nebo rovno než nastavená laťka. Pak už si definujeme testy na
+jednotlivé kategorie s laťkou nastavenou dostatečně vysoko.
+
+Nyní máme připraveno vše, co budeme potřebovat ke spuštění na integračním serveru.
+Otevřeme si `.circleci/config.yml` a vytvoříme nový job:
+
+/--code yaml
+  test:
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install self-signed cert for localhost
+          command: |
+            sudo apt-get install libnss3-tools
+            mkdir -p $HOME/.pki/nssdb
+            certutil -d $HOME/.pki/nssdb -N --empty-password
+            certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n lws-cert -i ./node_modules/lws/ssl/lws-cert.pem
+      - run:
+          name: Serve site content
+          command: yarn serve
+          background: true
+      - run:
+          name: Test site with Lighthouse
+          command: |
+            mkdir results
+            yarn test:lighthouse
+            yarn test:ava
+      - store_artifacts:
+          path: ./results
+      - store_test_results:
+          path: ./results
+\--code
+
+Jako základ použijeme image s Node.js 12 a předinstalovanými browsery.
+Připojíme workspace, ve kterém máme připravenou distribuci statické website.
+Dále "nainstalujeme self-signed certifikát":[https://github.com/lwsjs/local-web-server/wiki/How-to-get-the-%22green-padlock%22-using-the-built-in-certificate],
+aby nám Chrome neřval něco o bezpečnosti.
+Potom spustíme připravený webový server jako background task, vytvoříme složku pro výsledky
+a spustíme testy. Výsledky pak persistujeme jako artefakty buildu a také publikujeme
+výsledky testů do CircleCI. Tím se dostanou výsledky testů do UI a stejně tak si tam můžete
+rozkliknout HTML report pro bližší zkoumání.
+
+Poslední věc, kterou musíme udělat je zaregistrovat nový job do workflow:
+
+/--code yaml
+      - test:
+          requires:
+            - postprocess
+      - s3_deploy:
+          context: aws
+          requires:
+            - provision
+            - test
+          filters:
+            branches:
+              only: master
+\--code
+
+Původně `s3_deploy` závisel na jobu `postprocess`, nově jsme mezi tyto joby vložili job `test`,
+který nám dělá pomyslnou bránu pro nekvalitní změny. Možností, co všechno testovat je spousta,
+ale tohle je dobrý začátek, od kterého se dá dále odpíchnout.
+
+Nechť slouží!
