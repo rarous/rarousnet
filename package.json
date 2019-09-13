@@ -9,7 +9,7 @@
     "IE 8"
   ],
   "dependencies": {
-    "@pulumi/aws": "<=1.0",
+    "@pulumi/aws": "<=2.0",
     "@pulumi/pulumi": "<=1.0"
   },
   "devDependencies": {
