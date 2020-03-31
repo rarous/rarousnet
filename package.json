@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.7.5",
-    "ava": "^3.5.1",
+    "ava": "^3.5.2",
     "broken-link-checker-local": "^0.2.1",
     "browser-sync": "^2.26.7",
     "cssnano": "^4.1.10",
