@@ -77,9 +77,7 @@ new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
     alwaysUseHttps: "on",
     automaticHttpsRewrites: "on",
     brotli: "on",
-    http2: "on",
     http3: "on",
-    tls13: "on",
     minTlsVersion: "1.2",
     zeroRtt: "on",
     securityHeader: {
