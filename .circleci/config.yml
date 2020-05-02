@@ -80,6 +80,7 @@ jobs:
           name: Restore yarn cache
           keys:
             - v2-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn install
       - run:
           name: Install self-signed cert for localhost
           command: |
