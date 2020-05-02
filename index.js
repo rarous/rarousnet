@@ -71,6 +71,27 @@ const record = new cloudflare.Record(`${domain}/dns-record`, {
   proxied: true,
 });
 
+new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
+  zoneId: zoneId,
+  settings: {
+    alwaysUseHttps: "on",
+    automaticHttpsRewrites: "on",
+    brotli: "on",
+    http2: "on",
+    http3: "on",
+    tls13: "on",
+    minTlsVersion: "1.2",
+    zeroRtt: "on",
+    securityHeader: {
+      enabled: true,
+      includeSubdomains: true,
+      nosniff: true,
+      preload: true,
+      maxAge: 31536000,
+    },
+  },
+});
+
 exports.bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
 exports.websiteTestUri = bucket.websiteEndpoint.apply((x) => `http://${x}`);
 exports.zoneId = record.zoneId;
