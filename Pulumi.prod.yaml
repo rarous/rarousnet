@@ -2,3 +2,8 @@ config:
   aws:region: eu-central-1
   cloud-aws:useFargate: "true"
   cloud:provider: aws
+  cloudflare:apiKey:
+    secure: AAABAI/i3dUs+Jh9iXPrFjGBb2rm2VsPi2hdbW28aaoJMfSxB8KVye7WIgOLkcqx2YZQ/aUhT2ysllLZJXgN47G5Q+fi
+  cloudflare:email: ales@roubicek.name
+  rarousnet:domain: www.rarous.net
+  rarousnet:zone_id: 08e36c0745513d3aaf121e9108bda956

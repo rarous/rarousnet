@@ -2,16 +2,19 @@
 
 const pulumi = require("@pulumi/pulumi");
 const aws = require("@pulumi/aws");
+const cloudflare = require("@pulumi/cloudflare");
 
-const domain = "www.rarous.net";
+const config = new pulumi.Config();
+const zoneId = config.require("zone_id");
+const domain = config.require("domain");
 
 const bucket = new aws.s3.Bucket(`${domain}/bucket`, {
   bucket: domain,
   acl: "public-read",
   website: {
     indexDocument: "index.html",
-    errorDocument: "404.html"
-  }
+    errorDocument: "404.html",
+  },
 });
 
 const bucketPolicy = new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
@@ -23,14 +26,25 @@ const bucketPolicy = new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
         Sid: "1",
         Effect: "Allow",
         Principal: {
-          AWS: "*"
+          AWS: "*",
         },
         Action: "s3:GetObject",
-        Resource: `arn:aws:s3:::${domain}/*`
-      }
-    ]
-  })
+        Resource: `arn:aws:s3:::${domain}/*`,
+      },
+    ],
+  }),
 });
 
-exports.bucketUri = bucket.bucket.apply(x => `s3://${x}`);
-exports.websiteUri = bucket.websiteEndpoint.apply(x => `http://${x}`);
+const record = new cloudflare.Record(`${domain}/dns-record`, {
+  name: "www",
+  zoneId: zoneId,
+  type: "CNAME",
+  value: bucket.websiteEndpoint,
+  ttl: 3600,
+  proxied: true,
+});
+
+exports.bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
+exports.websiteTestUri = bucket.websiteEndpoint.apply((x) => `http://${x}`);
+exports.zoneId = record.zoneId;
+exports.websiteUri = `https://${domain}`;
