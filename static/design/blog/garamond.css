@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "cormorant-garamond";
+  src: url("https://use.typekit.net/af/eb1aae/00000000000000003b9b2912/27/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/eb1aae/00000000000000003b9b2912/27/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/eb1aae/00000000000000003b9b2912/27/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n4&v=3")
+      format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "cormorant-garamond";
+  src: url("https://use.typekit.net/af/fa255f/00000000000000003b9b2913/27/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/fa255f/00000000000000003b9b2913/27/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/fa255f/00000000000000003b9b2913/27/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i4&v=3")
+      format("opentype");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "cormorant-garamond";
+  src: url("https://use.typekit.net/af/48a072/00000000000000003b9b2918/27/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n7&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/48a072/00000000000000003b9b2918/27/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n7&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/48a072/00000000000000003b9b2918/27/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n7&v=3")
+      format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "cormorant-garamond";
+  src: url("https://use.typekit.net/af/b2f6d4/00000000000000003b9b2919/27/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i7&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/b2f6d4/00000000000000003b9b2919/27/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i7&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/b2f6d4/00000000000000003b9b2919/27/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i7&v=3")
+      format("opentype");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 700;
+}

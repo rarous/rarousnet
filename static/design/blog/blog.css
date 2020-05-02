@@ -17,7 +17,7 @@ body {
 body {
   border-top: 2px solid #333;
   border-bottom: 2px solid #333;
-  font: 16px futura-pt, Futura, "Trebuchet MS", Arial, sans-serif;
+  font: 16px futura-pt, "Trebuchet MS", Arial, sans-serif;
   -webkit-font-kerning: normal;
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero;
@@ -33,7 +33,7 @@ body {
 
 h2,
 article h1 {
-  font: 800 2.5em futura-pt, Futura, "Trebuchet MS", Arial, sans-serif;
+  font: 800 2.5em futura-pt, "Trebuchet MS", Arial, sans-serif;
   letter-spacing: -1px;
   margin: 0;
   z-index: 20;
@@ -43,7 +43,7 @@ h2 a {
 }
 h3 {
   color: #000;
-  font: 600 1.5em futura-pt, Futura, "Trebuchet MS", Arial, sans-serif;
+  font: 600 1.5em futura-pt, "Trebuchet MS", Arial, sans-serif;
   letter-spacing: -1px;
   margin: 1.5em 0 0.25em;
 }
@@ -52,7 +52,7 @@ p,
 ul,
 ol,
 dl {
-  font: 1em/1.5 "Iosevka Slab Web", Cambria, Georgia, "New York CE", utopia, serif;
+  font: 1em/1.5 "Iosevka Sparkle Web", Cambria, Georgia, "New York CE", utopia, serif;
   margin: 0.125em 0 1em;
   padding: 0;
 }
