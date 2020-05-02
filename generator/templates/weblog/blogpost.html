@@ -9,13 +9,13 @@
 <link rel="preconnect" href="//www.google-analytics.com">
 <link rel="preconnect" href="https://use.typekit.net">
 <link rel="preconnect" href="https://p.typekit.net">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="https://use.typekit.net/af/c4c302/000000000000000000012192/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-slab-regular.woff2">
+<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-regular.woff2">
+<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-italic.woff2">
+<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-bold.woff2">
 <link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-regular.woff2">
 <link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-italic.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-slab-bold.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-slab-bolditalic.woff2">
 <link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-bold.woff2">
+<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-bolditalic.woff2">
 <meta name="author" content="">
 <meta name="description" content="">
 <link rel="home" href="/weblog/">
@@ -43,7 +43,7 @@
   ga('create','UA-90726-1','auto');ga('send','pageview')
 </script>
 <!--[if lt IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
-<link rel="stylesheet" href="/design/blog/futura.css">
+<link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
 <link rel="stylesheet" href="/design/blog/iosevka.css">
 <link rel="stylesheet" href="/design/blog/blog.css">
 <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
@@ -119,10 +119,19 @@
     </div>
   </div>
 <div class="footer__copyright">
-<p>© 2004&ndash;2019 Aleš Roubíček. Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.</p>
+<p>© 2004&ndash;2020 Aleš Roubíček. Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.</p>
 </div>
 </footer>
-<script src="/assets/js/prism.js"></script>
+  <script type="module">
+    const codes = document.querySelector("pre>code");
+    for (let code of codes) {
+      const pre = codes.parentElement;
+      for (let lang of pre.classList.values()) {
+        code.classList.add(`language-${lang}`);
+      }
+    }
+  </script>
+  <script defer src="/assets/js/prism.js"></script>
 </div>
 </body>
 </html>

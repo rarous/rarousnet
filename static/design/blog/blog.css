@@ -91,7 +91,6 @@ pre {
   margin: 1em 0;
   padding: 0.5em;
   overflow: auto;
-  max-width: 680px;
 }
 pre code {
   background-color: transparent;
@@ -415,7 +414,6 @@ article div[itemprop="articleBody"] > p:first-child::first-letter {
     margin: 1em 0;
     padding: 0.5em;
     overflow: visible;
-    max-width: none;
   }
   pre.console {
     background: transparent;
