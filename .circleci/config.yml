@@ -114,7 +114,13 @@ jobs:
       - run:
           name: Update MIME types
           command: aws s3 cp --exclude "*" --include "*.rss" --content-type="application/rss+xml; charset=utf-8" --metadata-directive="REPLACE" --recursive s3://www.rarous.net/ s3://www.rarous.net/
-
+      - run:
+          name: Invalidace CDN Cache
+          command: |
+            curl -X POST "https://api.cloudflare.com/client/v4/zones/08e36c0745513d3aaf121e9108bda956/purge_cache" \
+                 -H "Authorization: Bearer PlpEgsmXwc86INMnDFd1xD2vMjkIRVj01SqkSeFp" \
+                 -H "Content-Type: application/json" \
+                 --data '{"purge_everything":true}'
 workflows:
   build_and_deploy:
     jobs:
