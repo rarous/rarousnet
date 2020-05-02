@@ -4,7 +4,7 @@ orbs:
 jobs:
   provision:
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:14
     steps:
       - checkout
       - pulumi/login
@@ -42,7 +42,7 @@ jobs:
           paths: dist
   postprocess:
     docker:
-      - image: circleci/node:12-browsers
+      - image: circleci/node:14-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -71,7 +71,7 @@ jobs:
           paths: dist
   test:
     docker:
-      - image: circleci/node:12-browsers
+      - image: circleci/node:14-browsers
     steps:
       - checkout
       - attach_workspace:
