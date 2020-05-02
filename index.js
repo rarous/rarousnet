@@ -40,7 +40,7 @@ const record = new cloudflare.Record(`${domain}/dns-record`, {
   zoneId: zoneId,
   type: "CNAME",
   value: bucket.websiteEndpoint,
-  ttl: 3600,
+  ttl: 1,
   proxied: true,
 });
 
