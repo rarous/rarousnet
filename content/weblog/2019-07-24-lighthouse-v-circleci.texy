@@ -23,14 +23,14 @@ Protože jde o vygenerovanou statickou website, budeme nejprve potřebovat webov
 který umí servřit HTTP/2 a komprimovat pomocí gzipu, protože to tak mám i na produkci.
 Poměrně slušným je balíček `local-web-server`:[https://github.com/lwsjs/local-web-server]:
 
-/--code
+/--code shell
 yarn add --dev local-web-server
 \--code
 
 Vytvoříme si v `package.json` script, který nám spustí server ve vybrané složce,
 kde je výstup generátoru statické website:
 
-/--code
+/--code json
 "serve": "ws --compress --http2 -d ./dist",
 \--code
 
@@ -38,7 +38,7 @@ kde je výstup generátoru statické website:
 
 Dále si nainstalujeme samotný Lighthouse:
 
-/--code
+/--code shell
 yarn add --dev lighthouse
 \--code
 
@@ -46,14 +46,14 @@ A opět si připravíme script, který spustí Lighthouse v Headless módu proti
 definovanému v předchozím kroce. Výsledkem bude report jak ve formátu JSON (pro další strojové zpracování),
 tak ve formátu HTML (pro lidské pozorování výsledků):
 
-/--code
+/--code json
 "test:lighthouse": "lighthouse https://localhost:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/lh.html --chrome-flags=\"--headless\""
 \--code
 
 Dále budeme potřebovat konfigurační soubor `.lighthouse.json`, kde výjdeme
 z výchozího nastavení, ale vypneme kategorii testů pro PWA, protože jde o website nikoliv o aplikaci:
 
-/--code javascript
+/--code json
 {
   "extends": "lighthouse:default",
   "settings": {
@@ -70,13 +70,13 @@ ale nám teď bude stačit toto. Nyní se můžeme pustit do testování výsled
 Pro spouštění testů použijeme "test runner AVA":[https://github.com/avajs/ava]
 a výsledek testů budeme chtít pro další použití ve formátu xunit.xml:
 
-/--code
+/--code shell
 yarn add --dev ava tap-xunit
 \--code
 
 Opět si vytvoříme script pro snadné spouštění:
 
-/--code
+/--code json
 "test:ava": "ava --tap | tap-xunit > ./results/ava.xml",
 \--code
 

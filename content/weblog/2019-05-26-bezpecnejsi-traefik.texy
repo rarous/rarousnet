@@ -8,11 +8,11 @@
 :published "2019-05-26T09:10:00.000"}
 ---
 
-V našich Docker Swarm clusterech používáme pro řízení provozu reverzní proxy Traefik:[https://traefik.io/]. 
-Traefik se stará o autodiscovery služeb v clusteru, jejich routování a terminaci TLS 
+V našich Docker Swarm clusterech používáme pro řízení provozu reverzní proxy Traefik:[https://traefik.io/].
+Traefik se stará o autodiscovery služeb v clusteru, jejich routování a terminaci TLS
 (vč. generování certifikátů pomocí Let's Encrypt).
 
-Ve výchozím nastavení je však TLS v režimu široké kompatibility. To znamená, 
+Ve výchozím nastavení je však TLS v režimu široké kompatibility. To znamená,
 že jsou povoleny starší (a nebezpečnější) verze protokolu a také sady šifer,
 které už "dnešním požadavkům nedostačují":[https://www.michalspacek.cz/vypnete-tls-1.0-a-1.1-uz-dnes].
 Musíme tedy sáhnout po ruční konfiguraci, abychom dosáhli lepšího výsledku.
@@ -47,13 +47,13 @@ Poznámka: TLS v1.3 není v Traefik 1.x podporovaná. Připravovaná verze 2.x j
 
 ## HTTP Strict Transport Security
 
-Silnější šifry a modernější protokol s lepšími hashovacími funkcemi jsou super, 
-ale ne tak moc, když vám je někdo po cestě odstraní. Je dobré dát světu vědět, 
-že fakt chcete komunikovat po TLS. A  k tomu slouží HTTP hlavička `Strict-Transport-Security`. 
-V Traefiku nejde zapnout globálně, ale musí se nastavit na každém endpointu zvlášť. 
+Silnější šifry a modernější protokol s lepšími hashovacími funkcemi jsou super,
+ale ne tak moc, když vám je někdo po cestě odstraní. Je dobré dát světu vědět,
+že fakt chcete komunikovat po TLS. A  k tomu slouží HTTP hlavička `Strict-Transport-Security`.
+V Traefiku nejde zapnout globálně, ale musí se nastavit na každém endpointu zvlášť.
 My to opět, kvůli autodiscovery, děláme pomocí `deploy\labels` sekce v `docker-compose.yml`:
 
-/---code
+/---code yaml
         traefik.frontend.headers.forceSTSHeader: 'true'
         traefik.frontend.headers.STSSeconds: 315360000
         traefik.frontend.headers.STSIncludeSubdomains: 'true'

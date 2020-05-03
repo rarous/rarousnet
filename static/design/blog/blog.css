@@ -111,8 +111,8 @@ pre.console code {
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: black;
-  text-shadow: 0 1px white;
+  color: #111111;
+  background-color: #fffff8;
   font-family: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
     Monaco, "Andale Mono", monospace;
   text-align: left;
@@ -128,6 +128,15 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
+/* ((fg "#111111")
+      (fg-table "#222291")
+      (bg "#fffff8")
+      (bg-light "#ddddd8")
+      (fg-light "#ddddd8")
+      (bg-highlight "#FFF1AA")
+      (bg-highlight-2 "LightCyan")
+      (bg-highlight-3 "LightGreen"))*/
+
 pre[class*="language-"]::-moz-selection,
 pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
@@ -137,7 +146,7 @@ pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
   text-shadow: none;
-  background: #b3d4fc;
+  background: #FFF1AA;
 }
 pre[class*="language-"] {
   padding: 1em;
@@ -146,11 +155,11 @@ pre[class*="language-"] {
 }
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: #f5f2f0;
+  background: #fffff8;
 }
 :not(pre) > code[class*="language-"] {
   padding: 0.1em;
-  border-radius: 0.3em;
+  border-radius: 0.25em;
 }
 .token.comment,
 .token.prolog,
@@ -159,10 +168,9 @@ pre[class*="language-"] {
   color: slategray;
 }
 .token.punctuation {
-  color: #999;
+  color: #808080;
 }
 .namespace {
-  opacity: 0.7;
 }
 .token.property,
 .token.tag,
@@ -170,13 +178,13 @@ pre[class*="language-"] {
 .token.number,
 .token.constant,
 .token.symbol {
-  color: #905;
+
 }
 .token.selector,
 .token.attr-name,
 .token.string,
 .token.builtin {
-  color: #690;
+  font-weight: bold;
 }
 .token.operator,
 .token.entity,
@@ -184,17 +192,16 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: #a67f59;
-  background: hsla(0, 0%, 100%, 0.5);
+
 }
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: #07a;
+  font-weight: bold;
 }
 .token.regex,
 .token.important {
-  color: #e90;
+  font-style: italic;
 }
 .token.important {
   font-weight: bold;
