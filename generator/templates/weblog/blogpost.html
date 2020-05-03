@@ -122,16 +122,16 @@
 <p>© 2004&ndash;2020 Aleš Roubíček. Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.</p>
 </div>
 </footer>
-  <script type="module">
-    const codes = document.querySelector("pre>code");
-    for (let code of codes) {
-      const pre = codes.parentElement;
-      for (let lang of pre.classList.values()) {
-        code.classList.add(`language-${lang}`);
-      }
+<script type="module">
+  const codes = document.querySelectorAll("pre>code");
+  for (let code of codes) {
+    const pre = codes.parentElement;
+    for (let lang of pre.classList.values()) {
+      code.classList.add(`language-${lang}`);
     }
-  </script>
-  <script defer src="/assets/js/prism.js"></script>
+  }
+</script>
+<script defer src="/assets/js/prism.js"></script>
 </div>
 </body>
 </html>

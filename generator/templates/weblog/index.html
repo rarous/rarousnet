@@ -115,7 +115,7 @@ ga('send', 'pageview');
 
 </div>
 <script type="module">
-  const codes = document.querySelector("pre>code");
+  const codes = document.querySelectorAll("pre>code");
   for (let code of codes) {
     const pre = codes.parentElement;
     for (let lang of pre.classList.values()) {
