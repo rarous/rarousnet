@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "@pulumi/aws": "<=3.0",
-    "@pulumi/cloudflare": "^2.2.0",
+    "@pulumi/cloudflare": "^2.2.1",
     "@pulumi/pulumi": "<=3.0"
   },
   "devDependencies": {
