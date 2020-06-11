@@ -45,8 +45,8 @@
     "serve": "ws --compress --http2 -d ./dist",
     "start": "gulp dev",
     "sync": "aws s3 sync --profile rarous s3://www.rarous.net ./dist",
-    "test:lighthouse:root": "lighthouse https://localhost:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless\"",
-    "test:lighthouse:weblog": "lighthouse https://localhost:8000/weblog/ --config-path .lighthouse.json --output json --output html --output-path ./results/weblog.html --chrome-flags=\"--headless\"",
+    "test:lighthouse:root": "lighthouse https://127.0.0.1:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless\"",
+    "test:lighthouse:weblog": "lighthouse https://127.0.0.1:8000/weblog/ --config-path .lighthouse.json --output json --output html --output-path ./results/weblog.html --chrome-flags=\"--headless\"",
     "test:lighthouse": "run-s test:lighthouse:*",
     "test:ava": "ava | tap-xunit > ./results/ava.xml",
     "test:broken-links": "blcl ./dist -ro"
