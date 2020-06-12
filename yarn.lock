@@ -4660,13 +4660,6 @@ koa-range@^0.3.0:
   dependencies:
     stream-slice "^0.1.2"
 
-koa-rewrite-75lb@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/koa-rewrite-75lb/-/koa-rewrite-75lb-3.0.1.tgz#30508687f72132a16f62fedfe2efdc9c620fae26"
-  integrity sha512-4sTmiYbUheh4X0xSPEcxSiNYkDbHiR62zCcibmISfMhtyjoLaqjvN99KnIA825Tw7HgN47Yta7dQA5h6Koom6A==
-  dependencies:
-    path-to-regexp "^2.1.0"
-
 koa-route@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/koa-route/-/koa-route-3.2.0.tgz#76298b99a6bcfa9e38cab6fe5c79a8733e758bce"
@@ -4896,10 +4889,10 @@ load-module@^3.0.0:
   dependencies:
     array-back "^4.0.1"
 
-local-web-server@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/local-web-server/-/local-web-server-4.1.0.tgz#2941314e5237018ee9a68f146d4286535120625e"
-  integrity sha512-3raBVkuPHzzSDCFRbY/SfHx1JKShmckCkpzwhIBsOj/jQ3QLOL6e79wUrfoXhtTav+2/rDfYmZqXafAIKohIyQ==
+local-web-server@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/local-web-server/-/local-web-server-4.2.1.tgz#61e6d3357fee37cb90e34302578e7159f771db3d"
+  integrity sha512-v71LZool2w7uYA+tDP5HhfjzUxz5SFfcrPPB/zC98yFFawt7A6fcmAr2MR4Q9AHk/A8oyd/wrhEJBJLndwHxNQ==
   dependencies:
     lws "^3.1.0"
     lws-basic-auth "^2.0.0"
@@ -4914,7 +4907,7 @@ local-web-server@^4.1.0:
     lws-mime "^2.0.0"
     lws-range "^3.0.0"
     lws-request-monitor "^2.0.0"
-    lws-rewrite "^3.0.1"
+    lws-rewrite "^3.1.1"
     lws-spa "^3.0.0"
     lws-static "^2.0.0"
     node-version-matches "^2.0.1"
@@ -5162,15 +5155,14 @@ lws-request-monitor@^2.0.0:
   dependencies:
     byte-size "^6.2.0"
 
-lws-rewrite@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/lws-rewrite/-/lws-rewrite-3.0.1.tgz#6687b77594f239bf1265a1a766c8a9bb4a136731"
-  integrity sha512-F1zL6sj5O57io/acNO+3rfj/C0+g9eiwCTc28mBiprYChBUVAn/SZLS8stIoFFOfpPubVGUdU7gbhVeSaNyg+w==
+lws-rewrite@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/lws-rewrite/-/lws-rewrite-3.1.1.tgz#a65ff3ea8ff6b4c0865129132bdee4346e68b566"
+  integrity sha512-cOeaPXIlLUVLxS6BZ52QzZVzI8JjCzlWD4RWizB5Hd+0YGO0SPa3Vgk7CIghtAOsSdjtXg/wSOap2H1h+tw8BQ==
   dependencies:
     array-back "^4.0.1"
     http-proxy-agent "^4.0.1"
     https-proxy-agent "^5.0.0"
-    koa-rewrite-75lb "^3.0.1"
     koa-route "^3.2.0"
     path-to-regexp "^6.1.0"
 
@@ -6228,11 +6220,6 @@ path-to-regexp@^1.2.0:
   integrity sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==
   dependencies:
     isarray "0.0.1"
-
-path-to-regexp@^2.1.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
-  integrity sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==
 
 path-to-regexp@^6.1.0:
   version "6.1.0"
