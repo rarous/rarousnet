@@ -362,6 +362,10 @@ article div[itemprop="articleBody"] > p:first-child::first-letter {
 }
 
 @media screen and (min-width: 701px) {
+  #top {
+    margin: 0 auto;
+    max-width: 60em;
+  }
   #top > .footer {
     margin-top: 1.4em;
   }
