@@ -14,7 +14,7 @@
     "@pulumi/pulumi": "<=3.0"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.0",
+    "autoprefixer": "^9.8.2",
     "ava": "^3.9.0",
     "broken-link-checker-local": "^0.2.1",
     "browser-sync": "^2.26.7",
