@@ -1,0 +1,74 @@
+---
+{:id 477,
+:title "Auto-merge pomocí CircleCI",
+:description "Dnes si ukážame, jak pomocí CircleCI snad a rychle automatizovat merge Pull Requetsů na Githubu.",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "ci" "circleci" "dependabot"},
+:published "2020-07-11T08:55:00.000"}
+---
+
+Před dvěma lety jsem psal, "jak jsme dali dali práci robotům":[article(469)]. 
+Konkrétně Dependabotovi, který se stará o udržování aktuálních závislostí. 
+Za ty dva roky se několik věcí změnilo. "Dependabot byl koupen Githubem":[https://dependabot.com/blog/hello-github/] 
+a započala se práce na "nové integrované verzi":[https://docs.github.com/en/github/administering-a-repository/about-github-dependabot]. 
+Ta už byla spuštěna, ale oproti předchozí verzi zatím funguje jen na veřejných repozitářích, 
+nefunguje live mode a "byla zrušena auto-merge funkcionalita":[https://github.com/dependabot/dependabot-core/issues/1823#issuecomment-641594279]. 
+Což jsou teda zrovna zásadní featury, které v naší workflow šetří spoustu člověčí práce.
+
+Github doporučuje na auto-merge použít některou z Github Actions. Co jsem tak na ně koukal, 
+tak je to jen malý střípek mozaiky, který nezapadá do našich pipelines postavených nad skvělým CircleCI.
+
+Proto jsem vytvořil vlastní Orb, pro tento případ užití: `topmonks/github`:[https://circleci.com/orbs/registry/orb/topmonks/github]. 
+"CircleCI Orbs":[https://circleci.com/orbs/] jsou de-facto knihovny znovupoužitelných částí,
+ze kterých můžete stavět své workflows. Orbs můžete používat i inline ve vašich vlastních scriptech,
+bez nutnosti je publikovat jako knihovnu. A takto přesně vzniká naše knihovna 
+`topmonks/circleci`:[https://github.com/topmonks/circleci], refactoringem z existujících build scriptů.
+
+## Auto Merge Pull Request
+
+Základem je "Github CLI":[https://cli.github.com/], který přináší snadnou práci s Github APIs.
+Pro zamergování PR stačí zavolat příkaz `gh pr merge` a jako parametr mu dát číslo, branch nebo URL pull requestu.
+CircleCI nastavuje URL pull requestu do proměnné prostředí s názvem `CI_PULL_REQUEST`, 
+takže výsledný příkaz vypadá nějak tak: `gh pr merge $CI_PULL_REQUEST`. Můžete přidat i další parametry,
+pokud třeba chcete, aby se změny squashovaly nebo rebasovaly.
+
+Orb se aktuálně skládá ze dvou commandů: první "nainstaluje Aktuální Github CLI":[https://circleci.com/orbs/registry/orb/topmonks/github#commands-install]
+do Ubuntu distribuce (všechny CircleCI image staví na Ubuntu), druhý 
+"provede merge":[https://circleci.com/orbs/registry/orb/topmonks/github#commands-merge_pr] 
+s možností nastavení nepovinných CLI parametrů. Použití pak ve vašich build scriptech bude vypadat nějak tak:
+
+/--code yaml
+version: 2.1
+orbs:
+  github: topmonks/github@1.0.2
+jobs:
+  build:
+    # your build steps with tests
+  merge_pr:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - checkout
+      - github/install
+      - github/merge_pr:
+          rebase: true
+workflows:
+  ci:
+    jobs:
+     - build
+     - merge_pr:
+         context: github-cli
+         requires:
+           - build
+         filters:
+           branches:
+             only: /dependabot\/.*/
+\--code
+
+Verze 2.1 zapíná podporu Orbs, pak naimportujeme `topmonks/github` orb, který následně použijeme v jobu `merge_pr`.
+V integračním workflow pak nastavíme, aby se `merge_pr` job pouštěl až po úspěšném buildu a pouze v `dependabot/.*` větvích.
+Důležitým detailem je řádek `context: github-cli`, který používá kontext, který jsem vytvořil v UI CircleCI
+a obsahuje proměnnou prostředí `GITHUB_TOKEN`, který si "vygenerujete na Githubu":[https://github.com/settings/tokens].
+Budete potřebovat oprávnění `read:org` a `repo`.
+
+[article(469)]: /weblog/2018/09/28/jak-jsme-dali-praci-robotum.html
