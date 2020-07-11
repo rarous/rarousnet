@@ -1,7 +1,7 @@
 ---
 {:id 477,
 :title "Auto-merge pomocí CircleCI",
-:description "Dnes si ukážame, jak pomocí CircleCI snad a rychle automatizovat merge Pull Requetsů na Githubu.",
+:description "Dnes si ukážame, jak pomocí CircleCI snado a rychle automatizovat merge Pull Requestů na Githubu.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "ci" "circleci" "dependabot"},
 :published "2020-07-11T08:55:00.000"}
