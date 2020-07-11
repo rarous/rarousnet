@@ -17,8 +17,8 @@ Což jsou teda zrovna zásadní featury, které v naší workflow šetří spous
 
 Github doporučuje na auto-merge použít některou z Github Actions. Co jsem tak na ně koukal, 
 tak je to jen malý střípek mozaiky, který nezapadá do našich pipelines postavených nad 
-"skvělým CircleCI":[https://circleci.com/]. Proto jsem vytvořil vlastní Orb, pro 
-tento případ užití: "topmonks/github":[https://circleci.com/orbs/registry/orb/topmonks/github]. 
+"skvělým CircleCI":[https://circleci.com/]. Proto jsem pro 
+tento případ užití vytvořil vlastní Orb: "topmonks/github":[https://circleci.com/orbs/registry/orb/topmonks/github]. 
 
 "CircleCI Orbs":[https://circleci.com/orbs/] jsou de-facto knihovny znovupoužitelných částí,
 ze kterých můžete stavět své workflows. Orbs můžete používat i inline ve vašich vlastních scriptech,
