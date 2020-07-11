@@ -7,7 +7,7 @@
 :published "2020-07-11T08:55:00.000"}
 ---
 
-Před dvěma lety jsem psal, "jak jsme dali dali práci robotům":[article(469)]. 
+Před dvěma lety jsem psal, "jak jsme dali práci robotům":[article(469)]. 
 Konkrétně Dependabotovi, který se stará o udržování aktuálních závislostí. 
 Za ty dva roky se několik věcí změnilo. "Dependabot byl koupen Githubem":[https://dependabot.com/blog/hello-github/] 
 a započala se práce na "nové integrované verzi":[https://docs.github.com/en/github/administering-a-repository/about-github-dependabot]. 
@@ -16,13 +16,14 @@ nefunguje live mode a "byla zrušena auto-merge funkcionalita":[https://github.c
 Což jsou teda zrovna zásadní featury, které v naší workflow šetří spoustu člověčí práce.
 
 Github doporučuje na auto-merge použít některou z Github Actions. Co jsem tak na ně koukal, 
-tak je to jen malý střípek mozaiky, který nezapadá do našich pipelines postavených nad skvělým CircleCI.
+tak je to jen malý střípek mozaiky, který nezapadá do našich pipelines postavených nad 
+"skvělým CircleCI":[https://circleci.com/]. Proto jsem vytvořil vlastní Orb, pro 
+tento případ užití: "topmonks/github":[https://circleci.com/orbs/registry/orb/topmonks/github]. 
 
-Proto jsem vytvořil vlastní Orb, pro tento případ užití: `topmonks/github`:[https://circleci.com/orbs/registry/orb/topmonks/github]. 
 "CircleCI Orbs":[https://circleci.com/orbs/] jsou de-facto knihovny znovupoužitelných částí,
 ze kterých můžete stavět své workflows. Orbs můžete používat i inline ve vašich vlastních scriptech,
 bez nutnosti je publikovat jako knihovnu. A takto přesně vzniká naše knihovna 
-`topmonks/circleci`:[https://github.com/topmonks/circleci], refactoringem z existujících build scriptů.
+"topmonks/circleci":[https://github.com/topmonks/circleci], refactoringem z existujících build scriptů.
 
 ## Auto Merge Pull Request
 
@@ -67,8 +68,8 @@ workflows:
 
 Verze 2.1 zapíná podporu Orbs, pak naimportujeme `topmonks/github` orb, který následně použijeme v jobu `merge_pr`.
 V integračním workflow pak nastavíme, aby se `merge_pr` job pouštěl až po úspěšném buildu a pouze v `dependabot/.*` větvích.
-Důležitým detailem je řádek `context: github-cli`, který používá kontext, který jsem vytvořil v UI CircleCI
-a obsahuje proměnnou prostředí `GITHUB_TOKEN`, který si "vygenerujete na Githubu":[https://github.com/settings/tokens].
-Budete potřebovat oprávnění `read:org` a `repo`.
+Důležitým detailem je řádek `context: github-cli`, který používá kontext:[https://circleci.com/docs/2.0/contexts/],
+který jsem vytvořil v UI CircleCI a obsahuje proměnnou prostředí `GITHUB_TOKEN`. 
+Ten si "vygenerujete na Githubu":[https://github.com/settings/tokens]. Budete potřebovat oprávnění `read:org` a `repo`.
 
 [article(469)]: /weblog/2018/09/28/jak-jsme-dali-praci-robotum.html
