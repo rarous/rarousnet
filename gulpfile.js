@@ -1,5 +1,7 @@
 "use strict";
 
+const stream = require("stream");
+const util = require("util");
 const { src, dest, parallel, series, watch } = require("gulp");
 const hash = require("gulp-rev");
 const references = require("gulp-rev-replace");
@@ -13,57 +15,56 @@ const autoprefixer = require("autoprefixer");
 const browserSync = require("browser-sync");
 const cssnano = require("cssnano");
 
+const pipeline = util.promisify(stream.pipeline);
+
 function css() {
   const plugins = [
     autoprefixer(),
     cssnano()
   ];
-  return src("./static/**/*.css")
-    .pipe(postcss(plugins))
-    .pipe(
-      plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })
-    )
-    .pipe(dest("./dist/"));
+  return pipeline(
+    src("./static/**/*.css"),
+    postcss(plugins),
+    plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }),
+    dest("./dist/")
+  );
 }
 
 function hashStyles() {
-  return src("./dist/**/*.css")
-    .pipe(hash())
-    .pipe(deleteNotHashed())
-    .pipe(dest("./dist"))
-    .pipe(
-      hash.manifest("assets-manifest.json", {
-        merge: true
-      })
-    )
-    .pipe(dest("./out"));
+  return pipeline(
+    src("./dist/**/*.css"),
+    hash(),
+    deleteNotHashed(),
+    dest("./dist"),
+    hash.manifest("assets-manifest.json", { merge: true }),
+    dest("./out")
+  );
 }
 
 function html() {
   const manifest = src("./out/assets-manifest.json");
-  return src("./dist/**/*.html")
-    .pipe(references({ manifest }))
-    .pipe(
-      htmlMin({
-        collapseBooleanAttributes: true,
-        collapseWhitespace: true,
-        minifyJS: true,
-        removeAttributeQuotes: true,
-        removeComments: true,
-        removeOptionalTags: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true
-      })
-    )
-    .pipe(dest("./dist"));
+  return pipeline(
+    src("./dist/**/*.html"),
+    references({ manifest }),
+    htmlMin({
+      collapseBooleanAttributes: true,
+      collapseWhitespace: true,
+      minifyJS: true,
+      removeAttributeQuotes: true,
+      removeComments: true,
+      removeOptionalTags: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true
+    }),
+    dest("./dist")
+  );
 }
 
 function size() {
-  return src(["./dist/**/*.css", "./dist/**/*.js"]).pipe(
-    sizereport({
-      gzip: true
-    })
+  return pipeline(
+    src(["./dist/**/*.css", "./dist/**/*.js"]),
+    sizereport({ gzip: true })
   );
 }
 
