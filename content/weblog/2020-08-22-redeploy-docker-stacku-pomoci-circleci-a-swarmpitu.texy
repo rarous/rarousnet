@@ -3,16 +3,16 @@
 :title "Redeploy Docker stacků pomocí CircleCI a Swarmpitu",
 :description "Dnes si ukážame, jak pomocí CircleCI snado a rychle automatizovat nasazování stacků do Docker Swarm.",
 :author "Aleš Roubíček",
-:tags #{"moje práce" "ci" "circleci" "docker" "swarmpit"},
+:tags #{"moje práce" "ci" "circleci" "docker" "swarmpit" "devops"},
 :published "2020-08-20T09:45:00.000"}
 ---
 
 V TopMonks:[https://www.topmonks.com/] máme značnou část služeb hostovaných v našem Docker Swarm
 "prostředí zvaném TMCloud":[https://blog.topmonks.com/route-to-tmcloud-9c4bb62b6920?source=user_profile---------5-----------------------].
 Na menežování Swarmu používáme naše skvělé "Docker Swarm management UI Swarmpit":[https://swarmpit.io/] a 
-pro Continuous Integration pro změnu CircleCI:[https://circleci.com/].
+na Continuous Integration pro změnu CircleCI:[https://circleci.com/].
 
-Ačkoliv Swarmpit poskytuje pohodlný způsob editace stacků, je dobrou praxí mít stacky verzované 
+Ačkoliv Swarmpit poskytuje pohodlný způsob editace stacků, je dobrou DevOps praxí mít stacky verzované 
 ve VCS v podobě `docker-compose.yml` nebo jiné IaC:[https://martinfowler.com/bliki/InfrastructureAsCode.html] 
 alternativy. A aby bylo VCS opravdu zdrojem pravdy, je dobré v rámci "Continuous Delivery":[https://continuousdelivery.com/]
 nebo "Continuous Deployment":[https://martinfowler.com/bliki/ContinuousDelivery.html#continuous-deployment] pushovat 
@@ -21,7 +21,7 @@ definici stacků po každém úspěšném buildu nebo zmáčknutí tlačítka pr
 Swarmpit:[https://swarmpit.io/] poskytuje na úrovni jednotlivých služeb fukcionalitu zvanou
 Autoredeploy:[https://github.com/swarmpit/swarmpit/issues/498]. Pokud ji máte zapnutou, stačí `docker push` 
 do stejného tagu a swarmpit automaticky nasadí aktualizovanou verzi. To je hezká feature, která celkem usnadňuje 
-Continuous Deployment a vede k cheatování na úrovni stacků.
+Continuous Deployment a **vede k cheatování na úrovni stacků**.
 
 Proto jsem vytvořil CircleCI Orb "topmonks/swarmpit":[https://circleci.com/orbs/registry/orb/topmonks/swarmpit], 
 který umožňuje pohodlně redeployovat celé stacky přímo z integrační pipeline. (**Je dobré vypnout Autoredeploy**, 
@@ -64,7 +64,7 @@ workflows:
               only: trunk
 \--code
 
-Pro přehlednost vynechávám všechny kroky, které aplikaci sestaví a otestují. Soustředím se jen na poslední krok samotného deploye stacku.
+Pro přehlednost vynechávám všechny joby, které aplikaci sestaví a otestují. Soustředím se jen na poslední krok samotného deploye stacku.
 Použijeme Orb pro práci s Dockerem pro přihlášení do Docker Hubu a push nového image tamtéž. 
 Následně použijem "Swarmpit Orb pro deploy stacku":[https://circleci.com/orbs/registry/orb/topmonks/swarmpit#commands-deploy_stack]. 
 
