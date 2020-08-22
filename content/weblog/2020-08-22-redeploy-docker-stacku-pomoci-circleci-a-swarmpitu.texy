@@ -4,7 +4,7 @@
 :description "Dnes si ukážame, jak pomocí CircleCI snado a rychle automatizovat nasazování stacků do Docker Swarm.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "ci" "circleci" "docker" "swarmpit" "devops"},
-:published "2020-08-20T09:45:00.000"}
+:published "2020-08-22T09:45:00.000"}
 ---
 
 V TopMonks:[https://www.topmonks.com/] máme značnou část služeb hostovaných v našem Docker Swarm
