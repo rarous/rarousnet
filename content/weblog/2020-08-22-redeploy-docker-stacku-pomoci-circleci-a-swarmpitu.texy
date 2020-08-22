@@ -1,0 +1,86 @@
+---
+{:id 478,
+:title "Redeploy Docker stacků pomocí CircleCI a Swarmpitu",
+:description "Dnes si ukážame, jak pomocí CircleCI snado a rychle automatizovat nasazování stacků do Docker Swarm.",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "ci" "circleci" "docker" "swarmpit"},
+:published "2020-08-20T09:45:00.000"}
+---
+
+# Redeploy Docker stacků pomocí Swarmpitu
+
+V TopMonks:[https://www.topmonks.com/] máme značnou část služeb hostovaných v našem Docker Swarm
+"prostředí zvaném TMCloud":[https://blog.topmonks.com/route-to-tmcloud-9c4bb62b6920?source=user_profile---------5-----------------------].
+Na menežování Swarmu používáme naše skvělé "Docker Swarm management UI Swarmpit":[https://swarmpit.io/] a 
+pro Continuous Integration pro změnu CircleCI:[https://circleci.com/].
+
+Ačkoliv Swarmpit poskytuje pohodlný způsob editace stacků, je dobrou praxí mít stacky verzované 
+ve VCS v podobě `docker-compose.yml` nebo jiné IaC:[https://martinfowler.com/bliki/InfrastructureAsCode.html] 
+alternativy. A aby bylo VCS opravdu zdrojem pravdy, je dobré v rámci "Continuous Delivery":[https://continuousdelivery.com/]
+nebo "Continuous Deployment":[https://martinfowler.com/bliki/ContinuousDelivery.html#continuous-deployment] pushovat 
+definici stacků po každém úspěšném buildu nebo zmáčknutí tlačítka pro nasazení.
+
+Swarmpit:[https://swarmpit.io/] poskytuje na úrovni jednotlivých služeb fukcionalitu zvanou
+Autoredeploy:[https://github.com/swarmpit/swarmpit/issues/498]. Pokud ji máte zapnutou, stačí `docker push` 
+do stejného tagu a swarmpit automaticky nasadí aktualizovanou verzi. To je hezká feature, která celkem usnadňuje 
+Continuous Deployment a vede k cheatování na úrovni stacků.
+
+Proto jsem vytvořil CircleCI Orb "topmonks/swarmpit":[https://circleci.com/orbs/registry/orb/topmonks/swarmpit], 
+který umožňuje pohodlně redeployovat celé stacky přímo z integrační pipeline. (**Je dobré vypnout Autoredeploy**, 
+s tímto Orbem by mohl dělat problémy.) Orb využívá Swarmpit API a několik řádků shellového scriptu.
+
+Zjednodušená ukázka použití Swarmpit Orbu může vypadat nějak tak:
+
+/--code yaml
+version: 2.1
+
+orbs:
+  docker: circleci/docker@1.4.0
+  swarmpit: topmonks/swarmpit@1.0.0
+
+jobs:
+  # ...
+  docker_deploy:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/push:
+          image: topmonks/insight
+          tag: latest
+      - swarmpit/deploy_stack:
+          stack_name: insight
+          compose_file_path: docker-compose.prod.yml
+      
+workflows:
+  build_and_deploy:
+    jobs:
+      # ...
+      - docker_deploy:
+          context: org-swarmpit-prod
+          requires:
+            # ... 
+          filters:
+            branches:
+              only: trunk
+\--code
+
+Pro přehlednost vynechávám všechny kroky, které aplikaci sestaví a otestují. Soustředím se jen na poslední krok samotného deploye stacku.
+Použijeme Orb pro práci s Dockerem pro přihlášení do Docker Hubu a push nového image tamtéž. 
+Následně použijem "Swarmpit Orb pro deploy stacku":[https://circleci.com/orbs/registry/orb/topmonks/swarmpit#commands-deploy_stack]. 
+
+Samotný job má aktuálně 4 parametry - z nichž povinný je jen `stack_name`. Parametr `compose_file_path` je potřeba zadat, 
+jen pokud se váš stack file nejmenuje `docker-compose.yml`.
+
+Parametry `swarmpit_api_url` a `swarmpit_api_key` slouží k určení, kde běží Swarmpit API a jak se k němu autorizovat. 
+Je dobrou praxí mít tyto "informace uložené v kontextu":[https://circleci.com/docs/2.0/contexts/], 
+který nastavuje ENV proměnné vybranému jobu. Proto je jejich výchozí hodnotou reference na ENV proměnnou stejného názvu.
+
+Adresa API je rootová adresa, kde vám bězí Swarmpit, s postfixem `/api` (např. `https://swarmpit.my.cloud/api`).
+
+API Key si vygenerujete ve Swarmpitu v Account managementu (`/#/account-management`).
+
+Doufejme, že tato nenápadná věc pomůže lepší kultuře udržování infrastrukturního kódu - hezky verzovaného společně s tím aplikačním.
+Samozřejmě není použití omezeno pouze na CircleCI, vytvořený script můžete modifikovat a používat dle libosti.
+Nakonec je to jen ošablonkovaný shell script.
