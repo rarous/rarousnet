@@ -34,34 +34,27 @@ version: 2.1
 
 orbs:
   docker: circleci/docker@1.4.0
-  swarmpit: topmonks/swarmpit@1.0.0
+  swarmpit: topmonks/swarmpit@1.2.0
 
 jobs:
   # ...
-  docker_deploy:
-    executor: docker/docker
-    steps:
-      - setup_remote_docker
-      - checkout
-      - docker/check
-      - docker/push:
-          image: topmonks/insight
-          tag: latest
-      - swarmpit/deploy_stack:
-          stack_name: insight
-          compose_file_path: docker-compose.prod.yml
       
 workflows:
   build_and_deploy:
     jobs:
       # ...
-      - docker_deploy:
+      - docker/publish:
+          name: publish-container
+          context: org-docker
+          image: topmonks/insight
+          tag: latest
+      - swarmpit/deploy:
+          name: deploy-to-swarm
+          stack_name: insight
+          compose_file_path: docker-compose.prod.yml
           context: org-swarmpit-prod
           requires:
-            # ... 
-          filters:
-            branches:
-              only: trunk
+            - publish-container
 \--code
 
 Pro přehlednost vynechávám všechny joby, které aplikaci sestaví a otestují. Soustředím se jen na poslední krok samotného deploye stacku.
