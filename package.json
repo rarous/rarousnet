@@ -9,7 +9,7 @@
     "IE 8"
   ],
   "dependencies": {
-    "@pulumi/aws": "<=3.0",
+    "@pulumi/aws": "<=4.0",
     "@pulumi/cloudflare": "^2.7.0",
     "@pulumi/pulumi": "<=3.0"
   },
