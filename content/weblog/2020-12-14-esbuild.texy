@@ -1,0 +1,49 @@
+---
+{:id 479,
+:title "Jednoduše a rychle: esbuild",
+:description "Dnes si ukážame, jak pomocí nástrtoje esbuild dělat snadno a rychle takové to prokukční bundlení.",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "esbuild" "ecmascript"},
+:published "2020-12-14T08:00:00.000"}
+---
+
+Znáte to. Chcete začít nový projekt. A. To. Rychle. Takže sáhnete po něčem, co vám tu dřinu výběru vhodných nástrojů usnadní.
+Typicky CRApp((Create React App)) nebo něco podobnýho, co vám nejen vytvoří (většinou nevhodnou) strukturu projektu, ale
+i nasype tunu nepotřebných závislostí, které nemúžete nijak ovlivnit. Ale život je skvělý a vy můžete směle budovat!
+
+A tak budujete. Občas zakopnete o nějaký ten klacek, který vám CRApp ze cviku hodí pod nohy. Občas si počkáte 20 sekund na rebuild
+jednoho změněného řádku. Ale co, vám to nevadí. Vy jste ostřílení bojem webového vývoje a tohle je přece o sto honů lepší něž 
+ty dřevní doby s jQuery. Nebo tomu aspoň chcete věřit. Minimálně do chvíle než jdete do produkce a nahodou si
+"spustíte Lighthouse":[https://web.dev/measure/].
+
+"Ten se asi posral," říkáte si, když vám za performance udělil celých 16 bodů ze sta. No a co? 
+"Máchal ukazoval na TopMonks Caffè":[https://www.youtube.com/watch?v=UFopT4oc8eE&t=3300s], že ani 15 bodů nemusí být nutně zle. 
+Ha! Takže jste vlastně na tom strašně dobře! V představách se poplácáme po ramenou a šup s tím k uživatelům! 
+Ti jsou celý nadšení, že jim tlačíte 4 MB kódu a mají čas si zatím udělat čaj, než se jim to načte a spustí.
+
+Pak si začnou stěžovat a vy začnete laborovat, co změnit, aby se to zlepšilo? Dokud neuděláte eject, tak neuděláte nic. 
+CRApp je by design, ochrana nezletilých, abi neudělali nic špatně. V důsledku, máte zapečené postupy, které byly platné 
+před 5 lety a nic s tím neuděláte. Jenže web se posunul. Hodně posunul.
+
+esbuild
+=======
+
+Ušetřete si spousu práce s ejectem, protože i s ním se dostanete do bahna konfigurace Webpacku a Bebelu, před kterým vás měl CRApp 
+ušetřit, abyste se nezbláznili. Takže, rovnou odeberte všechny závislosti na CRApp, a místo nich si "přidejte esbuild":[https://esbuild.github.io/]. 
+Konfigurace je minimální, vlastně žádnou ani nepotřebujete, `esbuild src/index.js --bundle --output public/index.js` a máte hotovo. 
+Fakt. Takhle rychle. 
+
+Nejprve vám přijde, že to asi nefunguje, protože proces se hned ukončil, aniž by viditelně cokoliv udělal. Pro jistotu
+se jdete podívat do `public`u. Výstupy tam jsou...
+
+Tak ho radši smažete, protože to tam mohlo být ještě od Webpacku. Spustíte znova a stejný efekt...
+
+Ano. Takhle rychlý může být váš tooling, když neděláte zjevné píčoviny. Zvyká se na to snadno. Dopřejte si trochu lásky a 
+nepoužívejte špatné, ale opravdu špatné, nástroje.
+
+Rychlé a jednoduché nástroje vám umožní funguvat jak potřebujete. Já jsem si třeba pro
+"hlídání změn a rychlý rebuild":[https://github.com/topmonks/hlidac-shopu/blob/master/scripts/watch-extension.mjs],
+napsal jednoduchý script, který vytvoří `esbuild` server, a pomocí `chockidar`u hlídá změny na filesystému.
+Můžete si tam snadno zapojit další užitečné nástroje.
+
+Někdy příště se podíváme, jak na tu performance na výstupu.
