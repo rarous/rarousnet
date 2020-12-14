@@ -22,18 +22,23 @@ Ha! Takže jste vlastně na tom strašně dobře! V představách se poplácáme
 Ti jsou celý nadšení, že jim tlačíte 4 MB kódu a mají čas si zatím udělat čaj, než se jim to načte a spustí.
 
 Pak si začnou stěžovat a vy začnete laborovat, co změnit, aby se to zlepšilo? Dokud neuděláte eject, tak neuděláte nic. 
-CRApp je by design, ochrana nezletilých, abi neudělali nic špatně. V důsledku, máte zapečené postupy, které byly platné 
-před 5 lety a nic s tím neuděláte. Jenže web se posunul. Hodně posunul.
+CRApp je by design, ochrana nezletilých, aby neudělali nic špatně. V důsledku, máte zapečené postupy, které byly platné 
+před 5 lety a nic s tím neuděláte. Jenže web se za tu dobu posunul. Hodně posunul.
 
 esbuild
 =======
 
-Ušetřete si spousu práce s ejectem, protože i s ním se dostanete do bahna konfigurace Webpacku a Bebelu, před kterým vás měl CRApp 
+Ušetřete si spousu práce s ejectem, protože i s ním se dostanete do bahna konfigurace Webpacku a Babelu, před kterým vás měl CRApp 
 ušetřit, abyste se nezbláznili. Takže, rovnou odeberte všechny závislosti na CRApp, a místo nich si "přidejte esbuild":[https://esbuild.github.io/]. 
-Konfigurace je minimální, vlastně žádnou ani nepotřebujete, `esbuild src/index.js --bundle --output public/index.js` a máte hotovo. 
-Fakt. Takhle rychle. 
+Konfigurace je minimální, vlastně žádnou ani nepotřebujete.
 
-Nejprve vám přijde, že to asi nefunguje, protože proces se hned ukončil, aniž by viditelně cokoliv udělal. Pro jistotu
+/---code bash
+esbuild src/index.js --bundle --output public/index.js
+\---code
+
+A máte hotovo. Fakt. Takhle rychle. 
+
+Nejprve vám přijde, že to asi nefunguje, protože proces se hned ukončil, aniž by viditelně cokoliv dělal. Pro jistotu
 se jdete podívat do `public`u. Výstupy tam jsou...
 
 Tak ho radši smažete, protože to tam mohlo být ještě od Webpacku. Spustíte znova a stejný efekt...
