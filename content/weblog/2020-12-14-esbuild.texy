@@ -1,7 +1,7 @@
 ---
 {:id 479,
 :title "Jednoduše a rychle: esbuild",
-:description "Dnes si ukážame, jak pomocí nástrtoje esbuild dělat snadno a rychle takové to prokukční bundlení.",
+:description "Dnes si ukážame, jak pomocí nástrtoje esbuild dělat snadno a rychle takové to produkční bundlení.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "esbuild" "ecmascript"},
 :published "2020-12-14T08:00:00.000"}
