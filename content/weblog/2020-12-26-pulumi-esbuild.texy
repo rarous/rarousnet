@@ -51,7 +51,7 @@ když si spustíme "build service":[https://github.com/topmonks/hlidac-shopu/blo
 optimalizacím na sdílený kód - a při vytváření popisu infrastruktury si necháme také připravit bundle dané funkce, můžeme ho rovnou nasadit. 
 No, a protože to je `esbuild` a ne kombinace `tsc` a `pulumi`, tak je to rychlý nejen v build time, ale i v runtime. A to už se vyplatí!
 
-"Více o dopadech na latence":[https://twitter.com/alesroubicek/status/1342886724079333378], jsem psal v vlákně na Twitteru, kde najdete i patřičné grafy.
+"Více o dopadech na latence":[https://twitter.com/alesroubicek/status/1342886724079333378], jsem psal ve vlákně na Twitteru, kde najdete i patřičné grafy.
 
-PS Na zrychlení má podíl nejen menší bundle, ale i nové AWS SDK, které k tomu zmenšení také přispívá, ale asi dělá i něco míň špatně.
+PS: Na zrychlení má podíl nejen menší bundle, ale i nové AWS SDK, které k tomu zmenšení také přispívá, ale asi dělá i něco míň špatně.
 
