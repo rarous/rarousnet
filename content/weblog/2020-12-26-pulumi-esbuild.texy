@@ -11,7 +11,7 @@ Poslední tři měsíce jsem z velké části, stejně jako minulý rok, pracova
 Hodně úsilí jsme věnoval "splácení technického dluhu":[https://www.youtube.com/watch?v=1_VKebxX-vU&t=869s], abychom mohli 
 Hlídače snáze a rychleji (tj. levněji) rozšiřovat. Vytvořil jsem integrační a deployment pipeline, včetně popisu většiny 
 infrastruktury pomocí IaC((Infrastructure as Code)) nástroje Pulumi:[https://pulumi.com]. Dalším cílem bylo sjednocení 
-code base extenze a webu, aby se daly snadno sdíletčásti logiky.
+code base extenze a webu, aby se daly snadno sdílet části logiky.
 
 V první fázi bylo důležité mít co nejrychleji zdokumentovanou infrastrukturu a být schopní ji automatizovaně rozvíjet.
 Proto jsem zvolil integrovaný přístup, kdy aplikační a infrastrukturní kód jsou jedna code base, a Pulumi, "dík své 
@@ -27,7 +27,7 @@ TS víc času na čtení twitteru, tak jeho jedinou přidanou hodnotou je popis 
 AWS vydalo novou verzi JS SDK - "verzi třetí":[https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/welcome.html].
 Ta si klade za cíl modularizovat všeobjímající God knihovnu `aws-sdk`, na sadu specializovaných balíčků, které reflektují "stav 
 moderního JavaScriptu":[https://web.dev/publish-modern-javascript/], takže obsahují plnohodnotné ESM((ECMAScript Modules))
-s moderní syntaxí, ne ty hybridní blbiny pro webpacky v ES5, s kterýma se nedá nic dělat, jen nad tou hromádkou neštěstí brečet. 
+s moderní syntaxí, ne ty hybridní blbiny pro webpacky v ES5, s kterýma se nedá nic jiného dělat, než nad tou hromádkou neštěstí brečet. 
 Ano, nové AWS SDK obsahuje i plnohodnotné (ehm) TS soubory, protože je v nich napsáno. V praxi se však ukázalo, 
 že je to cesta do pekla...
 
@@ -41,17 +41,17 @@ moderního JavaScriptu (aka ECMAScript 2020), jsem psal minule. Mimochodem umí 
 Navíc má pěkné API použitelné i z JavaScriptu!
 
 Pulumi má "virtualializované balíčkování kódu":[https://www.pulumi.com/docs/intro/concepts/programming-model/#assets-and-archives] 
-pro deployment AWS Lambda funkcí. Krom toho, že si můžete nechat transparentně serializovat část kódy v podobě funkce, 
-můžete si nechat zabalit třeba adresář s kódem, který chcete nasadit, ale už musí být předpřipravený. V rámci virtualizace,
-ale dojdete až na úroveň, kde do archívu můžete strkat jakýkoliv `string`, nebo jeho `Promise`. To je krása opravdových
-abstrakcí...
+pro deployment AWS Lambda funkcí. Krom toho, že si můžete nechat transparentně serializovat část kódu v podobě funkce, 
+můžete si také nechat zabalit třeba adresář s kódem, který chcete nasadit. Ale ten už musí být nějak předpřipravený.
+V rámci virtualizace, ale dojdete až na úroveň, kde do archívu můžete strkat jakýkoliv `string`, nebo jeho `Promise`. 
+To je krása opravdových abstrakcí...
 
 JS API esbuildu umí, když mu nastavíte `write: false`, vracet výsledek bundlování jako, ta-dá, `Promise of string`. Takže,
 když si spustíme "build service":[https://github.com/topmonks/hlidac-shopu/blob/2740d6ff841ebafd57e6b51ce2a46450f2dc2cc5/lambda-builder.ts] - kvůli
 optimalizacím na sdílený kód - a při vytváření popisu infrastruktury si necháme také připravit bundle dané funkce, můžeme ho rovnou nasadit. 
 No, a protože to je `esbuild` a ne kombinace `tsc` a `pulumi`, tak je to rychlý nejen v build time, ale i v runtime. A to už se vyplatí!
 
-"Více o dopadech na latence":[https://twitter.com/alesroubicek/status/1342886724079333378], jsem psal ve vlákně na Twitteru, kde najdete i patřičné grafy.
+"Více o dopadech na latence":[https://twitter.com/alesroubicek/status/1342886724079333378] jsem sepsal do vlákna na Twitteru, kde najdete i patřičné grafy.
 
 PS: Na zrychlení má podíl nejen menší bundle, ale i nové AWS SDK, které k tomu zmenšení také přispívá, ale asi dělá i něco míň špatně.
 
