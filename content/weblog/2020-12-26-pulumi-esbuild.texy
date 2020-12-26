@@ -8,21 +8,21 @@
 ---
 
 Poslední tři měsíce jsem z velké části, stejně jako minulý rok, pracoval na "Hlídači Shopů":[https://www.hlidacshopu.cz/].
-Hodně úsilí jsme věnoval splácení technického dluhu, abychom mohli Hlídače snáze a rychleji (tj. levněji) rozšiřovat.
-Vytvořil jsem integrační a deployment pipeline, včetně popisu většiny infrastruktury pomocí IaC((Infrastructure as Code)) 
-nástroje Pulumi:[https://pulumi.com]. Dalším cílem bylo sjednocení code base, extenze a webu, aby se daly snadno sdílet
-části logiky.
+Hodně úsilí jsme věnoval "splácení technického dluhu":[https://www.youtube.com/watch?v=1_VKebxX-vU&t=869s], abychom mohli 
+Hlídače snáze a rychleji (tj. levněji) rozšiřovat. Vytvořil jsem integrační a deployment pipeline, včetně popisu většiny 
+infrastruktury pomocí IaC((Infrastructure as Code)) nástroje Pulumi:[https://pulumi.com]. Dalším cílem bylo sjednocení 
+code base extenze a webu, aby se daly snadno sdíletčásti logiky.
 
-V první fázi bylo důležité, mít co nejrychleji zdokumentovanou infrastrukturu a být schopní ji automatizovaně rozvíjet.
+V první fázi bylo důležité mít co nejrychleji zdokumentovanou infrastrukturu a být schopní ji automatizovaně rozvíjet.
 Proto jsem zvolil integrovaný přístup, kdy aplikační a infrastrukturní kód jsou jedna code base, a Pulumi, "dík své 
 chytristice":[https://www.pulumi.com/docs/tutorials/aws/serializing-functions/], rozhodne, kde se kód řízne a co se nasadí. 
 Takže to byl takový TypeScriptový (dále TS) monolit. 
 
 Už během migrace původních lambdiček do Pulumi jsem narážel na takové to svědění, způsobené 
 "typovým sebeklamem":[https://www.rarous.net/weblog/2019/02/06/typescript-a-typovy-sebeklam.html]. Často jsem musel
-uspokojovat kompilátor, kvůli jeho neschopné typové inferenci, nebo vyloženému ničení explicitně deklarovaných typů.
-Děkuju pěkně, ale vím o lepších věcech, na kterých bych mohl trávit čas. Když pominu, že mám během kompilace 
-TS víc času na čtení twitteru, tak jeho další přidanou hodnotou je popis schémat, na který je vyloženě špatným nástrojem...
+uspokojovat kompilátor, kvůli jeho neschopné typové inferenci, nebo "vyloženému ničení explicitně deklarovaných typů":[https://twitter.com/alesroubicek/status/1342797872652288005].
+Děkuju pěkně, ale mám lepších představy, jak bych mohl trávit svůj čas. Když pominu, že mám během kompilace 
+TS víc času na čtení twitteru, tak jeho jedinou přidanou hodnotou je popis schémat, na který je vyloženě špatným nástrojem...
 
 AWS vydalo novou verzi JS SDK - "verzi třetí":[https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/welcome.html].
 Ta si klade za cíl modularizovat všeobjímající God knihovnu `aws-sdk`, na sadu specializovaných balíčků, které reflektují "stav 
@@ -31,9 +31,9 @@ s moderní syntaxí, ne ty hybridní blbiny pro webpacky v ES5, s kterýma se ne
 Ano, nové AWS SDK obsahuje i plnohodnotné (ehm) TS soubory, protože je v nich napsáno. V praxi se však ukázalo, 
 že je to cesta do pekla...
 
-AWS oznámilo Lpodporu Docker images pro nasazování AWS Lambda funkcí":[https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/]. 
+AWS oznámilo "podporu Docker images pro nasazování AWS Lambda funkcí":[https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/]. 
 Chvíli jsem uvažoval, že využiju schopnosti Dockeru mít "popis build i runtime kontejnerů":[https://docs.docker.com/develop/develop-images/multistage-build/]
-v jednom souboru a že každá lambda si tak snadno sbuildí (pomocí `tsc`) svoje výstupy a ty se pak nasadí 
+v jednom souboru a že každá lambda si tak snadno připraví (pomocí `tsc`) svoje výstupy a ty se pak nasadí 
 do runtime jako jeden bundle...
 
 O tom, že "esbuild je pekelně rychlý a jednoduchý nástroj":[https://www.rarous.net/weblog/2020/12/14/esbuild.html] na kompilaci
@@ -43,13 +43,13 @@ Navíc má pěkné API použitelné i z JavaScriptu!
 Pulumi má "virtualializované balíčkování kódu":[https://www.pulumi.com/docs/intro/concepts/programming-model/#assets-and-archives] 
 pro deployment AWS Lambda funkcí. Krom toho, že si můžete nechat transparentně serializovat část kódy v podobě funkce, 
 můžete si nechat zabalit třeba adresář s kódem, který chcete nasadit, ale už musí být předpřipravený. V rámci virtualizace,
-ale dojdete až na úroveň, kde do archívu můžete strkat jakýkoliv `string`, nebo jeho `Promise`...
+ale dojdete až na úroveň, kde do archívu můžete strkat jakýkoliv `string`, nebo jeho `Promise`. To je krása opravdových
+abstrakcí...
 
 JS API esbuildu umí, když mu nastavíte `write: false`, vracet výsledek bundlování jako, ta-dá, `Promise of string`. Takže,
-když si spustíme "build service":[https://github.com/topmonks/hlidac-shopu/blob/2740d6ff841ebafd57e6b51ce2a46450f2dc2cc5/lambda-builder.ts] 
-- kvůli optimalizacím na sdílený kód - a při vytváření popisu infrastruktury si necháme
-také připravit bundle dané funkce, můžeme ho rovnou nasadit. No a protože to je `esbuild` a ne kombinace `tsc` a `pulumi`,
-tak je to rychlý nejen v build time, ale i v runtime. A to už se vyplatí!
+když si spustíme "build service":[https://github.com/topmonks/hlidac-shopu/blob/2740d6ff841ebafd57e6b51ce2a46450f2dc2cc5/lambda-builder.ts] - kvůli
+optimalizacím na sdílený kód - a při vytváření popisu infrastruktury si necháme také připravit bundle dané funkce, můžeme ho rovnou nasadit. 
+No, a protože to je `esbuild` a ne kombinace `tsc` a `pulumi`, tak je to rychlý nejen v build time, ale i v runtime. A to už se vyplatí!
 
 [* https://pbs.twimg.com/media/EqLkLL4XUAAigCB?format=jpg&name=large .(Graf s latencemi)[responsive] *]
 
