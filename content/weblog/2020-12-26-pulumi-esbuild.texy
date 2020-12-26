@@ -40,7 +40,7 @@ O tom, že "esbuild je pekelně rychlý a jednoduchý nástroj":[https://www.rar
 moderního JavaScriptu (aka ECMAScript 2020), jsem psal minule. Mimochodem umí stejně rychle konzumovat JSX, TS a TSX.
 Navíc má pěkné API použitelné i z JavaScriptu!
 
-Pulumi má "virtualializované balíčkování kódu":[https://www.pulumi.com/docs/intro/concepts/programming-model/#assets-and-archives] 
+Pulumi má "virtualizované balíčkování kódu":[https://www.pulumi.com/docs/intro/concepts/programming-model/#assets-and-archives] 
 pro deployment AWS Lambda funkcí. Krom toho, že si můžete nechat transparentně serializovat část kódu v podobě funkce, 
 můžete si také nechat zabalit třeba adresář s kódem, který chcete nasadit. Ale ten už musí být nějak předpřipravený.
 V rámci virtualizace, ale dojdete až na úroveň, kde do archívu můžete strkat jakýkoliv `string`, nebo jeho `Promise`. 
