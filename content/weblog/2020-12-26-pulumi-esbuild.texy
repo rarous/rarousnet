@@ -21,7 +21,7 @@ Takže to byl takový TypeScriptový (dále TS) monolit.
 Už během migrace původních lambdiček do Pulumi jsem narážel na takové to svědění, způsobené 
 "typovým sebeklamem":[https://www.rarous.net/weblog/2019/02/06/typescript-a-typovy-sebeklam.html]. Často jsem musel
 uspokojovat kompilátor, kvůli jeho neschopné typové inferenci, nebo "vyloženému ničení explicitně deklarovaných typů":[https://twitter.com/alesroubicek/status/1342797872652288005].
-Děkuju pěkně, ale mám lepších představy, jak bych mohl trávit svůj čas. Když pominu, že mám během kompilace 
+Děkuju pěkně, ale mám lepší představy, jak bych mohl trávit svůj čas. Když pominu, že mám během kompilace 
 TS víc času na čtení twitteru, tak jeho jedinou přidanou hodnotou je popis schémat, na který je vyloženě špatným nástrojem...
 
 AWS vydalo novou verzi JS SDK - "verzi třetí":[https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/welcome.html].
