@@ -130,14 +130,14 @@
     read-package-tree "^5.2.1"
     resolve "^1.7.1"
 
-"@pulumi/cloudflare@^2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-2.11.0.tgz#66977934fe42678da7c8259edf1cbd9948355e31"
-  integrity sha512-V6LP05co071akUwOqyVGQxsllgG5M2m3Tqg8wx+OIumrSHHfNj2J/2u9NbqbjGYFfSP5coTRWmFvGeAzmpI25g==
+"@pulumi/cloudflare@^2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-2.11.1.tgz#4c7fab9bf63c831a2252ccee8a3200120f3e519f"
+  integrity sha512-oHtXtEECRuOiZ1NthVjmDlqRGEOEdNAc9hKFP/p+B+jBlaXtAysrFRKi7Ls/R/rDMmEr3nD8rdQ00TN3IbR19Q==
   dependencies:
-    "@pulumi/pulumi" "^2.0.0"
+    "@pulumi/pulumi" "^2.15.0"
 
-"@pulumi/pulumi@<=3.0", "@pulumi/pulumi@^2.0.0", "@pulumi/pulumi@^2.17.0":
+"@pulumi/pulumi@<=3.0", "@pulumi/pulumi@^2.15.0", "@pulumi/pulumi@^2.17.0":
   version "2.17.0"
   resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-2.17.0.tgz#8cee3dd53200a639d93de952a8c2ab624a55c9bf"
   integrity sha512-2cNmyplq+QWvkvfCz8ILODp+dIvkVKnrFWrBopgA1uZBPvMDi3JdO8SdYWgNCgQiuLL6V7CXrr5nG7FOSH75iA==
