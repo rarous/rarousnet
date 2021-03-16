@@ -84,7 +84,7 @@
   (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
 
 (defsnippet page-footer "weblog/index.html" [:.footer] []
-  [:.year] (html/content (time/year (time/today))))
+  [:.year] (html/content (str (time/year (time/today)))))
 
 (deftemplate index-template "weblog/index.html" [articles]
   [:#content] (html/content (map article-listing articles))
