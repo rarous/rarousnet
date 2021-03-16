@@ -72,7 +72,7 @@
 
 (defsnippet article-listing "weblog/index.html" [:#content :article]
   [{:keys [title author category html published] :as article}]
-  (conj (microdata "BlogPosting" "name") :a) (html/do->
+  (conj (microdata "BlogPosting" "headline") :a) (html/do->
                                                (html/content title)
                                                (html/set-attr :href (rel-link article)))
   (microdata "BlogPosting" "datePublished") (html/do->
@@ -83,12 +83,16 @@
   (microdata "BlogPosting" "Person" "name") (html/content author)
   (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
 
+(defsnippet page-footer "weblog/index.html" [:.footer] []
+  [:.year] (html/content (time/year (time/today))))
+
 (deftemplate index-template "weblog/index.html" [articles]
-  [:#content] (html/content (map article-listing articles)))
+  [:#content] (html/content (map article-listing articles))
+  [:.footer] (html/substitute (page-footer)))
 
 (defsnippet article-detail "weblog/blogpost.html" [:article]
   [{:keys [title author category html published] :as article}]
-  (microdata "BlogPosting" "name") (html/content title)
+  (microdata "BlogPosting" "headline") (html/content title)
   (microdata "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date published))
                                               (html/set-attr :datetime (utc-date published)))
@@ -110,7 +114,8 @@
   [(meta-p "article:section")] (html/set-attr :content category)
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "category")] (html/set-attr :href category-url)
-  [:article] (html/substitute (article-detail article)))
+  [:article] (html/substitute (article-detail article))
+  [:.footer] (html/substitute (page-footer)))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
   [:link] (html/content blog-url)
@@ -144,7 +149,8 @@
   [:title] (html/content (str "Tag " title " - rarouš.weblog"))
   [(link "canonical")] (html/set-attr :href (str blog-url url))
   [:#content :h2] (html/content title)
-  [:#content :section] (html/substitute (year-items years)))
+  [:#content :section] (html/substitute (year-items years))
+  [:.footer] (html/substitute (page-footer)))
 
 (deftemplate redirect-template "weblog/redirect.html" [{:keys [url]}]
   [html/any-node] (html/replace-vars {:url url}))

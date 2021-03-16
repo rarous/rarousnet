@@ -40,7 +40,7 @@ ga('send', 'pageview');
 <link rel="stylesheet" href="/design/blog/blog.css">
 <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
 </head>
-<body id="rarous">
+<body id="rarous" itemtype="https://schema.org/Blog" itemscope>
 <div id="top">
 
 <div class="wai">
@@ -52,21 +52,22 @@ ga('send', 'pageview');
 </header>
 
 <main id="content">
-<article itemtype="https://schema.org/BlogPosting" itemscope="itemscope" role="article">
+<article itemprop="blogPost" itemtype="https://schema.org/BlogPosting" itemscope>
   <header>
-    <h2 itemprop="name"><a href=""></a></h2>
+    <h2 itemprop="headline"><a itemprop="sameAs" href=""></a></h2>
     <p class="info">
-      <span itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author">
+      <span itemtype="https://schema.org/Person" itemscope itemprop="author">
         <strong itemprop="name">Aleš Roubíček</strong>
       </span>
-      | <time datetime="" itemprop="datePublished" pubdate="pubdate"></time>
+      | <time datetime="" itemprop="datePublished" pubdate></time>
     </p>
   </header>
   <div itemprop="articleBody"></div>
 </article>
 </main>
 
-<footer class="footer">
+<footer class="footer" itemprop="author" itemscope itemtype="https://schema.org/Person">
+  <link rel="me" href="/" itemprop="sameAs">
   <div class="footer__inner">
     <div id="rubriky" class="footer__box">
       <h2>Rubriky</h2>
@@ -87,33 +88,33 @@ ga('send', 'pageview');
     <div id="meetupy" class="footer__box">
       <h2>Meetupy</h2>
       <ul>
-        <li><a href="https://caffe.topmonks.cz/">TopMonks Caffè</a>
-        <li><a href="https://coderetreat.cz/">Coderetreat CZ</a>
-        <li><a href="https://www.meetup.com/NerdDinner-CZ/">NerdDinner</a>
-        <li><a href="https://www.meetup.com/Lambda-Meetup-Group/">PragueLambda</a>
-        <li><a href="https://www.meetup.com/fsharping/">Fsharping</a>
-        <li><a href="https://www.lambdup.io/">LambdUp</a>
+        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://caffe.topmonks.cz/">TopMonks Caffè</a>
+        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/NerdDinner-CZ/">NerdDinner</a>
+        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/frontendisti/">Frontendisti</a>
+        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/Lambda-Meetup-Group/">PragueLambda</a>
+        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/fsharping/">Fsharping</a>
+        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.lambdup.io/">LambdUp</a>
       </ul>
     </div>
     <div id="blogy" class="footer__box">
       <h2>Spřízněné blogy</h2>
       <ul>
-        <li><a href="https://blog.topmonks.com/">TopMonks Blog</a>
-        <li><a href="https://zezivotarecruiterky.com/">Ze života recruiterky</a>
-        <li><a href="http://www.jirifabian.net/wordpress/">Filemon's Rubikon</a>
-        <li><a href="http://ptrnka.cz/">(P)Trnka</a>
-        <li><a href="http://janboruta.com/">Jan Boruta</a>
-        <li><a href="https://dagblog.cz/">dagblog</a>
-        <li><a href="https://borekb.cz/">BorekB</a>
+        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://blog.topmonks.com/">TopMonks Blog</a>
+        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://zezivotarecruiterky.com/">Ze života recruiterky</a>
+        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="http://www.jirifabian.net/wordpress/">Filemon's Rubikon</a>
+        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="http://ptrnka.cz/">(P)Trnka</a>
+        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="http://janboruta.com/">Jan Boruta</a>
+        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://dagblog.cz/">dagblog</a>
+        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://borekb.cz/">BorekB</a>
       </ul>
     </div>
   </div>
-<div class="footer__copyright">
-<p>© 2004&ndash;2020 Aleš Roubíček. Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.</p>
-</div>
+  <div class="footer__copyright">
+    <p>© 2004&ndash;<span class="year">2021</span> Aleš Roubíček. Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
+  </div>
 </footer>
-
 </div>
+
 <script type="module">
   const codes = document.querySelectorAll("pre>code");
   for (let code of codes) {
@@ -124,4 +125,3 @@ ga('send', 'pageview');
   }
 </script>
 <script defer src="/assets/js/prism.js"></script>
-
