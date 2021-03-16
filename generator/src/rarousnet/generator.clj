@@ -124,6 +124,10 @@
             [:category] (html/clone-for [tag tags]
                           (html/content tag))))
 
+(deftemplate sitemap-template "weblog/sitemap.xml" [articles]
+  [:url] (html/clone-for [article articles]
+           [:loc] (html/content (permalink article))))
+
 (defsnippet tag-items "weblog/category.html" [:#content :article] [articles]
   (html/clone-for [{:keys [title published] :as article} articles]
     [:article :a] (html/content title)
@@ -226,6 +230,12 @@
     (go (>! write-file-ch
             {:file/name "articles.rss"
              :file/content rss}))))
+
+(defn sitemap [articles write-file-ch]
+      (let [sitemap (apply str (sitemap-template articles))]
+           (go (>! write-file-ch
+                   {:file/name "sitemap.xml"
+                    :file/content sitemap}))))
 
 (defn page-with-redirects [article]
   (conj
@@ -359,6 +369,7 @@
 (def generators
   [twitter-images
    articles-rss
+   sitemap
    articles-index
    tag-indexes
    time-indexes
