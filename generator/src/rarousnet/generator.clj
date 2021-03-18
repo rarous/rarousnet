@@ -73,8 +73,8 @@
 (defsnippet article-listing "weblog/index.html" [:#content :article]
   [{:keys [title author category html published] :as article}]
   (conj (microdata "BlogPosting" "headline") :a) (html/do->
-                                               (html/content title)
-                                               (html/set-attr :href (rel-link article)))
+                                                   (html/content title)
+                                                   (html/set-attr :href (rel-link article)))
   (microdata "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date published))
                                               (html/set-attr :datetime (utc-date published)))
@@ -129,9 +129,9 @@
             [:category] (html/clone-for [tag tags]
                           (html/content tag))))
 
-(deftemplate sitemap-template "weblog/sitemap.xml" [articles]
-  [:url] (html/clone-for [article articles]
-           [:loc] (html/content (permalink article))))
+(deftemplate sitemap-template "weblog/sitemap.xml" [links]
+  [:url] (html/clone-for [link links]
+           [:loc] (html/content link)))
 
 (defsnippet tag-items "weblog/category.html" [:#content :article] [articles]
   (html/clone-for [{:keys [title published] :as article} articles]
@@ -236,12 +236,6 @@
     (go (>! write-file-ch
             {:file/name "articles.rss"
              :file/content rss}))))
-
-(defn sitemap [articles write-file-ch]
-      (let [sitemap (apply str (sitemap-template articles))]
-           (go (>! write-file-ch
-                   {:file/name "sitemap.xml"
-                    :file/content sitemap}))))
 
 (defn page-with-redirects [article]
   (conj
@@ -358,6 +352,15 @@
           (map articles-by-year)
           (mapcat year-index))]
     (async/onto-chan write-file-ch files false)))
+
+(defn sitemap [articles write-file-ch]
+  (let [hp [blog-url]
+        articles (map #(permalink %) articles)
+        links (concat hp articles)
+        sitemap (apply str (sitemap-template links))]
+       (go (>! write-file-ch
+               {:file/name "sitemap.xml"
+                :file/content sitemap}))))
 
 (defn article->image [article]
   {:title (:title article)
