@@ -1,118 +1,135 @@
 <!doctype html>
 <html lang="cs">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta http-equiv="Accept-CH" content="DPR,Viewport-Width,Width,Save-Data">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>rarouš.weblog</title>
-<link rel="preconnect" href="//www.google-analytics.com">
-<link rel="preconnect" href="https://use.typekit.net">
-<link rel="preconnect" href="https://p.typekit.net">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-regular.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-italic.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-bold.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-regular.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-italic.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-bold.woff2">
-<link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-sparkle-bolditalic.woff2">
-<meta name="description" content="Aleš Roubíček píše o webdesignu a čistém kódu.">
-<meta name="blogcatalog" content="9BC9064972">
-<link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous-weblog" title="rarouš.weblog - poslední články">
-<link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře k článkům">
-<link rel="canonical" href="https://www.rarous.net/weblog/">
-<meta property="fb:app_id" content="215763288621854">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.rarous.net/weblog/">
-<meta property="og:title" content="rarouš.weblog">
-<meta property="og:locale" content="cs_CZ">
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-90726-1', 'auto');
-ga('send', 'pageview');
-</script>
-<!--[if lt IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
-<link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
-<link rel="stylesheet" href="/design/blog/iosevka.css">
-<link rel="stylesheet" href="/design/blog/blog.css">
-<link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Accept-CH" content="DPR,Viewport-Width,Width,Save-Data">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>rarouš.weblog</title>
+  <link rel="preconnect" href="//www.google-analytics.com">
+  <link rel="preconnect" href="https://use.typekit.net">
+  <link rel="preconnect" href="https://p.typekit.net">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/design/blog/iosevka/woff2/iosevka-sparkle-regular.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/design/blog/iosevka/woff2/iosevka-sparkle-italic.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/design/blog/iosevka/woff2/iosevka-sparkle-bold.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-regular.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-italic.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2" href="/design/blog/iosevka/woff2/iosevka-bold.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/design/blog/iosevka/woff2/iosevka-sparkle-bolditalic.woff2">
+  <meta name="description" content="Aleš Roubíček píše o webdesignu a čistém kódu.">
+  <meta name="blogcatalog" content="9BC9064972">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous-weblog"
+        title="rarouš.weblog - poslední články">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/weblog/comments"
+        title="rarouš.weblog - komentáře k článkům">
+  <link rel="canonical" href="https://www.rarous.net/weblog/">
+  <meta property="fb:app_id" content="215763288621854">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.rarous.net/weblog/">
+  <meta property="og:title" content="rarouš.weblog">
+  <meta property="og:locale" content="cs_CZ">
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga')
+    ga('create','UA-90726-1','auto');ga('send','pageview')
+  </script>
+  <!--[if lt IE 9]>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
+  <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
+  <link rel="stylesheet" href="/design/blog/iosevka.css">
+  <link rel="stylesheet" href="/design/blog/blog.css">
+  <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
 </head>
-<body id="rarous" itemtype="https://schema.org/Blog" itemscope>
+<body id="rarous" typeof="Blog" vocab="https://schema.org">
 <div id="top">
 
-<div class="wai">
-<a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
-</div>
+  <div class="wai">
+    <a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
+  </div>
 
-<header id="head">
-<h1><a href="/weblog/" title="Přejít na weblog">rarouš.weblog<span class="image"></span></a></h1>
-</header>
-
-<main id="content">
-<article itemprop="blogPost" itemtype="https://schema.org/BlogPosting" itemscope>
-  <header>
-    <h2 itemprop="headline"><a itemprop="sameAs" href=""></a></h2>
-    <p class="info">
-      <span itemtype="https://schema.org/Person" itemscope itemprop="author">
-        <strong itemprop="name">Aleš Roubíček</strong>
-      </span>
-      | <time datetime="" itemprop="datePublished" pubdate></time>
-    </p>
+  <header id="head">
+    <h1 property="headline"><a href="/weblog/" title="Přejít na weblog">rarouš.weblog<span class="image"></span></a>
+    </h1>
   </header>
-  <div itemprop="articleBody"></div>
-</article>
-</main>
 
-<footer class="footer" itemprop="author" itemscope itemtype="https://schema.org/Person">
-  <link rel="me" href="/" itemprop="sameAs">
-  <div class="footer__inner">
-    <div id="rubriky" class="footer__box">
-      <h2>Rubriky</h2>
-      <ul>
-        <li><a href="/weblog/tag/webdesign.html" title="Vypsat články z rubriky Webdesign">Webdesign</a>
-        <li><a href="/weblog/tag/cleancode.html" title="Vypsat články z rubriky Čistý kód">Čistý kód</a>
-        <li><a href="/weblog/tag/functional.html" title="Vypsat články z rubriky Funkcionální programování">Funkcionální
-          programování</a>
-        <li><a href="/weblog/tag/ci.html" title="Vypsat články z rubriky Kontinuální integrace">Kontinuální
-          integrace</a>
-        <li><a href="/weblog/tag/radar.html" title="Vypsat články z rubriky Technologický radar">Technologický radar</a>
-        <li><a href="/weblog/tag/moje-prace.html" title="Vypsat články z rubriky Moje práce">Moje pr&#225;ce</a>
-        <li><a href="/weblog/tag/czpodcast.html" title="Vypsat články z rubriky CZ Podcast">CZ Podcast</a>
-        <li><a href="/weblog/tag/jen-tak.html" title="Vypsat články z rubriky Jen tak">Jen tak</a>
-        <li><a href="/weblog/tag/muzika.html" title="Vypsat články z rubriky Muzika">Muzika</a>
-      </ul>
+  <main id="content" role="feed">
+    <article property="blogPost" typeof="BlogPosting">
+      <link property="image" href="">
+      <header>
+        <h2 property="headline"><a property="sameAs" href=""></a></h2>
+        <p class="info">
+      <span typeof="Person" property="author">
+        <strong property="name">Aleš Roubíček</strong>
+      </span>
+          |
+          <time datetime="" property="datePublished"></time>
+        </p>
+      </header>
+      <div property="articleBody"></div>
+    </article>
+  </main>
+
+  <footer class="footer" property="author" typeof="Person">
+    <link rel="me" href="/" property="sameAs">
+    <div class="footer__inner">
+      <nav id="rubriky" class="footer__box">
+        <h2>Rubriky</h2>
+        <ul>
+          <li><a href="/weblog/tag/webdesign.html" title="Vypsat články z rubriky Webdesign">Webdesign</a>
+          <li><a href="/weblog/tag/cleancode.html" title="Vypsat články z rubriky Čistý kód">Čistý kód</a>
+          <li><a href="/weblog/tag/functional.html" title="Vypsat články z rubriky Funkcionální programování">Funkcionální
+            programování</a>
+          <li><a href="/weblog/tag/ci.html" title="Vypsat články z rubriky Kontinuální integrace">Kontinuální
+            integrace</a>
+          <li><a href="/weblog/tag/radar.html" title="Vypsat články z rubriky Technologický radar">Technologický
+            radar</a>
+          <li><a href="/weblog/tag/moje-prace.html" title="Vypsat články z rubriky Moje práce">Moje pr&#225;ce</a>
+          <li><a href="/weblog/tag/czpodcast.html" title="Vypsat články z rubriky CZ Podcast">CZ Podcast</a>
+          <li><a href="/weblog/tag/jen-tak.html" title="Vypsat články z rubriky Jen tak">Jen tak</a>
+          <li><a href="/weblog/tag/muzika.html" title="Vypsat články z rubriky Muzika">Muzika</a>
+        </ul>
+      </nav>
+      <div id="meetupy" class="footer__box">
+        <h2>Meetupy</h2>
+        <ul>
+          <li property="memberOf" typeof="Organization"><a property="sameAs" href="https://caffe.topmonks.cz/">TopMonks
+            Caffè</a>
+          <li property="memberOf" typeof="Organization"><a property="sameAs"
+                                                           href="https://www.meetup.com/NerdDinner-CZ/">NerdDinner</a>
+          <li property="memberOf" typeof="Organization"><a property="sameAs"
+                                                           href="https://www.meetup.com/frontendisti/">Frontendisti</a>
+          <li property="memberOf" typeof="Organization"><a property="sameAs"
+                                                           href="https://www.meetup.com/Lambda-Meetup-Group/">PragueLambda</a>
+          <li property="memberOf" typeof="Organization"><a property="sameAs" href="https://www.meetup.com/fsharping/">Fsharping</a>
+          <li property="memberOf" typeof="Organization"><a property="sameAs" href="https://www.lambdup.io/">LambdUp</a>
+        </ul>
+      </div>
+      <div id="blogy" class="footer__box">
+        <h2>Spřízněné blogy</h2>
+        <ul>
+          <li property="knows" typeof="Person"><a property="sameAs" href="https://blog.topmonks.com/">TopMonks Blog</a>
+          <li property="knows" typeof="Person"><a property="sameAs" href="https://zezivotarecruiterky.com/">Ze života
+            recruiterky</a>
+          <li property="knows" typeof="Person"><a property="sameAs" href="http://www.jirifabian.net/wordpress/">Filemon's
+            Rubikon</a>
+          <li property="knows" typeof="Person"><a property="sameAs" href="http://ptrnka.cz/">(P)Trnka</a>
+          <li property="knows" typeof="Person"><a property="sameAs" href="http://janboruta.com/">Jan Boruta</a>
+          <li property="knows" typeof="Person"><a property="sameAs" href="https://dagblog.cz/">dagblog</a>
+          <li property="knows" typeof="Person"><a property="sameAs" href="https://borekb.cz/">BorekB</a>
+        </ul>
+      </div>
     </div>
-    <div id="meetupy" class="footer__box">
-      <h2>Meetupy</h2>
-      <ul>
-        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://caffe.topmonks.cz/">TopMonks Caffè</a>
-        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/NerdDinner-CZ/">NerdDinner</a>
-        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/frontendisti/">Frontendisti</a>
-        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/Lambda-Meetup-Group/">PragueLambda</a>
-        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.meetup.com/fsharping/">Fsharping</a>
-        <li itemprop="memberOf" itemscope itemtype="https://schema.org/Organization"><a itemprop="sameAs" href="https://www.lambdup.io/">LambdUp</a>
-      </ul>
+    <div class="footer__copyright">
+      <p property="copyrightNotice">© 2004&ndash;<span class="year">2021</span> Aleš Roubíček.
+        Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
     </div>
-    <div id="blogy" class="footer__box">
-      <h2>Spřízněné blogy</h2>
-      <ul>
-        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://blog.topmonks.com/">TopMonks Blog</a>
-        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://zezivotarecruiterky.com/">Ze života recruiterky</a>
-        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="http://www.jirifabian.net/wordpress/">Filemon's Rubikon</a>
-        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="http://ptrnka.cz/">(P)Trnka</a>
-        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="http://janboruta.com/">Jan Boruta</a>
-        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://dagblog.cz/">dagblog</a>
-        <li itemprop="knows" itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" href="https://borekb.cz/">BorekB</a>
-      </ul>
-    </div>
-  </div>
-  <div class="footer__copyright">
-    <p>© 2004&ndash;<span class="year">2021</span> Aleš Roubíček. Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
-  </div>
-</footer>
+  </footer>
 </div>
 
 <script type="module">

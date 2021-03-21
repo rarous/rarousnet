@@ -59,29 +59,32 @@
     "Aleš Roubíček" "@alesroubicek"
     "Alessio Busta" "@alessiobusta"
     nil))
+(defn card-image [article]
+  (string/replace (permalink article) #"\.html" ".png"))
 
 (defn- meta-n [name] [:meta (html/attr= :name name)])
 (defn- meta-p [name] [:meta (html/attr= :property name)])
-(defn- itemprop [name] (html/attr= :itemprop name))
-(defn- itemtype [name] (html/attr= :itemtype (str "https://schema.org/" name)))
-(defn- microdata
-  ([type prop] [(itemtype type) (itemprop prop)])
-  ([type subtype prop] [(itemtype type) (itemtype subtype) (itemprop prop)]))
+(defn- property [name] (html/attr= :property name))
+(defn- typeof [name] (html/attr= :typeof name))
+(defn- rdfa
+   ([type prop] [(typeof type) (property prop)])
+   ([type subtype prop] [(typeof type) (typeof subtype) (property prop)]))
 (defn- link [rel] [:link (html/attr= :rel rel)])
 (defn- script [src] [:script (html/attr= :src src)])
 
 (defsnippet article-listing "weblog/index.html" [:#content :article]
   [{:keys [title author category html published] :as article}]
-  (conj (microdata "BlogPosting" "headline") :a) (html/do->
+  (conj (rdfa "BlogPosting" "headline") :a) (html/do->
                                                    (html/content title)
                                                    (html/set-attr :href (rel-link article)))
-  (microdata "BlogPosting" "datePublished") (html/do->
+  (rdfa "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date published))
                                               (html/set-attr :datetime (utc-date published)))
-  (microdata "BlogPosting" "articleSection") (html/content category)
-  (microdata "BlogPosting" "articleBody") (html/html-content html)
-  (microdata "BlogPosting" "Person" "name") (html/content author)
-  (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
+  (rdfa "BlogPosting" "articleSection") (html/content category)
+  (rdfa "BlogPosting" "articleBody") (html/html-content html)
+  (rdfa "BlogPosting" "Person" "name") (html/content author)
+  (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
+  (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article)))
 
 (defsnippet page-footer "weblog/index.html" [:.footer] []
   [:.year] (html/content (str (time/year (time/today)))))
@@ -92,14 +95,15 @@
 
 (defsnippet article-detail "weblog/blogpost.html" [:article]
   [{:keys [title author category html published] :as article}]
-  (microdata "BlogPosting" "headline") (html/content title)
-  (microdata "BlogPosting" "datePublished") (html/do->
+  (rdfa "BlogPosting" "headline") (html/content title)
+  (rdfa "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date published))
                                               (html/set-attr :datetime (utc-date published)))
-  (microdata "BlogPosting" "articleSection") (html/content category)
-  (microdata "BlogPosting" "articleBody") (html/html-content html)
-  (microdata "BlogPosting" "Person" "name") (html/content author)
-  (microdata "BlogPosting" "url") (html/set-attr :href (rel-link article)))
+  (rdfa "BlogPosting" "articleSection") (html/content category)
+  (rdfa "BlogPosting" "articleBody") (html/html-content html)
+  (rdfa "BlogPosting" "Person" "name") (html/content author)
+  (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
+  (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article)))
 
 (deftemplate blogpost-template "weblog/blogpost.html"
   [{:keys [title author description category category-url published] :as article}]
@@ -109,7 +113,7 @@
   [(meta-n "twitter:creator")] (html/set-attr :content (author-twitter article))
   [(meta-n "twitter:title")] (html/set-attr :content title)
   [(meta-n "twitter:description")] (html/set-attr :content description)
-  [(meta-n "twitter:image")] (html/set-attr :content (string/replace (permalink article) #"\.html" ".png"))
+  [(meta-n "twitter:image")] (html/set-attr :content (card-image article))
   [(meta-p "article:published_time")] (html/set-attr :content (utc-date published))
   [(meta-p "article:section")] (html/set-attr :content category)
   [(link "canonical")] (html/set-attr :href (permalink article))

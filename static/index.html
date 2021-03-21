@@ -57,16 +57,22 @@
         }
 
         body {
-          font: 1em Cardo, Georgia, serif;
           color: #878787;
           background: #EEDD99 url(/assets/bg.png);
           padding: 0;
           margin: 0;
+          font: 1em Cardo, Georgia, serif;
+          -webkit-font-kerning: normal;
+          font-kerning: normal;
           -webkit-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
           -moz-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
           -moz-font-feature-settings: "dlig=1, kern=1, liga=1";
           -ms-font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
           font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
+          -webkit-text-size-adjust: 100%;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: geometricPrecision;
         }
         a { color: #6A7E9D; }
         a:hover { color: #2A436A; }
@@ -100,7 +106,7 @@
           background: #fff;
           border: 1px solid #fff;
         }
-        #contact header { padding-left: 1em }
+        #contact hgroup { padding-left: 1em }
         #contact h1 {
           margin-bottom: 0;
           font-weight: 400;
@@ -116,12 +122,12 @@
         #contact dt { position: absolute; left: -1000px }
         #contact dd { margin-left: 0; padding-left: 1em }
 
-        [itemprop="telephone"]:before,
-        [itemprop="email"]:before,
+        [property="telephone"]:before,
+        [property="email"]:before,
         .bank-account-number:before { content: "✆"; display: inline-block; padding-right: 1ex }
-        [itemprop="email"]:before { content: "✉" }
+        [property="email"]:before { content: "✉" }
         .bank-account-number:before { content: "⑉" }
-        [itemprop="address"], .qr-code { display: none }
+        [property="address"], .qr-code { display: none }
 
         #links a { line-height: 1.5em }
         #links a:link,
@@ -186,45 +192,45 @@
 </head>
 <body>
     <div id="top">
-        <section id="header">
+        <header id="header">
             <img alt="" class="logo" src="/assets/logo.svg" width="60" height="43">
             <h1>Software for the Masses</h1>
-        </section>
-        <section id="contact" itemscope itemtype="https://schema.org/Person">
+        </header>
+        <section id="contact" vocab="https://schema.org" typeof="Person">
             <div class="qr-code">
                 <img alt="QR kód s kontaktem" src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=L|0&chl=MECARD%3AN%3AAle%25C5%25A1%2520Roub%25C3%25AD%25C4%258Dek%3BTEL%3A%2B420737461283%3BEMAIL%3Aales%40roubicek.name%3BURL%3Ahttp%3A%2F%2Frarous.net"
                      title="Oskenuj si kontakt do mobilu" width="200" height="200">
             </div>
-            <header>
-                <h1 itemprop="name">Aleš Roubíček</h1>
-                <h2 itemprop="jobTitle">web developer</h2>
-            </header>
+            <hgroup>
+                <h1 property="name">Aleš Roubíček</h1>
+                <h2 property="jobTitle">web developer</h2>
+            </hgroup>
             <dl>
                 <dt>E-mail:</dt>
-                <dd itemprop="email"><a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID">ales&#64;<!-- -->roubicek.name</a></dd>
+                <dd property="email"><a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID">ales&#64;<!-- -->roubicek.name</a></dd>
                 <dt>Telefon:</dt>
-                <dd itemprop="telephone"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
+                <dd property="telephone"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
                 <dt>Banka:</dt>
                 <dd class="bank-account-number" title="číslu účtu">237716453/0600</dd>
                 <dt>Adresa:</dt>
-                <dd itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                    <span itemprop="streetAddress">Rižská 1580/9</span><br>
-                    <span itemprop="postalCode">102 00</span>,
-                    <span itemprop="addressLocality">Praha 15</span>
+                <dd property="address" typeof="PostalAddress">
+                    <span property="streetAddress">Rižská 1580/9</span><br>
+                    <span property="postalCode">102 00</span>,
+                    <span property="addressLocality">Praha 15</span>
                 </dd>
             </dl>
         </section>
-        <section id="links">
+        <nav id="links">
             <ul>
                 <li><a href="/weblog/">weblog</a></li>
-                <li><a href="https://twitter.com/alesroubicek" rel="me">twitter</a></li>
-                <li><a href="https://github.com/rarous" rel="me">github</a></li>
-                <li><a href="https://instagram.com/alesroubicek" rel="me">instagram</a></li>
-                <li><a href="https://mixcloud.com/alesroubicek" rel="me">mixcloud</a></li>
+                <li><a property="sameAs" href="https://twitter.com/alesroubicek" rel="me">twitter</a></li>
+                <li><a property="sameAs" href="https://github.com/rarous" rel="me">github</a></li>
+                <li><a property="sameAs" href="https://instagram.com/alesroubicek" rel="me">instagram</a></li>
+                <li><a property="sameAs" href="https://mixcloud.com/alesroubicek" rel="me">mixcloud</a></li>
                 <li><a href="https://www.goodreads.com/rarous" rel="me">goodreads</a></li>
-                <li><a href="https://stackoverflow.com/story/rarous" rel="me">stack overflow</a></li>
+                <li><a property="sameAs" href="https://stackoverflow.com/story/rarous" rel="me">stack overflow</a></li>
             </ul>
-        </section>
+        </nav>
     </div>
 </body>
 </html>
