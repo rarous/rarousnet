@@ -103,7 +103,7 @@
   (rdfa "BlogPosting" "articleBody") (html/html-content html)
   (rdfa "BlogPosting" "Person" "name") (html/content author)
   (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
-  (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article)))
+  (rdfa "BlogPosting" "url") (html/set-attr :href (permalink article)))
 
 (deftemplate blogpost-template "weblog/blogpost.html"
   [{:keys [title author description category category-url published] :as article}]
