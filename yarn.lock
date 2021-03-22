@@ -137,10 +137,10 @@
     read-package-tree "^5.2.1"
     resolve "^1.7.1"
 
-"@pulumi/cloudflare@^2.14.0":
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-2.14.0.tgz#4978a620b096d3d5250f48c693a4b9414eddde49"
-  integrity sha512-dfCM+q2nA8nAUbOizLWHwdk4KJM/XsZ3SQsVyB3gN2bXkxVpSXBFKUnPvyIJWo0C+ex31utAi+dk1TrNAaV6Bw==
+"@pulumi/cloudflare@^2.14.1":
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-2.14.1.tgz#79f399e2109cecd7e68d55d2e96c1476fee34f34"
+  integrity sha512-M9+V6mE01RYy6sFNgv78BQ2Eh0T3Jk896+JZmTNLJZfiXx3DQ929jWcGAHr3XhxlXabIBfoXTo0HTf9pGepVGQ==
   dependencies:
     "@pulumi/pulumi" "^2.15.0"
 
