@@ -53,7 +53,7 @@ jobs:
   postprocess:
     executor:
       name: node/default
-      tag: '14.16-browser'
+      tag: '14.16-browsers'
     steps:
       - checkout
       - browser-tools/install-chrome
@@ -76,7 +76,7 @@ jobs:
   test:
     executor:
       name: node/default
-      tag: '14.16-browser'
+      tag: '14.16-browsers'
     steps:
       - checkout
       - browser-tools/install-chrome
