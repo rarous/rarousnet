@@ -29,10 +29,8 @@ jobs:
             - v3-dependencies-{{ checksum "generator/deps.edn" }}
       - run:
           name: Generate static web site content
-          command: |
-            pushd generator
-            clojure -m rarousnet.generator ../
-            popd
+          working_directory: generator
+          command: clojure -m rarousnet.generator ../
       - save_cache:
           name: Store deps cache
           key: v3-dependencies-{{ checksum "generator/deps.edn" }}
