@@ -13,7 +13,7 @@
   (:import
     (java.io File)
     (java.text Normalizer Normalizer$Form)
-    (java.util Locale Date))
+    (java.util Locale))
   (:gen-class))
 
 (set! *warn-on-reflection* true)
@@ -49,10 +49,10 @@
   (unparse utc-format (from-date d)))
 (defn long-date-time [d]
   (unparse long-date-time-format (from-date d)))
-(defn long-date [d]
-  (unparse long-date-format (from-date d)))
-(defn long-month-year [d]
-  (unparse long-month-year-format (from-date d)))
+(defn long-date [dt]
+  (unparse long-date-format dt))
+(defn long-month-year [dt]
+  (unparse long-month-year-format dt))
 (defn short-date [d]
   (unparse short-date-format (from-date d)))
 (defn rss-date [d]
@@ -318,7 +318,7 @@
             (sort-by (juxt :month :day))
             (reverse))
           data {:title "Denník"
-                :page-title (str "Denník " (long-date (Date. year (dec month) day)))
+                :page-title (str "Denník " (long-date (time/date-time year month day)))
                 :url file-name
                 :years [{:year year :articles articles}]}
           html (apply str (tag-template data))]
@@ -336,7 +336,7 @@
             (sort-by (juxt :month :day))
             (reverse))
           data {:title "Měsíčník"
-                :page-title (str "Měsíčník " (long-month-year (Date. year (dec month) 1)))
+                :page-title (str "Měsíčník " (long-month-year (time/date-time year month)))
                 :url file-name
                 :years [{:year year :articles articles}]}
           html (apply str (tag-template data))]
