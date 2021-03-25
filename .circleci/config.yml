@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
   cloudflare: katana/cloudflare@1.0.0
+  php: circleci/php@1.1.0
   pulumi: pulumi/pulumi@2.0.0
 jobs:
   provision:
@@ -18,9 +19,13 @@ jobs:
           skip-preview: true
   generate:
     docker:
-      - image: rarous/cci-openjdk11-php7-clojure-tools-deps:latest
+      - image: circleci/clojure:openjdk-16-tools-deps
+        environment:
+          LEIN_JVM_OPTS: "-Xmx400m"
+          JVM_OPTS: "-Xmx3200m"
     steps:
       - checkout
+      - php/install-php
       - attach_workspace:
           at: .
       - restore_cache:
