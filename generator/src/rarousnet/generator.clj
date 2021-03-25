@@ -126,8 +126,15 @@
   [:.day] (html/set-attr :href (str blog-relative-url year "/" month "/" day "/"))
   [:.day (html/attr= :property "name")] (html/content (str day)))
 
+(defsnippet article-tags "weblog/blogpost.html" [:.tags]
+  [tags]
+  [:li] (html/clone-for [tag tags]
+          [:a] (html/do->
+                 (html/content tag)
+                 (html/set-attr :href (str blog-relative-url "tag/" tag ".html")))))
+
 (deftemplate blogpost-template "weblog/blogpost.html"
-  [{:keys [title author description category category-url published] :as article}]
+  [{:keys [title author description category category-url published tags] :as article}]
   [:title] (html/content title)
   [(meta-n "author")] (html/set-attr :content author)
   [(meta-n "description")] (html/set-attr :content description)
@@ -146,6 +153,7 @@
                                 :month (time/month (from-date published))
                                 :month-name (short-month (from-date published))
                                 :day (time/day (from-date published))}))
+  [:article :.tags] (html/substitute (article-tags tags))
   [:.footer] (html/substitute (page-footer)))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
