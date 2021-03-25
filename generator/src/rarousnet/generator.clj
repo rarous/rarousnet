@@ -41,8 +41,8 @@
   (with-locale (formatter "d. MMMM yyyy") (Locale. "cs")))
 (def long-month-year-format
   (with-locale (formatter "MMMM yyyy") (Locale. "cs")))
-(def long-month-format
-  (with-locale (formatter "MMMM") (Locale. "cs")))
+(def short-month-format
+  (with-locale (formatter "MMM") (Locale. "cs")))
 (def short-date-format
   (with-locale (formatter "MMM d") (Locale. "cs")))
 (def utc-format (formatters :basic-date-time))
@@ -55,8 +55,8 @@
   (unparse long-date-format dt))
 (defn long-month-year [dt]
   (unparse long-month-year-format dt))
-(defn long-month [dt]
-  (unparse long-month-format dt))
+(defn short-month [dt]
+  (unparse short-month-format dt))
 (defn short-date [d]
   (unparse short-date-format (from-date d)))
 (defn rss-date [d]
@@ -144,7 +144,7 @@
                              (article-breadcrumbs
                                {:year (time/year (from-date published))
                                 :month (time/month (from-date published))
-                                :month-name (long-month (from-date published))
+                                :month-name (short-month (from-date published))
                                 :day (time/day (from-date published))}))
   [:.footer] (html/substitute (page-footer)))
 
