@@ -13,7 +13,7 @@
   (:import
     (java.io File)
     (java.text Normalizer Normalizer$Form)
-    (java.util Locale))
+    (java.util Locale Date))
   (:gen-class))
 
 (set! *warn-on-reflection* true)
@@ -35,16 +35,24 @@
       (string/replace #"\." "-")
       (string/replace #"\s+" "-")))
 
-(def long-date-format
+(def long-date-time-format
   (with-locale (formatter "HH.mm - d. MMMM yyyy") (Locale. "cs")))
+(def long-date-format
+  (with-locale (formatter "d. MMMM yyyy") (Locale. "cs")))
+(def long-month-year-format
+  (with-locale (formatter "MMMM yyyy") (Locale. "cs")))
 (def short-date-format
   (with-locale (formatter "MMM d") (Locale. "cs")))
 (def utc-format (formatters :basic-date-time))
 (def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
 (defn utc-date [d]
   (unparse utc-format (from-date d)))
+(defn long-date-time [d]
+  (unparse long-date-time-format (from-date d)))
 (defn long-date [d]
   (unparse long-date-format (from-date d)))
+(defn long-month-year [d]
+  (unparse long-month-year-format (from-date d)))
 (defn short-date [d]
   (unparse short-date-format (from-date d)))
 (defn rss-date [d]
@@ -78,7 +86,7 @@
                                                    (html/content title)
                                                    (html/set-attr :href (rel-link article)))
   (rdfa "BlogPosting" "datePublished") (html/do->
-                                              (html/content (long-date published))
+                                              (html/content (long-date-time published))
                                               (html/set-attr :datetime (utc-date published)))
   (rdfa "BlogPosting" "articleSection") (html/content category)
   (rdfa "BlogPosting" "articleBody") (html/html-content html)
@@ -97,7 +105,7 @@
   [{:keys [title author category html published] :as article}]
   (rdfa "BlogPosting" "headline") (html/content title)
   (rdfa "BlogPosting" "datePublished") (html/do->
-                                              (html/content (long-date published))
+                                              (html/content (long-date-time published))
                                               (html/set-attr :datetime (utc-date published)))
   (rdfa "BlogPosting" "articleSection") (html/content category)
   (rdfa "BlogPosting" "articleBody") (html/html-content html)
@@ -163,8 +171,8 @@
     [:section :h1] (html/content (str year))
     [:article] (html/substitute (tag-items articles))))
 
-(deftemplate tag-template "weblog/category.html" [{:keys [title url years]}]
-  [:title] (html/content (str "Tag " title " - rarouš.weblog"))
+(deftemplate tag-template "weblog/category.html" [{:keys [page-title title url years]}]
+  [:title] (html/content (str page-title " - rarouš.weblog"))
   [(link "canonical")] (html/set-attr :href (str blog-url url))
   [:#content :h2] (html/content title)
   [:#content :section] (html/substitute (year-items years))
@@ -276,6 +284,7 @@
 (defn tag-page [[tag items]]
   (let [file-name (str "tag/" (slug tag) ".html")
         data {:title tag
+              :page-title (str "Tag " tag)
               :url file-name
               :years items}
         html (apply str (tag-template data))]
@@ -309,6 +318,7 @@
             (sort-by (juxt :month :day))
             (reverse))
           data {:title "Denník"
+                :page-title (str "Denník " (long-date (Date. year (dec month) day)))
                 :url file-name
                 :years [{:year year :articles articles}]}
           html (apply str (tag-template data))]
@@ -326,6 +336,7 @@
             (sort-by (juxt :month :day))
             (reverse))
           data {:title "Měsíčník"
+                :page-title (str "Měsíčník " (long-month-year (Date. year (dec month) 1)))
                 :url file-name
                 :years [{:year year :articles articles}]}
           html (apply str (tag-template data))]
@@ -345,6 +356,7 @@
           (sort-by (juxt :month :day))
           (reverse))
         data {:title "Ročenka"
+              :page-title (str "Ročenka " year)
               :url file-name
               :years [{:year year :articles articles}]}
         html (apply str (tag-template data))]
@@ -383,7 +395,7 @@
 (defn article->image [article]
   {:title (:title article)
    :name (author-twitter article)
-   :date (last (string/split (long-date (:published article)) #" - "))
+   :date (last (string/split (long-date-time (:published article)) #" - "))
    :fileName (string/replace (:file-name article) #".html" ".png")})
 
 (defn twitter-images [articles write-file-ch]
