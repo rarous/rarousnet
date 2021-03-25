@@ -11,7 +11,7 @@ jobs:
   provision:
     executor:
       name: node/default
-      tag: '14.16'
+      tag: 'current'
     steps:
       - checkout
       - pulumi/login
@@ -53,7 +53,7 @@ jobs:
   postprocess:
     executor:
       name: node/default
-      tag: '14.16-browsers'
+      tag: 'current-browsers'
     steps:
       - checkout
       - browser-tools/install-chrome
@@ -76,17 +76,15 @@ jobs:
   test:
     executor:
       name: node/default
-      tag: '14.16-browsers'
+      tag: 'current-browsers'
     steps:
       - checkout
       - browser-tools/install-chrome
       - attach_workspace:
           at: .
-      - restore_cache:
-          name: Restore yarn cache
-          keys:
-            - v2-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn install
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-version: v2
       - run:
           name: Install self-signed cert for localhost
           command: |
