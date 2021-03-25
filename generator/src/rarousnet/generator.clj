@@ -1,6 +1,6 @@
 (ns rarousnet.generator
   (:require
-    [clj-time.core :as time]
+    [clj-time.core :as time :refer [date-time]]
     [clj-time.coerce :as tc :refer [from-date]]
     [clj-time.format :refer [formatter unparse with-locale formatters]]
     [clojure.core.async :as async :refer [>!! <!! >! <! go go-loop]]
@@ -41,6 +41,8 @@
   (with-locale (formatter "d. MMMM yyyy") (Locale. "cs")))
 (def long-month-year-format
   (with-locale (formatter "MMMM yyyy") (Locale. "cs")))
+(def long-month-format
+  (with-locale (formatter "MMMM") (Locale. "cs")))
 (def short-date-format
   (with-locale (formatter "MMM d") (Locale. "cs")))
 (def utc-format (formatters :basic-date-time))
@@ -53,6 +55,8 @@
   (unparse long-date-format dt))
 (defn long-month-year [dt]
   (unparse long-month-year-format dt))
+(defn long-month [dt]
+  (unparse long-month-format dt))
 (defn short-date [d]
   (unparse short-date-format (from-date d)))
 (defn rss-date [d]
@@ -114,11 +118,11 @@
   (rdfa "BlogPosting" "url") (html/set-attr :href (permalink article)))
 
 (defsnippet article-breadcrumbs "weblog/blogpost.html" [:.breadcrumbs]
-  [{:keys [year month day]}]
+  [{:keys [year month month-name day]}]
   [:.year] (html/set-attr :href (str blog-relative-url year "/"))
   [:.year (html/attr= :property "name")] (html/content (str year))
   [:.month] (html/set-attr :href (str blog-relative-url year "/" month "/"))
-  [:.month (html/attr= :property "name")] (html/content (str month))
+  [:.month (html/attr= :property "name")] (html/content month-name)
   [:.day] (html/set-attr :href (str blog-relative-url year "/" month "/" day "/"))
   [:.day (html/attr= :property "name")] (html/content (str day)))
 
@@ -140,6 +144,7 @@
                              (article-breadcrumbs
                                {:year (time/year (from-date published))
                                 :month (time/month (from-date published))
+                                :month-name (long-month (from-date published))
                                 :day (time/day (from-date published))}))
   [:.footer] (html/substitute (page-footer)))
 
@@ -318,7 +323,7 @@
             (sort-by (juxt :month :day))
             (reverse))
           data {:title "Denník"
-                :page-title (str "Denník " (long-date (time/date-time year month day)))
+                :page-title (str "Denník " (long-date (date-time year month day)))
                 :url file-name
                 :years [{:year year :articles articles}]}
           html (apply str (tag-template data))]
@@ -336,7 +341,7 @@
             (sort-by (juxt :month :day))
             (reverse))
           data {:title "Měsíčník"
-                :page-title (str "Měsíčník " (long-month-year (time/date-time year month)))
+                :page-title (str "Měsíčník " (long-month-year (date-time year month)))
                 :url file-name
                 :years [{:year year :articles articles}]}
           html (apply str (tag-template data))]
