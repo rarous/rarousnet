@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  aws-cli: circleci/aws-cli@1.4.1
   aws-s3: circleci/aws-s3@2.0.0
   cloudflare: katana/cloudflare@1.0.0
   php: circleci/php@1.1.0
@@ -108,8 +109,7 @@ jobs:
       - store_test_results:
           path: ./results
   s3_deploy:
-    docker:
-      - image: cibuilds/aws:latest
+    executor: aws-cli/default
     steps:
       - attach_workspace:
           at: .
