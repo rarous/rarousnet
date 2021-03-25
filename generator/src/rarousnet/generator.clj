@@ -105,6 +105,15 @@
   (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
   (rdfa "BlogPosting" "url") (html/set-attr :href (permalink article)))
 
+(defsnippet article-breadcrumbs "weblog/blogpost.html" [:.breadcrumbs]
+  [{:keys [year month day]}]
+  [:.year] (html/set-attr :href (str blog-relative-url year "/"))
+  [:.year (html/attr :property "name")] (html/content (str year))
+  [:.month] (html/set-attr :href (str blog-relative-url year "/" month "/"))
+  [:.month (html/attr :property "name")] (html/content (str month))
+  [:.day] (html/set-attr :href (str blog-relative-url year "/" month "/" day "/"))
+  [:.day (html/attr :property "name")] (html/content (str day)))
+
 (deftemplate blogpost-template "weblog/blogpost.html"
   [{:keys [title author description category category-url published] :as article}]
   [:title] (html/content title)
@@ -119,6 +128,11 @@
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "category")] (html/set-attr :href category-url)
   [:article] (html/substitute (article-detail article))
+  [:article :.breadcrumbs] (html/substitute
+                             (article-breadcrumbs
+                               {:year (time/year published)
+                                :month (time/month published)
+                                :day (time/day published)}))
   [:.footer] (html/substitute (page-footer)))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
