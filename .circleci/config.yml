@@ -111,14 +111,12 @@ jobs:
       - attach_workspace:
           at: .
       - aws-s3/sync:
-          name: Deploy to S3
           arguments: |
             --size-only \
             --quiet
           from: dist/
           to: s3://www.rarous.net/
       - aws-s3/copy:
-          name: Update MIME types
           arguments: |
             --exclude "*" \
             --include "*.rss" \
@@ -127,8 +125,7 @@ jobs:
             --recursive
           from: s3://www.rarous.net/
           to: s3://www.rarous.net/
-      - cloudflare/purge-cache:
-          name: Invalidace CDN Cache
+      - cloudflare/purge-cache
 workflows:
   build_and_deploy:
     jobs:
