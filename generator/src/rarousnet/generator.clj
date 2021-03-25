@@ -108,11 +108,11 @@
 (defsnippet article-breadcrumbs "weblog/blogpost.html" [:.breadcrumbs]
   [{:keys [year month day]}]
   [:.year] (html/set-attr :href (str blog-relative-url year "/"))
-  [:.year (html/attr :property "name")] (html/content (str year))
+  [:.year (html/attr= :property "name")] (html/content (str year))
   [:.month] (html/set-attr :href (str blog-relative-url year "/" month "/"))
-  [:.month (html/attr :property "name")] (html/content (str month))
+  [:.month (html/attr= :property "name")] (html/content (str month))
   [:.day] (html/set-attr :href (str blog-relative-url year "/" month "/" day "/"))
-  [:.day (html/attr :property "name")] (html/content (str day)))
+  [:.day (html/attr= :property "name")] (html/content (str day)))
 
 (deftemplate blogpost-template "weblog/blogpost.html"
   [{:keys [title author description category category-url published] :as article}]
