@@ -1,5 +1,7 @@
 version: 2.1
 orbs:
+  aws-s3: circleci/aws-s3@2.0.0
+  cloudflare: katana/cloudflare@1.0.0
   pulumi: pulumi/pulumi@2.0.0
 jobs:
   provision:
@@ -108,19 +110,25 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run:
+      - aws-s3/sync:
           name: Deploy to S3
-          command: aws s3 sync --size-only --quiet "dist/" "s3://www.rarous.net/"
-      - run:
+          arguments: |
+            --size-only \
+            --quiet
+          from: dist/
+          to: s3://www.rarous.net/
+      - aws-s3/copy:
           name: Update MIME types
-          command: aws s3 cp --exclude "*" --include "*.rss" --content-type="application/rss+xml; charset=utf-8" --metadata-directive="REPLACE" --recursive s3://www.rarous.net/ s3://www.rarous.net/
-      - run:
+          arguments: |
+            --exclude "*" \
+            --include "*.rss" \
+            --content-type="application/rss+xml; charset=utf-8" \
+            --metadata-directive="REPLACE" \
+            --recursive
+          from: s3://www.rarous.net/
+          to: s3://www.rarous.net/
+      - cloudflare/purge-cache:
           name: Invalidace CDN Cache
-          command: |
-            curl -X POST "https://api.cloudflare.com/client/v4/zones/08e36c0745513d3aaf121e9108bda956/purge_cache" \
-                 -H "Authorization: Bearer PlpEgsmXwc86INMnDFd1xD2vMjkIRVj01SqkSeFp" \
-                 -H "Content-Type: application/json" \
-                 --data '{"purge_everything":true}'
 workflows:
   build_and_deploy:
     jobs:
