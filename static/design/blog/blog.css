@@ -288,6 +288,8 @@ article footer {
 
 .breadcrumbs, .tags, .tags ul, .tags ul>li {
   display: inline;
+  margin: 0;
+  font-family: inherit;
 }
 .tags ul>li+li::before {
   content: ", ";

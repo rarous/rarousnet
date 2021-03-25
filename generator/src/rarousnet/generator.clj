@@ -131,7 +131,7 @@
   [:li] (html/clone-for [tag tags]
           [:a] (html/do->
                  (html/content tag)
-                 (html/set-attr :href (str blog-relative-url "tag/" tag ".html")))))
+                 (html/set-attr :href (str blog-relative-url "tag/" (slug tag) ".html")))))
 
 (deftemplate blogpost-template "weblog/blogpost.html"
   [{:keys [title author description category category-url published tags] :as article}]
