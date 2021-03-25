@@ -19,7 +19,7 @@ jobs:
           skip-preview: true
   generate:
     docker:
-      - image: circleci/clojure:openjdk-16-tools-deps
+      - image: circleci/clojure:openjdk-16-tools-deps-buster
         environment:
           LEIN_JVM_OPTS: "-Xmx400m"
           JVM_OPTS: "-Xmx3200m"
