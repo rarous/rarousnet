@@ -130,9 +130,9 @@
   [:article] (html/substitute (article-detail article))
   [:article :.breadcrumbs] (html/substitute
                              (article-breadcrumbs
-                               {:year (time/year published)
-                                :month (time/month published)
-                                :day (time/day published)}))
+                               {:year (time/year (from-date published))
+                                :month (time/month (from-date published))
+                                :day (time/day (from-date published))}))
   [:.footer] (html/substitute (page-footer)))
 
 (deftemplate rss-template "weblog/index.rss" [articles]
