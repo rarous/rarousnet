@@ -9,7 +9,7 @@
     [clojure.java.shell :refer [sh]]
     [clojure.string :as string]
     [cheshire.core :as json]
-    [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate]])
+    [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate xml-parser]])
   (:import
     (java.io File)
     (java.text Normalizer Normalizer$Form)
@@ -156,7 +156,7 @@
   [:article :.tags] (html/substitute (article-tags tags))
   [:.footer] (html/substitute (page-footer)))
 
-(deftemplate rss-template "weblog/index.rss" [articles]
+(deftemplate rss-template {:parser xml-parser} "weblog/index.rss" [articles]
   [:link] (html/content blog-url)
   [:item] (html/clone-for [{:keys [author title description tags published] :as article} articles]
             [:author] (html/content author)
@@ -168,7 +168,7 @@
             [:category] (html/clone-for [tag tags]
                           (html/content tag))))
 
-(deftemplate sitemap-template "weblog/sitemap.xml" [links]
+(deftemplate sitemap-template {:parser xml-parser} "weblog/sitemap.xml" [links]
   [:url] (html/clone-for [link links]
            [:loc] (html/content link)))
 
