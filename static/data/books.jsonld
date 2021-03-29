@@ -1,0 +1,5288 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Atomic Design",
+    "url": "https://www.goodreads.com/book/isbn/0998296600",
+    "isbn": "0998296600",
+    "copyrightYear": "2016",
+    "numberOfPages": 189,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Brad Frost",
+        "url": "https://www.goodreads.com/book/author/Brad+Frost"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Brad Frost"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Powerful: Building a Culture of Freedom and Responsibility",
+    "copyrightYear": "2018",
+    "numberOfPages": 228,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Patty McCord",
+        "url": "https://www.goodreads.com/book/author/Patty+McCord"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Silicon Guild"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations",
+    "copyrightYear": "2018",
+    "numberOfPages": 288,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Nicole Forsgren",
+        "url": "https://www.goodreads.com/book/author/Nicole+Forsgren"
+      },
+      {
+        "@type": "Person",
+        "name": "Jez Humble",
+        "url": "https://www.goodreads.com/book/author/Jez+Humble"
+      },
+      {
+        "@type": "Person",
+        "name": "Gene Kim",
+        "url": "https://www.goodreads.com/book/author/Gene+Kim"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "IT Revolution Press"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Transforming NOKIA: The Power of Paranoid Optimism to Lead Through Colossal Change",
+    "copyrightYear": "2018",
+    "numberOfPages": 337,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Risto Siilasmaa",
+        "url": "https://www.goodreads.com/book/author/Risto+Siilasmaa"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "McGraw-Hill Education"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Zajímavý vhled do dění v Nokii od uvedení iPhone do skoro současnosti. Knihu jsem četl jedním dechem. Pro mne je psaná zajímavým až strhujícím způsobem. Občas se až moc opakuje Paranoidní optimismus, ale asi je to hlavní myšlenka, kterou chce autor v knize prodat. Určitě je tam spousta lessons learned jak pro podnikatele, tak pro krizové manažery, tak pro řadové vývojáře. Absence technických kompetencí v softwareové části korporace byla jednou z příčin, že tak velká firma nebyla schopná adekvátně zareagovat na to, co se na trhu stalo, ani během 4 let.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Sphinx of the Ice Realm: The First Complete English Translation, with the Full Text of the Narrative of Arthur Gordon Pym by Edgar Allan Poe",
+    "url": "https://www.goodreads.com/book/isbn/1438442114",
+    "isbn": "1438442114",
+    "copyrightYear": "2012",
+    "numberOfPages": 435,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jules Verne",
+        "url": "https://www.goodreads.com/book/author/Jules+Verne"
+      },
+      {
+        "@type": "Person",
+        "name": "Edgar Allan Poe",
+        "url": "https://www.goodreads.com/book/author/Edgar+Allan+Poe"
+      },
+      {
+        "@type": "Person",
+        "name": "Frederick Paul Walter",
+        "url": "https://www.goodreads.com/book/author/Frederick+Paul+Walter"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "State University of New York Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Radical Candor: Be a Kickass Boss Without Losing Your Humanity",
+    "url": "https://www.goodreads.com/book/isbn/1250103509",
+    "isbn": "1250103509",
+    "copyrightYear": "2017",
+    "numberOfPages": 246,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kim Malone Scott",
+        "url": "https://www.goodreads.com/book/author/Kim+Malone+Scott"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "St. Martin's Press"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Effective Engineer: How to Leverage Your Efforts In Software Engineering to Make a Disproportionate and Meaningful Impact",
+    "url": "https://www.goodreads.com/book/isbn/0996128107",
+    "isbn": "0996128107",
+    "copyrightYear": "2015",
+    "numberOfPages": 260,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Edmond Lau",
+        "url": "https://www.goodreads.com/book/author/Edmond+Lau"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Effective Bookshelf"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses",
+    "url": "https://www.goodreads.com/book/isbn/0307887898",
+    "isbn": "0307887898",
+    "copyrightYear": "2011",
+    "numberOfPages": 299,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Eric Ries",
+        "url": "https://www.goodreads.com/book/author/Eric+Ries"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Currency"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Cognitive Productivity: Using Knowledge to Become Profoundly Effective",
+    "copyrightYear": "2014",
+    "numberOfPages": 392,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Luc P. Beaudoin",
+        "url": "https://www.goodreads.com/book/author/Luc+P.+Beaudoin"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "CogZest"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "SOA with REST: Principles, Patterns & Constraints for Building Enterprise Solutions with REST (The Prentice Hall Service Technology Series from Thomas Erl)",
+    "copyrightYear": "2012",
+    "numberOfPages": 624,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Thomas Erl",
+        "url": "https://www.goodreads.com/book/author/Thomas+Erl"
+      },
+      {
+        "@type": "Person",
+        "name": "Benjamin Carlyle",
+        "url": "https://www.goodreads.com/book/author/Benjamin+Carlyle"
+      },
+      {
+        "@type": "Person",
+        "name": "Cesare Pautasso",
+        "url": "https://www.goodreads.com/book/author/Cesare+Pautasso"
+      },
+      {
+        "@type": "Person",
+        "name": "Raj Balasubramanian",
+        "url": "https://www.goodreads.com/book/author/Raj+Balasubramanian"
+      },
+      {
+        "@type": "Person",
+        "name": "Herbj¿rn Wilhelmsen",
+        "url": "https://www.goodreads.com/book/author/Herbj¿rn+Wilhelmsen"
+      },
+      {
+        "@type": "Person",
+        "name": "David Booth",
+        "url": "https://www.goodreads.com/book/author/David+Booth"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Prentice Hall"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Elements of Content Strategy",
+    "copyrightYear": "2011",
+    "numberOfPages": 88,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Erin Kissane",
+        "url": "https://www.goodreads.com/book/author/Erin+Kissane"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Book Apart"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Art of Application Performance Testing: From Strategy to Tools",
+    "url": "https://www.goodreads.com/book/isbn/1491900547",
+    "isbn": "1491900547",
+    "copyrightYear": "2015",
+    "numberOfPages": 278,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Ian Molyneaux",
+        "url": "https://www.goodreads.com/book/author/Ian+Molyneaux"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Unlocking the Magic of Facilitation: 11 Key Concepts You Didn't Know You Didn't Know",
+    "copyrightYear": "2016",
+    "numberOfPages": 133,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Sam Killermann",
+        "url": "https://www.goodreads.com/book/author/Sam+Killermann"
+      },
+      {
+        "@type": "Person",
+        "name": "Meg Bolger",
+        "url": "https://www.goodreads.com/book/author/Meg+Bolger"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Impetus Books"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "K facilitaci jsem se dostal díky Coderetreatu a postupem času jsem začal chápat co dělám špatně a co se daří. Pak jsem poznal Vaška Lavičku a začal jsem za facilitací vidět mnohem náročnější disciplínu než jsem si zpočátku myslel. Každopádně je to skvělý způsob učení a vzdělávání.<br/><br/>Tahle kniha přináší spoustu postřehů a zkušeností z facilitační praxe. Rozhodně doporučuji.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Elements of Clojure",
+    "copyrightYear": "2019",
+    "numberOfPages": 120,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Zachary Tellman",
+        "url": "https://www.goodreads.com/book/author/Zachary+Tellman"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Leanpub"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Parallel Programming with Microsoft® .NET: Design Patterns for Decomposition and Coordination on Multicore Architectures (Patterns & Practices)",
+    "copyrightYear": "2010",
+    "numberOfPages": 224,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Colin Campbell",
+        "url": "https://www.goodreads.com/book/author/Colin+Campbell"
+      },
+      {
+        "@type": "Person",
+        "name": "Ralph Johnson",
+        "url": "https://www.goodreads.com/book/author/Ralph+Johnson"
+      },
+      {
+        "@type": "Person",
+        "name": "Ade Miller",
+        "url": "https://www.goodreads.com/book/author/Ade+Miller"
+      },
+      {
+        "@type": "Person",
+        "name": "Stephen Toub",
+        "url": "https://www.goodreads.com/book/author/Stephen+Toub"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Microsoft Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Inspired: How To Create Products Customers Love",
+    "copyrightYear": "2008",
+    "numberOfPages": 241,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Marty Cagan",
+        "url": "https://www.goodreads.com/book/author/Marty+Cagan"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "SVPG Press"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Practical Feng Shui For The Office: Finding Your Individual Balance in the Workplace",
+    "copyrightYear": "2015",
+    "numberOfPages": 142,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kathryn Wilking",
+        "url": "https://www.goodreads.com/book/author/Kathryn+Wilking"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "One Small Step Can Change Your Life: The Kaizen Way",
+    "url": "https://www.goodreads.com/book/isbn/0761129235",
+    "isbn": "0761129235",
+    "copyrightYear": "2004",
+    "numberOfPages": 228,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Robert Maurer",
+        "url": "https://www.goodreads.com/book/author/Robert+Maurer"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Workman Publishing Company"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Docker Book: Containerization is the new virtualization",
+    "copyrightYear": "2014",
+    "numberOfPages": 246,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "James Turnbull",
+        "url": "https://www.goodreads.com/book/author/James+Turnbull"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "James Turnbull"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Extreme Programming Explained: Embrace Change",
+    "copyrightYear": "2004",
+    "numberOfPages": 218,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kent Beck",
+        "url": "https://www.goodreads.com/book/author/Kent+Beck"
+      },
+      {
+        "@type": "Person",
+        "name": "Cynthia Andres",
+        "url": "https://www.goodreads.com/book/author/Cynthia+Andres"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Leadership BS: Fixing Workplaces and Careers One Truth at a Time",
+    "copyrightYear": "2015",
+    "numberOfPages": 277,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jeffrey Pfeffer",
+        "url": "https://www.goodreads.com/book/author/Jeffrey+Pfeffer"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "HarperBusiness"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Remote Pairing: Collaborative Tools for Distributed Development",
+    "url": "https://www.goodreads.com/book/isbn/1937785742",
+    "isbn": "1937785742",
+    "copyrightYear": "2013",
+    "numberOfPages": 108,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Joe Kutner",
+        "url": "https://www.goodreads.com/book/author/Joe+Kutner"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Ruby Performance Optimization: Why Ruby Is Slow, and How to Fix It",
+    "url": "https://www.goodreads.com/book/isbn/1680500694",
+    "isbn": "1680500694",
+    "copyrightYear": "2015",
+    "numberOfPages": 170,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Alexander Dymo",
+        "url": "https://www.goodreads.com/book/author/Alexander+Dymo"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "AWS Lambda: A Guide to Serverless Microservices",
+    "copyrightYear": "2016",
+    "numberOfPages": 132,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Matthew Fuller",
+        "url": "https://www.goodreads.com/book/author/Matthew+Fuller"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Get Ready for CSS Grid Layout",
+    "copyrightYear": "2016",
+    "numberOfPages": 56,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Rachel Andrew",
+        "url": "https://www.goodreads.com/book/author/Rachel+Andrew"
+      },
+      {
+        "@type": "Person",
+        "name": "Eric Meyer",
+        "url": "https://www.goodreads.com/book/author/Eric+Meyer"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Book Apart"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Healthy Programmer",
+    "url": "https://www.goodreads.com/book/isbn/1937785319",
+    "isbn": "1937785319",
+    "copyrightYear": "2013",
+    "numberOfPages": 220,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Joe Kutner",
+        "url": "https://www.goodreads.com/book/author/Joe+Kutner"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Pragmatic Bookshelf"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Kniha, navzdory svému názvu, je určená všem lidem, co mají sedavé zaměstnání a chtějí vyřešit problémy z něj plynoucí nebo jim předcházet.<br/><br/>Probírá různé mýty, které mezi lidmi kolují a rozporuje je na základě vědeckých studií. Volí také zajímavé metodické postupy, které lidé z branže mohou znát z projektového řízení nebo samotného přístupu k tvorbě kódu. Rozhodně se seznámíte s technikami jako je Kanban, Kaizen, Pomodoro, Unit testing, Refactoring a Retrospektiva. Uvidíte, že jde o obecné techniky aplikovatelné nejen na vývoj a údržbu software, ale i na fitness a mentální zdraví.<br/><br/>Pokud si chcete odnést jednu věc z knihy. Hýbejte se. Snažte se často chodit. 250 kroků za hodinu není moc, ale stačí to k tomu, abyste byli zdravější. Běžet jednou za čas velkou vzdálenost nestačí.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Structure and Interpretation of Computer Programs (MIT Electrical Engineering and Computer Science)",
+    "url": "https://www.goodreads.com/book/isbn/0262510871",
+    "isbn": "0262510871",
+    "copyrightYear": "1996",
+    "numberOfPages": 657,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Harold Abelson",
+        "url": "https://www.goodreads.com/book/author/Harold+Abelson"
+      },
+      {
+        "@type": "Person",
+        "name": "Gerald Jay Sussman",
+        "url": "https://www.goodreads.com/book/author/Gerald+Jay+Sussman"
+      },
+      {
+        "@type": "Person",
+        "name": "Julie Sussman",
+        "url": "https://www.goodreads.com/book/author/Julie+Sussman"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "MIT Press"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Production-Ready Microservices: Building Standardized Systems Across an Engineering Organization",
+    "url": "https://www.goodreads.com/book/isbn/1491965940",
+    "isbn": "1491965940",
+    "copyrightYear": "2016",
+    "numberOfPages": 153,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Susan J. Fowler",
+        "url": "https://www.goodreads.com/book/author/Susan+J.+Fowler"
+      },
+      {
+        "@type": "Person",
+        "name": "Susan Fowler",
+        "url": "https://www.goodreads.com/book/author/Susan+Fowler"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Co-Active Coaching: Changing Business, Transforming Lives",
+    "url": "https://www.goodreads.com/book/isbn/1857889061",
+    "isbn": "1857889061",
+    "copyrightYear": "2011",
+    "numberOfPages": 206,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Laura Whitworth",
+        "url": "https://www.goodreads.com/book/author/Laura+Whitworth"
+      },
+      {
+        "@type": "Person",
+        "name": "Henry Kimsey-House",
+        "url": "https://www.goodreads.com/book/author/Henry+Kimsey-House"
+      },
+      {
+        "@type": "Person",
+        "name": "Karen Kimsey-House",
+        "url": "https://www.goodreads.com/book/author/Karen+Kimsey-House"
+      },
+      {
+        "@type": "Person",
+        "name": "Phillip Sandahl",
+        "url": "https://www.goodreads.com/book/author/Phillip+Sandahl"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nicholas Brealey Publishing"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Behind Closed Doors: Secrets of Great Management",
+    "url": "https://www.goodreads.com/book/isbn/0976694026",
+    "isbn": "0976694026",
+    "copyrightYear": "2005",
+    "numberOfPages": 176,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Johanna Rothman",
+        "url": "https://www.goodreads.com/book/author/Johanna+Rothman"
+      },
+      {
+        "@type": "Person",
+        "name": "Esther Derby",
+        "url": "https://www.goodreads.com/book/author/Esther+Derby"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Lean Enterprise: How High Performance Organizations Innovate at Scale",
+    "url": "https://www.goodreads.com/book/isbn/1449368425",
+    "isbn": "1449368425",
+    "copyrightYear": "2014",
+    "numberOfPages": 352,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jez Humble",
+        "url": "https://www.goodreads.com/book/author/Jez+Humble"
+      },
+      {
+        "@type": "Person",
+        "name": "Joanne Molesky",
+        "url": "https://www.goodreads.com/book/author/Joanne+Molesky"
+      },
+      {
+        "@type": "Person",
+        "name": "Barry O'Reilly",
+        "url": "https://www.goodreads.com/book/author/Barry+O'Reilly"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Site Reliability Engineering: How Google Runs Production Systems",
+    "url": "https://www.goodreads.com/book/isbn/149192912X",
+    "isbn": "149192912X",
+    "copyrightYear": "2016",
+    "numberOfPages": 552,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Betsy Beyer",
+        "url": "https://www.goodreads.com/book/author/Betsy+Beyer"
+      },
+      {
+        "@type": "Person",
+        "name": "Chris     Jones",
+        "url": "https://www.goodreads.com/book/author/Chris+++++Jones"
+      },
+      {
+        "@type": "Person",
+        "name": "Jennifer Petoff",
+        "url": "https://www.goodreads.com/book/author/Jennifer+Petoff"
+      },
+      {
+        "@type": "Person",
+        "name": "Niall Richard Murphy",
+        "url": "https://www.goodreads.com/book/author/Niall+Richard+Murphy"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Co-Active Leadership: Five Ways to Lead",
+    "copyrightYear": "2015",
+    "numberOfPages": 160,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Karen Kimsey-House",
+        "url": "https://www.goodreads.com/book/author/Karen+Kimsey-House"
+      },
+      {
+        "@type": "Person",
+        "name": "Henry Kimsey-House",
+        "url": "https://www.goodreads.com/book/author/Henry+Kimsey-House"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Berrett-Koehler Publishers"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Planning Extreme Programming",
+    "url": "https://www.goodreads.com/book/isbn/0201710919",
+    "isbn": "0201710919",
+    "copyrightYear": "2000",
+    "numberOfPages": 139,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kent Beck",
+        "url": "https://www.goodreads.com/book/author/Kent+Beck"
+      },
+      {
+        "@type": "Person",
+        "name": "Martin Fowler",
+        "url": "https://www.goodreads.com/book/author/Martin+Fowler"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Refactoring Databases: Evolutionary Database Design",
+    "url": "https://www.goodreads.com/book/isbn/0321293533",
+    "isbn": "0321293533",
+    "copyrightYear": "2006",
+    "numberOfPages": 384,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Scott W. Ambler",
+        "url": "https://www.goodreads.com/book/author/Scott+W.+Ambler"
+      },
+      {
+        "@type": "Person",
+        "name": "Pramod J. Sadalage",
+        "url": "https://www.goodreads.com/book/author/Pramod+J.+Sadalage"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison Wesley"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Implementation Patterns",
+    "url": "https://www.goodreads.com/book/isbn/0321413091",
+    "isbn": "0321413091",
+    "copyrightYear": "2007",
+    "numberOfPages": 157,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kent Beck",
+        "url": "https://www.goodreads.com/book/author/Kent+Beck"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Na knihu jsem narazil v podstatě náhodou, když jsem si objednával [b:Test Driven Development: By Example|387190|Test Driven Development  By Example|Kent Beck|https://images.gr-assets.com/books/1372039943s/387190.jpg|376827], tak jsem si přihodil do košíku, ať není poštovné příliš velkým podílem na ceně. :)<br/><br/>Tato kniha vyšla ve stejný čas jako [b:Clean Code: A Handbook of Agile Software Craftsmanship|3735293|Clean Code  A Handbook of Agile Software Craftsmanship|Robert C. Martin|https://images.gr-assets.com/books/1436202607s/3735293.jpg|3779106], ale není tak známá. Já ji však považuji za mnohem kvalitnější knihu věnující se stejné problematice - čistému kódu. Možná je to absencí Uncle Bobovy agitky, možná Kentovou rozvážností a schopností zamýšlet se nad tím, co, proč a jak dělá.<br/><br/>Skvěle jsou ukázány rozdíly v přemýšlení při návrhu aplikačního kódu a knihoven/frameworků.<br/><br/>Doporučuji jako povinnou četbu.<br/><br/>",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Clojure Applied: From Practice to Practitioner",
+    "copyrightYear": "2015",
+    "numberOfPages": 238,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Ben Vandgrift",
+        "url": "https://www.goodreads.com/book/author/Ben+Vandgrift"
+      },
+      {
+        "@type": "Person",
+        "name": "Alex Miller",
+        "url": "https://www.goodreads.com/book/author/Alex+Miller"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Pragmatic Bookshelf"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Kniha je průvodcem středně pokročilého vývojáře v Clojure do tvorby dobře navržených a udržovatelných služeb a aplikací. Od návrhu doménového modelu a abstrakcí, přes generativní testování po strukturování a kompozici kompletních aplikací. Must read, pokud to s Clojure myslíte vážně.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Clojure Polymorphism",
+    "copyrightYear": "2016",
+    "numberOfPages": 39,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Paul Stadig",
+        "url": "https://www.goodreads.com/book/author/Paul+Stadig"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Krátká, ale informace nabušená kniha s ukázkou několika přístupů jak řešit v Clojure polymorfismus. U každého přístupu jsou rozebrány přínosy i co za to platíme. Pokud ještě nemáte design patterns pro tvorbu funkcionálních kompozicí a abstrakcí v krvi, určitě vás tato kniha obohatí.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Out of the Tar Pit",
+    "copyrightYear": "2006",
+    "numberOfPages": 66,
+    "bookFormat": "https://schema.org/Whitepaper",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Ben Moseley",
+        "url": "https://www.goodreads.com/book/author/Ben+Moseley"
+      },
+      {
+        "@type": "Person",
+        "name": "Peter Marks",
+        "url": "https://www.goodreads.com/book/author/Peter+Marks"
+      }
+    ],
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Invasion of the Sea (Extraordinary Voyages, #54)",
+    "url": "https://www.goodreads.com/book/isbn/081956558X",
+    "isbn": "081956558X",
+    "copyrightYear": "2007",
+    "numberOfPages": 258,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jules Verne",
+        "url": "https://www.goodreads.com/book/author/Jules+Verne"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Wesleyan University Press"
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Sex",
+    "url": "https://www.goodreads.com/book/isbn/8072051202",
+    "isbn": "8072051202",
+    "copyrightYear": "",
+    "numberOfPages": 100,
+    "bookFormat": "https://schema.org/",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Osho",
+        "url": "https://www.goodreads.com/book/author/Osho"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragma"
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Šaolin - Nemusíš bojovat, abys zvítězil",
+    "copyrightYear": "2010",
+    "numberOfPages": 232,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Bernhard Moestl",
+        "url": "https://www.goodreads.com/book/author/Bernhard+Moestl"
+      },
+      {
+        "@type": "Person",
+        "name": "Vladimír Čadský",
+        "url": "https://www.goodreads.com/book/author/Vladimír+Čadský"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Beta - Pavel Dobrovský"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "R.U.R.",
+    "url": "https://www.goodreads.com/book/isbn/0486419266",
+    "isbn": "0486419266",
+    "copyrightYear": "2001",
+    "numberOfPages": 58,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Karel Čapek",
+        "url": "https://www.goodreads.com/book/author/Karel+Čapek"
+      },
+      {
+        "@type": "Person",
+        "name": "Paul Selver",
+        "url": "https://www.goodreads.com/book/author/Paul+Selver"
+      },
+      {
+        "@type": "Person",
+        "name": "Nigel Playfair",
+        "url": "https://www.goodreads.com/book/author/Nigel+Playfair"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dover Publications, Inc."
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Amazon DynamoDB Getting Started Guide",
+    "copyrightYear": "2015",
+    "numberOfPages": 242,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Amazon Web Services",
+        "url": "https://www.goodreads.com/book/author/Amazon+Web+Services"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 2
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "AWS CloudFormation User Guide",
+    "copyrightYear": "2013",
+    "numberOfPages": 951,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Amazon Web Services",
+        "url": "https://www.goodreads.com/book/author/Amazon+Web+Services"
+      }
+    ],
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Ten Steps to Linux Survival",
+    "copyrightYear": "2016",
+    "numberOfPages": 74,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "James Lehmer",
+        "url": "https://www.goodreads.com/book/author/James+Lehmer"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Visual Display of Quantitative Information",
+    "url": "https://www.goodreads.com/book/isbn/0961392142",
+    "isbn": "0961392142",
+    "copyrightYear": "2011",
+    "numberOfPages": 197,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Edward R. Tufte",
+        "url": "https://www.goodreads.com/book/author/Edward+R.+Tufte"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Graphics"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Guitar Mastery Simplified: How Anyone Can Quickly Become a Strumming, Chords, and Lead Guitar Ninja",
+    "copyrightYear": "2012",
+    "numberOfPages": 151,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Erich Andreas",
+        "url": "https://www.goodreads.com/book/author/Erich+Andreas"
+      }
+    ],
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Remote Pairing: Collaborative Tools for Distributed Development",
+    "copyrightYear": "2013",
+    "numberOfPages": 108,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Joe Kutner",
+        "url": "https://www.goodreads.com/book/author/Joe+Kutner"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Většina textu je o setupu tmuxu, pak cloudový instance v EC2, pak Eclipse a semtam krátká zmínka alternativních nástrojích, které mě zajímají mnohem více. Takže si Screenhero, appears.in a Floobits budu stejně muset prozkoumat sám.<br/><br/>Každopádně velký přïnost pro mne měla kniha v první a v poslední kapitole. V první jsem si snad odboural bias ohledně nutnosti kolokace při párování. Poslední kapitola přináší zkušenosti z firem, které takto fungují - jako Pivotal nebo Relevance (dnes Cognitect). Jako motivační intro do RPP dobrý.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "3001: The Final Odyssey (Space Odyssey, #4)",
+    "url": "https://www.goodreads.com/book/isbn/0345438205",
+    "isbn": "0345438205",
+    "copyrightYear": "1999",
+    "numberOfPages": 272,
+    "bookFormat": "https://schema.org/Mass Market Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arthur C. Clarke",
+        "url": "https://www.goodreads.com/book/author/Arthur+C.+Clarke"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Del Rey"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Rama Revealed (Rama, #4)",
+    "url": "https://www.goodreads.com/book/isbn/1857232526",
+    "isbn": "1857232526",
+    "copyrightYear": "1998",
+    "numberOfPages": 633,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arthur C. Clarke",
+        "url": "https://www.goodreads.com/book/author/Arthur+C.+Clarke"
+      },
+      {
+        "@type": "Person",
+        "name": "Gentry Lee",
+        "url": "https://www.goodreads.com/book/author/Gentry+Lee"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Orbit"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Garden of Rama (Rama, #3)",
+    "url": "https://www.goodreads.com/book/isbn/1857230213",
+    "isbn": "1857230213",
+    "copyrightYear": "1993",
+    "numberOfPages": 593,
+    "bookFormat": "https://schema.org/Mass Market Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arthur C. Clarke",
+        "url": "https://www.goodreads.com/book/author/Arthur+C.+Clarke"
+      },
+      {
+        "@type": "Person",
+        "name": "Gentry Lee",
+        "url": "https://www.goodreads.com/book/author/Gentry+Lee"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Orbit"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Your Code as a Crime Scene: Use Forensic Techniques to Arrest Defects, Bottlenecks, and Bad Design in Your Programs (The Pragmatic Programmers)",
+    "copyrightYear": "2015",
+    "numberOfPages": 221,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Adam Tornhill",
+        "url": "https://www.goodreads.com/book/author/Adam+Tornhill"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Michael Strogoff (Extraordinary Voyages, #14)",
+    "copyrightYear": "",
+    "numberOfPages": 324,
+    "bookFormat": "https://schema.org/",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jules Verne",
+        "url": "https://www.goodreads.com/book/author/Jules+Verne"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "2061: Odyssey Three (Space Odyssey, #3)",
+    "url": "https://www.goodreads.com/book/isbn/0586203192",
+    "isbn": "0586203192",
+    "copyrightYear": "1997",
+    "numberOfPages": 302,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arthur C. Clarke",
+        "url": "https://www.goodreads.com/book/author/Arthur+C.+Clarke"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Voyager"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "2010: Odyssey Two (Space Odyssey, #2)",
+    "url": "https://www.goodreads.com/book/isbn/0345413970",
+    "isbn": "0345413970",
+    "copyrightYear": "1997",
+    "numberOfPages": 320,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arthur C. Clarke",
+        "url": "https://www.goodreads.com/book/author/Arthur+C.+Clarke"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Del Rey"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Building Microservices: Designing Fine-Grained Systems",
+    "url": "https://www.goodreads.com/book/isbn/1491950358",
+    "isbn": "1491950358",
+    "copyrightYear": "2015",
+    "numberOfPages": 262,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Sam Newman",
+        "url": "https://www.goodreads.com/book/author/Sam+Newman"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Holacracy: The New Management System for a Rapidly Changing World",
+    "url": "https://www.goodreads.com/book/isbn/162779428X",
+    "isbn": "162779428X",
+    "copyrightYear": "2015",
+    "numberOfPages": 240,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Brian J. Robertson",
+        "url": "https://www.goodreads.com/book/author/Brian+J.+Robertson"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Henry Holt and Co."
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Software Paradox",
+    "copyrightYear": "2015",
+    "numberOfPages": 62,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Stephen O’Grady",
+        "url": "https://www.goodreads.com/book/author/Stephen+O’Grady"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Hodně zajímavá kniha, která mi připomněla jak jsme se snažil přesvědčit vedení firmy, že nový produkt, který vyvýjíme nebudeme schopný prodávat jako krabici, ale musí fungovat jako SaaS. Ačkoliv jsem měl i lehkou podporu z obchodu, tak se stejně pokračovalo v krabicáku a raději se zaměřili na implementaci CRM, kde se utopila nejen spousta peněz a dobrých lidí na spoustu měsíců, ale delivery nebyla nakonec žádná. Jak jsem čekal a předpovídal. Snad vám přečtení této knihy pomůže být prozíravější. ;)<br/><br/>Taky jsem si u čtení uvědomil jednu zásadní věc. Na vývoj software mám určitý pohled, který spoustě lidí přijde jako extrémní, neslučitelný s tím jak oni tvoří a udržují kód. Ta věc je ta, že já celou svou kariéru tvořím služby a to i když dělám krabičák. V knize je ten rozdíl hezky popsán. To co já cítím tak nějak intuitivně, tak tam je to popsáno i pro lidi co znají jen ekonomické poučky.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Introducing Elixir: Getting Started in Functional Programming",
+    "url": "https://www.goodreads.com/book/isbn/1449371701",
+    "isbn": "1449371701",
+    "copyrightYear": "2013",
+    "numberOfPages": 250,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Simon St.Laurent",
+        "url": "https://www.goodreads.com/book/author/Simon+St.Laurent"
+      },
+      {
+        "@type": "Person",
+        "name": "J. David Eisenberg",
+        "url": "https://www.goodreads.com/book/author/J.+David+Eisenberg"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "http2 explained",
+    "copyrightYear": "",
+    "numberOfPages": 31,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Daniel Stenberg",
+        "url": "https://www.goodreads.com/book/author/Daniel+Stenberg"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "xUnit Test Patterns: Refactoring Test Code",
+    "url": "https://www.goodreads.com/book/isbn/0131495054",
+    "isbn": "0131495054",
+    "copyrightYear": "2007",
+    "numberOfPages": 883,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Gerard Meszaros",
+        "url": "https://www.goodreads.com/book/author/Gerard+Meszaros"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Agile Principles, Patterns, and Practices in C#",
+    "url": "https://www.goodreads.com/book/isbn/0131857258",
+    "isbn": "0131857258",
+    "copyrightYear": "2006",
+    "numberOfPages": 732,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Robert C. Martin",
+        "url": "https://www.goodreads.com/book/author/Robert+C.+Martin"
+      },
+      {
+        "@type": "Person",
+        "name": "Micah Martin",
+        "url": "https://www.goodreads.com/book/author/Micah+Martin"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Prentice Hall"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "url": "https://www.goodreads.com/book/isbn/0201633612",
+    "isbn": "0201633612",
+    "copyrightYear": "1994",
+    "numberOfPages": 416,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Erich Gamma",
+        "url": "https://www.goodreads.com/book/author/Erich+Gamma"
+      },
+      {
+        "@type": "Person",
+        "name": "Ralph Johnson",
+        "url": "https://www.goodreads.com/book/author/Ralph+Johnson"
+      },
+      {
+        "@type": "Person",
+        "name": "John Vlissides",
+        "url": "https://www.goodreads.com/book/author/John+Vlissides"
+      },
+      {
+        "@type": "Person",
+        "name": "Richard Helm",
+        "url": "https://www.goodreads.com/book/author/Richard+Helm"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "url": "https://www.goodreads.com/book/isbn/0132350882",
+    "isbn": "0132350882",
+    "copyrightYear": "2008",
+    "numberOfPages": 434,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Robert C. Martin",
+        "url": "https://www.goodreads.com/book/author/Robert+C.+Martin"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Prentice Hall"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "User Stories Applied: For Agile Software Development",
+    "url": "https://www.goodreads.com/book/isbn/0321205685",
+    "isbn": "0321205685",
+    "copyrightYear": "2004",
+    "numberOfPages": 268,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Mike Cohn",
+        "url": "https://www.goodreads.com/book/author/Mike+Cohn"
+      },
+      {
+        "@type": "Person",
+        "name": "Kent Beck",
+        "url": "https://www.goodreads.com/book/author/Kent+Beck"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Applying Domain-Driven Design and Patterns : With Examples in C# and .NET",
+    "url": "https://www.goodreads.com/book/isbn/0321268202",
+    "isbn": "0321268202",
+    "copyrightYear": "2006",
+    "numberOfPages": 528,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jimmy Nilsson",
+        "url": "https://www.goodreads.com/book/author/Jimmy+Nilsson"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Test Driven Development: By Example",
+    "url": "https://www.goodreads.com/book/isbn/0321146530",
+    "isbn": "0321146530",
+    "copyrightYear": "2002",
+    "numberOfPages": 216,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kent Beck",
+        "url": "https://www.goodreads.com/book/author/Kent+Beck"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions",
+    "url": "https://www.goodreads.com/book/isbn/0321200683",
+    "isbn": "0321200683",
+    "copyrightYear": "2003",
+    "numberOfPages": 736,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Gregor Hohpe",
+        "url": "https://www.goodreads.com/book/author/Gregor+Hohpe"
+      },
+      {
+        "@type": "Person",
+        "name": "Bobby Woolf",
+        "url": "https://www.goodreads.com/book/author/Bobby+Woolf"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Don't Make Me Think: A Common Sense Approach to Web Usability",
+    "url": "https://www.goodreads.com/book/isbn/0321344758",
+    "isbn": "0321344758",
+    "copyrightYear": "2005",
+    "numberOfPages": 201,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Steve Krug",
+        "url": "https://www.goodreads.com/book/author/Steve+Krug"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "New Riders Publishing"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Extreme Programming Explained: Embrace Change (The XP Series)",
+    "url": "https://www.goodreads.com/book/isbn/0321278658",
+    "isbn": "0321278658",
+    "copyrightYear": "2004",
+    "numberOfPages": 224,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kent Beck",
+        "url": "https://www.goodreads.com/book/author/Kent+Beck"
+      },
+      {
+        "@type": "Person",
+        "name": "Cynthia Andres",
+        "url": "https://www.goodreads.com/book/author/Cynthia+Andres"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Software Engineering with Microsoft Visual Studio Team System",
+    "url": "https://www.goodreads.com/book/isbn/0321278720",
+    "isbn": "0321278720",
+    "copyrightYear": "2006",
+    "numberOfPages": 255,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Sam Guckenheimer",
+        "url": "https://www.goodreads.com/book/author/Sam+Guckenheimer"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Extreme Programming Pocket Guide",
+    "url": "https://www.goodreads.com/book/isbn/0596004850",
+    "isbn": "0596004850",
+    "copyrightYear": "2003",
+    "numberOfPages": 90,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "chromatic",
+        "url": "https://www.goodreads.com/book/author/chromatic"
+      },
+      {
+        "@type": "Person",
+        "name": "Shane Warden",
+        "url": "https://www.goodreads.com/book/author/Shane+Warden"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Beginning Ruby on Rails",
+    "url": "https://www.goodreads.com/book/isbn/0470069155",
+    "isbn": "0470069155",
+    "copyrightYear": "2006",
+    "numberOfPages": 380,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Steven Holzner",
+        "url": "https://www.goodreads.com/book/author/Steven+Holzner"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Wrox Press"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Html5: Up and Running: Dive Into the Future of Web Development",
+    "url": "https://www.goodreads.com/book/isbn/0596806027",
+    "isbn": "0596806027",
+    "copyrightYear": "2010",
+    "numberOfPages": 207,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Mark Pilgrim",
+        "url": "https://www.goodreads.com/book/author/Mark+Pilgrim"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 2
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Even Faster Web Sites",
+    "url": "https://www.goodreads.com/book/isbn/0596522304",
+    "isbn": "0596522304",
+    "copyrightYear": "2009",
+    "numberOfPages": 256,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Steve Souders",
+        "url": "https://www.goodreads.com/book/author/Steve+Souders"
+      },
+      {
+        "@type": "Person",
+        "name": "Tim O'Reilly",
+        "url": "https://www.goodreads.com/book/author/Tim+O'Reilly"
+      },
+      {
+        "@type": "Person",
+        "name": "O'Reilly & Associates",
+        "url": "https://www.goodreads.com/book/author/O'Reilly+&+Associates"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Art of Agile Development",
+    "url": "https://www.goodreads.com/book/isbn/0596527675",
+    "isbn": "0596527675",
+    "copyrightYear": "2007",
+    "numberOfPages": 440,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "James Shore",
+        "url": "https://www.goodreads.com/book/author/James+Shore"
+      },
+      {
+        "@type": "Person",
+        "name": "Shane Warden",
+        "url": "https://www.goodreads.com/book/author/Shane+Warden"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Building Web Solutions with ASP.Net and ADO.NET",
+    "url": "https://www.goodreads.com/book/isbn/0735615780",
+    "isbn": "0735615780",
+    "copyrightYear": "2002",
+    "numberOfPages": 416,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Dino Esposito",
+        "url": "https://www.goodreads.com/book/author/Dino+Esposito"
+      },
+      {
+        "@type": "Person",
+        "name": "Dino Esposito",
+        "url": "https://www.goodreads.com/book/author/Dino+Esposito"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Microsoft Press"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Applied XML Programming for Microsoft® .NET",
+    "url": "https://www.goodreads.com/book/isbn/0735618011",
+    "isbn": "0735618011",
+    "copyrightYear": "2002",
+    "numberOfPages": 720,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Dino Esposito",
+        "url": "https://www.goodreads.com/book/author/Dino+Esposito"
+      },
+      {
+        "@type": "Person",
+        "name": "Esposito (Wintellect) Dino",
+        "url": "https://www.goodreads.com/book/author/Esposito+(Wintellect)+Dino"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Microsoft Press"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Moving Applications to the Cloud on the Microsoft Azure� Platform",
+    "url": "https://www.goodreads.com/book/isbn/0735649677",
+    "isbn": "0735649677",
+    "copyrightYear": "2010",
+    "numberOfPages": 176,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Eugenio Pace",
+        "url": "https://www.goodreads.com/book/author/Eugenio+Pace"
+      },
+      {
+        "@type": "Person",
+        "name": "Dominic Betts",
+        "url": "https://www.goodreads.com/book/author/Dominic+Betts"
+      },
+      {
+        "@type": "Person",
+        "name": "Scott Densmore",
+        "url": "https://www.goodreads.com/book/author/Scott+Densmore"
+      },
+      {
+        "@type": "Person",
+        "name": "Ryan Dunn",
+        "url": "https://www.goodreads.com/book/author/Ryan+Dunn"
+      },
+      {
+        "@type": "Person",
+        "name": "Masashi Narumoto",
+        "url": "https://www.goodreads.com/book/author/Masashi+Narumoto"
+      },
+      {
+        "@type": "Person",
+        "name": "Matias Woloski",
+        "url": "https://www.goodreads.com/book/author/Matias+Woloski"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Microsoft Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 2
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Speed Up Your Site: Web Site Optimization",
+    "url": "https://www.goodreads.com/book/isbn/0735713243",
+    "isbn": "0735713243",
+    "copyrightYear": "2003",
+    "numberOfPages": 528,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Andrew B. King",
+        "url": "https://www.goodreads.com/book/author/Andrew+B.+King"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "New Riders Publishing"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Parallel Programming with Microsoft .NET: Design Patterns for Decomposition and Coordination on Multicore Architectures",
+    "url": "https://www.goodreads.com/book/isbn/0735651590",
+    "isbn": "0735651590",
+    "copyrightYear": "2010",
+    "numberOfPages": 224,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Colin Campbell",
+        "url": "https://www.goodreads.com/book/author/Colin+Campbell"
+      },
+      {
+        "@type": "Person",
+        "name": "Ralph Johnson",
+        "url": "https://www.goodreads.com/book/author/Ralph+Johnson"
+      },
+      {
+        "@type": "Person",
+        "name": "Ade Miller",
+        "url": "https://www.goodreads.com/book/author/Ade+Miller"
+      },
+      {
+        "@type": "Person",
+        "name": "Stephen Toub",
+        "url": "https://www.goodreads.com/book/author/Stephen+Toub"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Microsoft Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Velmi p����kn���� vkro����en���� do problematiky paraleln���� vykon����van����ho k����du.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Showstopper! the Breakneck Race to Create Windows NT and the Next Generation at Microsoft",
+    "url": "https://www.goodreads.com/book/isbn/0759285780",
+    "isbn": "0759285780",
+    "copyrightYear": "2009",
+    "numberOfPages": 338,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "G. Pascal Zachary",
+        "url": "https://www.goodreads.com/book/author/G.+Pascal+Zachary"
+      },
+      {
+        "@type": "Person",
+        "name": "Pascal G. Zachary",
+        "url": "https://www.goodreads.com/book/author/Pascal+G.+Zachary"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "eReads.com"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Definitive Guide To F#",
+    "url": "https://www.goodreads.com/book/isbn/1430224312",
+    "isbn": "1430224312",
+    "copyrightYear": "2010",
+    "numberOfPages": null,
+    "bookFormat": "https://schema.org/",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Don Syme",
+        "url": "https://www.goodreads.com/book/author/Don+Syme"
+      },
+      {
+        "@type": "Person",
+        "name": "Adam Granicz",
+        "url": "https://www.goodreads.com/book/author/Adam+Granicz"
+      },
+      {
+        "@type": "Person",
+        "name": "Antonio Cisternino",
+        "url": "https://www.goodreads.com/book/author/Antonio+Cisternino"
+      }
+    ],
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Responsive Web Design",
+    "url": "https://www.goodreads.com/book/isbn/098444257X",
+    "isbn": "098444257X",
+    "copyrightYear": "",
+    "numberOfPages": 150,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Ethan Marcotte",
+        "url": "https://www.goodreads.com/book/author/Ethan+Marcotte"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Book Apart"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Hezký průvodce v tvorbě responsivních webů. Knížka není moc dlouhá a má plno zajímavých podnětů k přemýšlení. Hezky zapadá do koncepce ostatních knih z A Book Apart. Jen bych očekával u druhého aktualizovanáho vydání, že ta aktualizace bude trochu rozsáhlejší, občas jsou některé věci dost out of date. Např. v knize není ani jednou zmíněn prohlížeč Chrome. Nadruhou stranu je to celkem fuk, protože zmíněné postupy fungují.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "ClojureScript: Up and Running",
+    "url": "https://www.goodreads.com/book/isbn/1449327435",
+    "isbn": "1449327435",
+    "copyrightYear": "2012",
+    "numberOfPages": 116,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Stuart Sierra",
+        "url": "https://www.goodreads.com/book/author/Stuart+Sierra"
+      },
+      {
+        "@type": "Person",
+        "name": "Luke VanderHart",
+        "url": "https://www.goodreads.com/book/author/Luke+VanderHart"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Pro Windows Powershell",
+    "url": "https://www.goodreads.com/book/isbn/1590599403",
+    "isbn": "1590599403",
+    "copyrightYear": "2008",
+    "numberOfPages": 493,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Hristo Deshev",
+        "url": "https://www.goodreads.com/book/author/Hristo+Deshev"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Apress"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Clojure Data Analysis Cookbook",
+    "url": "https://www.goodreads.com/book/isbn/178216264X",
+    "isbn": "178216264X",
+    "copyrightYear": "2013",
+    "numberOfPages": 342,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Eric Rochester",
+        "url": "https://www.goodreads.com/book/author/Eric+Rochester"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Packt Publishing"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "A Programmer's Introduction to C#, Second Edition",
+    "url": "https://www.goodreads.com/book/isbn/1893115623",
+    "isbn": "1893115623",
+    "copyrightYear": "2001",
+    "numberOfPages": 540,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Eric Gunnerson",
+        "url": "https://www.goodreads.com/book/author/Eric+Gunnerson"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Apress"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Quick Python Book",
+    "url": "https://www.goodreads.com/book/isbn/1884777740",
+    "isbn": "1884777740",
+    "copyrightYear": "2000",
+    "numberOfPages": 422,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Daryl D. Harms",
+        "url": "https://www.goodreads.com/book/author/Daryl+D.+Harms"
+      },
+      {
+        "@type": "Person",
+        "name": "Kenneth McDonald",
+        "url": "https://www.goodreads.com/book/author/Kenneth+McDonald"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Manning Publications"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Art of Unit Testing: With Examples in .NET",
+    "url": "https://www.goodreads.com/book/isbn/1933988274",
+    "isbn": "1933988274",
+    "copyrightYear": "2009",
+    "numberOfPages": 320,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Roy Osherove",
+        "url": "https://www.goodreads.com/book/author/Roy+Osherove"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Manning Publications"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Hibernate Search in Action",
+    "url": "https://www.goodreads.com/book/isbn/1933988649",
+    "isbn": "1933988649",
+    "copyrightYear": "2009",
+    "numberOfPages": 450,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Emmanuel Bernard",
+        "url": "https://www.goodreads.com/book/author/Emmanuel+Bernard"
+      },
+      {
+        "@type": "Person",
+        "name": "John Griffin",
+        "url": "https://www.goodreads.com/book/author/John+Griffin"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Manning Publications"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "NHibernate in Action",
+    "url": "https://www.goodreads.com/book/isbn/1932394923",
+    "isbn": "1932394923",
+    "copyrightYear": "2009",
+    "numberOfPages": 400,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Pierre Henri Kuaté",
+        "url": "https://www.goodreads.com/book/author/Pierre+Henri+Kuaté"
+      },
+      {
+        "@type": "Person",
+        "name": "Christian Bauer",
+        "url": "https://www.goodreads.com/book/author/Christian+Bauer"
+      },
+      {
+        "@type": "Person",
+        "name": "Gavin King",
+        "url": "https://www.goodreads.com/book/author/Gavin+King"
+      },
+      {
+        "@type": "Person",
+        "name": "Pierre Henri Kuate",
+        "url": "https://www.goodreads.com/book/author/Pierre+Henri+Kuate"
+      },
+      {
+        "@type": "Person",
+        "name": "Tobin Harris",
+        "url": "https://www.goodreads.com/book/author/Tobin+Harris"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Manning Publications"
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Lean from the Trenches",
+    "url": "https://www.goodreads.com/book/isbn/1934356859",
+    "isbn": "1934356859",
+    "copyrightYear": "2011",
+    "numberOfPages": 176,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Henrik Kniberg",
+        "url": "https://www.goodreads.com/book/author/Henrik+Kniberg"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Test-Drive ASP.NET MVC",
+    "url": "https://www.goodreads.com/book/isbn/1934356530",
+    "isbn": "1934356530",
+    "copyrightYear": "2010",
+    "numberOfPages": 250,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jonathan McCracken",
+        "url": "https://www.goodreads.com/book/author/Jonathan+McCracken"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 2
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Seven Concurrency Models in Seven Weeks: When Threads Unravel",
+    "url": "https://www.goodreads.com/book/isbn/1937785653",
+    "isbn": "1937785653",
+    "copyrightYear": "2014",
+    "numberOfPages": 267,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Paul   Butcher",
+        "url": "https://www.goodreads.com/book/author/Paul+++Butcher"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Tuto knihu mohu doporučit všem, co to myslí s vývojem aspoň trochu vázně. A je jedno jestli dělají front-end v JavaScriptu, back-end v PHP nebo nějakou enterprise aplikaci. Každý si tam najde něco, co mu pomůže podívat se na problematiku efektivního psaní aplikací z trochu jiného úhlu.<br/> <br/>Je zde srozumitelně popsán rozdíl mezi konkurencí, paralelismem a asynchronicitou. Jsou zde popsány různé přístupy k řešení konkurenčních přístupů s přihlédnutím k tomu, na jakou množinu problémů jsou vhodněšní či na jaké zcela nevhodné.<br/><br/>Ukázky v knize jsou v různých jazycích - ať už v provařené Javě nebo Céčku, tak i v moderních jazycích jako je Clojure nebo Elixir. Pokud tyto jazyky vůbec neznáte, nebojte se. Kniha vás s Clojure i Elixirem seznámí tak, abyste ukázky nejen pochopili, ale abyste byli schopní napsat v nich netriviální programy. Nečekejte důvěrné seznámení, ale úvod do programování v Clojure, ve které je značná část ukázek, v typických scénářích jejího užití.<br/><br/>Já osobně jsem se dozvěděl mnoho a to se této problematice věnuji již drahnou dobu. Dle mého názoru by tato kniha neměla chybět v žádné knihovně.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Web Development with Clojure: Build Bulletproof Web Apps with Less Code",
+    "url": "https://www.goodreads.com/book/isbn/1937785645",
+    "isbn": "1937785645",
+    "copyrightYear": "2014",
+    "numberOfPages": 232,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Dmitri Sotnikov",
+        "url": "https://www.goodreads.com/book/author/Dmitri+Sotnikov"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Pragmatic Programmers"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Co programátory ve škole neučí aneb Softwarové inženýrství v reálné praxi",
+    "url": "https://www.goodreads.com/book/isbn/8025100731",
+    "isbn": "8025100731",
+    "copyrightYear": "2003",
+    "numberOfPages": 336,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Petr Paleta",
+        "url": "https://www.goodreads.com/book/author/Petr+Paleta"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Computer Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 2
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Agilní programování: metodiky efektivního vývoje softwaru",
+    "url": "https://www.goodreads.com/book/isbn/8025103420",
+    "isbn": "8025103420",
+    "copyrightYear": "2004",
+    "numberOfPages": 278,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Václav Kadlec",
+        "url": "https://www.goodreads.com/book/author/Václav+Kadlec"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Computer Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Continuous Integration: Improving Software Quality and Reducing Risk",
+    "url": "https://www.goodreads.com/book/isbn/0321336380",
+    "isbn": "0321336380",
+    "copyrightYear": "2007",
+    "numberOfPages": 283,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Paul Duvall",
+        "url": "https://www.goodreads.com/book/author/Paul+Duvall"
+      },
+      {
+        "@type": "Person",
+        "name": "Steve Matyas",
+        "url": "https://www.goodreads.com/book/author/Steve+Matyas"
+      },
+      {
+        "@type": "Person",
+        "name": "Andrew Glover",
+        "url": "https://www.goodreads.com/book/author/Andrew+Glover"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Introduction to Rx",
+    "copyrightYear": "2012",
+    "numberOfPages": 354,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Lee Campbell",
+        "url": "https://www.goodreads.com/book/author/Lee+Campbell"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Coding Dojo Handbook",
+    "copyrightYear": "2013",
+    "numberOfPages": 127,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Emily Bache",
+        "url": "https://www.goodreads.com/book/author/Emily+Bache"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "leanpub.com"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Kanban",
+    "copyrightYear": "2013",
+    "numberOfPages": 278,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "David J. Anderson",
+        "url": "https://www.goodreads.com/book/author/David+J.+Anderson"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Blue Hole Press Inc"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Clean Coder: A Code of Conduct for Professional Programmers",
+    "url": "https://www.goodreads.com/book/isbn/0137081073",
+    "isbn": "0137081073",
+    "copyrightYear": "2011",
+    "numberOfPages": 210,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Robert C. Martin",
+        "url": "https://www.goodreads.com/book/author/Robert+C.+Martin"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Prentice Hall"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win",
+    "copyrightYear": "2013",
+    "numberOfPages": 376,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Gene Kim",
+        "url": "https://www.goodreads.com/book/author/Gene+Kim"
+      },
+      {
+        "@type": "Person",
+        "name": "Kevin Behr",
+        "url": "https://www.goodreads.com/book/author/Kevin+Behr"
+      },
+      {
+        "@type": "Person",
+        "name": "George Spafford",
+        "url": "https://www.goodreads.com/book/author/George+Spafford"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "IT Revolution Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Programming Reactive Extensions and Linq",
+    "url": "https://www.goodreads.com/book/isbn/1430237481",
+    "isbn": "1430237481",
+    "copyrightYear": "2011",
+    "numberOfPages": 180,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jesse Liberty",
+        "url": "https://www.goodreads.com/book/author/Jesse+Liberty"
+      },
+      {
+        "@type": "Person",
+        "name": "Paul Betts",
+        "url": "https://www.goodreads.com/book/author/Paul+Betts"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Apress"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 1
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Slack: Getting Past Burnout, Busywork, and the Myth of Total Efficiency",
+    "copyrightYear": "2001",
+    "numberOfPages": 240,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Tom DeMarco",
+        "url": "https://www.goodreads.com/book/author/Tom+DeMarco"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Crown Business"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Leaders in Computing - Changing the digital world",
+    "copyrightYear": "2011",
+    "numberOfPages": 75,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "BCS the Chartered Institute for IT",
+        "url": "https://www.goodreads.com/book/author/BCS+the+Chartered+Institute+for+IT"
+      },
+      {
+        "@type": "Person",
+        "name": "Brian Runciman",
+        "url": "https://www.goodreads.com/book/author/Brian+Runciman"
+      },
+      {
+        "@type": "Person",
+        "name": "Steve Wozniak",
+        "url": "https://www.goodreads.com/book/author/Steve+Wozniak"
+      },
+      {
+        "@type": "Person",
+        "name": "Donald Ervin Knuth",
+        "url": "https://www.goodreads.com/book/author/Donald+Ervin+Knuth"
+      },
+      {
+        "@type": "Person",
+        "name": "Grady Booch",
+        "url": "https://www.goodreads.com/book/author/Grady+Booch"
+      },
+      {
+        "@type": "Person",
+        "name": "Linus Torvaulds",
+        "url": "https://www.goodreads.com/book/author/Linus+Torvaulds"
+      },
+      {
+        "@type": "Person",
+        "name": "Vint Cerf",
+        "url": "https://www.goodreads.com/book/author/Vint+Cerf"
+      },
+      {
+        "@type": "Person",
+        "name": "Karen Spärck Jones",
+        "url": "https://www.goodreads.com/book/author/Karen+Spärck+Jones"
+      },
+      {
+        "@type": "Person",
+        "name": "Tim Berners-Lee",
+        "url": "https://www.goodreads.com/book/author/Tim+Berners-Lee"
+      },
+      {
+        "@type": "Person",
+        "name": "Jimmy Wales",
+        "url": "https://www.goodreads.com/book/author/Jimmy+Wales"
+      },
+      {
+        "@type": "Person",
+        "name": "Stephanie Shirley",
+        "url": "https://www.goodreads.com/book/author/Stephanie+Shirley"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "British Informatics Society Limited"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Understanding the Four Rules of Simple Design",
+    "copyrightYear": "2014",
+    "numberOfPages": 83,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Corey Haines",
+        "url": "https://www.goodreads.com/book/author/Corey+Haines"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Corry je jedním ze zakladatelů akce jménem Code Retreat. Jako dlouholetý facilitátor má možnost sledovat, jak různí vývojáři přistupují k tvorbě kódu a řešení problémů. Je to úžasný způsob, jak se učit a ověřovat své znalosti.<br/><br/>Kniha se zaměřuje na celkem úzce vymezené téma - 4 pravidla jednoduchého návrhu. Prochází pravidlo za pravidlem, ukazuje na různá řešení, která tyto pravidla porušují nebo naopak dodržují a jaké to má implikace na udržitelnost a případnou rozšiřitelnost návrhu.<br/><br/>Corry se také snaží vyvrátit některý zažité desinterpretace některých známých pravidel, jako je třeba DRY nebo co to je duplicita.<br/><br/>Mně osobně pomohla ujasnit si některé věci a doufám, že i posunout mě dál v roli facilitátora Code Retreatu.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Moving Applications to the Cloud on the Microsoft AzureTM Platform (Patterns & Practices)",
+    "copyrightYear": "2010",
+    "numberOfPages": 176,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Matias Woloski",
+        "url": "https://www.goodreads.com/book/author/Matias+Woloski"
+      },
+      {
+        "@type": "Person",
+        "name": "Eugenio Pace",
+        "url": "https://www.goodreads.com/book/author/Eugenio+Pace"
+      },
+      {
+        "@type": "Person",
+        "name": "Dominic Betts",
+        "url": "https://www.goodreads.com/book/author/Dominic+Betts"
+      },
+      {
+        "@type": "Person",
+        "name": "Scott Densmore",
+        "url": "https://www.goodreads.com/book/author/Scott+Densmore"
+      },
+      {
+        "@type": "Person",
+        "name": "Ryan Dunn",
+        "url": "https://www.goodreads.com/book/author/Ryan+Dunn"
+      },
+      {
+        "@type": "Person",
+        "name": "Masashi Narumoto",
+        "url": "https://www.goodreads.com/book/author/Masashi+Narumoto"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Microsoft Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Cesta kaizen: Z malého kroku k velkému skoku",
+    "copyrightYear": "2005",
+    "numberOfPages": 144,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Robert Maurer",
+        "url": "https://www.goodreads.com/book/author/Robert+Maurer"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pavel Dobrovský - BETA"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "CSS Animations (Pocket Guide)",
+    "copyrightYear": "2013",
+    "numberOfPages": 65,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Val Head",
+        "url": "https://www.goodreads.com/book/author/Val+Head"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "5 Simple Steps"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "An Introduction to Programming in Go",
+    "url": "https://www.goodreads.com/book/isbn/9781478355",
+    "isbn": "9781478355",
+    "copyrightYear": "2012",
+    "numberOfPages": 161,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Caleb Doxsey",
+        "url": "https://www.goodreads.com/book/author/Caleb+Doxsey"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Creative  Commons  3.0"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Rychlé intro do jazyka Go. Na mně je tam až příliš detailů pro začátečníky, ale chápu že nejsem cílovka. I tak jsem se seznámil se syntaxí a některými odlišnostmi a to za dvě hodiny. Za mně dobrý.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Responsive Typography",
+    "url": "https://www.goodreads.com/book/isbn/1491907096",
+    "isbn": "1491907096",
+    "copyrightYear": "2014",
+    "numberOfPages": 110,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jason Pamental",
+        "url": "https://www.goodreads.com/book/author/Jason+Pamental"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Adams Media"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Velice dobře zpracovaná kniha o responsivním designuv souvislosti s typorafií. Skvěle mi zapadla do konceptu předchozích knih ([b:Mobile First|12910749|Mobile First|Luke Wroblewski|https://d.gr-assets.com/books/1318982714s/12910749.jpg|18065548], [b:Responsive Web Design|9815906|Responsive Web Design|Ethan Marcotte|https://d.gr-assets.com/books/1291401033s/9815906.jpg|16313898], [b:Responsive & Fast : Implementing High-Performance Responsive Design|22600901|Responsive & Fast   Implementing High-Performance Responsive Design|Guy Podjarny|https://d.gr-assets.com/books/1404019495s/22600901.jpg|42086535]) a pěkně to celé uzavřela a rozšířila. Vypadlo mi z toho jak vlastně k tvorbě stránek přistuju podvědomě už delší dobu: <br/><br/>Content First -  web začínáme stavět od samotného obsahu, na základě kterého vybíráme vhodné fonty a ladíme celkovou typografii. <br/>Mobile next - následuje layoutování pro mobilní zařízení.<br/>Progressive enhancement - přizpůsobujeme jak typografii, tak layouty pro vyšší rozlišení.<br/><br/>Doporučuju",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Mobile First",
+    "copyrightYear": "2011",
+    "numberOfPages": 130,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Luke Wroblewski",
+        "url": "https://www.goodreads.com/book/author/Luke+Wroblewski"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Book Apart"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "eXtreme Programming eXplained : embrace change",
+    "url": "https://www.goodreads.com/book/isbn/0201616416",
+    "isbn": "0201616416",
+    "copyrightYear": "2000",
+    "numberOfPages": 190,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Kent Beck",
+        "url": "https://www.goodreads.com/book/author/Kent+Beck"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Twelve-Factor App",
+    "copyrightYear": "2012",
+    "numberOfPages": 39,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Adam Wiggins",
+        "url": "https://www.goodreads.com/book/author/Adam+Wiggins"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Krátká knížka, kterou přelousknete za cestu autobusem. Přesto obsahuje v hutné formě spoustu zajímavých tipů, jak psát snadno deployovatelné a managovatelné webové služby (SaaS).<br/><br/>I když kniha předpokládá, že budete deployovat na UNIX like systém, jistě se dají tyto praktiky aplikovat i do světa Windows. Osobně jsem spoustu z nich na Windows praktikoval.<br/><br/>Doporočuji k přečtení všem, i těm, co zrovna SaaS nepíší.   ",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Getting Value out of Agile Retrospectives - A Toolbox of Retrospective Exercises",
+    "copyrightYear": "2013",
+    "numberOfPages": 76,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Luis Gonçalves",
+        "url": "https://www.goodreads.com/book/author/Luis+Gonçalves"
+      },
+      {
+        "@type": "Person",
+        "name": "Ben Linders",
+        "url": "https://www.goodreads.com/book/author/Ben+Linders"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "InfoQ and Leanpub (Self Published)"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Nature of Software Development",
+    "copyrightYear": "",
+    "numberOfPages": null,
+    "bookFormat": "https://schema.org/",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Ron Jeffries",
+        "url": "https://www.goodreads.com/book/author/Ron+Jeffries"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Programmers"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Tato kniha si neklade za cíl zavádět nějkou novou metodiku vývoje. Místo toho se autor snaží čtenáře seznámit s postupy, které se jemu osvědčili za 50 let praxe. Tyto metody úzce souvisí s agilním přístupem. Kniha se mi moc dobře četla a je doplněná i o zajímavé ilustace. Až bude tiskem, bude jistě součástí mého vánočního balíčku knih pro oblíbené manažery. :)",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,favorites,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Reactive Design Patterns",
+    "url": "https://www.goodreads.com/book/isbn/1617291803",
+    "isbn": "1617291803",
+    "copyrightYear": "2014",
+    "numberOfPages": 325,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Roland Kuhn",
+        "url": "https://www.goodreads.com/book/author/Roland+Kuhn"
+      },
+      {
+        "@type": "Person",
+        "name": "Jamie  Allen",
+        "url": "https://www.goodreads.com/book/author/Jamie++Allen"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Manning Publications Co."
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Kniha zatím obsahuje jen první 3 kapitoly, které jsou i tak celkem obsáhlé. Reaktivní architektura je věc o kterou se zajímám již několik let a tak jsem si chtěl přečíst nějaký ucelený kousek na toto téma. A byla to poměrně dobrá volba. Autor je sice architektem Akka a tak často dochází k vychvalování Akky a Scaly, ale člověk to musí brát trochu s rezervou. Jde hlavně o architektonická řešení a postupy. technologie přicházejí a odcházejí a nejsou zas tak důležité...",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "CSS Kaskádové styly: Kompletní průvodce",
+    "url": "https://www.goodreads.com/book/isbn/8072268724",
+    "isbn": "8072268724",
+    "copyrightYear": "2003",
+    "numberOfPages": 178,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Petr Staníček",
+        "url": "https://www.goodreads.com/book/author/Petr+Staníček"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Computer Press"
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Responsive & Fast : Implementing High-Performance Responsive Design",
+    "copyrightYear": "2014",
+    "numberOfPages": 49,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Guy Podjarny",
+        "url": "https://www.goodreads.com/book/author/Guy+Podjarny"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O’Reilly"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Velmi krátká, ale zato úzce zaměřená kniha na to, jak dělat responsivní weby pořádně. Pro dokreslení technik RWD, aby to začalo dávat smysl, je to určitě must have.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,my-background,favorites"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Designing for Emotion",
+    "copyrightYear": "2011",
+    "numberOfPages": 104,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Aarron Walter",
+        "url": "https://www.goodreads.com/book/author/Aarron+Walter"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Book Apart"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewBody": "Určitě zajímavý pohled na to, jak přistupovat k designu a user experience. Case studies jsou zajímavé, jen už odstup těch několika let je celkem znát. Každopádně principy se nemění a jsou stále platné a o to jde. Určitě doporučuji přečíst.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,my-background"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Puppet 3 Beginner's Guide",
+    "url": "https://www.goodreads.com/book/isbn/1782161252",
+    "isbn": "1782161252",
+    "copyrightYear": "2013",
+    "numberOfPages": 204,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "John Arundel",
+        "url": "https://www.goodreads.com/book/author/John+Arundel"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Packt Publishing"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Continuous Delivery: Reliable Software Releases Through Build, Test, and Deployment Automation",
+    "url": "https://www.goodreads.com/book/isbn/0321601912",
+    "isbn": "0321601912",
+    "copyrightYear": "2010",
+    "numberOfPages": 463,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jez Humble",
+        "url": "https://www.goodreads.com/book/author/Jez+Humble"
+      },
+      {
+        "@type": "Person",
+        "name": "David  Farley",
+        "url": "https://www.goodreads.com/book/author/David++Farley"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Perfume: The Story of a Murderer",
+    "url": "https://www.goodreads.com/book/isbn/0140120831",
+    "isbn": "0140120831",
+    "copyrightYear": "1987",
+    "numberOfPages": 263,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Patrick Süskind",
+        "url": "https://www.goodreads.com/book/author/Patrick+Süskind"
+      },
+      {
+        "@type": "Person",
+        "name": "John E. Woods",
+        "url": "https://www.goodreads.com/book/author/John+E.+Woods"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Penguin Books"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Koncernová pětiletka",
+    "url": "https://www.goodreads.com/book/isbn/9788087538",
+    "isbn": "9788087538",
+    "copyrightYear": "2011",
+    "numberOfPages": 59,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Patrick Zandl",
+        "url": "https://www.goodreads.com/book/author/Patrick+Zandl"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bookanyr"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Flotila Země",
+    "copyrightYear": "2010",
+    "numberOfPages": 206,
+    "bookFormat": "https://schema.org/Nook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Patrick Zandl",
+        "url": "https://www.goodreads.com/book/author/Patrick+Zandl"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Patrick Zandl"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The White Disease",
+    "copyrightYear": "1988",
+    "numberOfPages": 63,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Karel Čapek",
+        "url": "https://www.goodreads.com/book/author/Karel+Čapek"
+      },
+      {
+        "@type": "Person",
+        "name": "Michael Henry Heim",
+        "url": "https://www.goodreads.com/book/author/Michael+Henry+Heim"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Theatre Communications Group"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Makropoulos Secret",
+    "url": "https://www.goodreads.com/book/isbn/0828314470",
+    "isbn": "0828314470",
+    "copyrightYear": "1925",
+    "numberOfPages": null,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Karel Čapek",
+        "url": "https://www.goodreads.com/book/author/Karel+Čapek"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Branden Books"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Web ostrý jako břitva",
+    "copyrightYear": "2014",
+    "numberOfPages": 214,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jan Řezáč",
+        "url": "https://www.goodreads.com/book/author/Jan+Řezáč"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Baroque Partners"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Open Advice",
+    "copyrightYear": "2012",
+    "numberOfPages": 308,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Lydia Pintscher",
+        "url": "https://www.goodreads.com/book/author/Lydia+Pintscher"
+      }
+    ],
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Alone Together: Why We Expect More from Technology and Less from Each Other",
+    "url": "https://www.goodreads.com/book/isbn/0465010210",
+    "isbn": "0465010210",
+    "copyrightYear": "2011",
+    "numberOfPages": 360,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Sherry Turkle",
+        "url": "https://www.goodreads.com/book/author/Sherry+Turkle"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Basic Books"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Principles of Product Development Flow: Second Generation Lean Product Development",
+    "url": "https://www.goodreads.com/book/isbn/1935401009",
+    "isbn": "1935401009",
+    "copyrightYear": "2009",
+    "numberOfPages": 276,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Donald G. Reinertsen",
+        "url": "https://www.goodreads.com/book/author/Donald+G.+Reinertsen"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Celeritas Publishing"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Working Effectively with Unit Tests",
+    "copyrightYear": "2014",
+    "numberOfPages": 204,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jay Fields",
+        "url": "https://www.goodreads.com/book/author/Jay+Fields"
+      },
+      {
+        "@type": "Person",
+        "name": "Michael C. Feathers",
+        "url": "https://www.goodreads.com/book/author/Michael+C.+Feathers"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "leanpub"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Original Reiki Handbook of Dr. Mikao Usui",
+    "copyrightYear": "1999",
+    "numberOfPages": 79,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Mikao Usui",
+        "url": "https://www.goodreads.com/book/author/Mikao+Usui"
+      },
+      {
+        "@type": "Person",
+        "name": "Christine M. Grimm",
+        "url": "https://www.goodreads.com/book/author/Christine+M.+Grimm"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lotus Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Manage Your Job Search",
+    "copyrightYear": "",
+    "numberOfPages": null,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Johanna Rothman",
+        "url": "https://www.goodreads.com/book/author/Johanna+Rothman"
+      }
+    ],
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "How to Make Love All Night: And Drive a Woman Wild!",
+    "url": "https://www.goodreads.com/book/isbn/006092621X",
+    "isbn": "006092621X",
+    "copyrightYear": "2007",
+    "numberOfPages": 192,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Barbara Keesling",
+        "url": "https://www.goodreads.com/book/author/Barbara+Keesling"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "William Morrow Paperbacks"
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Kříž u potoka",
+    "copyrightYear": "",
+    "numberOfPages": 220,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Karolina Světlá",
+        "url": "https://www.goodreads.com/book/author/Karolina+Světlá"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Knihovnička"
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Clojure Programming",
+    "url": "https://www.goodreads.com/book/isbn/1449394701",
+    "isbn": "1449394701",
+    "copyrightYear": "2012",
+    "numberOfPages": 630,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Chas Emerick",
+        "url": "https://www.goodreads.com/book/author/Chas+Emerick"
+      },
+      {
+        "@type": "Person",
+        "name": "Brian Carper",
+        "url": "https://www.goodreads.com/book/author/Brian+Carper"
+      },
+      {
+        "@type": "Person",
+        "name": "Christophe Grand",
+        "url": "https://www.goodreads.com/book/author/Christophe+Grand"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Foundations Of Logic Programming",
+    "url": "https://www.goodreads.com/book/isbn/0387132996",
+    "isbn": "0387132996",
+    "copyrightYear": "1984",
+    "numberOfPages": 124,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "J.W. Lloyd",
+        "url": "https://www.goodreads.com/book/author/J.W.+Lloyd"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Springer"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Datalog Reloaded: First International Workshop, Datalog 2010, Oxford, UK, March 16-19, 2010. Revised Selected Papers",
+    "url": "https://www.goodreads.com/book/isbn/3642242057",
+    "isbn": "3642242057",
+    "copyrightYear": "2011",
+    "numberOfPages": 398,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Oege de Moor",
+        "url": "https://www.goodreads.com/book/author/Oege+de+Moor"
+      },
+      {
+        "@type": "Person",
+        "name": "Georg Gottlob",
+        "url": "https://www.goodreads.com/book/author/Georg+Gottlob"
+      },
+      {
+        "@type": "Person",
+        "name": "Tim Furche",
+        "url": "https://www.goodreads.com/book/author/Tim+Furche"
+      },
+      {
+        "@type": "Person",
+        "name": "Andrew Sellers",
+        "url": "https://www.goodreads.com/book/author/Andrew+Sellers"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Springer"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Moon-Voyage",
+    "copyrightYear": "2012",
+    "numberOfPages": 352,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jules Verne",
+        "url": "https://www.goodreads.com/book/author/Jules+Verne"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 3
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "War with the Newts",
+    "url": "https://www.goodreads.com/book/isbn/0810114682",
+    "isbn": "0810114682",
+    "copyrightYear": "1996",
+    "numberOfPages": 348,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Karel Čapek",
+        "url": "https://www.goodreads.com/book/author/Karel+Čapek"
+      },
+      {
+        "@type": "Person",
+        "name": "M. Weatherall",
+        "url": "https://www.goodreads.com/book/author/M.+Weatherall"
+      },
+      {
+        "@type": "Person",
+        "name": "R. Weatherall",
+        "url": "https://www.goodreads.com/book/author/R.+Weatherall"
+      },
+      {
+        "@type": "Person",
+        "name": "Ivan Klíma",
+        "url": "https://www.goodreads.com/book/author/Ivan+Klíma"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Northwestern University Press"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Rendezvous with Rama (Rama, #1)",
+    "url": "https://www.goodreads.com/book/isbn/0553287893",
+    "isbn": "0553287893",
+    "copyrightYear": "1990",
+    "numberOfPages": 245,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arthur C. Clarke",
+        "url": "https://www.goodreads.com/book/author/Arthur+C.+Clarke"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Spectra"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Cloud Atlas",
+    "url": "https://www.goodreads.com/book/isbn/0340822775",
+    "isbn": "0340822775",
+    "copyrightYear": "2004",
+    "numberOfPages": 531,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "David Mitchell",
+        "url": "https://www.goodreads.com/book/author/David+Mitchell"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Sceptre"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Paris in the Twentieth Century",
+    "url": "https://www.goodreads.com/book/isbn/034542039X",
+    "isbn": "034542039X",
+    "copyrightYear": "1997",
+    "numberOfPages": 222,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jules Verne",
+        "url": "https://www.goodreads.com/book/author/Jules+Verne"
+      },
+      {
+        "@type": "Person",
+        "name": "Richard Howard",
+        "url": "https://www.goodreads.com/book/author/Richard+Howard"
+      },
+      {
+        "@type": "Person",
+        "name": "Eugen Weber",
+        "url": "https://www.goodreads.com/book/author/Eugen+Weber"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Del Rey"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Thinking, Fast and Slow",
+    "url": "https://www.goodreads.com/book/isbn/0374275637",
+    "isbn": "0374275637",
+    "copyrightYear": "2011",
+    "numberOfPages": 499,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Daniel Kahneman",
+        "url": "https://www.goodreads.com/book/author/Daniel+Kahneman"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Farrar, Straus and Giroux"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Introducing Erlang: Getting Started in Functional Programming",
+    "url": "https://www.goodreads.com/book/isbn/1449331769",
+    "isbn": "1449331769",
+    "copyrightYear": "2013",
+    "numberOfPages": 204,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Simon St. Laurent",
+        "url": "https://www.goodreads.com/book/author/Simon+St.+Laurent"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Programming Elixir: Functional |> Concurrent |> Pragmatic |> Fun",
+    "url": "https://www.goodreads.com/book/isbn/1937785580",
+    "isbn": "1937785580",
+    "copyrightYear": "2013",
+    "numberOfPages": 287,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Dave Thomas",
+        "url": "https://www.goodreads.com/book/author/Dave+Thomas"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Pragmatic Bookshelf"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Peopleware: Productive Projects and Teams",
+    "url": "https://www.goodreads.com/book/isbn/0932633439",
+    "isbn": "0932633439",
+    "copyrightYear": "1999",
+    "numberOfPages": 245,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Tom DeMarco",
+        "url": "https://www.goodreads.com/book/author/Tom+DeMarco"
+      },
+      {
+        "@type": "Person",
+        "name": "Timothy R. Lister",
+        "url": "https://www.goodreads.com/book/author/Timothy+R.+Lister"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dorset House Publishing Company, Incorporated"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Joy of Clojure",
+    "url": "https://www.goodreads.com/book/isbn/1617291412",
+    "isbn": "1617291412",
+    "copyrightYear": "2014",
+    "numberOfPages": 477,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Michael Fogus",
+        "url": "https://www.goodreads.com/book/author/Michael+Fogus"
+      },
+      {
+        "@type": "Person",
+        "name": "Chris Houser",
+        "url": "https://www.goodreads.com/book/author/Chris+Houser"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Manning Publications"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "currently-reading"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Rama II (Rama, #2)",
+    "url": "https://www.goodreads.com/book/isbn/2290032042",
+    "isbn": "2290032042",
+    "copyrightYear": "1996",
+    "numberOfPages": 480,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arthur C. Clarke",
+        "url": "https://www.goodreads.com/book/author/Arthur+C.+Clarke"
+      },
+      {
+        "@type": "Person",
+        "name": "Gentry Lee",
+        "url": "https://www.goodreads.com/book/author/Gentry+Lee"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "J'ai lu"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Příběh strýčka Martina",
+    "copyrightYear": "2013",
+    "numberOfPages": null,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Patrick Zandl",
+        "url": "https://www.goodreads.com/book/author/Patrick+Zandl"
+      }
+    ],
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Practices of an Agile Developer: Working in the Real World",
+    "url": "https://www.goodreads.com/book/isbn/097451408X",
+    "isbn": "097451408X",
+    "copyrightYear": "2006",
+    "numberOfPages": 189,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Venkat Subramaniam",
+        "url": "https://www.goodreads.com/book/author/Venkat+Subramaniam"
+      },
+      {
+        "@type": "Person",
+        "name": "Andy Hunt",
+        "url": "https://www.goodreads.com/book/author/Andy+Hunt"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Bookshelf"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Growing Object-Oriented Software, Guided by Tests",
+    "url": "https://www.goodreads.com/book/isbn/0321503627",
+    "isbn": "0321503627",
+    "copyrightYear": "2009",
+    "numberOfPages": 345,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Steve  Freeman",
+        "url": "https://www.goodreads.com/book/author/Steve++Freeman"
+      },
+      {
+        "@type": "Person",
+        "name": "Nat Pryce",
+        "url": "https://www.goodreads.com/book/author/Nat+Pryce"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Real World Haskell: Code You Can Believe In",
+    "url": "https://www.goodreads.com/book/isbn/0596514980",
+    "isbn": "0596514980",
+    "copyrightYear": "2008",
+    "numberOfPages": 720,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Bryan O'Sullivan",
+        "url": "https://www.goodreads.com/book/author/Bryan+O'Sullivan"
+      },
+      {
+        "@type": "Person",
+        "name": "John Goerzen",
+        "url": "https://www.goodreads.com/book/author/John+Goerzen"
+      },
+      {
+        "@type": "Person",
+        "name": "Donald Bruce Stewart",
+        "url": "https://www.goodreads.com/book/author/Donald+Bruce+Stewart"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Vagrant: Up and Running",
+    "url": "https://www.goodreads.com/book/isbn/1449335837",
+    "isbn": "1449335837",
+    "copyrightYear": "2013",
+    "numberOfPages": 158,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Mitchell Hashimoto",
+        "url": "https://www.goodreads.com/book/author/Mitchell+Hashimoto"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Programming F# 3.0",
+    "url": "https://www.goodreads.com/book/isbn/1449320295",
+    "isbn": "1449320295",
+    "copyrightYear": "2012",
+    "numberOfPages": 476,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Chris Smith",
+        "url": "https://www.goodreads.com/book/author/Chris+Smith"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Buddhism: The Path to NIRVana",
+    "url": "https://www.goodreads.com/book/isbn/1577660137",
+    "isbn": "1577660137",
+    "copyrightYear": "1998",
+    "numberOfPages": 160,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Robert C. Lester",
+        "url": "https://www.goodreads.com/book/author/Robert+C.+Lester"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Waveland Press"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Clojure Cookbook: Recipes for Functional Programming",
+    "url": "https://www.goodreads.com/book/isbn/1449366171",
+    "isbn": "1449366171",
+    "copyrightYear": "2014",
+    "numberOfPages": 450,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Luke VanderHart",
+        "url": "https://www.goodreads.com/book/author/Luke+VanderHart"
+      },
+      {
+        "@type": "Person",
+        "name": "Avery Ryan Quinn",
+        "url": "https://www.goodreads.com/book/author/Avery+Ryan+Quinn"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Working Effectively with Legacy Code",
+    "copyrightYear": "2004",
+    "numberOfPages": 456,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Michael C. Feathers",
+        "url": "https://www.goodreads.com/book/author/Michael+C.+Feathers"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Prentice Hall"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "What Is Node?",
+    "copyrightYear": "2011",
+    "numberOfPages": 25,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Brett McLaughlin",
+        "url": "https://www.goodreads.com/book/author/Brett+McLaughlin"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "O'Reilly Media"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Real-World Functional Programming: With Examples in F# and C#",
+    "url": "https://www.goodreads.com/book/isbn/1933988924",
+    "isbn": "1933988924",
+    "copyrightYear": "2010",
+    "numberOfPages": 500,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Tomas Petricek",
+        "url": "https://www.goodreads.com/book/author/Tomas+Petricek"
+      },
+      {
+        "@type": "Person",
+        "name": "Jon Skeet",
+        "url": "https://www.goodreads.com/book/author/Jon+Skeet"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Manning Publications"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Functional Programming Patterns in Scala and Clojure: Write Lean Programs for the JVM",
+    "url": "https://www.goodreads.com/book/isbn/1937785475",
+    "isbn": "1937785475",
+    "copyrightYear": "2013",
+    "numberOfPages": 250,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Michael Bevilacqua-Linn",
+        "url": "https://www.goodreads.com/book/author/Michael+Bevilacqua-Linn"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Pragmatic Programmers, LLC"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Programming Sound with Pure Data",
+    "url": "https://www.goodreads.com/book/isbn/1937785661",
+    "isbn": "1937785661",
+    "copyrightYear": "2014",
+    "numberOfPages": 200,
+    "bookFormat": "https://schema.org/Paperback",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Tony Hillerson",
+        "url": "https://www.goodreads.com/book/author/Tony+Hillerson"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pragmatic Programmers"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Effective Programming: More Than Writing Code",
+    "copyrightYear": "2012",
+    "numberOfPages": 279,
+    "bookFormat": "https://schema.org/EBook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jeff Atwood",
+        "url": "https://www.goodreads.com/book/author/Jeff+Atwood"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Hyperink - Guide to Effective Programming"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Instant Nancy Web Development",
+    "url": "https://www.goodreads.com/book/isbn/1783283920",
+    "isbn": "1783283920",
+    "copyrightYear": "2013",
+    "numberOfPages": 74,
+    "bookFormat": "https://schema.org/ebook",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Christian Horsdal",
+        "url": "https://www.goodreads.com/book/author/Christian+Horsdal"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Packt Publishing"
+    },
+    "keywords": "to-read"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Castle of the Carpathians (Extraordinary Voyages, #37)",
+    "copyrightYear": "2001",
+    "numberOfPages": 211,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jules Verne",
+        "url": "https://www.goodreads.com/book/author/Jules+Verne"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fredonia Books"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The Complete Illustrated Kama Sutra",
+    "url": "https://www.goodreads.com/book/isbn/0892811382",
+    "isbn": "0892811382",
+    "copyrightYear": "2003",
+    "numberOfPages": 320,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Mallanaga Vātsyāyana",
+        "url": "https://www.goodreads.com/book/author/Mallanaga+Vātsyāyana"
+      },
+      {
+        "@type": "Person",
+        "name": "Lance Dane",
+        "url": "https://www.goodreads.com/book/author/Lance+Dane"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Inner Traditions"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Taras Bulba",
+    "url": "https://www.goodreads.com/book/isbn/0679642552",
+    "isbn": "0679642552",
+    "copyrightYear": "2003",
+    "numberOfPages": 176,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Nikolai Gogol",
+        "url": "https://www.goodreads.com/book/author/Nikolai+Gogol"
+      },
+      {
+        "@type": "Person",
+        "name": "Peter Constantine",
+        "url": "https://www.goodreads.com/book/author/Peter+Constantine"
+      },
+      {
+        "@type": "Person",
+        "name": "Robert D. Kaplan",
+        "url": "https://www.goodreads.com/book/author/Robert+D.+Kaplan"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Modern Library"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.rarous.net/#me",
+        "name": "Aleš Roubíček"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4
+      }
+    },
+    "keywords": "read,"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Patterns of Enterprise Application Architecture",
+    "url": "https://www.goodreads.com/book/isbn/0321127420",
+    "isbn": "0321127420",
+    "copyrightYear": "2002",
+    "numberOfPages": 533,
+    "bookFormat": "https://schema.org/Hardcover",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Martin Fowler",
+        "url": "https://www.goodreads.com/book/author/Martin+Fowler"
+      },
+      {
+        "@type": "Person",
+        "name": "David Rice",
+        "url": "https://www.goodreads.com/book/author/David+Rice"
+      },
+      {
+        "@type": "Person",
+        "name": "Matthew Foemmel",
+        "url": "https://www.goodreads.com/book/author/Matthew+Foemmel"
+      },
+      {
+        "@type": "Person",
+        "name": "Edward Hieatt",
+        "url": "https://www.goodreads.com/book/author/Edward+Hieatt"
+      },
+      {
+        "@type": "Person",
+        "name": "Robert Mee",
+        "url": "https://www.goodreads.com/book/author/Robert+Mee"
+      },
+      {
+        "@type": "Person",
+        "name": "Randy Stafford",
+        "url": "https://www.goodreads.com/book/author/Randy+Stafford"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Addison-Wesley Professional"
+    },
+    "keywords": "read,"
+  }
+]
