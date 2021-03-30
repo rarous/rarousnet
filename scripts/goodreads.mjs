@@ -57,7 +57,11 @@ function keywords(item) {
   return Array.from(new Set(input)).join();
 }
 
-const formats = new Map([["Kindle Edition", "EBook"]]);
+const formats = new Map([
+  ["Kindle Edition", "EBook"],
+  ["ebook", "EBook"],
+  ["Mass Market Paperback", "Paperback"]
+]);
 
 function bookFormat(item) {
   const type = formats.get(item["Binding"]) ?? item["Binding"];
