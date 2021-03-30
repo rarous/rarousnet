@@ -19,7 +19,11 @@
       "@type": "Organization",
       "name": "Brad Frost"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.04
+    }
   },
   {
     "@context": "https://schema.org",
@@ -39,7 +43,11 @@
       "@type": "Organization",
       "name": "Silicon Guild"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.15
+    }
   },
   {
     "@context": "https://schema.org",
@@ -69,7 +77,11 @@
       "@type": "Organization",
       "name": "IT Revolution Press"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.09
+    }
   },
   {
     "@context": "https://schema.org",
@@ -102,7 +114,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.16
+    }
   },
   {
     "@context": "https://schema.org",
@@ -146,7 +162,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.02
+    }
   },
   {
     "@context": "https://schema.org",
@@ -168,7 +188,11 @@
       "@type": "Organization",
       "name": "St. Martin's Press"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.15
+    }
   },
   {
     "@context": "https://schema.org",
@@ -190,7 +214,11 @@
       "@type": "Organization",
       "name": "Effective Bookshelf"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.29
+    }
   },
   {
     "@context": "https://schema.org",
@@ -212,7 +240,11 @@
       "@type": "Organization",
       "name": "Currency"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.1
+    }
   },
   {
     "@context": "https://schema.org",
@@ -220,7 +252,7 @@
     "name": "Cognitive Productivity: Using Knowledge to Become Profoundly Effective",
     "copyrightYear": "2014",
     "numberOfPages": 392,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -232,7 +264,11 @@
       "@type": "Organization",
       "name": "CogZest"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -277,7 +313,11 @@
       "@type": "Organization",
       "name": "Prentice Hall"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.74
+    }
   },
   {
     "@context": "https://schema.org",
@@ -297,7 +337,11 @@
       "@type": "Organization",
       "name": "A Book Apart"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.74
+    }
   },
   {
     "@context": "https://schema.org",
@@ -319,7 +363,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.68
+    }
   },
   {
     "@context": "https://schema.org",
@@ -357,7 +405,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.02
+    }
   },
   {
     "@context": "https://schema.org",
@@ -365,7 +417,7 @@
     "name": "Elements of Clojure",
     "copyrightYear": "2019",
     "numberOfPages": 120,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -377,7 +429,11 @@
       "@type": "Organization",
       "name": "Leanpub"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.24
+    }
   },
   {
     "@context": "https://schema.org",
@@ -424,7 +480,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.7
+    }
   },
   {
     "@context": "https://schema.org",
@@ -444,7 +504,11 @@
       "@type": "Organization",
       "name": "SVPG Press"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.25
+    }
   },
   {
     "@context": "https://schema.org",
@@ -472,7 +536,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -506,7 +574,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -526,7 +598,11 @@
       "@type": "Organization",
       "name": "James Turnbull"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.95
+    }
   },
   {
     "@context": "https://schema.org",
@@ -551,7 +627,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -583,7 +663,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.86
+    }
   },
   {
     "@context": "https://schema.org",
@@ -617,7 +701,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -627,7 +715,7 @@
     "isbn": "1680500694",
     "copyrightYear": "2015",
     "numberOfPages": 170,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -639,7 +727,11 @@
       "@type": "Organization",
       "name": "Pragmatic Bookshelf"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.04
+    }
   },
   {
     "@context": "https://schema.org",
@@ -667,7 +759,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.85
+    }
   },
   {
     "@context": "https://schema.org",
@@ -675,7 +771,7 @@
     "name": "Get Ready for CSS Grid Layout",
     "copyrightYear": "2016",
     "numberOfPages": 56,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -704,7 +800,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.85
+    }
   },
   {
     "@context": "https://schema.org",
@@ -714,7 +814,7 @@
     "isbn": "1937785319",
     "copyrightYear": "2013",
     "numberOfPages": 220,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -739,7 +839,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.76
+    }
   },
   {
     "@context": "https://schema.org",
@@ -771,7 +875,11 @@
       "@type": "Organization",
       "name": "MIT Press"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.46
+    }
   },
   {
     "@context": "https://schema.org",
@@ -798,7 +906,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.78
+    }
   },
   {
     "@context": "https://schema.org",
@@ -808,7 +920,7 @@
     "isbn": "1857889061",
     "copyrightYear": "2011",
     "numberOfPages": 206,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -835,7 +947,11 @@
       "@type": "Organization",
       "name": "Nicholas Brealey Publishing"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.18
+    }
   },
   {
     "@context": "https://schema.org",
@@ -862,7 +978,11 @@
       "@type": "Organization",
       "name": "Pragmatic Bookshelf"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.97
+    }
   },
   {
     "@context": "https://schema.org",
@@ -894,7 +1014,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.25
+    }
   },
   {
     "@context": "https://schema.org",
@@ -931,7 +1055,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.23
+    }
   },
   {
     "@context": "https://schema.org",
@@ -968,7 +1096,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.81
+    }
   },
   {
     "@context": "https://schema.org",
@@ -995,7 +1127,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.91
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1022,7 +1158,11 @@
       "@type": "Organization",
       "name": "Addison Wesley"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.71
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1057,7 +1197,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.62
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1065,7 +1209,7 @@
     "name": "Clojure Applied: From Practice to Practitioner",
     "copyrightYear": "2015",
     "numberOfPages": 238,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -1095,7 +1239,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1124,7 +1272,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.06
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1145,7 +1297,11 @@
         "url": "https://www.goodreads.com/book/author/Peter+Marks"
       }
     ],
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.21
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1167,7 +1323,11 @@
       "@type": "Organization",
       "name": "Wesleyan University Press"
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.23
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1189,7 +1349,11 @@
       "@type": "Organization",
       "name": "Pragma"
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.97
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1214,7 +1378,11 @@
       "@type": "Organization",
       "name": "Beta - Pavel Dobrovský"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.77
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1246,7 +1414,11 @@
       "@type": "Organization",
       "name": "Dover Publications, Inc."
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.88
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1274,7 +1446,11 @@
         "ratingValue": 2
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.41
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1290,7 +1466,11 @@
         "url": "https://www.goodreads.com/book/author/Amazon+Web+Services"
       }
     ],
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.91
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1298,7 +1478,7 @@
     "name": "Ten Steps to Linux Survival",
     "copyrightYear": "2016",
     "numberOfPages": 74,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -1322,7 +1502,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.29
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1344,7 +1528,11 @@
       "@type": "Organization",
       "name": "Graphics"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1360,7 +1548,11 @@
         "url": "https://www.goodreads.com/book/author/Erich+Andreas"
       }
     ],
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.5
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1393,7 +1585,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1403,7 +1599,7 @@
     "isbn": "0345438205",
     "copyrightYear": "1999",
     "numberOfPages": 272,
-    "bookFormat": "https://schema.org/Mass Market Paperback",
+    "bookFormat": "https://schema.org/Paperback",
     "author": [
       {
         "@type": "Person",
@@ -1427,7 +1623,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.56
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1466,7 +1666,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.75
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1476,7 +1680,7 @@
     "isbn": "1857230213",
     "copyrightYear": "1993",
     "numberOfPages": 593,
-    "bookFormat": "https://schema.org/Mass Market Paperback",
+    "bookFormat": "https://schema.org/Paperback",
     "author": [
       {
         "@type": "Person",
@@ -1505,7 +1709,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.79
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1525,7 +1733,11 @@
       "@type": "Organization",
       "name": "Pragmatic Bookshelf"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.62
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1553,7 +1765,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.9
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1587,7 +1803,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.58
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1621,7 +1841,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.92
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1643,7 +1867,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.18
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1665,7 +1893,11 @@
       "@type": "Organization",
       "name": "Henry Holt and Co."
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.67
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1673,7 +1905,7 @@
     "name": "The Software Paradox",
     "copyrightYear": "2015",
     "numberOfPages": 62,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -1698,7 +1930,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.89
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1708,7 +1944,7 @@
     "isbn": "1449371701",
     "copyrightYear": "2013",
     "numberOfPages": 250,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -1725,7 +1961,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.55
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1733,7 +1973,7 @@
     "name": "http2 explained",
     "copyrightYear": "",
     "numberOfPages": 31,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -1753,7 +1993,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.82
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1787,7 +2031,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.93
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1826,7 +2074,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.31
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1863,7 +2115,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.18
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1897,7 +2153,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1924,7 +2184,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.88
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1958,7 +2222,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.59
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1992,7 +2260,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2019,7 +2291,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.09
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2053,7 +2329,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.25
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2092,7 +2372,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2114,7 +2398,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.6
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2153,7 +2441,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.78
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2175,7 +2467,11 @@
       "@type": "Organization",
       "name": "Wrox Press"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.14
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2209,7 +2505,11 @@
         "ratingValue": 2
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.96
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2253,7 +2553,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.96
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2292,7 +2596,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.96
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2319,7 +2627,11 @@
       "@type": "Organization",
       "name": "Microsoft Press"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.71
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2346,7 +2658,11 @@
       "@type": "Organization",
       "name": "Microsoft Press"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.54
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2405,7 +2721,11 @@
         "ratingValue": 2
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.67
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2439,7 +2759,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.54
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2489,7 +2813,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.7
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2528,7 +2856,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.14
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2556,7 +2888,11 @@
         "url": "https://www.goodreads.com/book/author/Antonio+Cisternino"
       }
     ],
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.2
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2591,7 +2927,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.14
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2630,7 +2970,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.3
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2652,7 +2996,11 @@
       "@type": "Organization",
       "name": "Apress"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.8
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2674,7 +3022,11 @@
       "@type": "Organization",
       "name": "Packt Publishing"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.61
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2696,7 +3048,11 @@
       "@type": "Organization",
       "name": "Apress"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.28
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2723,7 +3079,11 @@
       "@type": "Organization",
       "name": "Manning Publications"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.87
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2757,7 +3117,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.1
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2784,7 +3148,11 @@
       "@type": "Organization",
       "name": "Manning Publications"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.38
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2826,7 +3194,11 @@
       "@type": "Organization",
       "name": "Manning Publications"
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.58
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2860,7 +3232,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.21
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2894,7 +3270,11 @@
         "ratingValue": 2
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.19
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2929,7 +3309,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.82
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2963,7 +3347,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.54
+    }
   },
   {
     "@context": "https://schema.org",
@@ -2997,7 +3385,11 @@
         "ratingValue": 2
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3031,7 +3423,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.2
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3075,7 +3471,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.8
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3103,7 +3503,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.7
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3111,7 +3515,7 @@
     "name": "The Coding Dojo Handbook",
     "copyrightYear": "2013",
     "numberOfPages": 127,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3135,7 +3539,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.16
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3167,7 +3575,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.98
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3201,7 +3613,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.28
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3209,7 +3625,7 @@
     "name": "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win",
     "copyrightYear": "2013",
     "numberOfPages": 376,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3243,7 +3659,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.27
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3253,7 +3673,7 @@
     "isbn": "1430237481",
     "copyrightYear": "2011",
     "numberOfPages": 180,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3282,7 +3702,11 @@
         "ratingValue": 1
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 2.7
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3314,7 +3738,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.01
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3396,7 +3824,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.62
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3404,7 +3836,7 @@
     "name": "Understanding the Four Rules of Simple Design",
     "copyrightYear": "2014",
     "numberOfPages": 83,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3425,7 +3857,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.13
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3482,7 +3918,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.33
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3514,7 +3954,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3522,7 +3966,7 @@
     "name": "CSS Animations (Pocket Guide)",
     "copyrightYear": "2013",
     "numberOfPages": 65,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3546,7 +3990,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.68
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3556,7 +4004,7 @@
     "isbn": "9781478355",
     "copyrightYear": "2012",
     "numberOfPages": 161,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3581,7 +4029,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.77
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3616,7 +4068,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.81
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3648,7 +4104,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.91
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3682,7 +4142,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.08
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3690,7 +4154,7 @@
     "name": "The Twelve-Factor App",
     "copyrightYear": "2012",
     "numberOfPages": 39,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3711,7 +4175,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.21
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3719,7 +4187,7 @@
     "name": "Getting Value out of Agile Retrospectives - A Toolbox of Retrospective Exercises",
     "copyrightYear": "2013",
     "numberOfPages": 76,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3748,7 +4216,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.75
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3781,7 +4253,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,favorites,my-background"
+    "keywords": "read,favorites,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.11
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3791,7 +4267,7 @@
     "isbn": "1617291803",
     "copyrightYear": "2014",
     "numberOfPages": 325,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3821,7 +4297,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.6
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3843,7 +4323,11 @@
       "@type": "Organization",
       "name": "Computer Press"
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3851,7 +4335,7 @@
     "name": "Responsive & Fast : Implementing High-Performance Responsive Design",
     "copyrightYear": "2014",
     "numberOfPages": 49,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3876,7 +4360,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,my-background,favorites"
+    "keywords": "read,my-background,favorites",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.71
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3909,7 +4397,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,my-background"
+    "keywords": "read,my-background",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.97
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3919,7 +4411,7 @@
     "isbn": "1782161252",
     "copyrightYear": "2013",
     "numberOfPages": 204,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -3931,7 +4423,11 @@
       "@type": "Organization",
       "name": "Packt Publishing"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.72
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3958,7 +4454,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.18
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3985,7 +4485,11 @@
       "@type": "Organization",
       "name": "Penguin Books"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.02
+    }
   },
   {
     "@context": "https://schema.org",
@@ -3995,7 +4499,7 @@
     "isbn": "9788087538",
     "copyrightYear": "2011",
     "numberOfPages": 59,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -4019,7 +4523,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.09
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4051,7 +4559,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.94
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4088,7 +4600,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.29
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4110,7 +4626,11 @@
       "@type": "Organization",
       "name": "Branden Books"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.05
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4130,7 +4650,11 @@
       "@type": "Organization",
       "name": "Baroque Partners"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.27
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4146,7 +4670,11 @@
         "url": "https://www.goodreads.com/book/author/Lydia+Pintscher"
       }
     ],
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.53
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4168,7 +4696,11 @@
       "@type": "Organization",
       "name": "Basic Books"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.63
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4190,7 +4722,11 @@
       "@type": "Organization",
       "name": "Celeritas Publishing"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.17
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4198,7 +4734,7 @@
     "name": "Working Effectively with Unit Tests",
     "copyrightYear": "2014",
     "numberOfPages": 204,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -4215,7 +4751,11 @@
       "@type": "Organization",
       "name": "leanpub"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.98
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4252,7 +4792,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.27
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4260,7 +4804,7 @@
     "name": "Manage Your Job Search",
     "copyrightYear": "",
     "numberOfPages": null,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -4268,7 +4812,11 @@
         "url": "https://www.goodreads.com/book/author/Johanna+Rothman"
       }
     ],
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.28
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4290,7 +4838,11 @@
       "@type": "Organization",
       "name": "William Morrow Paperbacks"
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.85
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4310,7 +4862,11 @@
       "@type": "Organization",
       "name": "Knihovnička"
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.01
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4342,7 +4898,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.16
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4364,7 +4924,11 @@
       "@type": "Organization",
       "name": "Springer"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4401,7 +4965,11 @@
       "@type": "Organization",
       "name": "Springer"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 0
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4429,7 +4997,11 @@
         "ratingValue": 3
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.55
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4478,7 +5050,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.17
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4512,7 +5088,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.03
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4546,7 +5126,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4590,7 +5174,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.38
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4612,7 +5200,11 @@
       "@type": "Organization",
       "name": "Farrar, Straus and Giroux"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.16
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4634,7 +5226,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.81
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4656,7 +5252,11 @@
       "@type": "Organization",
       "name": "The Pragmatic Bookshelf"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.29
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4683,7 +5283,11 @@
       "@type": "Organization",
       "name": "Dorset House Publishing Company, Incorporated"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.17
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4722,7 +5326,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "currently-reading"
+    "keywords": "currently-reading",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.18
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4761,7 +5369,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.69
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4769,7 +5381,7 @@
     "name": "Příběh strýčka Martina",
     "copyrightYear": "2013",
     "numberOfPages": null,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -4789,7 +5401,11 @@
         "ratingValue": 5
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.83
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4816,7 +5432,11 @@
       "@type": "Organization",
       "name": "Pragmatic Bookshelf"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.88
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4843,7 +5463,11 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.19
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4875,7 +5499,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.92
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4897,7 +5525,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.75
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4919,7 +5551,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.82
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4941,7 +5577,11 @@
       "@type": "Organization",
       "name": "Waveland Press"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.36
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4968,7 +5608,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.72
+    }
   },
   {
     "@context": "https://schema.org",
@@ -4988,7 +5632,11 @@
       "@type": "Organization",
       "name": "Prentice Hall"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.14
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5008,7 +5656,11 @@
       "@type": "Organization",
       "name": "O'Reilly Media"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.39
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5035,7 +5687,11 @@
       "@type": "Organization",
       "name": "Manning Publications"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.9
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5057,7 +5713,11 @@
       "@type": "Organization",
       "name": "The Pragmatic Programmers, LLC"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.09
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5079,7 +5739,11 @@
       "@type": "Organization",
       "name": "Pragmatic Programmers"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5099,7 +5763,11 @@
       "@type": "Organization",
       "name": "Hyperink - Guide to Effective Programming"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.92
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5109,7 +5777,7 @@
     "isbn": "1783283920",
     "copyrightYear": "2013",
     "numberOfPages": 74,
-    "bookFormat": "https://schema.org/ebook",
+    "bookFormat": "https://schema.org/EBook",
     "author": [
       {
         "@type": "Person",
@@ -5121,7 +5789,11 @@
       "@type": "Organization",
       "name": "Packt Publishing"
     },
-    "keywords": "to-read"
+    "keywords": "to-read",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.38
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5153,7 +5825,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.62
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5192,7 +5868,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.48
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5236,7 +5916,11 @@
         "ratingValue": 4
       }
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.71
+    }
   },
   {
     "@context": "https://schema.org",
@@ -5283,6 +5967,10 @@
       "@type": "Organization",
       "name": "Addison-Wesley Professional"
     },
-    "keywords": "read,"
+    "keywords": "read,",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.11
+    }
   }
 ]

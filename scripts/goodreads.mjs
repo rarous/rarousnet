@@ -95,6 +95,10 @@ function book(item) {
       : undefined,
     review: review(item),
     keywords: keywords(item),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      "ratingValue": parseFloat(item["Average Rating"])
+    }
   };
 }
 
