@@ -409,7 +409,7 @@
   {:title (:title article)
    :name (author-twitter article)
    :date (last (string/split (long-date-time (:published article)) #" - "))
-   :fileName (string/replace (:file-name article) #".html" ".png")})
+   :fileName (string/replace (:file-name article) #"\.html$" ".png")})
 
 (defn twitter-images [articles write-file-ch]
   (let [images-meta (into [] (map article->image) articles)
