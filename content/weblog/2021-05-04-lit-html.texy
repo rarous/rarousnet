@@ -35,7 +35,7 @@ Jako ukázku užití si vezmeme dynamické vkládání nekritických stylů do s
 
 /--code html
 <script type="module">
-    import {render, html} from "[https://unpkg.com/lit-html@2.0.0-rc.2/html.js?module](https://unpkg.com/lit-html@2.0.0-rc.2/lit-html.js?module)";
+    import {render, html} from "https://unpkg.com/lit-html@2.0.0-rc.2/html.js?module";
 
     render(html`<link rel="stylesheet" href="/assets/main.css">`, document.head);
 </script>
