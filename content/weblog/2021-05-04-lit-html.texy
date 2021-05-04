@@ -20,7 +20,7 @@ No, ale dneska se pojďme raději věnovat něčemu jinému - knihovně "Lit 2.0
 psát jako v Reactu, ale bez všech těch zbytečných kejklí okolo. Tato knihovna vznikla v Google.
 V teamu, který tvořil framework Polymer. Knihovna využívá vlastnosti moderní webové platformy.
 Neřeší tak dávno neexistující problémy jako například nástroje, které jsem už jmenoval.
-Díky tomu může být malá (~2 kB), rychlá a dá se snadno komponovat s dalšími knihovnami, abyste mohli tvořit systémy,
+Díky tomu může být malá (~4 KiB), rychlá a dá se snadno komponovat s dalšími knihovnami, abyste mohli tvořit systémy,
 které řeší vaše business problémy. Nikoliv problémy špatných komplikovaných frameworků a nástrojů.
 
 Knihovna Lit se historicky skládá ze dvou částí - `lit-html` a `LitElement`. Dnes se budeme věnovat té první.
