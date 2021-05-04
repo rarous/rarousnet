@@ -59,7 +59,7 @@ přesněji specifikovat, jak se má vyrenderovaný kód vkládat.
 Základní chování je takové, že se první render šablony připojí do cílového elementu nakonec. Další volání `render`
 už tento kus přepisuje. Tohle je jediná breaking change oproti `lit-html` 1.0, které vždy obsah elementu přepisovalo.
 
-Tahat 2 kB závislostí kvůli hezkému vložení stylopisu je samozřejmě nesmysl, ale je to pěkná ukázka mnoha
+Tahat skoro 3 KiB závislostí jenom kvůli hezkému vložení stylopisu je samozřejmě nesmysl, ale je to pěkná ukázka mnoha
 zajímavých vlastností. Sami si to můžete hned vyzkoušet ve svém browseru, stačí vám jen DevTools, které tam už jsou.
 Zápis šablon je úplně přirozený. Nemusíte se učit žádnou novou speciální syntaxi, kterou byste museli kompilovat,
 stačí vám HTML a ECMAScript. Tak, jak v browserech jsou už roky.
