@@ -104,11 +104,11 @@ abyste mohli použít metodu `map` pro mapování jednotlivých prvků. Můžete
 `repeat`:[https://lit.dev/docs/templates/directives/#repeat]:
 
 /--code javascript
-export function shopsListTemplate() {
+export function shopsListTemplate(shops) {
   return html`
     <ul class="hs-shops-list">
       ${repeat(
-        shops(),
+        shops,
         ({ name, url }) => html`
           <li class="hs-shops-list__item">
             <a href="${url}">${name}</a>
