@@ -142,7 +142,7 @@
                  (html/set-attr :href (str blog-relative-url "tag/" (slug tag) ".html")))))
 
 (deftemplate blogpost-template "weblog/blogpost.html"
-  [{:keys [title author description category category-url published tags] :as article}]
+  [{:keys [title author description published tags] :as article}]
   [:title] (html/content title)
   [(meta-n "author")] (html/set-attr :content author)
   [(meta-n "description")] (html/set-attr :content description)
@@ -151,9 +151,7 @@
   [(meta-n "twitter:description")] (html/set-attr :content description)
   [(meta-n "twitter:image")] (html/set-attr :content (card-image article))
   [(meta-p "article:published_time")] (html/set-attr :content (utc-date published))
-  [(meta-p "article:section")] (html/set-attr :content category)
   [(link "canonical")] (html/set-attr :href (permalink article))
-  [(link "category")] (html/set-attr :href category-url)
   [:article] (html/substitute (article-detail article))
   [:article :.breadcrumbs] (html/substitute
                              (article-breadcrumbs
