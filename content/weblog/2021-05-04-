@@ -1,0 +1,134 @@
+---
+{:id 481,
+:title "Jednoduše a rychle: lit-html",
+:description "Dnešní stav tvorby webových frontendů není jednoduchý a začít novou věc vyžaduje spoustu kroků. Nemusí to tak být.",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "ecmascript" "lit" "lit-html" "hlidacshopu"},
+:published "2021-05-04T06:010:00.000"}
+---
+
+Přiznejme si to. Dnešní stav tvorby webových frontendů není jednoduchý a začít novou věc vyžaduje spoustu kroků, 
+které dříve nebyly potřeba a považovalo se to za výhodu webu. Dneska musíte znát Reacty, Babely, TypeScripty, 
+Webpacky, CRAppy a co já vím, abyste vůbec vytvořili Hello World. Nebo aspoň si to velká část Frontend vývojářů asi myslí, 
+že je to dobrý nápad, a tak webu lámou nožičky. 
+
+Nejen, že je takový přístup drahý na vývoj i údržbu, ale hlavně je to nesmysl. Já vím, velké enterprise systémy
+mají jiné požadavky... Je pak fajn, když "za námi":[https://www.topmonks.com/] chodí zákazníci s přesně takovými systémy,
+že by potřebovali něco malého, rychlého a snadno použitelného, protože u nich to nejde. 
+
+No, ale dneska se pojďme raději věnovat něčemu jinému - knihovně "Lit 2.0":[https://lit.dev/], která vám umožní
+psát jako v Reactu, ale bez všech těch zbytečných kejklí okolo. Tato knihovna vznikla v Google. 
+V teamu, který tvořil framework Polymer. Knihovna využívá vlastnosti moderní webové platformy. 
+Neřeší tak dávno neexistující problémy jako například nástroje, které jsem už jmenoval. 
+Díky tomu může být malá (~2 kB), rychlá a dá se snadno komponovat s dalšími knihovnami, abyste mohli tvořit systémy, 
+které řeší vaše business problémy. Nikoliv problémy špatných komplikovaných frameworků a nástrojů.
+
+Knihovna Lit se historicky skládá ze dvou částí - `lit-html` a `LitElement`. Dnes se budeme věnovat té první.
+
+## lit-html
+
+Knihovna `lit-html`:[https://lit.dev/docs/libraries/standalone-templates/] má na starosti **renderování šablon**. 
+Představte si React, který má jen čisté funkce jako komponenty, a místo JSX, který vyžaduje kompilační krok, 
+používá nativní feature ECMAScriptu 2015 - "tagované šablony":[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates].
+
+Jako ukázku užití si vezmeme dynamické vkládání nekritických stylů do stránky:
+
+/--code html
+<script type="module">
+    import {render, html} from "[https://unpkg.com/lit-html@2.0.0-rc.2/html.js?module](https://unpkg.com/lit-html@2.0.0-rc.2/lit-html.js?module)";
+    
+    render(html`<link rel="stylesheet" href="/assets/main.css">`, document.head);
+</script>
+\--code
+
+První věc, které si můžete všimnout, je použití ESM:[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import]
+(ECMAScript Modules) v HTML. Jakmile "máte podporu ESM modulů":[https://caniuse.com/es6-module] v browseru (je tam už asi 3 roky), 
+máte většinu moderních vlastností ECMAScriptu k dispozici a nemusíte řešit transpilaci nebo polyfilly.
+A tak můžeme směle importovat!
+
+Využijeme službu [unpkg.com](https://unpkg.com/), která slouží jako CDN pro distribuci npm balíčků s možností 
+transformace node_modules resolution na unpkg URLs - k tomu slouží GET parametr `module`.
+
+Z balíčku si vyzobneme funkci `render` a funkci `html`, která slouží k tagování textových literálů.
+Funkce `render` bere jako první parametr šablonu, jako druhý parametr, kam se má vyrenderovat, 
+a "třetí, nepovinný, parametr":[https://lit.dev/docs/libraries/standalone-templates/#render-options] umožňuje 
+přesněji specifikovat, jak se má vyrenderovaný kód vkládat.
+
+Základní chování je takové, že se první render šablony připojí do cílového elementu nakonec. Další volání `render` 
+už tento kus přepisuje. Tohle je jediná breaking change oproti `lit-html` 1.0, které vždy obsah elementu přepisovalo.
+
+Tahat 2 kB závislostí kvůli hezkému vložení stylopisu je samozřejmě nesmysl, ale je to pěkná ukázka mnoha 
+zajímavých vlastností. Sami si to můžete hned vyzkoušet ve svém browseru, stačí vám jen DevTools, které tam už jsou. 
+Zápis šablon je úplně přirozený. Nemusíte se učit žádnou novou speciální syntaxi, kterou byste museli kompilovat, 
+stačí vám HTML a ECMAScript. Tak, jak v browserech jsou už roky.
+
+Všimnout si můžete také toho, že funkci `render` nemusíte předávat žádnou komponentu, ale prostě kus šablony. 
+Přidávat abstrakce můžete, až když je to potřeba. Jestli vůbec taková situace nastane. Stejně tak můžete začít 
+s inline scripty ve stránkách a extrahovat je do samostatných souborů, až když potřebujete sdílet netriviální 
+množství kódu mezi různými stránkami. Já třeba "takto dělal":[https://github.com/topmonks/topmonks-webs/blob/80d606b7380859ca6942ee948b63f38d32ec220f/www.hlidacshopu.cz/src/html/app/index.html#L142-L414]
+web a PWA "Hlídače shopů":[https://www.hlidacshopu.cz/].
+
+## Šablonování
+
+Tagované šablony umí interpolaci výrazů a proměnných, což nám umožňuje vytvářet opravdové šablony, do kterých se vkládají data. 
+
+/--code javascript
+export function resultsEmbed(url) {
+  const parameters = new URLSearchParams({ url, view: "embed" });
+  return html`
+    <iframe
+      sandbox="allow-same-origin allow-scripts allow-top-navigation allow-popups"
+      class="hs-result__embed"
+      src="/app/?${parameters}"
+    ></iframe>
+  `;
+}
+\--code
+
+Tady třeba generujeme `iframe` s výsledky Hlídače. Pro naformátování GET parametrů použijeme užitečnou třídu 
+`URLSearchParams`, která se postará o správné encodování hodnot parametrů. Ano, není to tak chytré jako Latte, 
+které pozná samo, jak má vstupy encodovat, ale pořád máme po ruce všechna potřebná primitiva jazyka/platformy. 
+Bez komplikací, bez magie. 
+
+Zajímavostí je, že v předchozí verzi 1.0 se u `parameters` muselo explicitně zavolat `toString()`/`valueOf()`. 
+Ve verzi 2.0 se to chová, jak byste u interpolace proměnných v šabloně čekali.
+
+## Direktivy
+
+Lit používá pro obohacení chování šablon speciální funkce - direktivy:[https://lit.dev/docs/templates/directives/]. 
+Například, pokud používáte data, která implementují rozhraní `Iterable`, nemusíte nad nimi volat 
+`Array.from`:[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from],
+abyste mohli použít metodu `map` pro mapování jednotlivých prvků. Můžete místo toho použít direktivu 
+`repeat`:[https://lit.dev/docs/templates/directives/#repeat]:
+
+/--code javascript
+export function shopsListTemplate() {
+  return html`
+    <ul class="hs-shops-list">
+      ${repeat(
+        shops(),
+        ({ name, url }) => html`
+          <li class="hs-shops-list__item">
+            <a href="${url}">${name}</a>
+          </li>
+        `
+      )}
+    </ul>
+  `;
+} 
+\--code
+
+V knihovně je zhruba tucet užitečných direktiv a zároveň "základní třída pro implementaci vlastních direktiv":[https://lit.dev/docs/templates/custom-directives/].
+
+## Závěrem
+
+Lit-html 2.0 je jednoduchá a malá knihovna, která nám umožňuje šablonovat HTML pomocí čistého 
+ECMAScriptu bez potřeby jakýchkoliv kompilátorů. Zkrátka, otevřete browser, DevTools napojíte na lokální 
+HTML soubor a můžete vyvíjet živou aplikaci (REPL style). Já ji používám jako náhradu jak jQuery, tak Reactu. 
+Problémy, které ve své době řešili, jsou už pryč a není třeba s nimi uživatele mučit.
+
+Pokud chcete z vašich šablon udělat znovu použitelné komponenty, můžete použít další část knihovny Lit - `LitElement`,
+na který se podíváme někdy příště. Prozradím jen, že jde o základní třídu pro psaní
+"Web Components":[https://developer.mozilla.org/en-US/docs/Web/Web_Components], která využívá `lit-html` pro šablonování
+a zjednodušuje API, které je podobné základní třídě `React.Component`. Jen je to malé (zhruba jako Preact), jednoduché a rychlé.
+
