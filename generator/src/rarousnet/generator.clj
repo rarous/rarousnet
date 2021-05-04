@@ -35,16 +35,20 @@
       (string/replace #"\." "-")
       (string/replace #"\s+" "-")))
 
+(def cs (Locale. "cs"))
+
 (def long-date-time-format
-  (with-locale (formatter "HH.mm - d. MMMM yyyy") (Locale. "cs")))
+  (with-locale (formatter "HH.mm - d. MMMM yyyy") cs))
 (def long-date-format
-  (with-locale (formatter "d. MMMM yyyy") (Locale. "cs")))
+  (with-locale (formatter "d. MMMM yyyy") cs))
 (def long-month-year-format
-  (with-locale (formatter "MMMM yyyy") (Locale. "cs")))
+  (with-locale (formatter "MMMM yyyy") cs))
 (def short-month-format
-  (with-locale (formatter "MMM") (Locale. "cs")))
+  (with-locale (formatter "MMM") cs))
 (def short-date-format
-  (with-locale (formatter "MMM d") (Locale. "cs")))
+  (with-locale (formatter "MMM d") cs))
+(def url-month-format (with-locale (formatter "MM") cs))
+(def url-day-format (with-locale (formatter "dd") cs))
 (def utc-format (formatters :basic-date-time))
 (def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
 (defn utc-date [d]
@@ -61,6 +65,10 @@
   (unparse short-date-format (from-date d)))
 (defn rss-date [d]
   (unparse rss-format (from-date d)))
+(defn url-month [dt]
+  (unparse url-month-format dt))
+(defn url-day [dt]
+      (unparse url-day-format dt))
 
 (defn permalink [{:keys [file-name]}]
   (str blog-url file-name))
@@ -149,10 +157,11 @@
   [:article] (html/substitute (article-detail article))
   [:article :.breadcrumbs] (html/substitute
                              (article-breadcrumbs
-                               {:year (time/year (from-date published))
-                                :month (time/month (from-date published))
-                                :month-name (short-month (from-date published))
-                                :day (time/day (from-date published))}))
+                               (let [dt (from-date published)]
+                                {:year (time/year dt)
+                                 :month (url-month dt)
+                                 :month-name (short-month dt)
+                                 :day (url-day dt)})))
   [:article :.tags] (html/substitute (article-tags tags))
   [:.footer] (html/substitute (page-footer)))
 
