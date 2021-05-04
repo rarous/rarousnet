@@ -20,7 +20,7 @@ No, ale dneska se pojďme raději věnovat něčemu jinému - knihovně "Lit 2.0
 psát jako v Reactu, ale bez všech těch zbytečných kejklí okolo. Tato knihovna vznikla v Google.
 V teamu, který tvořil framework Polymer. Knihovna využívá vlastnosti moderní webové platformy.
 Neřeší tak dávno neexistující problémy jako například nástroje, které jsem už jmenoval.
-Díky tomu může být malá (~4 KiB), rychlá a dá se snadno komponovat s dalšími knihovnami, abyste mohli tvořit systémy,
+Díky tomu může být malá (~5 KiB gzip), rychlá a dá se snadno komponovat s dalšími knihovnami, abyste mohli tvořit systémy,
 které řeší vaše business problémy. Nikoliv problémy špatných komplikovaných frameworků a nástrojů.
 
 Knihovna Lit se historicky skládá ze dvou částí - `lit-html` a `LitElement`. Dnes se budeme věnovat té první.
@@ -48,6 +48,8 @@ A tak můžeme směle importovat!
 
 Využijeme službu [unpkg.com](https://unpkg.com/), která slouží jako CDN pro distribuci npm balíčků s možností
 transformace node_modules resolution na unpkg URLs - k tomu slouží GET parametr `module`.
+(*Ano, Lit 2.0 je aktuálně v RC fázi, tj. těsně před releasem. Na Hlídači shopů ho i tak používáme
+v produkci už několik měsíců a to bez problémů*.)
 
 Z balíčku si vyzobneme funkci `render` a funkci `html`, která slouží k tagování textových literálů.
 Funkce `render` bere jako první parametr šablonu, jako druhý parametr, kam se má vyrenderovat,
@@ -131,4 +133,3 @@ Pokud chcete z vašich šablon udělat znovu použitelné komponenty, můžete p
 na který se podíváme někdy příště. Prozradím jen, že jde o základní třídu pro psaní
 "Web Components":[https://developer.mozilla.org/en-US/docs/Web/Web_Components], která využívá `lit-html` pro šablonování
 a zjednodušuje API, které je podobné základní třídě `React.Component`. Jen je to malé (zhruba jako Preact), jednoduché a rychlé.
-
