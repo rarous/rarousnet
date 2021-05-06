@@ -11,7 +11,7 @@
   "dependencies": {
     "@pulumi/aws": "<=4.1.0",
     "@pulumi/cloudflare": "^3.0.0",
-    "@pulumi/pulumi": "<=3.1.0",
+    "@pulumi/pulumi": "<=3.3.0",
     "postcss": "^8.2.14"
   },
   "devDependencies": {
