@@ -12,7 +12,7 @@
     "@pulumi/aws": "<=4.1.0",
     "@pulumi/cloudflare": "^3.0.0",
     "@pulumi/pulumi": "<=3.1.0",
-    "postcss": "^8.2.14"
+    "postcss": "^8.2.15"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
