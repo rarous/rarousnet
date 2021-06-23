@@ -14,7 +14,7 @@ console.log("");
   console.log("Starting Puppeteer...");
   const browser = await puppeteer.launch({
     // We need to disable Sandbox to be able to run in CircleCI environment
-    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.goto(url);
@@ -28,7 +28,7 @@ console.log("");
   console.log("");
   console.log("DONE");
   await browser.close();
-})().catch(err => {
+})().catch((err) => {
   console.error(err);
   process.exit(1);
 });
@@ -38,15 +38,15 @@ async function changeCardContent(card, post) {
   await Promise.all([
     card.$eval("#title", setContent, post.title),
     card.$eval("#name", setContent, post.name),
-    card.$eval("#date", setContent, post.date)
+    card.$eval("#date", setContent, post.date),
   ]);
 }
 
 async function prepareOutputPath(post) {
-  const outputPath = path.resolve(`./dist/weblog/${post.fileName}`);
+  const outputPath = path.resolve("./dist/weblog/", post.fileName);
   await fs.promises
     .mkdir(path.dirname(outputPath), { recursive: true })
-    .catch(err => {
+    .catch((err) => {
       /* ignore errors */
     });
   return outputPath;
