@@ -142,10 +142,10 @@
   dependencies:
     "@pulumi/pulumi" "^3.0.0"
 
-"@pulumi/pulumi@<=3.5.1", "@pulumi/pulumi@^3.0.0":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-3.5.1.tgz#e448dba5112535710f5a77a97c1d2ae4362f0fac"
-  integrity sha512-iCmIyng0k45sCpKoXvNA7RZlRJcFb06YlHxHh4sn4LVlO8cPgSplWat7DicOlxcpDnMvxMhgD7EUmYdPbL0PeA==
+"@pulumi/pulumi@<=3.6.2", "@pulumi/pulumi@^3.0.0":
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-3.6.1.tgz#97db34c49a853d9c208edd8ca5d823d7aa5a30cb"
+  integrity sha512-oHMXXh2szmsmDW+wfJMNY7cjuW/reCCBuOc760/vDL7+DkvYX0Id9ElEVPXZM8JgxfC2L2HGePtEKI6kCDEtqA==
   dependencies:
     "@grpc/grpc-js" "^1.2.7"
     "@logdna/tail-file" "^2.0.6"
