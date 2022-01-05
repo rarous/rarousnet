@@ -35,7 +35,7 @@ Jako ukázku užití si vezmeme dynamické vkládání nekritických stylů do s
 
 /--code html
 <script type="module">
-    import {render, html} from "https://unpkg.com/lit-html@2.0.0-rc.2/html.js?module";
+    import {render, html} from "https://unpkg.com/lit-html@2.0.2/lit-html.js?module";
 
     render(html`<link rel="stylesheet" href="/assets/main.css">`, document.head);
 </script>
@@ -48,8 +48,6 @@ A tak můžeme směle importovat!
 
 Využijeme službu [unpkg.com](https://unpkg.com/), která slouží jako CDN pro distribuci npm balíčků s možností
 transformace node_modules resolution na unpkg URLs - k tomu slouží GET parametr `module`.
-(*Ano, Lit 2.0 je aktuálně v RC fázi, tj. těsně před releasem. Na Hlídači shopů ho i tak používáme
-v produkci už několik měsíců a to bez problémů*.)
 
 Z balíčku si vyzobneme funkci `render` a funkci `html`, která slouží k tagování textových literálů.
 Funkce `render` bere jako první parametr šablonu, jako druhý parametr, kam se má vyrenderovat,
