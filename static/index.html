@@ -10,13 +10,34 @@
     <link rel="dns-prefetch" href="//www.google-analytics.com">
     <link rel="preconnect" href="//res.cloudinary.com">
     <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
-    <meta name="copyright" content="&copy; 2004 - 2021 Aleš Roubíček. Creative Commons 3.0 BY-SA">
+    <meta name="copyright" content="&copy; 2004 - 2022 Aleš Roubíček. Creative Commons 4.0 BY-SA">
     <meta name="description" content="Aleš Roubíček vývojář webových aplikací.">
     <link rel="canonical" href="https://www.rarous.net/">
     <link rel="alternate" type="application/rss+xml" href="https://feeds2.feedburner.com/rarous-weblog" title="rarouš.weblog - články">
     <link rel="alternate" type="application/rss+xml" href="https://feeds2.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře">
-    <script>ga=function(){ga.q.push(arguments)},ga.q=[],ga.l=+new Date,ga('create','UA-90726-1','auto'),ga('send','pageview');</script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    <script>
+      self._ga = {
+        // Full Measurement Protocol param reference:
+        // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
+        data: {
+          v: "1", // Measurement Protocol version.
+          tid: "UA-90726-1", // Tracking ID.
+          cid: `${Date.now()}${Math.random()}`, // Client ID.
+          dl: location.href, // Document location.
+          aip: 1, // Anonymize IP
+        },
+        send(additionalParams) {
+          navigator.sendBeacon(
+            "https://google-analytics.com/collect",
+            new URLSearchParams({
+              ...this.data,
+              ...additionalParams,
+            }).toString()
+          );
+        },
+      };
+      _ga.send({ t: "pageview" });
+    </script>
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
     <style>
         /* latin-ext */

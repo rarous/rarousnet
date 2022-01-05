@@ -1,143 +1,165 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="Content-Language" content="cs" />
-	<meta name="author" content="Aleš Roubíček; mailto:ales.roubicek@pbsoftware.cz" />
-	<link rel="stylesheet" media="screen" type="text/css" href="../../styles/sheets.css" />
-	<link rel="stylesheet" media="all" type="text/css" href="../../styles/code.css" />
-	<link rel="Index" type="text/html" href="../default.htm" />
-	<link rel="Next" type="text/html" href="../cv5/default.htm" />
-	<link rel="Prev" type="text/html" href="../cv3/default.htm" />
-	<title>Cvičení 4 - Počítačový kroužek ZŠ Osečná</title>
-    <script>
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-90726-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-	<style type="text/css" media="all">
-		table {
-			border-collapse: collapse;
-			width: 75%;
-		}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Language" content="cs"/>
+  <meta name="author" content="Aleš Roubíček; mailto:ales&#64;roubicek.name"/>
+  <link rel="stylesheet" media="screen" type="text/css" href="../../styles/sheets.css"/>
+  <link rel="stylesheet" media="all" type="text/css" href="../../styles/code.css"/>
+  <link rel="Index" type="text/html" href="../default.htm"/>
+  <link rel="Next" type="text/html" href="../cv5/default.htm"/>
+  <link rel="Prev" type="text/html" href="../cv3/default.htm"/>
+  <title>Cvičení 4 - Počítačový kroužek ZŠ Osečná</title>
+  <script>
+    self._ga = {
+      // Full Measurement Protocol param reference:
+      // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
+      data: {
+        v: "1", // Measurement Protocol version.
+        tid: "UA-90726-1", // Tracking ID.
+        cid: `${Date.now()}${Math.random()}`, // Client ID.
+        dl: location.href, // Document location.
+        aip: 1, // Anonymize IP
+      },
+      send(additionalParams) {
+        navigator.sendBeacon(
+          "https://google-analytics.com/collect",
+          new URLSearchParams({
+            ...this.data,
+            ...additionalParams,
+          }).toString()
+        );
+      },
+    };
+    _ga.send({ t: "pageview" });
+  </script>
+  <style type="text/css" media="all">
+    table {
+      border-collapse: collapse;
+      width: 75%;
+    }
 
-		td, th {
-			border: 1px solid #AAA;
-			padding: 2px 4px;
-		}
+    td, th {
+      border: 1px solid #aaa;
+      padding: 2px 4px;
+    }
 
-		.poznamka {
-			background-color: #CCC;
-			font-size: small;
-		}
-	</style>
+    .poznamka {
+      background-color: #ccc;
+      font-size: small;
+    }
+  </style>
 </head>
 <body>
-	<h1>Cvičení 4</h1>
-	<p>Dnes se budeme učit vytvářet tabulky. Tabulka slouží k uspořádání tabulkových dat
-		do přehledné formy. Ještě před pár lety se tabulky používaly k definování rozložení
-		prvků na stránce. Tato technika je již ale překovaná mocnějším nástrojem &mdash; <a href="#styly">
-		kaskádní styly (CSS)</a>.</p>
-	<table summary="Tabulka s výpisem z databáze kontaktů">
-		<caption>tabulka 1 </caption>
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>jméno</th>
-				<th>adresa</th>
-				<th>telefon</th>
-				<th>e-mail</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>Aleš Roubíček</td>
-				<td>Na Krutci 17, Praha 6</td>
-				<td>276704645</td>
-				<td><a href="mailto:rarous@seznam.cz">rarous@seznam.cz</a> </td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Jiří Hauzer</td>
-				<td>Liberecká 20, Osečná</td>
-				<td>485179043</td>
-				<td><a href="mailto:hauzer@quick.cz">hauzer@quick.cz</a></td>
-			</tr>
-		</tbody>
-	</table>
-	<p class="poznamka">Takto může vypadat krátký výpis z databáze kontaktů. K takovému
-		výpisu je asi tabulka nejvhodnější pro svoji přehlednost. Podíváte-li se do jejího
-		kódu, pravděpodobně se v něm někde ztratíte, přesto že jsem zvolil metodu zápisu,
-		která je pro zpracování člověkem příjemnější. Nyní tedy k vysvětlení použitých elementů.
-		Tabulka je tvořena elementem <code class="tag">table</code>, ten může mýt jednu
-		hlavičku <code class="tag">thead</code> a patičku <code class="tag">tfoot</code>.
-		Dále pak má tělo tabulky <code class="tag">tbody</code><strong>.</strong> Je to
-		tedy podobné struktuře samotného HTML souboru. My jsme v naší ukázce žádnou patičku
-		nepoužili.</p>
-	<h2>Tagy pro práci s tabulkami</h2>
-	<dl>
-		<dt><code class="tag">table</code></dt>
-		<dd>Úvodní tag tabulky. Má několik atributů, které definují vzhled tabulky, ale ty se
-			v dnešní době nahrazují pomocí CSS. Dále má atribut <code class="attr">summary</code>,
-			kde se píše shrnutí obsahu tabulky &#8212; informační výtah. Tento atribut se používá
-			pro zpřístupnění obsahu např. zrakově postižených lidem, kteří nevidí jak tabulka
-			vypadá a čtečka, která jim čte obsah tabulky nerozeznává jednotlivé sloupce a řádky.</dd>
-		<dt><code class="tag">caption</code></dt>
-		<dd>Obsahuje titulek tabulky &#8212; popiska, nadpis, je lepší jej uvádět pro lepší
-			orientaci v dokumentu.</dd>
-		<dt><code class="tag">tbody</code></dt>
-		<dd>Obsahuje vlastní data tabulky. Měl by se vyskytovat ve všech tabulkách.</dd>
-		<dt><code class="tag">thead</code></dt>
-		<dd>Obsahuje záhlaví tabulky, většinou názvy sloupců.</dd>
-		<dt><code class="tag">tfoot</code></dt>
-		<dd>Obsahuje patičku tabulky, např. nějaké výsledné statistické hodnoty</dd>
-	</dl>
-	<p>Správně by se u dlouhých tabulek mělo zobrazovat thead a tfoot na každé stránce (pokud
-		jde o výtisk) ap. Většinou tomu ale tak není.</p>
-	<dl>
-		<dt><code class="tag">tr</code></dt>
-		<dd>Definuje řádek tabulky. Je to jediný element, který může být potomkem <code class="tag">
-		tbody</code>, <code class="tag">thead</code> a <code class="tag">tfoot</code>.</dd>
-		<dt><code class="tag">td</code></dt>
-		<dd>Definuje jednu buňku tabulky. Může být pouze jako potomkem <code class="tag">tr</code>.</dd>
-		<dt><code class="tag">th</code></dt>
-		<dd>Definuje hlavičkovou buňku tabulky (první řádek v dnešní ukázce). Může být pouze
-			jako potomkem <code class="tag">tr</code>.</dd>
-	</dl>
-	<h2 id="styly">Kaskádní styly (<acronym title="cascading stylesheets" lang="en">CSS</acronym>)</h2>
-	<p>Kaskádní styly jsou jedním z nejmodernějších prostředků, jak přizpůsobit vzhled webových
-		dokumentů a to nejen <acronym title="hypertext markup language" lang="en">HTML</acronym>
-		a <acronym title="extensible hypertext markup language" lang="en">XHTML</acronym>,
-		ale i jiných <acronym title="extensible markup language" lang="en">XML</acronym>
-		souborů. V tomto dokumentu je použito několik stylových předpisů pro definici vzhledu
-		tabulky a změnu vzhledu poznámky oproti normálním odstavcům. Jednotlivé definice
-		se píší v následujícím tvaru:</p>
-	<pre><em class="selektor">selektor</em> {
+<h1>Cvičení 4</h1>
+<p>Dnes se budeme učit vytvářet tabulky. Tabulka slouží k uspořádání tabulkových dat
+  do přehledné formy. Ještě před pár lety se tabulky používaly k definování rozložení
+  prvků na stránce. Tato technika je již ale překovaná mocnějším nástrojem &mdash; <a href="#styly">
+    kaskádní styly (CSS)</a>.</p>
+<table summary="Tabulka s výpisem z databáze kontaktů">
+  <caption>tabulka 1</caption>
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>jméno</th>
+    <th>adresa</th>
+    <th>telefon</th>
+    <th>e-mail</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>Aleš Roubíček</td>
+    <td>Na Krutci 17, Praha 6</td>
+    <td>276704645</td>
+    <td><a href="mailto:rarous@seznam.cz">rarous@seznam.cz</a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Jiří Hauzer</td>
+    <td>Liberecká 20, Osečná</td>
+    <td>485179043</td>
+    <td><a href="mailto:hauzer@quick.cz">hauzer@quick.cz</a></td>
+  </tr>
+  </tbody>
+</table>
+<p class="poznamka">Takto může vypadat krátký výpis z databáze kontaktů. K takovému
+  výpisu je asi tabulka nejvhodnější pro svoji přehlednost. Podíváte-li se do jejího
+  kódu, pravděpodobně se v něm někde ztratíte, přesto že jsem zvolil metodu zápisu,
+  která je pro zpracování člověkem příjemnější. Nyní tedy k vysvětlení použitých elementů.
+  Tabulka je tvořena elementem <code class="tag">table</code>, ten může mýt jednu
+  hlavičku <code class="tag">thead</code> a patičku <code class="tag">tfoot</code>.
+  Dále pak má tělo tabulky <code class="tag">tbody</code><strong>.</strong> Je to
+  tedy podobné struktuře samotného HTML souboru. My jsme v naší ukázce žádnou patičku
+  nepoužili.</p>
+<h2>Tagy pro práci s tabulkami</h2>
+<dl>
+  <dt><code class="tag">table</code></dt>
+  <dd>Úvodní tag tabulky. Má několik atributů, které definují vzhled tabulky, ale ty se
+    v dnešní době nahrazují pomocí CSS. Dále má atribut <code class="attr">summary</code>,
+    kde se píše shrnutí obsahu tabulky &#8212; informační výtah. Tento atribut se používá
+    pro zpřístupnění obsahu např. zrakově postižených lidem, kteří nevidí jak tabulka
+    vypadá a čtečka, která jim čte obsah tabulky nerozeznává jednotlivé sloupce a řádky.
+  </dd>
+  <dt><code class="tag">caption</code></dt>
+  <dd>Obsahuje titulek tabulky &#8212; popiska, nadpis, je lepší jej uvádět pro lepší
+    orientaci v dokumentu.
+  </dd>
+  <dt><code class="tag">tbody</code></dt>
+  <dd>Obsahuje vlastní data tabulky. Měl by se vyskytovat ve všech tabulkách.</dd>
+  <dt><code class="tag">thead</code></dt>
+  <dd>Obsahuje záhlaví tabulky, většinou názvy sloupců.</dd>
+  <dt><code class="tag">tfoot</code></dt>
+  <dd>Obsahuje patičku tabulky, např. nějaké výsledné statistické hodnoty</dd>
+</dl>
+<p>Správně by se u dlouhých tabulek mělo zobrazovat thead a tfoot na každé stránce (pokud
+  jde o výtisk) ap. Většinou tomu ale tak není.</p>
+<dl>
+  <dt><code class="tag">tr</code></dt>
+  <dd>Definuje řádek tabulky. Je to jediný element, který může být potomkem <code class="tag">
+    tbody</code>, <code class="tag">thead</code> a <code class="tag">tfoot</code>.
+  </dd>
+  <dt><code class="tag">td</code></dt>
+  <dd>Definuje jednu buňku tabulky. Může být pouze jako potomkem <code class="tag">tr</code>.</dd>
+  <dt><code class="tag">th</code></dt>
+  <dd>Definuje hlavičkovou buňku tabulky (první řádek v dnešní ukázce). Může být pouze
+    jako potomkem <code class="tag">tr</code>.
+  </dd>
+</dl>
+<h2 id="styly">Kaskádní styly (<acronym title="cascading stylesheets" lang="en">CSS</acronym>)</h2>
+<p>Kaskádní styly jsou jedním z nejmodernějších prostředků, jak přizpůsobit vzhled webových
+  dokumentů a to nejen <acronym title="hypertext markup language" lang="en">HTML</acronym>
+  a <acronym title="extensible hypertext markup language" lang="en">XHTML</acronym>,
+  ale i jiných <acronym title="extensible markup language" lang="en">XML</acronym>
+  souborů. V tomto dokumentu je použito několik stylových předpisů pro definici vzhledu
+  tabulky a změnu vzhledu poznámky oproti normálním odstavcům. Jednotlivé definice
+  se píší v následujícím tvaru:</p>
+<pre><em class="selektor">selektor</em> {
     <span class="attr"><em>pravidla</em></span>;
     ...
 }</pre>
-	<p>Selektorů máme několik druhů:</p>
-	<ol>
-		<li>přímé: <code class="tag">tag</code> &#8212; jsou to názvy tagů, vybírají všechny
-		elementy s daným jménem a na ně pravidla aplikují.</li>
-		<li>class selektory: <code class="selektor">.hodnota_atrtibutu_class</code> &#8212;
-		vybírají elementy, které mají atribut <code class="attr">class</code> shodný s textem
-		za tečkou</li>
-		<li>id selektory: <code class="selektor">#hodnota_atributu_id</code> &#8212; vybírají
-		element, který má atribut <code class="attr">id</code> shodný s textem za mřížkou</li>
-	</ol>
-	<p>Dále se dají selektory kombinovat a pomocí různých operátorů dále přibližovat, ale
-		to už je složitější a necháme si to na další cvičení. Tady máme ukázku stylů aplikovaných
-		na tuto stránku.</p>
-	<pre lang="css"><span class="selektor">table</span> {
-    border-collapse: <span class="hodnota">collapse</span>; <span class="komentar">/* zruší mezeru mezi buňkami */</span>
-    width: <span class="hodnota">75%</span>; <span class="komentar">/* nastaví šířku tabulky na 3/4 šířky stránky */</span>
+<p>Selektorů máme několik druhů:</p>
+<ol>
+  <li>přímé: <code class="tag">tag</code> &#8212; jsou to názvy tagů, vybírají všechny
+    elementy s daným jménem a na ně pravidla aplikují.
+  </li>
+  <li>class selektory: <code class="selektor">.hodnota_atrtibutu_class</code> &#8212;
+    vybírají elementy, které mají atribut <code class="attr">class</code> shodný s textem
+    za tečkou
+  </li>
+  <li>id selektory: <code class="selektor">#hodnota_atributu_id</code> &#8212; vybírají
+    element, který má atribut <code class="attr">id</code> shodný s textem za mřížkou
+  </li>
+</ol>
+<p>Dále se dají selektory kombinovat a pomocí různých operátorů dále přibližovat, ale
+  to už je složitější a necháme si to na další cvičení. Tady máme ukázku stylů aplikovaných
+  na tuto stránku.</p>
+<pre lang="css"><span class="selektor">table</span> {
+    border-collapse: <span class="hodnota">collapse</span>; <span
+    class="komentar">/* zruší mezeru mezi buňkami */</span>
+    width: <span class="hodnota">75%</span>; <span
+    class="komentar">/* nastaví šířku tabulky na 3/4 šířky stránky */</span>
 }
 
 <span class="selektor">td, th</span> {
@@ -149,11 +171,11 @@
     background-color: <span class="hodnota">#CCC</span>; <span class="komentar">/* pozadí stříbrné barvy */</span>
     font-size: <span class="hodnota">small</span>; <span class="komentar">/* malé písmo */</span>
 }</pre>
-	<p class="menu"><a href="../../default.aspx">Home</a> | <a href="../default.htm">Výuka</a>
-		| <a href="../cv1/default.htm">Cvičení 1</a> | <a href="../cv2/default.htm">Cvičení
-		2</a> | <a href="../cv3/default.htm">Cvičení 3 </a>| <a href="../cv4/default.htm">Cvičení
-		4</a> | <a href="../cv5/default.htm">Cvičení 5</a></p>
-	<p class="copyright">Copyright &copy; 2004 Aleš Roubíček. Všechna práva vyhrazena.<br />
-		<strong>Materiály jsou určeny ke studijním účelům.</strong></p>
+<p class="menu"><a href="../../default.aspx">Home</a> | <a href="../default.htm">Výuka</a>
+  | <a href="../cv1/default.htm">Cvičení 1</a> | <a href="../cv2/default.htm">Cvičení
+    2</a> | <a href="../cv3/default.htm">Cvičení 3 </a>| <a href="../cv4/default.htm">Cvičení
+    4</a> | <a href="../cv5/default.htm">Cvičení 5</a></p>
+<p class="copyright">Copyright &copy; 2004 Aleš Roubíček. Všechna práva vyhrazena.<br/>
+  <strong>Materiály jsou určeny ke studijním účelům.</strong></p>
 </body>
 </html>

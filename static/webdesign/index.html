@@ -2,19 +2,34 @@
 <html lang="cs">
 <meta charset="utf-8">
 <meta name="Author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
-<meta name="Copyright" content="&copy; 2004 - 2008 Aleš Roubíček. Creative Commons 3.0">
+<meta name="copyright" content="&copy; 2004 - 2022 Aleš Roubíček. Creative Commons 4.0 BY-SA">
 <meta name="Description" content="Open source projekty a reference na webdesign z rukou Aleše Roubíčka.">
 <title>Projekty a reference</title>
 <link rel="bookmark" type="text/html" href="http://rarous.net/webdesign/" title="rarouš.webdesign">
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <link rel="stylesheet" href="/assets/css/hp.css">
 <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-90726-1', 'auto');
-ga('send', 'pageview');
+  self._ga = {
+    // Full Measurement Protocol param reference:
+    // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
+    data: {
+      v: "1", // Measurement Protocol version.
+      tid: "UA-90726-1", // Tracking ID.
+      cid: `${Date.now()}${Math.random()}`, // Client ID.
+      dl: location.href, // Document location.
+      aip: 1, // Anonymize IP
+    },
+    send(additionalParams) {
+      navigator.sendBeacon(
+        "https://google-analytics.com/collect",
+        new URLSearchParams({
+          ...this.data,
+          ...additionalParams,
+        }).toString()
+      );
+    },
+  };
+  _ga.send({ t: "pageview" });
 </script>
 <body id="rarous-net">
   <div id="top">

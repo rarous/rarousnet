@@ -1,67 +1,93 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="Content-Language" content="cs" />
-	<meta name="author" content="Aleš Roubíček; mailto:ales.roubicek@pbsoftware.cz" />
-	<link rel="stylesheet" media="screen" type="text/css" href="../../styles/sheets.css" />
-	<link rel="stylesheet" media="all" type="text/css" href="../../styles/code.css" />
-	<link rel="Index" type="text/html" href="../default.htm" />
-	<link rel="Next" type="text/html" href="../cv5/default.htm" />
-	<link rel="Prev" type="text/html" href="../cv3/default.htm" />
-	<title>Cvičení 5 - Počítačový kroužek ZŠ Osečná</title>
-    <script>
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-90726-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Language" content="cs"/>
+  <meta name="author" content="Aleš Roubíček; mailto:ales&#64;roubicek.name"/>
+  <link rel="stylesheet" media="screen" type="text/css" href="../../styles/sheets.css"/>
+  <link rel="stylesheet" media="all" type="text/css" href="../../styles/code.css"/>
+  <link rel="Index" type="text/html" href="../default.htm"/>
+  <link rel="Next" type="text/html" href="../cv5/default.htm"/>
+  <link rel="Prev" type="text/html" href="../cv3/default.htm"/>
+  <title>Cvičení 5 - Počítačový kroužek ZŠ Osečná</title>
+  <script>
+    self._ga = {
+      // Full Measurement Protocol param reference:
+      // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
+      data: {
+        v: "1", // Measurement Protocol version.
+        tid: "UA-90726-1", // Tracking ID.
+        cid: `${Date.now()}${Math.random()}`, // Client ID.
+        dl: location.href, // Document location.
+        aip: 1, // Anonymize IP
+      },
+      send(additionalParams) {
+        navigator.sendBeacon(
+          "https://google-analytics.com/collect",
+          new URLSearchParams({
+            ...this.data,
+            ...additionalParams,
+          }).toString()
+        );
+      },
+    };
+    _ga.send({ t: "pageview" });
+  </script>
 </head>
 <body>
-	<h1>Cvičení 5, 6 a 7 </h1>
-	<p>Toto cvičení jsme procvičovali styly a začali jsme dělat jednoduchý dvousloupcový
-		design. Řekli jsme si, že pro složitější strukturování stránek a vytváření logických
-		bluků kódu se používá tag <code class="tag">div</code>. Pro změnu vladtností části
-		textu se používá řádkový tag <code class="tag">span</code>. Tyto tagy nemají žádný
-		semantický význam, jsou určeny pouze pro stylování dokumentu.</p>
-	<dl>
-		<dt><code class="tag">div</code></dt>
-		<dd>blokový element určený k vytváření logických bloků, které se lépe stylují.</dd>
-		<dt><code class="tag">span</code></dt>
-		<dd>řádkový element určený ke změně vlastností části textu, např. <code><span class="ele">&lt;</span><span class="tag">span</span> <span class="attr">class</span><span class="hodnota">="cerveny"</span><span class="ele">&gt;</span>červený
-		text<span class="ele">&lt;/</span><span class="tag">span</span><span class="ele">&gt;</span></code> vypadá takto: <span class="cerveny">červený text</span>. Samozřejmě
-			máme připravený styl, který nastaví třídě <em>cerveny</em> červenou barvu.</dd>
-	</dl>
-	<h2>Rozvržení stránky - layout</h2>
-	<p>Když vytváříme nějakou stránku, chceme, aby se návštěvníkům líbila - proto používáme
-		styly - a aby se jim dobře používala a byla přehledná. K tomu nám dopomůže vhodné
-		rozvržení stránky. Mezi základní typy layoutů patří dvousloupcový s hlavičkou který
-		vypadá asi následovně:</p>
-	<p><img alt="dvousloupcový layout s hlavičkou" src="layout.png" /></p>
-	<pre lang="html">&hellip;
-<span class="ele">&lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span class="ele">="page"&gt;</span>
-    <span class="ele">&lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span class="ele">="head"&gt;</span>
-        <span class="ele">&lt;</span><span class="tag">p</span><span class="ele">&gt;</span>hlavička<span class="ele">&lt;/</span><span class="tag">p</span><span class="ele">&gt;</span>
+<h1>Cvičení 5, 6 a 7 </h1>
+<p>Toto cvičení jsme procvičovali styly a začali jsme dělat jednoduchý dvousloupcový
+  design. Řekli jsme si, že pro složitější strukturování stránek a vytváření logických
+  bluků kódu se používá tag <code class="tag">div</code>. Pro změnu vladtností části
+  textu se používá řádkový tag <code class="tag">span</code>. Tyto tagy nemají žádný
+  semantický význam, jsou určeny pouze pro stylování dokumentu.</p>
+<dl>
+  <dt><code class="tag">div</code></dt>
+  <dd>blokový element určený k vytváření logických bloků, které se lépe stylují.</dd>
+  <dt><code class="tag">span</code></dt>
+  <dd>řádkový element určený ke změně vlastností části textu, např. <code><span class="ele">&lt;</span><span
+    class="tag">span</span> <span class="attr">class</span><span class="hodnota">="cerveny"</span><span
+    class="ele">&gt;</span>červený
+    text<span class="ele">&lt;/</span><span class="tag">span</span><span class="ele">&gt;</span></code> vypadá takto:
+    <span class="cerveny">červený text</span>. Samozřejmě
+    máme připravený styl, který nastaví třídě <em>cerveny</em> červenou barvu.
+  </dd>
+</dl>
+<h2>Rozvržení stránky - layout</h2>
+<p>Když vytváříme nějakou stránku, chceme, aby se návštěvníkům líbila - proto používáme
+  styly - a aby se jim dobře používala a byla přehledná. K tomu nám dopomůže vhodné
+  rozvržení stránky. Mezi základní typy layoutů patří dvousloupcový s hlavičkou který
+  vypadá asi následovně:</p>
+<p><img alt="dvousloupcový layout s hlavičkou" src="layout.png"/></p>
+<pre lang="html">&hellip;
+<span class="ele">&lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span
+    class="ele">="page"&gt;</span>
+    <span class="ele">&lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span
+    class="ele">="head"&gt;</span>
+        <span class="ele">&lt;</span><span class="tag">p</span><span class="ele">&gt;</span>hlavička<span class="ele">&lt;/</span><span
+    class="tag">p</span><span class="ele">&gt;</span>
     <span class="ele">&lt;/</span><span class="tag">div</span><span class="ele">&gt;
     &lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span class="ele">="obsah"&gt;</span>
-        <span class="ele">&lt;</span><span class="tag">h1</span><span class="ele">&gt;</span>nadpis<span class="ele">&lt;/</span><span class="tag">h1</span><span class="ele">&gt;
-        &lt;</span><span class="tag">p</span><span class="ele">&gt;</span>text stránky<span class="ele">&lt;/</span><span class="tag">p</span><span class="ele">&gt;
-        &lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span class="ele">=&quot;box&quot;&gt;&lt;/</span><span class="tag">div</span><span class="ele">&gt;
+        <span class="ele">&lt;</span><span class="tag">h1</span><span class="ele">&gt;</span>nadpis<span class="ele">&lt;/</span><span
+    class="tag">h1</span><span class="ele">&gt;
+        &lt;</span><span class="tag">p</span><span class="ele">&gt;</span>text stránky<span
+    class="ele">&lt;/</span><span class="tag">p</span><span class="ele">&gt;
+        &lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span class="ele">=&quot;box&quot;&gt;&lt;/</span><span
+    class="tag">div</span><span class="ele">&gt;
     &lt;/</span><span class="tag">div</span><span class="ele">&gt;
     &lt;</span><span class="tag">div</span><span class="ele"> </span><span class="attr">id</span><span class="ele">="menu"&gt;
         &lt;</span><span class="tag">ul</span><span class="ele">&gt;
-            &lt;</span><span class="tag">li</span><span class="ele">&gt;</span>položka menu<span class="ele">&lt;/</span><span class="tag">li</span><span class="ele">&gt;
-            &lt;</span><span class="tag">li</span><span class="ele">&gt;</span>položka menu<span class="ele">&lt;/</span><span class="tag">li</span><span class="ele">&gt;
+            &lt;</span><span class="tag">li</span><span class="ele">&gt;</span>položka menu<span
+    class="ele">&lt;/</span><span class="tag">li</span><span class="ele">&gt;
+            &lt;</span><span class="tag">li</span><span class="ele">&gt;</span>položka menu<span
+    class="ele">&lt;/</span><span class="tag">li</span><span class="ele">&gt;
         &lt;/</span><span class="tag">ul</span><span class="ele">&gt;
     &lt;/</span><span class="tag">div</span><span class="ele">&gt;
 &lt;/</span><span class="tag">div</span><span class="ele">&gt;</span>
 &hellip;</pre>
 <p>No a k takovémuto XHTML kódu si přidáme následující definici stylů:</p>
-<pre lang="css"><span class="komentar">/* nastavíme dokumentu bílé pozadí a menší písmo s fontem Arial */</span><span class="selektor">
+<pre lang="css"><span class="komentar">/* nastavíme dokumentu bílé pozadí a menší písmo s fontem Arial */</span><span
+  class="selektor">
 body</span> {
     background: <span class="hodnota">#FFF</span>;
     font: <span class="hodnota">90% sans-serif</span>;
@@ -105,11 +131,11 @@ body</span> {
     height: <span class="hodnota">50px</span>;
 }
 </pre>
-	<p class="menu"><a href="../../default.aspx">Home</a> | <a href="../default.htm">Výuka</a>
-		| <a href="../cv1/default.htm">Cvičení 1</a> | <a href="../cv2/default.htm">Cvičení
-		2</a> | <a href="../cv3/default.htm">Cvičení 3 </a>| <a href="../cv4/default.htm">Cvičení
-		4</a> | <a href="../cv5/default.htm">Cvičení 5</a></p>
-	<p class="copyright">Copyright &copy; 2004 Aleš Roubíček. Všechna práva vyhrazena.<br />
-		<strong>Materiály jsou určeny ke studijním účelům.</strong></p>
+<p class="menu"><a href="../../default.aspx">Home</a> | <a href="../default.htm">Výuka</a>
+  | <a href="../cv1/default.htm">Cvičení 1</a> | <a href="../cv2/default.htm">Cvičení
+    2</a> | <a href="../cv3/default.htm">Cvičení 3 </a>| <a href="../cv4/default.htm">Cvičení
+    4</a> | <a href="../cv5/default.htm">Cvičení 5</a></p>
+<p class="copyright">Copyright &copy; 2004 Aleš Roubíček. Všechna práva vyhrazena.<br/>
+  <strong>Materiály jsou určeny ke studijním účelům.</strong></p>
 </body>
 </html>
