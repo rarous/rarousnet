@@ -54,7 +54,7 @@ Funkce `render` bere jako první parametr šablonu, jako druhý parametr, kam se
 a "třetí, nepovinný, parametr":[https://lit.dev/docs/libraries/standalone-templates/#render-options] umožňuje
 přesněji specifikovat, jak se má vyrenderovaný kód vkládat.
 
-Základní chování je takové, že se první render šablony připojí do cílového elementu nakonec. Další volání `render`
+Základní chování je takové, že se první render šablony připojí do cílového elementu na konec. Další volání `render`
 už tento kus přepisuje. Tohle je jediná breaking change oproti `lit-html` 1.0, které vždy obsah elementu přepisovalo.
 
 Tahat skoro 3 KiB závislostí jenom kvůli hezkému vložení stylopisu je samozřejmě nesmysl, ale je to pěkná ukázka mnoha
@@ -127,7 +127,7 @@ ECMAScriptu bez potřeby jakýchkoliv kompilátorů. Zkrátka, otevřete browser
 HTML soubor a můžete vyvíjet živou aplikaci (REPL style). Já ji používám jako náhradu jak jQuery, tak Reactu.
 Problémy, které ve své době řešili, jsou už pryč a není třeba s nimi uživatele mučit.
 
-Pokud chcete z vašich šablon udělat znovu použitelné komponenty, můžete použít další část knihovny Lit - `LitElement`,
+Pokud chcete z vašich šablon udělat znovupoužitelné komponenty, můžete použít další část knihovny Lit - `LitElement`,
 na který se podíváme někdy příště. Prozradím jen, že jde o základní třídu pro psaní
 "Web Components":[https://developer.mozilla.org/en-US/docs/Web/Web_Components], která využívá `lit-html` pro šablonování
 a zjednodušuje API, které je podobné základní třídě `React.Component`. Jen je to malé (zhruba jako Preact), jednoduché a rychlé.
