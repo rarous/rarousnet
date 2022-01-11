@@ -8,21 +8,24 @@
 :published "2022-01-11T18:10:00.000"}
 ---
 
-Máme tu rok 2022 a weby jsou plné “cookie lišt“ a jiných podivných popupů, ačkoliv nutně nemusí. 
-Ne, že by nemuseli uživatele informovat o tom, že se ho chystají špehovat na každém kroku, 
-a tato data prodávat dál. To je samozřejmě k uživateli fér. Nemusí ale uživatele za každou cenu špiclovat.
+Máme tu rok 2022 a weby jsou plné “cookie lišt“ a jiných podivných popupů. Ačkoliv nutně nemusí. 
+Ne, že by nemuseli uživatele informovat o tom, že se ho chystají špehovat na každém kroku - a 
+tato data prodávat dál. To je samozřejmě k uživateli fér. Nemusí ale uživatele za každou cenu špiclovat.
 
-Já vím, všichni si ale chceme honit pindíky nad erektivními grafy v Google Analytics. 
-I mě zajímá, kolik lidí si tento článek přečte. Ale nechci u toho pomáhat Googlu k získávání dat,
-která mu na mým webu můžou být ukradená. Jak vidíte, žádnou cookie lištu nevidíte! Není to tím, 
-že bych se na ní vykašlal, ale místo zhoršování UX, jsem se rozhodl, že mi stačí jednoduchá analytika. 
-Koukal jsem, že na Twitteru je to žhavé téma a nikdo neví pořádně jak na to. A když, tak na to plánuje
-prodávat školení nebo já nevím co. Přitom je to taková prkotina...
+Já vím. Všichni si ale chceme honit pindíky nad erektivními grafy v Google Analytics. 
+I mě zajímá, kolik lidí si tento článek přečte. Nechci u toho pomáhat Googlu k získávání dat,
+která mu na mým webu můžou být ukradená... Jak vidíte, žádnou cookie lištu nevidíte!
+
+Není to tím, že bych se na ní vykašlal. Místo zhoršování UX, jsem se rozhodl, 
+že mi stačí *jednoduchá analytika*. Koukal jsem, že na Twitteru je to žhavé téma 
+a nikdo neví pořádně jak na to. A když, tak na to plánuje prodávat školení nebo já nevím co. 
+Přitom je to taková prkotina...
 
 Základem je neřešit kód, co vám vygenerují GA((Google Analytics)), protože ten asi 
-tak snadno nenakonfigurujute. A pořád vkládáte jejich script do stránky a to je to, co nechceme. 
-Analytics mají své API a můžeme si i rozšířit svou znalost webové platformy o zajímavé 
-API pro asynchroní zasílání analytických dat "navigator.sendBeacon":[https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon]:
+tak snadno nenakonfigurujete. A pořád vkládáte jejich script do stránky a to je to, co nechceme. 
+Analytics mají své API:[https://developers.google.com/analytics/devguides/collection/protocol/v1/reference]. 
+Můžeme si i rozšířit svou znalost webové platformy o zajímavé API pro asynchroní
+zasílání analytických dat "navigator.sendBeacon":[https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon]:
 
 /--code html
  <script>
@@ -50,13 +53,14 @@ API pro asynchroní zasílání analytických dat "navigator.sendBeacon":[https:
   </script>
 \--code
 
-Nahraďte UA-TVUJ-TRACKING-KOD za kód, který vám analytics vygenerují třeba pro použití 
-v GTM (nebo je někde v původním tracking code.) 
+Nahraďte `UA-TVUJ-TRACKING-KOD` za kód, který vám analytics vygenerují třeba pro použití 
+v GTM (nebo je někde v původním tracking code). 
 
 Zajímavým plusem tohoto řešení je, že vám ze statistik zmizí IE11 a starší, 
 které "Beacon API nemají":[https://caniuse.com/beacon]. Takže ho pak můžete přestat s klidným srdcem řešit. A to se vyplatí!
 
-Pokud používáte GA4, tak tenhle kód vám fungovat nebude. Ale taky má API! Těžko říct, zda použitelné.
+Pokud používáte GA4, tak tenhle kód vám fungovat nebude. 
+Ale taky má API:[https://developers.google.com/analytics/devguides/collection/protocol/ga4]! Těžko říct, zda je použitelné.
 
 Kód jsem sám nevymýšlel, ale okopíroval jsem jej od bývalého zaměstnance Googlu - Surmy:[https://surma.dev/]. 
 
