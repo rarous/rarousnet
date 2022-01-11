@@ -1,0 +1,63 @@
+
+---
+{:id 482,
+:title "Google Analytics bez cookies",
+:description "Máme tu rok 2022 a weby jsou plné “cookie lišt“ a jiných podivných popupů, ačkoliv nutně nemusí.",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "webdesign"},
+:published "2022-01-11T18:10:00.000"}
+---
+
+Máme tu rok 2022 a weby jsou plné “cookie lišt“ a jiných podivných popupů, ačkoliv nutně nemusí. 
+Ne, že by nemuseli uživatele informovat o tom, že se ho chystají špehovat na každém kroku, 
+a tato data prodávat dál. To je samozřejmě k uživateli fér. Nemusí ale uživatele za každou cenu špiclovat.
+
+Já vím, všichni si ale chceme honit pindíky nad erektivními grafy v Google Analytics. 
+I mě zajímá, kolik lidí si tento článek přečte. Ale nechci u toho pomáhat Googlu k získávání dat,
+která mu na mým webu můžou být ukradená. Jak vidíte, žádnou cookie lištu nevidíte! Není to tím, 
+že bych se na ní vykašlal, ale místo zhoršování UX, jsem se rozhodl, že mi stačí jednoduchá analytika. 
+Koukal jsem, že na Twitteru je to žhavé téma a nikdo neví pořádně jak na to. A když, tak na to plánuje
+prodávat školení nebo já nevím co. Přitom je to taková prkotina...
+
+Základem je neřešit kód, co vám vygenerují GA((Google Analytics)), protože ten asi 
+tak snadno nenakonfigurujute. A pořád vkládáte jejich script do stránky a to je to, co nechceme. 
+Analytics mají své API a můžeme si i rozšířit svou znalost webové platformy o zajímavé 
+API pro asynchroní zasílání analytických dat "navigator.sendBeacon":[https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon]:
+
+/--code html
+ <script>
+    self._ga = {
+      // Full Measurement Protocol param reference:
+      // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
+      data: {
+        v: "1", // Measurement Protocol version.
+        tid: "UA-TVUJ-TRACKING-KOD", // Tracking ID.
+        cid: `${Date.now()}${Math.random()}`, // Client ID.
+        dl: location.href, // Document location.
+        aip: 1, // Anonymize IP
+      },
+      send(additionalParams) {
+        navigator.sendBeacon(
+          "https://google-analytics.com/collect",
+          new URLSearchParams({
+            ...this.data,
+            ...additionalParams,
+          }).toString()
+        );
+      },
+    };
+    _ga.send({ t: "pageview" });
+  </script>
+\--code
+
+Nahraďte UA-TVUJ-TRACKING-KOD za kód, který vám analytics vygenerují třeba pro použití 
+v GTM (nebo je někde v původním tracking code.) 
+
+Zajímavým plusem tohoto řešení je, že vám ze statistik zmizí IE11 a starší, 
+které "Beacon API nemají":[https://caniuse.com/beacon]. Takže ho pak můžete přestat s klidným srdcem řešit. A to se vyplatí!
+
+Pokud používáte GA4, tak tenhle kód vám fungovat nebude. Ale taky má API! Těžko říct, zda použitelné.
+
+Kód jsem sám nevymýšlel, ale okopíroval jsem jej od bývalého zaměstnance Googlu - Surmy:[https://surma.dev/]. 
+
+Užívejte!
