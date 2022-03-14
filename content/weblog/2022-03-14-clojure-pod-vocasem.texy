@@ -1,7 +1,7 @@
 ---
 {:id 483,
 :title "Pod Vocasem",
-:description "Byl jsem hostem v Podcastu "Pod Vocasem", kde jsme si povídali nejen o Clojure.",
+:description "Byl jsem hostem v Podcastu 'Pod Vocasem', kde jsme si povídali nejen o Clojure.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "functional" "clojure" "podcast"},
 :published "2022-03-14T19:00:00.000"}
