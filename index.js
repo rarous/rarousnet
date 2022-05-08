@@ -69,14 +69,14 @@ new cloudflare.Record(`${domain}/dns-record`, {
   proxied: true,
 });
 
-new cloudflare.Record(`${domain}/dns-record-keybase`, {
-  zoneId,
-  name: "@",
-  type: "TXT",
-  value:
-    "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
-  ttl: 3600,
-});
+// new cloudflare.Record(`${domain}/dns-record-keybase`, {
+//   zoneId,
+//   name: "@",
+//   type: "TXT",
+//   value:
+//     "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
+//   ttl: 3600,
+// });
 
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
   zoneId,
