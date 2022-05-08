@@ -1,7 +1,6 @@
 import stream from "stream";
 import util from "util";
-import {dest, series, src, watch} from "gulp";
-
+import gulp from "gulp";
 import hash from "gulp-rev";
 import references from "gulp-rev-replace";
 import deleteNotHashed from "gulp-rev-delete-original";
@@ -15,12 +14,10 @@ import browserSync from "browser-sync";
 import cssnano from "cssnano";
 
 const pipeline = util.promisify(stream.pipeline);
+const { dest, series, src, watch } = gulp;
 
 function css() {
-  const plugins = [
-    autoprefixer(),
-    cssnano()
-  ];
+  const plugins = [autoprefixer(), cssnano()];
   return pipeline(
     src("./static/**/*.css"),
     postcss(plugins),
@@ -54,7 +51,7 @@ function html() {
       removeOptionalTags: true,
       removeRedundantAttributes: true,
       removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true
+      removeStyleLinkTypeAttributes: true,
     }),
     dest("./dist")
   );
@@ -69,7 +66,7 @@ function size() {
 
 function run(done) {
   browserSync.init({
-    server: "./dist"
+    server: "./dist",
   });
 
   watch("static/**/*.css", css);
