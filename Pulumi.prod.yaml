@@ -1,7 +1,6 @@
 config:
   aws:region: eu-central-1
-  cloudflare:apiKey:
-    secure: AAABAI/i3dUs+Jh9iXPrFjGBb2rm2VsPi2hdbW28aaoJMfSxB8KVye7WIgOLkcqx2YZQ/aUhT2ysllLZJXgN47G5Q+fi
-  cloudflare:email: ales@roubicek.name
+  cloudflare:apiToken:
+    secure: AAABAN1JtiFNSmq3fYiwMPBx7FyiaIhPMLcZj8f4BXOdmLNrGF1Ap1Iao4GK6/aQb8xUwUVJz/pAPnZJ59SGFhHVaQamvlST
   rarousnet:domain: www.rarous.net
   rarousnet:zone_id: 08e36c0745513d3aaf121e9108bda956

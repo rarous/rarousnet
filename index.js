@@ -60,9 +60,9 @@ new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
   }),
 });
 
-const record = new cloudflare.Record(`${domain}/dns-record`, {
+new cloudflare.Record(`${domain}/dns-record`, {
+  zoneId,
   name: "www",
-  zoneId: zoneId,
   type: "CNAME",
   value: bucket.websiteEndpoint,
   ttl: 1,
@@ -70,11 +70,12 @@ const record = new cloudflare.Record(`${domain}/dns-record`, {
 });
 
 new cloudflare.Record(`${domain}/dns-record-keybase`, {
+  zoneId,
   name: "@",
-  zoneId: zoneId,
   type: "TXT",
-  value: "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
-  ttl: 3600
+  value:
+    "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
+  ttl: 3600,
 });
 
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
@@ -97,5 +98,7 @@ new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
 });
 
 export const bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
-export const websiteTestUri = bucket.websiteEndpoint.apply((x) => `http://${x}`);
+export const websiteTestUri = bucket.websiteEndpoint.apply(
+  (x) => `http://${x}`
+);
 export const websiteUri = `https://${domain}`;
