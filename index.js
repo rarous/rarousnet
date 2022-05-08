@@ -79,14 +79,21 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
 });
 
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
-  zoneId: zoneId,
+  zoneId,
   settings: {
     alwaysUseHttps: "on",
     automaticHttpsRewrites: "on",
-    brotli: "on",
-    http3: "on",
     minTlsVersion: "1.2",
+    http3: "on",
     zeroRtt: "on",
+    ipv6: "on",
+    tls13: "on",
+    brotli: "on",
+    minify: {
+      css: "on",
+      html: "on",
+      js: "on",
+    },
     securityHeader: {
       enabled: true,
       includeSubdomains: true,
