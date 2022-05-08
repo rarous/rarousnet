@@ -1,16 +1,15 @@
-"use strict";
+import fs from "fs";
+import path from "path";
+import puppeteer from "puppeteer";
+import data from "./data.json" assert { type: "json" };
 
-const fs = require("fs");
-const path = require("path");
-const puppeteer = require("puppeteer");
-const data = require("./data.json");
 const url = process.argv[2];
 
 console.log("Gryphoon 3.0");
 console.log("Twitter Card images generator");
 console.log("");
 
-(async () => {
+try {
   console.log("Starting Puppeteer...");
   const browser = await puppeteer.launch({
     // We need to disable Sandbox to be able to run in CircleCI environment
@@ -28,10 +27,10 @@ console.log("");
   console.log("");
   console.log("DONE");
   await browser.close();
-})().catch((err) => {
+} catch (err) {
   console.error(err);
   process.exit(1);
-});
+}
 
 async function changeCardContent(card, post) {
   const setContent = (el, s) => (el.innerText = s);
