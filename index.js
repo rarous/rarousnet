@@ -87,7 +87,6 @@ new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
     http3: "on",
     zeroRtt: "on",
     ipv6: "on",
-    tls13: "on",
     brotli: "on",
     minify: {
       css: "on",
