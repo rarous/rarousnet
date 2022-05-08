@@ -10,10 +10,9 @@
     "IE 8"
   ],
   "dependencies": {
-    "@pulumi/aws": "<=4.8.0",
+    "@pulumi/aws": "^5.4.0",
     "@pulumi/cloudflare": "^3.3.0",
-    "@pulumi/pulumi": "<=3.5.1",
-    "postcss": "^8.3.6"
+    "@pulumi/pulumi": "^3.32.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.1",
@@ -36,6 +35,7 @@
     "lighthouse": "^8.1.0",
     "local-web-server": "^4.2.1",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.6",
     "prettier": "^2.3.2",
     "puppeteer": "10.1.0",
     "schema-dts": "^0.8.3",
