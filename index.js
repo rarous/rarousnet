@@ -1,11 +1,9 @@
-"use strict";
-
-const pulumi = require("@pulumi/pulumi");
-const aws = require("@pulumi/aws");
-const cloudflare = require("@pulumi/cloudflare");
+import pulumi from "@pulumi/pulumi";
+import aws from "@pulumi/aws";
+import cloudflare from "@pulumi/cloudflare";
 
 const config = new pulumi.Config();
-const zoneId = config.require("zone_id");
+export const zoneId = config.require("zone_id");
 const domain = config.require("domain");
 
 const bucket = new aws.s3.Bucket(`${domain}/bucket`, {
@@ -17,7 +15,7 @@ const bucket = new aws.s3.Bucket(`${domain}/bucket`, {
   },
 });
 
-const bucketPolicy = new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
+new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
   bucket: bucket.bucket,
   policy: JSON.stringify({
     Version: "2012-10-17",
@@ -98,7 +96,6 @@ new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
   },
 });
 
-exports.bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
-exports.websiteTestUri = bucket.websiteEndpoint.apply((x) => `http://${x}`);
-exports.zoneId = record.zoneId;
-exports.websiteUri = `https://${domain}`;
+export const bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
+export const websiteTestUri = bucket.websiteEndpoint.apply((x) => `http://${x}`);
+export const websiteUri = `https://${domain}`;

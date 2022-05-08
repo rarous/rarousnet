@@ -1,19 +1,18 @@
-"use strict";
+import stream from "stream";
+import util from "util";
+import {dest, series, src, watch} from "gulp";
 
-const stream = require("stream");
-const util = require("util");
-const { src, dest, parallel, series, watch } = require("gulp");
-const hash = require("gulp-rev");
-const references = require("gulp-rev-replace");
-const deleteNotHashed = require("gulp-rev-delete-original");
-const htmlMin = require("gulp-htmlmin");
-const notify = require("gulp-notify");
-const plumber = require("gulp-plumber");
-const postcss = require("gulp-postcss");
-const sizereport = require("gulp-sizereport");
-const autoprefixer = require("autoprefixer");
-const browserSync = require("browser-sync");
-const cssnano = require("cssnano");
+import hash from "gulp-rev";
+import references from "gulp-rev-replace";
+import deleteNotHashed from "gulp-rev-delete-original";
+import htmlMin from "gulp-htmlmin";
+import notify from "gulp-notify";
+import plumber from "gulp-plumber";
+import postcss from "gulp-postcss";
+import sizereport from "gulp-sizereport";
+import autoprefixer from "autoprefixer";
+import browserSync from "browser-sync";
+import cssnano from "cssnano";
 
 const pipeline = util.promisify(stream.pipeline);
 
@@ -81,5 +80,6 @@ function run(done) {
   done();
 }
 
-exports.dev = series(css, run);
-exports.default = series(css, hashStyles, html, size);
+export const dev = series(css, run);
+const prod = series(css, hashStyles, html, size);
+export default prod;
