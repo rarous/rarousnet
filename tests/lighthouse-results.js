@@ -1,11 +1,13 @@
 import test from "ava";
-import results from "../results/root.report.json";
+import results from "../results/root.report.json" assert { type: "json" };
 
-const assertThreshold = ({ score }, threshold) => t =>
-  t.true(
-    score >= threshold,
-    `Score should be at least ${100 * threshold}%. Actual: ${100 * score}%`
-  );
+const assertThreshold =
+  ({ score }, threshold) =>
+  (t) =>
+    t.true(
+      score >= threshold,
+      `Score should be at least ${100 * threshold}%. Actual: ${100 * score}%`
+    );
 
 test(
   "Lighthouse Accessibility",
