@@ -1,6 +1,5 @@
 config:
   aws:region: eu-central-1
   cloudflare:apiToken:
-    secure: AAABAN1JtiFNSmq3fYiwMPBx7FyiaIhPMLcZj8f4BXOdmLNrGF1Ap1Iao4GK6/aQb8xUwUVJz/pAPnZJ59SGFhHVaQamvlST
+    secure: AAABAHb65l/T32WMzvOuksh1nP592WEVp7bCKXqkzOEQEcrD4PqDhlUImjfAEI9g1kGaG45yIv5QNIMzOga3T4Um3TnhVu4x
   rarousnet:domain: www.rarous.net
-  rarousnet:zone_id: 08e36c0745513d3aaf121e9108bda956

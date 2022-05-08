@@ -3,8 +3,41 @@ import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
 
 const config = new pulumi.Config();
-export const zoneId = config.require("zone_id");
 const domain = config.require("domain");
+
+const zone = new cloudflare.Zone(
+  "rarous.net",
+  {
+    plan: "free",
+    zone: "rarous.net",
+  },
+  { protect: true }
+);
+
+new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
+  zoneId: zone.id,
+  settings: {
+    alwaysUseHttps: "on",
+    automaticHttpsRewrites: "on",
+    minTlsVersion: "1.2",
+    http3: "on",
+    zeroRtt: "on",
+    ipv6: "on",
+    brotli: "on",
+    minify: {
+      css: "on",
+      html: "on",
+      js: "on",
+    },
+    securityHeader: {
+      enabled: true,
+      includeSubdomains: true,
+      nosniff: true,
+      preload: true,
+      maxAge: 31536000,
+    },
+  },
+});
 
 const bucket = new aws.s3.Bucket(`${domain}/bucket`, {
   bucket: domain,
@@ -61,7 +94,7 @@ new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
 });
 
 new cloudflare.Record(`${domain}/dns-record`, {
-  zoneId,
+  zoneId: zone.id,
   name: "www",
   type: "CNAME",
   value: bucket.websiteEndpoint,
@@ -69,38 +102,13 @@ new cloudflare.Record(`${domain}/dns-record`, {
   proxied: true,
 });
 
-// new cloudflare.Record(`${domain}/dns-record-keybase`, {
-//   zoneId,
-//   name: "@",
-//   type: "TXT",
-//   value:
-//     "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
-//   ttl: 3600,
-// });
-
-new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
-  zoneId,
-  settings: {
-    alwaysUseHttps: "on",
-    automaticHttpsRewrites: "on",
-    minTlsVersion: "1.2",
-    http3: "on",
-    zeroRtt: "on",
-    ipv6: "on",
-    brotli: "on",
-    minify: {
-      css: "on",
-      html: "on",
-      js: "on",
-    },
-    securityHeader: {
-      enabled: true,
-      includeSubdomains: true,
-      nosniff: true,
-      preload: true,
-      maxAge: 31536000,
-    },
-  },
+new cloudflare.Record(`${domain}/dns-record-keybase`, {
+  zoneId: zone.id,
+  name: "@",
+  type: "TXT",
+  value:
+    "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
+  ttl: 3600,
 });
 
 export const bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
@@ -108,3 +116,5 @@ export const websiteTestUri = bucket.websiteEndpoint.apply(
   (x) => `http://${x}`
 );
 export const websiteUri = `https://${domain}`;
+export const zoneId = zone.id;
+export const nameServers = zone.nameServers;
