@@ -38,7 +38,7 @@
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
     "puppeteer": "10.1.0",
-    "schema-dts": "^0.8.3",
+    "schema-dts": "^1.1.0",
     "tap-xunit": "^2.4.1"
   },
   "scripts": {
