@@ -141,7 +141,9 @@ workflows:
           requires:
             - postprocess
       - s3_deploy:
-          context: aws
+          context:
+            - aws
+            - cloudflare-invalidation
           requires:
             - provision
             - test
