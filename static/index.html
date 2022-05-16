@@ -145,9 +145,11 @@
 
         [property="telephone"]:before,
         [property="email"]:before,
-        .bank-account-number:before { content: "✆"; display: inline-block; padding-right: 1ex }
+        .bank-account-number:before,
+        .identification-number:before{ content: "✆"; display: inline-block; padding-right: 1ex }
         [property="email"]:before { content: "✉" }
         .bank-account-number:before { content: "⑉" }
+        .identification-number:before { content: "﹟" }
         [property="address"], .qr-code { display: none }
 
         #links a { line-height: 1.5em }
@@ -234,7 +236,7 @@
                 <dt>Banka:</dt>
                 <dd class="bank-account-number" title="číslu účtu">237716453/0600</dd>
                 <dt>IČ:</dt>
-                <dd>88707253</dd>
+                <dd class="identification-number">88707253</dd>
                 <dt>Adresa:</dt>
                 <dd property="address" typeof="PostalAddress">
                     <span property="streetAddress">Koněvova 31/27</span><br>
