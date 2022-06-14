@@ -20,7 +20,7 @@
     "broken-link-checker-local": "^0.2.1",
     "browser-sync": "^2.27.5",
     "cssnano": "^5.0.7",
-    "csv-parse": "^4.16.0",
+    "csv-parse": "^5.2.0",
     "esm": "^3.2.25",
     "gulp": "^4.0.2",
     "gulp-htmlmin": "^5.0.1",
