@@ -123,10 +123,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pulumi/aws@5.4.0":
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-5.4.0.tgz#8ba2b5ae13b0623b85c8c5e48dde510b8a8cbf43"
-  integrity sha512-98LnB+0CHM5xViIWD9Cs6P+lzLHvHVDw9EYVOOlNMA84pjid12f4vGBkxh3witritYVp5wpIEAaAKL3+3tUs4Q==
+"@pulumi/aws@5.9.2":
+  version "5.9.2"
+  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-5.9.2.tgz#c505c3ce5757036f82379ab03d840c5cc320c244"
+  integrity sha512-OE3E0+6gt7H0PjxHI7Kr23xXKOqasR8LeaZQ7BIe/M7Xmx4pErRTotI35sTOWMqN7rYdSPJRZHW7PRXRtKJFtw==
   dependencies:
     "@pulumi/pulumi" "^3.0.0"
     aws-sdk "^2.0.0"
@@ -135,14 +135,35 @@
     read-package-tree "^5.2.1"
     resolve "^1.7.1"
 
-"@pulumi/cloudflare@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-4.6.0.tgz#0c60dc2f78d199ccfdde60306c77545a79e0a9bb"
-  integrity sha512-UvcQTSz38m7qBwKcaWzrPYGClcc+x5vSTqOeJPqFJbE785InT8yCN9DlzC6mOrKikOR7HlkJ7jthBwKbDLk4mw==
+"@pulumi/cloudflare@4.8.0":
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-4.8.0.tgz#cb7a4b62c4f55aace92647b94d8ab658c6498c09"
+  integrity sha512-70SzU5kSPVlRuOMng0+/fzJN5tewfphX1/qs+wnlsir424QJxxUc2IDf6pIbWTnAZXU4wFuCr6vbLOgFmIs8ZQ==
   dependencies:
     "@pulumi/pulumi" "^3.0.0"
 
-"@pulumi/pulumi@3.32.1", "@pulumi/pulumi@^3.0.0":
+"@pulumi/pulumi@3.35.3":
+  version "3.35.3"
+  resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-3.35.3.tgz#dcadc9fba915f0f651ba20db85bc289a4697007f"
+  integrity sha512-FguC6qNFC6s+hXepEWVhZypDSLZSNk952chES1Q056nyFjQ41xZ2j3VEg2mY3Xhbeyd1SOIJoErD2eCOR751Ww==
+  dependencies:
+    "@grpc/grpc-js" "~1.3.8"
+    "@logdna/tail-file" "^2.0.6"
+    "@pulumi/query" "^0.3.0"
+    google-protobuf "^3.5.0"
+    ini "^2.0.0"
+    js-yaml "^3.14.0"
+    minimist "^1.2.6"
+    normalize-package-data "^2.4.0"
+    read-package-tree "^5.3.1"
+    require-from-string "^2.0.1"
+    semver "^6.1.0"
+    source-map-support "^0.5.6"
+    ts-node "^7.0.1"
+    typescript "~3.7.3"
+    upath "^1.1.0"
+
+"@pulumi/pulumi@^3.0.0":
   version "3.32.1"
   resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-3.32.1.tgz#d91a9fc14524ce749a8195b67aab8e26658f7027"
   integrity sha512-R3pOp8BWEfQjZUdZXp4FRYjM4lCvDDwe4toe1uyqhtCoGSdtomHz0s6bHZ7SlLtjCgtWJklbi0p5V6WyiJ8IPg==
