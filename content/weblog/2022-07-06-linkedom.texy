@@ -7,8 +7,8 @@
 :published "2022-07-06T14:00:00.000"}
 ---
 
-Pokud chcete v Node.js pracovat s HTML dokumenty, máte v podstatě dvě možnosti
-- cheerio a JSDOM - jak to mainstreamově udělat. **Cheerio** je klon jQuery pro Node.js,
+Pokud chcete v Node.js pracovat s HTML dokumenty, máte v podstatě dvě možnosti jak to mainstreamově udělat -
+cheerio a JSDOM. **Cheerio** je klon jQuery pro Node.js,
 který najdete třeba jako "základ scraperů na platformě Apify":[https://apify.com/apify/cheerio-scraper].
 **JSDOM** je těžkotonážní framework, který se snaží simulovat browser v kontextu Node.js. 
 Většinou se používá pro testování frontentových komponent bez nutnosti spouštět celý browser. Sic.
@@ -24,12 +24,12 @@ Ano. Máme. Je jím "knihovna LinkeDOM":[https://github.com/WebReflection/linked
 která si od začátku "klade za cíl být efektivní":[https://webreflection.medium.com/linkedom-a-jsdom-alternative-53dd8f699311]
 (jak na paměť, tak cykly procesoru) a mít API velmi blízké "DOM standardu":[https://dom.spec.whatwg.org/]. 
 Dosahuje toho díky chytré volbě vhodných datových struktur pro reprezentaci 
-stromové povahy DOMu - "triple-linked lists":[https://github.com/WebReflection/linkedom#how-does-it-work]
-- a nelpění na plné implementaci DOM standardu.
+stromové povahy DOMu - "triple-linked lists":[https://github.com/WebReflection/linkedom#how-does-it-work] -
+a nelpění na plné implementaci DOM standardu.
 
 > Obecně se dá říct, že většina výkonových problémů dnešních webových aplikací lěží
-v doméně reprezentace stavu pomocí nevhodných datových struktur a přístupu k nim.
-Zdravíme všechny poor-man immutability knihovny pro menežování stavu nejen Reactích aplikací. 👋🖕🏼
+> v doméně reprezentace stavu pomocí nevhodných datových struktur a přístupu k nim.
+> Zdravíme všechny poor-man immutability knihovny pro menežování stavu nejen Reactích aplikací. 👋🖕🏼
 
 Ale zpátky k LinkeDOMu. Jak už jsem naznačil jde o knihovnu, která primárně cílí na Node.js.
 Exportuje však i ESM moduly, které nejsou závislé na internals Node.js a jsou
@@ -47,7 +47,7 @@ i pro efektivní testování komponent nebo web scraping ve vysokém scale s roz
 Jak ho tedy použít?
 ===================
 
-Použití je celkem přímočaré - importujeme ES modul `linkedom` a z něja použijeme funkci `parseHTML`:
+Použití je celkem přímočaré - importujeme ES modul `linkedom` a z něj použijeme funkci `parseHTML`:
 
 /--code javascript
 import { parseHTML } from "https://esm.sh/linkedom";
