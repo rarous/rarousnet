@@ -64,6 +64,9 @@ jobs:
           pkg-manager: yarn
           cache-version: v2
       - run:
+          name: Install Playwright browsers
+          command: yarn playwright install
+      - run:
           name: Generate Twitter Card images
           command: |
             mv ./dist/weblog/data.json ./cards
