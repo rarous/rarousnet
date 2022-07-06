@@ -66,7 +66,7 @@ jobs:
       - run:
           name: Install Playwright browsers
           command: |
-            sudo yarn playwright install-deps
+            sudo npx playwright install-deps
             yarn playwright install
       - run:
           name: Generate Twitter Card images
