@@ -6,6 +6,7 @@
     "group:aws-sdk-js-v3Monorepo",
     ":dependencyDashboard"
   ],
+  "rangeStrategy": "pin",
   "packageRules": [
     {
       "groupName": "eslint",
