@@ -76,7 +76,9 @@ const { document, customElements, HTMLElement } = parseHTML(`<!DOCTYPE html>
   
 To nám vrátí "sandbox" globálního kontextu (aka `window`), kde najdete podporované části DOM standardu.
 Super je, že můžete sdílet kód pro práci s DOMem mezi serverem i klientem. Kód, který si můžete odladit
-v DevTools browseru, bez problémů přenesete na server. Co LinkeDOM nepodporuje, jsou dynamické vlastnosti:
+v DevTools browseru, bez problémů přenesete na server. 
+
+Co LinkeDOM nepodporuje, jsou dynamické vlastnosti:
   
 /--code javascript
   const input = document.querySelector("input[name=user]");
