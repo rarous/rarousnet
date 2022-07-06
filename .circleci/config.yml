@@ -13,6 +13,8 @@ jobs:
     machine:
       image: ubuntu-2004:current
     resource_class: arm.medium
+    environment:
+      PUPPETEER_SKIP_DOWNLOAD: 1
     steps:
       - checkout
       - pulumi/login
