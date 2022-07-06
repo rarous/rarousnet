@@ -9,8 +9,9 @@ orbs:
   pulumi: pulumi/pulumi@2.0.0
 jobs:
   provision:
-    executor:
-      name: node/default
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
     steps:
       - checkout
       - pulumi/login
@@ -49,9 +50,9 @@ jobs:
           root: .
           paths: dist
   postprocess:
-    executor:
-      name: node/default
-      tag: 'current-browsers'
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
     steps:
       - checkout
       - browser-tools/install-chrome
@@ -72,9 +73,9 @@ jobs:
           root: .
           paths: dist
   test:
-    executor:
-      name: node/default
-      tag: 'current-browsers'
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
     steps:
       - checkout
       - browser-tools/install-chrome
