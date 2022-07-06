@@ -65,7 +65,9 @@ jobs:
           cache-version: v2
       - run:
           name: Install Playwright browsers
-          command: yarn playwright install
+          command: |
+            sudo yarn playwright install-deps
+            yarn playwright install
       - run:
           name: Generate Twitter Card images
           command: |
