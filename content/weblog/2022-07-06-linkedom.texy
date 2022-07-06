@@ -1,0 +1,100 @@
+---
+{:id 484,
+:title "Jednoduše a rychle: LinkeDOM",
+:description ".",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "webdesign" "linkedom" "deno"},
+:published "2022-07-06T14:00:00.000"}
+---
+
+Pokud chcete v Node.js pracovat s HTML dokumenty, máte v podstatě dvě možnosti
+- cheerio a JSDOM - jak to mainstreamově udělat. **Cheerio** je klon jQuery pro Node.js,
+který najdete třeba jako "základ scraperů na platformě Apify":[https://apify.com/apify/cheerio-scraper].
+**JSDOM** je těžkotonážní framework, který se snaží simulovat browser v kontextu Node.js. 
+Většinou se používá pro testování frontentových komponent bez nutnosti spouštět celý browser. Sic.
+
+Obě možnosti považuju za nedobré. Ať už kvůli paměťové náročnosti a 
+obecné neefektivnosti, která se vzahuje na obě jmenovaná řešení, 
+tak nestandartní API, jaké představuje cheerio. Máme nějaké lepší možnosti?
+
+LinkeDOM
+========
+
+Ano. Máme. Je jím "knihovna LinkeDOM":[https://github.com/WebReflection/linkedom],
+která si od začátku "klade za cíl být efektivní":[https://webreflection.medium.com/linkedom-a-jsdom-alternative-53dd8f699311]
+(jak na paměť, tak cykly procesoru) a mít API velmi blízké "DOM standardu":[https://dom.spec.whatwg.org/]. 
+Dosahuje toho díky chytré volbě vhodných datových struktur pro reprezentaci 
+stromové povahy DOMu - "triple-linked lists":[https://github.com/WebReflection/linkedom#how-does-it-work]
+- a nelpění na plné implementaci DOM standardu.
+
+> Obecně se dá říct, že většina výkonových problémů dnešních webových aplikací lěží
+v doméně reprezentace stavu pomocí nevhodných datových struktur a přístupu k nim.
+Zdravíme všechny poor-man immutability knihovny pro menežování stavu nejen Reactích aplikací. 👋🖕🏼
+
+Ale zpátky k LinkeDOMu. Jak už jsem naznačil jde o knihovnu, která primárně cílí na Node.js.
+Exportuje však i ESM moduly, které nejsou závislé na internals Node.js a jsou
+tak použitelné i v kontextu Web Workerů
+"v Browseru":[https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers] i
+"v Cloudflare":[https://developers.cloudflare.com/workers/] nebo 
+"v běhovém prostředí Deno":[https://deno.land/manual/jsx_dom/linkedom].
+
+Na co se hodí?
+==============
+
+Jedním z cílů LinkeDOM je rychlý SSR((Server Side Rendering)), ale dá se použít
+i pro efektivní testování komponent nebo web scraping ve vysokém scale s rozumnými náklady.
+
+Jak ho tedy použít?
+===================
+
+Použití je celkem přímočaré - importujeme ES modul `linkedom` a z něja použijeme funkci `parseHTML`:
+
+/--code javascript
+import { parseHTML } from "https://esm.sh/linkedom";
+\--code
+
+Dále funkci `parseHTML` předáme vstupní HTML dokument:
+
+/--code javascript
+const { document, customElements, HTMLElement } = parseHTML(`<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>Hello from Deno</title>
+    </head>
+    <body>
+      <h1>Hello from Deno</h1>
+      <form>
+        <input name="user">
+        <button>
+          Submit
+        </button>
+      </form>
+    </body>
+  </html>
+`);
+\--
+  
+To nám vrátí "sandbox" globálního kontextu (aka `window`), kde najdete podporované části DOM standardu.
+Super je, že můžete sdílet kód pro práci s DOMem mezi serverem i klientem. Kód, který si můžete odladit
+v DevTools browseru, bez problémů přenesete na server. Co LinkeDOM nepodporuje, jsou dynamické vlastnosti:
+  
+/--code javascript
+  const input = document.querySelector("input[name=user]");
+  console.log(input.name);
+\--
+
+Tohle vám v browseru vypíše `"user"`, ale v LinkeDOM je to `undefined`. 
+V tomto případě musíte použít metodu `getAttribute`:
+
+/--code javascript
+  const input = document.querySelector("input[name=user]");
+  console.log(input.getAttribute("name"));
+\--
+
+Vzhledem k tomu, že všechny atributy stejně nejsou dynamické ani v browseru, 
+je lepší jít ukecěnajší cestou tak jako tak. Už kvůli konzistenci.
+
+Osobně ve svých scriptech a actorech už nepoužívám nic jinýho. 
+Existující actory "Hlídače shopů":[https://github.com/topmonks/hlidac-shopu]
+postupně na LinkeDOM překlápíme při nutné údržbě, kvůli změnám sledovaných webů.
+Kód je pak pro nás přehlednější při údržbě a efektivnější v provozu. A to se vyplatí!
