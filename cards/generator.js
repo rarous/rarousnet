@@ -9,8 +9,29 @@ console.log("Gryphoon 3.0");
 console.log("Twitter Card images generator");
 console.log("");
 
+class TwitterCardPage {
+  constructor(page) {
+    this.page = page;
+    this.card = page.locator("#twitter-card");
+  }
+  navigate(url) {
+    return this.page.goto(url);
+  }
+  changeCardContent(post) {
+    const setContent = (el, s) => (el.innerText = s);
+    return Promise.all([
+      this.card.locator("#title").evaluate(setContent, post.title),
+      this.card.locator("#name").evaluate(setContent, post.name),
+      this.card.locator("#date").evaluate(setContent, post.date),
+    ]);
+  }
+  screenshot(path) {
+    return this.card.screenshot({ path });
+  }
+}
+
 try {
-  console.log("Starting Puppeteer...");
+  console.log("Starting Playwright...");
   const browser = await chromium.launch({
     // We need to disable Sandbox to be able to run in CircleCI environment
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -33,27 +54,6 @@ try {
 } catch (err) {
   console.error(err);
   process.exit(1);
-}
-
-class TwitterCardPage {
-  constructor(page) {
-    this.page = page;
-    this.card = page.locator("#twitter-card");
-  }
-  navigate(url) {
-    return this.page.goto(url);
-  }
-  changeCardContent(post) {
-    const setContent = (el, s) => (el.innerText = s);
-    return Promise.all([
-      this.card.locator("#title").evaluate(setContent, post.title),
-      this.card.locator("#name").evaluate(setContent, post.name),
-      this.card.locator("#date").evaluate(setContent, post.date),
-    ]);
-  }
-  screenshot(path) {
-    return this.card.screenshot({ path });
-  }
 }
 
 async function prepareOutputPath(post) {
