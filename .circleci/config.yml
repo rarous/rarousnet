@@ -7,6 +7,25 @@ orbs:
   node: circleci/node@5.0.2
   php: circleci/php@1.1.0
   pulumi: pulumi/pulumi@2.1.0
+
+commands:
+  install_browsers:
+    steps:
+      - restore_cache:
+          name: Restore Playwright browsers
+          keys:
+            - v2-browsers-{{ checksum "package.json" }}
+      - run:
+          name: Install Playwright browsers
+          command: |
+            # sudo apt-get install libgbm1
+            yarn playwright install --with-deps chromium
+      - save_cache:
+          name: Cache Playwright browsers
+          key: v2-browsers-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/ms-playwright
+
 jobs:
   provision:
     machine:
@@ -63,20 +82,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-version: v2
-      - restore_cache:
-          name: Restore Playwright browsers
-          keys:
-            - v1-browsers-{{ checksum "package.json" }}
-      - run:
-          name: Install Playwright browsers
-          command: |
-            sudo apt-get install libgbm1
-            yarn playwright install
-      - save_cache:
-          name: Cache Playwright browsers
-          key: v1-browsers-{{ checksum "package.json" }}
-          paths:
-            - ~/.cache/ms-playwright
+      - install_browsers
       - run:
           name: Generate Twitter Card images
           command: |
@@ -100,6 +106,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-version: v2
+      - install_browsers
       - run:
           name: Install self-signed cert for localhost
           command: |
