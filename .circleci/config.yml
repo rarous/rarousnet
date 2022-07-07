@@ -63,11 +63,20 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-version: v2
+      - restore_cache:
+          name: Restore Playwright browsers
+          keys:
+            - v1-browsers-{{ checksum "package.json" }}
       - run:
           name: Install Playwright browsers
           command: |
             sudo apt-get install libgbm1
             yarn playwright install
+      - save_cache:
+          name: Cache Playwright browsers
+          key: v1-browsers-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/ms-playwright
       - run:
           name: Generate Twitter Card images
           command: |
