@@ -108,9 +108,7 @@ jobs:
           cache-version: v2
       - run:
           name: Install Chromium
-          command: |
-            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo apt install ./google-chrome-stable_current_amd64.deb
+          command: sudo apt install chromium-browser
       - run:
           name: Install self-signed cert for localhost
           command: |
