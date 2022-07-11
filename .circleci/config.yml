@@ -113,9 +113,10 @@ jobs:
           name: Install self-signed cert for localhost
           command: |
             mkdir -p $HOME/.pki/nssdb
-            certutil -d $HOME/.pki/nssdb -N --empty-password
-            certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n lws-cert -i ./node_modules/lws/ssl/lws-cert.pem
-            certutil -d sql:$HOME/.pki/nssdb -L
+            echo "Cert path: ./node_modules/lws/ssl/lws-cert.pem"
+            certutil -N -d $HOME/.pki/nssdb --empty-password
+            certutil -A -d sql:$HOME/.pki/nssdb -t TC -n lws-cert -i ./node_modules/lws/ssl/lws-cert.pem
+            certutil -L -d sql:$HOME/.pki/nssdb
       - run:
           name: Serve site content
           command: yarn serve
