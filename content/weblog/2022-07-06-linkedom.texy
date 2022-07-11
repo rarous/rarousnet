@@ -94,7 +94,7 @@ V tomto případě musíte použít metodu `getAttribute`:
 \--
 
 Vzhledem k tomu, že všechny atributy stejně nejsou dynamické ani v browseru, 
-je lepší jít ukecěnajší cestou tak jako tak. Už kvůli konzistenci.
+je lepší jít ukecanější cestou tak jako tak. Už kvůli konzistenci.
 
 Osobně ve svých scriptech a actorech už nepoužívám nic jinýho. 
 Existující actory "Hlídače shopů":[https://github.com/topmonks/hlidac-shopu]
