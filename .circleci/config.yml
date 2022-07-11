@@ -107,12 +107,11 @@ jobs:
           pkg-manager: yarn
           cache-version: v2
       - run:
-          name: Install Chromium
-          command: sudo apt install chromium-browser
+          name: Install Ubuntu packages
+          command: sudo apt install chromium-browser libnss3-tools
       - run:
           name: Install self-signed cert for localhost
           command: |
-            sudo apt-get install libnss3-tools
             mkdir -p $HOME/.pki/nssdb
             certutil -d $HOME/.pki/nssdb -N --empty-password
             certutil -d sql:$HOME/.pki/nssdb -A -t TC -n lws-cert -i ./node_modules/lws/ssl/lws-cert.pem
