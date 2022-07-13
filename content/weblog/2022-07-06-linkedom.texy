@@ -7,15 +7,15 @@
 :published "2022-07-06T14:00:00.000"}
 ---
 
-Pokud chcete v Node.js pracovat s HTML dokumenty, máte v podstatě dvě možnosti jak to mainstreamově udělat -
+Pokud chcete v Node.js pracovat s HTML dokumenty, máte v podstatě dvě možnosti, jak to mainstreamově udělat -
 cheerio a JSDOM. **Cheerio** je klon jQuery pro Node.js,
 který najdete třeba jako "základ scraperů na platformě Apify":[https://apify.com/apify/cheerio-scraper].
 **JSDOM** je těžkotonážní framework, který se snaží simulovat browser v kontextu Node.js. 
 Většinou se používá pro testování frontentových komponent bez nutnosti spouštět celý browser. Sic.
 
 Obě možnosti považuju za nedobré. Ať už kvůli paměťové náročnosti a 
-obecné neefektivnosti, která se vzahuje na obě jmenovaná řešení, 
-tak nestandartní API, jaké představuje cheerio. Máme nějaké lepší možnosti?
+obecné neefektivnosti, která se vztahuje na obě jmenovaná řešení, 
+tak nestandardní API, jaké představuje cheerio. Máme nějaké lepší možnosti?
 
 LinkeDOM
 ========
@@ -96,7 +96,7 @@ V tomto případě musíte použít metodu `getAttribute`:
 Vzhledem k tomu, že všechny atributy stejně nejsou dynamické ani v browseru, 
 je lepší jít ukecanější cestou tak jako tak. Už kvůli konzistenci.
 
-Osobně ve svých scriptech a actorech už nepoužívám nic jinýho. 
+Osobně ve svých scriptech a actorech už nepoužívám nic jiného. 
 Existující actory "Hlídače shopů":[https://github.com/topmonks/hlidac-shopu]
 postupně na LinkeDOM překlápíme při nutné údržbě, kvůli změnám sledovaných webů.
 Kód je pak pro nás přehlednější při údržbě a efektivnější v provozu. A to se vyplatí!
