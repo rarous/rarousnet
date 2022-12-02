@@ -18,8 +18,7 @@ commands:
       - run:
           name: Install Playwright browsers
           command: |
-            # sudo apt-get install libgbm1
-            yarn playwright install --with-deps chromium
+            yes | yarn playwright install --with-deps chromium
       - save_cache:
           name: Cache Playwright browsers
           key: v2-browsers-{{ checksum "package.json" }}
@@ -31,8 +30,6 @@ jobs:
     machine:
       image: ubuntu-2204:current
     resource_class: arm.medium
-    environment:
-      PUPPETEER_SKIP_DOWNLOAD: 1
     steps:
       - checkout
       - pulumi/login
