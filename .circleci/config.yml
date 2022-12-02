@@ -11,14 +11,17 @@ orbs:
 commands:
   install_browsers:
     steps:
+      - run:
+          command: |
+            sudo apt-get update
+            sudo apt-get upgrade
       - restore_cache:
           name: Restore Playwright browsers
           keys:
             - v2-browsers-{{ checksum "package.json" }}
       - run:
           name: Install Playwright browsers
-          command: |
-            yes | yarn playwright install --with-deps chromium
+          command: yarn playwright install --with-deps chromium
       - save_cache:
           name: Cache Playwright browsers
           key: v2-browsers-{{ checksum "package.json" }}
