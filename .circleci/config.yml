@@ -29,7 +29,7 @@ commands:
 jobs:
   provision:
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     resource_class: arm.medium
     environment:
       PUPPETEER_SKIP_DOWNLOAD: 1
@@ -73,7 +73,7 @@ jobs:
           paths: dist
   postprocess:
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     resource_class: arm.medium
     steps:
       - checkout
@@ -98,7 +98,7 @@ jobs:
           paths: dist
   test:
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     resource_class: arm.medium
     steps:
       - checkout
