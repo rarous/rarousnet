@@ -8,6 +8,13 @@ orbs:
   php: circleci/php@1.1.0
   pulumi: pulumi/pulumi@2.1.0
 
+executors:
+  pw-focal-development:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.28.0-focal
+    environment:
+      NODE_ENV: development # Needed if playwright is in `devDependencies`
+
 commands:
   install_browsers:
     steps:
@@ -72,9 +79,7 @@ jobs:
           root: .
           paths: dist
   postprocess:
-    machine:
-      image: ubuntu-2204:current
-    resource_class: arm.medium
+  executor: pw-focal-development
     steps:
       - checkout
       - attach_workspace:
@@ -84,7 +89,6 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-version: v2
-      - install_browsers
       - run:
           name: Generate Twitter Card images
           command: |
