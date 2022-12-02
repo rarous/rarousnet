@@ -79,7 +79,7 @@ jobs:
           root: .
           paths: dist
   postprocess:
-  executor: pw-focal-development
+    executor: pw-focal-development
     steps:
       - checkout
       - attach_workspace:
