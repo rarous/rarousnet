@@ -98,9 +98,9 @@ jobs:
           root: .
           paths: dist
   test:
-    machine:
-      image: ubuntu-2204:current
-    resource_class: arm.medium
+    executor:
+      name: node/default
+      tag: 'current-browsers'
     steps:
       - checkout
       - attach_workspace:
