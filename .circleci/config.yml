@@ -106,6 +106,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+      - run: sudo apt-get install libnss3-tools
       - browser-tools/install-chrome
       - node/install
       - node/install-yarn
