@@ -50,9 +50,9 @@ jobs:
   generate:
     docker:
     - image: cimg/clojure:1.11
-        environment:
-          LEIN_JVM_OPTS: "-Xmx400m"
-          JVM_OPTS: "-Xmx3200m"
+      environment:
+        LEIN_JVM_OPTS: "-Xmx400m"
+        JVM_OPTS: "-Xmx3200m"
     steps:
       - checkout
       - php/install-php
