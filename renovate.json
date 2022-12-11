@@ -11,7 +11,7 @@
   "packageRules": [
     {
       "groupName": "eslint",
-      "matchPackagePatterns": ["eslint"]
+      "extends": "packages:eslint"
     },
     {
       "groupName": "pulumi",
