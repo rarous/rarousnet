@@ -38,7 +38,7 @@
     "playwright": "1.28.1",
     "postcss": "8.4.19",
     "prettier": "2.8.1",
-    "schema-dts": "0.8.3",
+    "schema-dts": "1.1.0",
     "tap-xunit": "2.4.1"
   },
   "scripts": {
