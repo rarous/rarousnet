@@ -12,7 +12,7 @@ orbs:
 executors:
   pw-focal-development:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.28.0-focal
+      - image: mcr.microsoft.com/playwright:v1.28.1-focal
     environment:
       NODE_ENV: development # Needed if playwright is in `devDependencies`
 
