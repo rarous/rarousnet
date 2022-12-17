@@ -209,10 +209,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pulumi/aws@5.23.0":
-  version "5.23.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-5.23.0.tgz#97993123bf32b3807d03348b64887b1deee977cb"
-  integrity sha512-FlH3wwdsjPz/hd3Cm0Bnwndy1XdMlxBpwXzU0Zs3xnWXlFBJ4dYBRbdUfEYB3P9+c2cD6xBDlAeyDrH3mgpkjA==
+"@pulumi/aws@5.24.0":
+  version "5.24.0"
+  resolved "https://registry.yarnpkg.com/@pulumi/aws/-/aws-5.24.0.tgz#f0dbdb1170e130410244e029cb19095872ad52d1"
+  integrity sha512-6+fN62GR9nHKU+ZU46YQ6y5E/ikvgkXfbzw10FZp3Puc0HIKXOiODChaPkCqEGNvyJUQjMdiOvNdD0yx4qI/og==
   dependencies:
     "@pulumi/pulumi" "^3.0.0"
     aws-sdk "^2.0.0"
@@ -221,10 +221,10 @@
     read-package-tree "^5.2.1"
     resolve "^1.7.1"
 
-"@pulumi/cloudflare@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-4.13.0.tgz#0727178d7f371fecce945ac60b67b3ff2794ce82"
-  integrity sha512-11mNWVH4gdpO+YLcXvfomOiAuWJaiLqSnxMZ8TtT1rWQBe+lZOwNEUhhHb/0tbYheIBvezXbug4R/oQ6z7kK8g==
+"@pulumi/cloudflare@4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@pulumi/cloudflare/-/cloudflare-4.14.0.tgz#21edb523f29549dc45329f1358d628a531cd3cc2"
+  integrity sha512-NdU6tMzc8SNv/g3lyg9hjIT8cTIawUQnj7D135WK9+gYiJ6cKW34LSbzSPgU0+pC6qAvv3r4edRJDpBG7XbRbg==
   dependencies:
     "@pulumi/pulumi" "^3.0.0"
 
