@@ -151,12 +151,7 @@ jobs:
           from: dist/
           to: s3://www.rarous.net/
       - aws-s3/copy:
-          arguments: |
-            --exclude "*" \
-            --include "*.rss" \
-            --content-type="application/rss+xml; charset=utf-8" \
-            --metadata-directive="REPLACE" \
-            --recursive
+          arguments: --exclude "*" --include "*.rss" --content-type="application/rss+xml; charset=utf-8" --metadata-directive="REPLACE" --recursive
           from: s3://www.rarous.net/
           to: s3://www.rarous.net/
       - cloudflare/purge-cache
