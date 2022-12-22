@@ -78,6 +78,14 @@ blockquote,
 blockquote p {
   font: 1.5rem var(--citation-font);
 }
+aside {
+  margin: 0 4em;
+}
+aside p {
+  font-size: 1.2rem;
+  --content-font: var(--citation-font);
+}
+
 img.right {
   float: right;
   margin: 0.4em;
