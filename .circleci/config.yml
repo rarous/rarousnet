@@ -43,7 +43,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn
-          cache-version: v1-prod
+          cache-version: v3
       - pulumi/update:
           stack: prod
           skip-preview: true
@@ -89,7 +89,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn
-          cache-version: v2
+          cache-version: v3
       - install_browsers
       - run:
           name: Generate Twitter Card images
@@ -118,7 +118,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn
-          cache-version: v2
+          cache-version: v3
       - run:
           name: Install self-signed cert for localhost
           command: |
