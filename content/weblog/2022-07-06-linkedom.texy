@@ -27,9 +27,11 @@ Dosahuje toho díky chytré volbě vhodných datových struktur pro reprezentaci
 stromové povahy DOMu - "triple-linked lists":[https://github.com/WebReflection/linkedom#how-does-it-work] -
 a nelpění na plné implementaci DOM standardu.
 
-> Obecně se dá říct, že většina výkonových problémů dnešních webových aplikací lěží
-> v doméně reprezentace stavu pomocí nevhodných datových struktur a přístupu k nim.
-> Zdravíme všechny poor-man immutability knihovny pro menežování stavu nejen Reactích aplikací. 👋🖕🏼
+<aside>
+<p>Obecně se dá říct, že většina výkonových problémů dnešních webových aplikací lěží
+v doméně reprezentace stavu pomocí nevhodných datových struktur a přístupu k nim.
+Zdravíme všechny poor-man immutability knihovny pro menežování stavu nejen Reactích aplikací. 👋🖕🏼
+</aside>
 
 Ale zpátky k LinkeDOMu. Jak už jsem naznačil jde o knihovnu, která primárně cílí na Node.js.
 Exportuje však i ESM moduly, které nejsou závislé na internals Node.js a jsou
