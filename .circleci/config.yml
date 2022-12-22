@@ -147,7 +147,6 @@ jobs:
       - attach_workspace:
           at: .
       - aws-s3/sync:
-          arguments: --size-only
           from: dist/
           to: s3://www.rarous.net/
       - aws-s3/copy:
