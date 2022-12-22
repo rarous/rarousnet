@@ -57,8 +57,11 @@ jobs:
       - checkout
       - php/install-php:
           version: "8.2"
+      - php/install-composer
       - attach_workspace:
           at: .
+      - php/install-packages:
+          app-dir: ~/project/generator
       - restore_cache:
           name: Restore deps cache
           keys:
