@@ -55,7 +55,8 @@ jobs:
         JVM_OPTS: "-Xmx3200m"
     steps:
       - checkout
-      - php/install-php
+      - php/install-php:
+          version: "8.2"
       - attach_workspace:
           at: .
       - restore_cache:
