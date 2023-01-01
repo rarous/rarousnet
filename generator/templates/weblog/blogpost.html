@@ -136,7 +136,7 @@
   const codes = document.querySelectorAll("pre>code");
   for (const code of codes) {
     const pre = code.parentElement;
-    for (const lang of pre.classList.values()) {
+    for (const lang of pre.classList) {
       code.classList.add(`language-${lang}`);
     }
   }
