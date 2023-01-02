@@ -16,6 +16,18 @@
   --content-font: var(--iosevka-sparkle);
   --citation-font: var(--garamond);
   --code-font: var(--iosevka);
+
+  --primary-color:hsla(15,60%,75%,1);
+  --primary-dark-color:hsla(14,60%,75%,1);
+  --text-color-on-primary:hsla(0,0%,100%,1);
+  --secondary-color:hsla(202,51%,75%,1);
+  --secondary-dark-color:hsla(199,60%,75%,1);
+
+  --primary-color-night-eye:hsla(15,60%,48%,1);
+  --primary-dark-color-night-eye:hsla(14,60%,43%,1);
+  --text-color-on-primary-night-eye:hsla(240,8%,12%,1);
+  --secondary-color-night-eye:hsla(202,51%,41%,1);
+  --secondary-dark-color-night-eye:hsla(199,60%,22%,1);
 }
 
 html,
