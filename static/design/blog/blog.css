@@ -111,6 +111,7 @@ pre {
 }
 pre code {
   background-color: transparent;
+  padding: 0;
 }
 * html pre {
   overflow-y: visible;
@@ -127,7 +128,7 @@ pre.console code {
 }
 
 code[class*="language-"],
-pre[class*="language-"] {
+pre:has(> code) {
   color: #111111;
   background-color: #fffff8;
   font-family: var(--code-font);
@@ -153,24 +154,24 @@ pre[class*="language-"] {
       (bg-highlight-2 "LightCyan")
       (bg-highlight-3 "LightGreen"))*/
 
-pre[class*="language-"]::-moz-selection,
-pre[class*="language-"] ::-moz-selection,
+pre:has(> code)::-moz-selection,
+pre:has(> code) ::-moz-selection,
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] ::-moz-selection,
-pre[class*="language-"]::selection,
-pre[class*="language-"] ::selection,
+pre:has(> code)::selection,
+pre:has(> code) ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
   text-shadow: none;
   background: #FFF1AA;
 }
-pre[class*="language-"] {
+pre:has(> code) {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
 }
 :not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+pre:has(> code) {
   background: #fffff8;
 }
 :not(pre) > code[class*="language-"] {
@@ -224,6 +225,22 @@ pre[class*="language-"] {
 }
 .token.entity {
   cursor: help;
+}
+
+pre:has(> code) {
+  font-feature-settings: "calt" 1;
+}
+pre.language-javascript:has(> code) {
+  font-feature-settings: "calt" 0, "JSPT" 1;
+}
+pre.language-fsharp:has(> code) {
+  font-feature-settings: "calt" 0, "FSHP" 1;
+}
+pre.language-csharp:has(> code) {
+  font-feature-settings: "calt" 0, "CLIK" 1;
+}
+pre.language-php:has(> code) {
+  font-feature-settings: "calt" 0, "PHPX" 1;
 }
 
 a {
