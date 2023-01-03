@@ -144,17 +144,18 @@ jobs:
       - store_test_results:
           path: ./results
   s3_deploy:
-    executor: aws-cli/default
+    machine:
+      image: ubuntu-2204:current
+    resource_class: arm.medium
     steps:
       - attach_workspace:
           at: .
-      - aws-s3/sync:
-          from: dist/
-          to: s3://www.rarous.net/
-      - aws-s3/copy:
-          arguments: --exclude="*" --include="*.rss" --content-type="application/rss+xml; charset=utf-8" --metadata-directive="REPLACE" --recursive
-          from: s3://www.rarous.net/
-          to: s3://www.rarous.net/
+      - node/install
+      - node/install-yarn
+      - node/install-packages:
+          pkg-manager: yarn-berry
+          cache-version: v3-machine
+      - run: yarn sync
       - cloudflare/purge-cache
   merge_pr:
     docker:
