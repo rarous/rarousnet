@@ -12,7 +12,7 @@ Sociální média umožňují (v rámci boje o uživatelovu pozornost) postovat 
 V případě Twitteru jde o tzv. "Twitter Cards":[https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html],
 které umožňují nahradit odkaz požadovanými metadaty. Mezi ně patří název, popisek a obrázek.
 Můžete si dokonce vybrat, jestli chcete čtvercovou ikonu nebo pořádnej 2:1 billboard.
-No a protože jsem <big>**attention hore**</big>, rozhodl jsem se pro ten větší formát...
+No a protože jsem <big>**attention whore**</big>, rozhodl jsem se pro ten větší formát...
 
 Jenže se mi nechce lozit po fotobankách a hledat nějakou bechderoucí fotečku, která s mými tématy bude
 asi těžko souviset. Takže jsem musel vymyslet něco jinýho. Docela se mi líbí, jak na feedu vypadaj vložený
@@ -25,7 +25,7 @@ Tak, nápad by byl, teď už jen jak ho realizovat?
 
 Nejprve jsem si říkal, že bych mohl udělat "šablonu ve Figmě":[https://www.figma.com/file/cGbv8Z8IQ6hQuEJQKv4O6uPN/Untitled?node-id=0:1]
 a přes "jejich API":[https://www.figma.com/developers/docs] generovat obrázky. Jenže se mi nechce (zatím)
-učit se jejich API a zavádět vzdálená volání do generátoru, když jsem se jim tak 
+učit se jejich API a zavádět vzdálená volání do generátoru, když jsem se jim tak
 "šikovně vyhnul":[https://www.rarous.net/weblog/2019/01/28/novy-zivot-pro-rarous-weblog.html] u obsahu.
 Ok, tak zkusím generovat obrázky pomocí Clojure. To se mi zase nechce low level komponovat bitmapa a navíc,
 jak dostanu Futuru na integrační server? Přes SVGčko? Sakra...
