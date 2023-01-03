@@ -13,6 +13,7 @@ executors:
   pw-focal-development:
     docker:
       - image: mcr.microsoft.com/playwright:v1.29.1-focal
+    resource_class: large
     environment:
       NODE_ENV: development # Needed if playwright is in `devDependencies`
 
