@@ -12,10 +12,10 @@
   "dependencies": {
     "@pulumi/aws": "5.25.0",
     "@pulumi/cloudflare": "4.14.0",
-    "@pulumi/pulumi": "3.50.2",
-    "@thi.ng/transducers": "^8.3.29"
+    "@pulumi/pulumi": "3.50.2"
   },
   "devDependencies": {
+    "@thi.ng/transducers": "^8.3.29",
     "autoprefixer": "10.4.13",
     "ava": "5.1.0",
     "broken-link-checker-local": "0.2.1",
