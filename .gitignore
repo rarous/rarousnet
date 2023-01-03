@@ -8,6 +8,7 @@ dist/
 out/
 yarn-error.log
 generator/.cpcache/
+generator/vendor/
 cards/data.json
 .pnp
 .DS_Store
