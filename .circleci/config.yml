@@ -141,7 +141,6 @@ jobs:
       - run:
           name: Test site with Lighthouse
           command: |
-            mkdir results
             yarn test:lighthouse
             yarn test:ava
       - store_artifacts:
