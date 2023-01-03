@@ -35,7 +35,7 @@ async function uploadFile(key, file, hash) {
     Bucket: bucket,
     Key: key,
     Body: await fs.readFile(file.path),
-    ContentType: mimetypes.lookup(file.path) ?? "application/octet-stream",
+    ContentType: mimetypes.lookup(file.path) || "application/octet-stream",
     Metadata: { hash },
   });
 }
