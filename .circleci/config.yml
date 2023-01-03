@@ -146,7 +146,7 @@ jobs:
   s3_deploy:
     machine:
       image: ubuntu-2204:current
-    resource_class: arm.medium
+    resource_class: arm.large
     steps:
       - checkout
       - attach_workspace:
