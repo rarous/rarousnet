@@ -43,8 +43,7 @@
     "tap-xunit": "2.4.1"
   },
   "scripts": {
-    "prebuild:website": "docker build -t rarousnet ./.circleci/docker/cci-openjdk11-php7-clojure-tools-deps",
-    "build:website": "docker run -v `pwd`:/usr/app/src -t rarousnet /bin/sh -c \"cd /usr/app/src/generator && clojure -m rarousnet.generator ../\"",
+    "build:website": "cd generator && clojure -M -m rarousnet.generator ../",
     "build:assets": "gulp -p",
     "build": "run-s 'build:*'",
     "serve": "ws --compress --http2 -d ./dist",
