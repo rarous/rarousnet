@@ -1,0 +1,11 @@
+{
+  "name": "@rarousnet/cards",
+  "description": "rarous.net cards generator",
+  "type": "module",
+  "main": "generator.js",
+  "license": "EPL-2.0",
+  "dependencies": {
+    "@thi.ng/transducers": "8.3.29",
+    "playwright": "1.29.1"
+  }
+}

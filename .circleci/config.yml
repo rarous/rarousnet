@@ -44,8 +44,10 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v3-machine
+          cache-version: v1-machine-provision
+          override-ci-command: yarn workspaces focus @rarousnet/infrastructure
       - pulumi/update:
+          working_directory: infrastructure
           stack: prod
           skip-preview: true
   generate:
@@ -90,13 +92,14 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v3-pw
+          cache-version: v1-pw
+          override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
       - install_browsers
       - run:
           name: Generate Twitter Card images
           command: |
             mv ./dist/weblog/data.json ./cards
-            node ./cards/generator "file://`pwd -P`/cards/card.html"
+            node ./cards/generator.js "file://`pwd -P`/cards/card.html"
       - run:
           name: Postprocess resources
           command: yarn build:assets
@@ -120,7 +123,8 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v3-docker
+          cache-version: v1-test
+          override-ci-command: yarn workspaces focus rarousnet
       - run:
           name: Install self-signed cert for localhost
           command: |
@@ -155,7 +159,8 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v3-machine
+          cache-version: v1-machine-deploy
+          override-ci-command: yarn workspaces focus @rarousnet/scripts
       - run: yarn sync
       - cloudflare/purge-cache
   merge_pr:

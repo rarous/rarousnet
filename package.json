@@ -2,7 +2,8 @@
   "name": "rarousnet",
   "description": "rarous.net website program",
   "type": "module",
-  "main": "index.js",
+  "private": true,
+  "main": "gulpfile.js",
   "license": "EPL-2.0",
   "browserslist": [
     "> 5%",
@@ -10,20 +11,11 @@
     "IE 8"
   ],
   "dependencies": {
-    "@pulumi/aws": "5.25.0",
-    "@pulumi/cloudflare": "4.14.0",
-    "@pulumi/pulumi": "3.50.2"
-  },
-  "devDependencies": {
-    "@aws-sdk/client-s3": "3.241.0",
-    "@thi.ng/transducers": "8.3.29",
     "autoprefixer": "10.4.13",
     "ava": "5.1.0",
     "broken-link-checker-local": "0.2.1",
     "browser-sync": "2.27.11",
     "cssnano": "5.1.14",
-    "csv-parse": "5.3.3",
-    "esm": "3.2.25",
     "gulp": "4.0.2",
     "gulp-htmlmin": "5.0.1",
     "gulp-if": "3.0.0",
@@ -36,13 +28,9 @@
     "gulp-sizereport": "1.2.1",
     "lighthouse": "9.6.8",
     "local-web-server": "5.2.1",
-    "md5-file": "5.0.0",
-    "mime-types": "2.1.35",
     "npm-run-all": "4.1.5",
-    "playwright": "1.29.1",
     "postcss": "8.4.20",
     "prettier": "2.8.1",
-    "schema-dts": "1.1.0",
     "tap-xunit": "2.4.1"
   },
   "scripts": {
@@ -52,11 +40,17 @@
     "serve": "ws --compress --http2 -d ./dist",
     "start": "gulp dev",
     "sync": "node ./scripts/s3-sync.mjs s3://www.rarous.net ./dist",
-    "test:lighthouse:root": "lighthouse https://127.0.0.1:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless\"",
-    "test:lighthouse:weblog": "lighthouse https://127.0.0.1:8000/weblog/ --config-path .lighthouse.json --output json --output html --output-path ./results/weblog.html --chrome-flags=\"--headless\"",
+    "test:lighthouse:init": "mkdir ./results",
+    "test:lighthouse:root": "lighthouse https://127.0.0.1:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
+    "test:lighthouse:weblog": "lighthouse https://127.0.0.1:8000/weblog/ --config-path .lighthouse.json --output json --output html --output-path ./results/weblog.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
     "test:lighthouse": "run-s 'test:lighthouse:*'",
     "test:ava": "ava | tap-xunit > ./results/ava.xml",
     "test:broken-links": "blcl ./dist -ro"
   },
+  "workspaces": [
+    "cards",
+    "infrastructure",
+    "scripts"
+  ],
   "packageManager": "yarn@3.3.1"
 }
