@@ -51,6 +51,6 @@ async function processFile(file) {
   await uploadFile(key, file, computedHash);
 }
 
-for (const chunk of partition(10, true, getFiles(root))) {
+for (const chunk of partition(16, true, getFiles(root))) {
   await Promise.all(chunk.map((file) => processFile(file)));
 }
