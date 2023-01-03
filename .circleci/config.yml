@@ -23,13 +23,14 @@ commands:
       - restore_cache:
           name: Restore Playwright browsers
           keys:
-            - v2-browsers-{{ checksum "package.json" }}
+            - v2-browsers-{{ checksum "cards/package.json" }}
       - run:
           name: Install Playwright browsers
           command: yarn playwright install --with-deps chromium
+          working_directory: cards
       - save_cache:
           name: Cache Playwright browsers
-          key: v2-browsers-{{ checksum "package.json" }}
+          key: v2-browsers-{{ checksum "cards/package.json" }}
           paths:
             - ~/.cache/ms-playwright
 
