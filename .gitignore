@@ -11,5 +11,7 @@ generator/.cpcache/
 generator/vendor/
 cards/data.json
 .pnp
+.yarn/cache
+.yarn/install-state.gz
 .DS_Store
 /results/

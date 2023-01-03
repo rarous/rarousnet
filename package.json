@@ -55,5 +55,6 @@
     "test:lighthouse": "run-s test:lighthouse:*",
     "test:ava": "ava | tap-xunit > ./results/ava.xml",
     "test:broken-links": "blcl ./dist -ro"
-  }
+  },
+  "packageManager": "yarn@3.3.1"
 }

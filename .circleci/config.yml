@@ -43,7 +43,7 @@ jobs:
       - pulumi/login
       - node/install-yarn
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
           cache-version: v3-machine
       - pulumi/update:
           stack: prod
@@ -90,7 +90,7 @@ jobs:
       - node/install
       - node/install-yarn
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
           cache-version: v3-pw
       - install_browsers
       - run:
@@ -119,7 +119,7 @@ jobs:
       - node/install
       - node/install-yarn
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
           cache-version: v3-docker
       - run:
           name: Install self-signed cert for localhost
