@@ -4,6 +4,7 @@ import { chromium } from "playwright";
 import { partition } from "@thi.ng/transducers";
 import data from "./data.json" assert { type: "json" };
 
+const POOL_SIZE = 10;
 const url = process.argv[2];
 
 console.log("Gryphoon 3.0");
@@ -31,17 +32,13 @@ class TwitterCardPage {
   }
 }
 
-async function generateCard(browser, post) {
+async function generateCard(twittedCardPage, post) {
   console.log(`Generating file ./dist/weblog/${post.fileName}`);
-  const page = await browser.newPage();
-  const twittedCardPage = new TwitterCardPage(page);
-  await twittedCardPage.navigate(url);
   const [outputPath] = await Promise.all([
     prepareOutputPath(post),
     twittedCardPage.changeCardContent(post),
   ]);
   await twittedCardPage.screenshot(outputPath);
-  await page.close();
 }
 
 try {
@@ -50,9 +47,17 @@ try {
     // We need to disable Sandbox to be able to run in CircleCI environment
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
+  console.log("Preparing pool of tabs.", { size: POOL_SIZE });
+  const tabsPool = [];
+  for (let i = 0; i < POOL_SIZE; i++) {
+    const page = await browser.newPage();
+    const twittedCardPage = new TwitterCardPage(page);
+    await twittedCardPage.navigate(url);
+    tabsPool.push(twittedCardPage);
+  }
   console.log(`Will generate ${data.length} images`);
-  for (const chunk of partition(5, true, data)) {
-    await Promise.all(chunk.map((post) => generateCard(browser, post)));
+  for (const chunk of partition(POOL_SIZE, true, data)) {
+    await Promise.all(chunk.map((post, i) => generateCard(tabsPool[i], post)));
   }
   console.log("");
   console.log("DONE");
