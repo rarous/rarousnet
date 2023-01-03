@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { chromium } from "playwright";
+import { partition } from "@thi.ng/transducers";
 import data from "./data.json" assert { type: "json" };
 
 const url = process.argv[2];
@@ -30,23 +31,28 @@ class TwitterCardPage {
   }
 }
 
+async function generateCard(browser, post) {
+  console.log(`Generating file ./dist/weblog/${post.fileName}`);
+  const page = await browser.newPage();
+  const twittedCardPage = new TwitterCardPage(page);
+  await twittedCardPage.navigate(url);
+  const [outputPath] = await Promise.all([
+    prepareOutputPath(post),
+    twittedCardPage.changeCardContent(post),
+  ]);
+  await twittedCardPage.screenshot(outputPath);
+  await page.close();
+}
+
 try {
   console.log("Starting Playwright...");
   const browser = await chromium.launch({
     // We need to disable Sandbox to be able to run in CircleCI environment
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
-  const page = await browser.newPage();
-  const twittedCardPage = new TwitterCardPage(page);
-  await twittedCardPage.navigate(url);
   console.log(`Will generate ${data.length} images`);
-  for (let post of data) {
-    console.log(`Generating file ./dist/weblog/${post.fileName}`);
-    let [outputPath] = await Promise.all([
-      prepareOutputPath(post),
-      twittedCardPage.changeCardContent(post),
-    ]);
-    await twittedCardPage.screenshot(outputPath);
+  for (const chunk of partition(5, true, data)) {
+    await Promise.all(chunk.map((post) => generateCard(browser, post)));
   }
   console.log("");
   console.log("DONE");

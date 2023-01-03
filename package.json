@@ -12,7 +12,8 @@
   "dependencies": {
     "@pulumi/aws": "5.25.0",
     "@pulumi/cloudflare": "4.14.0",
-    "@pulumi/pulumi": "3.50.2"
+    "@pulumi/pulumi": "3.50.2",
+    "@thi.ng/transducers": "^8.3.29"
   },
   "devDependencies": {
     "autoprefixer": "10.4.13",
