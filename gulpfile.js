@@ -1,5 +1,5 @@
-import stream from "stream";
-import util from "util";
+import stream from "node:stream";
+import util from "node:util";
 import gulp from "gulp";
 import hash from "gulp-rev";
 import references from "gulp-rev-replace";
@@ -58,7 +58,7 @@ function html() {
 }
 
 function size() {
-  return src(["./dist/**/*.css", "./dist/**/*.js"]).pipe(
+  return src(["./dist/**/*.css", "./dist/**/*.js", "./dist/**/*.woff2"]).pipe(
     sizereport({ gzip: true })
   );
 }

@@ -1,5 +1,5 @@
-import fs from "fs";
-import parse from "csv-parse/lib/sync.js";
+import fs from "node:fs/promises";
+import parse from "csv-parse/sync";
 
 /** @typedef { import("schema-dts").Book } Book */
 /** @typedef { import("schema-dts").Review } Review */
@@ -60,7 +60,7 @@ function keywords(item) {
 const formats = new Map([
   ["Kindle Edition", "EBook"],
   ["ebook", "EBook"],
-  ["Mass Market Paperback", "Paperback"]
+  ["Mass Market Paperback", "Paperback"],
 ]);
 
 function bookFormat(item) {
@@ -97,17 +97,17 @@ function book(item) {
     keywords: keywords(item),
     aggregateRating: {
       "@type": "AggregateRating",
-      "ratingValue": parseFloat(item["Average Rating"])
-    }
+      ratingValue: parseFloat(item["Average Rating"]),
+    },
   };
 }
 
 async function main() {
-  const goodReadsExport = await fs.promises.readFile(
+  const goodReadsExport = await fs.readFile(
     "./static/data/goodreads_library_export.csv"
   );
   const data = parse(goodReadsExport, { columns: true });
-  await fs.promises.writeFile(
+  await fs.writeFile(
     "./static/data/books.jsonld",
     JSON.stringify(data.map(book), null, 2)
   );

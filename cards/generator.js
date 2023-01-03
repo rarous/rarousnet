@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { chromium } from "playwright";
 import { partition } from "@thi.ng/transducers";
 import data from "./data.json" assert { type: "json" };
@@ -69,10 +69,8 @@ try {
 
 async function prepareOutputPath(post) {
   const outputPath = path.resolve("./dist/weblog/", post.fileName);
-  await fs.promises
-    .mkdir(path.dirname(outputPath), { recursive: true })
-    .catch((err) => {
-      /* ignore errors */
-    });
+  await fs.mkdir(path.dirname(outputPath), { recursive: true }).catch((err) => {
+    /* ignore errors */
+  });
   return outputPath;
 }
