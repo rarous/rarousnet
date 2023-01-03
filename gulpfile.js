@@ -58,8 +58,7 @@ function html() {
 }
 
 function size() {
-  return pipeline(
-    src(["./dist/**/*.css", "./dist/**/*.js"]),
+  return src(["./dist/**/*.css", "./dist/**/*.js"]).pipe(
     sizereport({ gzip: true })
   );
 }
