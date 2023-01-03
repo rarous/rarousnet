@@ -1,11 +1,12 @@
 import { S3 } from "@aws-sdk/client-s3";
+import { partition } from "@thi.ng/transducers";
 import md5File from "md5-file";
 import mimetypes from "mime-types";
-import fs from "node:fs/promises";
+import fs from "node:fs";
 import path from "node:path";
 
-async function* getFiles(dir) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
+function* getFiles(dir) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const file of entries) {
     if (file.isDirectory()) {
       yield* getFiles(path.join(dir, file.name, "/"));
@@ -34,18 +35,22 @@ async function uploadFile(key, file, hash) {
   await s3.putObject({
     Bucket: bucket,
     Key: key,
-    Body: await fs.readFile(file.path),
+    Body: fs.readFileSync(file.path),
     ContentType: mimetypes.lookup(file.path) || "application/octet-stream",
     Metadata: { hash },
   });
 }
 
-for await (const file of getFiles(root)) {
+async function processFile(file) {
   const key = path.relative(root, file.path);
   const [storedHash, computedHash] = await Promise.all([
     readStoredHash(key),
     md5File(file.path),
   ]);
-  if (computedHash === storedHash) continue;
+  if (computedHash === storedHash) return;
   await uploadFile(key, file, computedHash);
+}
+
+for (const chunk of partition(10, true, getFiles(root))) {
+  await Promise.all(chunk.map((file) => processFile(file)));
 }
