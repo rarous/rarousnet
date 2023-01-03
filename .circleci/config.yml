@@ -49,7 +49,6 @@ jobs:
           stack: prod
           skip-preview: true
   generate:
-    resource_class: large
     docker:
     - image: cimg/clojure:1.11
       environment:
@@ -105,6 +104,7 @@ jobs:
           root: .
           paths: dist
   test:
+    resource_class: large
     executor:
       name: node/default
       tag: 'lts-browsers'
