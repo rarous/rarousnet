@@ -4,7 +4,7 @@
  :description
  "Skoro po roce jsem byl opět hostem CZ Podcastu. Tentokrát jsme se bavili o Continuous Delivery.",
  :author "Aleš Roubíček",
- :tags #{"ci" "agile" "moje práce" "czpodcast"},
+ :tags #{"ci" "agile" "moje práce" "czpodcast" "podcast"},
  :published "2012-10-09T09:09:01.727"}
 ---
 
