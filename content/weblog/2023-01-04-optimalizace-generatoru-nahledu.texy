@@ -91,7 +91,7 @@ než definuje první parametr, a nepovinné iterable, ze kterého se přímo čt
 `await Promise.all` počká, až všechny úlohy úspěšně doběhnou,
 abychom mohli bezpečně měnit dokumenty v další dávce.
 
-Na a je to.
+No a je to.
 
 Na CI serveru jsem změnil `recource_class` na `large`,
 abych dostal víc paměti a CPUček, a `POOL_SIZE` nastavil na `8`.
