@@ -11,15 +11,15 @@ $articles = json_decode($contents, true);
 
 $texy = new Texy();
 
-$texy->allowed['phrase/ins'] = TRUE;
-$texy->allowed['phrase/sup'] = TRUE;
-$texy->allowed['phrase/del'] = TRUE;
-$texy->allowed['phrase/sub'] = TRUE;
-$texy->allowed['phrase/cite'] = TRUE;
-$texy->allowed['figure'] = TRUE;
-$texy->allowedTags = TRUE;
+$texy->allowed['phrase/ins'] = true;
+$texy->allowed['phrase/sup'] = true;
+$texy->allowed['phrase/del'] = true;
+$texy->allowed['phrase/sub'] = true;
+$texy->allowed['phrase/cite'] = true;
+$texy->allowed['figure'] = true;
+$texy->allowedTags = true;
 $texy->headingModule->top = 3;
-$texy->headingModule->generateID = TRUE;
+$texy->headingModule->generateID = true;
 $texy->figureModule->class = 'image';
 $texy->imageModule->root = 'https://res.cloudinary.com/rarous-net/image/fetch/dpr_auto,f_auto/http://www.rarous.net/data/obrazky/';
 
