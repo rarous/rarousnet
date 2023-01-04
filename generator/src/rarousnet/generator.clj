@@ -418,7 +418,9 @@
               articles
               (group-by :year)
               (sort-by first >)
-              (map (fn [[year articles]] {:year year :articles articles})))
+              (map (fn [[year articles]]
+                       {:year year
+                        :articles (sort-by :timestamp > articles)})))
             data {:title "Syndication feed"
                   :page-title "Syndication feed"
                   :url "weblog/feed/"
