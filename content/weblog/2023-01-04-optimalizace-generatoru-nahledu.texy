@@ -1,0 +1,106 @@
+---
+{:id 485,
+:title "Optimalizace genarátoru náhledů",
+:description "Jak jsem zrychlil generování Twitter Card obrázků pomocí paralelizace. Názorné ukázky v ECMAScriptu.",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "transducers" "ci" "ecmascript"},
+:published "2023-01-04T08:00:00.000"}
+---
+
+O tom "jak generuju náhledy pro socky":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html],
+jsem tu už psal. Od té doby jsem vyměnil Puppeteer za Playwright:[https://playwright.dev/],
+vytvořil "Page Object Model":[https://playwright.dev/docs/pom]
+a taky začal narážet na delší a delší doby buildu...
+
+Následující řádky nastíní, jak jsem se s tím popral.
+
+## Problémy
+
+Letmým pohledem jsem zjistil, že generování náhledů v CI trvá zhruba minutu
+a instalace Playwright závislostí (browserů) si bere dalších 20s i v krocích,
+které je nepotřebují. S obojím se dá něco dělat.
+
+## Paralelizace asynchronních úloh
+
+Nejprve jsem optimalizoval tvorbu obrázků. Obrázky se generují pěkně jeden za druhým,
+takže je tu prostor k paralelizaci.
+
+"Původní kód":[https://github.com/rarous/rarousnet/blob/0202e28be0e4d5281dc1a1574360fa5a5fad9002/cards/generator.js]
+měl optimalizaci v tom, že otevřel jedno okno browseru,
+načetl vzorový HTML dokument a pak už jen mění patřičná místa v DOMu
+a dělá screenshot. To se úplně paralelizovat nedá, docílil bych akorát
+race conditions s náhodně chybnými výsledky.
+
+/--code javascript
+const page = await browser.newPage();
+const twittedCardPage = new TwitterCardPage(page);
+await twittedCardPage.navigate(url);
+for (const post of data) {
+  await generateCard(twittedCardPage, post);
+}
+\--code
+
+Takže jsem začal de-optimalizací, kdy si každý obrázek otevře svůj vlastní tab
+a pak ho zase zavře, ať nežereme moc prostředků - mít v browseru otevřených
+skoro 500 tabů není nikdy dobré.
+
+/--code javascript
+for (const post of data) {
+  const page = await browser.newPage();
+  const twittedCardPage = new TwitterCardPage(page);
+  await twittedCardPage.navigate(url);
+  await generateCard(twittedCardPage, post);
+  await page.close();
+}
+\--code
+
+Tohle už se paralelizovat dá, protože má každý obrázek svůj sandbox,
+ve kterém může bezpečně měnit DOM, aniž by ovlivňoval render jiného obrázku.
+Ale taky je to dost neefektivní, protože otevření nového tabu
+a načtení dokumentu jsou relativně drahé operace. A když je něco drahé,
+tak je potřeba se o to podělit.
+
+Nejprve si připravím browser, aby si otevřel několik tabů a načetl
+do nich vzorový dokument:
+
+/--code javascript
+const tabsPool = [];
+for (let i = 0; i < POOL_SIZE; i++) {
+  const page = await browser.newPage();
+  const twittedCardPage = new TwitterCardPage(page);
+  await twittedCardPage.navigate(url);
+  tabsPool.push(twittedCardPage);
+}
+\--code
+
+Potom si rozdělím data na kousky o stejném počtu, kolik mám otevřených tabů,
+a spustím tolik asynchronních úloh vedle sebe.
+
+/--code javascript
+for (const chunk of partition(POOL_SIZE, true, data)) {
+  await Promise.all(chunk.map((post, i) => generateCard(tabsPool[i], post)));
+}
+\--code
+
+Funkce `partition` je transducer:[/weblog/tag/transducers.html]
+z balíčku `@thi.ng/transducers`:[https://thi.ng/transducers],
+který jako parametry bere počet kousků, po kterých se má původní
+kolekce rozdělit, zda povolíme poslednímu kousku mít jiný počet prvků,
+než definuje první parametr, a nepovinné iterable, ze kterého se přímo čte.
+
+`await Promise.all` počká, až všechny úlohy úspěšně doběhnou,
+abychom mohli bezpečně měnit dokumenty v další dávce.
+
+Na a je to.
+
+Na CI serveru jsem změnil `recource_class` na `large`,
+abych dostal víc paměti a CPUček, a `POOL_SIZE` nastavil na `8`.
+Vzhledem k tomu, že děláme screenshot, který ukládáme do souboru,
+máme tu "IO bound konkurenci":[/weblog/2013/03/26/asynchronni-vs-paralelni-zpracovani-uloh.html].
+Větší pool nám nepřinese žádné zrychlení, protože se nám pak dusí fronta zápisu na disk.
+
+Ověřeno experimentálně za vás.
+
+Čas generování se na CI zkrátil na polovinu, tj. opět někde okolo 30s.
+
+Na to, jak jsem optimalizoval instalace závislostí, se podíváme někdy příště.
