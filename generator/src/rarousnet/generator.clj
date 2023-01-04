@@ -412,6 +412,22 @@
                {:file/name "sitemap.xml"
                 :file/content sitemap}))))
 
+(defn syndication-feed [articles write-file-ch]
+      (let [years
+            (->>
+              articles
+              (group-by :year)
+              (sort-by first >)
+              (map (fn [[year articles]] {:year year :articles articles})))
+            data {:title "Syndication feed"
+                  :page-title "Syndication feed"
+                  :url "weblog/feed/"
+                  :years years}
+            html (apply str (tag-template data))]
+           (go (>! write-file-ch
+                   {:file/name "feed/index.html"
+                    :file/content html}))))
+
 (defn article->image [article]
   {:title (:title article)
    :name (author-twitter article)
@@ -429,6 +445,7 @@
   [twitter-images
    articles-rss
    sitemap
+   syndication-feed
    articles-index
    tag-indexes
    time-indexes

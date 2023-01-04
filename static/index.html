@@ -1,251 +1,351 @@
 <!doctype html>
 <html lang="cs">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="delegate-ch" content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
-    <title>Aleš Roubíček - Software for the Masses</title>
-    <link rel="dns-prefetch" href="//chart.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//google-analytics.com">
-    <link rel="preconnect" href="//res.cloudinary.com">
-    <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
-    <meta name="copyright" content="&copy; 2004 - 2023 Aleš Roubíček. Creative Commons 4.0 BY-SA">
-    <meta name="description" content="Aleš Roubíček vývojář webových aplikací.">
-    <link rel="canonical" href="https://www.rarous.net/">
-    <link rel="alternate" type="application/rss+xml" href="https://feeds2.feedburner.com/rarous-weblog" title="rarouš.weblog - články">
-    <link rel="alternate" type="application/rss+xml" href="https://feeds2.feedburner.com/rarous/weblog/comments" title="rarouš.weblog - komentáře">
-    <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention" />
-    <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc" />
-    <script>
-      self._ga = {
-        // Full Measurement Protocol param reference:
-        // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
-        data: {
-          v: "1", // Measurement Protocol version.
-          tid: "UA-90726-1", // Tracking ID.
-          cid: `${Date.now()}${Math.random()}`, // Client ID.
-          dl: location.href, // Document location.
-          aip: 1, // Anonymize IP
-        },
-        send(additionalParams) {
-          navigator.sendBeacon(
-            "https://google-analytics.com/collect",
-            new URLSearchParams({
-              ...this.data,
-              ...additionalParams,
-            }).toString()
-          );
-        },
-      };
-      _ga.send({ t: "pageview" });
-    </script>
-    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
-    <style>
-        /* latin-ext */
-        @font-face {
-          font-family: 'Cardo';
-          font-style: italic;
-          font-weight: 400;
-          font-display: swap;
-          src: url(https://fonts.gstatic.com/s/cardo/v19/wlpxgwjKBV1pqhv97I0x3ExNYChuCg.woff2) format('woff2');
-          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-        }
-        /* latin */
-        @font-face {
-          font-family: 'Cardo';
-          font-style: italic;
-          font-weight: 400;
-          font-display: swap;
-          src: url(https://fonts.gstatic.com/s/cardo/v19/wlpxgwjKBV1pqhv97IMx3ExNYCg.woff2) format('woff2');
-          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-        }
-        /* latin-ext */
-        @font-face {
-          font-family: 'Cardo';
-          font-style: normal;
-          font-weight: 400;
-          font-display: swap;
-          src: url(https://fonts.gstatic.com/s/cardo/v19/wlp_gwjKBV1pqhv23IE7225PUCk.woff2) format('woff2');
-          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-        }
-        /* latin */
-        @font-face {
-          font-family: 'Cardo';
-          font-style: normal;
-          font-weight: 400;
-          font-display: swap;
-          src: url(https://fonts.gstatic.com/s/cardo/v19/wlp_gwjKBV1pqhv43IE7225P.woff2) format('woff2');
-          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="delegate-ch"
+        content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
+  <title>Aleš Roubíček - Software for the Masses</title>
+  <link rel="dns-prefetch" href="//chart.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//google-analytics.com">
+  <link rel="preconnect" href="//res.cloudinary.com">
+  <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
+  <meta name="copyright" content="&copy; 2004 - 2023 Aleš Roubíček. Creative Commons 4.0 BY-SA">
+  <meta name="description" content="Aleš Roubíček vývojář webových aplikací.">
+  <link rel="canonical" href="https://www.rarous.net/">
+  <link rel="feed" href="/weblog/feed/">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds2.feedburner.com/rarous-weblog"
+        title="rarouš.weblog - články">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds2.feedburner.com/rarous/weblog/comments"
+        title="rarouš.weblog - komentáře">
+  <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
+  <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
+  <script>
+    self._ga = {
+      // Full Measurement Protocol param reference:
+      // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
+      data: {
+        v: "1", // Measurement Protocol version.
+        tid: "UA-90726-1", // Tracking ID.
+        cid: `${Date.now()}${Math.random()}`, // Client ID.
+        dl: location.href, // Document location.
+        aip: 1, // Anonymize IP
+      },
+      send(additionalParams) {
+        navigator.sendBeacon(
+          "https://google-analytics.com/collect",
+          new URLSearchParams({
+            ...this.data,
+            ...additionalParams,
+          }).toString()
+        );
+      },
+    };
+    _ga.send({t: "pageview"});
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+  <style>
+    /* latin-ext */
+    @font-face {
+      font-family: 'Cardo';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/cardo/v19/wlpxgwjKBV1pqhv97I0x3ExNYChuCg.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
 
-        body {
-          color: #878787;
-          background: #EEDD99 url(/assets/bg.png);
-          padding: 0;
-          margin: 0;
-          font: 1em Cardo, Georgia, serif;
-          font-kerning: normal;
-          font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
-          -webkit-text-size-adjust: 100%;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          text-rendering: geometricPrecision;
-        }
-        a { color: #6A7E9D; }
-        a:hover { color: #2A436A; }
+    /* latin */
+    @font-face {
+      font-family: 'Cardo';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/cardo/v19/wlpxgwjKBV1pqhv97IMx3ExNYCg.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
 
-        #header {
-          margin: 1.8em auto 0;
-          text-align: center;
-        }
+    /* latin-ext */
+    @font-face {
+      font-family: 'Cardo';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/cardo/v19/wlp_gwjKBV1pqhv23IE7225PUCk.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
 
-        #header:after {
-          content: "";
-          display: block;
-          min-height: 116px;
-          background-image: url(https://res.cloudinary.com/rarous/image/upload/q_auto,dpr_auto,f_auto,c_scale,w_auto/v1451724840/rarousnet/11428208_10203152673817090_628477614838080327_o.jpg);
-          background-repeat: no-repeat;
-          background-position: center center;
-          background-size: 100%;
-        }
+    /* latin */
+    @font-face {
+      font-family: 'Cardo';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/cardo/v19/wlp_gwjKBV1pqhv43IE7225P.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
 
-        #header h1 {
-          color: #555;
-          font-size: 1.2em;
-          font-weight: 300;
-          text-transform: uppercase;
-        }
+    body {
+      color: #878787;
+      background: #EEDD99 url(/assets/bg.png);
+      padding: 0;
+      margin: 0;
+      font: 1em Cardo, Georgia, serif;
+      font-kerning: normal;
+      font-feature-settings: "dlig" 1, "kern" 1, "liga" 1;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+    }
 
-        #contact {
-          background: #fff;
-          border: 1px solid #fff;
-        }
-        #contact hgroup { padding-left: 1em }
-        #contact h1 {
-          margin-bottom: 0;
-          font-weight: 400;
-        }
-        #contact h2 {
-          color: #DEDEDE;
-          font-size: 1em;
-          font-style: italic;
-          font-weight: 400;
-          margin-top: 0;
-        }
-        #contact dl { line-height: 2em }
-        #contact dt { position: absolute; left: -1000px }
-        #contact dd { margin-left: 0; padding-left: 1em }
+    a {
+      color: #6A7E9D;
+    }
 
-        [property="telephone"]:before,
-        [property="email"]:before,
-        .bank-account-number:before,
-        .identification-number:before{ content: "✆"; display: inline-block; padding-right: 1ex }
-        [property="email"]:before { content: "✉" }
-        .bank-account-number:before { content: "⑉" }
-        .identification-number:before { content: "#" }
-        [property="address"], .qr-code { display: none }
+    a:hover {
+      color: #2A436A;
+    }
 
-        #links a { line-height: 1.5em }
-        #links a:link,
-        #links a:visited { color: #878787; text-decoration: none }
-        #links a:hover { color: #6A7E9D; text-decoration: underline }
-        #links ul {
-          margin: 2.4em 0;
-          padding: 0;
-          list-style: none;
-          text-align: center;
-          word-spacing: .5em;
-        }
-        #links li { display: inline-block; word-spacing: 0 }
-        #links li:before { content: "❖"; padding: 0 1ex }
-        #links li:first-child:before { content: ""; padding: 0 }
+    #header {
+      margin: 1.8em auto 0;
+      text-align: center;
+    }
 
-        #header:after,
-        #contact {
-          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-          border-radius: 2px;
+    #header:after {
+      content: "";
+      display: block;
+      min-height: 116px;
+      background-image: url(https://res.cloudinary.com/rarous/image/upload/q_auto,dpr_auto,f_auto,c_scale,w_auto/v1451724840/rarousnet/11428208_10203152673817090_628477614838080327_o.jpg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100%;
+    }
 
-          margin-left: 8px;
-          margin-right: 8px;
-        }
+    #header h1 {
+      color: #555;
+      font-size: 1.2em;
+      font-weight: 300;
+      text-transform: uppercase;
+    }
 
-        @media screen and (min-width: 480px) and (max-width: 640px) {
-          #header:after {
-            height: 170px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-          #contact {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-          }
-        }
-        @media screen and (min-width: 640px) {
-          #header { margin: 2.4em auto 0 }
-          #header:after { height: 200px; margin-top: 2.4em }
-          #contact { margin-top: 1.2em }
-        }
-        @media screen and (min-width: 850px) {
-          #header { margin: 3.6em auto 0 }
-          .qr-code { display: block; float: right }
-          #header:after { height: 315px; margin-top: 3.6em }
-          #contact { margin-top: 3.6em }
-          #header:after,
-          #contact {
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-          }
-        }
-        @media (min-resolution: 1.5dppx) {
-          body { font-size: 1.4em }
-        }
-    </style>
+    #contact {
+      background: #fff;
+      border: 1px solid #fff;
+    }
+
+    #contact hgroup {
+      padding-left: 1em
+    }
+
+    #contact h1 {
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+
+    #contact h2 {
+      color: #DEDEDE;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 400;
+      margin-top: 0;
+    }
+
+    #contact dl {
+      line-height: 2em
+    }
+
+    #contact dt {
+      position: absolute;
+      left: -1000px
+    }
+
+    #contact dd {
+      margin-left: 0;
+      padding-left: 1em
+    }
+
+    [property="telephone"]:before,
+    [property="email"]:before,
+    .bank-account-number:before,
+    .identification-number:before {
+      content: "✆";
+      display: inline-block;
+      padding-right: 1ex
+    }
+
+    [property="email"]:before {
+      content: "✉"
+    }
+
+    .bank-account-number:before {
+      content: "⑉"
+    }
+
+    .identification-number:before {
+      content: "#"
+    }
+
+    [property="address"], .qr-code {
+      display: none
+    }
+
+    #links a {
+      line-height: 1.5em
+    }
+
+    #links a:link,
+    #links a:visited {
+      color: #878787;
+      text-decoration: none
+    }
+
+    #links a:hover {
+      color: #6A7E9D;
+      text-decoration: underline
+    }
+
+    #links ul {
+      margin: 2.4em 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+      word-spacing: .5em;
+    }
+
+    #links li {
+      display: inline-block;
+      word-spacing: 0
+    }
+
+    #links li:before {
+      content: "❖";
+      padding: 0 1ex
+    }
+
+    #links li:first-child:before {
+      content: "";
+      padding: 0
+    }
+
+    #header:after,
+    #contact {
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+      border-radius: 2px;
+
+      margin-left: 8px;
+      margin-right: 8px;
+    }
+
+    @media screen and (min-width: 480px) and (max-width: 640px) {
+      #header:after {
+        height: 170px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      #contact {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    @media screen and (min-width: 640px) {
+      #header {
+        margin: 2.4em auto 0
+      }
+
+      #header:after {
+        height: 200px;
+        margin-top: 2.4em
+      }
+
+      #contact {
+        margin-top: 1.2em
+      }
+    }
+
+    @media screen and (min-width: 850px) {
+      #header {
+        margin: 3.6em auto 0
+      }
+
+      .qr-code {
+        display: block;
+        float: right
+      }
+
+      #header:after {
+        height: 315px;
+        margin-top: 3.6em
+      }
+
+      #contact {
+        margin-top: 3.6em
+      }
+
+      #header:after,
+      #contact {
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    @media (min-resolution: 1.5dppx) {
+      body {
+        font-size: 1.4em
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="top">
-        <header id="header">
-            <img alt="" class="logo" src="/assets/logo.svg" width="60" height="43">
-            <h1>Software for the Masses</h1>
-        </header>
-        <section id="contact" vocab="https://schema.org" typeof="Person">
-            <div class="qr-code">
-                <img alt="QR kód s kontaktem" src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=L|0&chl=MECARD%3AN%3AAle%25C5%25A1%2520Roub%25C3%25AD%25C4%258Dek%3BTEL%3A%2B420737461283%3BEMAIL%3Aales%40roubicek.name%3BURL%3Ahttp%3A%2F%2Fwww.rarous.net"
-                     title="Oskenuj si kontakt do mobilu" width="200" height="200">
-            </div>
-            <hgroup>
-                <h1 property="name">Aleš Roubíček</h1>
-                <h2 property="jobTitle">web developer</h2>
-            </hgroup>
-            <dl>
-                <dt>E-mail:</dt>
-                <dd property="email"><a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID">ales&#64;<!-- -->roubicek.name</a></dd>
-                <dt>Telefon:</dt>
-                <dd property="telephone"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
-                <dt>Banka:</dt>
-                <dd class="bank-account-number" title="číslu účtu">237716453/0600</dd>
-                <dt>IČ:</dt>
-                <dd property="identifier" class="identification-number">88707253</dd>
-                <dt>Adresa:</dt>
-                <dd property="address" typeof="PostalAddress">
-                    <span property="streetAddress">Koněvova 31/27</span><br>
-                    <span property="postalCode">132 00</span>,
-                    <span property="addressLocality">Praha 3</span>
-                </dd>
-            </dl>
-        </section>
-        <nav id="links">
-            <ul>
-                <li><a href="/weblog/">weblog</a></li>
-                <li><a property="sameAs" href="https://twitter.com/alesroubicek" rel="me">twitter</a></li>
-                <li><a property="sameAs" href="https://github.com/rarous" rel="me">github</a></li>
-                <li><a property="sameAs" href="https://instagram.com/alesroubicek" rel="me">instagram</a></li>
-                <li><a property="sameAs" href="https://mixcloud.com/alessiobusta" rel="me">mixcloud</a></li>
-                <li><a property="sameAs" href="https://speakerdeck.com/rarous" rel="me">speakerdeck</a></li>
-                <li><a href="https://www.goodreads.com/rarous" rel="me">goodreads</a></li>
-            </ul>
-        </nav>
+<div id="top">
+  <header id="header">
+    <img alt="" class="logo" src="/assets/logo.svg" width="60" height="43">
+    <h1>Software for the Masses</h1>
+  </header>
+  <section id="contact" vocab="https://schema.org" typeof="Person">
+    <div class="qr-code">
+      <img alt="QR kód s kontaktem"
+           src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=L|0&chl=MECARD%3AN%3AAle%25C5%25A1%2520Roub%25C3%25AD%25C4%258Dek%3BTEL%3A%2B420737461283%3BEMAIL%3Aales%40roubicek.name%3BURL%3Ahttp%3A%2F%2Fwww.rarous.net"
+           title="Oskenuj si kontakt do mobilu" width="200" height="200">
     </div>
+    <hgroup>
+      <h1 property="name">Aleš Roubíček</h1>
+      <h2 property="jobTitle">web developer</h2>
+    </hgroup>
+    <dl>
+      <dt>E-mail:</dt>
+      <dd property="email"><a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID">ales&#64;<!-- -->roubicek.name</a>
+      </dd>
+      <dt>Telefon:</dt>
+      <dd property="telephone"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
+      <dt>Banka:</dt>
+      <dd class="bank-account-number" title="číslu účtu">237716453/0600</dd>
+      <dt>IČ:</dt>
+      <dd property="identifier" class="identification-number">88707253</dd>
+      <dt>Adresa:</dt>
+      <dd property="address" typeof="PostalAddress">
+        <span property="streetAddress">Koněvova 31/27</span><br>
+        <span property="postalCode">132 00</span>,
+        <span property="addressLocality">Praha 3</span>
+      </dd>
+    </dl>
+  </section>
+  <nav id="links">
+    <ul>
+      <li><a href="/weblog/" rel="me">weblog</a></li>
+      <li><a property="sameAs" href="https://twitter.com/alesroubicek" rel="me">twitter</a></li>
+      <li><a property="sameAs" href="https://github.com/rarous" rel="me">github</a></li>
+      <li><a property="sameAs" href="https://instagram.com/alesroubicek" rel="me">instagram</a></li>
+      <li><a property="sameAs" href="https://mixcloud.com/alessiobusta" rel="me">mixcloud</a></li>
+      <li><a property="sameAs" href="https://speakerdeck.com/rarous" rel="me">speakerdeck</a></li>
+      <li><a property="sameAs" href="https://www.goodreads.com/rarous" rel="me">goodreads</a></li>
+    </ul>
+  </nav>
+</div>
 </body>
 </html>
