@@ -35,7 +35,7 @@ jobs:
   provision:
     machine:
       image: ubuntu-2204:current
-    resource_class: arm.medium
+    resource_class: arm.large
     steps:
       - checkout
       - pulumi/login
@@ -49,6 +49,7 @@ jobs:
           stack: prod
           skip-preview: true
   generate:
+    resource_class: large
     docker:
     - image: cimg/clojure:1.11
       environment:
@@ -81,6 +82,7 @@ jobs:
           root: .
           paths: dist
   postprocess:
+    resource_class: large
     executor: pw-focal-development
     steps:
       - checkout
