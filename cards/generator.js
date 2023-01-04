@@ -4,7 +4,7 @@ import { chromium } from "playwright";
 import { partition } from "@thi.ng/transducers";
 import data from "./data.json" assert { type: "json" };
 
-const POOL_SIZE = 8;
+const POOL_SIZE = parseInt(process.env.POOL_SIZE ?? 8, 10);
 const url = process.argv[2];
 
 console.log("Gryphoon 3.0");
