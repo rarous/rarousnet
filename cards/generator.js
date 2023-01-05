@@ -7,7 +7,7 @@ import data from "./data.json" assert { type: "json" };
 const POOL_SIZE = parseInt(process.env.POOL_SIZE ?? 8, 10);
 const url = process.argv[2];
 
-console.log("Gryphoon 3.0");
+console.log("Gryphoon 3.0 - static website generator");
 console.log("Twitter Card images generator");
 console.log("");
 

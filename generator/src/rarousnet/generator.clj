@@ -413,23 +413,23 @@
                 :file/content sitemap}))))
 
 (defn syndication-feed [articles write-file-ch]
-      (let [years
-            (->>
-              articles
-              (group-by :year)
-              (sort-by first >)
-              (drop 9)
-              (map (fn [[year articles]]
-                       {:year year
-                        :articles (sort-by :timestamp > articles)})))
-            data {:title "Syndication feed"
-                  :page-title "Syndication feed"
-                  :url "weblog/feed/"
-                  :years years}
-            html (apply str (tag-template data))]
-           (go (>! write-file-ch
-                   {:file/name "feed/index.html"
-                    :file/content html}))))
+  (let [years
+        (->>
+          articles
+          (group-by :year)
+          (sort-by first >)
+          (drop 9)
+          (map (fn [[year articles]]
+                   {:year year
+                    :articles (sort-by :timestamp > articles)})))
+        data {:title "Syndication feed"
+              :page-title "Syndication feed"
+              :url "weblog/feed/"
+              :years years}
+        html (apply str (tag-template data))]
+       (go (>! write-file-ch
+               {:file/name "feed/index.html"
+                :file/content html}))))
 
 (defn article->image [article]
   {:title (:title article)
@@ -461,6 +461,7 @@
         content (str root "content")]
     (println)
     (println "Gryphoon 3.0 - static website generator")
+    (println "Content generator")
     (println)
     (println "Copying static content to distribution folder...")
     (async/thread (static-content static dist))
