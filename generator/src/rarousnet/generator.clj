@@ -418,7 +418,7 @@
               articles
               (group-by :year)
               (sort-by first >)
-              (drop 3)
+              (drop 4)
               (map (fn [[year articles]]
                        {:year year
                         :articles (sort-by :timestamp > articles)})))
