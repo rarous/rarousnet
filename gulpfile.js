@@ -18,7 +18,7 @@ const pipeline = util.promisify(stream.pipeline);
 const { dest, series, src, watch } = gulp;
 
 function css() {
-  const plugins = [autoprefixer(), cssnano(), jitProps()];
+  const plugins = [autoprefixer(), cssnano()];
   return pipeline(
     src("./static/**/*.css"),
     postcss(plugins),
