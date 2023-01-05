@@ -12,12 +12,13 @@ import sizereport from "gulp-sizereport";
 import autoprefixer from "autoprefixer";
 import browserSync from "browser-sync";
 import cssnano from "cssnano";
+import jitProps from "postcss-jit-props";
 
 const pipeline = util.promisify(stream.pipeline);
 const { dest, series, src, watch } = gulp;
 
 function css() {
-  const plugins = [autoprefixer(), cssnano()];
+  const plugins = [autoprefixer(), cssnano(), jitProps()];
   return pipeline(
     src("./static/**/*.css"),
     postcss(plugins),

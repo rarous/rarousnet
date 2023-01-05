@@ -5753,6 +5753,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"globalyzer@npm:0.1.0":
+  version: 0.1.0
+  resolution: "globalyzer@npm:0.1.0"
+  checksum: 419a0f95ba542534fac0842964d31b3dc2936a479b2b1a8a62bad7e8b61054faa9b0a06ad9f2e12593396b9b2621cac93358d9b3071d33723fb1778608d358a1
+  languageName: node
+  linkType: hard
+
 "globby@npm:^13.1.2":
   version: 13.1.2
   resolution: "globby@npm:13.1.2"
@@ -5763,6 +5770,13 @@ __metadata:
     merge2: ^1.4.1
     slash: ^4.0.0
   checksum: c148fcda0c981f00fb434bb94ca258f0a9d23cedbde6fb3f37098e1abde5b065019e2c63fe2aa2fad4daf2b54bf360b4d0423d85fb3a63d09ed75a2837d4de0f
+  languageName: node
+  linkType: hard
+
+"globrex@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "globrex@npm:0.1.2"
+  checksum: adca162494a176ce9ecf4dd232f7b802956bb1966b37f60c15e49d2e7d961b66c60826366dc2649093cad5a0d69970cfa8875bd1695b5a1a2f33dcd2aa88da3c
   languageName: node
   linkType: hard
 
@@ -9738,6 +9752,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-jit-props@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "postcss-jit-props@npm:1.0.9"
+  dependencies:
+    tiny-glob: ^0.2.9
+  peerDependencies:
+    postcss: ^8.2.8
+  checksum: d8baf74ef21f27c9c4cd7c47de166adfee91b8b1c85e4b217201853fd1933fa2eb8adb32cd8c3b8ef59a01e00dfade1b46c0819b291655e348e6f5d60d535095
+  languageName: node
+  linkType: hard
+
 "postcss-load-config@npm:^3.0.0":
   version: 3.1.4
   resolution: "postcss-load-config@npm:3.1.4"
@@ -10306,6 +10331,7 @@ __metadata:
     local-web-server: 5.2.1
     npm-run-all: 4.1.5
     postcss: 8.4.20
+    postcss-jit-props: ^1.0.9
     prettier: 2.8.1
     tap-xunit: 2.4.1
   languageName: unknown
@@ -12266,6 +12292,16 @@ __metadata:
   version: 1.0.0
   resolution: "time-zone@npm:1.0.0"
   checksum: e46f5a69b8c236dcd8e91e29d40d4e7a3495ed4f59888c3f84ce1d9678e20461421a6ba41233509d47dd94bc18f1a4377764838b21b584663f942b3426dcbce8
+  languageName: node
+  linkType: hard
+
+"tiny-glob@npm:^0.2.9":
+  version: 0.2.9
+  resolution: "tiny-glob@npm:0.2.9"
+  dependencies:
+    globalyzer: 0.1.0
+    globrex: ^0.1.2
+  checksum: aea5801eb6663ddf77ebb74900b8f8bd9dfcfc9b6a1cc8018cb7421590c00bf446109ff45e4b64a98e6c95ddb1255a337a5d488fb6311930e2a95334151ec9c6
   languageName: node
   linkType: hard
 
