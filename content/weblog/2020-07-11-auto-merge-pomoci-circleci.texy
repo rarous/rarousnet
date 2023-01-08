@@ -4,7 +4,8 @@
 :description "Dnes si ukážame, jak pomocí CircleCI snado a rychle automatizovat merge Pull Requestů na Githubu.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "ci" "circleci" "dependabot"},
-:published "2020-07-11T08:55:00.000"}
+:published "2020-07-11T08:55:00.000"
+:syndication ["https://twitter.com/alesroubicek/status/1281851489263259648"]}
 ---
 
 Před dvěma lety jsem psal, "jak jsme dali práci robotům":[article(469)]. 

@@ -5,7 +5,10 @@
  "Podrobný průvodce refactoringem Clojure kódu, aby byl více idiomatický, funkcionální a dodržovat pravidla jednoduchého návrhu.",
  :author "Aleš Roubíček",
  :tags #{"clojure" "moje práce" "refactoring" "functional" "cleancode"},
- :published "2014-11-28T18:30:00.663"}
+ :published "2014-11-28T18:30:00.663"
+ :syndication
+ ["https://twitter.com/alesroubicek/status/538388371518005248"
+  "https://twitter.com/alesroubicek/status/681379441273106432"]}
 ---
 
 

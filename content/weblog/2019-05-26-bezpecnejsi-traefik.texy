@@ -5,7 +5,8 @@
 "Jak nastavit HSTS a silnější šifrování na reverzní proxy Traefik?",
 :author "Aleš Roubíček",
 :tags #{"moje práce"},
-:published "2019-05-26T09:10:00.000"}
+:published "2019-05-26T09:10:00.000"
+:syndication ["https://twitter.com/alesroubicek/status/1132550724456505345"]}
 ---
 
 V našich Docker Swarm clusterech používáme pro řízení provozu reverzní proxy Traefik:[https://traefik.io/].

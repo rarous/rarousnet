@@ -4,7 +4,8 @@
 :description "Jak jsem zrychlil generování Twitter Card obrázků pomocí paralelizace. Názorné ukázky v ECMAScriptu.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "transducers" "ci" "ecmascript"},
-:published "2023-01-04T08:00:00.000"}
+:published "2023-01-04T08:00:00.000"
+:syndication ["https://twitter.com/alesroubicek/status/1610534129925226498"]}
 ---
 
 O tom "jak generuju náhledy pro socky":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html],

@@ -4,7 +4,8 @@
 :description "Lighthouse je skvělý nástroj na automatizované auditování webových stránek a aplikací. Ukážeme si, jak ho přidat do kontinuální integrace.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "webdesign" "ci"},
-:published "2019-07-24T09:00:00.000"}
+:published "2019-07-24T09:00:00.000"
+:syndication ["https://twitter.com/alesroubicek/status/1153925403620364290"]}
 ---
 
 Lighthouse je skvělý "nástroj na automatizované auditování webových stránek a aplikací":[https://github.com/GoogleChrome/lighthouse/],

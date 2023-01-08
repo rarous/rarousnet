@@ -5,7 +5,8 @@
  "Ačkoliv je HTML5 dnešní realitou, tak není vůbec růžová. Jak se vyhnout zbytečným problémům?",
  :author "Aleš Roubíček",
  :tags #{"webdesign"},
- :published "2015-07-13T10:05:00.663"}
+ :published "2015-07-13T10:05:00.663"
+ :syndication ["https://twitter.com/alesroubicek/status/620536974517104640"]}
 ---
 
 Poprvé jsem o HTML5 slyšel víc někdy v roce 2008 na konferenci

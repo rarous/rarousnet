@@ -5,7 +5,8 @@
  "Poslední dobou se mi velmi často stává, že narážím na hlášky typu “od devíti refaktoruju a furt to nemá konce,” “refaktoring mi zabere asi tři dny, udělej mi na to task do backlogu” nebo „refaktoroval jsem to a nějak to přestalo fungovat.“ Tohle všechno j",
  :author "Aleš Roubíček",
  :tags #{"cleancode" "moje práce" "redesign" "refactoring"},
- :published "2011-07-23T09:31:11.890"}
+ :published "2011-07-23T09:31:11.890"
+ :syndication ["https://twitter.com/alesroubicek/status/452693494352474112"]}
 ---
 
 Poslední dobou se mi velmi často stává, že narážím na hlášky typu “od devíti refaktoruju a furt to nemá konce,”

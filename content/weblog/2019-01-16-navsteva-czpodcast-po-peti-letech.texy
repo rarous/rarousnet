@@ -5,7 +5,10 @@
  "Jednoho lednového odpoledne mi Filemon povídá, že jde točit CZ Podcast a že nemaj hosta. Jestli nechci povědět něco o Pull Requestech.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "topmonks", "czpodcast", "podcast", "ci"},
- :published "2019-01-16T12:00:00.000"}
+ :published "2019-01-16T12:00:00.000"
+ :syndication
+ ["https://twitter.com/czpodcast/status/1085443453016817664"
+  "https://soundcloud.com/czpodcast-1/cz-podcast-204-pull-requesty-merge-requesty-a-jine-mudrovani-nad-podstatou-tymoveho-vyvoje"]}
 ---
 
 Jednoho lednového odpoledne mi Filemon:[http://www.jirifabian.net] povídá, že jde s Dagim:[https://dagblog.cz]

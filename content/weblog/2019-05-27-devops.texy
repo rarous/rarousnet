@@ -4,7 +4,10 @@
 :description "Vlhkým snem všech moderních společností je vyvíjet software rychleji.",
 :author "Aleš Roubíček",
 :tags #{"moje práce"},
-:published "2019-05-27T08:00:00.000"}
+:published "2019-05-27T08:00:00.000"
+:syndication
+ ["https://twitter.com/alesroubicek/status/1372085743582072832"
+  "https://twitter.com/alesroubicek/status/1132907456303194117"]}
 ---
 
 Vlhkým snem všech moderních společností je vyvíjet software rychleji. Nechávají se opít vidinou,

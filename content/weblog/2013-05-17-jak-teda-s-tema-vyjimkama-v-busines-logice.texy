@@ -4,7 +4,10 @@
  :description "Jak to vidím s výjimkama v business logice já.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "cleancode", "functional", "fsharp"},
- :published "2013-05-17T14:11:33.710"}
+ :published "2013-05-17T14:11:33.710"
+ :syndication
+ ["https://twitter.com/alesroubicek/status/473880443415461888"
+  "https://twitter.com/alesroubicek/status/681733297588797440"]}
 ---
 
 Na develu se rozvíjí debaty o tom, zda je zpátečnické odrazovat od vyhazování výjimek.

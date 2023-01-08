@@ -4,7 +4,8 @@
  :description "Čtyři pravidla jednoduché návrhu.",
  :author "Aleš Roubíček",
  :tags #{"xp" "design" "moje práce" "cleancode"},
- :published "2012-06-09T12:59:32.310"}
+ :published "2012-06-09T12:59:32.310"
+ :syndication ["https://twitter.com/alesroubicek/status/447007280643325952"]}
 ---
 
 Volně přeloženo z knihy "Extreme Programming Explained":[http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416]

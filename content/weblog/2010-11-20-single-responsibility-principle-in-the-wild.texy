@@ -5,7 +5,8 @@
  "Dneska jsme narazil na jeden příklad, který byl opět ukázkou špatného návrhu a tak mě inspiroval. Inspiroval k jednoduché ukázce, jak špatný návrh krapet vylepšit.",
  :author "Aleš Roubíček",
  :tags #{"cleancode"},
- :published "2010-11-20T13:31:55.940"}
+ :published "2010-11-20T13:31:55.940"
+ :syndication ["https://twitter.com/alesroubicek/status/679710434878971905"]}
 ---
 
 Tak jsem se tak koukal na "poslední CloudCover":[cloudcover], kde představovali novou službu Windows Azure AppFabric Caching. Služba je to jistě zajímavá a je jednou z možností jak zajistit *session state affinity* v Azure. Ale proč o tom píšu.

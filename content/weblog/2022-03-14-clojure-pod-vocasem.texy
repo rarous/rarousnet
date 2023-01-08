@@ -4,12 +4,14 @@
 :description "Byl jsem hostem v Podcastu 'Pod Vocasem', kde jsme si povídali nejen o Clojure.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "functional" "clojure" "podcast"},
-:published "2022-03-14T19:00:00.000"}
+:published "2022-03-14T19:00:00.000"
+:syndication ["https://twitter.com/podvocasem/status/1503255029448421377"]}
 ---
 
-Nedávno mě Džoukr:[https://twitter.com/dzoukr] oslovil, zda bych jim neudělal kašpárka v jejich podcastu "Pod Vocasem":[https://www.podvocasem.cz/].
-Konkrétně, zda bychom si mohli popovídat o Clojure. Pokud jde o příležitost popovídat si s Románkem osobně, tak to jsem si nemohl nechat ujít.
-No a celé si to můžete poslechnout tady:
+Nedávno mě Džoukr:[https://twitter.com/dzoukr] oslovil, zda bych jim neudělal kašpárka
+v jejich podcastu "Pod Vocasem":[https://www.podvocasem.cz/].
+Konkrétně, zda bychom si mohli popovídat o Clojure. Pokud jde o příležitost popovídat si
+s Románkem osobně, tak to jsem si nemohl nechat ujít. No a celé si to můžete poslechnout tady:
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/1qBNACavMXSflvUv27IhX0?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 

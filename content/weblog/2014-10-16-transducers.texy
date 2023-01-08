@@ -4,7 +4,8 @@
  :description "Lehký uvod do tranducerů.",
  :author "Aleš Roubíček",
  :tags #{"clojure" "moje práce" "transducers" "functional" "cleancode"},
- :published "2014-10-16T7:30:00.663"}
+ :published "2014-10-16T7:30:00.663"
+ :syndication ["https://twitter.com/alesroubicek/status/1081891203157766154"]}
 ---
 
 

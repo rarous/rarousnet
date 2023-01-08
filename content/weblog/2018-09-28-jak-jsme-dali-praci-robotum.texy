@@ -5,7 +5,8 @@
  "Rutinní práci by neměli dělat drahocení inženýři, ale roboti. I my v TopMonks roboty zaměstnáváme.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "topmonks"},
- :published "2018-09-28T11:58:00.777"}
+ :published "2018-09-28T11:58:00.777"
+ :syndication ["https://twitter.com/alesroubicek/status/1090946508118282242"]}
 ---
 
 Jednou ze zajímavostí IT je, že se snaží automatizovat rutinní práci lidí a dávat jim více

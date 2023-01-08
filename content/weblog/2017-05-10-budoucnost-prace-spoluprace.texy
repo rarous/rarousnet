@@ -5,7 +5,9 @@
  "Minulý týden proběhlo další tradiční TopMonks Caffè, tentokráte s podtitulem Budoucnost práce. Toto je jeho shrnutí.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "topmonks caffe"},
- :published "2017-05-11T07:49:00.777"}
+ :published "2017-05-11T07:49:00.777"
+ :syndication
+  ["https://twitter.com/alesroubicek/status/1373159115573370882"]}
 ---
 
 Minulý týden proběhlo další tradiční TopMonks Caffè, tentokráte s podtitulem Budoucnost práce.

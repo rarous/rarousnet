@@ -5,7 +5,8 @@
  "Skoro po roce jsem byl opět hostem CZ Podcastu. Tentokrát jsme se bavili o Continuous Delivery.",
  :author "Aleš Roubíček",
  :tags #{"ci" "agile" "moje práce" "czpodcast" "podcast"},
- :published "2012-10-09T09:09:01.727"}
+ :published "2012-10-09T09:09:01.727"
+ :syndication ["https://www.mixcloud.com/alesroubicek/czpodcast-69-continuous-delivery/"]}
 ---
 
 Když pár týdnů nazpět vyhlásil @czpodcast:[https://twitter.com/czpodcast] call to action na téma

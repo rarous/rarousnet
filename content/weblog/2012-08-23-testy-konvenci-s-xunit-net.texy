@@ -5,7 +5,8 @@
  "V každé dobře navržené aplikaci by se měly dodržovat nějaké konvence, které nám umožní psát flexibilní a dopředně kompatibilní kód, který není třeba často měnit.;",
  :author "Aleš Roubíček",
  :tags #{"moje práce" "xunit" "cleancode"},
- :published "2012-08-23T11:21:12.133"}
+ :published "2012-08-23T11:21:12.133"
+ :syndication ["https://twitter.com/alesroubicek/status/448008651958018049"]}
 ---
 
 V každé dobře navržené aplikaci by se měly dodržovat nějaké konvence, které nám umožní psát flexibilní

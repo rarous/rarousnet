@@ -5,7 +5,8 @@
  "Ve světe pragmatických programátorů vládné všudepřítomné sucho. Někdy až příliš velké sucho.",
  :author "Aleš Roubíček",
  :tags #{"xp" "moje práce" "tdd" "cleancode"},
- :published "2012-06-25T10:52:22.627"}
+ :published "2012-06-25T10:52:22.627"
+ :syndication ["https://twitter.com/alesroubicek/status/449500588242247680"]}
 ---
 
 Ve světe pragmatických programátorů vládné všudepřítomné sucho (DRY((Don't Repeat Yourself))),

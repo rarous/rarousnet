@@ -4,7 +4,8 @@
 :description "Zbavil jsem backend Hlídače Shopů TypeScriptu. Při zachování stejné typové kontroly a našeptávání, s mnohem rychlejším buildem a výslednou velikostí lambdiček pod 5% původního výstupu.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "esbuild" "ecmascript" "pulumi" "hlidacshopu"},
-:published "2020-12-26T19:00:00.000"}
+:published "2020-12-26T19:00:00.000"
+:syndication ["https://twitter.com/alesroubicek/status/1342898578612772864"]}
 ---
 
 Poslední tři měsíce jsem z velké části, stejně jako minulý rok, pracoval na "Hlídači Shopů":[https://www.hlidacshopu.cz/].

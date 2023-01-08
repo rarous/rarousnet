@@ -5,7 +5,8 @@
  "Občas pohodlnost vyhrává a zadělává na zasmrádnutý kód, který přináší problémy. Pojďme vymítit jednu ze zhůvěřilostí \"kreativního\" návrhu. ",
  :author "Aleš Roubíček",
  :tags #{"csharp" "cleancode" "refactoring"},
- :published "2009-08-01T08:51:21.480"}
+ :published "2009-08-01T08:51:21.480"
+ :syndication ["https://twitter.com/alesroubicek/status/717075780606492673"]}
 ---
 
 Přinejmenším na veřejnosti. Mnohdy se v různých APIs můžete setkat s tím, že různé objekty veřejně vystavují metody/vlasnosti, které mají návratový typ `List<T>`, v lepším případě `IList<T>`. Krásná ukázka nerozvážného návrhu.

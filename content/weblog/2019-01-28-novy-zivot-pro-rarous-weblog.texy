@@ -5,7 +5,8 @@
 "Do roku 2019 jsem si předsevzal, že se vrátím opět k blogování.",
 :author "Aleš Roubíček",
 :tags #{"jen tak", "moje práce"},
-:published "2019-01-28T09:00:00.000"}
+:published "2019-01-28T09:00:00.000"
+:syndication ["https://twitter.com/alesroubicek/status/1089799952967102465"]}
 ---
 
 Kdysi dávno (už to bude 15let) jsem vytvořil blogovadlo postavený nad ASP.NET a s tím jsem začal i blogovat.

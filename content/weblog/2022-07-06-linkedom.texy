@@ -4,7 +4,8 @@
 :description "Na práci s HTML dokumenty existuje několik JavaScriptových knihoven a většinou nejsou dobré. LinkeDOM je rychlý a velice blízký APIs browseru.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "webdesign" "linkedom" "deno"},
-:published "2022-07-06T14:00:00.000"}
+:published "2022-07-06T14:00:00.000"
+:syndication ["https://twitter.com/alesroubicek/status/1544668278622232578"]}
 ---
 
 Pokud chcete v Node.js pracovat s HTML dokumenty, máte v podstatě dvě možnosti, jak to mainstreamově udělat -

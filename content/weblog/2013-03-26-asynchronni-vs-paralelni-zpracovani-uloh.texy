@@ -5,7 +5,10 @@
  "Dnes se podíváme na zoubek asynchronnímu a paralelnímu zpracování.",
  :author "Aleš Roubíček",
  :tags #{"async" "moje práce"},
- :published "2013-03-26T12:42:52.607"}
+ :published "2013-03-26T12:42:52.607"
+ :syndication
+ ["https://twitter.com/alesroubicek/status/488649869691981824"
+  "https://twitter.com/alesroubicek/status/682087674132455428"]}
 ---
 
 S příchodem `async/await` do C# 5.0 se nám

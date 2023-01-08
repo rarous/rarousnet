@@ -5,7 +5,8 @@
  "Dneska se podíváme na zoubek dotazování nad doménovými objekty. Jak refaktorovat IRepository na autonomní query objekty...",
  :author "Aleš Roubíček",
  :tags #{"cleancode" "patterns" "linq"},
- :published "2010-01-30T13:53:12.107"}
+ :published "2010-01-30T13:53:12.107"
+ :syndication ["https://twitter.com/alesroubicek/status/681003522637312000"]}
 ---
 
 V každé aplikaci, kde se pracuje s daty, se dostaneme do situace, kdy se nad daty potřebujeme dotazovat. Pokud přijmeme za svůj vzor Repository, můžeme se dostat do situace, podobné té v následující ukázce:
