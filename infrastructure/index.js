@@ -113,24 +113,24 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
   ttl: 3600,
 });
 
-const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
-  accountId,
-  title: "rarous-net-weblog",
-});
-
-const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
-  accountId,
-  module: true,
-  name: "webhooks",
-  content: fs.readFileSync("workers/webhooks.js", { encoding: "utf-8" }),
-  kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
-});
-const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
-  accountId,
-  zoneId: zone.id,
-  pattern: "www.rarous.net/webhooks/*",
-  scriptName: webhooksWorker.name,
-});
+//const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
+//  accountId,
+//  title: "rarous-net-weblog",
+//});
+//
+//const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
+//  accountId,
+//  module: true,
+//  name: "webhooks",
+//  content: fs.readFileSync("workers/webhooks.js", { encoding: "utf-8" }),
+//  kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
+//});
+//const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
+//  accountId,
+//  zoneId: zone.id,
+//  pattern: "www.rarous.net/webhooks/*",
+//  scriptName: webhooksWorker.name,
+//});
 
 export const bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
 export const websiteTestUri = bucket.websiteEndpoint.apply(
@@ -139,4 +139,4 @@ export const websiteTestUri = bucket.websiteEndpoint.apply(
 export const websiteUri = `https://${domain}`;
 export const zoneId = zone.id;
 export const nameServers = zone.nameServers;
-export const weblogKvNsId = weblogNS.id;
+//export const weblogKvNsId = weblogNS.id;
