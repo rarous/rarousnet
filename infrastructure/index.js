@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import pulumi from "@pulumi/pulumi";
 import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
@@ -11,7 +12,7 @@ const zone = new cloudflare.Zone(
     plan: "free",
     zone: "rarous.net",
   },
-  { protect: true }
+  { protect: true },
 );
 
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
@@ -111,10 +112,27 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
   ttl: 3600,
 });
 
+const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
+  title: "weblog",
+});
+
+const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
+  module: true,
+  name: "webhooks",
+  content: fs.readFileSync("webhooks.js", { encoding: "utf-8" }),
+  kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
+});
+const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
+  zoneId: zone.id,
+  pattern: "www.rarous.net/webhooks/*",
+  scriptName: webhooksWorker.name,
+});
+
 export const bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
 export const websiteTestUri = bucket.websiteEndpoint.apply(
-  (x) => `http://${x}`
+  (x) => `http://${x}`,
 );
 export const websiteUri = `https://${domain}`;
 export const zoneId = zone.id;
 export const nameServers = zone.nameServers;
+export const weblogKvNsId = weblogNS.id;
