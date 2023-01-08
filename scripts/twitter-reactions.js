@@ -1,36 +1,36 @@
-// deno run --allow-read=./data/ --allow-write=./data/ twitter-reactions.js
-import tweets from "./data/tweets.json" assert { type: "json" };
+import { parse } from "https://deno.land/std@0.140.0/flags/mod.ts";
+async function main({ token }) {
+  const webmentions = [];
+  for (let i = 0; i < 3; i++) {
+    const resp = await fetch(
+      `https://webmention.io/api/mentions.jf2?token=${token}&page=${i}}`,
+    );
+    const { children } = await resp.json();
+    webmentions.push(...children);
+  }
 
-const blogMentions = tweets
-  .filter(({ tweet }) =>
-    tweet.entities.urls.some(({ display_url }) =>
-      display_url.startsWith("rarous.net/weblog/")
-    )
-  )
-  .map(({ tweet }) => ({
-    url:
-      tweet.entities.urls.find(({ display_url }) =>
-        display_url.startsWith("rarous.net/weblog/")
-      ).expanded_url,
-    tweet: `https://twitter.com/alesroubicek/status/${tweet.id}`,
-  }));
+  const blogMentions = new Map();
+  for (const entry of webmentions) {
+    const url = entry["wm-target"];
+    const values = blogMentions.get(url) ?? [];
+    values.push(entry);
+    blogMentions.set(url, values);
+  }
 
-const syndications = new Map();
-for (const { url, tweet } of blogMentions) {
-  const values = syndications.get(url) ?? [];
-  values.push(tweet);
-  syndications.set(url, values);
+  const input = Array.from(blogMentions).sort((a, b) =>
+    a[0].localeCompare(b[0])
+  );
+  const output = {};
+  for (
+    const [url, webmentions] of input
+  ) {
+    output[url] = { webmentions };
+  }
+
+  await Deno.writeTextFile(
+    "./data/webmentions.json",
+    JSON.stringify(output, null, 2),
+  );
 }
 
-const input = Array.from(syndications).sort((a, b) => a[0].localeCompare(b[0]));
-const output = {};
-for (
-  const [url, syndication] of input
-) {
-  output[url] = { syndication };
-}
-
-await Deno.writeTextFile(
-  "./data/syndication.json",
-  JSON.stringify(output, null, 2),
-);
+await main(parse(Deno.args));
