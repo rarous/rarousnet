@@ -119,7 +119,7 @@ const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
 const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
   module: true,
   name: "webhooks",
-  content: fs.readFileSync("webhooks.js", { encoding: "utf-8" }),
+  content: fs.readFileSync("workers/webhooks.js", { encoding: "utf-8" }),
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
 });
 const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
