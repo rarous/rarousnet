@@ -125,6 +125,7 @@ const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
 });
 const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
+  accountId: config.require("accountId"),
   zoneId: zone.id,
   pattern: "www.rarous.net/webhooks/*",
   scriptName: webhooksWorker.name,
