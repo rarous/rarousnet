@@ -5,6 +5,7 @@ import cloudflare from "@pulumi/cloudflare";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
+const accountId = config.require("accountId");
 
 const zone = new cloudflare.Zone(
   "rarous.net",
@@ -113,19 +114,19 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
-  accountId: config.require("accountId"),
+  accountId,
   title: "rarous-net-weblog",
 });
 
 const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
-  accountId: config.require("accountId"),
+  accountId,
   module: true,
   name: "webhooks",
   content: fs.readFileSync("workers/webhooks.js", { encoding: "utf-8" }),
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
 });
 const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
-  accountId: config.require("accountId"),
+  accountId,
   zoneId: zone.id,
   pattern: "www.rarous.net/webhooks/*",
   scriptName: webhooksWorker.name,
