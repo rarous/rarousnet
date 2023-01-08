@@ -113,11 +113,12 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
-  accountId: "f4b105d220fb4698cd1f3177bd14b85c",
+  accountId: config.get("accountId"),
   title: "rarous-net-weblog",
 });
 
 const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
+  accountId: config.get("accountId"),
   module: true,
   name: "webhooks",
   content: fs.readFileSync("workers/webhooks.js", { encoding: "utf-8" }),
