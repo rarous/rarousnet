@@ -113,6 +113,7 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
+  accountId: "f4b105d220fb4698cd1f3177bd14b85c",
   title: "rarous-net-weblog",
 });
 
