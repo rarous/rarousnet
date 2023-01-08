@@ -113,7 +113,7 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
-  title: "rarous.net/weblog",
+  title: "rarous-net-weblog",
 });
 
 const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
