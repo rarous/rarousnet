@@ -1,11 +1,19 @@
 import fs from "node:fs";
+import path from "node:path";
 import pulumi from "@pulumi/pulumi";
 import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
+import { buildCodeAsset } from "./worker-builder.js";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
 const accountId = config.require("accountId");
+
+const buildAsset = (fileName) =>
+  buildCodeAsset(
+    path.join(__dirname, "workers", fileName),
+    true,
+  );
 
 const zone = new cloudflare.Zone(
   "rarous.net",
@@ -122,7 +130,7 @@ const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
   accountId,
   module: true,
   name: "webhooks",
-  content: fs.readFileSync("workers/webhooks.js", { encoding: "utf-8" }),
+  content: buildAsset("webhooks.js"),
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
   plainTextBindings: [{
     name: "WEBMENTIONS_WEBHOOK_SECRET",

@@ -1,5 +1,6 @@
 export default {
   fetch(request, env, ctx) {
-    return new Response(env.WEBMENTIONS_WEBHOOK_SECRET);
+    const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
+    return new Response();
   },
 };
