@@ -4,7 +4,7 @@ import url from "node:url";
 import pulumi from "@pulumi/pulumi";
 import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
-import { buildCodeAsset } from "./worker-builder.js";
+import { build } from "./worker-builder.js";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
@@ -12,10 +12,11 @@ const accountId = config.require("accountId");
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const buildAsset = (fileName) =>
-  buildCodeAsset(
+  build(
     path.join(__dirname, "workers", fileName),
     true,
   );
+
 
 const zone = new cloudflare.Zone(
   "rarous.net",
