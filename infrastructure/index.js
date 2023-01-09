@@ -27,6 +27,13 @@ const zone = new cloudflare.Zone(
   { protect: true },
 );
 
+const rarous = new cloudflare.Account("rarous", {
+  enforceTwofactor: true,
+  name: "Ales@roubicek.name's Account",
+}, {
+  protect: true,
+});
+
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
   zoneId: zone.id,
   settings: {
@@ -155,3 +162,4 @@ export const websiteUri = `https://${domain}`;
 export const zoneId = zone.id;
 export const nameServers = zone.nameServers;
 export const weblogKvNsId = weblogNS.id;
+export const accID = account.id;
