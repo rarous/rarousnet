@@ -9,7 +9,7 @@ async function getPayload(weblog, url) {
 }
 
 async function setPayload(weblog, url, payload) {
-  return weblog.set(url, JSON.stringify(payload));
+  return weblog.put(url, JSON.stringify(payload));
 }
 
 app.post("/webhooks/webmentions", async (c) => {
