@@ -1744,6 +1744,7 @@ __metadata:
     "@pulumi/cloudflare": 4.14.0
     "@pulumi/pulumi": 3.51.0
     esbuild: ^0.16.16
+    hono: ^2.7.2
   languageName: unknown
   linkType: soft
 
@@ -6403,6 +6404,13 @@ __metadata:
   dependencies:
     parse-passwd: ^1.0.0
   checksum: 18dd4db87052c6a2179d1813adea0c4bfcfa4f9996f0e226fefb29eb3d548e564350fa28ec46b0bf1fbc0a1d2d6922ceceb80093115ea45ff8842a4990139250
+  languageName: node
+  linkType: hard
+
+"hono@npm:^2.7.2":
+  version: 2.7.2
+  resolution: "hono@npm:2.7.2"
+  checksum: c987c4b921adc59f14e2369d9472ba20f6df0dbf695ded7b4cfdc2cce778c267b1f76ca4b1d32df04b38ed4776e25c205f237e6a6b43e087650c2b8f776a8365
   languageName: node
   linkType: hard
 

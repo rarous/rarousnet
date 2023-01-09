@@ -147,12 +147,12 @@ const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
   scriptName: webhooksWorker.name,
 });
 
+export const accountId = account.id;
+export const zoneId = zone.id;
+export const nameServers = zone.nameServers;
 export const bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
 export const websiteTestUri = bucket.websiteEndpoint.apply(
   (x) => `http://${x}`,
 );
-export const accountId = account.id;
-export const zoneId = zone.id;
-export const nameServers = zone.nameServers;
 export const websiteUri = `https://${domain}`;
 export const weblogKvNsId = weblogNS.id;
