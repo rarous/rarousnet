@@ -25,6 +25,7 @@ app.post("/webhooks/webmentions", async (c) => {
     return c.status(202);
   } catch (err) {
     console.log(err);
+    return c.status(500);
   }
 });
 
