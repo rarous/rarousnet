@@ -4,7 +4,7 @@ import pulumi from "@pulumi/pulumi";
 
 export function build(entrypoint, minify) {
   const result = esbuild.buildSync({
-    plugins: [NodeModulesPolyfillPlugin()],
+    //plugins: [NodeModulesPolyfillPlugin()],
     platform: "browser",
     conditions: ["worker", "browser"],
     entryPoints: [entrypoint],
