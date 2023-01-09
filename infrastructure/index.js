@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import url from "node:url";
 import pulumi from "@pulumi/pulumi";
 import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
@@ -9,6 +10,7 @@ const config = new pulumi.Config();
 const domain = config.require("domain");
 const accountId = config.require("accountId");
 
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const buildAsset = (fileName) =>
   buildCodeAsset(
     path.join(__dirname, "workers", fileName),
