@@ -10,29 +10,22 @@ const config = new pulumi.Config();
 const domain = config.require("domain");
 const accountId = config.require("accountId");
 
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const buildAsset = (fileName) =>
   build(
     path.join(__dirname, "workers", fileName),
     true,
   );
 
-
-const zone = new cloudflare.Zone(
-  "rarous.net",
-  {
-    plan: "free",
-    zone: "rarous.net",
-  },
-  { protect: true },
-);
-
-const rarous = new cloudflare.Account("rarous", {
+const account = new cloudflare.Account("rarous", {
   enforceTwofactor: true,
   name: "Ales@roubicek.name's Account",
-}, {
-  protect: true,
-});
+}, { protect: true });
+
+const zone = new cloudflare.Zone("rarous.net", {
+  plan: "free",
+  zone: "rarous.net",
+}, { protect: true });
 
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
   zoneId: zone.id,
