@@ -2,7 +2,7 @@ import { Hono } from "hono";
 
 const app = new Hono();
 
-app.post("webmentions", async (c) => {
+app.post("/webhooks/webmentions", async (c) => {
   const { env, req } = c;
   const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
   const body = await req.json();
