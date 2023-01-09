@@ -7,7 +7,7 @@ app.post("/webhooks/webmentions", async (c) => {
   const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
   const body = await req.json();
   if (body.secret !== secret) return c.status(403);
-  console.log(body);
+  console.log(body.post);
   return c.status(202);
 });
 
