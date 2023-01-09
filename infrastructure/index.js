@@ -8,7 +8,6 @@ import { build } from "./worker-builder.js";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
-const accountId = config.require("accountId");
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const buildAsset = (fileName) =>
@@ -18,11 +17,12 @@ const buildAsset = (fileName) =>
   );
 
 const account = new cloudflare.Account("rarous", {
+  name: "rarous",
   enforceTwofactor: true,
-  name: "Ales@roubicek.name's Account",
 }, { protect: true });
 
 const zone = new cloudflare.Zone("rarous.net", {
+  accountId: account.id,
   plan: "free",
   zone: "rarous.net",
 }, { protect: true });
@@ -125,12 +125,12 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
-  accountId,
+  accountId: account.id,
   title: "rarous-net-weblog",
 });
 
 const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
-  accountId,
+  accountId: account.id,
   module: true,
   name: "webhooks",
   content: buildAsset("webhooks.js"),
@@ -141,7 +141,7 @@ const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
   }],
 });
 const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
-  accountId,
+  accountId: account.id,
   zoneId: zone.id,
   pattern: "www.rarous.net/webhooks/*",
   scriptName: webhooksWorker.name,
@@ -151,8 +151,8 @@ export const bucketUri = bucket.bucket.apply((x) => `s3://${x}`);
 export const websiteTestUri = bucket.websiteEndpoint.apply(
   (x) => `http://${x}`,
 );
-export const websiteUri = `https://${domain}`;
+export const accountId = account.id;
 export const zoneId = zone.id;
 export const nameServers = zone.nameServers;
+export const websiteUri = `https://${domain}`;
 export const weblogKvNsId = weblogNS.id;
-export const accID = account.id;

@@ -1,9 +1,9 @@
 config:
   aws:region: eu-central-1
+  # TODO: remove this deprecated property when safe
   cloudflare:accountId: f4b105d220fb4698cd1f3177bd14b85c
   cloudflare:apiToken:
     secure: AAABAHb65l/T32WMzvOuksh1nP592WEVp7bCKXqkzOEQEcrD4PqDhlUImjfAEI9g1kGaG45yIv5QNIMzOga3T4Um3TnhVu4x
-  rarousnet:accountId: f4b105d220fb4698cd1f3177bd14b85c
   rarousnet:domain: www.rarous.net
   rarousnet:webhook-secret:
     secure: AAABAI6OJNZYQHjIuc28Sbkqv+tTykem5GojVn8S4l7KzDbXYLbkss/8DcbxWdb83QocXyzaCbeuCWuL2YcuPEho1k/f5OoUWI0LD3Ge6j3idA==
