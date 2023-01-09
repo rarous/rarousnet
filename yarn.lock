@@ -1169,7 +1169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild-plugins/node-modules-polyfill@npm:^0.1.4":
+"@esbuild-plugins/node-modules-polyfill@npm:0.1.4":
   version: 0.1.4
   resolution: "@esbuild-plugins/node-modules-polyfill@npm:0.1.4"
   dependencies:
@@ -1739,12 +1739,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@esbuild-plugins/node-modules-polyfill": ^0.1.4
+    "@esbuild-plugins/node-modules-polyfill": 0.1.4
     "@pulumi/aws": 5.26.0
     "@pulumi/cloudflare": 4.14.0
     "@pulumi/pulumi": 3.51.0
-    esbuild: ^0.16.16
-    hono: ^2.7.2
+    esbuild: 0.16.16
+    hono: 2.7.2
   languageName: unknown
   linkType: soft
 
@@ -4936,7 +4936,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.16.16":
+"esbuild@npm:0.16.16":
   version: 0.16.16
   resolution: "esbuild@npm:0.16.16"
   dependencies:
@@ -6407,7 +6407,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hono@npm:^2.7.2":
+"hono@npm:2.7.2":
   version: 2.7.2
   resolution: "hono@npm:2.7.2"
   checksum: c987c4b921adc59f14e2369d9472ba20f6df0dbf695ded7b4cfdc2cce778c267b1f76ca4b1d32df04b38ed4776e25c205f237e6a6b43e087650c2b8f776a8365
