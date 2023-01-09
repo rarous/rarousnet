@@ -124,6 +124,10 @@ const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
   name: "webhooks",
   content: fs.readFileSync("workers/webhooks.js", { encoding: "utf-8" }),
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
+  plainTextBindings: [{
+    name: "WEBMENTIONS_WEBHOOK_SECRET",
+    text: config.require("webhook-secret"),
+  }],
 });
 const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
   accountId,
