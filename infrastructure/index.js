@@ -15,6 +15,11 @@ const buildAsset = (fileName) =>
     true,
   );
 
+const account = new cloudflare.Account("rarous", {
+  name: "rarous",
+  enforceTwofactor: true,
+});
+
 const zone = new cloudflare.Zone(
   "rarous.net",
   {
@@ -151,4 +156,5 @@ export const websiteTestUri = bucket.websiteEndpoint.apply(
 export const websiteUri = `https://${domain}`;
 export const zoneId = zone.id;
 export const nameServers = zone.nameServers;
-//export const weblogKvNsId = weblogNS.id;
+export const weblogKvNsId = weblogNS.id;
+export const accID = account.id;
