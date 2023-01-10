@@ -12,18 +12,19 @@ import sizereport from "gulp-sizereport";
 import autoprefixer from "autoprefixer";
 import browserSync from "browser-sync";
 import cssnano from "cssnano";
+import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 
 const pipeline = util.promisify(stream.pipeline);
 const { dest, series, src, watch } = gulp;
 
 function css() {
-  const plugins = [autoprefixer(), cssnano()];
+  const plugins = [autoprefixer(), cssnano(), jitProps(OpenProps)];
   return pipeline(
     src("./static/**/*.css"),
     postcss(plugins),
     plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }),
-    dest("./dist/")
+    dest("./dist/"),
   );
 }
 
@@ -34,7 +35,7 @@ function hashStyles() {
     deleteNotHashed(),
     dest("./dist"),
     hash.manifest("assets-manifest.json", { merge: true }),
-    dest("./out")
+    dest("./out"),
   );
 }
 
@@ -54,13 +55,13 @@ function html() {
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true,
     }),
-    dest("./dist")
+    dest("./dist"),
   );
 }
 
 function size() {
   return src(["./dist/**/*.css", "./dist/**/*.js", "./dist/**/*.woff2"]).pipe(
-    sizereport({ gzip: true })
+    sizereport({ gzip: true }),
   );
 }
 
@@ -72,7 +73,7 @@ function run(done) {
   watch("static/**/*.css", css);
   watch(["dist/**/*.css", "dist/**/*.js", "dist/**/*.html"]).on(
     "change",
-    browserSync.reload
+    browserSync.reload,
   );
   done();
 }

@@ -153,14 +153,17 @@
     function groupTemplate(type, title, items) {
       if (!items.length) return;
       return html`
-        <section>
-          <p><data value="${items.length}">${title} ${items.length}x</data></p>
+        <section class="webmentions">
+          <p><data value="${items.length}">${items.length}x ${title}</data></p>
           <ul>
             ${items.map(item => html`
               <li>
                 <a class="${type}" href="${item.url}" title="${item.author.name}">
                   <date datetime="${item.published}"></date>
-                  <img alt="${item.author.name}" src="${item.author.photo}" width="32" height="32" loading="lazy" decoding="async">
+                  <img alt="${item.author.name}"
+                     src="${item.author.photo}"
+                     width="32" height="32"
+                     loading="lazy" decoding="async">
                 </a>
               </li>
             `)}
@@ -174,8 +177,8 @@
         const byType = groupByType(webmentions);
         return html`
           <h2>Reakce v síti</h2>
-          ${groupTemplate("u-like", "Libilo se", byType.get("like-of"))}
-          ${groupTemplate("u-repost", "Přeposlal dál", byType.get("repost-of"))}
+          ${groupTemplate("u-like", "se líbilo", byType.get("like-of"))}
+          ${groupTemplate("u-repost", "přeposláno dál", byType.get("repost-of"))}
         `;
       }
 
