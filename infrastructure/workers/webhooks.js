@@ -1,3 +1,4 @@
+/** @see https://honojs.dev/ */
 import { Hono } from "hono";
 
 const app = new Hono();
@@ -12,6 +13,9 @@ async function saveDetail(weblog, url, payload) {
   return weblog.put(url, JSON.stringify(payload));
 }
 
+/**
+ * Client for https://webmention.io/settings/webhooks
+ */
 app.post("/webhooks/webmentions", async (c) => {
   try {
     const { env, req } = c;

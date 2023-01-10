@@ -364,7 +364,8 @@ article footer {
   row-gap: 0;
 }
 .webmentions li {
-  margin-inline-end: -32px;
+  margin-inline-start: 0;
+  margin-inline-end: -9px;
   padding: 0;
   transition: translate .8s var(--ease-squish-3);
 }
