@@ -356,6 +356,26 @@ article footer {
   font-size: 1em;
 }
 
+.webmentions ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding-inline: 0 32px;
+  row-gap: 0;
+}
+.webmentions li {
+  margin-inline-end: -32px;
+  padding: 0;
+  transition: translate .8s var(--ease-squish-3);
+}
+.webmentions li:hover {
+  translate: 0 -7px;
+}
+.webmentions img {
+  aspect-ratio: var(--ratio-square);
+  border-radius: var(--radius-round);
+}
+
 .footer {
   color: var(--text-color-on-primary);
   background-color: var(--primary-color);
