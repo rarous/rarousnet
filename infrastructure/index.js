@@ -146,6 +146,19 @@ const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
   pattern: "www.rarous.net/webhooks/*",
   scriptName: webhooksWorker.name,
 });
+const apiWorker = new cloudflare.WorkerScript("api", {
+  accountId: account.id,
+  module: true,
+  name: "api",
+  content: buildAsset("api.js"),
+  kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
+});
+const apiRoute = new cloudflare.WorkerRoute("api", {
+  accountId: account.id,
+  zoneId: zone.id,
+  pattern: "www.rarous.net/api/*",
+  scriptName: apiWorker.name,
+});
 
 export const accountId = account.id;
 export const zoneId = zone.id;
