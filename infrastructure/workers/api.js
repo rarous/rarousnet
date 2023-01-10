@@ -13,6 +13,9 @@ app.get("/api/v1/weblog", async (c) => {
     const { env, req } = c;
     const target = req.query("url");
     const payload = await getPayload(env.weblog, target);
+    payload.webmentions = payload.webmentions.filter((x) =>
+      x.author.url !== "https://twitter.com/alesroubicek"
+    );
     return c.json(payload);
   } catch (err) {
     console.log(err);
