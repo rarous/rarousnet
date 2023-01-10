@@ -20,7 +20,7 @@ app.post("/webhooks/webmentions", async (c) => {
     if (body.secret !== secret) return c.status(403);
     const { post, target, deleted } = body;
     const payload = await getPayload(env.weblog, target);
-    const webmentions = new Map(payload.webmentions.map(x => [x.url, x]));
+    const webmentions = new Map(payload.webmentions.map((x) => [x.url, x]));
     if (deleted) {
       webmentions.delete(post.url);
     } else {
