@@ -128,6 +128,27 @@
       </footer>
     </article>
 
+    <div id="webmentions"></div>
+    <script type="module">
+      import { render, html } from "https://cdn.skypack.dev/lit-html?min";
+
+      function template(webmentions) {
+        return html`<data value=${webmentions.length}>${webmentions.length} mentions</data>`;
+      }
+
+      async function main({ url, webmentionsRoot }) {
+        const resp = await fetch(`/api/v1/weblog?${new URLSearchParams({ url })}`);
+        if (!resp.ok) return;
+        const { webmentions } = await resp.json();
+        render(template(webmentions), webmentionsRoot);
+      }
+
+      await main({
+        url: location.href,
+        webmentionsRoot: document.getElementById("webmentions"),
+      });
+    </script>
+
     <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte
       mi ticket</a>.
   </main>
