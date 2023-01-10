@@ -2,13 +2,13 @@ import { Hono } from "hono";
 
 const app = new Hono();
 
-async function getPayload(weblog, url) {
+async function getDetail(weblog, url) {
   const payload = await weblog.get(url);
   if (payload) return JSON.parse(payload);
   return { webmentions: [] };
 }
 
-async function setPayload(weblog, url, payload) {
+async function saveDetail(weblog, url, payload) {
   return weblog.put(url, JSON.stringify(payload));
 }
 
@@ -19,15 +19,15 @@ app.post("/webhooks/webmentions", async (c) => {
     const body = await req.json();
     if (body.secret !== secret) return c.status(403);
     const { post, target, deleted } = body;
-    const payload = await getPayload(env.weblog, target);
-    const webmentions = new Map(payload.webmentions.map((x) => [x.url, x]));
+    const detail = await getDetail(env.weblog, target);
+    const webmentions = new Map(detail.webmentions.map((x) => [x.url, x]));
     if (deleted) {
       webmentions.delete(post.url);
     } else {
       webmentions.set(post.url, post);
     }
-    payload.webmentions = Array.from(webmentions.values());
-    await setPayload(env.weblog, target, payload);
+    detail.webmentions = Array.from(webmentions.values());
+    await saveDetail(env.weblog, target, detail);
     return c.status(202);
   } catch (err) {
     console.log(err);
