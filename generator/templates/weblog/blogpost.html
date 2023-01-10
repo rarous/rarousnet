@@ -128,19 +128,62 @@
       </footer>
     </article>
 
-    <div id="webmentions"></div>
+    <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte
+      mi ticket</a>.
+
+    <section id="webmentions"></section>
     <script type="module">
       import { render, html } from "https://cdn.skypack.dev/lit-html?min";
+      const titles = new Map([
+        ["like-of", "Líbilo se"],
+        ["repost-of", "Přeposlal dál"],
+      ]);
 
-      function template(webmentions) {
-        return html`<data value=${webmentions.length}>${webmentions.length} mentions</data>`;
+      function groupByType(webmentions) {
+        const byType = new Map();
+        for (const post of webmentions) {
+          const key = post["wm-property"];
+          const values = byType.get(key) ?? [];
+          values.push(post);
+          byType.set(key, values);
+        }
+        return byType;
+      }
+
+    function groupTemplate(type, title, items) {
+      if (!items.length) return;
+      return html`
+        <section>
+          <p><data value="${items.length}">${title} ${items.length}x</data></p>
+          <ul>
+            ${items.map(item => html`
+              <li>
+                <a class="${type}" href="${item.url}" title="${item.author.name}">
+                  <date datetime="${item.published}"></date>
+                  <img alt="${item.author.name}" src="${item.author.photo}" width="32" height="32" loading="lazy" decoding="async">
+                </a>
+              </li>
+            `)}
+          </ul>
+        </section>
+      `
+    }
+
+      function webmentionsTemplate(webmentions) {
+        if (!webmentions.length) return;
+        const byType = groupByType(webmentions);
+        return html`
+          <h2>Reakce v síti</h2>
+          ${groupTemplate("u-like", "Libilo se", byType.get("like-of"))}
+          ${groupTemplate("u-repost", "Přeposlal dál", byType.get("repost-of"))}
+        `;
       }
 
       async function main({ url, webmentionsRoot }) {
         const resp = await fetch(`/api/v1/weblog?${new URLSearchParams({ url })}`);
         if (!resp.ok) return;
         const { webmentions } = await resp.json();
-        render(template(webmentions), webmentionsRoot);
+        render(webmentionsTemplate(webmentions), webmentionsRoot);
       }
 
       await main({
@@ -148,9 +191,6 @@
         webmentionsRoot: document.getElementById("webmentions"),
       });
     </script>
-
-    <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte
-      mi ticket</a>.
   </main>
 
   <footer class="footer"></footer>
