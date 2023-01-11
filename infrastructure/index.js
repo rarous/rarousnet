@@ -6,15 +6,56 @@ import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
 import { build } from "./worker-builder.js";
 
+const routeTable = ({ weblogNS }) =>
+  new Map([
+    ["api", {
+      pattern: "www.rarous.net/api/*",
+      workerFile: "api.js",
+      bindings: {
+        kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
+      },
+    }],
+    ["webhooks", {
+      pattern: "www.rarous.net/webhooks/*",
+      workerFile: "webhooks.js",
+      bindings: {
+        kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
+        plainTextBindings: [{
+          name: "WEBMENTIONS_WEBHOOK_SECRET",
+          text: config.require("webhook-secret"),
+        }],
+      },
+    }],
+  ]);
+
 const config = new pulumi.Config();
 const domain = config.require("domain");
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-const buildAsset = (fileName) =>
-  build(
+
+function buildAsset(fileName) {
+  return build(
     path.join(__dirname, "workers", fileName),
     true,
   );
+}
+
+function createRoute(name, { account, zone, pattern, workerFile, bindings }) {
+  const worker = new cloudflare.WorkerScript(name, {
+    accountId: account.id,
+    module: true,
+    name,
+    content: buildAsset(workerFile),
+    ...bindings,
+  });
+  const route = new cloudflare.WorkerRoute(name, {
+    accountId: account.id,
+    zoneId: zone.id,
+    pattern,
+    scriptName: worker.name,
+  });
+  return { worker, route };
+}
 
 const account = new cloudflare.Account("rarous", {
   name: "rarous",
@@ -129,36 +170,9 @@ const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
   title: "rarous-net-weblog",
 });
 
-const webhooksWorker = new cloudflare.WorkerScript("webhooks", {
-  accountId: account.id,
-  module: true,
-  name: "webhooks",
-  content: buildAsset("webhooks.js"),
-  kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
-  plainTextBindings: [{
-    name: "WEBMENTIONS_WEBHOOK_SECRET",
-    text: config.require("webhook-secret"),
-  }],
-});
-const webhooksRoute = new cloudflare.WorkerRoute("webhooks", {
-  accountId: account.id,
-  zoneId: zone.id,
-  pattern: "www.rarous.net/webhooks/*",
-  scriptName: webhooksWorker.name,
-});
-const apiWorker = new cloudflare.WorkerScript("api", {
-  accountId: account.id,
-  module: true,
-  name: "api",
-  content: buildAsset("api.js"),
-  kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
-});
-const apiRoute = new cloudflare.WorkerRoute("api", {
-  accountId: account.id,
-  zoneId: zone.id,
-  pattern: "www.rarous.net/api/*",
-  scriptName: apiWorker.name,
-});
+for (const [name, route] of routeTable({ weblogNS })) {
+  createRoute(name, Object.assign({}, route, { account, zone }));
+}
 
 export const accountId = account.id;
 export const zoneId = zone.id;
