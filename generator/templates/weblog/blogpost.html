@@ -151,7 +151,7 @@
       }
 
     function groupTemplate(type, title, items) {
-      if (!items.length) return;
+      if (!items?.length) return;
       return html`
         <section class="webmentions">
           <p><data value="${items.length}">${items.length}x ${title}</data></p>
