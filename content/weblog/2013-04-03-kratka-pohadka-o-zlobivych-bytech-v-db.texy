@@ -4,7 +4,8 @@
  :description "Zmrdem snadno a rychle za pár měsíců.",
  :author "Aleš Roubíček",
  :tags #{"moje práce"},
- :published "2013-04-03T20:19:58.777"}
+ :published "2013-04-03T20:19:58.777"
+ :syndication ["https://twitter.com/alesroubicek/status/319515771141251073"]}
 ---
 
 "Celý je to pomalý a taví nám to databázi. Vždyť tam máme pár uživatelů a už to nezvládá.

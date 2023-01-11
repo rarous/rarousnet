@@ -5,7 +5,10 @@
  "Dneska zabrousíme do vod funkcionálních a ukážeme si implementaci některých důležitých funkcí vyššího řádu.",
  :author "Aleš Roubíček",
  :tags #{"moje práce" "fsharp" "cleancode" "functional"},
- :published "2013-03-07T07:34:49.233"}
+ :published "2013-03-07T07:34:49.233"
+ :syndication
+ ["https://twitter.com/alesroubicek/status/309680773080969217"
+  "https://twitter.com/alesroubicek/status/310049125502705665"]}
 ---
 
 Když vidíte začátečníka pracovat s kolekcemi, často se setkáte s tím, že možností první volby

@@ -5,7 +5,10 @@
  "Pár poznámek k aktuálně vydanému technologickému radaru.",
  :author "Aleš Roubíček",
  :tags #{"webdesign" "radar" "clojure" "react" "moje práce"},
- :published "2014-12-19T16:45:00.663"}
+ :published "2014-12-19T16:45:00.663"
+ :syndication
+ ["https://twitter.com/bajtos/status/547436012071571457"
+  "https://twitter.com/bajtos/status/545974037965717504"]}
 ---
 
 Na sklonku roku 2014 Thoughtworks vydávají svůj tradiční technologický radar.

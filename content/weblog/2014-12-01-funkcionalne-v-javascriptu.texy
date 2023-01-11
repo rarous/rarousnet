@@ -5,7 +5,8 @@
  "Dneska se dá solidně funkcionálně programovat i v JavaScriptu. Malá ukázka z praxe, jak na Immutabilní datové struktury za pomocí transducerů.",
  :author "Aleš Roubíček",
  :tags #{"immutable" "moje práce" "transducers" "javascript" "functional"},
- :published "2014-12-01T19:15:00.663"}
+ :published "2014-12-01T19:15:00.663"
+ :syndication ["https://twitter.com/alesroubicek/status/539484798964994048"]}
 ---
 
 

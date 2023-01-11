@@ -7,7 +7,13 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce" "functional" "cleancode"},
  :published "2013-04-14T10:15:12.213"
- :syndication ["https://twitter.com/alesroubicek/status/682464050979155968"]}
+ :syndication
+ ["https://twitter.com/rarousweblog/status/323354102593626113"
+  "https://twitter.com/rarousweblog/status/323409373613400065"
+  "https://twitter.com/rarousweblog/status/446306717546979328"
+  "https://twitter.com/rarousweblog/status/633543945360965632"
+  "https://twitter.com/rarousweblog/status/682458773156413440"
+  "https://twitter.com/rarousweblog/status/1089761057827184642"]}
 ---
 
 Máte už plný zuby toho šílenýho povyku okolo funkcionálních jazyků? Já teda jo.

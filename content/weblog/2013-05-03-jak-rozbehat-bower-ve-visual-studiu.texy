@@ -5,7 +5,8 @@
  "Takový malý tutoriálek pro command line junkies, jak si rozběhat bower ve Visual Studiu. ",
  :author "Aleš Roubíček",
  :tags #{"moje práce"},
- :published "2013-05-03T13:13:41.253"}
+ :published "2013-05-03T13:13:41.253"
+ :syndication ["https://twitter.com/alesroubicek/status/330279379605258241"]}
 ---
 
 Takový malý tutoriálek pro command line junkies, jak si rozběhat bower:[https://github.com/bower/bower] ve Visual Studiu.

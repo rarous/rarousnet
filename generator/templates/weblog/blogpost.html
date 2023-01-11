@@ -150,27 +150,27 @@
         return byType;
       }
 
-    function groupTemplate(type, title, items) {
-      if (!items?.length) return;
-      return html`
-        <section class="webmentions">
-          <p><data value="${items.length}">${items.length}x ${title}</data></p>
-          <ul>
-            ${items.map(item => html`
-              <li>
-                <a class="${type}" href="${item.url}" title="${item.author.name}">
-                  <date datetime="${item.published}"></date>
-                  <img alt="${item.author.name}"
-                     src="${item.author.photo}"
-                     width="32" height="32"
-                     loading="lazy" decoding="async">
-                </a>
-              </li>
-            `)}
-          </ul>
-        </section>
-      `
-    }
+      function groupTemplate(type, title, items) {
+        if (!items?.length) return;
+        return html`
+          <section class="webmentions">
+            <p><data value="${items.length}">${items.length}x ${title}</data></p>
+            <ul>
+              ${items.map(item => html`
+                <li>
+                  <a class="${type}" href="${item.url}" title="${item.author.name}">
+                    <date datetime="${item.published}"></date>
+                    <img alt="${item.author.name}"
+                       src="${item.author.photo}"
+                       width="32" height="32"
+                       loading="lazy" decoding="async">
+                  </a>
+                </li>
+              `)}
+            </ul>
+          </section>
+        `
+      }
 
       function webmentionsTemplate(webmentions) {
         if (!webmentions.length) return;

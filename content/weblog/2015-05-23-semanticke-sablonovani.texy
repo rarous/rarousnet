@@ -5,7 +5,8 @@
  "Tvorba šablon pro dynamicky měnící se markup stále není dořešeným problémem.",
  :author "Aleš Roubíček",
  :tags #{"webdesign" "clojure" "moje práce"},
- :published "2015-05-23T11:10:00.663"}
+ :published "2015-05-23T11:10:00.663"
+ :syndication ["https://twitter.com/alesroubicek/status/602031938778562560"]}
 ---
 
 Tvorba šablon pro dynamicky měnící se markup stále není dořešeným problémem.

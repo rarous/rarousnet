@@ -5,7 +5,8 @@
  "Učit se, učit se, se učit",
  :author "Aleš Roubíček",
  :tags #{"moje práce"},
- :published "2015-12-31T14:34:00.663"}
+ :published "2015-12-31T14:34:00.663"
+ :syndication ["https://twitter.com/alesroubicek/status/682508170380587009"]}
 ---
 
 Jednou z hodnot, kterou v TopMonks vyznáváme je:

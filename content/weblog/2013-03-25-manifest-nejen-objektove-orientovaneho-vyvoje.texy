@@ -6,7 +6,9 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce" "cleancode"},
  :published "2013-03-25T14:01:23.110"
- :syndication ["https://twitter.com/alesroubicek/status/446526439324528641"]}
+ :syndication
+ ["https://twitter.com/alesroubicek/status/316176264471908352"
+  "https://twitter.com/alesroubicek/status/446526439324528641"]}
 ---
 
 Narazil jsem na velmi zajímavý "manifest Nejen objektově orientovaného vývoje":[http://notonlyoo.org/]

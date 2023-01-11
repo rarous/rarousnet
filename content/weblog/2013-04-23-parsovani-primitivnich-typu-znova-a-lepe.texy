@@ -4,7 +4,8 @@
  :description "Praktické využití těch šílených monád.",
  :author "Aleš Roubíček",
  :tags #{"moje práce" "cleancode" "functional"},
- :published "2013-04-23T17:10:57.920"}
+ :published "2013-04-23T17:10:57.920"
+ :syndication ["https://twitter.com/alesroubicek/status/326715972184576001"]}
 ---
 
 Způsobů, jak parsovat primitivní typy z texu, je celá řada. Každý typ má svou statickou metodu `Parse`, která vyhodí výjimku, když se jí to nepovede. Pak tu máme modul `Convert`, který dokáže parsovat poměrně bezpečně, ale ne vždy chceme dostávat `default` hodnoty, když se mu podstrčí nic.

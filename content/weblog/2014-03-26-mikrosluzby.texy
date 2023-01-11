@@ -5,7 +5,10 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "cleancode"},
  :published "2014-03-26T07:00:00.663"
- :syndication ["https://twitter.com/alesroubicek/status/448708792197201921"]}
+ :syndication
+ ["https://twitter.com/alesroubicek/status/448708792197201921"
+  "https://twitter.com/alesroubicek/status/1230123863700361216"
+  "https://twitter.com/alesroubicek/status/1415009569382805506"]}
 ---
 
 

@@ -4,7 +4,11 @@
  :description "Malá ukázka toho, jak si s CI usnadňovat život.",
  :author "Aleš Roubíček",
  :tags #{"ci" "nuget" "moje práce"},
- :published "2013-01-03T12:11:06.957"}
+ :published "2013-01-03T12:11:06.957"
+ :syndication [
+"https://twitter.com/alesroubicek/status/286792666371481601"
+"https://twitter.com/alesroubicek/status/1371879726604750848"
+]}
 ---
 
 Jednou z dobrých praktik v Continuous Integration je, nemít žádná očekávání.

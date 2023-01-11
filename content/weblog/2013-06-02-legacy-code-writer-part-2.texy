@@ -4,7 +4,8 @@
  :description "Druhá část povídánek o legacy kódu.",
  :author "Aleš Roubíček",
  :tags #{"moje práce"},
- :published "2013-06-02T11:27:45.663"}
+ :published "2013-06-02T11:27:45.663"
+ :syndication ["https://twitter.com/alesroubicek/status/341126948669493248"]}
 ---
 
 Dostal jsi nový úkol, implementovat jednoduchou featuru do korporátního projektu. Jenže ten kód byl past vedle pasti.

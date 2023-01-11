@@ -5,7 +5,8 @@
  "Malé zastavení nad \"chytrými\" způsoby řešení problematiky null pointerů.",
  :author "Aleš Roubíček",
  :tags #{"moje práce" "functional" "cleancode"},
- :published "2013-04-11T13:29:00"}
+ :published "2013-04-11T13:29:00"
+ :syndication ["https://twitter.com/alesroubicek/status/322315505102897154"]}
 ---
 
 Chtěl bych se v takové kratké sérii blogů dostat k jednotlivým bodům
