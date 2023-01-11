@@ -6,4 +6,4 @@ config:
     secure: AAABAHb65l/T32WMzvOuksh1nP592WEVp7bCKXqkzOEQEcrD4PqDhlUImjfAEI9g1kGaG45yIv5QNIMzOga3T4Um3TnhVu4x
   rarousnet:domain: www.rarous.net
   rarousnet:webhook-secret:
-    secure: AAABAI6OJNZYQHjIuc28Sbkqv+tTykem5GojVn8S4l7KzDbXYLbkss/8DcbxWdb83QocXyzaCbeuCWuL2YcuPEho1k/f5OoUWI0LD3Ge6j3idA==
+    secure: AAABAM8UxOdFNnVwW8banrpIR2xEQyoRqekDdB/g8edC8r1ZfTeGDPPQWLsKy+/i1RwiFwOxj+jlRMp3vnipxqQC1o8cQXSyb/lX0CiqLQHvOYSbZN+o25jxd6pWwl35RwwG6REvG+0=
