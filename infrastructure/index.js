@@ -35,7 +35,7 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 function buildAsset(fileName) {
   return build(
-    path.join(__dirname, "workers", fileName),
+    path.join(__dirname, "../workers", fileName),
     true,
   );
 }

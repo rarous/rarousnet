@@ -1,10 +1,8 @@
 import esbuild from "esbuild";
-import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
 import pulumi from "@pulumi/pulumi";
 
 export function build(entrypoint, minify) {
   const result = esbuild.buildSync({
-    //plugins: [NodeModulesPolyfillPlugin()],
     platform: "browser",
     conditions: ["worker", "browser"],
     entryPoints: [entrypoint],
