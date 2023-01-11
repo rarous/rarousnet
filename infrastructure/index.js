@@ -36,7 +36,7 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 function buildAsset(fileName) {
   return build(
     path.join(__dirname, "../workers", fileName),
-    false,
+    true,
   );
 }
 
@@ -171,7 +171,7 @@ const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
 });
 
 for (const [name, route] of routeTable({ weblogNS })) {
-  createRoute(name, Object.assign({}, route, { account, zone }));
+  createRoute(name, Object.assign({ account, zone }, route));
 }
 
 export const accountId = account.id;

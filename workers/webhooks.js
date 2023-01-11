@@ -19,9 +19,11 @@ async function saveDetail(weblog, url, payload) {
 app.post("/webhooks/webmentions", async (c) => {
   try {
     const { env, req } = c;
-    const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
     const body = await req.json();
+
+    const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
     if (body.secret !== secret) return c.status(403);
+
     const { post, target, deleted } = body;
     const detail = await getDetail(env.weblog, target);
     const webmentions = new Map(detail.webmentions.map((x) => [x.url, x]));
