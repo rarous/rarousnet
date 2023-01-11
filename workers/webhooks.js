@@ -20,7 +20,6 @@ app.post("/webhooks/webmentions", async (c) => {
   try {
     const { env, req } = c;
     const body = await req.json();
-    console.log({ url: req.url, body });
 
     const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
     if (body.secret !== secret) return c.text("Invalid secret", 403);
