@@ -6,7 +6,7 @@ export function build(entrypoint, minify) {
     platform: "browser",
     conditions: ["worker", "browser"],
     entryPoints: [entrypoint],
-    sourcemap: true,
+    sourcemap: false,
     logLevel: "warning",
     format: "esm",
     target: "es2020",
