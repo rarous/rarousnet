@@ -20,7 +20,7 @@ app.get("/api/v1/weblog", async (c) => {
     return c.json(detail);
   } catch (err) {
     console.log(err);
-    return c.status(500);
+    return c.text("Internal error", 500);
   }
 });
 

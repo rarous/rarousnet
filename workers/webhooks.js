@@ -23,7 +23,7 @@ app.post("/webhooks/webmentions", async (c) => {
     console.log({ url: req.url, body });
 
     const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
-    if (body.secret !== secret) return c.status(403);
+    if (body.secret !== secret) return c.text("Invalid secret", 403);
 
     const { post, target, deleted } = body;
     const detail = await getDetail(env.weblog, target);
@@ -35,10 +35,10 @@ app.post("/webhooks/webmentions", async (c) => {
     }
     detail.webmentions = Array.from(webmentions.values());
     await saveDetail(env.weblog, target, detail);
-    return c.status(202);
+    return c.text("", 202);
   } catch (err) {
     console.log(err);
-    return c.status(500);
+    return c.text("Internal error", 500);
   }
 });
 
