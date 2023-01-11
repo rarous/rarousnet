@@ -21,7 +21,7 @@ $texy->allowedTags = true;
 $texy->headingModule->top = 3;
 $texy->headingModule->generateID = true;
 $texy->figureModule->class = 'image';
-$texy->imageModule->root = 'https://res.cloudinary.com/rarous-net/image/fetch/dpr_auto,f_auto/http://www.rarous.net/data/obrazky/';
+$texy->imageModule->root = 'https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/http://www.rarous.net/data/obrazky/';
 
 $output = array();
 foreach ($articles as $url => $text) {
