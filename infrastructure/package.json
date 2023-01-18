@@ -8,6 +8,6 @@
     "@pulumi/aws": "5.27.0",
     "@pulumi/cloudflare": "4.15.0",
     "@pulumi/pulumi": "3.51.1",
-    "esbuild": "0.17.2"
+    "esbuild": "0.17.3"
   }
 }
