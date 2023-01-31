@@ -137,14 +137,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-s3@npm:3.261.0":
-  version: 3.261.0
-  resolution: "@aws-sdk/client-s3@npm:3.261.0"
+"@aws-sdk/client-s3@npm:3.262.0":
+  version: 3.262.0
+  resolution: "@aws-sdk/client-s3@npm:3.262.0"
   dependencies:
     "@aws-crypto/sha1-browser": 3.0.0
     "@aws-crypto/sha256-browser": 3.0.0
     "@aws-crypto/sha256-js": 3.0.0
-    "@aws-sdk/client-sts": 3.261.0
+    "@aws-sdk/client-sts": 3.262.0
     "@aws-sdk/config-resolver": 3.259.0
     "@aws-sdk/credential-provider-node": 3.261.0
     "@aws-sdk/eventstream-serde-browser": 3.258.0
@@ -195,7 +195,7 @@ __metadata:
     "@aws-sdk/xml-builder": 3.201.0
     fast-xml-parser: 4.0.11
     tslib: ^2.3.1
-  checksum: 3600a38f6828b4fd3e14adf1f5aeb2fbb6693d43f4dd4f8be384adbf2b2218d50aa034f19c4399dececfa072833fa7ddd680c23c4c8ad30e04c0045f37d859ee
+  checksum: 2bff9e5bba646558df85c1e374e45c8eb5d46ccf8ebf3b1aebd6e551a351f4701cfa1b014d97fbe5b64963bd3350a2cdbaabf96f6a9bb0b48a4203ff393d7e8a
   languageName: node
   linkType: hard
 
@@ -279,9 +279,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sts@npm:3.261.0":
-  version: 3.261.0
-  resolution: "@aws-sdk/client-sts@npm:3.261.0"
+"@aws-sdk/client-sts@npm:3.262.0":
+  version: 3.262.0
+  resolution: "@aws-sdk/client-sts@npm:3.262.0"
   dependencies:
     "@aws-crypto/sha256-browser": 3.0.0
     "@aws-crypto/sha256-js": 3.0.0
@@ -319,7 +319,7 @@ __metadata:
     "@aws-sdk/util-utf8": 3.254.0
     fast-xml-parser: 4.0.11
     tslib: ^2.3.1
-  checksum: e7be888c97351bb3b52e50de5e6830849c97c9d2b2ad2b14daea66f7dd2e7a4eaae26ccb78aeb874b1719c73a8d8ccf2bb02915eca4cabeb34226e1a10ae1ebd
+  checksum: a971b916535a498915434e87052288838416f2272aac41dc9c5e401256c8da99d37d6eaa2a0b75a549b38e61e0c705b36994183f4664574d49b8f060733c79a0
   languageName: node
   linkType: hard
 
@@ -1736,7 +1736,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@aws-sdk/client-s3": 3.261.0
+    "@aws-sdk/client-s3": 3.262.0
     "@thi.ng/transducers": 8.3.30
     csv-parse: 5.3.4
     md5-file: 5.0.0
