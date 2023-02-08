@@ -1337,12 +1337,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koa/cors@npm:^3.2.0":
-  version: 3.3.0
-  resolution: "@koa/cors@npm:3.3.0"
+"@koa/cors@npm:^3.4.3":
+  version: 3.4.3
+  resolution: "@koa/cors@npm:3.4.3"
   dependencies:
     vary: ^1.1.2
-  checksum: bb49c680e0d151aec1b19c24c14d61b65f430eb379e63d83789602cc7d8e52706ebcd74867cdb60b1d50ddb6f3d59be04e1c46328fae5721aeaf50e0d4fc2d28
+  checksum: 51a5b89b4ea19078272ea2702916c90375853b6cfb9b65bf7720653e99b36950c1fd90df66a77fb17839bb130dc7c9f83ccc0bcec40f9d09769f9ed77ced5f23
   languageName: node
   linkType: hard
 
@@ -7927,9 +7927,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"local-web-server@npm:5.2.1":
-  version: 5.2.1
-  resolution: "local-web-server@npm:5.2.1"
+"local-web-server@npm:5.3.0":
+  version: 5.3.0
+  resolution: "local-web-server@npm:5.3.0"
   dependencies:
     current-module-paths: ^1.1.0
     lws: ^4.1.2
@@ -7938,8 +7938,8 @@ __metadata:
     lws-body-parser: ^3.0.0
     lws-compress: ^3.1.0
     lws-conditional-get: ^2.0.0
-    lws-cors: ^4.1.2
-    lws-index: ^3.1.0
+    lws-cors: ^4.2.0
+    lws-index: ^3.1.1
     lws-json: ^2.0.0
     lws-log: ^2.0.0
     lws-mime: ^2.0.0
@@ -7950,7 +7950,7 @@ __metadata:
     lws-static: ^3.1.0
   bin:
     ws: bin/cli.mjs
-  checksum: 89a46f948986ab54388601b933d78888185d967b17d891b9ca6510a62662be780c43348975761791005b3d349e835a064c44fc8f30472fdd13ba92c73e3b60cd
+  checksum: 0adf4fe92f981df1d0e69f4128ed8f676aafcceb2b073e2fe5c62b501be96995c3df9bd5b0512715709034f7078ff005940de66a13a06766fff1579168c67913
   languageName: node
   linkType: hard
 
@@ -8186,16 +8186,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lws-cors@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "lws-cors@npm:4.1.2"
+"lws-cors@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "lws-cors@npm:4.2.0"
   dependencies:
-    "@koa/cors": ^3.2.0
-  checksum: 3ceb64d19350673768177ba36c772d50d3a2f048ea2ded45dff79ed83580951f9b36b5eebd415c4739498f036f351a0c06b1cf24717dca38e4daf4a61a7c9163
+    "@koa/cors": ^3.4.3
+  checksum: c54b80c91385a9fa0e54efca697df30049a96cd7fc9d8b4f25f438a27fe318c194f25b39420a160c18a79734bf57ff3c343a1cc4fee62f66b41f969996125e48
   languageName: node
   linkType: hard
 
-"lws-index@npm:^3.1.0":
+"lws-index@npm:^3.1.1":
   version: 3.1.1
   resolution: "lws-index@npm:3.1.1"
   dependencies:
@@ -10593,7 +10593,7 @@ __metadata:
     gulp-rev-replace: 0.4.4
     gulp-sizereport: 1.2.1
     lighthouse: 9.6.8
-    local-web-server: 5.2.1
+    local-web-server: 5.3.0
     npm-run-all: 4.1.5
     open-props: 1.5.5
     postcss: 8.4.21
