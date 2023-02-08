@@ -32,7 +32,7 @@
     "open-props": "1.5.5",
     "postcss": "8.4.21",
     "postcss-jit-props": "1.0.9",
-    "prettier": "2.8.3",
+    "prettier": "2.8.4",
     "tap-xunit": "2.4.1"
   },
   "scripts": {
