@@ -1749,7 +1749,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/workers@workspace:workers"
   dependencies:
-    hono: 2.7.6
+    hono: 2.7.7
   languageName: unknown
   linkType: soft
 
@@ -6405,10 +6405,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hono@npm:2.7.6":
-  version: 2.7.6
-  resolution: "hono@npm:2.7.6"
-  checksum: dee7d226eefd369e93ff4a43c1a63f0cdeaee95ea93d9b604a5b88e2a5431421860c4b32037b91f747de81b04c7ccd441f2814ad0349d9254cd5ed7fb9e8faa0
+"hono@npm:2.7.7":
+  version: 2.7.7
+  resolution: "hono@npm:2.7.7"
+  checksum: 0bec68adb0d45903e24f01c1c62f4cd6029b1aea50804053808a2ad2a80ebdc11f6f99f59efca4b8dea4703f1d28875ff4cbe70c440689704ab5626357c3df14
   languageName: node
   linkType: hard
 
