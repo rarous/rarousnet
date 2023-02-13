@@ -10017,14 +10017,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-jit-props@npm:1.0.9":
-  version: 1.0.9
-  resolution: "postcss-jit-props@npm:1.0.9"
+"postcss-jit-props@npm:1.0.10":
+  version: 1.0.10
+  resolution: "postcss-jit-props@npm:1.0.10"
   dependencies:
     tiny-glob: ^0.2.9
   peerDependencies:
     postcss: ^8.2.8
-  checksum: d8baf74ef21f27c9c4cd7c47de166adfee91b8b1c85e4b217201853fd1933fa2eb8adb32cd8c3b8ef59a01e00dfade1b46c0819b291655e348e6f5d60d535095
+  checksum: ddaa962aa6f94b7feb85385d8bb36c13526d0eb943b62423f06a63612274fdbaf58936b43a20199325732c009e8234164ed117c2321217b04e2e45b729e1f92d
   languageName: node
   linkType: hard
 
@@ -10597,7 +10597,7 @@ __metadata:
     npm-run-all: 4.1.5
     open-props: 1.5.5
     postcss: 8.4.21
-    postcss-jit-props: 1.0.9
+    postcss-jit-props: 1.0.10
     prettier: 2.8.4
     tap-xunit: 2.4.1
   languageName: unknown
