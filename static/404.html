@@ -30,28 +30,12 @@
       max-width: 34em;
     }
   </style>
-  <script>
-    self._ga = {
-      // Full Measurement Protocol param reference:
-      // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
-      data: {
-        v: "1", // Measurement Protocol version.
-        tid: "UA-90726-1", // Tracking ID.
-        cid: `${Date.now()}${Math.random()}`, // Client ID.
-        dl: '/http404/?url=' + location.pathname + location.search + '&ref=' + document.referrer, // Document location.
-        aip: 1, // Anonymize IP
-      },
-      send(additionalParams) {
-        navigator.sendBeacon(
-          "https://google-analytics.com/collect",
-          new URLSearchParams({
-            ...this.data,
-            ...additionalParams,
-          }).toString()
-        );
-      },
-    };
-    _ga.send({ t: "pageview" });
+  <script type="module">
+    function send(tid, en) {
+      const data = new URLSearchParams({v:2,tid,cid:`${Date.now()}${Math.random()}`,dl:`/http404/?url=${location.pathname}${location.search}&ref=${document.referrer}`,aip:1,en});
+      navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
+    }
+    send("G-B3W7LTZE6J", "page_view");
   </script>
 </head>
 <body>

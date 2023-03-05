@@ -36,28 +36,12 @@
   <meta property="og:url" content="https://www.rarous.net/weblog/">
   <meta property="og:title" content="rarouš.weblog">
   <meta property="og:locale" content="cs_CZ">
-  <script>
-    self._ga = {
-      // Full Measurement Protocol param reference:
-      // https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
-      data: {
-        v: "1", // Measurement Protocol version.
-        tid: "UA-90726-1", // Tracking ID.
-        cid: `${Date.now()}${Math.random()}`, // Client ID.
-        dl: location.href, // Document location.
-        aip: 1, // Anonymize IP
-      },
-      send(additionalParams) {
-        navigator.sendBeacon(
-          "https://google-analytics.com/collect",
-          new URLSearchParams({
-            ...this.data,
-            ...additionalParams,
-          }).toString()
-        );
-      },
-    };
-    _ga.send({ t: "pageview" });
+  <script type="module">
+    function send(tid, en) {
+      const data = new URLSearchParams({v:2,tid,cid:`${Date.now()}${Math.random()}`,dl:location.href,aip:1,en});
+      navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
+    }
+    send("G-B3W7LTZE6J", "page_view");
   </script>
   <!--[if lt IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
   <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
