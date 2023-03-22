@@ -58,7 +58,7 @@ jobs:
     steps:
       - checkout
       - php/install-php:
-          version: "8.2"
+          version: "$(jq '.platform.php' generator/composer.lock)"
       - php/install-composer
       - attach_workspace:
           at: .
