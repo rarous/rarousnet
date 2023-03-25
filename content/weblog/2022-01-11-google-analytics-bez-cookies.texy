@@ -17,15 +17,15 @@ Já vím. Všichni si ale chceme honit pindíky nad erektivními grafy v Google 
 I mě zajímá, kolik lidí si tento článek přečte. Nechci u toho pomáhat Googlu k získávání dat,
 která mu na mým webu můžou být ukradená... Jak vidíte, žádnou cookie lištu nevidíte!
 
-Není to tím, že bych se na ní vykašlal. Místo zhoršování UX, jsem se rozhodl, 
+Není to tím, že bych se na ni vykašlal. Místo zhoršování UX, jsem se rozhodl, 
 že mi stačí *jednoduchá analytika*. Koukal jsem, že na Twitteru je to žhavé téma 
-a nikdo neví pořádně jak na to. A když, tak na to plánuje prodávat školení nebo já nevím co. 
+a nikdo neví pořádně jak na to. A když tak na to plánuje prodávat školení nebo já nevím co. 
 Přitom je to taková prkotina...
 
 Základem je neřešit kód, co vám vygenerují GA((Google Analytics)), protože ten asi 
 tak snadno nenakonfigurujete. A pořád vkládáte jejich script do stránky a to je to, co nechceme. 
 Analytics mají své API:[https://developers.google.com/analytics/devguides/collection/protocol/v1/reference]. 
-Můžeme si i rozšířit svou znalost webové platformy o zajímavé API pro asynchroní
+Můžeme si i rozšířit svou znalost webové platformy o zajímavé API pro asynchronní
 zasílání analytických dat "navigator.sendBeacon":[https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon]:
 
 /--code html
