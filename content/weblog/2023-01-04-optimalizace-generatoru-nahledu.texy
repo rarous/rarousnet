@@ -1,6 +1,6 @@
 ---
 {:id 485,
-:title "Optimalizace genarátoru náhledů",
+:title "Optimalizace generátoru náhledů",
 :description "Jak jsem zrychlil generování Twitter Card obrázků pomocí paralelizace. Názorné ukázky v ECMAScriptu.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "transducers" "ci" "ecmascript"},
@@ -8,7 +8,7 @@
 :syndication ["https://twitter.com/alesroubicek/status/1610534129925226498"]}
 ---
 
-O tom "jak generuju náhledy pro socky":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html],
+O tom, "jak generuju náhledy pro socky":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html],
 jsem tu už psal. Od té doby jsem vyměnil Puppeteer za Playwright:[https://playwright.dev/],
 vytvořil "Page Object Model":[https://playwright.dev/docs/pom]
 a taky začal narážet na delší a delší doby buildu...
