@@ -4542,6 +4542,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"devtools-protocol@npm:0.0.1130274":
+  version: 0.0.1130274
+  resolution: "devtools-protocol@npm:0.0.1130274"
+  checksum: ccd5b01bc251d69e33aab5fcecce52049b9f2b50f92d55c7f966741ddf9b03b65f6dd2c1fcb620516c15b6eca5b48dffadd2b806b3b2fb7586558613850ecb33
+  languageName: node
+  linkType: hard
+
 "dezalgo@npm:^1.0.0":
   version: 1.0.4
   resolution: "dezalgo@npm:1.0.4"
@@ -6559,10 +6566,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-link-header@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "http-link-header@npm:1.1.0"
-  checksum: 64aca8b4df3a3d290397c25867adbb59c9793489534a7891f850f59d5451b584c8f6c2dd05b9c0fffc736c7dd0a9217ea2aa642552670462116c3e2d5d692621
+"http-link-header@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "http-link-header@npm:1.1.1"
+  checksum: f9225b5500aefe34a74e82a21250758f6da17e472f21d8c3ea0b7c7e7c03bbc6cfafaf5d26d9cb5f860aa4936937e5fb94dbeee058b648d23dec2580d52b177b
   languageName: node
   linkType: hard
 
@@ -7838,17 +7845,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lighthouse@npm:10.1.0":
-  version: 10.1.0
-  resolution: "lighthouse@npm:10.1.0"
+"lighthouse@npm:10.1.1":
+  version: 10.1.1
+  resolution: "lighthouse@npm:10.1.1"
   dependencies:
     "@sentry/node": ^6.17.4
     axe-core: 4.6.3
     chrome-launcher: ^0.15.1
     configstore: ^5.0.1
     csp_evaluator: 1.1.1
+    devtools-protocol: 0.0.1130274
     enquirer: ^2.3.6
-    http-link-header: ^1.1.0
+    http-link-header: ^1.1.1
     intl-messageformat: ^4.4.0
     jpeg-js: ^0.4.4
     js-library-detector: ^6.6.0
@@ -7872,7 +7880,7 @@ __metadata:
     chrome-debug: core/scripts/manual-chrome-launcher.js
     lighthouse: cli/index.js
     smokehouse: cli/test/smokehouse/frontends/smokehouse-bin.js
-  checksum: 414efd834f28f9765073fff4f51c7bbbf0b41b52bee601100dd8e6b149aaf63cd3727383ffd7c5204ffe8e625b452b9df1b2b7617f44706042369af9bea67c82
+  checksum: d20f4c5d02277ee2f13edaf8bc93312fc950de3c3d0678c83157af62c76fec0644ecd2fb46e8fd1d094948028ecd9b6592c518e9cbe77360db5b99b7b7fdd6c7
   languageName: node
   linkType: hard
 
@@ -10593,7 +10601,7 @@ __metadata:
     gulp-rev-delete-original: 0.2.3
     gulp-rev-replace: 0.4.4
     gulp-sizereport: 1.2.1
-    lighthouse: 10.1.0
+    lighthouse: 10.1.1
     local-web-server: 5.3.0
     npm-run-all: 4.1.5
     open-props: 1.5.5
