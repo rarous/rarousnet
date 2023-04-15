@@ -64,6 +64,7 @@ jobs:
           at: .
       - php/install-packages:
           app-dir: ~/project/generator
+          install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
       - restore_cache:
           name: Restore deps cache
           keys:
