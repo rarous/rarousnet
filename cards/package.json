@@ -6,6 +6,6 @@
   "license": "EPL-2.0",
   "dependencies": {
     "@thi.ng/transducers": "8.4.2",
-    "playwright": "1.31.2"
+    "playwright": "1.32.3"
   }
 }
