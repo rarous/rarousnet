@@ -8901,12 +8901,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.4":
-  version: 3.3.4
-  resolution: "nanoid@npm:3.3.4"
+"nanoid@npm:^3.3.6":
+  version: 3.3.6
+  resolution: "nanoid@npm:3.3.6"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: 2fddd6dee994b7676f008d3ffa4ab16035a754f4bb586c61df5a22cf8c8c94017aadd360368f47d653829e0569a92b129979152ff97af23a558331e47e37cd9c
+  checksum: 7d0eda657002738aa5206107bd0580aead6c95c460ef1bdd0b1a87a9c7ae6277ac2e9b945306aaa5b32c6dcb7feaf462d0f552e7f8b5718abfc6ead5c94a71b3
   languageName: node
   linkType: hard
 
@@ -10025,14 +10025,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-jit-props@npm:1.0.12":
-  version: 1.0.12
-  resolution: "postcss-jit-props@npm:1.0.12"
+"postcss-jit-props@npm:1.0.13":
+  version: 1.0.13
+  resolution: "postcss-jit-props@npm:1.0.13"
   dependencies:
     tiny-glob: ^0.2.9
   peerDependencies:
     postcss: ^8.2.8
-  checksum: 9e5b38a563db92f62ceb8aec7bed47c43e8d0998ee17d66e767ff8c5a320ef349d9612952c9fb7cb625828b380711209f3f3fd3fece8ce56a44ae2cb559583fa
+  checksum: 6bdc5df07b97fc8209efcdf02e0d80f4b85a7e2875bb567a265ea7b9219f683368c6b4123f54c7d9929387062f2fa809ba836aebccf4e58f7b6a61b63c033134
   languageName: node
   linkType: hard
 
@@ -10302,14 +10302,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.21":
-  version: 8.4.21
-  resolution: "postcss@npm:8.4.21"
+"postcss@npm:8.4.22":
+  version: 8.4.22
+  resolution: "postcss@npm:8.4.22"
   dependencies:
-    nanoid: ^3.3.4
+    nanoid: ^3.3.6
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: e39ac60ccd1542d4f9d93d894048aac0d686b3bb38e927d8386005718e6793dbbb46930f0a523fe382f1bbd843c6d980aaea791252bf5e176180e5a4336d9679
+  checksum: 7473dfb7ac5b4cb03576c39d687d7fc02c826ab08af97df15b5d3970662532d44a18a0994f392a9c3658ee17c292e7a55990e586b90ca0afcc9f36df13e07029
   languageName: node
   linkType: hard
 
@@ -10620,8 +10620,8 @@ __metadata:
     local-web-server: 5.3.0
     npm-run-all: 4.1.5
     open-props: 1.5.7
-    postcss: 8.4.21
-    postcss-jit-props: 1.0.12
+    postcss: 8.4.22
+    postcss-jit-props: 1.0.13
     prettier: 2.8.7
     tap-xunit: 2.4.1
   languageName: unknown
