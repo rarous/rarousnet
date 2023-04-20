@@ -127,9 +127,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-s3@npm:3.316.0":
-  version: 3.316.0
-  resolution: "@aws-sdk/client-s3@npm:3.316.0"
+"@aws-sdk/client-s3@npm:3.317.0":
+  version: 3.317.0
+  resolution: "@aws-sdk/client-s3@npm:3.317.0"
   dependencies:
     "@aws-crypto/sha1-browser": 3.0.0
     "@aws-crypto/sha256-browser": 3.0.0
@@ -185,7 +185,7 @@ __metadata:
     "@aws-sdk/xml-builder": 3.310.0
     fast-xml-parser: 4.1.2
     tslib: ^2.5.0
-  checksum: ef1f508f990e46cd3c376f7b70a5c9272bf38d35ff1c48e7af60ae701489614653c9303d2aa60b2c293f68c959087e75cf60df2d14774eec40140ddb803ef328
+  checksum: 67f6ec39adfe7913a30228ef24f05d979e6499d7650e02582ec58c9f0534696aead946f9f6b74f6ca0e5adc10fe2163fd65832b5a06c9d23845e0f1c3659155e
   languageName: node
   linkType: hard
 
@@ -1743,7 +1743,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@aws-sdk/client-s3": 3.316.0
+    "@aws-sdk/client-s3": 3.317.0
     "@thi.ng/transducers": 8.4.3
     csv-parse: 5.3.8
     md5-file: 5.0.0
