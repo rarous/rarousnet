@@ -58,6 +58,7 @@ function createRoute(name, { account, zone, pattern, workerFile, bindings }) {
 }
 
 const account = new cloudflare.Account("rarous", {
+  accountId: config.require("cloudflare-accountId"),
   name: "rarous",
   enforceTwofactor: true,
 }, { protect: true });
