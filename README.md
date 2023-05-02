@@ -1,6 +1,9 @@
 # rarousnet
 
 [![Build status](https://circleci.com/gh/rarous/rarousnet.svg?style=shield)](https://circleci.com/gh/rarous/rarousnet)
+[![CodeScene Code Health](https://codescene.io/projects/783/status-badges/code-health)](https://codescene.io/projects/783)
+[![CodeScene System Mastery](https://codescene.io/projects/783/status-badges/system-mastery)](https://codescene.io/projects/783)
+[![CodeScene Missed Goals](https://codescene.io/projects/783/status-badges/missed-goals)](https://codescene.io/projects/783)
 
 Sources for https://www.rarous.net/ website.
 
