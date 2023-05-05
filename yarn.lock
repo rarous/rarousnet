@@ -1719,6 +1719,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@puppeteer/browsers@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@puppeteer/browsers@npm:1.0.0"
+  dependencies:
+    debug: 4.3.4
+    extract-zip: 2.0.1
+    https-proxy-agent: 5.0.1
+    progress: 2.0.3
+    proxy-from-env: 1.1.0
+    tar-fs: 2.1.1
+    unbzip2-stream: 1.4.3
+    yargs: 17.7.1
+  peerDependencies:
+    typescript: ">= 4.7.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    browsers: lib/cjs/main-cli.js
+  checksum: 52a9e1a8ccb143b7fbee7859661790147da74151ba7a7607858d006677370099ce1b56124977e365422a37197aa32adaf59e03e88200c969c43d05fc0778b1d2
+  languageName: node
+  linkType: hard
+
 "@rarousnet/cards@workspace:cards":
   version: 0.0.0-use.local
   resolution: "@rarousnet/cards@workspace:cards"
@@ -2718,10 +2741,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.6.3":
-  version: 4.6.3
-  resolution: "axe-core@npm:4.6.3"
-  checksum: d0c46be92b9707c48b88a53cd5f471b155a2bfc8bf6beffb514ecd14e30b4863e340b5fc4f496d82a3c562048088c1f3ff5b93b9b3b026cb9c3bfacfd535da10
+"axe-core@npm:4.7.0":
+  version: 4.7.0
+  resolution: "axe-core@npm:4.7.0"
+  checksum: f086bcab42be1761ba2b0b127dec350087f4c3a853bba8dd58f69d898cefaac31a1561da23146f6f3c07954c76171d1f2ce460e555e052d2b02cd79af628fa4a
   languageName: node
   linkType: hard
 
@@ -3506,9 +3529,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chrome-launcher@npm:^0.15.1":
-  version: 0.15.1
-  resolution: "chrome-launcher@npm:0.15.1"
+"chrome-launcher@npm:^0.15.2":
+  version: 0.15.2
+  resolution: "chrome-launcher@npm:0.15.2"
   dependencies:
     "@types/node": "*"
     escape-string-regexp: ^4.0.0
@@ -3516,18 +3539,18 @@ __metadata:
     lighthouse-logger: ^1.0.0
   bin:
     print-chrome-path: bin/print-chrome-path.js
-  checksum: b534221b831afc59a0058a1f8406a77d7b4a592342785418e2ef97099b073609b0ca0e4be39d1ed842aa2b64b02ab5ccb45166eada9a37b775c757fb201d7fa5
+  checksum: e1f8131b9f7bd931248ea85f413c6cdb93a0d41440ff5bf0987f36afb081d2b2c7b60ba6062ee7ae2dd9b052143f6b275b38c9eb115d11b49c3ea8829bad7db0
   languageName: node
   linkType: hard
 
-"chromium-bidi@npm:0.4.5":
-  version: 0.4.5
-  resolution: "chromium-bidi@npm:0.4.5"
+"chromium-bidi@npm:0.4.7":
+  version: 0.4.7
+  resolution: "chromium-bidi@npm:0.4.7"
   dependencies:
     mitt: 3.0.0
   peerDependencies:
     devtools-protocol: "*"
-  checksum: 82935d25faad4c4718ba699df884e2719911bfbf99b5eaf42eceb92b1b91f5c251d087641ebb5a93f4bc82a679a6aaaa310d2f8b201443df81ed160cb9e1bee7
+  checksum: eec7581e2eddd2c95014c6edc5aae0b036c79bbeadee05166436b16139b6932c902c5ce21d95ed919a592f58d3a47c5469dc5f3de2a300700b2748ab119ad65e
   languageName: node
   linkType: hard
 
@@ -4545,10 +4568,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools-protocol@npm:0.0.1107588":
-  version: 0.0.1107588
-  resolution: "devtools-protocol@npm:0.0.1107588"
-  checksum: 9064fd643f39ae0adabb8f425b746899ff24371d89a5047d38752653259e6afcb6bcb2d9759ff727eb5885cfc0f9ba8eb384850a2af00694135622e88080e3e5
+"devtools-protocol@npm:0.0.1120988":
+  version: 0.0.1120988
+  resolution: "devtools-protocol@npm:0.0.1120988"
+  checksum: 68eb7aa6a2fe20f8321168f9381849296b203355a5c052461b7ed95e8787b34458029dd64c8d4a8640d9fd329138a6d82f41237f5331ea4267c090dcbf6581f7
   languageName: node
   linkType: hard
 
@@ -7855,20 +7878,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lighthouse-stack-packs@npm:1.9.1":
-  version: 1.9.1
-  resolution: "lighthouse-stack-packs@npm:1.9.1"
-  checksum: a73b07f954fd7d873035f6a90faedbccf0ba4eaeb65bc53e40f9b3a85caec491b2cd6a60dbf4ff7303f171abc4d5f2fc8d8c34f50b6b988680bbe7768abc9bd4
+"lighthouse-stack-packs@npm:1.10.0":
+  version: 1.10.0
+  resolution: "lighthouse-stack-packs@npm:1.10.0"
+  checksum: 6bfa857a054939c09ba65452c8b0727c11b8bcd7bd90b9134b2e7e900c56303873f36e21902c3777eeba5c2ae5cc29ef72f71422a83f959488307edb9a40d7c1
   languageName: node
   linkType: hard
 
-"lighthouse@npm:10.1.1":
-  version: 10.1.1
-  resolution: "lighthouse@npm:10.1.1"
+"lighthouse@npm:10.2.0":
+  version: 10.2.0
+  resolution: "lighthouse@npm:10.2.0"
   dependencies:
     "@sentry/node": ^6.17.4
-    axe-core: 4.6.3
-    chrome-launcher: ^0.15.1
+    axe-core: 4.7.0
+    chrome-launcher: ^0.15.2
     configstore: ^5.0.1
     csp_evaluator: 1.1.1
     devtools-protocol: 0.0.1130274
@@ -7878,14 +7901,14 @@ __metadata:
     jpeg-js: ^0.4.4
     js-library-detector: ^6.6.0
     lighthouse-logger: ^1.3.0
-    lighthouse-stack-packs: 1.9.1
+    lighthouse-stack-packs: 1.10.0
     lodash: ^4.17.21
     lookup-closest-locale: 6.2.0
     metaviewport-parser: 0.3.0
     open: ^8.4.0
     parse-cache-control: 1.0.1
     ps-list: ^8.0.0
-    puppeteer-core: ^19.6.0
+    puppeteer-core: ^20.1.0
     robots-parser: ^3.0.0
     semver: ^5.3.0
     speedline-core: ^1.4.3
@@ -7897,7 +7920,7 @@ __metadata:
     chrome-debug: core/scripts/manual-chrome-launcher.js
     lighthouse: cli/index.js
     smokehouse: cli/test/smokehouse/frontends/smokehouse-bin.js
-  checksum: d20f4c5d02277ee2f13edaf8bc93312fc950de3c3d0678c83157af62c76fec0644ecd2fb46e8fd1d094948028ecd9b6592c518e9cbe77360db5b99b7b7fdd6c7
+  checksum: 358d4549ebfe49e2b2f763837267c32776efeb16ccf8a30c5e4e92ad0ff06acfe24ef637707d2b0909a34c4eed99f823c195a2133d1bab67f6af4d6c773d626b
   languageName: node
   linkType: hard
 
@@ -10379,6 +10402,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"progress@npm:2.0.3":
+  version: 2.0.3
+  resolution: "progress@npm:2.0.3"
+  checksum: f67403fe7b34912148d9252cb7481266a354bd99ce82c835f79070643bb3c6583d10dbcfda4d41e04bbc1d8437e9af0fb1e1f2135727878f5308682a579429b7
+  languageName: node
+  linkType: hard
+
 "promise-inflight@npm:^1.0.1":
   version: 1.0.1
   resolution: "promise-inflight@npm:1.0.1"
@@ -10530,14 +10560,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:^19.6.0":
-  version: 19.8.0
-  resolution: "puppeteer-core@npm:19.8.0"
+"puppeteer-core@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "puppeteer-core@npm:20.1.0"
   dependencies:
-    chromium-bidi: 0.4.5
+    "@puppeteer/browsers": 1.0.0
+    chromium-bidi: 0.4.7
     cross-fetch: 3.1.5
     debug: 4.3.4
-    devtools-protocol: 0.0.1107588
+    devtools-protocol: 0.0.1120988
     extract-zip: 2.0.1
     https-proxy-agent: 5.0.1
     proxy-from-env: 1.1.0
@@ -10549,7 +10580,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: a696ae2f8c3a8d0ca25141d22e2a49221d99a27e539d5776dbe153d1f8c00f04686a2cee6df43c3a20eb1b41f4077c339babf59e39fff26d8f34d08d726f1c96
+  checksum: 24b11a5415f5bc94b06456a10d5533cabc9172a37c62f1cfbc1992fb89d7d823ecdc99cb377cf86e803f5f087d4e8d00d1607ced93b3649a6f7bf3287074c2c3
   languageName: node
   linkType: hard
 
@@ -10641,7 +10672,7 @@ __metadata:
     gulp-rev-delete-original: 0.2.3
     gulp-rev-replace: 0.4.4
     gulp-sizereport: 1.2.1
-    lighthouse: 10.1.1
+    lighthouse: 10.2.0
     local-web-server: 5.3.0
     npm-run-all: 4.1.5
     open-props: 1.5.8
@@ -13655,6 +13686,21 @@ __metadata:
     y18n: ^5.0.5
     yargs-parser: ^20.2.2
   checksum: b05a9467937172e01a4af7a7ad4361a22ee510cd12d1d5a3ad3b4c2e57eb8c35ca94ee22e4bdfbb40fe693fbf8000771e41824f77f6b224f1496c57f20f192b6
+  languageName: node
+  linkType: hard
+
+"yargs@npm:17.7.1":
+  version: 17.7.1
+  resolution: "yargs@npm:17.7.1"
+  dependencies:
+    cliui: ^8.0.1
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.3
+    y18n: ^5.0.5
+    yargs-parser: ^21.1.1
+  checksum: 3d8a43c336a4942bc68080768664aca85c7bd406f018bad362fd255c41c8f4e650277f42fd65d543fce99e084124ddafee7bbfc1a5c6a8fda4cec78609dcf8d4
   languageName: node
   linkType: hard
 
