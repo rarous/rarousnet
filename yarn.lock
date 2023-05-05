@@ -1745,7 +1745,7 @@ __metadata:
   dependencies:
     "@aws-sdk/client-s3": 3.326.0
     "@thi.ng/transducers": 8.4.4
-    csv-parse: 5.3.9
+    csv-parse: 5.3.10
     md5-file: 5.0.0
     mime-types: 2.1.35
     schema-dts: 1.1.2
@@ -4273,10 +4273,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csv-parse@npm:5.3.9":
-  version: 5.3.9
-  resolution: "csv-parse@npm:5.3.9"
-  checksum: 751f1c237c758fa82d5a4af275f808fb491208575af27d7edf9b44d2752e25d4c624a85deb381003097c0ba5f395f00bf920ef3f1b89fa86d52d10200bb79f94
+"csv-parse@npm:5.3.10":
+  version: 5.3.10
+  resolution: "csv-parse@npm:5.3.10"
+  checksum: 4d74c5912f9903b84ecca06399191b0fb5c9e7e7c2f02b845393393a2b66192e47e4c2bc8bd03f0c483108ae8e4367a46b1e5f945ded26b386ce9148c0239d14
   languageName: node
   linkType: hard
 
