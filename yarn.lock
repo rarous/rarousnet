@@ -108,6 +108,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-sdk/chunked-blob-reader-native@npm:3.310.0":
+  version: 3.310.0
+  resolution: "@aws-sdk/chunked-blob-reader-native@npm:3.310.0"
+  dependencies:
+    "@aws-sdk/util-base64": 3.310.0
+    tslib: ^2.5.0
+  checksum: 8b9b88edcaa28b58277a06e95c1b01f1eb2bfba3d994031664957340ae2bc857f1575ec999e8dbd085242b52719228ebff05af1cc0228b1f9296646f4b2095cb
+  languageName: node
+  linkType: hard
+
 "@aws-sdk/chunked-blob-reader@npm:3.310.0":
   version: 3.310.0
   resolution: "@aws-sdk/chunked-blob-reader@npm:3.310.0"
@@ -117,16 +127,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-s3@npm:3.363.0":
-  version: 3.363.0
-  resolution: "@aws-sdk/client-s3@npm:3.363.0"
+"@aws-sdk/client-s3@npm:3.367.0":
+  version: 3.367.0
+  resolution: "@aws-sdk/client-s3@npm:3.367.0"
   dependencies:
     "@aws-crypto/sha1-browser": 3.0.0
     "@aws-crypto/sha256-browser": 3.0.0
     "@aws-crypto/sha256-js": 3.0.0
     "@aws-sdk/client-sts": 3.363.0
     "@aws-sdk/credential-provider-node": 3.363.0
-    "@aws-sdk/hash-blob-browser": 3.357.0
+    "@aws-sdk/hash-blob-browser": 3.367.0
     "@aws-sdk/hash-stream-node": 3.357.0
     "@aws-sdk/md5-js": 3.357.0
     "@aws-sdk/middleware-bucket-endpoint": 3.363.0
@@ -175,7 +185,7 @@ __metadata:
     "@smithy/util-waiter": ^1.0.1
     fast-xml-parser: 4.2.5
     tslib: ^2.5.0
-  checksum: 35557dd4b9bdd00178e0fc66d14c99380feac1e0be7af0c24533ede292f22fbd6dbc4fd33af9bfc0a01a219c075fe9346fa07fed30476d1f5749a4f7122bb095
+  checksum: c1695807886192dcec8051bf70253e44059453e08e81310128ba9027e33318ed9ea6ff41cd232e0438d5e019fafd1c14ce68c421c4ce809b20db688911256f0d
   languageName: node
   linkType: hard
 
@@ -395,14 +405,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/hash-blob-browser@npm:3.357.0":
-  version: 3.357.0
-  resolution: "@aws-sdk/hash-blob-browser@npm:3.357.0"
+"@aws-sdk/hash-blob-browser@npm:3.367.0":
+  version: 3.367.0
+  resolution: "@aws-sdk/hash-blob-browser@npm:3.367.0"
   dependencies:
     "@aws-sdk/chunked-blob-reader": 3.310.0
+    "@aws-sdk/chunked-blob-reader-native": 3.310.0
     "@aws-sdk/types": 3.357.0
     tslib: ^2.5.0
-  checksum: 3bdc8b401b19521dcb8365a1e33d88f005af6e7c930c83eb45460eafcc4639b9a3d54d44a97ad3941f795d420a8fa3b7cb3b3b25bb4a79d16257031cd894e40b
+  checksum: 480faec77c18cdecfbfe6850b19a1eaee7eac8239517c3b0d58f1243ce70de0202268064f1d4b0d671d1c0dbceec090dfe74be940e62aa3d8627216dba34e1af
   languageName: node
   linkType: hard
 
@@ -645,6 +656,16 @@ __metadata:
   dependencies:
     tslib: ^2.5.0
   checksum: faac1e10f8bb6c2fe5fee82bcb7ce56c2b37ae9ffdb2b78b0746a7a06005eaa5ea747a0a10eaf490c1c4907ecc327e1c94a600e26a069e023e54b8d63c031e96
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/util-base64@npm:3.310.0":
+  version: 3.310.0
+  resolution: "@aws-sdk/util-base64@npm:3.310.0"
+  dependencies:
+    "@aws-sdk/util-buffer-from": 3.310.0
+    tslib: ^2.5.0
+  checksum: 3c9f7c818401fe8332d2ce438c0660cc9be7db9a5eef68d7fafa30ddcc44b0af3ba9ea58092f0e2b2537a18ec0942ce3c8f12090d3e3b9568b6a94a0713e9de7
   languageName: node
   linkType: hard
 
@@ -1351,7 +1372,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@aws-sdk/client-s3": 3.363.0
+    "@aws-sdk/client-s3": 3.367.0
     "@thi.ng/transducers": 8.4.6
     csv-parse: 5.4.0
     md5-file: 5.0.0
