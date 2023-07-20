@@ -108,37 +108,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/chunked-blob-reader-native@npm:3.310.0":
-  version: 3.310.0
-  resolution: "@aws-sdk/chunked-blob-reader-native@npm:3.310.0"
-  dependencies:
-    "@aws-sdk/util-base64": 3.310.0
-    tslib: ^2.5.0
-  checksum: 8b9b88edcaa28b58277a06e95c1b01f1eb2bfba3d994031664957340ae2bc857f1575ec999e8dbd085242b52719228ebff05af1cc0228b1f9296646f4b2095cb
-  languageName: node
-  linkType: hard
-
-"@aws-sdk/chunked-blob-reader@npm:3.310.0":
-  version: 3.310.0
-  resolution: "@aws-sdk/chunked-blob-reader@npm:3.310.0"
-  dependencies:
-    tslib: ^2.5.0
-  checksum: 4969fe05c6cea38d0a8dc3ec8e37cbd82a0a5b6f8c32ad6c7d02f0800bc3641e96356f47981c88b645b4dc2bdcb73d03d7ec67ac38d277dde8337b61688f815b
-  languageName: node
-  linkType: hard
-
-"@aws-sdk/client-s3@npm:3.370.0":
-  version: 3.370.0
-  resolution: "@aws-sdk/client-s3@npm:3.370.0"
+"@aws-sdk/client-s3@npm:3.373.0":
+  version: 3.373.0
+  resolution: "@aws-sdk/client-s3@npm:3.373.0"
   dependencies:
     "@aws-crypto/sha1-browser": 3.0.0
     "@aws-crypto/sha256-browser": 3.0.0
     "@aws-crypto/sha256-js": 3.0.0
     "@aws-sdk/client-sts": 3.370.0
     "@aws-sdk/credential-provider-node": 3.370.0
-    "@aws-sdk/hash-blob-browser": 3.370.0
     "@aws-sdk/hash-stream-node": 3.370.0
-    "@aws-sdk/md5-js": 3.370.0
     "@aws-sdk/middleware-bucket-endpoint": 3.370.0
     "@aws-sdk/middleware-expect-continue": 3.370.0
     "@aws-sdk/middleware-flexible-checksums": 3.370.0
@@ -161,8 +140,10 @@ __metadata:
     "@smithy/eventstream-serde-config-resolver": ^1.0.1
     "@smithy/eventstream-serde-node": ^1.0.1
     "@smithy/fetch-http-handler": ^1.0.1
+    "@smithy/hash-blob-browser": ^1.0.1
     "@smithy/hash-node": ^1.0.1
     "@smithy/invalid-dependency": ^1.0.1
+    "@smithy/md5-js": ^1.0.1
     "@smithy/middleware-content-length": ^1.0.1
     "@smithy/middleware-endpoint": ^1.0.2
     "@smithy/middleware-retry": ^1.0.3
@@ -185,7 +166,7 @@ __metadata:
     "@smithy/util-waiter": ^1.0.1
     fast-xml-parser: 4.2.5
     tslib: ^2.5.0
-  checksum: 6e395a519a46c1351597b7104e510c8a6f17b7d531eb9a1bf0a706ba69c6c383a9f02b2309d9eb712ead8454e6c1a3906ce65202b7cf353c0385879162875c7b
+  checksum: 38455e6d1ff3d0d0db0295f73607629ddb4ce96a94c21218548b3a8ed8c0983f9fcd2cb8b7fce2d9861eafa77aae14e196dd6dc1efd25ce9f5c13edf7c51d8b5
   languageName: node
   linkType: hard
 
@@ -405,18 +386,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/hash-blob-browser@npm:3.370.0":
-  version: 3.370.0
-  resolution: "@aws-sdk/hash-blob-browser@npm:3.370.0"
-  dependencies:
-    "@aws-sdk/chunked-blob-reader": 3.310.0
-    "@aws-sdk/chunked-blob-reader-native": 3.310.0
-    "@aws-sdk/types": 3.370.0
-    tslib: ^2.5.0
-  checksum: 51d24225d299c238032aa6e29cf2c13b876231cf8fef40dcf9ef1ea05b1fb873cf7de76eba13ce63b2324e156c85e2795ba0e66abc2570745b9ec92586185f4b
-  languageName: node
-  linkType: hard
-
 "@aws-sdk/hash-stream-node@npm:3.370.0":
   version: 3.370.0
   resolution: "@aws-sdk/hash-stream-node@npm:3.370.0"
@@ -434,17 +403,6 @@ __metadata:
   dependencies:
     tslib: ^2.5.0
   checksum: ddd1536ad16e29186fb5055bc279cfe9790b7c32552e1ee21e31d4e410e1df297b06c94c6117f854ec368d29e60a231dd8cc77e5b604a6260e7602876fd047f8
-  languageName: node
-  linkType: hard
-
-"@aws-sdk/md5-js@npm:3.370.0":
-  version: 3.370.0
-  resolution: "@aws-sdk/md5-js@npm:3.370.0"
-  dependencies:
-    "@aws-sdk/types": 3.370.0
-    "@aws-sdk/util-utf8": 3.310.0
-    tslib: ^2.5.0
-  checksum: 1a0ae6590d3b860ea380e1299dc6debc533ab39a055aa204c1be08cbdead0e5eaac8ac8deb1b9332f00d7177d874b73ba03de5dcf012b2b4cd5ad96ae36bd7b5
   languageName: node
   linkType: hard
 
@@ -657,16 +615,6 @@ __metadata:
   dependencies:
     tslib: ^2.5.0
   checksum: faac1e10f8bb6c2fe5fee82bcb7ce56c2b37ae9ffdb2b78b0746a7a06005eaa5ea747a0a10eaf490c1c4907ecc327e1c94a600e26a069e023e54b8d63c031e96
-  languageName: node
-  linkType: hard
-
-"@aws-sdk/util-base64@npm:3.310.0":
-  version: 3.310.0
-  resolution: "@aws-sdk/util-base64@npm:3.310.0"
-  dependencies:
-    "@aws-sdk/util-buffer-from": 3.310.0
-    tslib: ^2.5.0
-  checksum: 3c9f7c818401fe8332d2ce438c0660cc9be7db9a5eef68d7fafa30ddcc44b0af3ba9ea58092f0e2b2537a18ec0942ce3c8f12090d3e3b9568b6a94a0713e9de7
   languageName: node
   linkType: hard
 
@@ -1374,7 +1322,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@aws-sdk/client-s3": 3.370.0
+    "@aws-sdk/client-s3": 3.373.0
     "@thi.ng/transducers": 8.4.7
     csv-parse: 5.4.0
     md5-file: 5.0.0
@@ -1466,6 +1414,25 @@ __metadata:
     "@smithy/types": ^1.1.0
     tslib: ^2.5.0
   checksum: f472dd24346915b71e61771920e86d603f30a7beb8a884652958029249d12c9c3a63820b2c9cf55b2626dc3c8f048faddd84b8b55789f3bdaf69e3c510975408
+  languageName: node
+  linkType: hard
+
+"@smithy/chunked-blob-reader-native@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@smithy/chunked-blob-reader-native@npm:1.0.2"
+  dependencies:
+    "@smithy/util-base64": ^1.0.2
+    tslib: ^2.5.0
+  checksum: 9e2b9c374a7b67ce660ce88a2f3a83a770fb265e688602b90bded35ac698a4bf01bc8bf56f2938e7f410715b3fe2525c5c8ce375e06ebadda08c288c8efa0514
+  languageName: node
+  linkType: hard
+
+"@smithy/chunked-blob-reader@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@smithy/chunked-blob-reader@npm:1.0.2"
+  dependencies:
+    tslib: ^2.5.0
+  checksum: 833feb371eede840e9f9ba76916abfbc27c81f8941618ee9bd3ef0757a10f88d90f06f62f132359fd9e6cc2b0696bf5965ee1303b16622f496a762d0f6de8b28
   languageName: node
   linkType: hard
 
@@ -1562,6 +1529,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@smithy/hash-blob-browser@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "@smithy/hash-blob-browser@npm:1.0.2"
+  dependencies:
+    "@smithy/chunked-blob-reader": ^1.0.2
+    "@smithy/chunked-blob-reader-native": ^1.0.2
+    "@smithy/types": ^1.1.1
+    tslib: ^2.5.0
+  checksum: abb4ff41072d17039fcf849107786349359e718ab2a5da5dfc9dbb39e023a3cbfdee51f8e03a2c8353a2ea8c143542c80975eafaa8d4688531f0c8d5ebf921b9
+  languageName: node
+  linkType: hard
+
 "@smithy/hash-node@npm:^1.0.1":
   version: 1.0.1
   resolution: "@smithy/hash-node@npm:1.0.1"
@@ -1590,6 +1569,26 @@ __metadata:
   dependencies:
     tslib: ^2.5.0
   checksum: 1b582c19694e95c663c2ca499a1146189d4b54556813fff0029dd81c609c9fee80fb8a69e1e2197d45a67c962f64a2262808d944af878c0af3ae1da599ef3a06
+  languageName: node
+  linkType: hard
+
+"@smithy/is-array-buffer@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@smithy/is-array-buffer@npm:1.0.2"
+  dependencies:
+    tslib: ^2.5.0
+  checksum: 811b100b809bc1730ed33231ae22afbce5ccc8d2d5db5c8e86b52db718d738283337a43f777397d1308c24243d0be3e3d862684e9be1dbdfb547a8d8399f0911
+  languageName: node
+  linkType: hard
+
+"@smithy/md5-js@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "@smithy/md5-js@npm:1.0.2"
+  dependencies:
+    "@smithy/types": ^1.1.1
+    "@smithy/util-utf8": ^1.0.2
+    tslib: ^2.5.0
+  checksum: 61913e2a6db50eeba87b1fc23a977d8266c4d19d4c52193ac4b2263eab4fed58c25b23baab514cab104aabdbe6437518f2e2f68146e400c7a760a881552f2da5
   languageName: node
   linkType: hard
 
@@ -1849,6 +1848,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@smithy/util-base64@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@smithy/util-base64@npm:1.0.2"
+  dependencies:
+    "@smithy/util-buffer-from": ^1.0.2
+    tslib: ^2.5.0
+  checksum: 618d2952fbbc2cabcc6234c9aad612417a2a6f2fcac556a81b75f59d651e5daea7b2c1b44894b30611a425f32045a2dbe0623ebf57654e2068486d0d5a4b6ac7
+  languageName: node
+  linkType: hard
+
 "@smithy/util-body-length-browser@npm:^1.0.1":
   version: 1.0.1
   resolution: "@smithy/util-body-length-browser@npm:1.0.1"
@@ -1874,6 +1883,16 @@ __metadata:
     "@smithy/is-array-buffer": ^1.0.1
     tslib: ^2.5.0
   checksum: bfb18108d8fc0e55dd4b2e2dbe88a017f43e186e96d9b4f541b49363ac95d8f7461d7df0388a556528bea4eb91639377d748addf5c9b42fffab66d67983f022f
+  languageName: node
+  linkType: hard
+
+"@smithy/util-buffer-from@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@smithy/util-buffer-from@npm:1.0.2"
+  dependencies:
+    "@smithy/is-array-buffer": ^1.0.2
+    tslib: ^2.5.0
+  checksum: ca4308ebc54f372777fc53b2782c752ebfdfe3934b1c4da935c78bb2f4f921d2071056edc644704ba894d363f85cc52fc07095d93eb6cbba510ba19a767be265
   languageName: node
   linkType: hard
 
@@ -1991,6 +2010,16 @@ __metadata:
     "@smithy/util-buffer-from": ^1.0.1
     tslib: ^2.5.0
   checksum: ddb841cfe8314a9fd7036a6240bcaeab2470dbaf318f9dfcbf4b3721a8b070b98c72c0ede3f5a7f98c0f5f7db82c26ace47ee4a1a7723024bde1764324c2a59f
+  languageName: node
+  linkType: hard
+
+"@smithy/util-utf8@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@smithy/util-utf8@npm:1.0.2"
+  dependencies:
+    "@smithy/util-buffer-from": ^1.0.2
+    tslib: ^2.5.0
+  checksum: 64add10ac1bbeb0c96a1ba8b05886ae86cee589fd4cccb25276849748fed7035c54e64d40107f22a57ca9b4f9324afe4baf0007c67536d520c1b8378e1e6ec55
   languageName: node
   linkType: hard
 
