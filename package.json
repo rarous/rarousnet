@@ -11,7 +11,7 @@
     "IE 8"
   ],
   "dependencies": {
-    "autoprefixer": "10.4.14",
+    "autoprefixer": "10.4.15",
     "ava": "5.3.1",
     "broken-link-checker-local": "0.2.1",
     "browser-sync": "2.29.3",
