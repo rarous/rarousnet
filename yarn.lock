@@ -1245,7 +1245,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/cards@workspace:cards"
   dependencies:
-    "@thi.ng/transducers": 8.6.0
+    "@thi.ng/transducers": 8.6.1
     playwright: 1.37.1
   languageName: unknown
   linkType: soft
@@ -1266,7 +1266,7 @@ __metadata:
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
     "@aws-sdk/client-s3": 3.398.0
-    "@thi.ng/transducers": 8.6.0
+    "@thi.ng/transducers": 8.6.1
     csv-parse: 5.4.0
     md5-file: 5.0.0
     mime-types: 2.1.35
@@ -2037,12 +2037,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/math@npm:^5.5.5":
-  version: 5.5.5
-  resolution: "@thi.ng/math@npm:5.5.5"
+"@thi.ng/math@npm:^5.6.0":
+  version: 5.6.0
+  resolution: "@thi.ng/math@npm:5.6.0"
   dependencies:
     "@thi.ng/api": ^8.9.4
-  checksum: e035de14d425658beb69c7bc5868a93dc3dfb1f4c88ec3864799245a848a32f30a68b61bbef5428fcb5e3b8cb476d98f557f19c970d56edc7866abd4bb0ee746
+  checksum: e5234e000e686ac06531a53b101100ec8464e344127942617ec6522b1cf9552aa1e6a3546d3452dfe7fde54f0166fd351d3d293a46fb767ce2cd1ad753155343
   languageName: node
   linkType: hard
 
@@ -2058,9 +2058,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/transducers@npm:8.6.0":
-  version: 8.6.0
-  resolution: "@thi.ng/transducers@npm:8.6.0"
+"@thi.ng/transducers@npm:8.6.1":
+  version: 8.6.1
+  resolution: "@thi.ng/transducers@npm:8.6.1"
   dependencies:
     "@thi.ng/api": ^8.9.4
     "@thi.ng/arrays": ^2.5.20
@@ -2068,9 +2068,9 @@ __metadata:
     "@thi.ng/compare": ^2.1.37
     "@thi.ng/compose": ^2.1.39
     "@thi.ng/errors": ^2.3.4
-    "@thi.ng/math": ^5.5.5
+    "@thi.ng/math": ^5.6.0
     "@thi.ng/random": ^3.6.2
-  checksum: 6d24f9eba536e32bc472b6fc5207d1c75564a3a0759f90b10b08f0e12600465a3668e6eb9e186c386a96126266ccfdcdbe6ef59890713b95a35aed02ea36c7a8
+  checksum: 0d625a87e8bd6a74a94990ba9e77b81d6c65f5bc798089722119716ea2b991a1734a6bf1677d81b4c86be87ab4ebfe8f0ff5898fd6cf845abcaecb12fe0ac7e8
   languageName: node
   linkType: hard
 
