@@ -9653,10 +9653,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open-props@npm:1.5.14":
-  version: 1.5.14
-  resolution: "open-props@npm:1.5.14"
-  checksum: 155fcb9dca8afcafd7b030607145e04cc2896fd249700af8c0c20cf57be48353fe6b72263fc3f8f92d536a7c8773ebcd65e873809724b18573e21ecab141aded
+"open-props@npm:1.5.15":
+  version: 1.5.15
+  resolution: "open-props@npm:1.5.15"
+  checksum: 0055c19342f9671977f7b96253d35bc94e3a23d6ec065cbe78f27220bbea87252b6be6e4bb382e06ae97c6f2913bae9e4524ea94d6c562a33efa6613f5500521
   languageName: node
   linkType: hard
 
@@ -10940,7 +10940,7 @@ __metadata:
     lighthouse: 11.0.0
     local-web-server: 5.3.0
     npm-run-all: 4.1.5
-    open-props: 1.5.14
+    open-props: 1.5.15
     postcss: 8.4.28
     postcss-jit-props: 1.0.13
     prettier: 3.0.2
