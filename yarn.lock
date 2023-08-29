@@ -1244,7 +1244,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/cards@workspace:cards"
   dependencies:
-    "@thi.ng/transducers": 8.6.2
+    "@thi.ng/transducers": 8.6.3
     playwright: 1.37.1
   languageName: unknown
   linkType: soft
@@ -1265,7 +1265,7 @@ __metadata:
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
     "@aws-sdk/client-s3": 3.400.0
-    "@thi.ng/transducers": 8.6.2
+    "@thi.ng/transducers": 8.6.3
     csv-parse: 5.5.0
     md5-file: 5.0.0
     mime-types: 2.1.35
@@ -2005,13 +2005,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/compose@npm:^2.1.40":
-  version: 2.1.40
-  resolution: "@thi.ng/compose@npm:2.1.40"
+"@thi.ng/compose@npm:^2.1.41":
+  version: 2.1.41
+  resolution: "@thi.ng/compose@npm:2.1.41"
   dependencies:
     "@thi.ng/api": ^8.9.5
     "@thi.ng/errors": ^2.3.5
-  checksum: 4662679e8bcbe00a7937f5b9e396a08697fa95e146bbfab508c88552b70517eb4bda385a727e69784768b15cf4bc306325f3c84c6f65f42bd3f86b11e81b9273
+  checksum: 385c287f5034cf339591ada0b84bf85da76e2f545669c104441fc3745dea711294f446cebbe916c1a0bf2a3a97e3b5f4b18bebd3680dfad7cb654e349ed4369a
   languageName: node
   linkType: hard
 
@@ -2057,19 +2057,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/transducers@npm:8.6.2":
-  version: 8.6.2
-  resolution: "@thi.ng/transducers@npm:8.6.2"
+"@thi.ng/transducers@npm:8.6.3":
+  version: 8.6.3
+  resolution: "@thi.ng/transducers@npm:8.6.3"
   dependencies:
     "@thi.ng/api": ^8.9.5
     "@thi.ng/arrays": ^2.5.21
     "@thi.ng/checks": ^3.4.5
     "@thi.ng/compare": ^2.1.38
-    "@thi.ng/compose": ^2.1.40
+    "@thi.ng/compose": ^2.1.41
     "@thi.ng/errors": ^2.3.5
     "@thi.ng/math": ^5.6.1
     "@thi.ng/random": ^3.6.3
-  checksum: 51cabe8509b1e3d6c789941e5b0c1e54403228e72469337bfa50d0fe2da4a50378e56ee889765c9caed0a50ebf41fa264f22ad97b529656b23ee79911eec1cd9
+  checksum: bb7bbb84300c8c537c47ad1751c6016cffd80edc91edc3b7f4a05af93e2eb32010a3ae83b85ace5ab498eff20e11cb67e1e64cb535cefc4cfff8fd6b51f974d9
   languageName: node
   linkType: hard
 
