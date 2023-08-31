@@ -1137,16 +1137,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/aws@npm:6.0.2":
-  version: 6.0.2
-  resolution: "@pulumi/aws@npm:6.0.2"
+"@pulumi/aws@npm:6.0.3":
+  version: 6.0.3
+  resolution: "@pulumi/aws@npm:6.0.3"
   dependencies:
     "@pulumi/pulumi": ^3.0.0
     builtin-modules: 3.0.0
     mime: ^2.0.0
     read-package-tree: ^5.2.1
     resolve: ^1.7.1
-  checksum: 12832887383204a40b24162512f878b5871b38f6784263569ec1ee051ff6a02ab4cdfbfdd460681272aaf9917a9795d50c8727828f8b074932d7734b4770c4c9
+  checksum: 53e6d319296c790c01d5f4fe403be71a0c2893811ab370c4acfbf2644cdf1f06f598c50c731b8a7e393a2af166d27a345b9b70476c99a94f3e995fd2d1a5424a
   languageName: node
   linkType: hard
 
@@ -1253,7 +1253,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@pulumi/aws": 6.0.2
+    "@pulumi/aws": 6.0.3
     "@pulumi/cloudflare": 5.9.0
     "@pulumi/pulumi": 3.79.0
     esbuild: 0.19.2
