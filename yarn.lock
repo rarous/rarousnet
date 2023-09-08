@@ -1223,9 +1223,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@puppeteer/browsers@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@puppeteer/browsers@npm:1.5.0"
+"@puppeteer/browsers@npm:1.7.0":
+  version: 1.7.0
+  resolution: "@puppeteer/browsers@npm:1.7.0"
   dependencies:
     debug: 4.3.4
     extract-zip: 2.0.1
@@ -1236,7 +1236,7 @@ __metadata:
     yargs: 17.7.1
   bin:
     browsers: lib/cjs/main-cli.js
-  checksum: d6cf17eb0803f27ae6bbfa97e1dbcff5bc1b41299722084c61815c3d50119976e03db25959fae2ab64b417945b026182729b166e60356c69cb388e62eeba3c79
+  checksum: 0a2aecc72fb94a8d94246188f94cfaad730d1d372b34df94ca51ff8a94596bf475a0fee162c317a768fa4b2a707bfa8afd582d594958f49e1019effadfe744b6
   languageName: node
   linkType: hard
 
@@ -2855,10 +2855,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.7.2":
-  version: 4.7.2
-  resolution: "axe-core@npm:4.7.2"
-  checksum: 5d86fa0f45213b0e54cbb5d713ce885c4a8fe3a72b92dd915a47aa396d6fd149c4a87fec53aa978511f6d941402256cfeb26f2db35129e370f25a453c688655a
+"axe-core@npm:^4.8.0":
+  version: 4.8.0
+  resolution: "axe-core@npm:4.8.0"
+  checksum: c3796c7568d15e865ce08d4745318305d0620530e72870c92d984ba0f6fdf16f24fce3df7d30a63ac79fadc27c331d9d6c875ce8cb818b106e095618e099df9b
   languageName: node
   linkType: hard
 
@@ -3633,14 +3633,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromium-bidi@npm:0.4.20":
-  version: 0.4.20
-  resolution: "chromium-bidi@npm:0.4.20"
+"chromium-bidi@npm:0.4.22":
+  version: 0.4.22
+  resolution: "chromium-bidi@npm:0.4.22"
   dependencies:
     mitt: 3.0.1
   peerDependencies:
     devtools-protocol: "*"
-  checksum: 397145b3728948d403dbf087af97b7112988ed3c4cf43286754452a4b88f087f2088e1b3f18fa5974ceecc8200ca004ed258e18b784ecb4c6ab1ed78c1b280b0
+  checksum: b17d0e908948792724346d609d857aba79e4a18b3f0d1f65f5cb2b5bd66a576a93661422557e94d7d091644f66c3bc40f2785683d1510845d9ffe865045abab3
   languageName: node
   linkType: hard
 
@@ -4660,17 +4660,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools-protocol@npm:0.0.1147663":
-  version: 0.0.1147663
-  resolution: "devtools-protocol@npm:0.0.1147663"
-  checksum: 0631f2b6c6cd7f56e7d62a85bfc291f7e167f0f2de90969ef61fb24e2bd546b2e9530043d2bc3fe6c4d7a9e00473004272d2c2832a10a05e4b75c03a22f549fc
-  languageName: node
-  linkType: hard
-
 "devtools-protocol@npm:0.0.1155343":
   version: 0.0.1155343
   resolution: "devtools-protocol@npm:0.0.1155343"
   checksum: 5f43a0360788bddce5876aaa7c1950600faa1fda16031a672349c31d827fdbe6d194628babd309d2295ac66a58d7aad1798c9f7da88e592fbfc31e8aa8321beb
+  languageName: node
+  linkType: hard
+
+"devtools-protocol@npm:0.0.1159816":
+  version: 0.0.1159816
+  resolution: "devtools-protocol@npm:0.0.1159816"
+  checksum: 24aa985a34a093a7418c955d0398e8a0829bc1f482eb1db55eca0cf09789de8344d0f36177d3e394fc63ec9bf08cf4114fadf3a7f2ab64f95a17ccc53bcf1aea
   languageName: node
   linkType: hard
 
@@ -8041,12 +8041,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lighthouse@npm:11.0.0":
-  version: 11.0.0
-  resolution: "lighthouse@npm:11.0.0"
+"lighthouse@npm:11.1.0":
+  version: 11.1.0
+  resolution: "lighthouse@npm:11.1.0"
   dependencies:
     "@sentry/node": ^6.17.4
-    axe-core: 4.7.2
+    axe-core: ^4.8.0
     chrome-launcher: ^1.0.0
     configstore: ^5.0.1
     csp_evaluator: 1.1.1
@@ -8064,11 +8064,11 @@ __metadata:
     open: ^8.4.0
     parse-cache-control: 1.0.1
     ps-list: ^8.0.0
-    puppeteer-core: ^21.0.1
+    puppeteer-core: ^21.1.1
     robots-parser: ^3.0.1
     semver: ^5.3.0
     speedline-core: ^1.4.3
-    third-party-web: ^0.23.3
+    third-party-web: ^0.24.0
     ws: ^7.0.0
     yargs: ^17.3.1
     yargs-parser: ^21.0.0
@@ -8076,7 +8076,7 @@ __metadata:
     chrome-debug: core/scripts/manual-chrome-launcher.js
     lighthouse: cli/index.js
     smokehouse: cli/test/smokehouse/frontends/smokehouse-bin.js
-  checksum: 61417a2b4459742d16e139cf55103356f22a2f822eb5e42ff29c00cb399c534fc398177f2ec3f06013be08ad11dd8cbf230f87c8c98347cdff47f8402071b7a0
+  checksum: 72c740df8c7b53e5ea35a7cefa21379095cac54ae22af2fb97da8493426b4d54bfd43e4a6711c25aa4a7bf1ce20e61f3845d0256ef2f324e62a40d6f7ee1dc82
   languageName: node
   linkType: hard
 
@@ -10787,17 +10787,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:^21.0.1":
-  version: 21.0.1
-  resolution: "puppeteer-core@npm:21.0.1"
+"puppeteer-core@npm:^21.1.1":
+  version: 21.1.1
+  resolution: "puppeteer-core@npm:21.1.1"
   dependencies:
-    "@puppeteer/browsers": 1.5.0
-    chromium-bidi: 0.4.20
+    "@puppeteer/browsers": 1.7.0
+    chromium-bidi: 0.4.22
     cross-fetch: 4.0.0
     debug: 4.3.4
-    devtools-protocol: 0.0.1147663
+    devtools-protocol: 0.0.1159816
     ws: 8.13.0
-  checksum: 56e04c88b7e1f1f2ff42e4f2191160c512971852ffdfc4733fdd8b6de8d7dc5c9b8ebd4b5d9359aadba761c66fa8e4bad02525c5030ab989adec62cd4fd22308
+  checksum: b5c854c48a3daa58d43d9c586936c5aedf272b4998b6e8182a34440c1dbe408ea7fd3b9db479a3164e2c92fe44a221ff6413314408ad0dd9031f2e7492edcbbe
   languageName: node
   linkType: hard
 
@@ -10873,7 +10873,7 @@ __metadata:
     gulp-rev-delete-original: 0.2.3
     gulp-rev-replace: 0.4.4
     gulp-sizereport: 1.2.1
-    lighthouse: 11.0.0
+    lighthouse: 11.1.0
     local-web-server: 5.3.0
     npm-run-all: 4.1.5
     open-props: 1.5.15
@@ -12725,10 +12725,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"third-party-web@npm:^0.23.3":
-  version: 0.23.3
-  resolution: "third-party-web@npm:0.23.3"
-  checksum: f5f5cb45705d4968b78f9575d3938d340f38efeae5b232b5799f2ce5802bea2db2e2cfa728ccdea4ae45942f10fa42882ded7368b9d1fdc544077062d5a8425d
+"third-party-web@npm:^0.24.0":
+  version: 0.24.0
+  resolution: "third-party-web@npm:0.24.0"
+  checksum: f943ccf0e0506579c7afa03647fe2e2b16e8dacc071b96030b8584f4d1ed03379765cd8f0e3bbf1af5f3035f4c032e6b3146169a84b3f7eea0464dd65f2cfa29
   languageName: node
   linkType: hard
 
