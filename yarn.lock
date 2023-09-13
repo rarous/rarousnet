@@ -108,9 +108,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-s3@npm:3.410.0":
-  version: 3.410.0
-  resolution: "@aws-sdk/client-s3@npm:3.410.0"
+"@aws-sdk/client-s3@npm:3.412.0":
+  version: 3.412.0
+  resolution: "@aws-sdk/client-s3@npm:3.412.0"
   dependencies:
     "@aws-crypto/sha1-browser": 3.0.0
     "@aws-crypto/sha256-browser": 3.0.0
@@ -128,7 +128,7 @@ __metadata:
     "@aws-sdk/middleware-signing": 3.410.0
     "@aws-sdk/middleware-ssec": 3.410.0
     "@aws-sdk/middleware-user-agent": 3.410.0
-    "@aws-sdk/signature-v4-multi-region": 3.410.0
+    "@aws-sdk/signature-v4-multi-region": 3.412.0
     "@aws-sdk/types": 3.410.0
     "@aws-sdk/util-endpoints": 3.410.0
     "@aws-sdk/util-user-agent-browser": 3.410.0
@@ -166,7 +166,7 @@ __metadata:
     "@smithy/util-waiter": ^2.0.6
     fast-xml-parser: 4.2.5
     tslib: ^2.5.0
-  checksum: 3f5acbf6eb5e0795265e0f436334547cbbb78ee3c01b184e00466ebe821972143d5545e70d9179aad15fbfe6be015cdccb94d74c67f8a91706f9c9576d5b62f9
+  checksum: 898b2ffca7e91c33b9f23d3c214ca1dabf4803b4c10f235b3bd6fccd1d841bc53920dfa57f3580b3af9b0fedb89a9936b09d3a4916a2a3b3e2577eb41a84ba19
   languageName: node
   linkType: hard
 
@@ -498,21 +498,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/signature-v4-multi-region@npm:3.410.0":
-  version: 3.410.0
-  resolution: "@aws-sdk/signature-v4-multi-region@npm:3.410.0"
+"@aws-sdk/signature-v4-multi-region@npm:3.412.0":
+  version: 3.412.0
+  resolution: "@aws-sdk/signature-v4-multi-region@npm:3.412.0"
   dependencies:
     "@aws-sdk/types": 3.410.0
     "@smithy/protocol-http": ^3.0.2
     "@smithy/signature-v4": ^2.0.0
     "@smithy/types": ^2.3.0
     tslib: ^2.5.0
-  peerDependencies:
-    "@aws-sdk/signature-v4-crt": ^3.118.0
-  peerDependenciesMeta:
-    "@aws-sdk/signature-v4-crt":
-      optional: true
-  checksum: 54ccba40b37efd204ab625ca7cf371d86ddca5a6d9130a553d3c434a0cf0388602c19c587ba3d0e343a9868e21ed8e34e214dcb6e1291b9ca470c7597341920f
+  checksum: ade113e9f4ec532c066ce5b928581116019a8f7fc65d608da3fc6a44b14d64e1cc492338965b96dad8ad3393b3bd309883d7c902e1cee142130888072a5b73b6
   languageName: node
   linkType: hard
 
@@ -1265,7 +1260,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@aws-sdk/client-s3": 3.410.0
+    "@aws-sdk/client-s3": 3.412.0
     "@thi.ng/transducers": 8.6.5
     csv-parse: 5.5.0
     md5-file: 5.0.0
