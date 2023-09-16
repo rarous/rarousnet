@@ -7,7 +7,7 @@
   "dependencies": {
     "@pulumi/aws": "6.1.0",
     "@pulumi/cloudflare": "5.10.0",
-    "@pulumi/pulumi": "3.82.1",
+    "@pulumi/pulumi": "3.83.0",
     "esbuild": "0.19.3"
   }
 }
