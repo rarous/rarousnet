@@ -4,6 +4,6 @@
   "type": "module",
   "license": "EPL-2.0",
   "dependencies": {
-    "hono": "3.6.3"
+    "hono": "3.7.0"
   }
 }
