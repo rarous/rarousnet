@@ -9,17 +9,23 @@ import notify from "gulp-notify";
 import plumber from "gulp-plumber";
 import postcss from "gulp-postcss";
 import sizereport from "gulp-sizereport";
-import autoprefixer from "autoprefixer";
 import browserSync from "browser-sync";
 import cssnano from "cssnano";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
+import presetEnv from "postcss-preset-env";
 
 const pipeline = util.promisify(stream.pipeline);
 const { dest, series, src, watch } = gulp;
 
 function css() {
-  const plugins = [autoprefixer(), cssnano(), jitProps(OpenProps)];
+  const plugins = [
+    presetEnv({
+      minimumVendorImplementations: 2,
+    }),
+    cssnano(),
+    jitProps(OpenProps),
+  ];
   return pipeline(
     src("./static/**/*.css"),
     postcss(plugins),
