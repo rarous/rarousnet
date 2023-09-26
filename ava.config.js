@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   tap: true,
   extensions: ["js", "mjs"],
 };
