@@ -3,7 +3,8 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta http-equiv="delegate-ch" content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
+  <meta http-equiv="delegate-ch"
+        content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>rarouš.weblog</title>
   <link rel="preconnect" href="//www.google-analytics.com">
@@ -27,6 +28,8 @@
         title="rarouš.weblog - poslední články">
   <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/weblog/comments"
         title="rarouš.weblog - komentáře k článkům">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/w3b"
+        title="rarouš.w3b - doporučené čtení">
   <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
   <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
   <link rel="canonical" href="https://www.rarous.net/weblog/">
@@ -39,12 +42,21 @@
   <meta property="og:locale" content="cs_CZ">
   <script type="module">
     function send(tid, en) {
-      const data = new URLSearchParams({v:2,tid,cid:`${Date.now()}${Math.random()}`,dl:location.href,aip:1,en});
+      const data = new URLSearchParams({
+        v: 2,
+        tid,
+        cid: `${Date.now()}${Math.random()}`,
+        dl: location.href,
+        aip: 1,
+        en
+      });
       navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
     }
+
     send("G-B3W7LTZE6J", "page_view");
   </script>
-  <!--[if lt IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
+  <!--[if lt IE 9]>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
   <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
   <link rel="stylesheet" href="/design/blog/iosevka.css">
   <link rel="stylesheet" href="/design/blog/blog.css">
@@ -60,6 +72,23 @@
 
   <header id="head">
     <h1 property="headline"><a href="/weblog/" title="Přejít na weblog">rarouš.weblog</a></h1>
+    <nav>
+      <ul>
+        <li>
+          <a
+            href="https://feeds.feedburner.com/rarous-weblog"
+            title="Přihlásit se k odběru pomocí RSS">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 fill="var(--icon-color)">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <circle cx="6.18" cy="17.82" r="2.18"/>
+              <path
+                d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
   <main id="content" role="feed">
@@ -115,18 +144,11 @@
         </ul>
       </div>
       <div id="blogy" class="footer__box">
-        <h2>Spřízněné blogy</h2>
+        <h2>A dál?</h2>
         <ul>
           <li property="knows" typeof="Person"><a property="sameAs" href="https://medium.com/topmonks">TopMonks Blog</a>
-          <li property="knows" typeof="Person"><a property="sameAs" href="https://www.izatlouk.cz/">Irena Zatloukalová</a>
-          <li property="knows" typeof="Person"><a property="sameAs" href="https://zezivotarecruiterky.com/">Ze života
-            recruiterky</a>
-          <li property="knows" typeof="Person"><a property="sameAs" href="http://www.jirifabian.net/wordpress/">Filemon's
-            Rubikon</a>
-          <li property="knows" typeof="Person"><a property="sameAs" href="http://ptrnka.cz/">(P)Trnka</a>
-          <li property="knows" typeof="Person"><a property="sameAs" href="http://janboruta.com/">Jan Boruta</a>
-          <li property="knows" typeof="Person"><a property="sameAs" href="https://dagblog.cz/">dagblog</a>
-          <li property="knows" typeof="Person"><a property="sameAs" href="https://borekb.cz/">BorekB</a>
+          <li property="knows" typeof="Person"><a property="sameAs" href="https://www.izatlouk.cz/pisu">Irena
+            Zatloukalová</a>
         </ul>
       </div>
     </div>

@@ -106,6 +106,8 @@
   (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
   (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article)))
 
+(defsnippet page-header "weblog/index.html" [:#head] []
+  [:.year] (html/content (str (time/year (time/today)))))
 (defsnippet page-footer "weblog/index.html" [:.footer] []
   [:.year] (html/content (str (time/year (time/today)))))
 
@@ -164,6 +166,7 @@
                                  :month-name (short-month dt)
                                  :day (url-day dt)})))
   [:article :.tags] (html/substitute (article-tags tags))
+  [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 
 (deftemplate rss-template {:parser xml-parser} "weblog/index.rss" [articles]
@@ -199,6 +202,7 @@
   [(link "canonical")] (html/set-attr :href (str blog-url url))
   [:#content :h2] (html/content title)
   [:#content :section] (html/substitute (year-items years))
+  [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 
 (deftemplate redirect-template "weblog/redirect.html" [{:keys [url]}]
