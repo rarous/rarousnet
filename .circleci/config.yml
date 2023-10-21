@@ -51,10 +51,10 @@ jobs:
   generate:
     resource_class: large
     docker:
-    - image: cimg/clojure:1.11
-      environment:
-        LEIN_JVM_OPTS: "-Xmx400m"
-        JVM_OPTS: "-Xmx3200m"
+      - image: cimg/clojure:1.11
+        environment:
+          LEIN_JVM_OPTS: "-Xmx400m"
+          JVM_OPTS: "-Xmx3200m"
     steps:
       - checkout
       - php/install-php:
@@ -101,6 +101,9 @@ jobs:
           command: |
             mv ./dist/weblog/data.json ./cards
             node ./cards/generator.js "file://`pwd -P`/cards/card.html"
+      - run:
+          name: Generate search index
+          command: yarn build:index
       - run:
           name: Postprocess resources
           command: yarn build:assets
@@ -187,12 +190,12 @@ workflows:
           requires:
             - postprocess
       - merge_pr:
-         context: github-cli
-         requires:
-           - test
-         filters:
-           branches:
-             only: /revovate\/.*/
+          context: github-cli
+          requires:
+            - test
+          filters:
+            branches:
+              only: /revovate\/.*/
       - s3_deploy:
           context:
             - aws
