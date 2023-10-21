@@ -59,6 +59,7 @@
   <script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
   <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
   <link rel="stylesheet" href="/design/blog/iosevka.css">
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
   <link rel="stylesheet" href="/design/blog/blog.css">
   <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
   <meta name="theme-color" content="#f77146">
@@ -103,11 +104,10 @@
       </ul>
     </nav>
     <dialog id="searchDialog">
-      <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
       <script src="/pagefind/pagefind-ui.js"></script>
       <div id="search"></div>
       <script>
-        new PagefindUI({element: "#search", showSubResults: true});
+        new PagefindUI({element: "#search", showImages: false});
       </script>
     </dialog>
   </header>

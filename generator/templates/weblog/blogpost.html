@@ -3,7 +3,8 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta http-equiv="delegate-ch" content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
+  <meta http-equiv="delegate-ch"
+        content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title></title>
   <link rel="canonical" href="">
@@ -44,15 +45,24 @@
   <meta name="twitter:description" content="">
   <script type="module">
     function send(tid, en) {
-      const data = new URLSearchParams({v:2,tid,cid:`${Date.now()}${Math.random()}`,dl:location.href,aip:1,en});
+      const data = new URLSearchParams({
+        v: 2,
+        tid,
+        cid: `${Date.now()}${Math.random()}`,
+        dl: location.href,
+        aip: 1,
+        en
+      });
       navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
     }
+
     send("G-B3W7LTZE6J", "page_view");
   </script>
   <!--[if lt IE 9]>
   <script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
   <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
   <link rel="stylesheet" href="/design/blog/iosevka.css">
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
   <link rel="stylesheet" href="/design/blog/blog.css">
   <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
   <meta name="theme-color" content="#f77146">
@@ -65,14 +75,15 @@
   </div>
 
   <header id="head">
-    <h1><a href="/weblog/" property="sameAs" title="Přejít na hlaní stránku blogu">rarouš.weblog<span class="image"></span></a></h1>
+    <h1><a href="/weblog/" property="sameAs" title="Přejít na hlaní stránku blogu">rarouš.weblog<span
+      class="image"></span></a></h1>
   </header>
 
   <main class="h-entry" id="content">
     <article vocab="https://schema.org" typeof="BlogPosting">
       <link class="u-featured" property="image" href="">
       <header>
-        <h1 class="p-name" property="headline"></h1>
+        <h1 class="p-name" property="headline" data-pagefind-meta="title"></h1>
         <p class="info">
           <span class="p-author" property="author" typeof="Person">
             <strong property="name"></strong>
@@ -82,7 +93,7 @@
           <span class="noprint"> | <a property="url" rel="bookmark" href="#" title="Permalink"># permalink</a></span>
         </p>
       </header>
-      <div class="e-content" property="articleBody"></div>
+      <div class="e-content" property="articleBody" data-pagefind-body></div>
       <footer>
         Publikováno v:&nbsp;
         <nav class="breadcrumbs" typeof="BreadcrumbList">
@@ -102,7 +113,8 @@
             <data property="position" value="5"></data>
             <a property="item" typeof="WebPage" class="day" href="/weblog/2021/03/20/">
               <span property="name">20</span></a></span>
-        </nav>;
+        </nav>
+        ;
         Označeno štítky:&nbsp;
         <nav class="tags">
           <ul>
@@ -117,7 +129,8 @@
 
     <section id="webmentions"></section>
     <script type="module">
-      import { render, html } from "https://cdn.skypack.dev/lit-html?min";
+      import {render, html} from "https://cdn.skypack.dev/lit-html?min";
+
       const titles = new Map([
         ["like-of", "Líbilo se"],
         ["repost-of", "Přeposlal dál"],
@@ -138,16 +151,18 @@
         if (!items?.length) return;
         return html`
           <section class="webmentions">
-            <p><data value="${items.length}">${items.length}x ${title}</data></p>
+            <p>
+              <data value="${items.length}">${items.length}x ${title}</data>
+            </p>
             <ul>
               ${items.map(item => html`
                 <li>
                   <a class="${type}" href="${item.url}" title="${item.author.name}">
                     <date datetime="${item.published}"></date>
                     <img alt="${item.author.name}"
-                       src="${item.author.photo}"
-                       width="32" height="32"
-                       loading="lazy" decoding="async">
+                         src="${item.author.photo}"
+                         width="32" height="32"
+                         loading="lazy" decoding="async">
                   </a>
                 </li>
               `)}
@@ -166,10 +181,10 @@
         `;
       }
 
-      async function main({ url, webmentionsRoot }) {
-        const resp = await fetch(`/api/v1/weblog?${new URLSearchParams({ url })}`);
+      async function main({url, webmentionsRoot}) {
+        const resp = await fetch(`/api/v1/weblog?${new URLSearchParams({url})}`);
         if (!resp.ok) return;
-        const { webmentions } = await resp.json();
+        const {webmentions} = await resp.json();
         render(webmentionsTemplate(webmentions), webmentionsRoot);
       }
 

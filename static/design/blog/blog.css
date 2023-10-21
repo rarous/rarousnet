@@ -3,13 +3,22 @@
   inherits: true;
 }
 
+@property --icon-color {
+  syntax: "color";
+  inherits: true;
+}
+
 /* https://material.io/tools/color/#!/?view.left=1&view.right=1&primary.color=F77146&secondary.color=33769D&primary.text.color=ffffff */
 :root {
-  --primary-color: #f77146;
-  --primary-dark-color: #be411b;
-  --text-color-on-primary: #fff;
-  --secondary-color: #33779e;
-  --secondary-dark-color: #004b6f;
+  --primary-color: oklch(0.703 0.175 38.139);
+  --primary-dark-color: oklch(0.547 0.168 36.467);
+  --text-color-on-primary: oklch(1 0 89.876);
+  --secondary-color: oklch(0.543 0.091 237.043);
+  --secondary-dark-color: oklch(0.392 0.088 238.557);
+
+  --content-color: oklch(0.178 0 89.876);
+  --content-background: oklch(1 0 89.876);
+
   --icon-color: var(--secondary-dark-color);
   --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
   --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
@@ -22,6 +31,18 @@
   --content-font: var(--iosevka-sparkle);
   --citation-font: var(--garamond);
   --code-font: var(--iosevka);
+
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--primary-color);
+  --pagefind-ui-text: var(--content-color);
+  --pagefind-ui-background: var(--content-background);
+  --pagefind-ui-border: #eeeeee;
+  --pagefind-ui-tag: #eeeeee;
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-image-border-radius: 8px;
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: var(--content-font);
 }
 
 html,
@@ -321,8 +342,9 @@ div.image {
 }
 
 #content {
-  background-color: #fff;
-  color: #111;
+  anchor-name: --content;
+  background-color: var(--content-background);
+  color: var(--content-color);
 }
 
 #content:not(.category-listing) article {
@@ -467,7 +489,6 @@ article footer {
 #head h1 {
   font-size: 3em;
   font-weight: 800;
-  text-align: center;
   transform: rotate(-8deg);
 }
 
@@ -517,6 +538,12 @@ article footer {
   padding: 1em;
 }
 
+@media screen and (max-width: 480px) {
+  #head h1 {
+    transform: rotate(-8deg) translateY(0.5em);
+  }
+}
+
 @media screen and (min-width: 701px) {
   #top {
     margin: 0 auto;
@@ -538,12 +565,8 @@ article footer {
     padding-left: 4em;
   }
 
-  #head {
-  }
-
   #head h1 {
     font-size: 4em;
-    text-align: left;
   }
 
   #content {
