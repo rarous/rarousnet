@@ -5,7 +5,7 @@
 :author "Aleš Roubíček",
 :tags #{"moje práce" "pagefind" "serverless"},
 :published "2023-10-23T13:20:00.000"
-:syndication []}
+:syndication ["https://indieweb.social/@alesroubicek/111284100664771871" "https://twitter.com/alesroubicek/status/1716417697607455226"]}
 ---
 
 Hledání je jednou z navigačních cest, která bývá na webech opomíjená. Ono totiž udělat na webu kvalitní hledání není jen tak.
