@@ -18,6 +18,8 @@
 
   --content-color: oklch(0.178 0 89.876);
   --content-background: oklch(1 0 89.876);
+  --border-color: oklch(0.321 0 89.876);
+  --border-width: 2px;
 
   --icon-color: var(--secondary-dark-color);
   --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
@@ -32,16 +34,15 @@
   --citation-font: var(--garamond);
   --code-font: var(--iosevka);
 
+  --heading-font: 800 2.5em var(--main-font);
+
   --pagefind-ui-scale: 1;
   --pagefind-ui-primary: var(--primary-color);
   --pagefind-ui-text: var(--content-color);
   --pagefind-ui-background: var(--content-background);
-  --pagefind-ui-border: #eeeeee;
-  --pagefind-ui-tag: #eeeeee;
-  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border: var(--border-color);
+  --pagefind-ui-border-width: var(--border-width);
   --pagefind-ui-border-radius: 8px;
-  --pagefind-ui-image-border-radius: 8px;
-  --pagefind-ui-image-box-ratio: 3 / 2;
   --pagefind-ui-font: var(--content-font);
 }
 
@@ -54,16 +55,11 @@ body {
 }
 
 body {
-  border-top: 2px solid oklch(0.321 0 89.876);
-  border-bottom: 2px solid oklch(0.321 0 89.876);
+  border-block: var(--border-width) solid var(--border-color);
   font: 16px var(--main-font);
-  -webkit-font-kerning: normal;
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero;
-  -webkit-font-variant-ligatures: common-ligatures contextual;
   font-variant-ligatures: common-ligatures contextual;
-  -webkit-font-feature-settings: "kern", "liga", "clig", "calt", "lnum", "zero";
-  font-feature-settings: "kern", "liga", "clig", "calt", "lnum", "zero";
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -72,7 +68,7 @@ body {
 
 h2,
 article h1 {
-  font: 800 2.5em var(--main-font);
+  font: var(--heading-font);
   letter-spacing: -1px;
   margin: 0;
   z-index: 20;
@@ -99,7 +95,7 @@ dl {
 }
 
 blockquote {
-  border-left: 2px solid oklch(0.952 0 89.876);
+  border-left: var(--border-width) solid var(--border-color);
   color: oklch(0.51 0 89.876);
   margin: 0.3em 0 0.6em;
   padding: 0.4em 2em 0.2em;
@@ -371,7 +367,7 @@ article div[itemprop="articleBody"] > p:first-child::first-letter {
 }
 
 article footer {
-  border-top: 2px solid oklch(0.45 0 89.876);
+  border-top: var(--border-width) solid oklch(0.45 0 89.876);
   padding-top: 1em;
   margin-top: 2em
 }
@@ -450,7 +446,7 @@ article footer {
 }
 
 #search .pagefind-ui__result-title {
-  font: 800 2.5em var(--main-font);
+  font: var(--heading-font);
   letter-spacing: -1px;
 }
 

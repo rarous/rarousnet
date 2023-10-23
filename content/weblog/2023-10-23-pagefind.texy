@@ -1,0 +1,129 @@
+---
+{:id 486,
+:title "Jednoduše a rychle: pagefind",
+:description "Jak jsem přidal fulltextové hledání na tento blog pomocí knihovny pagefind. Jednoduše a rychle!",
+:author "Aleš Roubíček",
+:tags #{"moje práce" "pagefind" "serverless"},
+:published "2023-10-23T13:20:00.000"
+:syndication []}
+---
+
+Hledání je jednou z navigačních cest, která bývá na webech opomíjená. Ono totiž udělat na webu kvalitní hledání není jen tak.
+
+To musíte rozběhat ElasticSearch cluster, ideálně v Kubernetes, a nastavit procesy, aby se vám indexovaly věci co potřebujete.
+Nebo místo vlastních clusterů použijete SaaS((Software as a Service)) řešení, jako je "Algolia":[https://www.algolia.com/].
+Pořád ale potřebujete mít ty procesy, co vám tam nalejou data k indexování.
+
+Co ale dělat, když máte statickou website, hostovanou někde v CDN?
+
+## Pagefind
+
+"Pagefind":[https://pagefind.app/] je nástroj, který umí indexovat obsah staticky vygenerovaných websites a to velmi rychle.
+Celý můj blog je zaindexovaný během necelé sekundy. Stačily k tomu dva řádky v terminálu:
+
+/--code bash
+yarn add -D pagefind
+yarn pagefind --site ./dist
+\--
+
+Výstupem je složka `./dist/pagefind`, která se přidala do statické website a můžete ji nasadit do CDN.
+Součástí výstupu je i JavaScript, který vložíte do stránky a on vám vytvoří základní UI pro hledání a zobrazování výsledků.
+
+
+## Uživatelské rozhranní
+
+Já jsem hledání vložil do elementu `<dialog>`:[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog],
+který "se modálně otevře":[javascript:searchDialog.showModal()] po kliknutí na lupičku v hlavičce webu.
+
+/--code html
+<dialog id="searchDialog">
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <div id="search"></div>
+  <script>
+    new PagefindUI({
+      element: "#search",
+      showImages: false,
+      translations: {
+        "placeholder": "Hledat na blogu",
+        "clear_search": "Vymazat",
+        "load_more": "Načíst více výsledků",
+        "search_label": "Hledat na tomto blogu",
+        "filters_label": "Filtry",
+        "zero_results": "Na výraz [SEARCH_TERM] jsem nic nenašlo",
+        "many_results": "Výraz [SEARCH_TERM] má [COUNT] výsledků",
+        "one_result": "Výraz [SEARCH_TERM] má [COUNT] výsledek",
+        "alt_search": "Výraz [SEARCH_TERM] nemá žádné výsledky. Zobraziji výsledky pro výraz [DIFFERENT_TERM]",
+        "search_suggestion": "Výraz [SEARCH_TERM] nemá žádné výsledky. Zkuste hledat:",
+        "searching": "Vyhledávám [SEARCH_TERM]..."
+      }
+    });
+  </script>
+</dialog>
+\--code
+
+Zakázal jsem zobrazování náhledových obrázků - "mnou generované":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html],
+nejsou v daném kontextu užitečné - a přidal jsem překlady textů v UI.
+
+UI si můžete přizpůsobit dle svých představ pomocí "CSS Custom Properties":[https://www.vzhurudolu.cz/prirucka/css-promenne], nebo můžete požít svoje CSS-fu a dělat zásahy větší.
+Vygenerovaný kód má dostatek sémanticky/strukturálně popisných tříd, které se drží "konvence BEM((Behaviour Element Modifier))":[https://www.vzhurudolu.cz/prirucka/bem].
+
+Můj stylopis obsahuje tyto definice:
+
+/--code css
+:root {
+  /* základní defince jsem pro přehlednost vynechal */ 
+
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--primary-color);
+  --pagefind-ui-text: var(--content-color);
+  --pagefind-ui-background: var(--content-background);
+  --pagefind-ui-border: var(--border-color);
+  --pagefind-ui-border-width: var(--border-width);
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-font: var(--content-font);
+}
+
+#search .pagefind-ui__result-title {
+  font: var(--heading-font);
+  letter-spacing: -1px;
+}
+\--code
+
+Z větší části jsem použil už definované vlastnosti k přepsání těch pro `pagefind-ui`
+a vnutil styl nadpisů i titulkům výsledků.
+
+Stylopis `<link rel="stylesheet" href="/pagefind/pagefind-ui.css">` jsem do HTML
+přidal před ten můj, aby správně fungovala kaskáda.
+
+Pokud by vám předvygenerované UI nevyhovovalo, můžete využít jen základní API
+a nad mín si ho postavit dle vlastních představ. Dokonce se objevil i
+"Pull Request, kde se připravují Web Componenty":[https://github.com/CloudCannon/pagefind/pull/382].
+
+## Ladění indexu
+
+Takže se nám výsledky hezky zobrazují, ale v mém případě se u všech výsledků
+zobrazoval nadpis **rarouš.weblog** a náhledový text obsahoval neužitečný šum.
+
+Naštěstí pagefind umožňuje přidávat do stránky hinty pomocí `data-pagefind-*` atributů.
+
+K elementu `<article>` jsem přidal attribut `data-pagefind-body`, který označuje obsah, co se má indexovat.
+
+Dále jsem k `<h1>` článku přidal atribut `data-pagefind-meta="title"`, který změní v indexu titulek na název článku.
+
+Pak jsem dal ignorovat `.info` a `<footer>` článku pomocí `data-pagefind-ignore`, kde jsou metadata. Metadata
+obsahují třeba autora nebo tagy a ty jsem naopak označil jako filtery `data-pagefind-filter="tag"` a `data-pagefind-filter="author"`.
+
+Dokumentace:[https://pagefind.app/docs/] se čte dobře a je v ní vše, co člověk potřebuje.
+
+## Jak to, že to běží bez serveru?
+
+Přestože celé hledání běží čístě v browseru, tak je to hodně rychlé. Důvodem je,
+že hlavní část řešení je napsaná v Rustu a běží to díky WASM((WebAssembly)) v samostatném workeru.
+
+## Závěrem
+
+Mám rád jednoduchá řešení, která efektivně řeší konkrétní problém.
+Díky `pagefind`:[https://pagefind.app/] jsem měl během hodiny nasazené
+použitelné hledání na svém blogu bez nutnosti cokoliv řešit na serveru, který nemám.
+
+PS. UI hledání ještě nemám dodělané, ještě musím odladit přístupnost a použitelnost na mobilu.
