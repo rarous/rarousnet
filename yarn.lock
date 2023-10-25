@@ -10200,10 +10200,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open-props@npm:1.6.8":
-  version: 1.6.8
-  resolution: "open-props@npm:1.6.8"
-  checksum: 8/0d6c5b82dff110267214b9889706dd983ee7da2a5124782ae47fe058017e603f5213188c142af56cd17c4075f85b8683741a44caad8788534d9a1ea4af2a8765
+"open-props@npm:1.6.10":
+  version: 1.6.10
+  resolution: "open-props@npm:1.6.10"
+  checksum: 610ac97cdd681f829b34e63a2baf72eea8dd013279617cea544a6f519dc0a7c5350722150181c56a492f63a4a21238f1e17157e3ef2ae7a83d059ddf1aa19122
   languageName: node
   linkType: hard
 
@@ -11860,7 +11860,7 @@ __metadata:
     lighthouse: "npm:11.2.0"
     local-web-server: "npm:5.3.0"
     npm-run-all: "npm:4.1.5"
-    open-props: "npm:1.6.8"
+    open-props: "npm:1.6.10"
     pagefind: "npm:1.0.3"
     postcss: "npm:8.4.31"
     postcss-jit-props: "npm:1.0.14"
