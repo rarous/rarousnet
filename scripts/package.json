@@ -4,7 +4,7 @@
   "type": "module",
   "license": "EPL-2.0",
   "dependencies": {
-    "@aws-sdk/client-s3": "3.436.0",
+    "@aws-sdk/client-s3": "3.437.0",
     "@thi.ng/transducers": "8.8.5",
     "md5-file": "5.0.0",
     "mime-types": "2.1.35",
