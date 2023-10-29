@@ -107,6 +107,7 @@
       <script src="/pagefind/pagefind-ui.js"></script>
       <div id="search"></div>
       <script>
+        /// <reference types="pagefind" />
         new PagefindUI({
           element: "#search",
           showImages: false,
@@ -116,12 +117,12 @@
             "load_more": "Načíst více výsledků",
             "search_label": "Hledat na tomto blogu",
             "filters_label": "Filtry",
-            "zero_results": "Na výraz [SEARCH_TERM] jsem nic nenašlo",
-            "many_results": "Výraz [SEARCH_TERM] má [COUNT] výsledků",
-            "one_result": "Výraz [SEARCH_TERM] má [COUNT] výsledek",
-            "alt_search": "Výraz [SEARCH_TERM] nemá žádné výsledky. Zobraziji výsledky pro výraz [DIFFERENT_TERM]",
-            "search_suggestion": "Výraz [SEARCH_TERM] nemá žádné výsledky. Zkuste hledat:",
-            "searching": "Vyhledávám [SEARCH_TERM]..."
+            "zero_results": "Na výraz „[SEARCH_TERM]“ jsem nic nenašlo",
+            "many_results": "Výraz „[SEARCH_TERM]“ má [COUNT] výsledků",
+            "one_result": "Výraz „[SEARCH_TERM]“ má [COUNT] výsledek",
+            "alt_search": "Výraz „[SEARCH_TERM]“ nemá žádné výsledky. Zobraziji výsledky pro výraz „[DIFFERENT_TERM]“",
+            "search_suggestion": "Výraz „[SEARCH_TERM]“ nemá žádné výsledky. Zkuste hledat:",
+            "searching": "Vyhledávám „[SEARCH_TERM]“..."
           }
         });
       </script>
@@ -198,9 +199,9 @@
 
 <script type="module">
   const codes = document.querySelectorAll("pre>code");
-  for (let code of codes) {
+  for (const code of codes) {
     const pre = code.parentElement;
-    for (let lang of pre.classList) {
+    for (const lang of pre.classList) {
       code.classList.add(`language-${lang}`);
     }
   }

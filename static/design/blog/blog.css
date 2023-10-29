@@ -42,7 +42,7 @@
   --pagefind-ui-background: var(--content-background);
   --pagefind-ui-border: var(--border-color);
   --pagefind-ui-border-width: var(--border-width);
-  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-border-radius: 0;
   --pagefind-ui-font: var(--content-font);
 }
 
