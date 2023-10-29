@@ -9,7 +9,8 @@
     "> 5%",
     "last 4 versions"
   ],
-  "dependencies": {
+  "devDependencies": {
+    "@types/browser-sync": "^2.27.3",
     "ava": "5.3.1",
     "broken-link-checker-local": "0.2.1",
     "browser-sync": "2.29.3",
