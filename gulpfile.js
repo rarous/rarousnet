@@ -74,6 +74,7 @@ function size() {
 function run(done) {
   browserSync.init({
     server: "./dist",
+    browser: "Firefox Developer Edition",
   });
 
   watch("static/**/*.css", css);
