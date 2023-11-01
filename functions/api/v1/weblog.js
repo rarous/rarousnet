@@ -9,7 +9,7 @@
  */
 async function getDetail(weblog, url) {
   const payload = await weblog.get(url);
-  console.log({ url, payload });
+  console.log(weblog);
   if (payload) return JSON.parse(payload);
   return { webmentions: [] };
 }
@@ -22,7 +22,6 @@ export async function onRequestGet(context) {
     const { env, request } = context;
     const url = new URL(request.url);
     const target = url.searchParams.get("url");
-    console.log({ url, target });
     const detail = await getDetail(env.weblog, target);
     detail.webmentions = detail.webmentions.filter(
       (x) => x.author.url !== "https://twitter.com/alesroubicek",
