@@ -124,10 +124,14 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
   name: "rarousnet",
   productionBranch: "trunk",
   source: {
+    type: "github",
     config: {
+      owner: "rarous",
+      repoName: "rarousnet",
       deploymentsEnabled: false,
       productionDeploymentEnabled: false,
       productionBranch: "trunk",
+      previewBranchIncludes: [""],
     },
   },
   deploymentConfigs: {
