@@ -12423,7 +12423,7 @@ __metadata:
     postcss-preset-env: "npm:9.3.0"
     prettier: "npm:3.0.3"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:^3.15.0"
+    wrangler: "npm:3.15.0"
   languageName: unknown
   linkType: soft
 
@@ -15323,7 +15323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:^3.15.0":
+"wrangler@npm:3.15.0":
   version: 3.15.0
   resolution: "wrangler@npm:3.15.0"
   dependencies:
