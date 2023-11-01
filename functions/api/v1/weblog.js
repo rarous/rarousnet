@@ -9,7 +9,7 @@
  */
 async function getDetail(weblog, url) {
   const payload = await weblog.get(url);
-  console.log(weblog);
+  console.dir(weblog);
   if (payload) return JSON.parse(payload);
   return { webmentions: [] };
 }
