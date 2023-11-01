@@ -127,6 +127,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
     config: {
       deploymentsEnabled: false,
       productionDeploymentEnabled: false,
+      productionBranch: "trunk",
     },
   },
   deploymentConfigs: {
