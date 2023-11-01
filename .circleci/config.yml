@@ -158,7 +158,7 @@ jobs:
       - node/install
       - run: 
           name: Publish to Cloudflare Pages
-          command: npx wrangler pages publish dist --project-name=rarousnet
+          command: npx wrangler pages deploy dist --project-name=rarousnet
   merge_pr: 
     docker: 
       - image: cimg/base:current
