@@ -1,6 +1,5 @@
 ---
-{:id 475,
-:title "Kontinuální testování webů pomocí Lighthouse a CircleCI",
+{:title "Kontinuální testování webů pomocí Lighthouse a CircleCI",
 :description "Lighthouse je skvělý nástroj na automatizované auditování webových stránek a aplikací. Ukážeme si, jak ho přidat do kontinuální integrace.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "webdesign" "ci"},

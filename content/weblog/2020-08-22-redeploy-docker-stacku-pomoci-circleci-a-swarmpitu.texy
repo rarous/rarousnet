@@ -1,6 +1,5 @@
 ---
-{:id 478,
-:title "Redeploy Docker stacků pomocí CircleCI a Swarmpitu",
+{:title "Redeploy Docker stacků pomocí CircleCI a Swarmpitu",
 :description "Dnes si ukážame, jak pomocí CircleCI snado a rychle automatizovat nasazování stacků do Docker Swarm.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "ci" "circleci" "docker" "swarmpit" "devops"},

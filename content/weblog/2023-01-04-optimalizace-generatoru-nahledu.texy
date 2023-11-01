@@ -1,6 +1,5 @@
 ---
-{:id 485,
-:title "Optimalizace generátoru náhledů",
+{:title "Optimalizace generátoru náhledů",
 :description "Jak jsem zrychlil generování Twitter Card obrázků pomocí paralelizace. Názorné ukázky v ECMAScriptu.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "transducers" "ci" "ecmascript"},

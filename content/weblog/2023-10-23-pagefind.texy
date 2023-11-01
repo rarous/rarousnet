@@ -1,6 +1,5 @@
 ---
-{:id 486,
-:title "Jednoduše a rychle: pagefind",
+{:title "Jednoduše a rychle: pagefind",
 :description "Jak jsem přidal fulltextové hledání na tento blog pomocí knihovny pagefind. Jednoduše a rychle!",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "pagefind" "serverless"},

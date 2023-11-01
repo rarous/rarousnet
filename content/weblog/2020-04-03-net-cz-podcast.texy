@@ -1,6 +1,5 @@
 ---
-{:id 476,
-:title ".NET.CZ Podcast",
+{:title ".NET.CZ Podcast",
 :description "Byl jsem hostem v .NET.CZ Podcastu, kde jsme si povídali nejen o reaktivním programování.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "functional" "rx" "podcast"},

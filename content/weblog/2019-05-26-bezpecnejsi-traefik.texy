@@ -1,6 +1,5 @@
 ---
-{:id 473,
-:title "Bezpečnější Traefik",
+{:title "Bezpečnější Traefik",
 :description
 "Jak nastavit HSTS a silnější šifrování na reverzní proxy Traefik?",
 :author "Aleš Roubíček",

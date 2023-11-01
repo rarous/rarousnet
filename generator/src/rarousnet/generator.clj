@@ -259,24 +259,11 @@
         with-html #(assoc % :html (-> % :file-name html))]
     (into [] (map with-html) articles)))
 
-(defn write-file [dist {:file/keys [name content]}]
+(defn write-file [dist {:file/keys [name content append]}]
   (let [weblog (str dist "/weblog/")]
     (println "Writing file" (str "/dist/weblog/" name))
     (io/make-parents weblog name)
-    (spit (io/file weblog name) content)))
-
-(def weblog-pattern
-  #(str (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"html" "aspx/index.html")))
-(def clanek-pattern
-  #(str "../clanek/" (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"html" "aspx/index.html")))
-(def clanek-aspx-pattern
-  #(str "../clanek.aspx/" (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"\.html" "/index.html")))
-
-(defn redirect-names [article]
-  (let [redirect-page (apply str (redirect-template {:url (str blog-url (:file-name article))}))]
-    (for [file-name [weblog-pattern clanek-pattern clanek-aspx-pattern]]
-      {:file/name (file-name article)
-       :file/content redirect-page})))
+    (spit (io/file weblog name) content :append append)))
 
 (defn latest [n articles]
   (->>
@@ -290,17 +277,13 @@
             {:file/name "articles.rss"
              :file/content rss}))))
 
-(defn page-with-redirects [article]
-  (conj
-    (redirect-names article)
+
+(defn page [article]
     {:file/content (apply str (blogpost-template article))
-     :file/name (:file-name article)}))
+     :file/name (:file-name article)})
 
 (defn articles-pages [articles write-file-ch]
-  (->>
-    articles
-    (mapcat page-with-redirects)
-    (async/onto-chan write-file-ch)))
+    (async/onto-chan! write-file-ch (map page articles)))
 
 (defn articles-index [articles write-file-ch]
   (let [html (apply str (index-template (latest 5 articles)))]
@@ -437,6 +420,20 @@
                {:file/name "feed/index.html"
                 :file/content html}))))
 
+(def weblog-pattern
+  #(str "/weblog/" (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"html" "aspx")))
+
+(defn redirects [articles write-file-ch]
+  (let [redirects (into []
+                    (comp
+                      (filter :id)
+                      (map #(str (weblog-pattern %) " " (rel-link %) " 301")))
+                    articles)]
+       (go (>! write-file-ch
+               {:file/name "../_redirects"
+                :file/content (string/join "\n" redirects)
+                :file/append true}))))
+
 (defn article->image [article]
   {:title (:title article)
    :name (author-twitter article)
@@ -458,19 +455,25 @@
    articles-index
    tag-indexes
    time-indexes
-   articles-pages])
+   articles-pages
+   redirects])
 
 (defn -main [& args]
   (let [root (or (first args) "../")
         dist (str root "dist")
         static (str root "static")
-        content (str root "content")]
+        content (str root "content")
+        website (str root "website")]
     (println)
     (println "Gryphoon 3.0 - static website generator")
     (println "Content generator")
     (println)
+    ;; TODO: transition to website and sunset static
     (println "Copying static content to distribution folder...")
     (async/thread (static-content static dist))
+    (println)
+    (println "Copying website content to distribution folder...")
+    (async/thread (static-content website dist))
     (println)
     (println "Reading content...")
     (let [articles (read-articles content)

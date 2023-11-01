@@ -1,6 +1,5 @@
 ---
-{:id 484,
-:title "Jednoduše a rychle: LinkeDOM",
+{:title "Jednoduše a rychle: LinkeDOM",
 :description "Na práci s HTML dokumenty existuje několik JavaScriptových knihoven a většinou nejsou dobré. LinkeDOM je rychlý a velice blízký APIs browseru.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "webdesign" "linkedom" "deno"},

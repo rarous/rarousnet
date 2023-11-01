@@ -1,6 +1,5 @@
 ---
-{:id 480,
-:title "Pulumi a esbuild",
+{:title "Pulumi a esbuild",
 :description "Zbavil jsem backend Hlídače Shopů TypeScriptu. Při zachování stejné typové kontroly a našeptávání, s mnohem rychlejším buildem a výslednou velikostí lambdiček pod 5% původního výstupu.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "esbuild" "ecmascript" "pulumi" "hlidacshopu"},
