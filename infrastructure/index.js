@@ -152,6 +152,15 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
   },
 });
 
+new cloudflare.Record(`${domain}/dns-record`, {
+  zoneId: zone.id,
+  name: "www",
+  type: "CNAME",
+  value: bucket.websiteEndpoint,
+  ttl: 1,
+  proxied: true,
+});
+
 //const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
 //  zoneId: zone.id,
 //  name: "www",
