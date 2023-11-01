@@ -205,8 +205,6 @@
   [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 
-(deftemplate redirect-template "weblog/redirect.html" [{:keys [url]}]
-  [html/any-node] (html/replace-vars {:url url}))
 
 (defn date [s]
   (->> s tc/from-string tc/to-date))

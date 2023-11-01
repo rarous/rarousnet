@@ -21,12 +21,21 @@
   <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
   <script type="module">
     function send(tid, en) {
-      const data = new URLSearchParams({v:2,tid,cid:`${Date.now()}${Math.random()}`,dl:location.href,aip:1,en});
+      const data = new URLSearchParams({
+        v: 2,
+        tid,
+        cid: `${Date.now()}${Math.random()}`,
+        dl: location.href,
+        aip: 1,
+        en
+      });
       navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
     }
+
     send("G-B3W7LTZE6J", "page_view");
   </script>
-  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
   <style>
     /* latin-ext */
     @font-face {
@@ -34,7 +43,7 @@
       font-style: italic;
       font-weight: 400;
       font-display: swap;
-      src: url(/design/hp/cardo/cardo-latin-ext-400-italic.woff2) format('woff2');
+      src: url(/assets/fonts/cardo/cardo-latin-ext-400-italic.woff2) format('woff2');
       unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
     }
 
@@ -44,7 +53,7 @@
       font-style: italic;
       font-weight: 400;
       font-display: swap;
-      src: url(/design/hp/cardo/cardo-latin-400-italic.woff2) format('woff2');
+      src: url(/assets/fonts/cardo/cardo-latin-400-italic.woff2) format('woff2');
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 
@@ -54,7 +63,7 @@
       font-style: normal;
       font-weight: 400;
       font-display: swap;
-      src: url(/design/hp/cardo/cardo-latin-ext-400-normal.woff2) format('woff2');
+      src: url(/assets/fonts/cardo/cardo-latin-ext-400-normal.woff2) format('woff2');
       unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
     }
 
@@ -64,7 +73,7 @@
       font-style: normal;
       font-weight: 400;
       font-display: swap;
-      src: url(/design/hp/cardo/cardo-latin-400-normal.woff2) format('woff2');
+      src: url(/assets/fonts/cardo/cardo-latin-400-normal.woff2) format('woff2');
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 
