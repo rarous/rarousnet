@@ -152,28 +152,19 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
   },
 });
 
-new cloudflare.Record(`${domain}/dns-record`, {
+const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
   zoneId: zone.id,
   name: "www",
   type: "CNAME",
-  value: bucket.websiteEndpoint,
+  value: weblogPages.domains[0],
   ttl: 1,
   proxied: true,
 });
-
-//const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
-//  zoneId: zone.id,
-//  name: "www",
-//  type: "CNAME",
-//  value: weblogPages.domains[0],
-//  ttl: 1,
-//  proxied: true,
-//});
-//const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
-//  accountId: account.id,
-//  domain: wwwRecord.hostname,
-//  projectName: weblogPages.name,
-//});
+const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
+  accountId: account.id,
+  domain: wwwRecord.hostname,
+  projectName: weblogPages.name,
+});
 
 export const accountId = account.id;
 export const zoneId = zone.id;
