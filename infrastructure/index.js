@@ -132,6 +132,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       productionDeploymentEnabled: false,
       productionBranch: "trunk",
       previewBranchIncludes: ["*"],
+      prCommentsEnabled: false,
     },
   },
   buildConfig: {
@@ -140,7 +141,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
   },
   deploymentConfigs: {
     production: {
-      alwaysUseLatestCompatibilityDate: true,
+      compatibilityDate: "2023-09-29",
       environmentVariables: {
         WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
       },
