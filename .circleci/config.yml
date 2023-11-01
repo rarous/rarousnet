@@ -40,7 +40,7 @@ jobs:
       - node/install-packages: 
           pkg-manager: yarn-berry
           cache-version: v1-machine-provision
-          override-ci-command: yarn workspaces focus @rarousnet/infrastructure @rarousnet/workers
+          override-ci-command: yarn workspaces focus @rarousnet/infrastructure
       - pulumi/update: 
           working_directory: infrastructure
           stack: prod
