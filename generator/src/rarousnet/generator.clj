@@ -473,7 +473,7 @@
     (async/thread (static-content static dist))
     (println)
     (println "Copying website content to distribution folder...")
-    (async/thread (static-content website dist))
+    (static-content website dist)
     (println)
     (println "Reading content...")
     (let [articles (read-articles content)
