@@ -131,8 +131,12 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       deploymentsEnabled: false,
       productionDeploymentEnabled: false,
       productionBranch: "trunk",
-      previewBranchIncludes: [""],
+      previewBranchIncludes: ["*"],
     },
+  },
+  buildConfig: {
+    buildCommand: "yarn build",
+    destinationDir: "dist",
   },
   deploymentConfigs: {
     production: {
