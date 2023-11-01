@@ -8,7 +8,13 @@
  * @param {string} url
  */
 async function getDetail(weblog, url) {
-  const payload = await weblog.get(url, { type: "text" });
+  const json = await weblog.get(url, "json");
+  const text = await weblog.get(url, "text");
+  const stream = await weblog.get(url, "stream");
+  const arrayBuffer = await weblog.get(url, "arrayBuffer");
+  console.log({ json, text, stream, arrayBuffer });
+
+  const payload = await weblog.get(url, "text");
   if (payload) return JSON.parse(payload);
   return { webmentions: [] };
 }
