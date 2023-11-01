@@ -31,7 +31,7 @@ commands:
 jobs: 
   provision: 
     docker: 
-      - image: cimg/node:lts
+      - image: cimg/node:20.9
     resource_class: arm.large
     steps: 
       - checkout
@@ -111,7 +111,7 @@ jobs:
     resource_class: large
     executor: 
       name: node/default
-      tag: 'lts-browsers'
+      tag: '20.9-browsers'
     steps: 
       - checkout
       - attach_workspace: 
@@ -149,7 +149,7 @@ jobs:
           path: ./results
   pages_deploy: 
     docker: 
-      - image: cimg/node:lts
+      - image: cimg/node:20.9
     resource_class: arm.large
     steps: 
       - checkout
@@ -158,7 +158,7 @@ jobs:
       - node/install
       - run: 
           name: Publish to Cloudflare Pages
-          command: npx wrangler pages deploy dist --project-name=rarousnet
+          command: npx wrangler pages deployl dist --project-name=rarousnet
   merge_pr: 
     docker: 
       - image: cimg/base:current
