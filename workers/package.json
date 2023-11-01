@@ -1,9 +1,0 @@
-{
-  "name": "@rarousnet/workers",
-  "description": "rarous.net workers",
-  "type": "module",
-  "license": "EPL-2.0",
-  "dependencies": {
-    "hono": "3.9.1"
-  }
-}

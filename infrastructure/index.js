@@ -1,73 +1,29 @@
-import fs from "node:fs";
-import path from "node:path";
-import url from "node:url";
 import pulumi from "@pulumi/pulumi";
 import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
-import { build } from "./worker-builder.js";
-
-const routeTable = ({ weblogNS }) =>
-  new Map([
-    ["api", {
-      pattern: "www.rarous.net/api/*",
-      workerFile: "api.js",
-      bindings: {
-        kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
-      },
-    }],
-    ["webhooks", {
-      pattern: "www.rarous.net/webhooks/*",
-      workerFile: "webhooks.js",
-      bindings: {
-        kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
-        plainTextBindings: [{
-          name: "WEBMENTIONS_WEBHOOK_SECRET",
-          text: config.require("webhook-secret"),
-        }],
-      },
-    }],
-  ]);
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+const account = new cloudflare.Account(
+  "rarous",
+  {
+    accountId: config.require("cloudflare-accountId"),
+    name: "rarous",
+    enforceTwofactor: true,
+  },
+  { protect: true },
+);
 
-function buildAsset(fileName) {
-  return build(
-    path.join(__dirname, "../workers", fileName),
-    true,
-  );
-}
-
-function createRoute(name, { account, zone, pattern, workerFile, bindings }) {
-  const worker = new cloudflare.WorkerScript(name, {
+const zone = new cloudflare.Zone(
+  "rarous.net",
+  {
     accountId: account.id,
-    module: true,
-    name,
-    content: buildAsset(workerFile),
-    ...bindings,
-  });
-  const route = new cloudflare.WorkerRoute(name, {
-    accountId: account.id,
-    zoneId: zone.id,
-    pattern,
-    scriptName: worker.name,
-  });
-  return { worker, route };
-}
-
-const account = new cloudflare.Account("rarous", {
-  accountId: config.require("cloudflare-accountId"),
-  name: "rarous",
-  enforceTwofactor: true,
-}, { protect: true });
-
-const zone = new cloudflare.Zone("rarous.net", {
-  accountId: account.id,
-  plan: "free",
-  zone: "rarous.net",
-}, { protect: true });
+    plan: "free",
+    zone: "rarous.net",
+  },
+  { protect: true },
+);
 
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
   zoneId: zone.id,
@@ -93,6 +49,8 @@ new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
     },
   },
 });
+
+// TODO: migrate to R2 and proxy via function
 
 const bucket = new aws.s3.Bucket(`${domain}/bucket`, {
   bucket: domain,
@@ -148,15 +106,6 @@ new aws.s3.BucketPolicy(`${domain}/bucket-policy`, {
   }),
 });
 
-new cloudflare.Record(`${domain}/dns-record`, {
-  zoneId: zone.id,
-  name: "www",
-  type: "CNAME",
-  value: bucket.websiteEndpoint,
-  ttl: 1,
-  proxied: true,
-});
-
 new cloudflare.Record(`${domain}/dns-record-keybase`, {
   zoneId: zone.id,
   name: "@",
@@ -170,10 +119,42 @@ const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
   accountId: account.id,
   title: "rarous-net-weblog",
 });
+const weblogPages = new cloudflare.PagesProject("weblog", {
+  accountId: account.id,
+  name: "rarousnet",
+  productionBranch: "trunk",
+  source: {
+    config: {
+      deploymentsEnabled: false,
+      productionDeploymentEnabled: false,
+    },
+  },
+  deploymentConfigs: {
+    production: {
+      alwaysUseLatestCompatibilityDate: true,
+      environmentVariables: {
+        WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
+      },
+      kvNamespaces: {
+        weblog: weblogNS.id,
+      },
+    },
+  },
+});
 
-for (const [name, route] of routeTable({ weblogNS })) {
-  createRoute(name, Object.assign({ account, zone }, route));
-}
+const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
+  zoneId: zone.id,
+  name: "www",
+  type: "CNAME",
+  value: weblogPages.domains[0],
+  ttl: 1,
+  proxied: true,
+});
+const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
+  accountId: account.id,
+  domain: wwwRecord.hostname,
+  projectName: weblogPages.name,
+});
 
 export const accountId = account.id;
 export const zoneId = zone.id;
@@ -183,4 +164,5 @@ export const websiteTestUri = bucket.websiteEndpoint.apply(
   (x) => `http://${x}`,
 );
 export const websiteUri = `https://${domain}`;
+export const weblogDomains = weblogPages.domains;
 export const weblogKvNsId = weblogNS.id;

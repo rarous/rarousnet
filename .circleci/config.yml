@@ -1,123 +1,120 @@
 version: 2.1
-orbs:
-  aws-cli: circleci/aws-cli@4.1.1
-  aws-s3: circleci/aws-s3@4.0.0
+orbs: 
   browser-tools: circleci/browser-tools@1.4.6
-  cloudflare: katana/cloudflare@1.0.0
   github: topmonks/github@1.4.0
   node: circleci/node@5.1.0
   php: circleci/php@1.1.0
   pulumi: pulumi/pulumi@2.1.0
 
-executors:
-  pw-focal-development:
-    docker:
+executors: 
+  pw-focal-development: 
+    docker: 
       - image: mcr.microsoft.com/playwright:v1.39.0-focal
 
-commands:
-  install_browsers:
-    steps:
-      - restore_cache:
+commands: 
+  install_browsers: 
+    steps: 
+      - restore_cache: 
           name: Restore Playwright browsers
-          keys:
+          keys: 
             - v2-browsers-{{ checksum "cards/package.json" }}
-      - run:
+      - run: 
           name: Install Playwright browsers
           command: yarn playwright install --with-deps chromium
           working_directory: cards
-      - save_cache:
+      - save_cache: 
           name: Cache Playwright browsers
           key: v2-browsers-{{ checksum "cards/package.json" }}
-          paths:
+          paths: 
             - ~/.cache/ms-playwright
 
-jobs:
-  provision:
-    docker:
+jobs: 
+  provision: 
+    docker: 
       - image: cimg/node:lts
     resource_class: arm.large
-    steps:
+    steps: 
       - checkout
       - pulumi/login
       - node/install-yarn
-      - node/install-packages:
+      - node/install-packages: 
           pkg-manager: yarn-berry
           cache-version: v1-machine-provision
           override-ci-command: yarn workspaces focus @rarousnet/infrastructure @rarousnet/workers
-      - pulumi/update:
+      - pulumi/update: 
           working_directory: infrastructure
           stack: prod
           skip-preview: true
-  generate:
+  generate: 
     resource_class: large
-    docker:
+    docker: 
       - image: cimg/clojure:1.11
-        environment:
+        environment: 
           LEIN_JVM_OPTS: "-Xmx400m"
           JVM_OPTS: "-Xmx3200m"
-    steps:
+    steps: 
       - checkout
-      - php/install-php:
+      - php/install-php: 
           version: "$(jq --raw-data '.platform.php' generator/composer.lock)"
       - php/install-composer
-      - attach_workspace:
+      - attach_workspace: 
           at: .
-      - php/install-packages:
+      - php/install-packages: 
           app-dir: ~/project/generator
           install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
-      - restore_cache:
+      - restore_cache: 
           name: Restore deps cache
-          keys:
+          keys: 
             - v3-dependencies-{{ checksum "generator/deps.edn" }}
-      - run:
+      - run: 
           name: Generate static web site content
           working_directory: generator
           command: clojure -m rarousnet.generator ../
-      - save_cache:
+      - save_cache: 
           name: Store deps cache
           key: v3-dependencies-{{ checksum "generator/deps.edn" }}
-          paths:
+          paths: 
             - ~/.m2
             - generator/.cpcache
-      - persist_to_workspace:
+      - persist_to_workspace: 
           root: .
           paths: dist
-  postprocess:
+  postprocess: 
     resource_class: large
     executor: pw-focal-development
-    steps:
+    steps: 
       - checkout
-      - attach_workspace:
+      - attach_workspace: 
           at: .
       - node/install
       - node/install-yarn
-      - node/install-packages:
+      - node/install-packages: 
           pkg-manager: yarn-berry
           cache-version: v1-pw
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
       - install_browsers
-      - run:
+      - run: 
           name: Generate Twitter Card images
           command: |
             mv ./dist/weblog/data.json ./cards
             node ./cards/generator.js "file://`pwd -P`/cards/card.html"
-      - run:
+      - run: 
           name: Generate search index
           command: yarn build:index
-      - run:
+      - run: 
           name: Postprocess resources
           command: yarn build:assets
-      - persist_to_workspace:
+      - persist_to_workspace: 
           root: .
           paths: dist
-  test:
+  test: 
     resource_class: large
-    executor:
+    executor: 
       name: node/default
       tag: 'lts-browsers'
-    steps:
+    steps: 
       - checkout
-      - attach_workspace:
+      - attach_workspace: 
           at: .
       - run: |
           sudo apt-get update
@@ -125,11 +122,11 @@ jobs:
       - browser-tools/install-chrome
       - node/install
       - node/install-yarn
-      - node/install-packages:
+      - node/install-packages: 
           pkg-manager: yarn-berry
           cache-version: v1-test
           override-ci-command: yarn workspaces focus rarousnet
-      - run:
+      - run: 
           name: Install self-signed cert for localhost
           command: |
             mkdir -p $HOME/.pki/nssdb
@@ -137,72 +134,66 @@ jobs:
             certutil -N -d $HOME/.pki/nssdb --empty-password
             certutil -A -d sql:$HOME/.pki/nssdb -t TC -n lws-cert -i ./node_modules/lws/ssl/lws-cert.pem
             certutil -L -d sql:$HOME/.pki/nssdb
-      - run:
+      - run: 
           name: Serve site content
           command: yarn serve
           background: true
-      - run:
+      - run: 
           name: Test site with Lighthouse
           command: |
             yarn test:lighthouse
             yarn test:ava
-      - store_artifacts:
+      - store_artifacts: 
           path: ./results
-      - store_test_results:
+      - store_test_results: 
           path: ./results
-  s3_deploy:
-    docker:
-      - image: cimg/base:current
+  pages_deploy: 
+    docker: 
+      - image: cimg/node:lts
     resource_class: arm.large
-    steps:
+    steps: 
       - checkout
-      - attach_workspace:
+      - attach_workspace: 
           at: .
       - node/install
-      - node/install-yarn
-      - node/install-packages:
-          pkg-manager: yarn-berry
-          cache-version: v1-machine-deploy
-          override-ci-command: yarn workspaces focus @rarousnet/scripts
-      - run: yarn sync
-      - cloudflare/purge-cache
-  merge_pr:
-    docker:
+      - run: 
+          name: Publish to Cloudflare Pages
+          command: npx wrangler pages publish dist --project-name=rarousnet
+  merge_pr: 
+    docker: 
       - image: cimg/base:current
-    steps:
+    steps: 
       - checkout
       - github/install
-      - github/merge_pr:
+      - github/merge_pr: 
           rebase: true
-workflows:
-  build_and_deploy:
-    jobs:
+workflows: 
+  build_and_deploy: 
+    jobs: 
       - generate
-      - postprocess:
-          requires:
+      - postprocess: 
+          requires: 
             - generate
-      - provision:
+      - provision: 
           context: aws
-          filters:
-            branches:
-              only: master
-      - test:
-          requires:
+          filters: 
+            branches: 
+              only: trunk
+      - test: 
+          requires: 
             - postprocess
-      - merge_pr:
+      - merge_pr: 
           context: github-cli
-          requires:
+          requires: 
             - test
-          filters:
-            branches:
+          filters: 
+            branches: 
               only: /revovate\/.*/
-      - s3_deploy:
-          context:
-            - aws
-            - cloudflare-invalidation
-          requires:
+      - pages_deploy: 
+          context: cloudflare
+          requires: 
             - provision
             - test
-          filters:
-            branches:
-              only: master
+          filters: 
+            branches: 
+              only: trunk

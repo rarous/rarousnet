@@ -1,28 +1,40 @@
-/** @see https://honojs.dev/ */
-import { Hono } from "hono";
+/**
+ * @typedef Env
+ * @property {KVNamespace} weblog
+ * @property {string} WEBMENTIONS_WEBHOOK_SECRET
+ */
 
-const app = new Hono();
-
+/**
+ * @param {KVNamespace} weblog
+ * @param {string} url
+ */
 async function getDetail(weblog, url) {
   const payload = await weblog.get(url);
   if (payload) return JSON.parse(payload);
   return { webmentions: [] };
 }
 
+/**
+ * @param {KVNamespace} weblog
+ * @param {string} url
+ * @param payload
+ */
 async function saveDetail(weblog, url, payload) {
   return weblog.put(url, JSON.stringify(payload));
 }
 
 /**
- * Client for https://webmention.io/settings/webhooks
+ * @param {EventContext<Env>} context
  */
-app.post("/webhooks/webmentions", async (c) => {
+export async function onRequestPost(context) {
   try {
-    const { env, req } = c;
-    const body = await req.json();
+    const { env, request } = context;
+    const body = await request.json();
 
     const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
-    if (body.secret !== secret) return c.text("Invalid secret", 403);
+    if (body.secret !== secret) {
+      return new Response("Invalid secret", { status: 403 });
+    }
 
     const { post, target, deleted } = body;
     const detail = await getDetail(env.weblog, target);
@@ -34,11 +46,9 @@ app.post("/webhooks/webmentions", async (c) => {
     }
     detail.webmentions = Array.from(webmentions.values());
     await saveDetail(env.weblog, target, detail);
-    return c.text("", 202);
+    return new Response(null, { status: 202 });
   } catch (err) {
     console.log(err);
-    return c.text("Internal error", 500);
+    return new Response(null, { status: 500 });
   }
-});
-
-export default app;
+}
