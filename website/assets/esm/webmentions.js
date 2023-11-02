@@ -15,9 +15,7 @@ function groupByType(webmentions) {
  * @param {Element} section
  */
 function webmentionLink(itemTemplate, item, section) {
-  console.log(itemTemplate);
   const link = itemTemplate.querySelector("a");
-  console.log(link);
   link.href = item.url;
   link.title = item.author.name;
   link.classList.add(section.id);
