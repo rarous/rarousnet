@@ -49,6 +49,17 @@ function hashStyles() {
   );
 }
 
+function hashScripts() {
+  return pipeline(
+    src("./dist/**/*.js"),
+    hash(),
+    deleteNotHashed(),
+    dest("./dist"),
+    hash.manifest("assets-manifest.json", { merge: true }),
+    dest("./out"),
+  );
+}
+
 function html() {
   const manifest = src("./out/assets-manifest.json");
   return pipeline(
@@ -92,5 +103,5 @@ function run(done) {
 }
 
 export const dev = series(css, js, run);
-const prod = series(css, js, hashStyles, html, size);
+const prod = series(css, js, hashStyles, hashScripts, html, size);
 export default prod;
