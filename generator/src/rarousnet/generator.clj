@@ -166,6 +166,7 @@
                                  :month-name (short-month dt)
                                  :day (url-day dt)})))
   [:article :.tags] (html/substitute (article-tags tags))
+  [:rarous-webmentions] (html/set-attr :href (permalink article))
   [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 
@@ -459,19 +460,19 @@
 (defn -main [& args]
   (let [root (or (first args) "../")
         dist (str root "dist")
-        static (str root "static")
+        static (str root "static/")
         content (str root "content")
-        website (str root "website")]
+        website (str root "website/")]
     (println)
     (println "Gryphoon 3.0 - static website generator")
     (println "Content generator")
     (println)
+    (println "Copying website content to distribution folder...")
+    (static-content website dist)
+    (println)
     ;; TODO: transition to website and sunset static
     (println "Copying static content to distribution folder...")
     (async/thread (static-content static dist))
-    (println)
-    (println "Copying website content to distribution folder...")
-    (static-content website dist)
     (println)
     (println "Reading content...")
     (let [articles (read-articles content)
