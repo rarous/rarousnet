@@ -33,3 +33,15 @@ export async function onRequestGet(context) {
     return new Response("Internal error", { status: 500 });
   }
 }
+
+export async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
+      "Access-Control-Max-Age": 86400,
+    },
+  });
+}
