@@ -127,72 +127,35 @@
     <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte
       mi ticket</a>.</p>
 
-    <section id="webmentions"></section>
-    <script type="module">
-      import {render, html} from "https://cdn.skypack.dev/lit-html?min";
+    <rarous-webmentions api-endpoint="https://www.rarous.net/api/v1/weblog" id="webmentions">
+      <h2>Reakce v síti</h2>
+      <section class="webmentions" id="like-of">
+        <p>
+          <data>Líbilo se</data>
+        </p>
+        <ul class="items">
+          <li>Načítají se data&hellip;</li>
+        </ul>
+      </section>
+      <section class="webmentions" id="repost-of">
+        <p>
+          <data>Přeposláno dál</data>
+        </p>
+        <ul class="items">
+          <li>Načítají se data&hellip;</li>
+        </ul>
+      </section>
+      <template>
+        <li>
+          <a>
+            <date></date>
+            <img width="32" height="32" loading="lazy" decoding="async">
+          </a>
+        </li>
+      </template>
+    </rarous-webmentions>
 
-      const titles = new Map([
-        ["like-of", "Líbilo se"],
-        ["repost-of", "Přeposlal dál"],
-      ]);
-
-      function groupByType(webmentions) {
-        const byType = new Map();
-        for (const post of webmentions) {
-          const key = post["wm-property"];
-          const values = byType.get(key) ?? [];
-          values.push(post);
-          byType.set(key, values);
-        }
-        return byType;
-      }
-
-      function groupTemplate(type, title, items) {
-        if (!items?.length) return;
-        return html`
-          <section class="webmentions">
-            <p>
-              <data value="${items.length}">${items.length}x ${title}</data>
-            </p>
-            <ul>
-              ${items.map(item => html`
-                <li>
-                  <a class="${type}" href="${item.url}" title="${item.author.name}">
-                    <date datetime="${item.published}"></date>
-                    <img alt="${item.author.name}"
-                         src="${item.author.photo}"
-                         width="32" height="32"
-                         loading="lazy" decoding="async">
-                  </a>
-                </li>
-              `)}
-            </ul>
-          </section>
-        `
-      }
-
-      function webmentionsTemplate(webmentions) {
-        if (!webmentions.length) return;
-        const byType = groupByType(webmentions);
-        return html`
-          <h2>Reakce v síti</h2>
-          ${groupTemplate("u-like", "se líbilo", byType.get("like-of"))}
-          ${groupTemplate("u-repost", "přeposláno dál", byType.get("repost-of"))}
-        `;
-      }
-
-      async function main({url, webmentionsRoot}) {
-        const resp = await fetch(`/api/v1/weblog?${new URLSearchParams({url})}`);
-        if (!resp.ok) return;
-        const {webmentions} = await resp.json();
-        render(webmentionsTemplate(webmentions), webmentionsRoot);
-      }
-
-      await main({
-        url: location.href,
-        webmentionsRoot: document.getElementById("webmentions"),
-      });
-    </script>
+    <script type="module" src="/assets/esm/webmentions.js"></script>
   </main>
 
   <footer class="footer"></footer>
