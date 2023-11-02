@@ -27,11 +27,15 @@ function css() {
     jitProps(OpenProps),
   ];
   return pipeline(
-    src("./static/**/*.css"),
+    src("./website/assets/**/*.css"),
     postcss(plugins),
     plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }),
-    dest("./dist/"),
+    dest("./dist/assets/"),
   );
+}
+
+function js() {
+  return pipeline(src("./website/assets/**/*.js"), dest("./dist/assets/"));
 }
 
 function hashStyles() {
@@ -78,6 +82,8 @@ function run(done) {
   });
 
   watch("static/**/*.css", css);
+  watch("website/assets/**/*.css", css);
+  watch("website/assets/**/*.js", js);
   watch(["dist/**/*.css", "dist/**/*.js", "dist/**/*.html"]).on(
     "change",
     browserSync.reload,
@@ -85,6 +91,6 @@ function run(done) {
   done();
 }
 
-export const dev = series(css, run);
-const prod = series(css, hashStyles, html, size);
+export const dev = series(css, js, run);
+const prod = series(css, js, hashStyles, html, size);
 export default prod;

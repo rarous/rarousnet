@@ -63,8 +63,8 @@
   <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
   <link rel="stylesheet" href="/assets/css/iosevka.css">
   <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
-  <link rel="stylesheet" href="/design/blog/blog.css">
-  <link rel="shortcut icon" href="/design/blog/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/assets/css/blog/blog.css">
+  <link rel="shortcut icon" href="/weblog/favicon.png" type="image/png">
   <meta name="theme-color" content="#f77146">
 </head>
 <body id="rarous">
@@ -84,7 +84,7 @@
       <link class="u-featured" property="image" href="">
       <header>
         <h1 class="p-name" property="headline" data-pagefind-meta="title"></h1>
-        <p class="info" data-pagefind-ignore>
+        <p class="info" data-pagefind-ignore="all">
           <span class="p-author" property="author" typeof="Person">
             <strong property="name" data-pagefind-filter="author"></strong>
           </span>
@@ -94,7 +94,7 @@
         </p>
       </header>
       <div class="e-content" property="articleBody"></div>
-      <footer data-pagefind-ignore>
+      <footer data-pagefind-ignore="all">
         Publikováno v:&nbsp;
         <nav class="breadcrumbs" typeof="BreadcrumbList">
           <span property="itemListElement" typeof="ListItem">
@@ -125,7 +125,7 @@
     </article>
 
     <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte
-      mi ticket</a>.
+      mi ticket</a>.</p>
 
     <section id="webmentions"></section>
     <script type="module">
@@ -198,6 +198,7 @@
   <footer class="footer"></footer>
 </div>
 <script type="module">
+  // convert Texy! code lang convention to prism expectations
   const codes = document.querySelectorAll("pre>code");
   for (const code of codes) {
     const pre = code.parentElement;
