@@ -81,12 +81,11 @@ class WebMentions extends HTMLElement {
     const url = this.getAttribute("href") ?? location.href;
     const resp = await fetch(`${apiEndpoint}?${new URLSearchParams({ url })}`);
     if (!resp.ok) {
-      this.remove();
-      return;
+      return this.remove();
     }
     const { webmentions } = await resp.json();
     if (!webmentions.length) {
-      this.remove();
+      return this.remove();
     }
     const byType = groupByType(webmentions);
     injectItems(likesOf, template, byType.get("like-of"));
