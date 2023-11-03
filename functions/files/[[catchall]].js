@@ -12,10 +12,7 @@ export async function onRequestGet({ env, request }) {
   if (blob === null) {
     return new Response("Not found", { status: 404 });
   }
-  return new Response(blob.body, {
-    headers: {
-      "content-type": blob.httpMetadata.contentType,
-      etag: blob.httpEtag,
-    },
-  });
+  const response = new Response(blob.body);
+  blob.writeHttpMetadata(response.headers);
+  return response;
 }
