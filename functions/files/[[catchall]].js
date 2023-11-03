@@ -12,7 +12,7 @@ export async function onRequestGet({ env, request }) {
   if (blob === null) {
     return new Response("Not found", { status: 404 });
   }
-  const response = new Response(blob.body);
-  blob.writeHttpMetadata(response.headers);
-  return response;
+  const headers = new Headers();
+  blob.writeHttpMetadata(headers);
+  return new Response(blob.body, { headers });
 }
