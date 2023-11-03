@@ -14,5 +14,6 @@ export async function onRequestGet({ env, request }) {
   }
   const headers = new Headers();
   blob.writeHttpMetadata(headers);
+  console.log({ headers, httpMeta: blob.httpMetadata });
   return new Response(blob.body, { headers });
 }
