@@ -1683,6 +1683,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/vinyl@npm:^2.0.9":
+  version: 2.0.9
+  resolution: "@types/vinyl@npm:2.0.9"
+  dependencies:
+    "@types/expect": "npm:^1.20.4"
+    "@types/node": "npm:*"
+  checksum: 65b9a1f87912ced821c8afdb7aaf5d6613f04c73228314cb47a53a6a7747ec0dd66a3461c0d25529d9b132cc4c37a0e8d54c5cf9557b4f0364edc94059f4babf
+  languageName: node
+  linkType: hard
+
 "@types/yauzl@npm:^2.9.1":
   version: 2.10.0
   resolution: "@types/yauzl@npm:2.10.0"
@@ -3136,6 +3146,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "chalk@npm:5.3.0"
+  checksum: 8297d436b2c0f95801103ff2ef67268d362021b8210daf8ddbe349695333eb3610a71122172ff3b0272f1ef2cf7cc2c41fdaa4715f52e49ffe04c56340feed09
+  languageName: node
+  linkType: hard
+
 "chalk@npm:~0.5.1":
   version: 0.5.1
   resolution: "chalk@npm:0.5.1"
@@ -4445,10 +4462,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"easy-transform-stream@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "easy-transform-stream@npm:1.0.0"
-  checksum: 2849d2154b105bbe75f86908bd2b9a49c8cb7c21702e5fbc5c0ff8d648916cc3b1cf2a8d8fb6a2a46d3585cdb2fcb2d3102dd8589dd8b2081abcda1c6fc3691f
+"easy-transform-stream@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "easy-transform-stream@npm:1.0.1"
+  checksum: 5f6c30a58e567b2273b19562fbe71d87ae23ad7e975563df12c7dbac0b6085678367bc64b17241d0c24de0054eaf2b877e022f5ded0c9400001b7dc53a85dd97
   languageName: node
   linkType: hard
 
@@ -6076,6 +6093,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gulp-plugin-extras@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "gulp-plugin-extras@npm:0.3.0"
+  dependencies:
+    "@types/vinyl": "npm:^2.0.9"
+    chalk: "npm:^5.3.0"
+    easy-transform-stream: "npm:^1.0.1"
+  checksum: 8166d7b76ba501c7be8477b7058ef3fc4fa67f251e99921fe38d0169d686223ee0d03ee874608d9441db045205a95a98b2d62c2716ae433f39a3e7362e5e05c5
+  languageName: node
+  linkType: hard
+
 "gulp-plumber@npm:1.2.1":
   version: 1.2.1
   resolution: "gulp-plumber@npm:1.2.1"
@@ -6122,14 +6150,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gulp-rev@npm:10.0.0":
-  version: 10.0.0
-  resolution: "gulp-rev@npm:10.0.0"
+"gulp-rev@npm:11.0.0":
+  version: 11.0.0
+  resolution: "gulp-rev@npm:11.0.0"
   dependencies:
-    easy-transform-stream: "npm:^1.0.0"
+    gulp-plugin-extras: "npm:^0.3.0"
     modify-filename: "npm:^2.0.0"
-    plugin-error: "npm:^2.0.1"
-    rev-hash: "npm:^4.0.0"
+    rev-hash: "npm:^4.1.0"
     rev-path: "npm:^3.0.0"
     sort-keys: "npm:^5.0.0"
     vinyl: "npm:^3.0.0"
@@ -6139,7 +6166,7 @@ __metadata:
   peerDependenciesMeta:
     gulp:
       optional: true
-  checksum: 377169d66099eb127d0dee6413141de08e1734a014f08a5a781b7a3edf3580b34f1c8a6a2c719b7a9d522b704e27a630e64baf549bf679e4a7ab529627833cba
+  checksum: cad8143ae19c023ea146281a4bf28d961e359050d773752d1320e7adebefe7f1ed0433f64638c976979cbf44247d0e559454338f2e2eba203604975697835dba
   languageName: node
   linkType: hard
 
@@ -9998,15 +10025,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"plugin-error@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "plugin-error@npm:2.0.1"
-  dependencies:
-    ansi-colors: "npm:^1.0.1"
-  checksum: f4ad7de56dd72455f01257680733c51884c3d7f74fbc111483da72489d52fa86a52e45d64ef89b869efce78a5ae17737ff89738d9bd5508d6220968ccd02b308
-  languageName: node
-  linkType: hard
-
 "plur@npm:^5.1.0":
   version: 5.1.0
   resolution: "plur@npm:5.1.0"
@@ -11062,7 +11080,7 @@ __metadata:
     gulp-notify: "npm:4.0.0"
     gulp-plumber: "npm:1.2.1"
     gulp-postcss: "npm:9.0.1"
-    gulp-rev: "npm:10.0.0"
+    gulp-rev: "npm:11.0.0"
     gulp-rev-delete-original: "npm:0.2.3"
     gulp-rev-replace: "npm:0.4.4"
     gulp-sizereport: "npm:1.2.1"
@@ -11581,10 +11599,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rev-hash@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "rev-hash@npm:4.0.0"
-  checksum: d421eb7df6209aa0e3997eb72c1f095fd579fb280719cc90ae37d007e819d5673e6fb1800ce330f88b4b0877e5978c34ce9875255ef75c58e6e74eff1e52bc2d
+"rev-hash@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "rev-hash@npm:4.1.0"
+  checksum: d80800c96f3e60965f73c519a5de231fc2191eb7333015522282240ca94b6f93667767fe7a6f61ef1e8113578a957cf4ff9bb7db015bc7da096241a72a23d753
   languageName: node
   linkType: hard
 
