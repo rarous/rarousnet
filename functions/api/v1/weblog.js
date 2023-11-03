@@ -1,6 +1,5 @@
 /**
- * @typedef Env
- * @property {KVNamespace} weblog
+ * @typedef {import("../env.d.ts").Env} Env
  */
 
 /**

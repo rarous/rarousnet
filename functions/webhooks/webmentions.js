@@ -1,7 +1,5 @@
 /**
- * @typedef Env
- * @property {KVNamespace} weblog
- * @property {string} WEBMENTIONS_WEBHOOK_SECRET
+ * @typedef {import("../env.d.ts").Env} Env
  */
 
 /**

@@ -1,3 +1,7 @@
+/**
+ * @typedef {import("../env.d.ts").Env} Env
+ */
+
 // Respond to OPTIONS method
 export async function onRequestOptions() {
   return new Response(null, {
@@ -11,10 +15,16 @@ export async function onRequestOptions() {
   });
 }
 
-// Set CORS to all /api responses
-export async function onRequest({ next }) {
+/**
+ * @param {EventContext<Env>} context
+ */
+export async function onRequest({ next, request }) {
   const response = await next();
-  response.headers.set("Access-Control-Allow-Origin", "*");
-  response.headers.set("Access-Control-Max-Age", "86400");
+  const url = new URL(request.url);
+  // Set CORS to all /api responses
+  if (url.pathname.startsWith("/api")) {
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Max-Age", "86400");
+  }
   return response;
 }
