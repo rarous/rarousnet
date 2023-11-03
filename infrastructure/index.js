@@ -50,8 +50,6 @@ new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
   },
 });
 
-// TODO: create R2 bucket and proxy via function
-
 new cloudflare.Record(`${domain}/dns-record-keybase`, {
   zoneId: zone.id,
   name: "@",
@@ -59,6 +57,11 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
   value:
     "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
   ttl: 3600,
+});
+
+const weblogBucket = new cloudflare.R2Bucket("weblog-bucket", {
+  accountId: account.id,
+  name: "rarousnet"
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
@@ -94,6 +97,9 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       kvNamespaces: {
         weblog: weblogNS.id,
       },
+      r2Buckets: {
+        storage: "rarousnet"
+      }
     },
   },
 });
