@@ -470,10 +470,6 @@
     (println "Copying website content to distribution folder...")
     (static-content website dist)
     (println)
-    ;; TODO: transition to website and sunset static
-    (println "Copying static content to distribution folder...")
-    (async/thread (static-content static dist))
-    (println)
     (println "Reading content...")
     (let [articles (read-articles content)
           write-file-ch (async/chan)]
