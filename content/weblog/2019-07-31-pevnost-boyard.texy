@@ -1,0 +1,73 @@
+---
+{:title "Pevnost Boyard",
+ :description "Pevnost Boyard v nás zanechala hlubokou stopu a stala se inspirací pro několik užitečných služeb v ekosystému TopMonks."
+ :author "Aleš Roubíček",
+ :tags #{"moje práce"},
+ :published "2019-07-31T05:50:32.490Z"
+ :syndication ["https://medium.com/topmonks/pevnost-boyard-3fe8a99e321e"]}
+---
+
+Pamatujete na devadesátky? V tý době většina z nás vyrůstala a v telce běžel seriál Klíče od pevnosti Boyard.
+Možná si to neuvědomujete, ale tenhle seriál měl dost vliv na pop kulturu nejen v ČR.
+A co s tím má společného TopMonks?
+
+[* pevnost-boyard.webp .(letecký snímek pevnosti Boyard) *]
+
+## Znělka
+Zdánlivě nic, ale vy co nás trochu znáte, tak asi posloucháte "CZ Podcast":[https://soundcloud.com/czpodcast-1].
+A právě v jeho znělce můžete zaslechout DnB remix znělky pevnosti Boyard,
+kterou jsme slýchávali každý víkend i my.
+
+<iframe width="560" height="315"
+  src="https://www.youtube-nocookie.com/embed/wFnGIVRAvUE?si=lwv9xkVjy27T3JrU"
+  title="YouTube video player" frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen></iframe>
+  
+## Otec Fura
+Otec Fura je v původní soutěži největším vyzyvatelem, ale i rádcem soutěžících.
+Takové ztělesnění moudrosti (a šibalství zenového mistra).
+
+U nás máme Otce Furu jako chatbota ve Slacku, který sbírá kontinuální zpětnou vazbu
+na nejrůznější události, co se ve firmě staly.
+
+[* otec-fura-1.png .(Ukázka Slack bota Otec Fura - sběr zpětné vazby) *]
+
+Otec Fura nám třeba pomáhá identifikovat potenciálně zbytečné meetingy.
+Nebo se pokouší zjistit, jak dobře se známe mezi sebou…
+
+[* otec-fura-2.png .(Ukázka Slack bota Otec Fura - kvíz) *]
+
+[* otec-fura-3.png .(Ukázka Slack bota Otec Fura - pochlebování) *]
+
+## Paklíč
+Další postavičkou z oblíbené televizní show je Paklíč. Usměvavý liliput,
+který má klíče ke všem dveřím v pevnosti. My jsme si takového pomyslného Paklíče taky udělali.
+Nejprve to byl Slack bot, který nám dá vědět, že někdo stojí za dveřma a chce dovnitř.
+Přímo ze Slacku mu můžete otevřít nebo naopak neotvírat…
+
+[* paklic-1.png .(Ukázka Slack bota Paklíč) *]
+
+Postupem času se začali objevovat chroničtí zapomínači klíčů, kteří začali Paklíče
+používat pro svoje potřeby a začali tak otravovat ostatní neustálým chozením na cigárko a zpátky.
+Tak jsme paklíče naučili otevívat zprávou bez nutnosti zvonit u dveří, což se ukázalo jako problém,
+protože lidi si nejsou schopný zapamatovat příkaz `open 1` nebo `open 0`.
+
+Které dveře to jsou? Popravdě taky nevím, jen je to vždycky opačně, než si myslím…
+
+Tak jsme si udělali ještě PWA aplikaci, která pro zapomětlivé přidává
+grafické uživatelské rozhranní, které máte vždycky po ruce.
+
+[* paklic-2.png .(Ukázka UI PWA aplikace Paklíč) *]
+
+Tedy, pokud si zrovna nezapomenete i telefon…
+
+## Kdo další?
+Tady dnes náš výčet postaviček končí, ale určitě se časem najde uplatnění pro Pačesa,
+Félindru nebo Kebuleho. Je to jen otázka času a potřeb.
+
+Někdy příště si ukážeme, jak jsme třeba takového Paklíče dělali,
+protože to je nejen architektonicky zajímavá výzva.
+
+PS. Kdybyste taky nutně potřebovali šikovného bota nebo appku na míru, rádi vám s tím pomůžeme!
+

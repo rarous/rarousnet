@@ -1,0 +1,75 @@
+---
+{:title "Cesta k TMCloudu",
+ :description
+ "Srdceryvný příběh o tom, jak jsme si v TopMonks připravili vlastní infrastrukturu na hostování našich aplikací. Původně vyšlo v angličtině na Medium TopMonks",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "swarmpit", "infrastruktura", "cloud", "aws", "docker"},
+ :published "2018-07-16T14:15:43.855Z"
+ :syndication
+  ["https://medium.com/topmonks/route-to-tmcloud-9c4bb62b6920",
+   "https://twitter.com/topmonks/status/1018851050965651457"]}
+---
+
+TopMonks:[https://www.topmonks.com/] je společnost s dlouholetými zkušenostmi s Dockerem.
+Tutum (později známý jako Docker Cloud) jsem začali pro naši infrastrukturu používat
+přesně před 3 lety. Tutum umožnil agilní vývoj a nasazení kontejnerů na naše servery
+hostované v Digital Ocean. Většinou to fungovalo dobře.
+
+Před rokem jsme změnili způsob, jakým Docker Cloud používáme - z vyhrazených strojů
+na stacky na clusterově orientované architektuře, kde můžeme sdílet zdroje a zvýšit odolnost.
+Inspirací nám byl Docker Swarm. Bohužel v té době nebyl v Docker Cloudu podporovaný,
+takže jsme si museli vytvořit vlastní infrastrukturu pro podporu autodiscovery
+a load-balancingem našich služeb.
+
+Přeskočíme do 20. března, kdy společnost Docker oznámila ukončení služby Docker Cloud.
+Měli jsme tedy 2 měsíce na implementaci vlastního řešení, protože žádná jiná služba
+jako Docker Cloud neexistuje. Po několika průzkumech padlo rozhodnutí:
+Budeme používat Docker Swarm a náš vlastní Swarmpit:[https://swarmpit.io/],
+který nahradí uživatelské rozhraní Docker Cloudu, abychom mohli spouštět naše kontejnery
+téměř stejným způsobem jako dosud. Servery jsme chtěli nechat v Digital Ocean.
+
+A tak se začalo pracovat.
+
+Vytvořil jsem šablonu v Terraformu:[https://www.terraform.io/], která vytvořila
+kompletní prostředí se Swarm Workery, Managery, Digital Ocean loadbalancerema patřičnými DNS záznamy.
+Šablona také vytvořila Swarm a nasadila do něj Swarmpit.
+
+Ale nefungovalo to...
+
+## Problém č.1 - Nespolehlivý provisoning strojů s Ubuntu
+Nepodařilo se mi spolehlivě vytvořit stroje s Ubuntu, které by měly nejnovější
+aktualizace Dockeru a zabezpečení. Často to končilo chybou. Ryxhlá statistika: nepodařilo
+aktualizovat každý třetí nebo čtvrtý stroj. Při provisioningu clusteru s 12 nody je to pěkný bordel.
+
+## Problém č. 2 - Chybějící persisted volumes
+I když jsou vaše služby bezstavové, ne všechny věci v infrastruktuře mohou fungovat bez perzistence.
+V Docker Swarm máte dvě možnosti:
+* Omezit službu, aby se vždy nasazovala na stejný uzel.
+* Nainstalovat plug-in Docker Volume s perzistentním backendem.
+
+V prvním případě je to rezignace na spolehlivost.Pro rubustnější systémy je druhá  možnost nutností.
+Bohužel žádný oficiální plugin pro Digital Ocean neexistuje.
+Plugin RexRay S3FS vypadal slibně, ale nepodařilo se nám ho zprovoznit.
+
+## Problém č. 3 - Problémy se sítí
+Během testování infrastruktury jsme narazili na dlouhé latence a dokonce i časté
+chybové kódy HTTP 502 z Digital Ocean Loadbalanceru. Vypadá to, že Digital Ocean
+infrastruktura má vážné problémy se sítí a to je také hlavní příčina prvního problému.
+
+## Nový směr
+Po několika zdlouhavých pokusech o nápravu jsme to vzdali a začali hledat alternativy.
+Fargate není v našem regionu k dispozici. Zkusili jsme tedy použít oficiální Docker CE
+implementace pro Azure a AWS. Podařilo se nám úspěchně vytvořit Swarm clustery se požadovanou
+infrastrukturou v obou prostředích. Nakonec jsme se rozhodli pro "Docker for AWS":[https://www.docker.com/docker-aws],
+protože používáme mnoho AWS Serverless služeb a jsme jim chtěli zůstat co nejblíže.
+Vytvořil jsem novou šablonu v Terraformu z PoC řešení a nyní jsme schopni vytvářet Swarm,
+Swarmpit a veškerou infrastrukturu na vyžádání.
+
+## Závěr
+To, co vypadalo jako přímočará migrace, byla ve skutečnosti obtížná cesta plná překážek.
+Jediné, co jsme plánovali používat a co dobře fungovalo, byl Swarmpit.
+Pohodlné a snadno použitelné uživatelské rozhraní pro správu Swarmu je zásadní součástí
+našeho každodenního pracovního workflow. Zjistili jsme, že ne všechny cloudy jsou
+stejný - v některých se skrývají bouřky.
+
+*Původně vyšlo v angličtině na "TopMonks blogu":[https://medium.com/topmonks/route-to-tmcloud-9c4bb62b6920]*

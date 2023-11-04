@@ -1,0 +1,80 @@
+---
+{:title "Jak vznikl TopMonks Insight",
+ :description "Pojdme se společně podívat, jakým způsobem a proč jsem vytvořil TopMonks Insight - nástroj, který enabluje sdílení důležitých informací ve firmě."
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "clojure"},
+ :published "2019-05-05T07:00:07.941Z"
+ :syndication ["https://medium.com/topmonks/jak-vznikl-topmonks-insight-46d02b450419"]}
+---
+
+Je to něco přes dva roky, co jsem skončil na projektu PurposeFly a začal se věnovat projektu TopMonks.
+Jedním z mých úkolů bylo zdokumentovat věci co máme, za co utrácíme a případně pročistit to, co nepotřebujeme.
+Důležitým zdrojem informací se ukázalo účetnictví, kam pravidelně přicházejí faktury za služby, které používáme.
+Společně s naší datovou analytičkou Dašou, jsme začali připravovat různé reporty a na základě nich se ptát,
+co nám přináší hodnotu a co jsou pouze vyhozené peníze?
+
+Po tom, co jsme pročistili infrastrukturu, se začal Filemon ptát kde trávíme čas? Kolik nás to stojí?
+Můžeme fungovat efektivněji? A my jsme začali hledat odpovědi v našem timesheetu.
+Zjistili jsme ale, že čísla často nedávají smysl. Protože v nich máme bordel.
+Lidi byli zvyklí, že musí timesheet vyplňovat, ale bylo to z musu. Málokdo se snažil o to, mít v datech pořádek.
+Málokdo si kladl otázku: “co ta čísla znamenají?” Timesheet navíc nefungoval tak, jak fungujeme my.
+
+Původně timesheet vznikl jako kopie Repliconu, který zřejmě nevyhovoval našim potřebám.
+Ale výsledek taky nebyl nějak slavný. Hlavní problém byl v tom, že lidé se v tom nevyznali.
+Nechápali proč některé věci jsou tak, jak jsou, ale zároveň se na to neptali. Brali to jako danou věc.
+Pro naše analýzy jsme potřebovali data, která dávají smysl.
+Chtěl jsem naše workbooky z Jupyteru automatizovat, ale nemělo to význam.
+
+A tak jsem se stal Product Ownerem hromádky neštěstí zvané Monksheets.
+Během měsíce jsem o jeho fungování a datovém modelu věděl víc než lidé,
+co ho psali nebo používali pokročilejší funkce nad rámec vykazování.
+Pak už jsem mohl začít implementovat změny, které nám umožní dostat timesheet tam, kde ho chceme mít.
+
+Další dva měsíce usilovné práce (jak velice šikovného programátora Cihly, tak celé PM skvadry)
+vedly k tomu, že data začala dávat smysl. A já jsme se konečně mohl dostat
+k programování plánovaného Monksheets Reports. Nejprve jsem začal s HTML prototypy základních reportů.
+První ukazoval, jak si vede firma, druhý byl detail pro konkrétního člověka.
+
+První report byl jednoduchý. Do HTML jsem natvrdo napsal aktuální data,
+nastyloval to dle svých představ a nasadil (po úvaze jsem změnil jméno na TopMonks Insight,
+protože tam měla být data z více systémů). Lidé se mohli začít koukat, jak jsme na tom.
+(pozn. Více se dozvíte v článku o naší otevřenosti.)
+
+V dalším kroku bylo potřeba stránky oživit, protože ruční editace HTML není úplně to pravé ořechové.
+Bylo potřeba získat data. Vycházel jsme z toho, že už jsem měl
+v SqlPadu:[https://rickbergfalk.github.io/sqlpad/] spoustu analytických dotazů.
+Rozhodl jsem se proto, že budu používat knihovnu `yesql`:[https://github.com/krisajenkins/yesql],
+která upřednostňuje psaní SQL v SQL. Všechny dotazy si tak můžu dopředu naprototypovat
+a odladit v SqlPadu a pak je jen vložit do projektu, naimportovat a směle používat.
+Jediná nutná změna je vložení pojmenovaných parametrů.
+
+Tak. Teď jsem byl ve stavu, kdy jsem měl šablonu, měl jsem data, ale mezi nimi chybělo něco,
+co by to spojilo dohromady. Zvolil jsem knihovnu Om.next:[https://github.com/omcljs/om/wiki/Quick-Start-(om.next)]
+(časem jsme přešli na "koncepčně podobný, ale jednodušší Qlkit":[https://medium.com/@conrad_9565/lets-build-a-ui-with-qlkit-and-graph-queries-79b7b118ddac]),
+která má zajímavý koncept práce s daty - velmi podobný GraphQL. To mi umožnilo pracovat iterativně.
+
+Pomocí refactoringu jsme postupně extrahoval data ze šablon do `let` bindingů.
+U komponent jsem pak definoval queries a bindingy extrahoval do funkcí, které na dotazy odpovídaly.
+Pořád stále ještě na klientu. Výhodou knihovny Om.next je, že máte stejnou mašinerii pro
+odbavování queries jak na klientu, tak na serveru.
+
+Dalším krokem tedy bylo definovat transportní vrstvu pomocí `fetche` a transitu:[https://github.com/cognitect/transit-format]
+a z klientských parserů udělat serverové. Tzn. přesunout kód z `cljs` souborů do `clj`
+a na klientu podědit klíče queries z `:remote`. Nyní už stačilo začít nahrazovat
+natvrdo zapsané datové struktury výsledky dotazů z databáze.
+To u některých dotazů mohlo trvat déle, ale celou dobu byla v aplikaci použitelná data,
+která jsme případně mohl ručně upravit v přehledné datové struktuře.
+
+Některá data stále udržuji ručně, protože je to časově méně náročná operace než jejich získávání
+automatizovat nebo vytvořit systém na jejich vedení. Něco udržujeme jako tabulku
+v Quipu:[https://quip.com/], která se dá přes jeho API "velmi snadno konzumovat":[https://github.com/rarous/quip].
+Něco je v `resources` jako `edn` soubor, protože se data tak často nemění
+a je v pohodě kvůli jejich změně dělat redeploy.
+
+Zvolená architektura mi umožňuje poměrně efektivně přidávat nebo měnit jednotlivé featury.
+Nejvíce času většinou zabírá namodelovat potřebná data a najít vhodnou formu jejich vizualizace,
+aby dávala smysl. Integrace do Insightu už je pak otázka vytvoření šablony,
+jejího query a registrace SQL souboru k použití v Clojure jako funkce.
+
+Můžete se ptát, proč jsem na to nepoužil nějaké hotové analytické/BI řešení?
+A na to si odpovíme někdy příště.
