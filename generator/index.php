@@ -11,13 +11,15 @@ function scriptHandler($invocation, $cmd, $args, $rawArgs)
   switch ($cmd) {
     case 'mixcloud-mini':
       $feed = htmlspecialchars($args[0]);
+      $params = htmlspecialchars($args[1] ?? '');
       $output = '<iframe width="100%" height="60" class="player mixcloud-player mixcloud-player--mini"
-        src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&mini=1&feed=' . $feed . '"></iframe>';
+        src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&mini=1&feed=' . $feed . '&' . $params . '"></iframe>';
       return $invocation->texy->protect($output, Texy::CONTENT_MARKUP);
     case 'mixcloud':
       $feed = htmlspecialchars($args[0]);
+      $params = htmlspecialchars($args[1] ?? '');
       $output = '<iframe width="100%" height="120" class="player mixcloud-player"
-        src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=' . $feed . '"></iframe>';
+        src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=' . $feed . '&' . $params . '"></iframe>';
       return $invocation->texy->protect($output, Texy::CONTENT_MARKUP);
     case 'spotify':
       $audioId = htmlspecialchars($args[0]);
