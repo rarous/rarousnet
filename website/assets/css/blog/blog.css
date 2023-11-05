@@ -321,6 +321,15 @@ div.image {
   overflow: auto;
 }
 
+iframe.player {
+  border: none;
+}
+
+.youtube-player {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
 .wai a {
   position: absolute;
   top: -1000px;
