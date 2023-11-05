@@ -121,21 +121,21 @@
       text-transform: uppercase;
     }
 
-    #contact {
+    #kontakt {
       background: #fff;
       border: 1px solid #fff;
     }
 
-    #contact hgroup {
+    #kontakt hgroup {
       padding-left: 1em
     }
 
-    #contact h1 {
+    #kontakt h1 {
       margin-bottom: 0;
       font-weight: 400;
     }
 
-    #contact h2 {
+    #kontakt h2 {
       color: #DEDEDE;
       font-size: 1em;
       font-style: italic;
@@ -143,16 +143,16 @@
       margin-top: 0;
     }
 
-    #contact dl {
+    #kontakt dl {
       line-height: 2em
     }
 
-    #contact dt {
+    #kontakt dt {
       position: absolute;
       left: -1000px
     }
 
-    #contact dd {
+    #kontakt dd {
       margin-left: 0;
       padding-left: 1em
     }
@@ -221,7 +221,7 @@
     }
 
     #header:after,
-    #contact {
+    #kontakt {
       box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
       border-radius: 2px;
 
@@ -237,7 +237,7 @@
         border-bottom-right-radius: 0;
       }
 
-      #contact {
+      #kontakt {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
@@ -254,7 +254,7 @@
         margin-top: 2.4em
       }
 
-      #contact {
+      #kontakt {
         margin-top: 1.2em
       }
     }
@@ -275,12 +275,12 @@
         margin-top: 3.6em
       }
 
-      #contact {
+      #kontakt {
         margin-top: 3.6em
       }
 
       #header:after,
-      #contact {
+      #kontakt {
         max-width: 850px;
         margin-left: auto;
         margin-right: auto;
@@ -300,31 +300,32 @@
     <img alt="" class="logo" src="/assets/logo.svg" width="60" height="43">
     <h1>Software for the Masses</h1>
   </header>
-  <section id="contact" vocab="https://schema.org" typeof="Person">
+  <section id="kontakt" vocab="https://schema.org" typeof="Person" class="vcard">
     <div class="qr-code">
       <img alt="QR kód s kontaktem"
            src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=L|0&chl=MECARD%3AN%3AAle%25C5%25A1%2520Roub%25C3%25AD%25C4%258Dek%3BTEL%3A%2B420737461283%3BEMAIL%3Aales%40roubicek.name%3BURL%3Ahttp%3A%2F%2Fwww.rarous.net"
            title="Oskenuj si kontakt do mobilu" width="200" height="200">
     </div>
     <hgroup>
-      <h1 property="name">Aleš Roubíček</h1>
-      <h2 property="jobTitle">web developer</h2>
+      <h1 property="name" class="fn">Aleš Roubíček</h1>
+      <h2 property="jobTitle" class="job">web developer</h2>
     </hgroup>
     <dl>
       <dt>E-mail:</dt>
-      <dd property="email"><a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID">ales&#64;<!-- -->roubicek.name</a>
+      <dd property="email"><a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID" class="email">ales&#64;
+        <!-- -->roubicek.name</a>
       </dd>
       <dt>Telefon:</dt>
-      <dd property="telephone"><a href="tel:+420737461283">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
+      <dd property="telephone"><a href="tel:+420737461283" class="tel">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
       <dt>Banka:</dt>
       <dd class="bank-account-number" title="číslu účtu">237716453/0600</dd>
       <dt>IČ:</dt>
       <dd property="identifier" class="identification-number">88707253</dd>
       <dt>Adresa:</dt>
-      <dd property="address" typeof="PostalAddress">
-        <span property="streetAddress">Koněvova 31/27</span><br>
-        <span property="postalCode">132 00</span>,
-        <span property="addressLocality">Praha 3</span>
+      <dd property="address" typeof="PostalAddress" class="addr">
+        <span property="streetAddress" class="street-address">Hartigova 31/27</span><br>
+        <span property="postalCode" class="postal-code">130 00</span>,
+        <span property="addressLocality" class="locality">Praha 3</span>
       </dd>
     </dl>
   </section>
