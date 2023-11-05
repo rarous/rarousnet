@@ -9,7 +9,7 @@
 
 Lukáš napsal spot "Pokud jde kód špatně otestovat, je špatně
 navržený":[http://blog.krecan.net/2012/10/04/pokud-jde-kod-spatne-otestovat-je-spatne-navrzeny/],
-který mě donutil se zamyslet ("občas to dělám":[http://rarous.net/clanek/413-k-cemu-vlastne-tdd.aspx]).
+který mě donutil se zamyslet ("občas to dělám":[/clanek/413-k-cemu-vlastne-tdd.aspx]).
 Zamyslet se nad tím, proč je u nás málo článků o TDD. Je to věc, která souvisí s přesvědčením.
 Obecně panuje přesvědčení, že psaní testů je práce navíc, že to prodlužuje dobu dodání, že je to peklo a nuda.
 Takové přesvědčení je hluboce zakořeněné a je velmi nebezpečné.
@@ -20,20 +20,20 @@ dělat víkendy nebo si tahat práci domů. Práce, kterou dělají je složitá
 Tak to je. Proč něco měnit? Upřímně, já nevím.
 
 Netvrdím, že všechen kód píšu tak, že si na něj nejdřív vytvořím testy. On je to i nesmysl.
-Někteří považují za TDD:[http://rarous.net/clanek/415-tri-prikazani-tdd.aspx] to,
+Někteří považují za TDD:[/clanek/415-tri-prikazani-tdd.aspx] to,
 že napíšou 100 testů a k nim kód a mají hotovo. Blbost. Tohle je stejně špatný přístup
 jako nakreslit si to nejdřív v UML. Potřeba tvořit velkolepá díla do našeho řemesla nepatří.
 Musíme se naučit spokojit s málem. Pak možná zjistíme, že ty malé kousky, které dávají smysl,
-se dají "zázračně propojit":[http://rarous.net/clanek/428-inversion-of-control.aspx] a najednou máme velký celek,
+se dají "zázračně propojit":[/clanek/428-inversion-of-control.aspx] a najednou máme velký celek,
 který je často kvalitnější a funguje.
 
 Nedílnou součástí dobrého návrhu je i prototypování.
-"Prototypování je cesta":[http://rarous.net/clanek/422-je-povoleno-psat-kod-dvakrat.aspx] jak prozkoumávat
+"Prototypování je cesta":[/clanek/422-je-povoleno-psat-kod-dvakrat.aspx] jak prozkoumávat
 průchozí uličky. Důležité u prototypu je, že ten nikdy nejde do produkce.
 **Nikdy!** Ano, stálo to čas, ale získali jsme cenné zkušenosti. Teď je na čase sepsat si itinerář bodů,
 které chceme na cestě potkat a podle něj začít psát první testy a implementovat kód, který jimi prochází.
 "Po malých krůčcích.":[http://blog.kolman.cz/2012/04/tdd-as-if-you-meant-it.html] Kochat se a hlavně uklízet za sebou.
-Na refactoring:[http://rarous.net/clanek/406-refaktoring.aspx] je čas v každém okamžiku.
+Na refactoring:[/clanek/406-refaktoring.aspx] je čas v každém okamžiku.
 A vězte, že i když nevidíte, že by se něco dalo refactorovat, neznamená to, že by to nešlo.
 
 Je důležité mít každou chvilku funkční kód. Je to neskutečně povzbuzující a člověk nepropadá často zoufalství.

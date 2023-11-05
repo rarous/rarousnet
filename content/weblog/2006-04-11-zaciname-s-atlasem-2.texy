@@ -8,13 +8,29 @@
 ---
 
 [* atlas_server.png .(Diagram serverové části Atlasu)>]
-V "minulém díle":[clanek(129)] jsme si představili, co to Atlas je, jakou má zhruba strukturu a k čemu se hodí. Jak jsem slíbil budeme se dnes věnovat serverové části Atlasu a ukážeme si, jak jednoduše přetvořit stávající ASP.NET 2.0 aplikaci na AJAXovou. Tak s chutí do toho :)
+V "minulém díle":[clanek(129)] jsme si představili, co to Atlas je,
+jakou má zhruba strukturu a k čemu se hodí. Jak jsem slíbil budeme se dnes
+věnovat serverové části Atlasu a ukážeme si, jak jednoduše přetvořit
+stávající ASP.NET 2.0 aplikaci na AJAXovou. Tak s chutí do toho :)
 
-V minulém díle jsem popsal, jakou má strukturu klientská část Atlasu, v tomto se podíváme na zoubek té serverové. Součástí serverové části jsou komponenty – Extendery, které obohacují současné ASP.NET komponenty o interaktivní chování podobné tomu, jak se chovají komponenty WinForms. Krom extenderů jsou zde ještě komponenty `ScriptManger` - popsaný v minulém díle - `UpdatePanel` a `UpdateProgress` zajišťující a informující o průběhu komunikace klientského skriptu s aplikací na serveru.
+V minulém díle jsem popsal, jakou má strukturu klientská část Atlasu,
+v tomto se podíváme na zoubek té serverové. Součástí serverové části jsou komponenty – Extendery,
+které obohacují současné ASP.NET komponenty o interaktivní chování podobné tomu,
+jak se chovají komponenty WinForms. Krom extenderů jsou zde ještě komponenty
+`ScriptManger` - popsaný v minulém díle - `UpdatePanel` a `UpdateProgress` zajišťující
+a informující o průběhu komunikace klientského skriptu s aplikací na serveru.
 
-*Teď trochu odbočím.* Možná si vzpomínáte na jednu z novinek ASP.NET, tzv. CallBacky. První zmínky vyvolaly bouřlivé reakce, ale posléze ticho po pěšině. CallBack:[CallBack] je alternativou PostBacku, kdy se např. při stránkování v `GridView` nemusí reloadovat celá stránka, ale je využito objektu XmlHTTPRequest k aktualizaci datové mřížky, čímž se snižuje datový tok a nemusí se celá stránka přerenderovat. CallBack je jistou formou AJAXu, ale většinou je potřeba psát ručně, kusy JavaScriptu a ty registrovat na serveru a posléze je posílat. Tento způsob zdá se mi poněkud neohrabaným.
+*Teď trochu odbočím.* Možná si vzpomínáte na jednu z novinek ASP.NET, tzv. CallBacky.
+První zmínky vyvolaly bouřlivé reakce, ale posléze ticho po pěšině. CallBack:[CallBack]
+je alternativou PostBacku, kdy se např. při stránkování v `GridView` nemusí reloadovat
+celá stránka, ale je využito objektu XmlHTTPRequest k aktualizaci datové mřížky,
+čímž se snižuje datový tok a nemusí se celá stránka přerenderovat.
+CallBack je jistou formou AJAXu, ale většinou je potřeba psát ručně, kusy JavaScriptu
+a ty registrovat na serveru a posléze je posílat. Tento způsob zdá se mi poněkud neohrabaným.
 
-*Zpět k Atlasu.* Atlas myšlenku CallBacku dotahuje do použitelné podoby a v poslední verzi dokáže díky CallBackům z obyčejné ASP.NET stránky udělat AJAXovou :)  Nyní malá ukázka. Mějme GridView s povoleným řazením podle libovolného sloupce a stránkování.
+*Zpět k Atlasu.* Atlas myšlenku CallBacku dotahuje do použitelné podoby
+a v poslední verzi dokáže díky CallBackům z obyčejné ASP.NET stránky udělat AJAXovou :)
+Nyní malá ukázka. Mějme GridView s povoleným řazením podle libovolného sloupce a stránkování.
 
 /---code xml
 <asp:GridView ID="GridView1" runat="server" AllowPaging="true" AllowSorting="true"
@@ -22,7 +38,9 @@ V minulém díle jsem popsal, jakou má strukturu klientská část Atlasu, v to
 </asp:GridView>
 \---code
 
-Takováto mřížka při každém přechodu na další stránku nebo srovnání podle určitého sloupce PostBackuje a překreslí se stránka s požadovaným pohledem. Nyní uděláme lehkou úpravu a k PostBackům docházet nebude, docílíme AJAXu :)
+Takováto mřížka při každém přechodu na další stránku nebo srovnání
+podle určitého sloupce PostBackuje a překreslí se stránka s požadovaným pohledem.
+Nyní uděláme lehkou úpravu a k PostBackům docházet nebude, docílíme AJAXu :)
 
 /---code xml
 <atlas:ScriptManager ID="TheScriptManager" EnablePartialRendering="true" runat="server" />
@@ -35,18 +53,41 @@ Takováto mřížka při každém přechodu na další stránku nebo srovnání 
 </atlas:UpdatePanel>
 \---code
 
-Ano, to je skoro vše! Za předpokladu, že jste použili šablonu Atlas WebSite ve vašem Visual WebDeveloperu nebo Visual Studiu – to předpokládá nainstalovaný Atlas z "domovské stránky":[Atlas]. Nezapomeňte, že každá Atlasová serverová komponenta potřebuje mít ve stránce `ScriptManager` jinak nebude fungovat.
+Ano, to je skoro vše! Za předpokladu, že jste použili šablonu Atlas WebSite
+ve vašem Visual WebDeveloperu nebo Visual Studiu – to předpokládá nainstalovaný
+Atlas z "domovské stránky":[Atlas]. Nezapomeňte, že každá Atlasová serverová komponenta
+potřebuje mít ve stránce `ScriptManager` jinak nebude fungovat.
 
-Tak máme za sebou první ukázku kódu. Docela pohoda ne? :) No, serverový Atlas nejsou jen komponenty, ale také webové služby a bridže. Ono se totiž dá v Atlasu programovat minimálně podle dvou hlavních schémat.
+Tak máme za sebou první ukázku kódu. Docela pohoda ne? :) No, serverový Atlas nejsou jen komponenty,
+ale také webové služby a bridže. Ono se totiž dá v Atlasu programovat minimálně podle dvou hlavních schémat.
 
-1.  Serverovou stranu využijete pouze na krmení klientské strany daty pomocí webových služeb a na klientu pojedeme všechno v JavaScriptu, XML-Scriptu a XHTML šablonách.
-2.  Využijeme podpory CallBacků u serverových komponent a použijeme extendery na vylepšení uživatelského zážitku s klasickými komponentami.
+1.  Serverovou stranu využijete pouze na krmení klientské strany daty pomocí webových služeb
+a na klientu pojedeme všechno v JavaScriptu, XML-Scriptu a XHTML šablonách.
+2.  Využijeme podpory CallBacků u serverových komponent a použijeme extendery
+na vylepšení uživatelského zážitku s klasickými komponentami.
 
-Třetí možností je využití obou postupů, ale pak v tom asi bude pěkný guláš. Druhou možnost jsme si už předvedli, povězme si něco o té první. Tak tedy, Atlas pomocí HttpHandleru přebírá volání webových služeb (ASMX) a přidává vytváření JavaScriptových proxy pro metody služby. Pomocí těchto proxy funkcí komunikuje klientský Atlas s webovou službou. Tady v dřívějších verzích nastal problém, nešlo efektivně konzumovat služby třetích stran, které jsme nemohli donutit, aby nám vracely požadované JS proxy.
+Třetí možností je využití obou postupů, ale pak v tom asi bude pěkný guláš.
+Druhou možnost jsme si už předvedli, povězme si něco o té první. Tak tedy,
+Atlas pomocí HttpHandleru přebírá volání webových služeb (ASMX)
+a přidává vytváření JavaScriptových proxy pro metody služby.
+Pomocí těchto proxy funkcí komunikuje klientský Atlas s webovou službou.
+Tady v dřívějších verzích nastal problém, nešlo efektivně konzumovat služby třetích stran,
+které jsme nemohli donutit, aby nám vracely požadované JS proxy.
 
-Poslední verze přichází s tzv. bridži. Bridž je handler, který konzumuje služby třetí strany a vytváří k ní potřebné proxy funkce. Klientská strana pak volá tento bridž namísto služby. Třetí podporovanou možností je konzumace služeb postavených na WCF((Windows Communication Fundation)) dříve známé jako Indigo. Další novinkou poslední verze je XmlDataSource pro klientskou stranu. Můžete konzumovat libovolný XML soubor, pohybovat se kouzlech pomocí XPath a provádět transformace pomocí XSLT. Tak to by bylo ke zdrojům dat.
+Poslední verze přichází s tzv. bridži. Bridž je handler, který konzumuje služby
+třetí strany a vytváří k ní potřebné proxy funkce. Klientská strana pak volá
+tento bridž namísto služby. Třetí podporovanou možností je konzumace služeb postavených
+na WCF((Windows Communication Fundation)) dříve známé jako Indigo.
+Další novinkou poslední verze je XmlDataSource pro klientskou stranu.
+Můžete konzumovat libovolný XML soubor, pohybovat se kouzlech pomocí XPath
+a provádět transformace pomocí XSLT. Tak to by bylo ke zdrojům dat.
 
-Prozatím poslední ze serverových částí je možnost vytváření Gadgets. Gadgets:[Gadgets] jsou kousky kódu – komponenty – určené pro začlenění na portál "Live.com":[Live] (popř. "Start.com":[Start]) a pravděpodobně půjdou tyto komponenty integrovat i do chystaného Desktop Sidebaru ve "Windows Vista":[Vista]. Tímto bych zakončil druhý díl povídání o Atlasu a příště bychom si mohli vytvořit nějakou použitelnou aplikaci :)
+Prozatím poslední ze serverových částí je možnost vytváření Gadgets.
+Gadgets:[Gadgets] jsou kousky kódu – komponenty – určené pro začlenění
+na portál "Live.com":[Live] (popř. "Start.com":[Start]) a pravděpodobně
+půjdou tyto komponenty integrovat i do chystaného Desktop Sidebaru ve "Windows Vista":[Vista].
+Tímto bych zakončil druhý díl povídání o Atlasu
+a příště bychom si mohli vytvořit nějakou použitelnou aplikaci :)
 
 == Zajímavé odkazy
 * "AJAX bublina nebo trend?":[MJurek]
@@ -61,5 +102,5 @@ Prozatím poslední ze serverových částí je možnost vytváření Gadgets. G
 [Start]: http://www.start.com/
 [Vista]: http://www.microsoft.com/windowsvista/
 [Gadgets]: http://microsoftgadgets.com/
-[clanek(129)]: http://rarous.net/clanek/129-zaciname-s-atlasem.aspx
+[clanek(129)]: /clanek/129-zaciname-s-atlasem.aspx
 [CallBack]: http://www.dotnetjunkies.com/Tutorial/E80EC96F-1C32-4855-85AE-9E30EECF13D7.dcik

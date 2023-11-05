@@ -8,7 +8,10 @@
  :published "2006-04-25T21:46:00"}
 ---
 
-Když už jsem v "minulém spotu":[/clanek/136-texy-rpc-wrapper-pro-dotnet.aspx] napsal takovou pěknou webovou službu, proč ji nevyužít k praktické ukázce využití Atlasu :) Následůjící kód převádí zadaný text v Texy syntaxu na XHTML a zobrazí ho do stránky s polečně s výpisem získaného kódu.
+Když už jsem v "minulém spotu":[/clanek/136-texy-rpc-wrapper-pro-dotnet.aspx] napsal
+takovou pěknou webovou službu, proč ji nevyužít k praktické ukázce využití Atlasu :)
+Následůjící kód převádí zadaný text v Texy syntaxu na XHTML a zobrazí ho do stránky
+s polečně s výpisem získaného kódu.
 
 /---code xml
 <%@ Page Language="C#" %>
@@ -102,16 +105,28 @@ Když už jsem v "minulém spotu":[/clanek/136-texy-rpc-wrapper-pro-dotnet.aspx]
 </html>
 \---
 
-Celá ukázka se obešla bez napsání jediného řádku JS kódu - byla použita deklarativní metoda :) Na ukázce neni moc zvláštností. Jde o standardní ASP.NET stránku s přidaným `ScriptManagerem`, formulářem pro zadávání textu a placeholdery pro vypsání výsledku. Následuje **XML-Script** a tomu se podíváme na zoubek.
+Celá ukázka se obešla bez napsání jediného řádku JS kódu - byla použita deklarativní metoda :)
+Na ukázce neni moc zvláštností. Jde o standardní ASP.NET stránku s přidaným `ScriptManagerem`,
+formulářem pro zadávání textu a placeholdery pro vypsání výsledku. Následuje **XML-Script**
+a tomu se podíváme na zoubek.
 
-Prvním krokem je přidání komponent - navázání HTML prvků s objektovým modelem Atlasu. Přidal jsem `output` a zneviditelnil ho, aby se neukazovaly prázdné divy a nadpisy před příchodem dat. Přidal jsem další dva divy jako `label`y, které načítají data z webové služby, a ten druhý encoduje HTML na entity.
+Prvním krokem je přidání komponent - navázání HTML prvků s objektovým modelem Atlasu.
+Přidal jsem `output` a zneviditelnil ho, aby se neukazovaly prázdné divy a nadpisy před příchodem dat.
+Přidal jsem další dva divy jako `label`y, které načítají data z webové služby,
+a ten druhý encoduje HTML na entity.
 
-Přidání `textBox`u pro vstup je samozřejmostí :) Odesílacímu tlačítku přiřadíme ovladač události `click` a nastavíme, aby odeslal data webové službě a zobrazil box s výsledkem. Poslední komponentou je samotná služba. Ta má pouze jeden vstupní parametr `text`, který je svázaný s hodnotou vstupního políčka.
+Přidání `textBox`u pro vstup je samozřejmostí :) Odesílacímu tlačítku přiřadíme
+ovladač události `click` a nastavíme, aby odeslal data webové službě a zobrazil box s výsledkem.
+Poslední komponentou je samotná služba. Ta má pouze jeden vstupní parametr `text`,
+který je svázaný s hodnotou vstupního políčka.
 
-A pokud proběhla komunikace se službou v pořádku a máme výsledek, svážeme ho s výstupními placeholdery. A to je pro dnešek vše, přátelé. Na případné dotazy rád odpovím v komentářích.
+A pokud proběhla komunikace se službou v pořádku a máme výsledek,
+svážeme ho s výstupními placeholdery. A to je pro dnešek vše, přátelé.
+Na případné dotazy rád odpovím v komentářích.
 
 == Doplnění
 
-Díky věcné "připomínce":[/clanek/138-prvni-prakticka-ukazka-pouziti-atlasu.aspx#km144] Petra v komentářích jsem doplnil zobrazení zprávy o průběhu akce při probíhající komunikaci se službou. Díky ;)
+Díky věcné "připomínce":[/clanek/138-prvni-prakticka-ukazka-pouziti-atlasu.aspx#km144]
+Petra v komentářích jsem doplnil zobrazení zprávy o průběhu akce při probíhající komunikaci se službou. Díky ;)
 
-"Ukázka aplikace":[http://rarous.net/ukazky/texy-atlas.aspx]
+"Ukázka aplikace":[/ukazky/texy-atlas.aspx]

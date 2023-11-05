@@ -5,16 +5,23 @@
  "Mým oblíbeným značkovacím jazykem je Texy! Léta jsme na ní zvyklý, ostatně používám ji i tady na blogu. Mikroformáty jsou téma, které mě zajímá v poslední době. Pojďme si přiblížit jejich užití v Texy!",
  :author "Aleš Roubíček",
  :tags
- #{"webdesign" "hcard" "microformats" "xfn" "rel-tag" "haudio" "texy"},
+ #{"webdesign" "microformats" "texy"},
  :published "2008-06-24T08:49:21.033"}
 ---
 
-Mým oblíbeným značkovacím jazykem je [texy] Léta jsme na ní zvyklý, ostatně používám ji i tady na blogu. Mikroformáty jsou téma, které mě zajímá v poslední době. Pojďme si přiblížit jejich užití v Texy!
+Mým oblíbeným značkovacím jazykem je [texy] Léta jsme na ní zvyklý, ostatně používám
+ji i tady na blogu. Mikroformáty jsou téma, které mě zajímá v poslední době.
+Pojďme si přiblížit jejich užití v Texy!
 
-O tom, co jsou mikrofomáty se třeba dočtete na [microformats-cz]. Pokud se vám to nechce dohledávat, tak vězte, že jde o kusy (X)HTML((Hypertext Markup Language)) kódu, které mají vyšší sémantiku. Začněme tedy s jednoduchými ukázkami.
+O tom, co jsou mikrofomáty se třeba dočtete na [microformats-cz].
+Pokud se vám to nechce dohledávat, tak vězte, že jde o kusy (X)HTML((Hypertext Markup Language))
+kódu, které mají vyšší sémantiku. Začněme tedy s jednoduchými ukázkami.
 
 ==rel-design-pattern
-Jedním z nejjednodušších vzorů je užití atributu `rel` u odkazů. Tento atribut se používá k označení vztahu k odkazovanému dokumentu. Odkazy se dají v Texy zapsat několika způsoby, já s oblibou využívám reference, které vypisuju na konci dokumentu. Pro mne je to pak mnohem přehlednější, mít všechny odkazy na jednom místě.
+Jedním z nejjednodušších vzorů je užití atributu `rel` u odkazů. Tento atribut se používá
+k označení vztahu k odkazovanému dokumentu. Odkazy se dají v Texy zapsat několika způsoby,
+já s oblibou využívám reference, které vypisuju na konci dokumentu. Pro mne je to
+pak mnohem přehlednější, mít všechny odkazy na jednom místě.
 
 /--code texy
  [rarous]: http://rarous.net/#kontakt Aleš Roubíček .{rel:me}
@@ -45,7 +52,8 @@ Telefon:
  [email]: ales@roubicek.name .[email]
 \--code
 
-Takto nějak může být v Texy zapsaná vizitka - kontaktní informace. Je to zkrácená verze, toho co mám "v kontaktu":[kontakt] na titulce.
+Takto nějak může být v Texy zapsaná vizitka - kontaktní informace. Je to zkrácená verze,
+toho co mám "v kontaktu":[kontakt] na titulce.
 
 ==tracklisty hAudio
 Dalším mikroformátem, který se může hodit je [hAudio], sloužící k popisu hudebních děl.
@@ -69,7 +77,10 @@ Ke stažení "dj set .[category]" [download] (MP3 128 kbps; 36,4 MiB)
 Tohle je například živá ukázka ze včerejšího "vydání setu Seven":[clanek(285)].
 
 ==Závěr
-Doufám, že jsem předvedl pár praktických ukázek užití mikroformátů v Texy! Nejsem si jistý, zda lze syntaxí Texy pokrýt všechny možné nuance mikroformátu, ale ona k tomu ani není přímo určena. Každopádně mnohé lze užívat bez problémů. Zajímavým cvičením dnes pro mne bylo, jak v Texy zapisovat Texy :)
+Doufám, že jsem předvedl pár praktických ukázek užití mikroformátů v Texy!
+Nejsem si jistý, zda lze syntaxí Texy pokrýt všechny možné nuance mikroformátu,
+ale ona k tomu ani není přímo určena. Každopádně mnohé lze užívat bez problémů.
+Zajímavým cvičením dnes pro mne bylo, jak v Texy zapisovat Texy :)
 
 /--div .[hslice #related]
 == Související .[entry-title]

@@ -10,7 +10,7 @@
 
 Často se při vývoji setkáme s potřebou některé featury zapínat a vypínat dle potřeby.
 Pokud děláme službu, tak se jistě hodí zainvestovat do systému
-"feature toggles":[http://rarous.net/weblog/404-prepinani-featur-a-vetveni-abstrakci.aspx],
+"feature toggles":[/weblog/404-prepinani-featur-a-vetveni-abstrakci.aspx],
 které jde zapínat/vypínat on-line nejlépe z administrativního rozhraní.
 
 Možnost výběru omezeného okruhu uživatelů a nebo vzorků  podle nějakého kritéria jistě také není na škodu.
@@ -89,6 +89,6 @@ Závěr
 
 Tohle samozřejmě funguje jen na fyzické odebírání featur z aplikace. Pokud potřebujete i logické odebírání,
 můžete k tomu využít třeba
-"vlastní transformace konfigurace":[http://rarous.net/weblog/424-vlastni-transformace-konfiguracnich-souboru.aspx].
+"vlastní transformace konfigurace":[/weblog/424-vlastni-transformace-konfiguracnich-souboru.aspx].
 
 Příjemné deployování!

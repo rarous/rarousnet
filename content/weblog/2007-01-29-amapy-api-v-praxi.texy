@@ -8,13 +8,18 @@
  :published "2007-01-29T22:12:38.287"}
 ---
 
-Udělal jsem dvě ukázky použití "API nových Atlasích map":[api]. První ukázkou je "generátor GeoRSS a GeoURL":[generator] tagů vybráním místa na mapě. Druhou ukázkou je budoucí mash-up Weblogy API a AMapy API, který zobrazuje "mapu blogerů z Weblogy.cz":[mapa]. Teď už možná chápete, k čem je první ukázka dobrá ;)
+Udělal jsem dvě ukázky použití "API nových Atlasích map":[api].
+První ukázkou je "generátor GeoRSS a GeoURL":[generator] tagů vybráním místa na mapě.
+Druhou ukázkou je budoucí mash-up Weblogy API a AMapy API, který zobrazuje "mapu blogerů z Weblogy.cz":[mapa].
+Teď už možná chápete, k čem je první ukázka dobrá ;)
 
 Happy coding.
 
 == Update
 
-Množí se případy s hláškou chybný GUID. Proto čtěte pozorně. :) Pro to aby bylo možné API používat je nutné si "vygenerovat GUID":[genGUID] pro "konkrétní URL" na stránkách AMapy API. Pokud chcete použít ukázky u sebe, musíte si změnit GUID pro svoji URL. Děkuji za pochopení.
+Množí se případy s hláškou chybný GUID. Proto čtěte pozorně. :) Pro to aby bylo možné
+API používat je nutné si "vygenerovat GUID":[genGUID] pro "konkrétní URL" na stránkách AMapy API.
+Pokud chcete použít ukázky u sebe, musíte si změnit GUID pro svoji URL. Děkuji za pochopení.
 
 [api]: http://amapy.atlas.cz/api
 [genGUID]: http://amapy.atlas.cz/api/registration.aspx

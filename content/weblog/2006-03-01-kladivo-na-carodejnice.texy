@@ -7,15 +7,53 @@
  :published "2006-03-01T12:19:27.500"}
 ---
 
-Dneska začnu sérií článků, která se pokusí prolomit některé mýty okolo ASP.NET 2.0. Spousta  webových vývojářů má mylné informace o fungování této technologie a ještě větší skupina nemá informace žádné. To bych se chtěl pokusit napravit.
+Dneska začnu sérií článků, která se pokusí prolomit některé mýty okolo ASP.NET 2.0.
+Spousta  webových vývojářů má mylné informace o fungování této technologie
+a ještě větší skupina nemá informace žádné. To bych se chtěl pokusit napravit.
 
-Začněme od začátku. "ASP.NET":[http://asp.net/] je součástí .net Frameworku od Microsoftu, ale implementují ho i opensource projekty jako je Mono:[http://www.go-mono.com/], které staví na standardizaci dotnetu jako takového. Ano základní bloky dotnetu jsou standardizovány:[http://msdn.microsoft.com/netframework/ecma/] a mají svoji normu ECMA potažmo ISO. Framework samotný je silně postaven na doporučeních W3C.
+Začněme od začátku. "ASP.NET":[http://asp.net/] je součástí .net Frameworku
+od Microsoftu, ale implementují ho i opensource projekty jako je Mono:[http://www.go-mono.com/],
+které staví na standardizaci dotnetu jako takového. Ano základní bloky dotnetu
+jsou standardizovány:[http://msdn.microsoft.com/netframework/ecma/] a mají svoji normu ECMA potažmo ISO.
+Framework samotný je silně postaven na doporučeních W3C.
 
-K samotnému ASP.NET. Spousta lidí si myslí, že je to stejný bastl jako staré ASP a že je jeho pokračovatelem. Nikoliv, ASP.NET bylo celé přepsané, tak aby mohlo využívat výhod jednotné platformy. V ASP.NET můžete využívat v podstatě jakoukoli část frameworku (od ADO.NET, přes práci s grafikou a po vstupně výstupní operace) a využívat jazykové nezávislosti. Velikou nevýhodou ASP bylo, že jste museli mít spoustu vlastních knihoven, aby jste mohli vůbec něco udělat. Tyto knihovny se musely složitě registrovat do systému, na kterém stránky běžely a bylo k tomu potřeba mít administrátorká oprávnění nebo otravovat admina, což mají velice rádi :) S příchodem dotnetu tohle všechno odpadá, vlastní knihovny stačí jednoduše nahrát do adresáře bin v rootu webu a o vše ostatní potřebné se postará běhové prostředí.
+K samotnému ASP.NET. Spousta lidí si myslí, že je to stejný bastl jako staré ASP
+a že je jeho pokračovatelem. Nikoliv, ASP.NET bylo celé přepsané,
+tak aby mohlo využívat výhod jednotné platformy. V ASP.NET můžete využívat
+v podstatě jakoukoli část frameworku (od ADO.NET, přes práci s grafikou a po vstupně výstupní operace)
+a využívat jazykové nezávislosti. Velikou nevýhodou ASP bylo, že jste museli mít spoustu vlastních knihoven,
+aby jste mohli vůbec něco udělat. Tyto knihovny se musely složitě registrovat do systému,
+na kterém stránky běžely a bylo k tomu potřeba mít administrátorká oprávnění nebo otravovat admina,
+což mají velice rádi :) S příchodem dotnetu tohle všechno odpadá, vlastní knihovny stačí
+jednoduše nahrát do adresáře `bin` v rootu webu a o vše ostatní potřebné se postará běhové prostředí.
 
-To by bylo stručně k technologii. Další mýtem je nekvalitní výstup. Je pravda, že ASP.NET v základu nevypouští z pohledu evangelizace nejmodernější kód. To je pravdou především v ASP.NET 1.x a v ASP.NET 2.0 v režimu výstupu Legacy. Tyto problémy s výstupem jsou ale snadno řešitelné, díky veliké modularitě ASP.NET. Objekt Response, který má na starosti výstup má vlastnost Filter, kterou můžeme nahradit vlastním výstupním filtrem (objekt typu Stream) a přizpůsobit výstup k obrazu svému. Jedno z řešení najdete na "ASP.NET Resources":[http://www.aspnetresources.com/articles/HttpFilters.aspx]. Na výstup se aplikuje sada Regulérních výrazů, které mají na starosti vylepšení kódu. K našemu filtru si připíšeme HttpModul a zkompilujeme do knihovny. Při další použití stačí přidat HttpModul do konfiguračního souboru a vše funguje jak má. Jiným možným řešením je vytvoření vlastního předka pro všechny stránky nebo Master, kde bude Filtr aplikován. Opět si v konfiguraci nastavíme předka pro stránky a jede to.
+To by bylo stručně k technologii. Další mýtem je nekvalitní výstup.
+Je pravda, že ASP.NET v základu nevypouští z pohledu evangelizace nejmodernější kód.
+To je pravdou především v ASP.NET 1.x a v ASP.NET 2.0 v režimu výstupu Legacy.
+Tyto problémy s výstupem jsou ale snadno řešitelné, díky veliké modularitě ASP.NET.
+Objekt Response, který má na starosti výstup má vlastnost Filter,
+kterou můžeme nahradit vlastním výstupním filtrem (objekt typu Stream) a přizpůsobit
+výstup k obrazu svému. Jedno z řešení najdete na "ASP.NET Resources":[http://www.aspnetresources.com/articles/HttpFilters.aspx].
+Na výstup se aplikuje sada Regulérních výrazů, které mají na starosti vylepšení kódu.
+K našemu filtru si připíšeme HttpModul a zkompilujeme do knihovny.
+Při další použití stačí přidat HttpModul do konfiguračního souboru a vše funguje jak má.
+Jiným možným řešením je vytvoření vlastního předka pro všechny stránky nebo Master,
+kde bude Filtr aplikován. Opět si v konfiguraci nastavíme předka pro stránky a jede to.
 
-Teď, když už máme validní výstup, spousta z vás si řekne, že k čemu mi je validní výstup. Když není přístupný. I na to v Microsoftu mysleli. Základní ovládací prvky jsou napsány tak, aby splňovaly podmínky "Section 508":[http://www.section508.gov]
- a WCAG. I když je kód všech složitějších prvků prasácky tabulkový, je celkem přístupný. Pro mě je však tento fakt nedostatečný, nemám rád znásilňování tabulek k layoutování. Nevěšte hlavy i toto se dá hravě zvládnout, stačí jen chtít. Jedno obecně aplikovatelné řešení jsem zde už psal v článku "Beztabulkové renderování controlů v ASP.NET 2.0":[http://rarous.net/clanek/85-beztabulkove-renderovani-controlu-v-asp-net-2-0.aspx].
+Teď, když už máme validní výstup, spousta z vás si řekne, že k čemu mi je validní výstup.
+Když není přístupný. I na to v Microsoftu mysleli. Základní ovládací prvky jsou napsány tak,
+aby splňovaly podmínky "Section 508":[http://www.section508.gov]
+ a WCAG. I když je kód všech složitějších prvků prasácky tabulkový, je celkem přístupný.
+ Pro mě je však tento fakt nedostatečný, nemám rád znásilňování tabulek k layoutování.
+ Nevěšte hlavy i toto se dá hravě zvládnout, stačí jen chtít. Jedno obecně aplikovatelné
+ řešení jsem zde už psal v článku "Beztabulkové renderování controlů v ASP.NET 2.0":[/clanek/85-beztabulkove-renderovani-controlu-v-asp-net-2-0.aspx].
 
-Závěrem bych chtěl poprosit nezasvěcené, aby neodsuzovali technologii, ale vývojáře kteří jsou líní napsat kvalitní kód. Snahy Microsoftu vedou spíše k zpřístupnění webového vývoje i programátorům newebařům. Tím pádem je použití tabulek pro layoutování logické, protože jsou zde předpřipravené kusy komponent, které už nějak vypadají. Nikdo nepředpokládá znalosti CSS. Pro takové lidi je asi klikací metoda ideální a výstup je nějak validní a přístupný, pro ty, kteří kladou důraz i na kvalitu, není moc těžké (pokud tedy vědí jak) se kvalitního výstupu domoci. Ze začátku to chce trochu víc práce, ale pak už jde všechno lehce a samo.
+Závěrem bych chtěl poprosit nezasvěcené, aby neodsuzovali technologii,
+ale vývojáře kteří jsou líní napsat kvalitní kód. Snahy Microsoftu vedou spíše
+k zpřístupnění webového vývoje i programátorům newebařům. Tím pádem je použití
+tabulek pro layoutování logické, protože jsou zde předpřipravené kusy komponent,
+které už nějak vypadají. Nikdo nepředpokládá znalosti CSS. Pro takové lidi je
+asi klikací metoda ideální a výstup je nějak validní a přístupný, pro ty,
+kteří kladou důraz i na kvalitu, není moc těžké (pokud tedy vědí jak)
+se kvalitního výstupu domoci. Ze začátku to chce trochu víc práce,
+ale pak už jde všechno lehce a samo.
