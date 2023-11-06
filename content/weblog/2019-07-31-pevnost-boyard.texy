@@ -11,7 +11,7 @@ Pamatujete na devadesátky? V tý době většina z nás vyrůstala a v telce b�
 Možná si to neuvědomujete, ale tenhle seriál měl dost vliv na pop kulturu nejen v ČR.
 A co s tím má společného TopMonks?
 
-[* pevnost-boyard.webp .(letecký snímek pevnosti Boyard){max-width: 90%} *]
+[* pevnost-boyard.webp .(letecký snímek pevnosti Boyard) *]
 
 ## Znělka
 Zdánlivě nic, ale vy co nás trochu znáte, tak asi posloucháte "CZ Podcast":[https://soundcloud.com/czpodcast-1].
@@ -27,14 +27,14 @@ Takové ztělesnění moudrosti (a šibalství zenového mistra).
 U nás máme Otce Furu jako chatbota ve Slacku, který sbírá kontinuální zpětnou vazbu
 na nejrůznější události, co se ve firmě staly.
 
-[* otec-fura-1.png .(Ukázka Slack bota Otec Fura - sběr zpětné vazby){max-width: 90%} *]
+[* otec-fura-1.png .(Ukázka Slack bota Otec Fura - sběr zpětné vazby) *]
 
 Otec Fura nám třeba pomáhá identifikovat potenciálně zbytečné meetingy.
 Nebo se pokouší zjistit, jak dobře se známe mezi sebou…
 
-[* otec-fura-2.png .(Ukázka Slack bota Otec Fura - kvíz){max-width: 90%} *]
+[* otec-fura-2.png .(Ukázka Slack bota Otec Fura - kvíz) *]
 
-[* otec-fura-3.png .(Ukázka Slack bota Otec Fura - pochlebování){max-width: 90%} *]
+[* otec-fura-3.png .(Ukázka Slack bota Otec Fura - pochlebování) *]
 
 ## Paklíč
 Další postavičkou z oblíbené televizní show je Paklíč. Usměvavý liliput,
@@ -42,7 +42,7 @@ který má klíče ke všem dveřím v pevnosti. My jsme si takového pomyslnéh
 Nejprve to byl Slack bot, který nám dá vědět, že někdo stojí za dveřma a chce dovnitř.
 Přímo ze Slacku mu můžete otevřít nebo naopak neotvírat…
 
-[* paklic-1.png .(Ukázka Slack bota Paklíč){max-width: 90%} *]
+[* paklic-1.png .(Ukázka Slack bota Paklíč) *]
 
 Postupem času se začali objevovat chroničtí zapomínači klíčů, kteří začali Paklíče
 používat pro svoje potřeby a začali tak otravovat ostatní neustálým chozením na cigárko a zpátky.
@@ -54,7 +54,7 @@ Které dveře to jsou? Popravdě taky nevím, jen je to vždycky opačně, než 
 Tak jsme si udělali ještě PWA aplikaci, která pro zapomětlivé přidává
 grafické uživatelské rozhranní, které máte vždycky po ruce.
 
-[* paklic-2.png .(Ukázka UI PWA aplikace Paklíč){max-width: 90%} *]
+[* paklic-2.png .(Ukázka UI PWA aplikace Paklíč) *]
 
 Tedy, pokud si zrovna nezapomenete i telefon…
 

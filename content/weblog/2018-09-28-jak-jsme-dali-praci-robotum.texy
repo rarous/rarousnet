@@ -17,7 +17,7 @@ Poslední dobou jsem sledoval, jak nám - s rostoucím počtem projektů, na kte
 náklady na údržbu. A tak jsem hledal řešení, jak ten maintenance overhead snížit.
 Aniž bychom kvůli tomu museli nabírat více lidí nebo přetěžovat lidi, co už máme. A jako řešení se ukázali roboti!
 
-[* github-security-checks.jpg .(Screenshot nastavení Github Security Checku){max-width: 90%} *]
+[* github-security-checks.jpg .(Screenshot nastavení Github Security Checku) *]
 
 Začalo to jednoduchým zaškrtnutím checkboxu v nastavení repository na Githubu.
 “Ano, kontrolujte mi prosím závislosti, jestli nemají známé bezpečnostní díry.”
@@ -25,7 +25,7 @@ A jejda, najednou se ukázalo, že některé projekty, které byly několik měs
 (zdánlivě ji nepotřebovaly), mají bezpečnostní díry. To nám, ale ve skutečnosti náklady na
 maintenance ještě zvýšilo, lidi museli začít řešit problémy, které byly u ledu...
 
-[* dependabot.jpg .(Screenshot Pull Requestu od Dependabota){max-width: 90%} *]
+[* dependabot.jpg .(Screenshot Pull Requestu od Dependabota) *]
 
 Tak jsem začal hledat řešení, které by nám mohlo pomoci a našel jsem "Dependabota":[https://dependabot.com/].
 Dependabot je robot, kterého si pozvete do projektu a on vám pomáhá s údržbou závislostí.

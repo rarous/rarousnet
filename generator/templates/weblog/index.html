@@ -197,13 +197,4 @@
   </footer>
 </div>
 
-<script type="module">
-  const codes = document.querySelectorAll("pre>code");
-  for (const code of codes) {
-    const pre = code.parentElement;
-    for (const lang of pre.classList) {
-      code.classList.add(`language-${lang}`);
-    }
-  }
-</script>
 <script defer src="/assets/js/prism.js"></script>

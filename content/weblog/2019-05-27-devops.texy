@@ -37,7 +37,7 @@ Snížením objemu dosáhneme i dalšího efektu: Čím jsou změny menší, tí
 a snáze se odhalují chyby. Nebo je mnohem menší prostor pro zanesení chyb. To může mít pozitivní
 vliv na výslednou kvalitu.
 
-[* devops-frekvence.png .{max-width: 100%;margin: 0 auto} *]
+[* devops-frekvence.png *]
 
 Ve výsledku můžeme být lokálně schopni dodávat častěji řešení požadavků a ve větší kvalitě - pokud
 se splní předpoklad snížení objemu dodávek a nastolení jejich pravidelného rytmu dodávání. 
@@ -46,7 +46,7 @@ Bude schopná ustát případný velký zájem zákazníků? Jak je řešení v 
 Jak poznají lidé, co budou systém provozovat, že je vše v pořádku, případně, co se v něm děje
 a jak na to mají reagovat?
 
-[* devops-kanban.png .(Kanban s kroky přes celou organizaci){max-width: 100%;margin-bottom: 1em} *]:[https://vimeo.com/274514331]
+[* devops-kanban.png .(Kanban s kroky přes celou organizaci){margin-bottom: 1em} *]:[https://vimeo.com/274514331]
 
 DevOps:[https://www.thoughtworks.com/radar/techniques/devops] nejde zavést nařízením shora. 
 Největší část DevOps tvoří kultura. Kultura učení se a sdílení. 

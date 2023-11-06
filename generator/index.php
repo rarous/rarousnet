@@ -6,9 +6,9 @@ if (@!include __DIR__ . '/vendor/autoload.php') {
   die('Install packages using `composer install`');
 }
 
-function scriptHandler($invocation, $cmd, $args, $rawArgs)
+function scriptHandler(Texy\HandlerInvocation $invocation, $command, array $args, $rawArgs)
 {
-  switch ($cmd) {
+  switch ($command) {
     case 'mixcloud-mini':
       $feed = rawurlencode($args[0]);
       $params = htmlspecialchars($args[1] ?? '');
@@ -41,6 +41,25 @@ function scriptHandler($invocation, $cmd, $args, $rawArgs)
   }
 }
 
+function imagehandler(Texy\HandlerInvocation $invocation, Texy\Image $image, Texy\Link $link = null): ?Texy\HtmlElement
+{
+  $el = $invocation->proceed();
+  // enables automatic resizing on cloudinary via Client Hints
+  return $el->setAttribute('sizes', '100vw');
+}
+
+function blockHandler(Texy\HandlerInvocation $invocation, $blocktype, $content, $lang, Texy\Modifier $modifier): ?Texy\HtmlElement
+{
+  if ($blocktype !== 'block/code') {
+    return $invocation->proceed();
+  }
+  $el = $invocation->proceed();
+  $code = $el->offsetGet(0);
+  // use Prism.js pattern for code lang
+  $code->class = "language-$lang";
+  return $el->setAttribute('class', null);
+}
+
 $contents = file_get_contents('php://stdin');
 $articles = json_decode($contents, true);
 
@@ -56,9 +75,12 @@ $texy->allowedTags = true;
 $texy->headingModule->top = 3;
 $texy->headingModule->generateID = true;
 $texy->figureModule->class = 'image';
-$texy->imageModule->root = 'https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/https://www.rarous.net/data/obrazky/';
+// Auto fetch images to Claudinary and make them responsive via Client Hints
+$texy->imageModule->root = 'https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto,q_auto,w_auto:100:800/https://www.rarous.net/data/obrazky/';
 
 $texy->addHandler('script', 'scriptHandler');
+$texy->addHandler('image', 'imageHandler');
+$texy->addHandler('block', 'blockHandler');
 
 $output = array();
 foreach ($articles as $url => $text) {

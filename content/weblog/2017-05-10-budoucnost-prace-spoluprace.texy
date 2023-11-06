@@ -129,7 +129,7 @@ Situaci ještě více zhoršuje, když jsou jednotlivci alokováni na více proj
 Přepínání kontextů se sebou nese overhead. Mozek musí přepnout celou mentální mapu do jiné domény.
 Ze studií vyplývá, že takový context switch přináší overhead minimálně 15 %.
 
-[* alokace.png .(Graf ukazující vliv kontext switchingu na efektivitu){max-width: 90%} *]
+[* alokace.png .(Graf ukazující vliv kontext switchingu na efektivitu) *]
 
 Efektivita se ztrácí celkem rychle. Pokud přeskakujete mezi čtyřmi projekty,
 trávíte více času přepínáním kontextu než samotným řešením problémů.
