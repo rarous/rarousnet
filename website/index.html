@@ -78,7 +78,7 @@
     }
 
     body {
-      color: #878787;
+      color: #444;
       background: #EEDD99 url(https://res.cloudinary.com/rarous/image/upload/q_auto,dpr_auto,f_auto,c_scale,w_auto/v1681554863/rarousnet/bg.png);
       padding: 0;
       margin: 0;
@@ -136,7 +136,7 @@
     }
 
     #kontakt h2 {
-      color: #DEDEDE;
+      color: #555;
       font-size: 1em;
       font-style: italic;
       font-weight: 400;
@@ -198,21 +198,28 @@
     }
 
     #links ul {
-      margin: 2.4em 0;
+      display: flex;
+      margin: 2.4em auto;
       padding: 0;
       list-style: none;
-      text-align: center;
+      justify-content: center;
       word-spacing: .5em;
     }
 
     #links li {
       display: inline-block;
-      word-spacing: 0
+      padding: 0;
+      margin: 0;
+      word-spacing: 0;
+
+      a {
+        font-weight: 700
+      }
     }
 
     #links li:before {
-      content: "❖";
-      padding: 0 1ex
+      content: "·";
+      padding: 0 0.25rem;
     }
 
     #links li:first-child:before {
