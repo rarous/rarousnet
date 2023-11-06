@@ -38,6 +38,10 @@ function js() {
   return pipeline(src("./website/assets/**/*.js"), dest("./dist/assets/"));
 }
 
+function staticHtml() {
+  return pipeline(src("./website/**/*.html"), dest("./dist/"));
+}
+
 function hashStyles() {
   return pipeline(
     src("./dist/**/*.css"),
@@ -95,6 +99,7 @@ function run(done) {
   watch("static/**/*.css", css);
   watch("website/assets/**/*.css", css);
   watch("website/assets/**/*.js", js);
+  watch("website/**/*.html", staticHtml);
   watch(["dist/**/*.css", "dist/**/*.js", "dist/**/*.html"]).on(
     "change",
     browserSync.reload,
@@ -102,6 +107,6 @@ function run(done) {
   done();
 }
 
-export const dev = series(css, js, run);
+export const dev = series(css, js, staticHtml, run);
 const prod = series(css, js, hashStyles, hashScripts, html, size);
 export default prod;
