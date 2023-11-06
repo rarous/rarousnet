@@ -92,7 +92,7 @@
 (defn- link [rel] [:link (html/attr= :rel rel)])
 (defn- script [src] [:script (html/attr= :src src)])
 
-(defsnippet article-listing "weblog/index.html" [:#content :article]
+(defsnippet article-listing "weblog/index.html" [:.feed :article]
   [{:keys [title author category html published] :as article}]
   (conj (rdfa "BlogPosting" "headline") :a) (html/do->
                                                    (html/content title)
@@ -112,7 +112,7 @@
   [:.year] (html/content (str (time/year (time/today)))))
 
 (deftemplate index-template "weblog/index.html" [articles]
-  [:#content] (html/content (map article-listing articles))
+  [:.feed] (html/content (map article-listing articles))
   [:.footer] (html/substitute (page-footer)))
 
 (defsnippet article-detail "weblog/blogpost.html" [:article]

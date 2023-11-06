@@ -24,6 +24,7 @@
   <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
   <meta name="copyright" content="&copy; 2004 - 2023 Aleš Roubíček. Creative Commons 4.0 BY-SA">
   <meta name="description" content="Aleš Roubíček píše o webdesignu a čistém kódu.">
+  <link rel="alternate" type="text/mf2+html" href="/weblog/feed/" title="rarouš.weblog - všechny články">
   <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous-weblog"
         title="rarouš.weblog - poslední články">
   <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/weblog/comments"
@@ -33,7 +34,6 @@
   <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
   <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
   <link rel="canonical" href="https://www.rarous.net/weblog/">
-  <link rel="feed" href="/weblog/feed/">
   <link rel="me" href="https://indieweb.social/@alesroubicek">
   <meta property="fb:app_id" content="215763288621854">
   <meta property="og:type" content="website">
@@ -130,20 +130,27 @@
   </header>
 
   <main id="content" role="feed">
-    <article property="blogPost" typeof="BlogPosting">
-      <link property="image" href="">
-      <header>
-        <h2 property="headline"><a property="sameAs" href=""></a></h2>
-        <p class="info">
+    <section class="feed">
+      <article property="blogPost" typeof="BlogPosting">
+        <link property="image" href="">
+        <header>
+          <h2 property="headline"><a property="sameAs" href=""></a></h2>
+          <p class="info">
           <span typeof="Person" property="author">
             <strong property="name">Aleš Roubíček</strong>
           </span>
-          |
-          <time datetime="" property="datePublished"></time>
-        </p>
-      </header>
-      <div property="articleBody"></div>
-    </article>
+            |
+            <time datetime="" property="datePublished"></time>
+          </p>
+        </header>
+        <div property="articleBody"></div>
+      </article>
+    </section>
+
+    <section>
+      <p><a href="https://feeds.feedburner.com/rarous-weblog">RSS Feed</a> · <a href="/weblog/feed/" rel="feed">HTML
+        Feed</a></p>
+    </section>
   </main>
 
   <footer class="footer" property="author" typeof="Person">
