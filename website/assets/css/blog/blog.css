@@ -376,6 +376,11 @@ article div[itemprop="articleBody"] > p:first-child::first-letter {
   padding-right: 8px;
 }
 
+article img {
+  width: 100%;
+  height: auto;
+}
+
 article footer {
   border-top: var(--border-width) solid oklch(0.45 0 89.876);
   padding-top: 1em;

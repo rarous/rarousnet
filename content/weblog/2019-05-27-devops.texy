@@ -37,7 +37,7 @@ Snížením objemu dosáhneme i dalšího efektu: Čím jsou změny menší, tí
 a snáze se odhalují chyby. Nebo je mnohem menší prostor pro zanesení chyb. To může mít pozitivní
 vliv na výslednou kvalitu.
 
-[* devops-frekvence.png *]
+[* devops-frekvence.png .(Častější releasy snižují riziko) *]
 
 Ve výsledku můžeme být lokálně schopni dodávat častěji řešení požadavků a ve větší kvalitě - pokud
 se splní předpoklad snížení objemu dodávek a nastolení jejich pravidelného rytmu dodávání. 
@@ -68,7 +68,7 @@ Tím bychom vytvořili další silo, kterých se v DevOps chceme zbavit, protož
 3. *Mean Time to Restore* - průměrná doba potřebná za zotavení z produkčního incidentu
 4. *Change Fail Percentage* - procento nepovedených nasazení do produkce
 
-[* https://faasandfurious.com/pages/silos.png 320x338 .(Cartoon - Siloes){margin-right: 1.5em} <]:[https://faasandfurious.com/80]
+[* https://www.goodtechthings.com/content/images/size/w1920/2022/12/Silage.png 320x338 .(Cartoon - Siloes){margin-right: 1.5em;max-width: 320px} <]:[https://www.goodtechthings.com/missile-silo/]
 
 Proč jsou tyto metriky pro DevOps klíčové? Protože celkem komplexně měří důležité aspekty byznysové agility. 
 Lead Time je dán vyspělostí celé organizace. Schopností komunikovat a spolupracovat. Optimalizace lead time 
