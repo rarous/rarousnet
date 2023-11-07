@@ -1568,15 +1568,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/browser-sync@npm:2.27.3":
-  version: 2.27.3
-  resolution: "@types/browser-sync@npm:2.27.3"
+"@types/browser-sync@npm:2.27.4":
+  version: 2.27.4
+  resolution: "@types/browser-sync@npm:2.27.4"
   dependencies:
     "@types/micromatch": "npm:^2"
     "@types/node": "npm:*"
     "@types/serve-static": "npm:*"
     chokidar: "npm:^3.0.0"
-  checksum: bde224667d63344aae2b29a187319447edfdb1a10dbe5d26c149780e2057fb4e26f89583184218add73c04317fafc5be9fd64ad0b626e13bfc382f8273c16557
+  checksum: 4c22c7ce132995d2a695c58b074cea2a225dca6a31b8db31ed838828815c454183c33edd6f9eca24a90b42795f59d6b17e4262bc176cc88cac984254d0f83ae8
   languageName: node
   linkType: hard
 
@@ -11068,7 +11068,7 @@ __metadata:
   resolution: "rarousnet@workspace:."
   dependencies:
     "@cloudflare/workers-types": "npm:4.20231025.0"
-    "@types/browser-sync": "npm:2.27.3"
+    "@types/browser-sync": "npm:2.27.4"
     ava: "npm:5.3.1"
     broken-link-checker-local: "npm:0.2.1"
     browser-sync: "npm:2.29.3"
