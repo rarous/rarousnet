@@ -5,4 +5,4 @@ config:
   rarousnet:cloudflare-accountId: f4b105d220fb4698cd1f3177bd14b85c
   rarousnet:domain: www.rarous.net
   rarousnet:webhook-secret:
-    secure: AAABAM8UxOdFNnVwW8banrpIR2xEQyoRqekDdB/g8edC8r1ZfTeGDPPQWLsKy+/i1RwiFwOxj+jlRMp3vnipxqQC1o8cQXSyb/lX0CiqLQHvOYSbZN+o25jxd6pWwl35RwwG6REvG+0=
+    secure: AAABAMDlnk5eyssfU+XvFCw8R3vZApfj1ZWdi/i8J7VlS9h0tF+tnLWhPBwcSSvvE/JYyX0FOtufVrx2jOOkiwEgY06mxmw86yTLLf43ZInf7Q==
