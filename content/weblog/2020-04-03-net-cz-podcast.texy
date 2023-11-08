@@ -1,5 +1,5 @@
 ---
-{:title ".NET.CZ Podcast",
+{:title ".NET.CZ Podcast 64 - Reaktivní programování",
 :description "Byl jsem hostem v .NET.CZ Podcastu, kde jsme si povídali nejen o reaktivním programování.",
 :author "Aleš Roubíček",
 :tags #{"moje práce" "functional" "rx" "podcast" "clojure"},
@@ -7,13 +7,14 @@
 :syndication
  ["https://twitter.com/dotnetcezet/status/1245611793046589440"
   "https://www.dotnetpodcast.cz/episodes/ep64/"
-  "https://soundcloud.com/msimecek/dotnet-cz-episode-64"]}
+  "https://www.mixcloud.com/rarous_weblog/net-cz-podcast-64-clojure/"]}
 ---
 
-Nedávno mě Džoukr:[https://twitter.com/dzoukr] doporučil do .NET.CZ Podcastu na téma Reaktivní programování. 
-Slovo dalo slovo a z hruba před měsícem jsme se s klukama spojili přes Skype (ach, ty vzpomínky na časy dávno minulé) 
-a "natočili moji zpověď":[episode]. Opět jsem klouzal po povrchu a vyhýbal se odpovědi "jaké to má nevýhody." Protože je to nástroj
-na konkrétní sadu problémů, není tato otázka relevantní. Používejte ho jen tam, kde dává smysl.
+Nedávno mě Džoukr:[https://twitter.com/dzoukr] doporučil do ".NET.CZ Podcastu:[https://www.dotnetpodcast.cz/]
+na téma Reaktivní programování. Slovo dalo slovo a z hruba před měsícem jsme se s klukama spojili přes Skype
+(ach, ty vzpomínky na časy dávno minulé) a "natočili moji zpověď":[episode]. Opět jsem klouzal po povrchu
+a vyhýbal se odpovědi "jaké to má nevýhody." Protože je to nástroj na konkrétní sadu problémů,
+není tato otázka relevantní. Používejte ho jen tam, kde dává smysl.
 
 {{mixcloud: /rarous_weblog/net-cz-podcast-64-clojure/}}
 

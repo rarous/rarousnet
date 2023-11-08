@@ -1,10 +1,10 @@
 ---
-{:title "Pod Vocasem",
-:description "Byl jsem hostem v Podcastu 'Pod Vocasem', kde jsme si povídali nejen o Clojure.",
-:author "Aleš Roubíček",
-:tags #{"moje práce" "functional" "clojure" "podcast"},
-:published "2022-03-14T19:00:00.000"
-:syndication ["https://twitter.com/podvocasem/status/1503255029448421377"]}
+{:title "Pod Vocasem S02E05 - Clojure",
+ :description "Byl jsem hostem v Podcastu 'Pod Vocasem', kde jsme si povídali nejen o Clojure.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "functional" "clojure" "podcast"},
+ :published "2022-03-14T19:00:00.000"
+ :syndication ["https://twitter.com/podvocasem/status/1503255029448421377"]}
 ---
 
 Nedávno mě Džoukr:[https://twitter.com/dzoukr] oslovil, zda bych jim neudělal kašpárka

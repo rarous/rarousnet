@@ -1,13 +1,18 @@
 ---
-{:title "DevMinutes",
+{:title "DevMinutes 23  - Funkcionální programovani",
  :description "Byli jsme s Marianem Schubertem hosty v podcastu DevMinutes a povídali jsme si nejen o Clojure.",
  :author "Aleš Roubíček",
  :tags #{"podcast" "clojure" "moje práce"},
  :published "2015-06-18T11:10:00.663"
- :syndication ["https://twitter.com/devminutes/status/611439134578708481", "http://devminutes.cz/episode/23"]}
+ :syndication
+ ["https://twitter.com/devminutes/status/611439134578708481"
+  "http://devminutes.cz/episode/23"
+  "https://www.mixcloud.com/rarous_weblog/devminutes-23-clojure/"]}
 ---
 
-Naši kamarádi Jirka Penzéš a Michal Těhnik si mě a Mariana Schuberta pozvali,
+Naši kamarádi "Jirka Pénzeš":[https://twitter.com/jirkapenzes]
+a "Michal Těhnik":[https://twitter.com/MicTech] si mě
+a "Mariana Schuberta":[https://twitter.com/MarianSchubert] pozvali,
 abychom se pobavili o Clojure, Code Retreatech a tak vůbec. A vzniklo z toho
 "milé povídání":[episode].  
 

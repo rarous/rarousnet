@@ -1,0 +1,24 @@
+---
+{:title "CZ Podcast 298 - Optimalizace nákladů na cloud",
+ :description "V CZ Podcastu jsme se pobavili o tom, jak se poprat s náklady v cloudy - od kavárenských pouček po praktické cutování.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "cloud" "serverless" "podcast"},
+ :published "2023-02-12T19:00:00.000"
+ :syndication
+  ["https://twitter.com/czpodcast/status/1623986015261102080"
+   "https://soundcloud.com/czpodcast-1/cz-podcast-298-optimalizace-n"]}
+---
+
+Po čase jsem opět navštívil CZ Podcast, kde jsme si ještě
+s "Vojtou Vondrou":[https://vojtechvondra.cz/]
+a "Markem Jalovcem":[https://twitter.com/marekjalovec]
+povídali o tom, "jak v cloudu ušetřit náklady":[episoda].
+
+**TLDR:** Serverless přístup vám dokáže uušetřit spoustu peněz, ale musíte systém
+od začátku architektovat jako Serverless, ne se snažit zabalit nějakou hotovou věc
+a hodit ji do serverless prostředí, to nefunguje.
+
+<iframe width="100%" height="166" scrolling="no" class="player" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1443907879&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+
+[episoda]: https://soundcloud.com/czpodcast-1/cz-podcast-298-optimalizace-n .{rel:in-response-to}
+
