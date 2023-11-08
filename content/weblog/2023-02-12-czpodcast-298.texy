@@ -14,9 +14,9 @@ s "Vojtou Vondrou":[https://vojtechvondra.cz/]
 a "Markem Jalovcem":[https://twitter.com/marekjalovec]
 povídali o tom, "jak v cloudu ušetřit náklady":[episoda].
 
-**TLDR:** Serverless přístup vám dokáže uušetřit spoustu peněz, ale musíte systém
-od začátku architektovat jako Serverless, ne se snažit zabalit nějakou hotovou věc
-a hodit ji do serverless prostředí, to nefunguje.
+**TLDR:** Serverless přístup vám dokáže ušetřit spoustu peněz, ale musíte systém
+od začátku architektovat jako serverless, ne se snažit zabalit nějakou hotovou věc
+a hodit ji do serverless prostředí. To nefunguje.
 
 <iframe width="100%" height="166" scrolling="no" class="player" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1443907879&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
 
