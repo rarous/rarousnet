@@ -10,19 +10,32 @@
 ---
 
 
-Sedíme takhle s kolegy v kavárně a chci jim ukázat portfolio jedno člověka, který by mohl případně rozšířit naše řady. Grafika, styly, všechno ok, jen tomu něco chybí... Po chvíli přemýšlení stránka problikne a objeví se text!
+Sedíme takhle s kolegy v kavárně a chci jim ukázat portfolio jedno člověka,
+který by mohl případně rozšířit naše řady. Grafika, styly, všechno ok, jen tomu něco chybí...
+Po chvíli přemýšlení stránka problikne a objeví se text!
 
-Určitě jste to také zažili. Když se nad tím tak zamyslím, stává se mi to dost často. Trendem poslední doby jsou webové fonty a když je grafik co proto, tak je zkrátka použije, aby bylo vidět, že se vyzná. Nebozí kodéři pak sáhnou po některé ze služeb, která nabízí hostované webové fonty s potřebnou licencí, nebo to prostě vygenerují a hostují si sami.
+Určitě jste to také zažili. Když se nad tím tak zamyslím, stává se mi to dost často.
+Trendem poslední doby jsou webové fonty a když je grafik co proto, tak je zkrátka použije,
+aby bylo vidět, že se vyzná. Nebozí kodéři pak sáhnou po některé ze služeb, která nabízí
+hostované webové fonty s potřebnou licencí, nebo to prostě vygenerují a hostují si sami.
 
-Už když návrh převádíme do kódu, tak nás občasný výpadek připojení nebo zpoždění na připojení k poskytovateli fontů začnou dopalovat a tak se uchýlíme k tomu, že si font, se kterým pracujeme, nainstalujeme do systému a problém je vyřešen!
+Už když návrh převádíme do kódu, tak nás občasný výpadek připojení nebo zpoždění na připojení
+k poskytovateli fontů začnou dopalovat a tak se uchýlíme k tomu, že si font, se kterým pracujeme,
+nainstalujeme do systému a problém je vyřešen!
 
-Za pár dní po nasazení, se někdo ozve, že se mu stránka nezobrazuje. Tak mu odpovíme, že “to není možný, mně všechno funguje jak má a nemůžu to nijak nasimulovat. Problém bude u Vás!” A problém je vyřešen. Návštěvník, si bude pamatovat, že tohle je ten web, co se nezobrazuje a už se asi nevrátí...
+Za pár dní po nasazení, se někdo ozve, že se mu stránka nezobrazuje. Tak mu odpovíme,
+že “to není možný, mně všechno funguje jak má a nemůžu to nijak nasimulovat. Problém bude u Vás!”
+A problém je vyřešen. Návštěvník, si bude pamatovat, že tohle je ten web, co se nezobrazuje
+a už se asi nevrátí...
 
 ## Vrahem je webdesigner
 
-Žijeme v době, kdy připojení k internetu dosáhlo závratných rychlostí a tak moc neřešíme, co všechno stránka obsahuje a jak je to velký. Gzip se s tím popere... Věci v CDN se cachují... Všechno to vyřeší HTTP/2... Blbost!
+Žijeme v době, kdy připojení k internetu dosáhlo závratných rychlostí
+a tak moc neřešíme, co všechno stránka obsahuje a jak je to velký. Gzip se s tím popere...
+Věci v CDN se cachují... Všechno to vyřeší HTTP/2... Blbost!
 
-Fonty s našimi nabodeníčkymi a čtyřmi základními řezy mají jednotky megabajtů. Na mobilním připojení nebo na linkách mimo Prahu a šťastnější města to jsou desítky vteřin. Pro vaši návštěvnost možná smrtelné.
+Fonty s našimi nabodeníčkymi a čtyřmi základními řezy mají jednotky megabajtů.
+Na mobilním připojení nebo na linkách mimo Prahu a šťastnější města to jsou desítky vteřin. Pro vaši návštěvnost možná smrtelné.
 
 Proč? Protože browser musí čekat, než se font načte, aby s ním mohl vykreslit texty na stránce. Můžete mít třeba 10 fallback fontů v deklaraci, ale pokud font zavádíte ve stylech pomocí `@font-face`, je známý a browser čeká na jeho natažení.
 

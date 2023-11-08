@@ -3,12 +3,18 @@
  :title "Continuous Delivery",
  :description "Pozvánka na WebExpo.",
  :author "Aleš Roubíček",
- :tags #{"ci" "xp" "webdesign" "cleancode"},
+ :tags #{"ci" "xp" "devops"},
  :published "2010-08-08T08:45:53.350"}
 ---
 
-Vloudil jsem se i na "letošní WebExpo":[http://www.webexpo.cz/] s tématem "Continuous Delivery aneb máme stále co nabídnout":[http://www.webexpo.cz/program/sobota]. Přednáška o této poměrně nové agilní technice bude vycházet především ze starší techniky Continuous Integration, na které tato nová staví.
+Vloudil jsem se i na "letošní WebExpo":[http://www.webexpo.cz/] s tématem
+"Continuous Delivery aneb máme stále co nabídnout":[http://www.webexpo.cz/program/sobota].
+Přednáška o této poměrně nové agilní technice bude vycházet především ze starší techniky
+Continuous Integration, na které tato nová staví.
 
-Témata, která by měla na přednášce zaznít, najdete "v moji prezi":[http://prezi.com/xsgqskjcce96/continuous-delivery], která je je k nahlédnutí již nyní v její rané vývojové fázi. :) Přesně v agilním duchu Continuous Delivery.
+Témata, která by měla na přednášce zaznít, najdete
+"v moji prezi":[http://prezi.com/xsgqskjcce96/continuous-delivery],
+která je je k nahlédnutí již nyní v její rané vývojové fázi. :) Přesně v agilním duchu
+Continuous Delivery.
 
 Samozřejmě jsem otevřen připomínkám a námětům, co by vás - případné účastníky - zajímalo.

@@ -75,7 +75,7 @@ $texy->allowedTags = true;
 $texy->headingModule->top = 3;
 $texy->headingModule->generateID = true;
 $texy->figureModule->class = 'image';
-// Auto fetch images to Claudinary and make them responsive via Client Hints
+// Auto fetch images to Cloudinary and make them responsive via Client Hints
 $texy->imageModule->root = 'https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto,q_auto,w_auto:100:800/https://www.rarous.net/data/obrazky/';
 
 $texy->addHandler('script', 'scriptHandler');
