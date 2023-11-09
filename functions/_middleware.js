@@ -27,12 +27,6 @@ export async function onRequest({ env, next, request }) {
     return new Response(blob.body, { headers });
   }
 
+  // Let Cloudflare decide what to do - most likely 404
   return next();
-
-  // Return custom 404 page
-  const notFound = await env.ASSETS.fetch("404.html");
-  return new Response(notFound.body, {
-    status: 404,
-    headers: notFound.headers,
-  });
 }
