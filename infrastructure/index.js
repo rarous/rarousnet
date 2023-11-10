@@ -124,4 +124,4 @@ export const nameServers = zone.nameServers;
 export const websiteUri = `https://${domain}`;
 export const weblogDomains = weblogPages.domains;
 export const weblogKvNsId = weblogNS.id;
-export const weblogBucket = weblogBucket.name;
+export const weblogBucketName = weblogBucket.name;
