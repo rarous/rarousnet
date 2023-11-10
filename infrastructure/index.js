@@ -98,8 +98,8 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
         weblog: weblogNS.id,
       },
       r2Buckets: {
-        storage: "rarousnet"
-      }
+        storage: weblogBucket.name,
+      },
     },
   },
 });
