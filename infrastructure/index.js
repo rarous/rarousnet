@@ -61,7 +61,7 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
 
 const weblogBucket = new cloudflare.R2Bucket("weblog-bucket", {
   accountId: account.id,
-  name: "rarousnet"
+  name: "rarousnet",
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
@@ -124,3 +124,4 @@ export const nameServers = zone.nameServers;
 export const websiteUri = `https://${domain}`;
 export const weblogDomains = weblogPages.domains;
 export const weblogKvNsId = weblogNS.id;
+export const weblogBucket = weblogBucket.name;
