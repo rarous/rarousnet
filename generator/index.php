@@ -21,6 +21,11 @@ function scriptHandler(Texy\HandlerInvocation $invocation, $command, array $args
       $output = '<iframe loading=lazy width="100%" height="120" class="player mixcloud-player"
         src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=' . $feed . '&' . $params . '"></iframe>';
       return $invocation->texy->protect($output, Texy::CONTENT_MARKUP);
+    case 'speakerdeck':
+      $player = rawurlencode($args[0]);
+      $output = '<iframe loading=lazy width="560" height="420" class="player speakerdeck"
+        src="https://speakerdeck.com/player/' . $player . '" allowfullscreen="true" data-ratio="1.3333333333333333"></iframe>';
+      return $invocation->texy->protect($output, Texy::CONTENT_MARKUP);
     case 'spotify':
       $audioId = htmlspecialchars($args[0]);
       $output = '<iframe loading=lazy class="player spotify-player"
