@@ -10,34 +10,40 @@ function groupByType(webmentions) {
 }
 
 /**
- * @param {Node} itemTemplate
+ * @param {Element} itemTemplate
  * @param {*} item
  * @param {Element} section
+ * @return {Element}
  */
 function webmentionLink(itemTemplate, item, section) {
   const link = itemTemplate.querySelector("a");
   link.href = item.url;
   link.title = item.author.name;
   link.classList.add(section.id);
+  return link;
 }
 
 /**
- * @param {Node} itemTemplate
+ * @param {Element} itemTemplate
  * @param {*} item
+ * @return {Element}
  */
 function webmentionDate(itemTemplate, item) {
-  const date = itemTemplate.querySelector("date");
+  const date = itemTemplate.querySelector("time");
   date.dateTime = item.published;
+  return date;
 }
 
 /**
- * @param {Node} itemTemplate
+ * @param {Element} itemTemplate
  * @param {*} item
+ * @return {Element}
  */
 function webmentionAvatar(itemTemplate, item) {
   const img = itemTemplate.querySelector("img");
   img.alt = item.author.name;
   img.src = item.author.photo;
+  return img;
 }
 
 /**
@@ -48,11 +54,12 @@ function webmentionsCounter(section, items) {
   const counter = section.querySelector("data");
   counter.value = items.length;
   counter.insertAdjacentText("beforeend", ` ${items.length}x`);
+  return counter;
 }
 
 /**
  * @param {Element} section
- * @param {DocumentFragment} template
+ * @param {Element} template
  * @param {Array} items
  */
 function injectItems(section, template, items) {
@@ -63,11 +70,11 @@ function injectItems(section, template, items) {
   const list = section.querySelector(".items");
   const listItems = document.createDocumentFragment();
   for (const item of items) {
-    const itemTemplate = template.cloneNode(true).content;
-    webmentionLink(itemTemplate, item, section);
-    webmentionDate(itemTemplate, item);
-    webmentionAvatar(itemTemplate, item);
-    listItems.appendChild(itemTemplate);
+    const { content } = template.cloneNode(true);
+    webmentionLink(content, item, section);
+    webmentionDate(content, item);
+    webmentionAvatar(content, item);
+    listItems.appendChild(content);
   }
   list.replaceChildren(listItems);
 }
