@@ -7,7 +7,14 @@
  :published "2005-11-01T20:28:32.050"}
 ---
 
-S příchodem listopadu přicházím s novým vzhledem stránek a dalšíma vychytávkama. Protože jsem zprovoznil plugin do Gryphoonu, který generuje galerie fotografií z XML((Extensible Markup Language)) exportu "Picasy":[picasa], musel jsem rozšířit design, aby se do něj vešly fotky o rozměru 640px. Vzal jsem to z gruntu a udělal novej design - tedy jen StyleSheet. Zatim není úplně dopsaný, proto není nasazený na celém webu, ale během několika následujících dnů ho pustim i do blogu. Je to práce za dnešní odpolede, proto potřebuje ještě trochu doladit. Prosím pište mi chyby nebo názory co ještě dodělat ;) Moc díky...
+S příchodem listopadu přicházím s novým vzhledem stránek a dalšíma vychytávkama.
+Protože jsem zprovoznil plugin do Gryphoonu, který generuje galerie fotografií
+z XML((Extensible Markup Language)) exportu "Picasy":[picasa], musel jsem rozšířit
+design, aby se do něj vešly fotky o rozměru 640px. Vzal jsem to z gruntu a udělal
+novej design - tedy jen StyleSheet. Zatim není úplně dopsaný, proto není nasazený
+na celém webu, ale během několika následujících dnů ho pustim i do blogu.
+Je to práce za dnešní odpolede, proto potřebuje ještě trochu doladit.
+Prosím pište mi chyby nebo názory co ještě dodělat ;) Moc díky...
 
 PS: Pravděpodobně to tu zejtra začne blikat, jak budu za pochodu upravovat styl :)
 

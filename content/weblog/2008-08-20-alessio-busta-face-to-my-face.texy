@@ -4,7 +4,8 @@
  :description "Set ke stažení.",
  :author "alessio busta",
  :tags #{"muzika"},
- :published "2008-08-20T23:00:41.543"}
+ :published "2008-08-20T23:00:41.543"
+ :syndication ["https://www.mixcloud.com/alesroubicek/alessio-busta-face-to-my-face/"]}
 ---
 
 /--div .[haudio]
@@ -18,7 +19,8 @@
 8. "TV Rock .[contributor]" feat. "Rudy .[contributor]" - "Been A Long Time .[title]" (Original Mix) .[item]
 9. "Axwell .[contributor]" & "Bob Sinclar .[contributor]" feat. "Ron Carroll .[contributor]" - "W.W.W. .[title]" (Original Mix) .[item]
 
-Ke stažení "dj set .[category]" [download] (MP3 128 kbps; 44,5 MiB)
+"dj set .[category]" "Alessio Busta .[contributor]" - "Face to My Face .[title]"
 \--div
 
-[download]: http://rarousmusic.com/mp3/alessio_busta_-_face_to_my_face-rm.mp3 "Alessio Busta .[contributor]" - "Face To My Face .[title]" .{rel:enclosure}
+
+{{mixcloud-mini: /alesroubicek/alessio-busta-face-to-my-face/}}

@@ -4,16 +4,21 @@
  :description "Jeden z \"plážových mixů\" Alessia Busty ;)",
  :author "alessio busta",
  :tags #{"muzika"},
- :published "2006-10-27T11:58:53.720"}
+ :published "2006-10-27T11:58:53.720"
+ :syndication ["https://www.mixcloud.com/alesroubicek/alessio-busta-axwell-club-mode/"]}
 ---
 
 Původně byl tento mix určený pro Competition na Axwellově foru, ale nestihl jsem uzávěrku. Byla by škoda, aby tenhle mix zapadl :) Vybíral jsem spíš starší clubové věci. Pravidla byla dost striktní (max 30min, pouze Axwellova tvorba, MP3 128 kbps apod.) :) Doufám, že se bude líbit.
 
-1.  Axwell - Feel The Vibe (Extended Vocal Mix)
-2.  Room 5 feat. Oliver Chaetham - Make Luv (Axwell Remix)
-3.  Playmaker - Black Pony (Axwell & Stonebridge Club Mix)
-4.  Mambana - Felicidad (Axwell Vocal Mix)
-5.  Axwell - Lead Guitar (Axwell Club)
-6.  Axwell feat. Charles Salter - I Found You (Classic Edit)
+/--div .[haudio]
+1.  "Axwell .[contributor]" - "Feel The Vibe (Extended Vocal Mix) .[title]" .[item]
+2.  "Room 5 .[contributor]" feat. "Oliver Chaetham .[contributor]" - "Make Luv (Axwell Remix) .[title]" .[item]
+3.  "Playmaker .[contributor]" - "Black Pony (Axwell & Stonebridge Club Mix) .[title]" .[item]
+4.  "Mambana .[contributor]" - "Felicidad (Axwell Vocal Mix) .[title]" .[item]
+5.  "Axwell .[contributor]" - "Lead Guitar (Axwell Club) .[title]" .[item]
+6.  "Axwell .[contributor]" feat. "Charles Salter .[contributor]" - "I Found You (Classic Edit) .[title]" .[item]
 
-Ke stažení <a href="/files/alessio_busta_-_axwell_club-mode.mp3" onClick="javascript:_gat._getTracker("UA-90726-1")._trackPageview('/files/alessio_busta_-_axwell_club-mode.mp3');">Alessio Busta - Axwell Club-mode</a> (MP3 128 kbps, 27,3 MiB)
+"dj set .[category]" "Alessio Busta .[contributor]" - "Axwell Club-mode .[title]"
+\--div
+
+{{mixcloud-mini: /alesroubicek/alessio-busta-axwell-club-mode/}}

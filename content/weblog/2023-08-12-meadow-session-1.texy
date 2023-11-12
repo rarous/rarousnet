@@ -3,7 +3,8 @@
  :description "Takový malý trenink na Hacker Camp. Cílem bylo si trochu víc osahat Zen Deleay.",
  :author "alessio busta",
  :tags #{"muzika"},
- :published "2023-08-12T04:05:53+00:00"}
+ :published "2023-08-12T04:05:53+00:00"
+ :syndication ["https://www.mixcloud.com/alessiobusta/alessio-busta-meadow-session-1/"]}
 ---
 
 Cvičná session. Chtěl jsem otestovat Zen Delay a SoundSwitch Control One na blížící se Hacker Camp.

@@ -4,20 +4,26 @@
  :description "Alessio Busta je zpět!",
  :author "alessio busta",
  :tags #{"muzika"},
- :published "2006-07-02T09:45:54.760"}
+ :published "2006-07-02T09:45:54.760"
+ :syndication ["https://www.mixcloud.com/alesroubicek/alessio-busta-phunky-summer-beatz/"]}
 ---
 
-1.  Paolo Mojo - 1983 (Eric Prydz Remix)
-2.  Pryda - Seadweller
-3.  Phunk Investigation - You Don't Fool Me (Tali Freaks Remix)
-4.  Retarded Funk - Venta
-5.  Steve Angello - Teasing Mr. Charlie (Long Vesrion)
-6.  Lorraine - Transatlantic Flight (Axwell Remix)
-7.  Steve Angello & Sebastian Ingrosso - Click
-8.  Scrape feat. D Empress - Be My Friend (Ian Carey Dub Mix)
-9.  Steve Angello & Laidback Luke - Otherwize Then
-10.  DJ Flex & Sandy Wilhelm - Love For You (Steve Angello & Sebastian Ingrosso Remix)
-11.  Lee Cabrera feat. Mim - I Watch You (Ian Carey Remix)
-12.  Michael Gray - The Weekend (Ian Carey Remix)
+/--div .[haudio]
+1.  "Paolo Mojo .[contributor]" - "1983 (Eric Prydz Remix) .[title]" .[item]
+2.  "Pryda .[contributor]" - "Seadweller .[title]" .[item]
+3.  "Phunk Investigation .[contributor]" - "You Don't Fool Me (Tali Freaks Remix) .[title]" .[item]
+4.  "Retarded Funk .[contributor]" - "Venta .[title]" .[item]
+5.  "Steve Angello .[contributor]" - "Teasing Mr. Charlie (Long Vesrion) .[title]" .[item]
+6.  "Lorraine .[contributor]" - "Transatlantic Flight (Axwell Remix) .[title]" .[item]
+7.  "Steve Angello .[contributor]" & "Sebastian Ingrosso .[contributor]" - "Click .[title]" .[item]
+8.  "Scrape .[contributor]" feat. "D Empress .[contributor]" - "Be My Friend (Ian Carey Dub Mix) .[title]" .[item]
+9.  "Steve Angello .[contributor]" & "Laidback Luke .[contributor]" - "Otherwize Then .[title]" .[item]
+10.  "DJ Flex .[contributor]" & "Sandy Wilhelm .[contributor]" - "Love For You (Steve Angello & Sebastian Ingrosso Remix) .[title]" .[item]
+11.  "Lee Cabrera .[contributor]" feat. "Mim .[contributor]" - "I Watch You (Ian Carey Remix) .[title]" .[item]
+12.  "Michael Gray .[contributor]" - "The Weekend (Ian Carey Remix) .[title]" .[item]
 
-Ke stažení: <a href="/files/alessio_busta_-_phunky_summer_beatz.wma" onClick="javascript:_gat._getTracker("UA-90726-1")._trackPageview('/files/alessio_busta_-_phunky_summer_beatz.wma');">Alessio Busta - Phunky Summer Beatz</a> (WMA 128kbps, 75 MiB)
+
+"dj set .[category]" "Alessio Busta .[contributor]" - "Phunky Summer Beatz .[title]"
+\--div
+
+{{mixcloud-mini: /alesroubicek/alessio-busta-phunky-summer-beatz/}}
