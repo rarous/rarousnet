@@ -4,7 +4,7 @@
   "type": "module",
   "license": "EPL-2.0",
   "dependencies": {
-    "@thi.ng/transducers": "8.8.10",
+    "@thi.ng/transducers": "8.8.11",
     "md5-file": "5.0.0",
     "mime-types": "2.1.35",
     "schema-dts": "1.1.2"
