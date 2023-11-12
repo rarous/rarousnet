@@ -44,7 +44,7 @@ function staticHtml() {
 
 function hashAssets() {
   return pipeline(
-    src(["./dist/**/*.css", "./dist/**/*.js"]),
+    src(["./dist/assets/**/*.css", "./dist/assets/**/*.js"], { base: "dist" }),
     hash(),
     deleteNotHashed(),
     dest("./dist"),
