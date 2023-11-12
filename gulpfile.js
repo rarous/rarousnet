@@ -42,20 +42,9 @@ function staticHtml() {
   return pipeline(src("./website/**/*.html"), dest("./dist/"));
 }
 
-function hashStyles() {
+function hashAssets() {
   return pipeline(
-    src("./dist/**/*.css"),
-    hash(),
-    deleteNotHashed(),
-    dest("./dist"),
-    hash.manifest("assets-manifest.json", { merge: true }),
-    dest("./out"),
-  );
-}
-
-function hashScripts() {
-  return pipeline(
-    src("./dist/**/*.js"),
+    src(["./dist/**/*.css", "./dist/**/*.js"]),
     hash(),
     deleteNotHashed(),
     dest("./dist"),
@@ -96,7 +85,6 @@ function run(done) {
     browser: "Firefox Developer Edition",
   });
 
-  watch("static/**/*.css", css);
   watch("website/assets/**/*.css", css);
   watch("website/assets/**/*.js", js);
   watch("website/**/*.html", staticHtml);
@@ -108,5 +96,5 @@ function run(done) {
 }
 
 export const dev = series(css, js, staticHtml, run);
-const prod = series(css, js, hashStyles, hashScripts, html, size);
+const prod = series(css, js, hashAssets, html, size);
 export default prod;
