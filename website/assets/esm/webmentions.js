@@ -29,9 +29,9 @@ function webmentionLink(itemTemplate, item, section) {
  * @return {Element}
  */
 function webmentionDate(itemTemplate, item) {
-  const date = itemTemplate.querySelector("time");
-  date.dateTime = item.published;
-  return date;
+  const time = itemTemplate.querySelector("time");
+  time.dateTime = item.published ?? item["wm-received"];
+  return time;
 }
 
 /**
