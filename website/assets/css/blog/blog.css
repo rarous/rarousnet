@@ -456,8 +456,9 @@ article footer {
 }
 
 #search {
-  max-width: 52em;
-  min-width: 38em;
+  width: 100%;
+  max-width: clamp(20em, 100vw - 4em, 52em);
+  min-width: clamp(12em, 100vw - 4em, 32em);
 }
 
 #search .pagefind-ui__result-title {
@@ -508,9 +509,14 @@ article footer {
 }
 
 #head h1 {
-  font-size: 3em;
+  font-size: clamp(1.5rem, 13vw, 4rem);
   font-weight: 800;
-  transform: rotate(-8deg);
+  transform: rotate(-8deg) translateY(clamp(0em, -2vw + 0.5em, 0.5em));
+  transition: transform 200ms ease-in-out;
+
+  @media screen and (min-width: 1440px) {
+    transform: rotate(-8deg) translateX(-230px) translateY(15px);
+  }
 }
 
 #head h1 a {
@@ -559,12 +565,6 @@ article footer {
   padding: 1em;
 }
 
-@media screen and (max-width: 480px) {
-  #head h1 {
-    transform: rotate(-8deg) translateY(0.5em);
-  }
-}
-
 @media screen and (min-width: 701px) {
   #top {
     margin: 0 auto;
@@ -586,10 +586,6 @@ article footer {
     padding-left: 4em;
   }
 
-  #head h1 {
-    font-size: 4em;
-  }
-
   #content {
     margin: 4em 0 1em;
     padding: 2em 4em;
@@ -599,14 +595,6 @@ article footer {
 
   #content:not(.category-listing) article + article {
     margin-top: 8em;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  #head h1 {
-    position: relative;
-    top: 45px;
-    left: -225px;
   }
 }
 
