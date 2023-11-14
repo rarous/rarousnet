@@ -4,7 +4,9 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce" "peopleops" "podcast"},
  :published "2023-11-14T11:10:00.000"
- :syndication ["https://twitter.com/izatlouk/status/1724351865918202042"]}
+ :syndication
+ ["https://twitter.com/izatlouk/status/1724351865918202042"
+  "https://twitter.com/alesroubicek/status/1724388917762203682"]}
 ---
 
 "Moje milá Ir":[ir] spolu s "Jirkou Vicherkem":[vichr] rozjeli společný projekt PeopleOps:[https://www.peopleops.cz/],
