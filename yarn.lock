@@ -1223,31 +1223,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/aws@npm:6.8.0":
-  version: 6.8.0
-  resolution: "@pulumi/aws@npm:6.8.0"
+"@pulumi/aws@npm:6.9.0":
+  version: 6.9.0
+  resolution: "@pulumi/aws@npm:6.9.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.0.0"
     builtin-modules: "npm:3.0.0"
     mime: "npm:^2.0.0"
     read-package-tree: "npm:^5.2.1"
     resolve: "npm:^1.7.1"
-  checksum: 43971240254bbddd1028d0f56e837261fa95c541ba236a247585e0350bb14da4e5c47b1c56391eed7b26bb6345266a1bd5f55e8f0538bf5f1abba670612edf8f
+  checksum: b73ff8bb73bdfbe9a63ea12d1e5b348ff06f6eddd4d4d15a3cd8d6832d0f95ca85aae862f4ebe5ad2be99d14cdc686fd5b50f6bae745ae6ba2338b48bc0889cc
   languageName: node
   linkType: hard
 
-"@pulumi/cloudflare@npm:5.14.0":
-  version: 5.14.0
-  resolution: "@pulumi/cloudflare@npm:5.14.0"
+"@pulumi/cloudflare@npm:5.15.0":
+  version: 5.15.0
+  resolution: "@pulumi/cloudflare@npm:5.15.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.0.0"
-  checksum: 259166087111d467248d45d40d723490dcd712cb6152167f1ef06481d8dac7ad27117a6853d2fbbc4aa5d049bf46671ae0d9a2d23e44a994736e2d8c62b6ab37
+  checksum: aa8f5a5e20a39240284f0af3866ddfbe6c4557bae28aa005d06b31d9643901125661d1b93c46a14395e68ab8f29a3f71121a80007aa86210b839eeaa40338d80
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.93.0":
-  version: 3.93.0
-  resolution: "@pulumi/pulumi@npm:3.93.0"
+"@pulumi/pulumi@npm:3.94.1":
+  version: 3.94.1
+  resolution: "@pulumi/pulumi@npm:3.94.1"
   dependencies:
     "@grpc/grpc-js": "npm:1.9.6"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -1274,7 +1274,7 @@ __metadata:
     ts-node: "npm:^7.0.1"
     typescript: "npm:~3.8.3"
     upath: "npm:^1.1.0"
-  checksum: 0dbb9ad486593bf04b7f4aacc72b9ca1c091d4b0a831ba5a3937f17827ce50f4709296f8712315480822d822b658b8f42089b6a337f17a7b2d841f87aeaa8bfe
+  checksum: 6278ad8a3935155bbd12c63bb67bdada587fe2c6ee100248c59eef700e70020bba0995ffcd77c67d931f861b58d96c299941078b91200b6ed42166886196af44
   languageName: node
   linkType: hard
 
@@ -1339,9 +1339,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@pulumi/aws": "npm:6.8.0"
-    "@pulumi/cloudflare": "npm:5.14.0"
-    "@pulumi/pulumi": "npm:3.93.0"
+    "@pulumi/aws": "npm:6.9.0"
+    "@pulumi/cloudflare": "npm:5.15.0"
+    "@pulumi/pulumi": "npm:3.94.1"
     esbuild: "npm:0.19.5"
   languageName: unknown
   linkType: soft
