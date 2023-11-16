@@ -1115,37 +1115,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pagefind/darwin-arm64@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@pagefind/darwin-arm64@npm:1.0.3"
+"@pagefind/darwin-arm64@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@pagefind/darwin-arm64@npm:1.0.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@pagefind/darwin-x64@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@pagefind/darwin-x64@npm:1.0.3"
+"@pagefind/darwin-x64@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@pagefind/darwin-x64@npm:1.0.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@pagefind/linux-arm64@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@pagefind/linux-arm64@npm:1.0.3"
+"@pagefind/linux-arm64@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@pagefind/linux-arm64@npm:1.0.4"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@pagefind/linux-x64@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@pagefind/linux-x64@npm:1.0.3"
+"@pagefind/linux-x64@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@pagefind/linux-x64@npm:1.0.4"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@pagefind/windows-x64@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@pagefind/windows-x64@npm:1.0.3"
+"@pagefind/windows-x64@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@pagefind/windows-x64@npm:1.0.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -9675,15 +9675,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pagefind@npm:1.0.3":
-  version: 1.0.3
-  resolution: "pagefind@npm:1.0.3"
+"pagefind@npm:1.0.4":
+  version: 1.0.4
+  resolution: "pagefind@npm:1.0.4"
   dependencies:
-    "@pagefind/darwin-arm64": "npm:1.0.3"
-    "@pagefind/darwin-x64": "npm:1.0.3"
-    "@pagefind/linux-arm64": "npm:1.0.3"
-    "@pagefind/linux-x64": "npm:1.0.3"
-    "@pagefind/windows-x64": "npm:1.0.3"
+    "@pagefind/darwin-arm64": "npm:1.0.4"
+    "@pagefind/darwin-x64": "npm:1.0.4"
+    "@pagefind/linux-arm64": "npm:1.0.4"
+    "@pagefind/linux-x64": "npm:1.0.4"
+    "@pagefind/windows-x64": "npm:1.0.4"
   dependenciesMeta:
     "@pagefind/darwin-arm64":
       optional: true
@@ -9697,7 +9697,7 @@ __metadata:
       optional: true
   bin:
     pagefind: lib/runner/bin.cjs
-  checksum: 2f57ccba489164f0e99328483b8d5add1dac872662c820586d3db6230c6b20c710d50717aed5250854d8774065f0b7ff75032bd7577e3e29b58674317c3b4926
+  checksum: aff7170792298230d895757ab553ba55f04637ccfd536ad5b573cab861cc764ed74383ea6c846a6917cd816bf2ade7b72aa5330778acc0bac191522b777fef6c
   languageName: node
   linkType: hard
 
@@ -11127,7 +11127,7 @@ __metadata:
     local-web-server: "npm:5.3.0"
     npm-run-all: "npm:4.1.5"
     open-props: "npm:1.6.11"
-    pagefind: "npm:1.0.3"
+    pagefind: "npm:1.0.4"
     postcss: "npm:8.4.31"
     postcss-jit-props: "npm:1.0.14"
     postcss-preset-env: "npm:9.3.0"
