@@ -70,6 +70,7 @@ h2,
 article h1 {
   font: var(--heading-font);
   letter-spacing: -1px;
+  text-wrap: balance;
   margin: 0;
   z-index: 20;
 }
@@ -90,6 +91,7 @@ ul,
 ol,
 dl {
   font: 1em/1.5 var(--content-font);
+  text-wrap: pretty;
   margin: 0.125em 0 1em;
   padding: 0;
 }
