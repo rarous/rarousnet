@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "EPL-2.0",
   "dependencies": {
-    "@pulumi/aws": "6.9.0",
+    "@pulumi/aws": "6.10.0",
     "@pulumi/cloudflare": "5.15.0",
     "@pulumi/pulumi": "3.94.2",
     "esbuild": "0.19.7"
