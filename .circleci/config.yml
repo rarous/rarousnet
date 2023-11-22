@@ -31,7 +31,7 @@ commands:
 jobs: 
   provision: 
     docker: 
-      - image: cimg/node:20.9
+      - image: cimg/node:20.10
     resource_class: arm.large
     steps: 
       - checkout
@@ -149,7 +149,7 @@ jobs:
           path: ./results
   pages_deploy: 
     docker: 
-      - image: cimg/node:20.9
+      - image: cimg/node:20.10
     resource_class: arm.large
     steps: 
       - checkout
