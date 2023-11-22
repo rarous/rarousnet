@@ -1,0 +1,80 @@
+---
+{:title "Jak se vysílalo TopMonks Caffè",
+ :description "TopMonks Caffè je náš pravidelný měsíční meetup, kdy se každé první úterý v měsíci společně potkáme nad kalichem dobrého moku, vodní…"
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "topmonks caffe"},
+ :published "2020-04-14T18:40:10.707Z"
+ :syndication ["https://medium.com/topmonks/jak-se-vysílalo-topmonks-caffè-8c74d8e8f086"]}
+---
+
+TopMonks Caffè je náš "pravidelný měsíční meetup":[https://caffe.topmonks.cz/],
+kdy se každé první úterý v měsíci společně potkáme nad kalichem dobrého moku, vodní dýmkou a u témat,
+která nás zajímají. Tentokrát jsme se nemohli potkat fyzicky a tak jsme udělali setkání on-line.
+A jako téma jsme si vybrali věci spojené s aktuálním děním, tj. karanténou a COVID-19.
+
+[* tm-caffe-online-poster.jpg *]
+
+Dlouhodbě se snažíme spolupracovat se zajímavými startupy, ať už jako partneři
+v rámci "Startup Studia":[https://studio.topmonks.com/], tak jako systémoví integrátoři.
+A tak našimi hosty byli "Ondřej Krátký":[https://medium.com/@OndraKra] z Liftaga:[https://www.liftago.cz/]
+a "Jakub Balada":[https://medium.com/@jakubbalada] z Apify:[https://apify.com/], kteří mají s koroňákem co dočinění.
+Za nás mluvil "Josef Tětek":[https://medium.com/@josef.tetek] o Bitcoinu a
+"duo našich zakladatelů":[https://medium.com/@jirifabian_10319] o historii TopMonks Caffè a budoucnosti podnikání.
+
+Když padlo rozhodnutí, že dubnové Caffè nevynecháme, ale uděláme ho on-line, čekalo mě další rozhodnutí:
+Jak to vlastně udělat? Mohli jsme udělat Zoom Webinar. Mohli jsme udělat Google Meet. Ale já jsem řekl ne…
+
+Tou dobou jsem si už pohrával s "OBS Studiem":[https://obsproject.com/], kvůli streamování
+našich pravidelných house parties s originálním názvem Monksroom:[https://twitter.com/hashtag/MonksroomLive].
+Tak jsem měl už dostatek zkušeností, jak věci nedělat. Zároveň otevřený meetup na výše zmiňovaných službách,
+ze zkušeností jiných, není dobrý nápad. A tak jsem týden před přenosem doiteroval k následujícímu řešení:
+
+[* tm-caffe-live-schema.png *] *** Speakeři sedí na společném videocallu na Meetu.
+Přes OBS Studio se dělá video capture a streamuje se na službu "restream.io":[https://restream.io/],
+která vysílá video na Youtube:[https://www.youtube.com/@TopMonksCZ/],
+Facebook:[https://www.facebook.com/topmonks], Periscope:[https://www.pscp.tv/topmonks/] a IGTV.
+
+Časem se však ukázalo, že Zoom umí dual-monitor mode, kde se zároveň přijímá video
+z kamery speakera a sdílené obrazovky v HD kvalitě najednou a každé zvlášť.
+Takže OBS najednou dělalo capture dvou okýnek a ty jsme mohli dále komponovat do rozložení,
+jaké máme rádi z oblíbených konferencí.
+
+Jedna z pracovních verzí vypadala nějak tak:
+
+[* tm-caffe-live-preview.png *]
+
+Další změnou bylo IGTV, které není snadné streamovat přes Restream. I když to nějak jde,
+tak není kompatibilní s běžným layoutem ostatních služeb. Tak jsme vysílali
+na Twitchi:[https://www.twitch.tv/topmonks], který je také zajímavý.
+
+V úterý, den přenosu, jsme si dali s Pavlem:[https://twitter.com/fromen/] sraz v kanceláři,
+že spolu doladíme podklady a jednotlivé scény už na ostrém setupu. Ačkoliv jsme spolu zvyklí
+fungovat i na dálku, přece jen je focusovaná práce v uzavřeném klidném prostředí mnohem efektivnější.
+
+[* tm-caffe-live-team.jpg *]
+
+Jistota je jistota a tak jsme pro streaming použil náš výkonný VR stroj, s dvěma 4K monitory
+a ethernetovým připojením. Na svém MBP 16" jsem sledoval metriky přenosu, on-line chat agregovaný
+restreamem a moderoval otázky na slido. Na Nexus 7 jsem měl rozběhaný "Touch Portal":[https://www.touch-portal.com/],
+kterým jsme ovládal přepínání scén v OBS. Náš Zoom Room hostoval setkání speakerů
+s moderátorem a streamovacím strojem.
+
+[* tm-caffe-live-director.jpg *]
+
+A jak to celé dopadlo? Sami se podívejte na záznam:
+
+{{youtube: AIpVaDZUY2M}} *** Odkazy na jednotlivé přednášky najdete v popisu "videa na Youtube":[https://www.youtube.com/watch?v=AIpVaDZUY2M].
+
+Za mně dobrý. Během večera nás sledovalo přes 100 lidí současně. Po týdnu máme přes 1250 shlédnutí. A to je, ruku na srdce,
+o něco málo víc než 50 lidí, co se vejde do Loftu. Děkujeme! ❤
+
+Nakonec jsme Zoom Room otevřeli pro všechny monky, společně jsme se zaradovali, popili,
+vedli intelektuální debaty a pokoušeli se o humor za každou cenu. A to až do brzkých ranních hodin…
+
+[* tm-caffe-live-afterparty.jpg *] *** Tradiční afterpary, tentokráte v remote provedení.
+
+Doufám, že se vám TopMonks Caffè Live líbilo, stejně jako nám a těšíme se naviděnou
+"na některém z dalších":[https://www.meetup.com/TopMonks-Caffe/events/] — ať už živě v Loft N8,
+nebo (nejdejbože) na dalším on-line přenosu.
+
+*Článek původně vyšel "na blogu TopMonks":[https://medium.com/topmonks/jak-se-vysílalo-topmonks-caffè-8c74d8e8f086]*
