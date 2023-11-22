@@ -29,10 +29,13 @@ našich pravidelných house parties s originálním názvem Monksroom:[https://t
 Tak jsem měl už dostatek zkušeností, jak věci nedělat. Zároveň otevřený meetup na výše zmiňovaných službách,
 ze zkušeností jiných, není dobrý nápad. A tak jsem týden před přenosem doiteroval k následujícímu řešení:
 
-[* tm-caffe-live-schema.png *] *** Speakeři sedí na společném videocallu na Meetu.
-Přes OBS Studio se dělá video capture a streamuje se na službu "restream.io":[https://restream.io/],
-která vysílá video na Youtube:[https://www.youtube.com/@TopMonksCZ/],
-Facebook:[https://www.facebook.com/topmonks], Periscope:[https://www.pscp.tv/topmonks/] a IGTV.
+<figure>
+[* tm-caffe-live-schema.png *]
+<figcaption>Speakeři sedí na společném videocallu na Meetu. Přes OBS Studio se dělá video capture
+a streamuje se na službu "restream.io":[https://restream.io/], která vysílá video
+na Youtube:[https://www.youtube.com/@TopMonksCZ/], Facebook:[https://www.facebook.com/topmonks],
+Periscope:[https://www.pscp.tv/topmonks/] a IGTV.</figcaption>
+</figure>
 
 Časem se však ukázalo, že Zoom umí dual-monitor mode, kde se zároveň přijímá video
 z kamery speakera a sdílené obrazovky v HD kvalitě najednou a každé zvlášť.
@@ -63,7 +66,11 @@ s moderátorem a streamovacím strojem.
 
 A jak to celé dopadlo? Sami se podívejte na záznam:
 
-{{youtube: AIpVaDZUY2M}} *** Odkazy na jednotlivé přednášky najdete v popisu "videa na Youtube":[https://www.youtube.com/watch?v=AIpVaDZUY2M].
+<figure>
+{{youtube: AIpVaDZUY2M}}
+
+<figcaption>Odkazy na jednotlivé přednášky najdete v popisu "videa na Youtube":[https://www.youtube.com/watch?v=AIpVaDZUY2M].</figcaption>
+</figure>
 
 Za mně dobrý. Během večera nás sledovalo přes 100 lidí současně. Po týdnu máme přes 1250 shlédnutí. A to je, ruku na srdce,
 o něco málo víc než 50 lidí, co se vejde do Loftu. Děkujeme! ❤
@@ -71,7 +78,11 @@ o něco málo víc než 50 lidí, co se vejde do Loftu. Děkujeme! ❤
 Nakonec jsme Zoom Room otevřeli pro všechny monky, společně jsme se zaradovali, popili,
 vedli intelektuální debaty a pokoušeli se o humor za každou cenu. A to až do brzkých ranních hodin…
 
-[* tm-caffe-live-afterparty.jpg *] *** Tradiční afterpary, tentokráte v remote provedení.
+<figure>
+[* tm-caffe-live-afterparty.jpg *]
+
+<figcaption>Tradiční afterpary, tentokráte v remote provedení.</figcaption>
+</figure>
 
 Doufám, že se vám TopMonks Caffè Live líbilo, stejně jako nám a těšíme se naviděnou
 "na některém z dalších":[https://www.meetup.com/TopMonks-Caffe/events/] — ať už živě v Loft N8,
