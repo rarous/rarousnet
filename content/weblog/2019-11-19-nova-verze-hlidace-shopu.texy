@@ -1,0 +1,35 @@
+---
+{:title "Nová verze Hlídače shopů",
+ :description "Dnes v noci nám schválili novou verzi (1.1.0) rozšíření do Chrome i Firefoxu, čekáme na Operu a makáme na releasu pro Safari. Přinášíme několik kosmetických změn a jednu zásadní novinku."
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "hlidac shopu"},
+ :published "2019-11-19T06:35:24.209Z"
+ :syndication ["https://medium.com/topmonks/nov%C3%A1-verze-hl%C3%ADda%C4%8De-shop%C5%AF-593eff50bf29"]}
+---
+
+Dnes v noci nám schválili novou verzi (1.1.0) rozšíření do
+Chrome:[https://chrome.google.com/webstore/detail/hl%C3%ADda%C4%8D-shop%C5%AF/plmlonggbfebcjelncogcnclagkmkikk] i
+Firefoxu:[https://addons.mozilla.org/en-US/firefox/addon/hl%C3%ADda%C4%8D-shop%C5%AF/],
+čekáme na Operu a makáme na releasu pro Safari. Přinášíme několik kosmetických změn a jednu zásadní novinku.
+Tou je zobrazování **Reálné slevy** přímo na stránce detailu. Můžete si tak porovnat,
+jak je na tom sleva kterou udává obchodník vůči tomu, co počítáme my.
+
+[* hlidacshopu-widget.png .(ukázka hlídače shopů s vyhodnocením reálné slevy) *]
+
+Reálnou slevu počítáme jako aktuální cenu oproti 90 dennímu maximu, za co se to skutečně prodávalo.
+Přesto, mohl obchodník před akcí zboží zdražit a tady naše metodika zatím selhává.
+Každopádně si i tak myslím, že tato informace je užitečnou indikativní metrikou a usnadňuje čtení z grafu.
+
+To, co máme v plánu, je snížit význam grafu úplně. Protože — ruku na srdce — kdo umí v grafech číst
+a chápe, co ukazují? Chce to trénink a rozumět datům za tím, což nemůžeme po našich uživatelích chtít.
+Připravujeme proto několik iterativních kroků, jak výsledky přiblížit běžným uživatelům a graf udělat
+opt-in pro profíky. Pokud máte zájem se zapojit do testování a poskytnou cennou zpětnou vazbu,
+určitě se nám ozvěte do komentářů.
+
+Úpravy výsledků budeme nejprve zkoušet na našem webu, kde můžeme změny rychle iterovat
+a získávat zpětnou vazbu z analytiky. Ta už ukázala, kde nechal tesař díry…
+Malinko jsme změnili rozložení a textaci vstupního formuláře a už teď je vidět,
+že ho chápe a dokáže použít více lidí než před tím. Na detailech záleží.
+A release je teprve začátkem práce.
+
+*Článek původně vyšel "na blogu TopMonks":[https://medium.com/topmonks/nov%C3%A1-verze-hl%C3%ADda%C4%8De-shop%C5%AF-593eff50bf29]*
