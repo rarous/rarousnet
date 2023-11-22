@@ -444,10 +444,8 @@ article footer {
 }
 
 .category-listing article time {
-  position: absolute;
-  top: 0;
-  left: -5.5em;
   font-size: 1em;
+  width: 3rem;
 }
 
 .webmentions ul {
