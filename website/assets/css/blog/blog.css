@@ -428,9 +428,15 @@ article footer {
 }
 
 .category-listing article {
+  --offset: 5rem;
   position: relative;
-  left: 11em;
+  left: var(--offset);
   padding-bottom: 1.5em;
+  width: calc(100% - var(--offset));
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: flex-end;
+  gap: 2rem;
 }
 
 .category-listing article h1 {
