@@ -31,13 +31,19 @@ v článku "Generování Twitter Card obrázků":[/weblog/2019/01/28/generovani-
 K naší implementaci jsme využili "platformu Apify":[https://apify.com/], která je na automatizaci
 takových věcí stvořená.
 
-[* hlidacshopu-twittercard.jpg *] *** Ukázka sdílení na Twitteru
+<figure>
+[* hlidacshopu-twittercard.jpg *]
+<figcaption>Ukázka sdílení na Twitteru</figcaption>
+</figure>
 
 Z obrázku je patrné, že widget vytržený z kontextu stránky postrádá zásadní informace,
 takže jsme s Pavlem:[https://twitter.com/fromen] přidali ještě zobrazování obrázku produktu,
 ceny a udávané slevy, pokud se liší od té naší. Zároveň jsme trochu poštelovali font a přidali zelenou slevu.
 
-[* hlidacshopu-share-widget.jpg *] *** Aktuální podoba obrázku pro sdílení
+<figure>
+[* hlidacshopu-share-widget.jpg *]
+<figcaption>Aktuální podoba obrázku pro sdílení</figcaption>
+</figure>
 
 ## Sdílení z aplikace
 
@@ -46,15 +52,24 @@ můžete snadno sdílet pomocí nového tlačítka v nástrojové liště přím
 Twitter nebo třeba Messenger. (Podporujeme ještě i Slack, pokud vám chybí nějaká jiná aplikace,
 "dejte nám vědět":[https://github.com/topmonks/hlidac-shopu/issues] a my se ji pokusíme doplnit).
 
-[* hlidacshopu-pwa-header.png *] *** Hlavní lišta s tlačítkem pro nativní sdílení
+<figure>
+[* hlidacshopu-pwa-header.png *]
+<figcaption>Hlavní lišta s tlačítkem pro nativní sdílení</figcaption>
+</figure>
 
 Po ťuknutí na něj se vám otevře systémová nabídka pro sdílení:
 
-[* hlidacshopu-share.png *] *** Nabídka sdílení na telefonech se systémem Android One
+<figure>
+[* hlidacshopu-share.png *]
+<figcaption>Nabídka sdílení na telefonech se systémem Android One</figcaption>
+</figure>
 
 Když si vyberete třeba zmiňovaný Messenger, náhled ve zprávě pak bude vypadat nějak tak:
 
-[* hlidacshopu-messenger-share.png *] *** Ukázka sdílení z Hlídače Shopů na Messenger
+<figure>
+[* hlidacshopu-messenger-share.png *]
+<figcaption>Ukázka sdílení z Hlídače Shopů na Messenger</figcaption>
+</figure>
 
 Výsledek se samozřejmě může lišit v závislosti na zařízení a velikosti jeho displaye.
 Ale tam toho už moc neovlivníme.

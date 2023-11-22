@@ -117,6 +117,17 @@ aside p {
   --content-font: var(--citation-font);
 }
 
+figure {
+  margin: 1rem 0 1.5rem;
+
+  figcaption {
+    max-width: 80%;
+    margin: 1em auto 0;
+    text-align: center;
+    text-wrap: balance;
+  }
+}
+
 img.right {
   float: right;
   margin: 0.4em;
