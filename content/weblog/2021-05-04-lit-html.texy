@@ -2,7 +2,7 @@
 {:title "Jednoduše a rychle: lit-html",
 :description "Dnešní stav tvorby webových frontendů není jednoduchý a začít novou věc vyžaduje spoustu kroků. Nemusí to tak být.",
 :author "Aleš Roubíček",
-:tags #{"moje práce" "ecmascript" "lit" "lit-html" "hlidacshopu"},
+:tags #{"moje práce" "ecmascript" "lit" "lit-html" "hlidac shopu"},
 :published "2021-05-04T06:10:00.000"
 :syndication ["https://twitter.com/alesroubicek/status/1389447355259363335"]}
 ---
