@@ -1,0 +1,58 @@
+---
+{:title "Představujeme Hlídačshopů.cz",
+ :description "Možná jste to zaznamenali, možná ne, ale naši milí kolegové již před nějakým časem připravili šikovné rozšíření do prohlížeče, které vám ukáže vývoj prodejní a uváděné původní ceny na vybraných…"
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "hlidac shopu"},
+ :published "2019-11-05T15:58:07.335Z"
+ :syndication ["https://medium.com/topmonks/p%C5%99edstavujeme-hl%C3%ADda%C4%8Dshop%C5%AF-cz-1e3e766afd1a"]}
+---
+
+Možná jste to zaznamenali, možná ne, ale naši milí kolegové již před nějakým časem připravili
+"šikovné rozšíření do prohlížeče":[https://chrome.google.com/webstore/detail/hl%C3%ADda%C4%8D-shop%C5%AF/plmlonggbfebcjelncogcnclagkmkikk],
+které vám ukáže vývoj prodejní a uváděné původní ceny na vybraných e-shopech.
+Tato data již více než dva roky sbírají naši kolegové z Apify a dělali na základě nich
+několik:[https://blog.apify.com/black-friday-po-%C4%8Desku-kouzla-se-slevami-c7c0d2e7eeaa]
+analýz:[https://blog.apify.com/black-friday-po%C4%8Desku-kouzla-se-slevami-po-roce-cf48de109ba],
+ze kterých milé e-shopy nevyšly bez ztráty kytičky.
+
+První verze rozšíření se zaměřila na trojlístek největších e-shopů Alzu, CZC a Mall.
+Lidé si ale žádali víc! Protože nákupní sezóna už je tu a kvapem se blíží svátek všech konzumentů
+— Black Friday, tak jsme si s Apify:[https://apify.com/] a Keboolou:[https://www.keboola.com/] řekli,
+že na tom trochu zamakáme. Pustili jsme se do práce a začali sbírat data z dalších 10 oblíbených e-shopů.
+A kvůli tomu jsme museli změnit architekturu celého řešení, které původně vzniklo na hackatonu…
+
+[* hlidacshopu-logo.png .(logo Hlídačshopů.cz) *]
+
+Rozšíření doznalo několik kosmetických změn, jako je nové logo nebo podpora Dark Mode,
+a samozřejmě jsme doplnili podporu pro nové e-shopy. S chystaným rozšířením portfolia
+podporovaných prohlížečů taky zvnikla pořeba vytvořit webík, kde budou zveřejněné
+"Zásady pro ochranu osobních údajů":[https://www.hlidacshopu.cz/osobni-udaje/]
+— je to jednoduché: *žádná vaše data nesbíráme*.
+Ale nezůstali jsme jen u toho.
+
+Na webu www.hlidacshopu.cz:[https://www.hlidacshopu.cz/] najdete nejen návod,
+jak si rozšíření přidat do prohlížeče, ale i microaplikaci, která dělá to samé,
+co rozšíření — bez nutnosti si cokoliv instalovat! Hlidače shopů si tak může vyzkoušet opravdu každý.
+Stačí si zkopírovat adresu detailu produktové stránky a vložit ji do jednoduchého formuláře.
+
+[* hlidachopu-form.png .(ukázka formuláře pro zadání URL produktu) *]
+
+Po chvilce se vám objeví buďto výsledek, nebo taky omluva, za to, že data ještě nemáme.
+Snažíme se mít toho co nejvíc, ale ne nutně vše naši pavouci už prolezli.
+Dejte nám chvilku a prolezou.
+
+[* hlidacshopu-result.png .(ukázka výsledku historie ceny pro zadaný produkt) *]
+
+Na webu taky najdete "mediální servis k tématu Black Friday":[https://www.hlidacshopu.cz/media/]
+a naši zpověď, "proč to děláme":[https://www.hlidacshopu.cz/proc-to-delame/].
+To je pro zatím vše, ale ještě tady nekončíme. Jak už jsem zmínil výše, chystáme rozšíření nasadit
+do všech běžně používaných browserů. A pro mobily, kde rozšíření většinou nefungují,
+připravujeme PWA, která vám umožní ověřovat vývoj cen a reálnost uváděných slev i pohodlně v mobilu,
+pomocí systémového sdílení z webu a doufejme, že i z aplikací.
+
+Osobně mám z toho velkou radost, protože vidím, že tahle aktivita funguje.
+Chování e-shopů se za poslední roky hodně zlepšilo, nebo tomu alespoň nasvědčují data.
+Čím větší povědomí o "Hlídači Shopů":[https://www.hlidacshopu.cz/] a fungování slev bude mezi lidmi,
+tím menší šance, že se podvodné praktiky budou opakovat. A to má smyls.
+
+*Článek původně vyšel "na blogu TopMonks":[https://medium.com/topmonks/p%C5%99edstavujeme-hl%C3%ADda%C4%8Dshop%C5%AF-cz-1e3e766afd1a]*
