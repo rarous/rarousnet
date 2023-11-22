@@ -1,0 +1,88 @@
+---
+{:title "Hlídač Shopů pro sociální sítě",
+ :description "Hlídač Shopů frčí zejména na Facebooku, ze kterého máme netriviální podíl návštěvnosti. Lidé sdílí odkazy na námi vypočítanou slevu a…"
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "hlidac shopu"},
+ :published "2020-12-14T08:35:28.837Z"
+ :syndication ["https://medium.com/topmonks/hl%C3%ADda%C4%8D-shop%C5%AF-pro-soci%C3%A1ln%C3%AD-s%C3%ADt%C4%9B-5d613c65a4de"]}
+---
+
+Hlídač Shopů frčí zejména na Facebooku, ze kterého máme netriviální podíl návštěvnosti.
+Lidé sdílí odkazy na námi vypočítanou slevu a vývoj ceny. Někdy i přímo pod promovaným
+zbožím na stránkách e-shopů. Což je pěkná kulišárna.
+
+A my jsme se jim to rozhodli zpříjemnit. Protože, jak říkají anglicky hovořící lidé:
+
+> Sharing is caring
+
+## Metadata
+
+Obohatili jsme detail produktu o potřebná metadata, aby se na sociálních sítích zobrazoval
+tzv. bohatý náhled. O tom jak na to, jsem psal, už před více jak 10 lety,
+na zdrojáku v článku "OpenGraph a jeho nasazení":[https://www.zdrojak.cz/clanky/open-graph-a-jeho-nasazeni/].
+V našem případě to ale nebylo tak jednoduché, protože Hlídač Shopů je Serverless aplikace.
+Jak jsem se tím pral, se teprve chystám napsat.
+
+## Obrázek
+
+Pro krásný bohatý náhled je potřeba obrázek, který zaujme. Nejprve jsme připravili de facto screenshot widgetu,
+který vkládáme extenzí do stránek e-shopů. Jak si takový screenshot připravit jsem popsal
+v článku "Generování Twitter Card obrázků":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html].
+K naší implementaci jsme využili "platformu Apify":[https://apify.com/], která je na automatizaci
+takových věcí stvořená.
+
+[* hlidacshopu-twittercard.jpg *] *** Ukázka sdílení na Twitteru
+
+Z obrázku je patrné, že widget vytržený z kontextu stránky postrádá zásadní informace,
+takže jsme s Pavlem:[https://twitter.com/fromen] přidali ještě zobrazování obrázku produktu,
+ceny a udávané slevy, pokud se liší od té naší. Zároveň jsme trochu poštelovali font a přidali zelenou slevu.
+
+[* hlidacshopu-share-widget.jpg *] *** Aktuální podoba obrázku pro sdílení
+
+## Sdílení z aplikace
+
+Pokud používáte "Hlídače Shopů v telefonu":[https://www.hlidacshopu.cz/app/]
+můžete snadno sdílet pomocí nového tlačítka v nástrojové liště přímo do aplikací jako je Facebook,
+Twitter nebo třeba Messenger. (Podporujeme ještě i Slack, pokud vám chybí nějaká jiná aplikace,
+"dejte nám vědět":[https://github.com/topmonks/hlidac-shopu/issues] a my se ji pokusíme doplnit).
+
+[* hlidacshopu-pwa-header.png *] *** Hlavní lišta s tlačítkem pro nativní sdílení
+
+Po ťuknutí na něj se vám otevře systémová nabídka pro sdílení:
+
+[* hlidacshopu-share.png *] *** Nabídka sdílení na telefonech se systémem Android One
+
+Když si vyberete třeba zmiňovaný Messenger, náhled ve zprávě pak bude vypadat nějak tak:
+
+[* hlidacshopu-messenger-share.png *] *** Ukázka sdílení z Hlídače Shopů na Messenger
+
+Výsledek se samozřejmě může lišit v závislosti na zařízení a velikosti jeho displaye.
+Ale tam toho už moc neovlivníme.
+
+## Sdílení z webu
+
+Pokud si prohlížíte detail sdílení na našem webu, přidali jsme pro vás tlačítka
+na snadné sdílení pomocí Twitteru nebo Facebooku. Najdete je hned pod grafem:
+
+[* hlidacshopu-social-share.jpg *]
+
+Ačkoliv tato tlačítka vypadají, jako ta, co nám obě služby poskytují
+s přibaleným špehováním, vězte, že jde o obyčejné odkazy s 0 řádky špehovacího JavaScriptu.
+Dbáme na vaše soukromí.
+
+Samozřejmě by mělo fungovat i staré dobré zkopírování odkazu na detail
+výsledku a vložení do příspěvku, jak jste možná zvyklí jinde.
+
+## Sdílení z extenze
+
+Do extenze jsem přímo odkazy na sdílení nepřidávali, ale vězte, že logo Hlídačshopů.cz
+je aktivní odkaz na detail produktu na našem webu. Stačí na něj kliknout nebo ho rovnou zkopírovat a sdílet.
+
+## Závěrem
+
+Věřím, že tato funkcionalita je takovým příjemným zpestřením. Každopádně se snažíme
+Hlídače Shopů přibližovat lidem. Od původní spartanské extenze jsme myslím ušli velký kus cesty.
+Pokud máte nápady jak Hlídače Shopů zpřehlednít nebo připomínky co se vám nelíbí,
+"zapojte se do diskuse":[https://github.com/topmonks/hlidac-shopu/issues/136].
+
+*Článek původně vyšel "na blogu TopMonks":[https://medium.com/topmonks/hl%C3%ADda%C4%8D-shop%C5%AF-pro-soci%C3%A1ln%C3%AD-s%C3%ADt%C4%9B-5d613c65a4de]*
