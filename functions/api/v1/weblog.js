@@ -24,11 +24,23 @@ export async function onRequestGet(context) {
     const target = url.searchParams.get("url");
     const detail = await getDetail(env.weblog, target);
     detail.webmentions = detail.webmentions.filter(
-      (x) => x.author.url !== "https://twitter.com/alesroubicek",
+      (x) => x.author.url !== "https://twitter.com/alesroubicek"
     );
     return new Response(JSON.stringify(detail));
   } catch (err) {
     console.log(err);
     return new Response("Internal error", { status: 500 });
   }
+}
+
+/**
+ * @param {EventContext<Env>} context
+ */
+export async function onRequestPost(context) {
+  const { env, request } = context;
+  const url = new URL(request.url);
+  const target = url.searchParams.get("url");
+  const data = request.postDataJSON();
+  console.log({ url, data });
+  return new Response("OK");
 }
