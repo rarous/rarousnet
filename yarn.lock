@@ -59,10 +59,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:4.20231025.0":
-  version: 4.20231025.0
-  resolution: "@cloudflare/workers-types@npm:4.20231025.0"
-  checksum: b5f124948546f71a1dbe39b857a05f9c03b33676d4c022247a9111ef082a0f6bd040267d4dcc8aa6f0b564798e14614c13d75dc35b05f80a6d3f5f9552c33559
+"@cloudflare/workers-types@npm:4.20231121.0":
+  version: 4.20231121.0
+  resolution: "@cloudflare/workers-types@npm:4.20231121.0"
+  checksum: 096729103bc02fed641a636bad501b8dd9b4f76ad25bd50b5ea32a2c4aa7d90f55c626a6abf86c20e13fe1398690667bd7428d07da972760c8d207dd8d16dcf5
   languageName: node
   linkType: hard
 
@@ -11109,7 +11109,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rarousnet@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20231025.0"
+    "@cloudflare/workers-types": "npm:4.20231121.0"
     "@types/browser-sync": "npm:2.27.5"
     ava: "npm:5.3.1"
     broken-link-checker-local: "npm:0.2.1"
