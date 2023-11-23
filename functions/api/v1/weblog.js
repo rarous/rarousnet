@@ -40,7 +40,7 @@ export async function onRequestPost(context) {
   const { env, request } = context;
   const url = new URL(request.url);
   const target = url.searchParams.get("url");
-  const data = request.postDataJSON();
-  console.log({ url, data });
+  const data = await request.json();
+  console.log({ target, data });
   return new Response("OK");
 }
