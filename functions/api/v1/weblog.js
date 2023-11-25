@@ -40,7 +40,10 @@ export async function onRequestPost(context) {
   const { env, request } = context;
   const url = new URL(request.url);
   const target = url.searchParams.get("url");
-  const data = await request.json();
-  console.log({ target, data });
+  const comments = await request.json();
+
+  const data = await env.webmentions.get(target, "json");
+  const upsert = Object.assign({}, data, { comments });
+  await env.webmentions.put(target, JSON.stringify(upsert));
   return new Response("OK");
 }
