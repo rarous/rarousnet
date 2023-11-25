@@ -42,8 +42,8 @@ export async function onRequestPost(context) {
   const target = url.searchParams.get("url");
   const comments = await request.json();
 
-  const data = await env.webmentions.get(target, "json");
+  const data = await env.weblog.get(target, "json");
   const upsert = Object.assign({}, data, { comments });
-  await env.webmentions.put(target, JSON.stringify(upsert));
+  await env.weblog.put(target, JSON.stringify(upsert));
   return new Response("OK");
 }
