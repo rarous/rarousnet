@@ -32,18 +32,3 @@ export async function onRequestGet(context) {
     return new Response("Internal error", { status: 500 });
   }
 }
-
-/**
- * @param {EventContext<Env>} context
- */
-export async function onRequestPost(context) {
-  const { env, request } = context;
-  const url = new URL(request.url);
-  const target = url.searchParams.get("url");
-  const comments = await request.json();
-
-  const data = await env.weblog.get(target, "json");
-  const upsert = Object.assign({}, data, { comments });
-  await env.weblog.put(target, JSON.stringify(upsert));
-  return new Response("OK");
-}
