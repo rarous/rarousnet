@@ -1,13 +1,11 @@
 import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 
 async function main({ token }) {
-  const {
-    default: { data },
-  } = await import("./data/pagefind-likes.json", {
-    with: { type: "json" },
+  const { default: data } = await import("./data/twitter-likes.json", {
+    with: { type: "json" }
   });
-  const target = "https://www.rarous.net/weblog/2023/10/23/pagefind.html";
-  const source = "https://twitter.com/alesroubicek/status/1716417697607455226";
+  const target = "https://www.rarous.net/weblog/2023/11/14/peopleops-4.html";
+  const source = "https://twitter.com/alesroubicek/status/1724388917762203682";
   const { entries } = data.favoriters_timeline.timeline.instructions[0];
   const users = entries
     .filter((x) => x.content.entryType === "TimelineTimelineItem")
@@ -25,15 +23,15 @@ async function main({ token }) {
           author: {
             name: user.name,
             photo: user.profile_image_url_https,
-            url: `https://twitter.com/${user.screen_name}`,
+            url: `https://twitter.com/${user.screen_name}`
           },
           url: `${source}#favorited-by-${rest_id}`,
           published: null,
           name: `like of ${source}`,
           "like-of": source,
-          "wm-property": "like-of",
-        },
-      }),
+          "wm-property": "like-of"
+        }
+      })
     });
     console.log(resp);
   }
