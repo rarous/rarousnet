@@ -9,8 +9,8 @@ export async function onRequest({ env, next, request }) {
   const url = new URL(request.url);
   // Pass thru API calls and Webhooks
   if (
-    url.pathname.startsWith("/api/") ||
-    url.pathname.startsWith("/webhooks/")
+    url.pathname.startsWith("/api/")
+    || url.pathname.startsWith("/webhooks/")
   ) {
     return next();
   }

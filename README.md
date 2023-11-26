@@ -8,7 +8,6 @@
 
 Sources for https://www.rarous.net/ website.
 
-
 ## Site generator
 
 Site generator is Clojure program that reads files in `content/weblog` and related templates in `generator/templates/weblog` and generates

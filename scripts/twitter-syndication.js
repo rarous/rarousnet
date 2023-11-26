@@ -1,14 +1,7 @@
 const blogMentions = tweets
-  .filter(({ tweet }) =>
-    tweet.entities.urls.some(({ display_url }) =>
-      display_url.startsWith("rarous.net/weblog/")
-    )
-  )
+  .filter(({ tweet }) => tweet.entities.urls.some(({ display_url }) => display_url.startsWith("rarous.net/weblog/")))
   .map(({ tweet }) => ({
-    url:
-      tweet.entities.urls.find(({ display_url }) =>
-        display_url.startsWith("rarous.net/weblog/")
-      ).expanded_url,
+    url: tweet.entities.urls.find(({ display_url }) => display_url.startsWith("rarous.net/weblog/")).expanded_url,
     tweet: `https://twitter.com/alesroubicek/status/${tweet.id}`,
   }));
 const syndications = new Map();

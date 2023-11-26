@@ -1,15 +1,12 @@
 {
-  "typescript": {
-  },
-  "json": {
-  },
-  "markdown": {
-  },
-  "dockerfile": {
-  },
+  "typescript": {},
+  "json": {},
+  "markdown": {},
+  "dockerfile": {},
   "excludes": [
     "**/node_modules",
-    "**/*-lock.json"
+    "**/*-lock.json",
+    "website/assets/js/prism.js"
   ],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.88.3.wasm",

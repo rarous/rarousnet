@@ -1,5 +1,5 @@
-import fs from "node:fs/promises";
 import parse from "csv-parse/sync";
+import fs from "node:fs/promises";
 
 /** @typedef { import("schema-dts").Book } Book */
 /** @typedef { import("schema-dts").Review } Review */
@@ -7,7 +7,6 @@ import parse from "csv-parse/sync";
 /** @typedef { import("schema-dts").WithContext } WithContext */
 
 /**
- *
  * @param item
  * @returns {Review | undefined}
  */
@@ -29,7 +28,6 @@ function review(item) {
 }
 
 /**
- *
  * @param {String} name
  * @returns {Person | undefined}
  */
@@ -38,9 +36,11 @@ function person(name) {
   return {
     "@type": "Person",
     name: name.trim(),
-    url: `https://www.goodreads.com/book/author/${name
-      .trim()
-      .replace(/\s/g, "+")}`,
+    url: `https://www.goodreads.com/book/author/${
+      name
+        .trim()
+        .replace(/\s/g, "+")
+    }`,
   };
 }
 
@@ -52,7 +52,7 @@ function author(item) {
 
 function keywords(item) {
   const input = [item["Exclusive Shelf"]].concat(
-    item["Bookshelves"].split(", ")
+    item["Bookshelves"].split(", "),
   );
   return Array.from(new Set(input)).join();
 }
@@ -69,14 +69,12 @@ function bookFormat(item) {
 }
 
 /**
- *
  * @param item
  * @returns {WithContext<Book>}
  */
 function book(item) {
-  const isbn =
-    (item["ISBN"] ?? item["ISBN13"]).replace("=", "").replace(/"/g, "") ||
-    undefined;
+  const isbn = (item["ISBN"] ?? item["ISBN13"]).replace("=", "").replace(/"/g, "")
+    || undefined;
   return {
     "@context": "https://schema.org",
     "@type": "Book",
@@ -89,9 +87,9 @@ function book(item) {
     author: author(item),
     publisher: item["Publisher"]
       ? {
-          "@type": "Organization",
-          name: item["Publisher"],
-        }
+        "@type": "Organization",
+        name: item["Publisher"],
+      }
       : undefined,
     review: review(item),
     keywords: keywords(item),
@@ -104,12 +102,12 @@ function book(item) {
 
 async function main() {
   const goodReadsExport = await fs.readFile(
-    "./static/data/goodreads_library_export.csv"
+    "./static/data/goodreads_library_export.csv",
   );
   const data = parse(goodReadsExport, { columns: true });
   await fs.writeFile(
     "./static/data/books.jsonld",
-    JSON.stringify(data.map(book), null, 2)
+    JSON.stringify(data.map(book), null, 2),
   );
 }
 

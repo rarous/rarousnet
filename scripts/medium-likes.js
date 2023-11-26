@@ -2,9 +2,9 @@ import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 
 async function main({ token }) {
   const {
-    default: [{ data }]
+    default: [{ data }],
   } = await import("./data/medium-likes.json", {
-    with: { type: "json" }
+    with: { type: "json" },
   });
   const target = "https://www.rarous.net/weblog/2020/12/14/hlidace-shopu-pro-socialni-site.html";
   const source = data.post.mediumUrl;
@@ -25,15 +25,15 @@ async function main({ token }) {
             photo: `https://miro.medium.com/v2/resize:fill:80:80/${user.imageId}`,
             url: user.hasSubdomain
               ? `https://${user.username}.medium.com/`
-              : `https://medium.com/@${user.username}`
+              : `https://medium.com/@${user.username}`,
           },
           url: `${source}#liked-by-${user.id}`,
           published: "2019-11-08T03:38:09+00:00",
           name: `like of ${source}`,
           "like-of": source,
-          "wm-property": "like-of"
-        }
-      })
+          "wm-property": "like-of",
+        },
+      }),
     });
     console.log(resp);
   }

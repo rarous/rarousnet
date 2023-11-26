@@ -1,6 +1,6 @@
-import pulumi from "@pulumi/pulumi";
 import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
+import pulumi from "@pulumi/pulumi";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
@@ -54,8 +54,7 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
   zoneId: zone.id,
   name: "@",
   type: "TXT",
-  value:
-    "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
+  value: "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
   ttl: 3600,
 });
 

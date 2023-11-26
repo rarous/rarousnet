@@ -7,9 +7,8 @@
  * @param {string} url
  */
 async function getDetail(weblog, url) {
-  const payload =
-    (await weblog.get(url, "json")) ??
-    (await weblog.get(url + ".html", "json"));
+  const payload = (await weblog.get(url, "json"))
+    ?? (await weblog.get(url + ".html", "json"));
   if (payload) return payload;
   return { webmentions: [] };
 }
@@ -24,7 +23,7 @@ export async function onRequestGet(context) {
     const target = url.searchParams.get("url");
     const detail = await getDetail(env.weblog, target);
     detail.webmentions = detail.webmentions.filter(
-      (x) => x.author.url !== "https://twitter.com/alesroubicek"
+      (x) => x.author.url !== "https://twitter.com/alesroubicek",
     );
     return new Response(JSON.stringify(detail));
   } catch (err) {

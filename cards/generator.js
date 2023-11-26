@@ -1,7 +1,7 @@
+import { partition } from "@thi.ng/transducers";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "playwright";
-import { partition } from "@thi.ng/transducers";
 import data from "./data.json" assert { type: "json" };
 
 const POOL_SIZE = parseInt(process.env.POOL_SIZE ?? 8, 10);

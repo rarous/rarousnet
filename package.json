@@ -43,6 +43,7 @@
     "build:assets": "gulp -p",
     "build:index": "pagefind --site ./dist",
     "build": "run-s 'build:*'",
+    "fmt": "dprint fmt \"**/*.{md,mjs,js,json}\"",
     "serve": "ws --compress --http2 -d ./dist",
     "start": "gulp dev",
     "sync": "wrangler pages deploy ./dist --project=rarousnet --environment=production",

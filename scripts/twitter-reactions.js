@@ -17,9 +17,7 @@ async function main({ token }) {
     blogMentions.set(url, values);
   }
 
-  const input = Array.from(blogMentions).sort((a, b) =>
-    a[0].localeCompare(b[0])
-  );
+  const input = Array.from(blogMentions).sort((a, b) => a[0].localeCompare(b[0]));
   const output = {};
   for (
     const [url, webmentions] of input
