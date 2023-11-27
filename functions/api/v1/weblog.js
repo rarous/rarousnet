@@ -25,7 +25,7 @@ export async function onRequestGet(context) {
       (x) => x.author.url !== "https://twitter.com/alesroubicek",
     );
     detail.comments = detail.comments.filter(x => x.isEnabled);
-    return new Response(JSON.stringify(detail));
+    return Response.json(detail);
   } catch (err) {
     console.log(err);
     return new Response("Internal error", { status: 500 });
