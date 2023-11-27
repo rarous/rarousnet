@@ -9,8 +9,7 @@
 async function getDetail(weblog, url) {
   const payload = (await weblog.get(url, "json"))
     ?? (await weblog.get(url + ".html", "json"));
-  if (payload) return payload;
-  return { webmentions: [] };
+  return Object.assign({ webmentions: [], comments: [] }, payload);
 }
 
 /**
@@ -25,6 +24,7 @@ export async function onRequestGet(context) {
     detail.webmentions = detail.webmentions.filter(
       (x) => x.author.url !== "https://twitter.com/alesroubicek",
     );
+    detail.comments = detail.comments.filter(x => x.isEnabled);
     return new Response(JSON.stringify(detail));
   } catch (err) {
     console.log(err);
