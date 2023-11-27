@@ -472,6 +472,24 @@ article footer {
   border-radius: var(--radius-round);
 }
 
+.comments {
+
+  .h-card {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  img.u-photo {
+    aspect-ratio: var(--ratio-square);
+    border-radius: var(--radius-round);
+  }
+}
+
 #search {
   width: 100%;
   max-width: clamp(20em, 100vw - 4em, 52em);

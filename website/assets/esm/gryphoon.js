@@ -101,13 +101,15 @@ class WebMentions extends HTMLElement {
   }
 }
 
-async function getSha256(normalized) {
+/**
+ * @param {string} input
+ */
+async function getSha256(input) {
   const encoder = new TextEncoder();
-  const data = encoder.encode(normalized);
+  const data = encoder.encode(input);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const sha = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-  return sha;
+  return hashArray.map((x) => x.toString(16).padStart(2, "0")).join("");
 }
 
 async function gravatarUrl(item) {
@@ -128,23 +130,37 @@ class Comments extends HTMLElement {
     const section = this.querySelector("section");
 
     async function itemTemplate(content, item, section) {
-      const entry = content.querySelector(".h-entry");
-      entry.id = `km${0}`;
+      const date = new Date(item.created);
 
+      const entry = content.querySelector(".h-entry");
+      entry.id = `komentar-${date.valueOf()}`;
+      const permalink = entry.querySelector(".u-url[rel=bookmark]");
+      permalink.href = `#komentar-${date.valueOf()}`;
 
       const img = entry.querySelector(".u-photo");
       img.src = await gravatarUrl(item);
       img.alt = item.author.name;
 
       const name = entry.querySelector(".p-name");
-      name.textContent = item.author.name;
+      if (item.author.web) {
+        const link = document.createElement("a");
+        link.href = item.author.web;
+        link.rel = "nofollow";
+        link.textContent = item.author.name;
+        name.insertAdjacentElement("beforeend", link);
+      } else {
+        name.textContent = item.author.name;
+      }
+
+      const website = entry.querySelector(".p-author .u-url");
+      website.href = item.author.web;
 
       const cnt = entry.querySelector(".e-content");
       cnt.innerHTML = item.text;
 
       const published = entry.querySelector(".dt-published");
       published.datetime = item.created;
-      published.textContent = new Date(item.created).toLocaleDateString("cs");
+      published.textContent = `${date.toLocaleDateString("cs")} v ${date.toLocaleTimeString("cs")}`;
     }
 
     injectItems(section, template, comments, itemTemplate);
@@ -186,4 +202,3 @@ class Weblog extends HTMLElement {
 customElements.define("gryphoon-comments", Comments);
 customElements.define("gryphoon-webmentions", WebMentions);
 customElements.define("gryphoon-weblog", Weblog);
-
