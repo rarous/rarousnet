@@ -127,35 +127,68 @@
     <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte
       mi ticket</a>.</p>
 
-    <rarous-webmentions api-endpoint="https://www.rarous.net/api/v1/weblog" id="webmentions">
-      <h2>Reakce v síti</h2>
-      <section class="webmentions" id="like-of">
-        <p>
-          <data>Líbilo se</data>
-        </p>
-        <ul class="items">
-          <li>Načítají se data&hellip;</li>
-        </ul>
-      </section>
-      <section class="webmentions" id="repost-of">
-        <p>
-          <data>Přeposláno dál</data>
-        </p>
-        <ul class="items">
-          <li>Načítají se data&hellip;</li>
-        </ul>
-      </section>
-      <template>
-        <li>
-          <a>
-            <time></time>
-            <img alt="" src="" width="32" height="32" loading="lazy" decoding="async">
-          </a>
-        </li>
-      </template>
-    </rarous-webmentions>
+    <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog">
+      <gryphoon-webmentions id="webmentions">
+        <h2>Reakce v síti</h2>
+        <section class="webmentions" id="like-of">
+          <p>
+            <data>Líbilo se</data>
+          </p>
+          <ul class="items">
+            <li>Načítají se data&hellip;</li>
+          </ul>
+        </section>
+        <section class="webmentions" id="repost-of">
+          <p>
+            <data>Přeposláno dál</data>
+          </p>
+          <ul class="items">
+            <li>Načítají se data&hellip;</li>
+          </ul>
+        </section>
+        <template>
+          <li>
+            <a>
+              <time></time>
+              <img alt="" src="" width="32" height="32" loading="lazy" decoding="async">
+            </a>
+          </li>
+        </template>
+      </gryphoon-webmentions>
 
-    <script type="module" src="/assets/esm/webmentions.js"></script>
+      <gryphoon-comments id="komentare">
+        <h2>Komentáře</h2>
+        <section class="comments" id="comments">
+          <p>
+            <data>Okomentováno</data>
+          </p>
+          <ol class="items h-feed">
+          </ol>
+        </section>
+        <template>
+          <li id="" class="p-comment h-entry">
+            <header class="p-author h-card">
+              <a class="u-url" rel="nofollow">
+                <div class="avatar">
+                  <img alt="" src="" width="64" height="64"
+                       loading="lazy" decoding="async"
+                       class="u-photo">
+                </div>
+                <h3 class="p-name"></h3>
+              </a>
+            </header>
+            <blockquote class="e-content"></blockquote>
+            <footer>
+              <p class="info">
+                <time class="dt-published"></time>
+                | <a href="" class="u-url" title="Trvalý odkaz na komentář" rel="bookmark">#</a></p>
+            </footer>
+          </li>
+        </template>
+      </gryphoon-comments>
+    </gryphoon-weblog>
+
+    <script type="module" src="/assets/esm/gryphoon.js"></script>
   </main>
 
   <footer class="footer"></footer>

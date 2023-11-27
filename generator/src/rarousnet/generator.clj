@@ -166,7 +166,7 @@
                                  :month-name (short-month dt)
                                  :day (url-day dt)})))
   [:article :.tags] (html/substitute (article-tags tags))
-  [:rarous-webmentions] (html/set-attr :href (permalink article))
+  [:gryphoon-weblog] (html/set-attr :href (permalink article))
   [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 
