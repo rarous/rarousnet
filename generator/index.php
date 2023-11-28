@@ -8,31 +8,32 @@ if (@!include __DIR__ . '/vendor/autoload.php') {
 
 function scriptHandler(Texy\HandlerInvocation $invocation, $command, array $args, $rawArgs)
 {
+  $texy = $invocation->getTexy();
   switch ($command) {
     case 'mixcloud-mini':
       $feed = rawurlencode($args[0]);
       $params = htmlspecialchars($args[1] ?? '');
       $output = '<iframe loading=lazy width="100%" height="60" class="player mixcloud-player mixcloud-player--mini"
         src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&mini=1&feed=' . $feed . '&' . $params . '"></iframe>';
-      return $invocation->getTexy()->protect($output, Texy::CONTENT_MARKUP);
+      return $texy->protect($output, Texy::CONTENT_MARKUP);
     case 'mixcloud':
       $feed = rawurlencode($args[0]);
       $params = htmlspecialchars($args[1] ?? '');
       $output = '<iframe loading=lazy width="100%" height="120" class="player mixcloud-player"
         src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=' . $feed . '&' . $params . '"></iframe>';
-      return $invocation->getTexy()->protect($output, Texy::CONTENT_MARKUP);
+      return $texy->protect($output, Texy::CONTENT_MARKUP);
     case 'speakerdeck':
       $player = rawurlencode($args[0]);
       $output = '<iframe loading=lazy width="560" height="420" class="player speakerdeck"
         src="https://speakerdeck.com/player/' . $player . '" allowfullscreen="true" data-ratio="1.3333333333333333"></iframe>';
-      return $invocation->getTexy()->protect($output, Texy::CONTENT_MARKUP);
+      return $texy->protect($output, Texy::CONTENT_MARKUP);
     case 'spotify':
       $audioId = htmlspecialchars($args[0]);
       $output = '<iframe loading=lazy class="player spotify-player"
         src="https://open.spotify.com/embed/episode/' . $audioId . '"
         width="100%" height="152" allowfullscreen
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
-      return $invocation->getTexy()->protect($output, Texy::CONTENT_MARKUP);
+      return $texy->protect($output, Texy::CONTENT_MARKUP);
     case 'youtube':
       $videoId = htmlspecialchars($args[0]);
       $output = '<iframe loading=lazy width="560" height="315" class="player youtube-player"
@@ -40,7 +41,7 @@ function scriptHandler(Texy\HandlerInvocation $invocation, $command, array $args
       title="YouTube video player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen></iframe>';
-      return $invocation->getTexy()->protect($output, Texy::CONTENT_MARKUP);
+      return $texy->protect($output, Texy::CONTENT_MARKUP);
     default:
       return $invocation->proceed();
   }
