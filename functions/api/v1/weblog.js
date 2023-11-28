@@ -28,6 +28,6 @@ export async function onRequestGet(context) {
     return Response.json(detail);
   } catch (err) {
     console.log(err);
-    return new Response("Internal error", { status: 500 });
+    return Response.error();
   }
 }

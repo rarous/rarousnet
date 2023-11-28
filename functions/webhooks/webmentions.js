@@ -47,6 +47,6 @@ export async function onRequestPost(context) {
     return new Response(null, { status: 202 });
   } catch (err) {
     console.log(err);
-    return new Response(null, { status: 500 });
+    return Response.error();
   }
 }
