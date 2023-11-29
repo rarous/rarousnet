@@ -1272,25 +1272,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/aws@npm:6.10.0":
-  version: 6.10.0
-  resolution: "@pulumi/aws@npm:6.10.0"
+"@pulumi/aws@npm:6.12.0":
+  version: 6.12.0
+  resolution: "@pulumi/aws@npm:6.12.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.0.0"
     builtin-modules: "npm:3.0.0"
     mime: "npm:^2.0.0"
     read-package-tree: "npm:^5.2.1"
     resolve: "npm:^1.7.1"
-  checksum: e913ad1bcaaf1fa80a6c51cba5b8113e53ac0e7912e3325f9ddd60d54445803a79af0a25ce78ae0d6c3c5973a7c47c25ca0c6435c8f9620c198fcf4b5c6aef93
+  checksum: b8bb82dbfce03deb9bb4e605c7a233694c63c1e27089664ee94da7a4044883f04b763a0d77e95c6dfaa44e777eb2b8048fa64f316bf749a59aedb8ec78e507bf
   languageName: node
   linkType: hard
 
-"@pulumi/cloudflare@npm:5.15.0":
-  version: 5.15.0
-  resolution: "@pulumi/cloudflare@npm:5.15.0"
+"@pulumi/cloudflare@npm:5.16.0":
+  version: 5.16.0
+  resolution: "@pulumi/cloudflare@npm:5.16.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.0.0"
-  checksum: aa8f5a5e20a39240284f0af3866ddfbe6c4557bae28aa005d06b31d9643901125661d1b93c46a14395e68ab8f29a3f71121a80007aa86210b839eeaa40338d80
+  checksum: f4129261e3b90c85d8250511766379da3443684c4dab440178f8b24cd7163c0bb089876f48ff40dcc0ee5d62b61cbc2aa24ca17433657013a0a3e3c4b8b02d11
   languageName: node
   linkType: hard
 
@@ -1388,8 +1388,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@pulumi/aws": "npm:6.10.0"
-    "@pulumi/cloudflare": "npm:5.15.0"
+    "@pulumi/aws": "npm:6.12.0"
+    "@pulumi/cloudflare": "npm:5.16.0"
     "@pulumi/pulumi": "npm:3.94.2"
     esbuild: "npm:0.19.8"
   languageName: unknown
