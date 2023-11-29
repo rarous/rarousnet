@@ -9,7 +9,7 @@ orbs:
 executors: 
   pw-focal-development: 
     docker: 
-      - image: mcr.microsoft.com/playwright:v1.40.0-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
 
 commands: 
   install_browsers: 
