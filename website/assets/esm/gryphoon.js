@@ -10,43 +10,6 @@ function groupByType(webmentions) {
 }
 
 /**
- * @param {Element} itemTemplate
- * @param {*} item
- * @param {Element} section
- *  @return {Element}
- */
-function webmentionLink(itemTemplate, item, section) {
-  const link = itemTemplate.querySelector("a");
-  link.href = item.url;
-  link.title = item.author.name;
-  link.classList.add(section.id);
-  return link;
-}
-
-/**
- * @param {Element} itemTemplate
- * @param {*} item
- *  @return {Element}
- */
-function webmentionDate(itemTemplate, item) {
-  const time = itemTemplate.querySelector("time");
-  time.dateTime = item.published ?? item["wm-received"];
-  return time;
-}
-
-/**
- * @param {Element} itemTemplate
- * @param {*} item
- *  @return {Element}
- */
-function webmentionAvatar(itemTemplate, item) {
-  const img = itemTemplate.querySelector("img");
-  img.alt = item.author.name;
-  img.src = item.author.photo;
-  return img;
-}
-
-/**
  * @param {Element} section
  * @param {Array} items
  */
@@ -91,9 +54,17 @@ class WebMentions extends HTMLElement {
     const byType = groupByType(webmentions);
 
     function itemTemplate(content, item, section) {
-      webmentionLink(content, item, section);
-      webmentionDate(content, item);
-      webmentionAvatar(content, item);
+      const link = content.querySelector("a");
+      link.href = item.url;
+      link.title = item.author.name;
+      link.classList.add(section.id);
+
+      const time = content.querySelector("time");
+      time.dateTime = item.published ?? item["wm-received"];
+
+      const img = content.querySelector("img");
+      img.alt = item.author.name;
+      img.src = item.author.photo;
     }
 
     injectItems(likesOf, template, byType.get("like-of"), itemTemplate);
