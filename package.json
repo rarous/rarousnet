@@ -16,7 +16,7 @@
     "broken-link-checker-local": "0.2.1",
     "browser-sync": "2.29.3",
     "cssnano": "6.0.1",
-    "dprint": "0.43.1",
+    "dprint": "0.43.2",
     "gulp": "4.0.2",
     "gulp-htmlmin": "5.0.1",
     "gulp-if": "3.0.0",
