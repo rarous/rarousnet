@@ -59,6 +59,7 @@ function blockHandler(Texy\HandlerInvocation $invocation, $blocktype, $content, 
   if ($blocktype !== 'block/code') {
     return $invocation->proceed();
   }
+  // TODO: in the future warp with <gryphoon-codehighlight lang="$lang"> that will use dynamic ESM lang loading
   $el = $invocation->proceed();
   $code = $el->offsetGet(0);
   // use Prism.js pattern for code lang
