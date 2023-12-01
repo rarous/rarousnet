@@ -8,7 +8,7 @@ dist/
 out/
 yarn-error.log
 generator/.cpcache/
-generator/vendor/
+vendor/
 cards/data.json
 .pnp
 .yarn/cache
