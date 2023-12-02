@@ -9,7 +9,8 @@
     [clojure.java.shell :refer [sh]]
     [clojure.string :as string]
     [cheshire.core :as json]
-    [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate xml-parser]])
+    [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate xml-parser]]
+    [rarousnet.texy :refer [process-typo]])
   (:import
     (java.io File)
     (java.text Normalizer Normalizer$Form)
@@ -95,7 +96,7 @@
 (defsnippet article-listing "weblog/index.html" [:.feed :article]
   [{:keys [title author category html published] :as article}]
   (conj (rdfa "BlogPosting" "headline") :a) (html/do->
-                                                   (html/content title)
+                                                   (html/content (process-typo title))
                                                    (html/set-attr :href (rel-link article)))
   (rdfa "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date-time published))
@@ -117,7 +118,7 @@
 
 (defsnippet article-detail "weblog/blogpost.html" [:article]
   [{:keys [title author category html published] :as article}]
-  (rdfa "BlogPosting" "headline") (html/content title)
+  (rdfa "BlogPosting" "headline") (html/content (process-typo title))
   (rdfa "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date-time published))
                                               (html/set-attr :datetime (utc-date published)))
@@ -188,7 +189,7 @@
 
 (defsnippet tag-items "weblog/category.html" [:#content :article] [articles]
   (html/clone-for [{:keys [title published] :as article} articles]
-    [:article :a] (html/content title)
+    [:article :a] (html/content (process-typo title))
     [:article :a] (html/set-attr :href (rel-link article))
     [:article :time] (html/content (short-date published))
     [:article :time] (html/set-attr :datetime (utc-date published))))
