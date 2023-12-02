@@ -17,6 +17,8 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
+Texy\Configurator::safeMode($texy);
+
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
