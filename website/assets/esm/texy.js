@@ -87,9 +87,5 @@ function definePatterns({ singleQuotes, doubleQuotes }) {
  */
 export function processTypo(input, { locale } = { locale: "cs" }) {
   const patterns = definePatterns(locales.get(locale ?? "en"));
-  let product = input;
-  for (const [pattern, replacement] of patterns) {
-    product = product.replaceAll(pattern, replacement);
-  }
-  return product;
+  return patterns.reduce((i, [p, r]) => i.replaceAll(p, r), input);
 }
