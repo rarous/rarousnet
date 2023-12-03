@@ -8,6 +8,8 @@ if (@!include __DIR__ . '/../vendor/autoload.php') {
 
 $texy = new Texy();
 
+Texy\Configurator::safeMode($texy);
+
 $texy->allowed['phrase/ins'] = true;
 $texy->allowed['phrase/sup'] = true;
 $texy->allowed['phrase/del'] = true;
@@ -17,9 +19,9 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
-Texy\Configurator::safeMode($texy);
-
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
+
+echo $_POST;
 
 echo $texy->process($_POST["text"]);
