@@ -19,9 +19,7 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
-echo json_encode($_REQUEST);
-
-//echo $texy->process($_POST["text"]);
+echo $texy->process($_REQUEST["text"]);
