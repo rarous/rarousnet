@@ -8,7 +8,7 @@ async function processText(text) {
   const resp = await fetch(texyServiceEndpoint, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ text })
+    body: new URLSearchParams({ text }),
   });
   return resp.text();
 }

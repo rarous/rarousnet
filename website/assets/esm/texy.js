@@ -1,28 +1,28 @@
 const locales = new Map([
   ["cs", {
     singleQuotes: ["\u{201A}", "\u{2018}"],
-    doubleQuotes: ["\u{201E}", "\u{201C}"]
+    doubleQuotes: ["\u{201E}", "\u{201C}"],
   }],
 
   ["en", {
     singleQuotes: ["\u{2018}", "\u{2019}"],
-    doubleQuotes: ["\u{201C}", "\u{201D}"]
+    doubleQuotes: ["\u{201C}", "\u{201D}"],
   }],
 
   ["fr", {
     singleQuotes: ["\u{2039}", "\u{203A}"],
-    doubleQuotes: ["\u{00AB}", "\u{00BB}"]
+    doubleQuotes: ["\u{00AB}", "\u{00BB}"],
   }],
 
   ["de", {
     singleQuotes: ["\u{201A}", "\u{2018}"],
-    doubleQuotes: ["\u{201E}", "\u{201C}"]
+    doubleQuotes: ["\u{201E}", "\u{201C}"],
   }],
 
   ["pl", {
     singleQuotes: ["\u{201A}", "\u{2019}"],
-    doubleQuotes: ["\u{201E}", "\u{201D}"]
-  }]
+    doubleQuotes: ["\u{201E}", "\u{201D}"],
+  }],
 ]);
 
 function definePatterns({ singleQuotes, doubleQuotes }) {
@@ -58,24 +58,24 @@ function definePatterns({ singleQuotes, doubleQuotes }) {
     // nbsp space between number (optionally followed by dot) and word, symbol, punctation, currency symbol
     [
       /(?<=^| |\.|,|-|\+|\x16|\(|\d\xA0)([\x17-\x1F]*\d+\.?[\x17-\x1F]*)\s+(?=[\x17-\x1F]*[%\p{Letter}\p{Punctuation}\p{Currency_Symbol}])/mvg,
-      "\$1\u{A0}"
+      "\$1\u{A0}",
     ],
     // space between preposition and word
     [
       /(?<=^|[^0-9\p{Letter}])([\x17-\x1F]*[ksvzouiKSVZOUIA][\x17-\x1F]*)\s+(?=[\x17-\x1F]*[0-9\p{Letter}])/mvsg,
-      "\$1\u{A0}"
+      "\$1\u{A0}",
     ],
 
     // double ""
     [
       /(?<!"|\w)"(?![ "])((?:[^"]+|")+)(?<![ "])"(?!["\p{Letter}])()/vg,
-      `${doubleQuotes[0]}$1${doubleQuotes[1]}`
+      `${doubleQuotes[0]}$1${doubleQuotes[1]}`,
     ],
     // single ''
     [
       /(?<!'|\w)'(?![ '])((?:[^']+|')+)(?<![ '])'(?!['\p{Letter}])()/vg,
-      `${singleQuotes[0]}$1${singleQuotes[1]}`
-    ]
+      `${singleQuotes[0]}$1${singleQuotes[1]}`,
+    ],
   ];
 }
 
