@@ -89,3 +89,13 @@ export function processTypo(input, { locale } = { locale: "cs" }) {
   const patterns = definePatterns(locales.get(locale ?? "en"));
   return patterns.reduce((i, [p, r]) => i.replaceAll(p, r), input);
 }
+
+class TexyTypography extends HTMLElement {
+  connectedCallback() {
+    const text = this.textContent;
+    const locale = this.getAttribute("lang") ?? "cs";
+    this.innerText = processTypo(text, { locale });
+  }
+}
+
+customElements.define("texy-typo", TexyTypography);
