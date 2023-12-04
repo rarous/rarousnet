@@ -19,8 +19,8 @@ $texy->headingModule->top = 4;
 
 $references = json_decode($_REQUEST["references"], true);
 for ($references as $name => $comment) {
-  $link = new Texy\Link($comment->link);
-  $link->label = $comment->label;
+  $link = new Texy\Link($comment['link']);
+  $link->label = $comment['label'];
   $texy->linkModule->addReference($name, $link);
 }
 
