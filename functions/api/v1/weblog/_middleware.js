@@ -21,8 +21,6 @@ export async function onRequestPost({ env, request, next }) {
   });
 
   const outcome = await result.json();
-  if (outcome.success) {
-    return next();
-  }
-  return new Response(null, { status: 403 });
+  if (!outcome.success) return new Response(null, { status: 403 });
+  return next();
 }
