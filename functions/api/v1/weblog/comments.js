@@ -2,13 +2,14 @@
  * @typedef {import("../../env.d.ts").Env} Env
  */
 
+// TODO: possibly push it thru ENV from managed vercel Project, or get rid of it and use JS implementation of Texy
 const texyServiceEndpoint = "https://rarousnet.vercel.app/api";
 
-async function processText(text) {
+async function processText(text, references) {
   const resp = await fetch(texyServiceEndpoint, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ text }),
+    body: new URLSearchParams({ text, references: JSON.stringify(references) }),
   });
   return resp.text();
 }
@@ -33,8 +34,11 @@ export async function onRequestPost(context) {
 
     const comment = await request.formData();
     // TODO: validate comment
-
-    const textResult = processText(comment.get("text"));
+    const references = comments.map((x, i) => [i.toString(), {
+      link: `#komentar-${new Date(x.created).valueOf()}`,
+      label: `[${i}] @${x.author.name}`,
+    }]);
+    const textResult = processText(comment.get("text"), references);
     const isEnabled = true; // TODO: check for spam, hate etc. -> isEnabled = false;
     const created = now.toISOString();
     const author = {
