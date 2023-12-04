@@ -24,25 +24,35 @@ async function getDetail(weblog, url) {
  */
 export async function onRequestPost(context) {
   try {
+    const now = new Date();
     const { env, request } = context;
     const url = new URL(request.url);
     const target = url.searchParams.get("url");
     const detail = await getDetail(env.weblog, target);
-
     const comments = detail?.comments ?? [];
-    detail.comments = comments;
 
-    // TODO: check for content type - forms should redirect to url and read data from forms not json.
-    const comment = await request.json();
+    const comment = await request.formData();
     // TODO: validate comment
-    // TODO: check for spam, hate etc. -> isEnabled = false;
-    const text = await processText(comment.text);
-    const insert = Object.assign({}, comment, { text, isEnabled: true });
+
+    const textResult = processText(comment.get("text"));
+    const isEnabled = true; // TODO: check for spam, hate etc. -> isEnabled = false;
+    const created = now.toISOString();
+    const author = {
+      name: comment.get("name"),
+      email: comment.get("email"),
+      web: comment.get("web"),
+    };
+    const text = await textResult;
+    const insert = { author, created, text, isEnabled };
     comments.push(insert);
 
     const upsert = Object.assign({}, detail, { comments });
     await env.weblog.put(target, JSON.stringify(upsert));
-    return Response.json(insert);
+    const accept = await request.headerValue("accept");
+    if (accept === "application/json") {
+      return Response.json(insert);
+    }
+    return Response.redirect(`${target}#km${now.valueOf()}`);
   } catch (err) {
     console.error(err);
     return Response.error();

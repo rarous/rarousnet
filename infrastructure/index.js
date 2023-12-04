@@ -67,6 +67,14 @@ const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
   accountId: account.id,
   title: "rarous-net-weblog",
 });
+
+const turnstile = new cloudflare.TurnstileWidget("rarousnet", {
+  accountId: account.id,
+  name: "rarousnet",
+  domains: [zone.zone],
+  mode: "invisible",
+});
+
 const weblogPages = new cloudflare.PagesProject("weblog", {
   accountId: account.id,
   name: "rarousnet",
@@ -91,6 +99,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
     production: {
       compatibilityDate: "2023-09-29",
       environmentVariables: {
+        TURNSTILE_SECRET_KEY: turnstile.secret,
         WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
       },
       kvNamespaces: {
@@ -124,3 +133,5 @@ export const websiteUri = `https://${domain}`;
 export const weblogDomains = weblogPages.domains;
 export const weblogKvNsId = weblogNS.id;
 export const weblogBucketName = weblogBucket.name;
+export const turnstileSecretKey = turnstile.secret;
+export const turnstileSiteKey = turnstile.id;
