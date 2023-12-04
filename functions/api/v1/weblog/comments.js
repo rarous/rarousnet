@@ -29,11 +29,12 @@ export async function onRequestPost(context) {
     const { env, request } = context;
     const url = new URL(request.url);
     const target = url.searchParams.get("url");
-    const detail = await getDetail(env.weblog, target);
-    const comments = detail?.comments ?? [];
-
-    const comment = await request.formData();
+    const [detail, comment] = await Promise.all([
+      getDetail(env.weblog, target),
+      request.formData(),
+    ]);
     // TODO: validate comment
+    const comments = detail?.comments ?? [];
     const references = comments.map((x, i) => [i.toString(), {
       link: `#komentar-${new Date(x.created).valueOf()}`,
       label: `[${i}] @${x.author.name}`,
@@ -52,6 +53,7 @@ export async function onRequestPost(context) {
 
     const upsert = Object.assign({}, detail, { comments });
     await env.weblog.put(target, JSON.stringify(upsert));
+
     const accept = await request.headerValue("accept");
     if (accept === "application/json") {
       return Response.json(insert);
