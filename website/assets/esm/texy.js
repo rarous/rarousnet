@@ -1,52 +1,52 @@
 const locales = new Map([
   ["cs", {
-    singleQuotes: ["\u{201A}", "\u{2018}"],
-    doubleQuotes: ["\u{201E}", "\u{201C}"],
+    singleQuotes: ["‚", "‘"],
+    doubleQuotes: ["„", "“"],
   }],
 
   ["en", {
-    singleQuotes: ["\u{2018}", "\u{2019}"],
-    doubleQuotes: ["\u{201C}", "\u{201D}"],
+    singleQuotes: ["‘", "’"],
+    doubleQuotes: ["“", "”"],
   }],
 
   ["fr", {
-    singleQuotes: ["\u{2039}", "\u{203A}"],
-    doubleQuotes: ["\u{00AB}", "\u{00BB}"],
+    singleQuotes: ["‹", "›"],
+    doubleQuotes: ["«", "»"],
   }],
 
   ["de", {
-    singleQuotes: ["\u{201A}", "\u{2018}"],
-    doubleQuotes: ["\u{201E}", "\u{201C}"],
+    singleQuotes: ["‚", "‘"],
+    doubleQuotes: ["„", "“"],
   }],
 
   ["pl", {
-    singleQuotes: ["\u{201A}", "\u{2019}"],
-    doubleQuotes: ["\u{201E}", "\u{201D}"],
+    singleQuotes: ["‚", "’"],
+    doubleQuotes: ["„", "”"],
   }],
 ]);
 
 function definePatterns({ singleQuotes, doubleQuotes }) {
   return [
-    [/(?<![.\u{2026}])\.{3,4}(?![.\u{2026}])/mug, "\u{2026}"], // ellipsis  ...
-    [/(?<=[\d ]|^)-(?=[\d ]|$)/g, "\u{2013}"], // en dash 123-123
-    [/(?<=[^!*+,/:;<=>@\\_|-])--(?=[^!*+,/:;<=>@\\_|-])/g, "\u{2013}"], // en dash alphanum--alphanum
-    [/,-/g, ",\u{2013}"], // en dash ,-
+    [/(?<![.\u{2026}])\.{3,4}(?![.\u{2026}])/mug, "…"], // ellipsis  ...
+    [/(?<=[\d ]|^)-(?=[\d ]|$)/g, "–"], // en dash 123-123
+    [/(?<=[^!*+,/:;<=>@\\_|-])--(?=[^!*+,/:;<=>@\\_|-])/g, "–"], // en dash alphanum--alphanum
+    [/,-/g, ",–"], // en dash ,-
     [/(?<!\d)(\d{1,2}\.) (\d{1,2}\.) (\d\d)/g, "\$1\u{A0}\$2\u{A0}\$3"], // date 23. 1. 1978
     [/(?<!\d)(\d{1,2}\.) (\d{1,2}\.)/g, "\$1\u{A0}\$2"], // date 23. 1.
-    [/ --- /g, "\u{A0}\u{2014} "], // em dash ---
+    [/ --- /g, "\u{A0}— "], // em dash ---
     [/ ([\u{2013}\u{2014}])/ug, "\u{A0}\$1"], // &nbsp; behind dash (dash stays at line end)
-    [/ <-{1,2}> /g, " \u{2194} "], // left right arrow <-->
-    [/-+> /g, "\u{2192} "], // right arrow -->
-    [/ <-+/g, " \u{2190} "], // left arrow <--
-    [/=+> /g, "\u{21D2} "], // right arrow ==>
-    [/\+-/g, "\u{B1}"], // +-
+    [/ <-{1,2}> /g, " ↔ "], // left right arrow <-->
+    [/-+> /g, "→ "], // right arrow -->
+    [/ <-+/g, " ← "], // left arrow <--
+    [/=+> /g, "⇒ "], // right arrow ==>
+    [/\+-/g, "±"], // +-
     [/(\d+) x (?=\d)/g, "\$1\u{A0}\u{D7}\u{A0}"], // dimension sign 123 x 123...
-    [/(\d+)x(?=\d)/g, "\$1\u{D7}"], // dimension sign 123x123...
-    [/(?<=\d)x(?= |,|.|$)/mg, "\u{D7}"], // dimension sign 123x
-    [/(\S ?)\(TM\)/ig, "\$1\u{2122}"], // trademark (TM)
-    [/(\S ?)\(R\)/ig, "\$1\u{AE}"], // registered (R)
-    [/\(C\)( ?\S)/ig, "\u{A9}\$1"], // copyright (C)
-    [/\(EUR\)/g, "\u{20AC}"], // Euro (EUR)
+    [/(\d+)x(?=\d)/g, "\$1×"], // dimension sign 123x123...
+    [/(?<=\d)x(?= |,|.|$)/mg, "×"], // dimension sign 123x
+    [/(\S ?)\(TM\)/ig, "\$1™"], // trademark (TM)
+    [/(\S ?)\(R\)/ig, "\$1®"], // registered (R)
+    [/\(C\)( ?\S)/ig, "©\$1"], // copyright (C)
+    [/\(EUR\)/g, "€"], // Euro (EUR)
     [/(\d) (?=\d{3})/g, "\$1\u{A0}"], // (phone) number 1 123 123 123...
 
     // CONTENT_MARKUP mark: \x17-\x1F, CONTENT_REPLACED mark: \x16, CONTENT_TEXTUAL mark: \x17

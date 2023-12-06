@@ -4,24 +4,24 @@
 
 (def locales
   {"cs"
-   {:single-quotes ["\u201A" "\u2018"]
-    :double-quotes ["\u201E" "\u201C"]}
+   {:single-quotes ["‚" "‘"]
+    :double-quotes ["„" "“"]}
 
    "en"
-   {:single-quotes ["\u2018" "\u2019"]
-    :double-quotes ["\u201C" "\u201D"]}
+   {:single-quotes ["‘" "’"]
+    :double-quotes ["“" "”"]}
 
    "fr"
-   {:single-quotes ["\u2039" "\u203A"]
-    :double-quotes ["\u00AB" "\u00BB"]}
+   {:single-quotes ["‹" "›"]
+    :double-quotes ["«" "»"]}
 
    "de"
-   {:single-quotes ["\u201A" "\u2018"]
-    :double-quotes ["\u201E" "\u201C"]}
+   {:single-quotes ["‚" "‘"]
+    :double-quotes ["„" "“"]}
     
    "pl"
-   {:single-quotes ["\u201A" "\u2019"]
-    :double-quotes ["\u201E"" \u201D"]}})
+   {:single-quotes ["‚" "’"]
+    :double-quotes ["„" "”"]}})
 
 (defn- patterns [{:keys [single-quotes double-quotes]}]
   [
