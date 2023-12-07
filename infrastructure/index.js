@@ -1,4 +1,3 @@
-import aws from "@pulumi/aws";
 import cloudflare from "@pulumi/cloudflare";
 import pulumi from "@pulumi/pulumi";
 
