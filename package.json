@@ -11,7 +11,7 @@
   ],
   "devDependencies": {
     "@cloudflare/workers-types": "4.20231121.0",
-    "@types/browser-sync": "2.27.5",
+    "@types/browser-sync": "2.29.0",
     "ava": "6.0.1",
     "broken-link-checker-local": "0.2.1",
     "browser-sync": "2.29.3",
