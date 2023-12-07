@@ -1,7 +1,6 @@
+environment: 
+  - rarous-cloudflare
 config: 
-  cloudflare:apiToken: 
-    secure: AAABAHb65l/T32WMzvOuksh1nP592WEVp7bCKXqkzOEQEcrD4PqDhlUImjfAEI9g1kGaG45yIv5QNIMzOga3T4Um3TnhVu4x
-  rarousnet:cloudflare-accountId: f4b105d220fb4698cd1f3177bd14b85c
   rarousnet:domain: www.rarous.net
   rarousnet:webhook-secret: 
     secure: AAABAMDlnk5eyssfU+XvFCw8R3vZApfj1ZWdi/i8J7VlS9h0tF+tnLWhPBwcSSvvE/JYyX0FOtufVrx2jOOkiwEgY06mxmw86yTLLf43ZInf7Q==
