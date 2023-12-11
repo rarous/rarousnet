@@ -37,7 +37,7 @@ export async function onRequestPost(context) {
     const comments = detail?.comments ?? [];
     const references = comments.map((x, i) => [i.toString(), {
       link: `#komentar-${new Date(x.created).valueOf()}`,
-      label: `[${i}] @${x.author.name}`,
+      label: `[${i + 1}] @${x.author.name}`,
     }]);
     const textResult = processText(comment.get("text"), references);
     const isEnabled = true; // TODO: check for spam, hate etc. -> isEnabled = false;
