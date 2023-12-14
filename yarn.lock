@@ -1407,7 +1407,7 @@ __metadata:
   dependencies:
     "@thi.ng/transducers": "npm:8.8.15"
     csv-parse: "npm:5.5.3"
-    linkedom: "npm:0.16.4"
+    linkedom: "npm:0.16.5"
     schema-dts: "npm:1.1.2"
   languageName: unknown
   linkType: soft
@@ -8041,16 +8041,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"linkedom@npm:0.16.4":
-  version: 0.16.4
-  resolution: "linkedom@npm:0.16.4"
+"linkedom@npm:0.16.5":
+  version: 0.16.5
+  resolution: "linkedom@npm:0.16.5"
   dependencies:
     css-select: "npm:^5.1.0"
     cssom: "npm:^0.5.0"
     html-escaper: "npm:^3.0.3"
     htmlparser2: "npm:^9.0.0"
     uhyphen: "npm:^0.2.0"
-  checksum: 222a45f72b044be92627203f16d768f1875db537ad63d3188f7b766c98951c4b33c117d0c9bd439138d627fa9f982f95fed210458604ea8ade8a46e575eebcfe
+  checksum: b931548f1bbddf6995856600d182bedd6a3db53d423664182cdd6c6336b2888b7992b8548a7d085644e31aa6d68578d044ed79c271a1539ee057707ca89e6868
   languageName: node
   linkType: hard
 
