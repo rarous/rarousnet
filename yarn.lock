@@ -11332,7 +11332,7 @@ __metadata:
     postcss-jit-props: "npm:1.0.14"
     postcss-preset-env: "npm:9.3.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.21.0"
+    wrangler: "npm:3.22.0"
   languageName: unknown
   linkType: soft
 
@@ -14251,9 +14251,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.21.0":
-  version: 3.21.0
-  resolution: "wrangler@npm:3.21.0"
+"wrangler@npm:3.22.0":
+  version: 3.22.0
+  resolution: "wrangler@npm:3.22.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:^0.2.0"
     "@cspotcode/source-map-support": "npm:0.8.1"
@@ -14276,7 +14276,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: b14c0f8499217f4aa44f5afe56e78a822c1ba80441e0ae469d6b82993f712dd427bc6f48dcf7c1c598eb8b6d867c26eea3998a8b659ead7457501cabb9fa8200
+  checksum: 6f377a1c3e5710fc93bf029988b82089c0e143b280314e01d1dbf6ed2583422f4ed5d2edc2c3e4481f87020c80ca073fc8053ea3f1eb7943125c7154ce18f7ec
   languageName: node
   linkType: hard
 
