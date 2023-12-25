@@ -58,7 +58,7 @@ export async function onRequestPost(context) {
     if (accept === "application/json") {
       return Response.json(insert);
     }
-    return Response.redirect(`${target}#km${now.valueOf()}`);
+    return Response.redirect(`${target}#komentar-${now.valueOf()}`);
   } catch (err) {
     console.error(err);
     return Response.error();
