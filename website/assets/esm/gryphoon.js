@@ -106,7 +106,7 @@ class Comments extends HTMLElement {
       const entry = content.querySelector(".h-entry");
       entry.id = `komentar-${date.valueOf()}`;
       const permalink = entry.querySelector(".u-url[rel=bookmark]");
-      permalink.href = `#komentar-${date.valueOf()}`;
+      permalink.href = "#" + entry.id;
 
       const img = entry.querySelector(".u-photo");
       img.src = await gravatarUrl(item);
