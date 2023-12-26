@@ -17,6 +17,10 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
+echo "Texy init\n\n";
+
+echo $_REQUEST['references'];
+
 $references = json_decode($_REQUEST['references'], true);
 for ($references as $name => $comment) {
   $link = new Texy\Link($comment['link']);
@@ -27,4 +31,5 @@ for ($references as $name => $comment) {
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
+echo $_REQUEST['text'];
 echo $texy->process($_REQUEST['text']);
