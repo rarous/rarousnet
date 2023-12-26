@@ -1,8 +1,12 @@
 <?php declare(strict_types=1);
 
+echo 'Autoload';
+
 if (@!include __DIR__ . '/../vendor/autoload.php') {
   die('Install packages using `composer install`');
 }
+
+echo 'Texy init';
 
 $texy = new Texy();
 
@@ -17,7 +21,7 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
-echo 'Texy init';
+echo 'Processing';
 
 /*
 
