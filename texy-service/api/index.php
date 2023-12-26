@@ -18,22 +18,14 @@ $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
 $references = json_decode($_REQUEST['references'], true);
-var_dump($references);
-/*
-for ($references as $name => $comment) {
-  var_dump($name);
-  var_dump($comment);
+
+foreach ($references as $name => $comment) {
   $link = new Texy\Link($comment['link']);
   $link->label = $comment['label'];
-  var_dump($link);
   $texy->linkModule->addReference($name, $link);
 }
-
-echo 'Referencess added';
 
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
-echo $_REQUEST['text'];
 echo $texy->process($_REQUEST['text']);
-*/
