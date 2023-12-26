@@ -17,7 +17,7 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
-echo "Texy init\n\n";
+echo 'Texy init';
 
 echo $_REQUEST['references'];
 
