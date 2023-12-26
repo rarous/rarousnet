@@ -1,12 +1,8 @@
 <?php declare(strict_types=1);
 
-echo 'Autoload';
-
 if (@!include __DIR__ . '/../vendor/autoload.php') {
   die('Install packages using `composer install`');
 }
-
-echo 'Texy init';
 
 $texy = new Texy();
 
@@ -21,12 +17,9 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
-echo 'Processing';
-
-echo $_REQUEST['references'];
-
-/*
 $references = json_decode($_REQUEST['references'], true);
+var_dump($references);
+/*
 for ($references as $name => $comment) {
   $link = new Texy\Link($comment['link']);
   $link->label = $comment['label'];
