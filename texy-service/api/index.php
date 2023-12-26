@@ -23,10 +23,9 @@ $texy->headingModule->top = 4;
 
 echo 'Processing';
 
-/*
-
 echo $_REQUEST['references'];
 
+/*
 $references = json_decode($_REQUEST['references'], true);
 for ($references as $name => $comment) {
   $link = new Texy\Link($comment['link']);
