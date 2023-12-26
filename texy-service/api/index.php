@@ -19,6 +19,8 @@ $texy->headingModule->top = 4;
 
 echo 'Texy init';
 
+/*
+
 echo $_REQUEST['references'];
 
 $references = json_decode($_REQUEST['references'], true);
@@ -33,3 +35,4 @@ header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
 echo $_REQUEST['text'];
 echo $texy->process($_REQUEST['text']);
+*/
