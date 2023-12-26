@@ -6,6 +6,7 @@
 const texyServiceEndpoint = "https://rarousnet.vercel.app/api";
 
 async function processText(text, references) {
+  console.log({ event: "processText", text, references });
   const resp = await fetch(texyServiceEndpoint, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
