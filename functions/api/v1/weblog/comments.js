@@ -3,16 +3,14 @@
  */
 
 // TODO: possibly push it thru ENV from managed vercel Project, or get rid of it and use JS implementation of Texy
-const texyServiceEndpoint = "https://rarousnet.vercel.app/api";
+const texyServiceEndpoint = "https://rarousnet.vercel.app/api/index";
 
 async function processText(text, references) {
-  console.log({ event: "processText", text, references });
   const resp = await fetch(texyServiceEndpoint, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ text, references: JSON.stringify(references) }),
   });
-  console.log({ event: "processText", ok: resp.ok });
   return resp.text();
 }
 
