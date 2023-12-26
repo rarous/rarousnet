@@ -54,13 +54,13 @@ export async function onRequestPost(context) {
     const upsert = Object.assign({}, detail, { comments });
     await env.weblog.put(target, JSON.stringify(upsert));
 
-    const accept = await request.headerValue("accept");
+    const accept = request.headers.get("accept");
     if (accept === "application/json") {
       return Response.json(insert);
     }
     return Response.redirect(`${target}#komentar-${now.valueOf()}`);
   } catch (err) {
     console.error(err);
-    return Response.error();
+    return new Response(null, { status: 500 });
   }
 }
