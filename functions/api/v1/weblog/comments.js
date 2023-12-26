@@ -11,6 +11,7 @@ async function processText(text, references) {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ text, references: JSON.stringify(references) }),
   });
+  console.log({ event: "processText", ok: resp.ok });
   return resp.text();
 }
 

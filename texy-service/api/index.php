@@ -17,6 +17,9 @@ $texy->allowed['phrase/cite'] = true;
 $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
+error_log($_REQUEST["references"]);
+error_log($_REQUEST["text"]);
+
 $references = json_decode($_REQUEST["references"], true);
 for ($references as $name => $comment) {
   $link = new Texy\Link($comment['link']);
