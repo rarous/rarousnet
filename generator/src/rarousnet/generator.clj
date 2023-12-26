@@ -168,6 +168,10 @@
                                  :day (url-day dt)})))
   [:article :.tags] (html/substitute (article-tags tags))
   [:gryphoon-weblog] (html/set-attr :href (permalink article))
+  [:#new-comment] (html/replace-vars
+                   {:permalink (permalink article)
+                    ;; TODO: inject from pulumi state
+                    :turnstileSiteKey "0x4AAAAAAAOCSb93_fOUweSv"})
   [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 

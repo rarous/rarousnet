@@ -66,6 +66,7 @@
   <link rel="stylesheet" href="/assets/css/blog/blog.css">
   <link rel="shortcut icon" href="/weblog/favicon.png" type="image/png">
   <meta name="theme-color" content="#f77146">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body id="rarous">
 <div id="top">
@@ -186,6 +187,47 @@
           </li>
         </template>
       </gryphoon-comments>
+
+      <div id="novy-komentar">
+        <h2>Místo pro tvůj názor</h2>
+        <form id="new-comment" action="/api/v1/weblog/comments?url=${permalink}" method="post"
+              enctype="application/x-www-form-urlencoded">
+
+          <fieldset>
+            <legend>Nový komentář</legend>
+            <div>
+              <label for="comment-name">Jméno</label>
+              <input id="comment-name" name="name" required>
+              <span>(povinné)</span>
+            </div>
+            <div>
+              <label for="comment-email">E-mail</label>
+              <input id="comment-email" name="email" type="email">
+              <p>Používá se pro zobrazení Gravataru</p>
+            </div>
+            <div>
+              <label for="comment-web">Web</label>
+              <input id="comment-web" name="web" type="url">
+              <p>Odkaz na váš web nebo profil na sociálních mediích</p>
+            </div>
+            <div>
+              <label for="comment-text">Text komentáře</label>
+              <textarea name="text" id="comment-text" cols="60" rows="10" required minlength="5"></textarea>
+              <p>Podporuje formátování pomocí <a href="https://texy.info/cs/syntax">Texy!</a><br>
+                Například: <code><strong>**tučný text**</strong></code>, <code><em>*kurzíva*</em></code>, <code>"text
+                  odkazu":adresa</code>.<br>
+                Internetové adresy jsou převáděny na odkazy.<br>
+                Na komentáře se můžete odkazovat pomocí <code>[<em>číslo komentáře</em>]</code>.</p>
+              </p>
+            </div>
+            <div class="cf-turnstile"
+                 data-sitekey="0x4AAAAAAAOCSb93_fOUweSv"
+                 data-language="cs"
+                 data-appearance="interaction-only"></div>
+            <button>Okomentovat</button>
+          </fieldset>
+        </form>
+      </div>
     </gryphoon-weblog>
 
     <script type="module" src="/assets/esm/gryphoon.js"></script>
