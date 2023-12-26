@@ -31,7 +31,7 @@ commands:
 jobs: 
   provision: 
     docker: 
-      - image: cimg/node:20.10
+      - image: cimg/node:lts
     resource_class: arm.large
     steps: 
       - checkout
@@ -39,14 +39,14 @@ jobs:
       - node/install-yarn
       - node/install-packages: 
           pkg-manager: yarn-berry
-          cache-version: v1-machine-provision
+          cache-version: v1-provision
           override-ci-command: yarn workspaces focus @rarousnet/infrastructure
       - pulumi/update: 
           working_directory: infrastructure
           stack: prod
           skip-preview: true
   generate: 
-    resource_class: large
+    resource_class: arm.large
     docker: 
       - image: cimg/clojure:1.11
         environment: 
@@ -65,14 +65,14 @@ jobs:
       - restore_cache: 
           name: Restore deps cache
           keys: 
-            - v3-dependencies-{{ checksum "generator/deps.edn" }}
+            - v4-dependencies-{{ checksum "generator/deps.edn" }}
       - run: 
           name: Generate static web site content
           working_directory: generator
           command: clojure -m rarousnet.generator ../
       - save_cache: 
           name: Store deps cache
-          key: v3-dependencies-{{ checksum "generator/deps.edn" }}
+          key: v4-dependencies-{{ checksum "generator/deps.edn" }}
           paths: 
             - ~/.m2
             - generator/.cpcache
@@ -90,7 +90,7 @@ jobs:
       - node/install-yarn
       - node/install-packages: 
           pkg-manager: yarn-berry
-          cache-version: v1-pw
+          cache-version: v2-pw
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
       - install_browsers
       - run: 
@@ -149,7 +149,7 @@ jobs:
           path: ./results
   pages_deploy: 
     docker: 
-      - image: cimg/node:20.10
+      - image: cimg/node:lts
     resource_class: arm.large
     steps: 
       - checkout
