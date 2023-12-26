@@ -22,7 +22,7 @@ $references = json_decode($_REQUEST['references'], true);
 foreach ($references as $name => $comment) {
   $link = new Texy\Link($comment['link']);
   $link->label = $comment['label'];
-  $texy->linkModule->addReference($name, $link);
+  $texy->linkModule->addReference("$name", $link);
 }
 
 header('Content-Type: text/html; charset=utf-8');
