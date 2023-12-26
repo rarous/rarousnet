@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+var_dump($_POST);
+
 if (@!include __DIR__ . '/../vendor/autoload.php') {
   die('Install packages using `composer install`');
 }
