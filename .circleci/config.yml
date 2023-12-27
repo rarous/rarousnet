@@ -156,6 +156,11 @@ jobs:
       - attach_workspace: 
           at: .
       - node/install
+      - node/install-yarn
+      - node/install-packages: 
+          pkg-manager: yarn-berry
+          cache-version: v1-test
+          override-ci-command: yarn workspaces focus rarousnet
       - run: 
           name: Publish to Cloudflare Pages
           command: npx wrangler pages deploy dist --project-name=rarousnet
