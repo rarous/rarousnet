@@ -473,7 +473,6 @@ article footer {
 }
 
 .comments {
-
   .items {
     counter-set: --comment 0;
     list-style: none;
@@ -627,6 +626,51 @@ article footer {
 #content {
   margin: 4em 0 1em 1ex;
   padding: 1em;
+}
+
+#novy-komentar {
+  margin-block-start: 4em;
+
+  form {
+    margin-block-start: 2em;
+  }
+
+  fieldset > div + div {
+    margin-block-start: 1em;
+  }
+
+  label {
+    display: block;
+    font-weight: 700;
+  }
+
+  input, textarea {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 0;
+  }
+
+  input[name=name] {
+    font-family: var(--main-font);
+    font-weight: 600;
+  }
+
+  textarea {
+    font-family: var(--content-font);
+  }
+
+  button {
+    font: 1.25rem/2 var(--main-font);
+    padding: 0 2em;
+    border: var(--border-width) solid var(--border-color)
+  }
+
+  p, span {
+    font: 0.9rem var(--main-font);
+  }
+
+  code {
+    font-size: 0.9em;
+  }
 }
 
 @media screen and (min-width: 701px) {
