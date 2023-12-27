@@ -4,7 +4,9 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce" "gryphoon"},
  :published "2023-12-27T11:57:00.000"
- :syndication []}
+ :syndication
+ ["https://indieweb.social/@alesroubicek/111652054046703509"
+  "https://twitter.com/alesroubicek/status/1739966220290666501"]}
 ---
 
 Je tomu víc jak deset let, co zmizela možnost komentovat moje blogové příspěvky.
