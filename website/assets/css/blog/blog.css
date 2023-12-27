@@ -474,19 +474,49 @@ article footer {
 
 .comments {
 
+  .items {
+    counter-set: --comment 0;
+    list-style: none;
+
+    li {
+      counter-increment: --comment;
+      position: relative;
+      scroll-margin-block-start: 1em;
+      border-bottom: 1px solid var(--border-color);
+      margin-block-start: 2em;
+    }
+
+    [rel=bookmark]::after {
+      content: counter(--comment);
+      font-weight: normal;
+      font-family: var(--content-font);
+    }
+  }
+
   .h-card {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 
+    .avatar {
+      line-height: 1;
+      position: absolute;
+      translate: -2.5em 0.5em;
+    }
+
     h3 {
       margin: 0;
+      font-size: 1em;
     }
   }
 
   img.u-photo {
     aspect-ratio: var(--ratio-square);
     border-radius: var(--radius-round);
+  }
+
+  footer p {
+    font-family: var(--main-font);
   }
 }
 
