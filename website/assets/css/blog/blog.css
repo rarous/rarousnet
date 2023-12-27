@@ -489,7 +489,6 @@ article footer {
     [rel=bookmark]::after {
       content: counter(--comment);
       font-weight: normal;
-      font-family: var(--content-font);
     }
   }
 
