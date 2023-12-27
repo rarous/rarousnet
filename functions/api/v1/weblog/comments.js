@@ -35,7 +35,7 @@ export async function onRequestPost(context) {
     ]);
     // TODO: validate comment
     const comments = detail?.comments ?? [];
-    const references = comments.map((x, i) => [i.toString(), {
+    const references = comments.filter(x => x.isEnabled).map((x, i) => [i.toString(), {
       link: `#komentar-${new Date(x.created).valueOf()}`,
       label: `[${i + 1}] @${x.author.name}`,
     }]);
