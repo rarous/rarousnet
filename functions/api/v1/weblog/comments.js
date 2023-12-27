@@ -54,6 +54,14 @@ export async function onRequestPost(context) {
     const upsert = Object.assign({}, detail, { comments });
     await env.weblog.put(target, JSON.stringify(upsert));
 
+    const lastComments = (await env.weblog.get("/weblog/comments", "json")) ?? [];
+    lastComments.push(Object.assign({
+      href: target + `#komentar-${now.valueOf()}`,
+      article: { title: comment.get("article-title") ?? "" },
+    }, insert));
+    if (lastComments.length > 10) lastComments.shift();
+    await env.weblog.put("/weblog/comments", JSON.stringify(lastComments));
+
     const accept = request.headers.get("accept");
     if (accept === "application/json") {
       return Response.json(insert);

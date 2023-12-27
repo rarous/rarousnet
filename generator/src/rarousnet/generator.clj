@@ -172,6 +172,7 @@
                    {:permalink (permalink article)
                     ;; TODO: inject from pulumi state
                     :turnstileSiteKey "0x4AAAAAAAOCSb93_fOUweSv"})
+  [:#new-comment :input (html/attr= :name "article-title")] (html/set-atter :value title)
   [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 
