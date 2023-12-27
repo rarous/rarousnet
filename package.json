@@ -14,7 +14,7 @@
     "@types/browser-sync": "2.29.0",
     "ava": "6.0.1",
     "broken-link-checker-local": "0.2.1",
-    "browser-sync": "2.29.3",
+    "browser-sync": "3.0.2",
     "cssnano": "6.0.2",
     "dprint": "0.45.0",
     "gulp": "4.0.2",
