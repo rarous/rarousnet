@@ -150,13 +150,8 @@ class Weblog extends HTMLElement {
     const apiEndpoint = this.getAttribute("api-endpoint") ?? "/api/v1/weblog";
     const url = this.getAttribute("href") ?? location.href;
     const resp = await fetch(`${apiEndpoint}?${new URLSearchParams({ url })}`);
-    if (!resp.ok) {
-      return this.remove();
-    }
+
     const { comments, webmentions } = await resp.json();
-    if (!comments?.length && !webmentions?.length) {
-      return this.remove();
-    }
 
     if (commentsComp && !comments?.length) {
       commentsComp.remove();
