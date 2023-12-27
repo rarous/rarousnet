@@ -59,5 +59,8 @@
     "infrastructure",
     "scripts"
   ],
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.0.2",
+  "dependencies": {
+    "feed": "^4.2.2"
+  }
 }
