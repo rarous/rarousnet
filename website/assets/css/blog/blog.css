@@ -477,7 +477,7 @@ article footer {
     counter-set: --comment 0;
     list-style: none;
 
-    li {
+    & > li {
       counter-increment: --comment;
       position: relative;
       scroll-margin-block-start: 1em;
