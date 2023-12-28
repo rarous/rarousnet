@@ -3,7 +3,7 @@ import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 async function main({ token }) {
   const {
     default: { data },
-  } = await import("./data/pagefind-reposts.json", {
+  } = await import("./data/twitter-retweets.json", {
     with: { type: "json" },
   });
   const target = "https://www.rarous.net/weblog/2023/10/23/pagefind.html";
@@ -12,6 +12,7 @@ async function main({ token }) {
   const users = entries
     .filter((x) => x.content.entryType === "TimelineTimelineItem")
     .map((x) => x.content.itemContent.user_results.result);
+  console.log(`importing ${users.length} user retweets`);
   for (const { legacy: user, rest_id } of users) {
     const resp = await fetch("https://www.rarous.net/webhooks/webmentions", {
       method: "POST",
@@ -24,7 +25,7 @@ async function main({ token }) {
           type: "entry",
           author: {
             name: user.name,
-            photo: user.profile_image_url_https,
+            photo: `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${user.profile_image_url_https}`,
             url: `https://twitter.com/${user.screen_name}`,
           },
           url: `${source}#retweeted-by-${rest_id}`,
@@ -35,8 +36,10 @@ async function main({ token }) {
         },
       }),
     });
-    console.log(resp);
+    console.log(user.screen_name, resp.status);
   }
 }
 
 await main(parse(Deno.args));
+
+// deno run --allow-read=data --allow-net=www.rarous.net twitter-retweets.js --token="$(op read 'op://Private/rarousnet webmentions webhook/credential')"
