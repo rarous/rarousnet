@@ -476,19 +476,19 @@ article footer {
   .items {
     counter-set: --comment 0;
     list-style: none;
+  }
 
-    & > li {
-      counter-increment: --comment;
-      position: relative;
-      scroll-margin-block-start: 1em;
-      border-bottom: 1px solid var(--border-color);
-      margin-block-start: 2em;
-    }
+  .items > li {
+    counter-increment: --comment;
+    position: relative;
+    scroll-margin-block-start: 1em;
+    border-bottom: 1px solid var(--border-color);
+    margin-block-start: 2em;
+  }
 
-    [rel=bookmark]::after {
-      content: counter(--comment);
-      font-weight: normal;
-    }
+  [rel=bookmark]::after {
+    content: counter(--comment);
+    font-weight: normal;
   }
 
   .h-card {
