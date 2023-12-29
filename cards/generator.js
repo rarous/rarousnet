@@ -7,7 +7,7 @@ import data from "./data.json" assert { type: "json" };
 const POOL_SIZE = parseInt(process.env.POOL_SIZE ?? 8, 10);
 const url = process.argv[2];
 
-console.log("Gryphoon 3.0 - static website generator");
+console.log("Gryphoon 3.5 - static website generator");
 console.log("Twitter Card images generator");
 console.log("");
 
@@ -16,9 +16,11 @@ class TwitterCardPage {
     this.page = page;
     this.card = page.locator("#twitter-card");
   }
+
   navigate(url) {
     return this.page.goto(url);
   }
+
   changeCardContent(post) {
     const setContent = (el, s) => (el.innerText = s);
     return Promise.all([
@@ -27,6 +29,7 @@ class TwitterCardPage {
       this.card.locator("#date").evaluate(setContent, post.date),
     ]);
   }
+
   screenshot(path) {
     return this.card.screenshot({ path });
   }

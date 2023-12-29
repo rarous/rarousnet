@@ -9,9 +9,9 @@ const account = new cloudflare.Account(
   {
     accountId: config.require("cloudflare-accountId"),
     name: "rarous",
-    enforceTwofactor: true
+    enforceTwofactor: true,
   },
-  { protect: true }
+  { protect: true },
 );
 
 const zone = new cloudflare.Zone(
@@ -19,9 +19,9 @@ const zone = new cloudflare.Zone(
   {
     accountId: account.id,
     plan: "free",
-    zone: "rarous.net"
+    zone: "rarous.net",
   },
-  { protect: true }
+  { protect: true },
 );
 
 new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
@@ -37,16 +37,16 @@ new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
     minify: {
       css: "on",
       html: "on",
-      js: "on"
+      js: "on",
     },
     securityHeader: {
       enabled: true,
       includeSubdomains: true,
       nosniff: true,
       preload: true,
-      maxAge: 31536000
-    }
-  }
+      maxAge: 31536000,
+    },
+  },
 });
 
 new cloudflare.Record(`${domain}/dns-record-keybase`, {
@@ -54,24 +54,24 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
   name: "@",
   type: "TXT",
   value: "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
-  ttl: 3600
+  ttl: 3600,
 });
 
 const weblogBucket = new cloudflare.R2Bucket("weblog-bucket", {
   accountId: account.id,
-  name: "rarousnet"
+  name: "rarousnet",
 });
 
 const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
   accountId: account.id,
-  title: "rarous-net-weblog"
+  title: "rarous-net-weblog",
 });
 
 const turnstile = new cloudflare.TurnstileWidget("rarousnet", {
   accountId: account.id,
   name: "rarousnet",
   domains: [zone.zone],
-  mode: "invisible"
+  mode: "invisible",
 });
 
 const weblogPages = new cloudflare.PagesProject("weblog", {
@@ -87,12 +87,12 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       productionDeploymentEnabled: false,
       productionBranch: "trunk",
       previewBranchIncludes: ["*"],
-      prCommentsEnabled: false
-    }
+      prCommentsEnabled: false,
+    },
   },
   buildConfig: {
     buildCommand: "yarn build",
-    destinationDir: "dist"
+    destinationDir: "dist",
   },
   deploymentConfigs: {
     production: {
@@ -100,16 +100,16 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       compatibilityFlags: ["nodejs_compat"],
       environmentVariables: {
         TURNSTILE_SECRET_KEY: turnstile.secret,
-        WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret")
+        WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
       },
       kvNamespaces: {
-        weblog: weblogNS.id
+        weblog: weblogNS.id,
       },
       r2Buckets: {
-        storage: weblogBucket.name
-      }
-    }
-  }
+        storage: weblogBucket.name,
+      },
+    },
+  },
 });
 
 const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
@@ -118,12 +118,12 @@ const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
   type: "CNAME",
   value: weblogPages.domains[0],
   ttl: 1,
-  proxied: true
+  proxied: true,
 });
 const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
   accountId: account.id,
   domain: wwwRecord.hostname,
-  projectName: weblogPages.name
+  projectName: weblogPages.name,
 });
 
 export const accountId = account.id;

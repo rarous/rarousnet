@@ -470,7 +470,7 @@
         content (str root "content")
         website (str root "website/")]
     (println)
-    (println "Gryphoon 3.0 - static website generator")
+    (println "Gryphoon 3.5 - static website generator")
     (println "Content generator")
     (println)
     (println "Copying website content to distribution folder...")
