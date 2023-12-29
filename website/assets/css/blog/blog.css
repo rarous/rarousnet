@@ -656,6 +656,9 @@ article footer {
 
   textarea {
     font-family: var(--content-font);
+    width: 100%;
+    max-width: 40em;
+    box-sizing: border-box;
   }
 
   button {
