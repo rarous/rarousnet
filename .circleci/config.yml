@@ -70,6 +70,7 @@ jobs:
           name: Restore Gryphoon cache
           keys: 
             - &gryphoon-key v1-gryphoon-generator-{{ .Revision }}
+            - v1-gryphoon-generator
             - v1-gryphoon
       - run: 
           name: Generate static web site content
@@ -85,7 +86,7 @@ jobs:
           name: Store Gryphoon cache
           key: *gryphoon-key
           paths: 
-            - ./.gryphoon/.cache
+            - .gryphoon/.cache
       - persist_to_workspace: 
           root: .
           paths: .gryphoon
@@ -107,6 +108,7 @@ jobs:
           name: Restore Gryphoon cache
           keys: 
             - &gryphoon-key v1-gryphoon-postprocess-{{ .Revision }}
+            - v1-gryphoon-postprocess
             - v1-gryphoon
       - run: 
           name: Generate Twitter Card images
@@ -121,7 +123,7 @@ jobs:
           name: Store Gryphoon cache
           key: *gryphoon-key
           paths: 
-            - ./.gryphoon/.cache
+            - .gryphoon/.cache
       - persist_to_workspace: 
           root: .
           paths: .gryphoon
