@@ -44,18 +44,18 @@
   "scripts": {
     "build:website": "cd generator && clojure -M -m rarousnet.generator ../",
     "build:assets": "gulp -p",
-    "build:index": "pagefind --site ./dist",
+    "build:index": "pagefind --site ./.gryphoon/dist",
     "build": "run-s 'build:*'",
     "fmt": "dprint fmt \"**/*.{md,mjs,js,json}\"",
-    "serve": "ws --compress --http2 -d ./dist",
+    "serve": "ws --compress --http2 -d ./.gryphoon/dist",
     "start": "gulp dev",
-    "sync": "wrangler pages deploy ./dist --project=rarousnet --environment=production",
+    "sync": "wrangler pages deploy ./.gryphoon/dist --project=rarousnet --environment=production",
     "test:lighthouse:init": "mkdir ./results",
     "test:lighthouse:root": "lighthouse https://localhost:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
     "test:lighthouse:weblog": "lighthouse https://localhost:8000/weblog/ --config-path .lighthouse.json --output json --output html --output-path ./results/weblog.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
     "test:lighthouse": "run-s 'test:lighthouse:*'",
     "test:ava": "ava | tap-xunit > ./results/ava.xml",
-    "test:broken-links": "blcl ./dist -ro"
+    "test:broken-links": "blcl ./.gryphoon/dist -ro"
   },
   "workspaces": [
     "cards",

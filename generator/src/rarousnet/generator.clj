@@ -13,6 +13,7 @@
     [rarousnet.texy :refer [process-typo]])
   (:import
     (java.io File)
+    (java.security MessageDigest)
     (java.text Normalizer Normalizer$Form)
     (java.util Locale))
   (:gen-class))
@@ -266,7 +267,7 @@
 
 (defn write-file [dist {:file/keys [name content append]}]
   (let [weblog (str dist "/weblog/")]
-    (println "Writing file" (str "/dist/weblog/" name))
+    (println "Writing file" (str weblog name))
     (io/make-parents weblog name)
     (spit (io/file weblog name) content :append append)))
 
@@ -445,11 +446,18 @@
    :date (last (string/split (long-date-time (:published article)) #" - "))
    :fileName (string/replace (:file-name article) #"\.html$" ".png")})
 
+(defn sha256 [^String string]
+  (let [digest (.digest (MessageDigest/getInstance "SHA-256") (.getBytes string "UTF-8"))]
+    (apply str (map (partial format "%02x") digest))))
+
+(defn hash-content [{:keys [title name date fileName] :as article}]
+  (assoc article :hash (sha256 (str title name date fileName))))
+
 (defn twitter-images [articles write-file-ch]
-  (let [images-meta (into [] (map article->image) articles)
+  (let [images-meta (into [] (comp (map article->image) (map hash-content)) articles)
         json (json/generate-string images-meta)]
     (go (>! write-file-ch
-            {:file/name "data.json"
+            {:file/name "../../cards.json"
              :file/content json}))))
 
 (def generators
@@ -465,7 +473,7 @@
 
 (defn -main [& args]
   (let [root (or (first args) "../")
-        dist (str root "dist")
+        dist (str root ".gryphoon/dist")
         static (str root "static/")
         content (str root "content")
         website (str root "website/")]

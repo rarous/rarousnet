@@ -4,12 +4,10 @@ target/
 *.iml
 .lein*
 .nrepl*
-dist/
-out/
+.gryphoon/
 yarn-error.log
 generator/.cpcache/
 vendor/
-cards/data.json
 .pnp
 .yarn/cache
 .yarn/install-state.gz

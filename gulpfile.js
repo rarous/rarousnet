@@ -21,42 +21,42 @@ const { dest, series, src, watch } = gulp;
 function css() {
   const plugins = [
     presetEnv({
-      minimumVendorImplementations: 2,
+      minimumVendorImplementations: 2
     }),
     cssnano(),
-    jitProps(OpenProps),
+    jitProps(OpenProps)
   ];
   return pipeline(
     src("./website/assets/**/*.css"),
     postcss(plugins),
     plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }),
-    dest("./dist/assets/"),
+    dest("./.gryphoon/dist/assets/")
   );
 }
 
 function js() {
-  return pipeline(src("./website/assets/**/*.js"), dest("./dist/assets/"));
+  return pipeline(src("./website/assets/**/*.js"), dest("./.gryphoon/dist/assets/"));
 }
 
 function staticHtml() {
-  return pipeline(src("./website/**/*.html"), dest("./dist/"));
+  return pipeline(src("./website/**/*.html"), dest("./.gryphoon/dist/"));
 }
 
 function hashAssets() {
   return pipeline(
-    src(["./dist/assets/**/*.css", "./dist/assets/**/*.js"], { base: "dist" }),
+    src(["./.gryphoon/dist/assets/**/*.css", "./.gryphoon/dist/assets/**/*.js"], { base: "dist" }),
     hash(),
     deleteNotHashed(),
     dest("./dist"),
     hash.manifest("assets-manifest.json", { merge: true }),
-    dest("./out"),
+    dest("./.gryphoon")
   );
 }
 
 function html() {
-  const manifest = src("./out/assets-manifest.json");
+  const manifest = src("./.gryphoon/assets-manifest.json");
   return pipeline(
-    src("./dist/**/*.html"),
+    src("./.gryphoon/dist/**/*.html"),
     references({ manifest }),
     htmlMin({
       collapseBooleanAttributes: true,
@@ -67,30 +67,30 @@ function html() {
       removeOptionalTags: true,
       removeRedundantAttributes: true,
       removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true
     }),
-    dest("./dist"),
+    dest("./.gryphoon/dist")
   );
 }
 
 function size() {
-  return src(["./dist/**/*.css", "./dist/**/*.js", "./dist/**/*.woff2"]).pipe(
-    sizereport({ gzip: true }),
+  return src(["./.gryphoon/dist/**/*.css", "./.gryphoon/dist/**/*.js", "./.gryphoon/dist/**/*.woff2"]).pipe(
+    sizereport({ gzip: true })
   );
 }
 
 function run(done) {
   browserSync.init({
-    server: "./dist",
-    browser: "Firefox Developer Edition",
+    server: "./.gryphoon/dist",
+    browser: "Firefox Developer Edition"
   });
 
   watch("website/assets/**/*.css", css);
   watch("website/assets/**/*.js", js);
   watch("website/**/*.html", staticHtml);
-  watch(["dist/**/*.css", "dist/**/*.js", "dist/**/*.html"]).on(
+  watch([".gryphoon/dist/**/*.css", ".gryphoon/dist/**/*.js", ".gryphoon/dist/**/*.html"]).on(
     "change",
-    browserSync.reload,
+    browserSync.reload
   );
   done();
 }

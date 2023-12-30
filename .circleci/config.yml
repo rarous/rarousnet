@@ -66,6 +66,10 @@ jobs:
           name: Restore deps cache
           keys: 
             - v4-dependencies-{{ checksum "generator/deps.edn" }}
+      - restore_cache: 
+          name: Restore Gryphoon cache
+          keys: 
+            - v1-gryphoon
       - run: 
           name: Generate static web site content
           working_directory: generator
@@ -76,9 +80,14 @@ jobs:
           paths: 
             - ~/.m2
             - generator/.cpcache
+      - save_cache: 
+          name: Store Gryphoon cache
+          key: v1-gryphoon
+          paths: 
+            - ./.gryphoon/.cache
       - persist_to_workspace: 
           root: .
-          paths: dist
+          paths: .gryphoon
   postprocess: 
     resource_class: large
     executor: pw-focal-development
@@ -93,20 +102,27 @@ jobs:
           cache-version: v2-pw
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
       - install_browsers
+      - restore_cache: 
+          name: Restore Gryphoon cache
+          keys: 
+            - v1-gryphoon
       - run: 
           name: Generate Twitter Card images
-          command: |
-            mv ./dist/weblog/data.json ./cards
-            node ./cards/generator.js "file://`pwd -P`/cards/card.html"
+          command: node ./cards/generator.js "file://`pwd -P`/cards/card.html"
       - run: 
           name: Generate search index
           command: yarn build:index
       - run: 
           name: Postprocess resources
           command: yarn build:assets
+      - save_cache: 
+          name: Store Gryphoon cache
+          key: v1-gryphoon
+          paths: 
+            - ./.gryphoon/.cache
       - persist_to_workspace: 
           root: .
-          paths: dist
+          paths: .gryphoon
   test: 
     resource_class: large
     executor: 
@@ -163,7 +179,7 @@ jobs:
           override-ci-command: yarn workspaces focus rarousnet
       - run: 
           name: Publish to Cloudflare Pages
-          command: npx wrangler pages deploy dist --project-name=rarousnet
+          command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet
   merge_pr: 
     docker: 
       - image: cimg/base:current
