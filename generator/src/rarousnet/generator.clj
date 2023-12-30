@@ -266,7 +266,7 @@
     (into [] (map with-html) articles)))
 
 (defn write-file [dist {:file/keys [name content append]}]
-  (let [weblog (str dist "/weblog/")]
+  (let [weblog (.getCanonicalFile (io/file  dist "weblog"))]
     (println "Writing file" (str weblog name))
     (io/make-parents weblog name)
     (spit (io/file weblog name) content :append append)))
@@ -282,7 +282,6 @@
     (go (>! write-file-ch
             {:file/name "articles.rss"
              :file/content rss}))))
-
 
 (defn page [article]
     {:file/content (apply str (blogpost-template article))
@@ -472,11 +471,11 @@
    redirects])
 
 (defn -main [& args]
-  (let [root (or (first args) "../")
-        dist (str root ".gryphoon/dist")
-        static (str root "static/")
-        content (str root "content")
-        website (str root "website/")]
+  (let [root (or (first args) "..")
+        dist (.getCanonicalFile (io/file root ".gryphoon" "dist"))
+        static (.getCanonicalFile (io/file  root "static"))
+        content (.getCanonicalFile (io/file  root "content"))
+        website (.getCanonicalFile (io/file  root "website"))]
     (println)
     (println "Gryphoon 3.5 - static website generator")
     (println "Content generator")
