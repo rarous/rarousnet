@@ -252,6 +252,7 @@
         :day (-> article :published from-date time/day)))))
 
 (defn static-content [src dest]
+  (io/make-parents dest ".")
   (println (:out (sh "cp" "-vpR" (str src "/") (str dest "/")))))
 
 (def entries
