@@ -266,10 +266,11 @@
     (into [] (map with-html) articles)))
 
 (defn write-file [dist {:file/keys [name content append]}]
-  (let [weblog (.getCanonicalFile (io/file  dist "weblog"))]
-    (println "Writing file" (str weblog name))
-    (io/make-parents weblog name)
-    (spit (io/file weblog name) content :append append)))
+  (let [file (.getCanonicalFile (io/file dist "weblog" name))
+        file-path (.getCanonicalPath file)]
+    (println "Writing file" file-path)
+    (io/make-parents file-path)
+    (spit file content :append append)))
 
 (defn latest [n articles]
   (->>
