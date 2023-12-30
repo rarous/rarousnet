@@ -252,7 +252,7 @@
         :day (-> article :published from-date time/day)))))
 
 (defn static-content [src dest]
-  (sh "cp" "-pR" src dest))
+  (println (:out (sh "cp" "-vpR" (str src "/") (str dest "/")))))
 
 (def entries
   (comp
@@ -473,10 +473,10 @@
 
 (defn -main [& args]
   (let [root (or (first args) "..")
-        dist (.getCanonicalFile (io/file root ".gryphoon" "dist"))
-        static (.getCanonicalFile (io/file  root "static"))
-        content (.getCanonicalFile (io/file  root "content"))
-        website (.getCanonicalFile (io/file  root "website"))]
+        dist (.getCanonicalPath (io/file root ".gryphoon" "dist"))
+        static (.getCanonicalPath (io/file root "static"))
+        content (.getCanonicalFile (io/file root "content"))
+        website (.getCanonicalPath (io/file root "website"))]
     (println)
     (println "Gryphoon 3.5 - static website generator")
     (println "Content generator")
