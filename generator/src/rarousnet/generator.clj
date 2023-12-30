@@ -253,7 +253,7 @@
 
 (defn static-content [src dest]
   (io/make-parents dest ".")
-  (println (:out (sh "cp" "-vpR" (str src "/") dest))))
+  (println (:out (sh "cp" "-vpR" src dest))))
 
 (def entries
   (comp
