@@ -104,12 +104,6 @@ jobs:
           cache-version: v2-pw
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
       - install_browsers
-      - restore_cache: 
-          name: Restore Gryphoon cache
-          keys: 
-            - &gryphoon-key v1-gryphoon-postprocess-{{ .Revision }}
-            - v1-gryphoon-postprocess
-            - v1-gryphoon
       - run: 
           name: Generate Twitter Card images
           command: node ./cards/generator.js "file://`pwd -P`/cards/card.html"
@@ -119,11 +113,6 @@ jobs:
       - run: 
           name: Postprocess resources
           command: yarn build:assets
-      - save_cache: 
-          name: Store Gryphoon cache
-          key: *gryphoon-key
-          paths: 
-            - .gryphoon/.cache
       - persist_to_workspace: 
           root: .
           paths: .gryphoon
