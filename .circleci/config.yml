@@ -73,7 +73,7 @@ jobs:
       - run: 
           name: Generate static web site content
           working_directory: generator
-          command: clojure -m rarousnet.generator ../
+          command: clojure -m rarousnet.generator `realpath ..`
       - save_cache: 
           name: Store deps cache
           key: v4-dependencies-{{ checksum "generator/deps.edn" }}
