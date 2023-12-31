@@ -16,7 +16,7 @@ export async function onRequestGet({ env }) {
     description: "Komentáře k článkům rarouš.weblog.",
     copyright: `© 2004 - ${new Date().getFullYear()} Aleš Roubíček. All rights reserved`,
     generator: "Gryphoon Weblog v3.5",
-    language: "cs-CZ"
+    language: "cs-CZ",
   });
   for (const item of items.filter(x => x.isEnabled)) {
     feed.addItem({
@@ -24,14 +24,14 @@ export async function onRequestGet({ env }) {
       title: "Komentář k článku " + item.article?.title,
       guid: item.href,
       link: item.href,
-      date: item.created,
-      description: item.text
+      date: new Date(item.created),
+      description: item.text,
     });
   }
   return new Response(feed.rss2(), {
     headers: {
       "content-type": "application/rss+xml",
-      "cache-control": "max-age=3600"
-    }
+      "cache-control": "max-age=3600",
+    },
   });
 }
