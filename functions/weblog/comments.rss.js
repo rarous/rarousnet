@@ -20,7 +20,7 @@ export async function onRequestGet({ env }) {
   });
   for (const item of items.filter(x => x.isEnabled)) {
     feed.addItem({
-      author: [Object.assign({ email: "noreply@example.com" }, item.author)],
+      author: [{ email: "noreply@example.com", name: item.author.name }],
       title: "Komentář k článku " + item.article?.title,
       link: item.href,
       date: new Date(item.created),
