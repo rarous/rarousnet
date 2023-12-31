@@ -21,16 +21,16 @@ const { dest, series, src, watch } = gulp;
 function css() {
   const plugins = [
     presetEnv({
-      minimumVendorImplementations: 2
+      minimumVendorImplementations: 2,
     }),
     cssnano(),
-    jitProps(OpenProps)
+    jitProps(OpenProps),
   ];
   return pipeline(
     src("./website/assets/**/*.css"),
     postcss(plugins),
     plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }),
-    dest("./.gryphoon/dist/assets/")
+    dest("./.gryphoon/dist/assets/"),
   );
 }
 
@@ -49,7 +49,7 @@ function hashAssets() {
     deleteNotHashed(),
     dest("./dist"),
     hash.manifest("assets-manifest.json", { merge: true }),
-    dest("./.gryphoon")
+    dest("./.gryphoon"),
   );
 }
 
@@ -67,22 +67,22 @@ function html() {
       removeOptionalTags: true,
       removeRedundantAttributes: true,
       removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true
+      removeStyleLinkTypeAttributes: true,
     }),
-    dest("./.gryphoon/dist")
+    dest("./.gryphoon/dist"),
   );
 }
 
 function size() {
   return src(["./.gryphoon/dist/**/*.css", "./.gryphoon/dist/**/*.js", "./.gryphoon/dist/**/*.woff2"]).pipe(
-    sizereport({ gzip: true })
+    sizereport({ gzip: true }),
   );
 }
 
 function run(done) {
   browserSync.init({
     server: "./.gryphoon/dist",
-    browser: "Firefox Developer Edition"
+    browser: "Firefox Developer Edition",
   });
 
   watch("website/assets/**/*.css", css);
@@ -90,7 +90,7 @@ function run(done) {
   watch("website/**/*.html", staticHtml);
   watch([".gryphoon/dist/**/*.css", ".gryphoon/dist/**/*.js", ".gryphoon/dist/**/*.html"]).on(
     "change",
-    browserSync.reload
+    browserSync.reload,
   );
   done();
 }
