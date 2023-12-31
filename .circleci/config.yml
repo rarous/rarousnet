@@ -120,7 +120,7 @@ jobs:
     resource_class: large
     executor: 
       name: node/default
-      tag: '20.9-browsers'
+      tag: 'lts-browsers'
     steps: 
       - checkout
       - attach_workspace: 
