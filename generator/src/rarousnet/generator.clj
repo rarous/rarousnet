@@ -93,6 +93,7 @@
    ([type subtype prop] [(typeof type) (typeof subtype) (property prop)]))
 (defn- link [rel] [:link (html/attr= :rel rel)])
 (defn- script [src] [:script (html/attr= :src src)])
+(defn- input [name] [:input (html/attr= :name name)])
 
 (defsnippet article-listing "weblog/index.html" [:.feed :article]
   [{:keys [title author category html published] :as article}]
@@ -173,7 +174,7 @@
                    {:permalink (permalink article)
                     ;; TODO: inject from pulumi state
                     :turnstileSiteKey "0x4AAAAAAAOCSb93_fOUweSv"})
-  [:#new-comment :input (html/attr= :name "article-title")] (html/set-attr :value title)
+  [:#new-comment (input "article-title")] (html/set-attr :value title)
   [:#head] (html/substitute (page-header))
   [:.footer] (html/substitute (page-footer)))
 
