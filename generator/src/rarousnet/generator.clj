@@ -267,8 +267,8 @@
         with-html #(assoc % :html (-> % :file-name html))]
     (into [] (map with-html) articles)))
 
-(defn write-file [dist {:file/keys [name content append]}]
-  (let [file (.getCanonicalFile (io/file dist "weblog" name))
+(defn write-file [dist {:file/keys [name dir content append]}]
+  (let [file (.getCanonicalFile (io/file dist (or dir ".") name))
         file-path (.getCanonicalPath file)]
     (println "Writing file" file-path)
     (io/make-parents file-path)
@@ -284,10 +284,12 @@
   (let [rss (apply str (rss-template (latest 10 articles)))]
     (go (>! write-file-ch
             {:file/name "articles.rss"
+             :file/dir "weblog"
              :file/content rss}))))
 
 (defn page [article]
     {:file/content (apply str (blogpost-template article))
+     :file/dir "weblog"
      :file/name (:file-name article)})
 
 (defn articles-pages [articles write-file-ch]
@@ -297,6 +299,7 @@
   (let [html (apply str (index-template (latest 5 articles)))]
     (go (>! write-file-ch
             {:file/name "index.html"
+             :file/dir "weblog"
              :file/content html}))))
 
 (defn tag-page [[tag items]]
@@ -307,6 +310,7 @@
               :years items}
         html (apply str (tag-template data))]
     {:file/name file-name
+     :file/dir "weblog"
      :file/content html}))
 
 (defn articles-by-tag [[tag items]]
@@ -341,6 +345,7 @@
                 :years [{:year year :articles articles}]}
           html (apply str (tag-template data))]
       {:file/name file-name
+       :file/dir "weblog"
        :file/content html})))
 
 (defn month-index [year]
@@ -361,6 +366,7 @@
       (conj
         (map (day-index year month) items)
         {:file/name file-name
+         :file/dir "weblog"
          :file/content html}))))
 
 (defn year-index [[year items]]
@@ -381,6 +387,7 @@
     (conj
       (mapcat (month-index year) items)
       {:file/name file-name
+       :file/dir "weblog"
        :file/content html})))
 
 (defn articles-by-month [[month items]]
@@ -408,6 +415,7 @@
         sitemap (apply str (sitemap-template links))]
        (go (>! write-file-ch
                {:file/name "sitemap.xml"
+                :file/dir "weblog"
                 :file/content sitemap}))))
 
 (defn syndication-feed [articles write-file-ch]
@@ -425,7 +433,8 @@
               :years years}
         html (apply str (tag-template data))]
        (go (>! write-file-ch
-               {:file/name "feed/index.html"
+               {:file/name "index.html"
+                :file/dir "weblog/feed"
                 :file/content html}))))
 
 (def weblog-pattern
@@ -438,7 +447,8 @@
                       (map #(str (weblog-pattern %) " " (rel-link %) " 301")))
                     articles)]
        (go (>! write-file-ch
-               {:file/name "../_redirects"
+               {:file/name "_redirects"
+                :file/dir "."
                 :file/content (string/join "\n" redirects)
                 :file/append true}))))
 
@@ -459,7 +469,8 @@
   (let [images-meta (into [] (comp (map article->image) (map hash-content)) articles)
         json (json/generate-string images-meta)]
     (go (>! write-file-ch
-            {:file/name "../../cards.json"
+            {:file/name "cards.json"
+             :file/dir ".."
              :file/content json}))))
 
 (def generators
