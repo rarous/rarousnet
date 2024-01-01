@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="delegate-ch"
         content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
-  <title>Sbírka desek Aleše Roubíčka</title>
+  <title>Vinyly Aleše Roubíčka</title>
   <link rel="preconnect" href="https://use.typekit.net">
   <link rel="preconnect" href="https://p.typekit.net">
   <link rel="preconnect" href="https://res.cloudinary.com">
@@ -22,8 +22,16 @@
   <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-bold.woff2">
   <link rel="preload" as="font" crossorigin type="font/woff2"
         href="/assets/fonts/iosevka/woff2/iosevka-sparkle-bolditalic.woff2">
+  <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
+  <meta name="copyright" content="&copy; 2004 - 2024 Aleš Roubíček. Creative Commons 4.0 BY-SA">
+  <meta name="description" content="Sbírka gramofonových desek Aleše Roubíčka.">
+  <link rel="canonical" href="https://www.rarous.net/kolekce/vinyly">
   <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
   <link rel="stylesheet" href="/assets/css/iosevka.css">
+  <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
+  <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
   <style>
     :root {
       --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
@@ -39,7 +47,6 @@
       --code-font: var(--iosevka);
 
       --heading-font: 800 2.5em var(--main-font);
-
     }
 
     body {
@@ -60,6 +67,15 @@
       text-wrap: balance;
       margin: 0;
       z-index: 20;
+    }
+
+    p {
+      text-wrap: pretty;
+      max-width: 48rem;
+    }
+
+    data[property=collectionSize] {
+      font-family: var(--content-font);
     }
 
     .items {
@@ -90,9 +106,28 @@
       margin: 0;
     }
   </style>
+  <script type="module">
+    function send(tid, en) {
+      const data = new URLSearchParams({
+        v: 2,
+        tid,
+        cid: `${Date.now()}${Math.random()}`,
+        dl: location.href,
+        aip: 1,
+        en
+      });
+      navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
+    }
+
+    send("G-B3W7LTZE6J", "page_view");
+  </script>
 </head>
 <body>
-
+<header>
+  <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
+    <img alt="Aleš Roubíček" class="logo" src="/assets/logo.svg" width="60" height="43">
+  </a>
+</header>
 <main typeof="Collection" vocab="https://schema.org/">
   <rarous-discogs>
     <template>
@@ -111,10 +146,21 @@
     </template>
     <section>
       <h1 property="name">Kolekce vinylů</h1>
-      <p>Počet desek:
+      <p>Desky jsem začal sbírat na jaře 2013, když vyšly <a href="https://daftpunk.lnk.to/RAM_Originals">Random Access
+        Memories</a>.
+        To byl první kousek v&nbsp;mé kolekci. Trvalo další rok, než jsem si pořídil
+        vlastní gramofon <a
+          href="https://www.project-audio.com/en/product/elemental/">Pro-Ject Audio
+          ELEMENTAL</a>. Časem jsem přebral kus kolekce od rodičů, kteří už si je
+        nemají na čem pouštět. Tyto desky ale nemám ještě všechny
+        katalogizované.</p>
+      <p>Počet katalogizovaných desek v kolekci:
         <data property="collectionSize" value=""></data>
       </p>
       <ul class="items"></ul>
+      <p>Zdrojem dat je <a href="https://www.discogs.com/user/rarous/collection">moje kolekce na Discogs</a>.</p>
+      <p>Pokud mi chcete udělat radost, deska vždycky potěší. Inspirovat se můžete na
+        <a href="https://www.amazon.de/hz/wishlist/ls/1P9UQLRGAKPG3?ref_=wl_share">seznamu mých hudebních přání</a>.</p>
     </section>
   </rarous-discogs>
 
@@ -1273,6 +1319,11 @@
     discogs.data = collection;
   </script>
 </main>
-
+<footer class="footer">
+  <div class="footer__copyright">
+    <p property="copyrightNotice">© 2004&ndash;<span class="year">2024</span> Aleš Roubíček.
+      Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
+  </div>
+</footer>
 </body>
 </html>
