@@ -280,7 +280,7 @@
     (sort-by :timestamp >)
     (take n)))
 
-(defn articles-rss [articles write-file-ch]
+(defn articles-rss [{:keys [articles]} write-file-ch]
   (let [rss (apply str (rss-template (latest 10 articles)))]
     (go (>! write-file-ch
             {:file/name "articles.rss"
@@ -292,10 +292,10 @@
      :file/dir "weblog"
      :file/name (:file-name article)})
 
-(defn articles-pages [articles write-file-ch]
+(defn articles-pages [{:keys [articles]} write-file-ch]
     (async/onto-chan! write-file-ch (map page articles)))
 
-(defn articles-index [articles write-file-ch]
+(defn articles-index [{:keys [articles]} write-file-ch]
   (let [html (apply str (index-template (latest 5 articles)))]
     (go (>! write-file-ch
             {:file/name "index.html"
@@ -321,7 +321,7 @@
          (map #(zipmap [:year :articles] %))
          (sort-by :year >))])
 
-(defn tag-indexes [articles write-file-ch]
+(defn tag-indexes [{:keys [articles]} write-file-ch]
   (let [pages
         (->>
           articles
@@ -399,7 +399,7 @@
           (group-by :month)
           (map articles-by-month))])
 
-(defn time-indexes [articles write-file-ch]
+(defn time-indexes [{:keys [articles]} write-file-ch]
   (let [files
         (->>
           articles
@@ -408,7 +408,7 @@
           (mapcat year-index))]
     (async/onto-chan write-file-ch files false)))
 
-(defn sitemap [articles write-file-ch]
+(defn sitemap [{:keys [articles]} write-file-ch]
   (let [hp [blog-url]
         articles (map #(permalink %) articles)
         links (concat hp articles)
@@ -418,7 +418,7 @@
                 :file/dir "weblog"
                 :file/content sitemap}))))
 
-(defn syndication-feed [articles write-file-ch]
+(defn syndication-feed [{:keys [articles]} write-file-ch]
   (let [years
         (->>
           articles
@@ -440,7 +440,7 @@
 (def weblog-pattern
   #(str "/weblog/" (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"html" "aspx")))
 
-(defn redirects [articles write-file-ch]
+(defn redirects [{:keys [articles]} write-file-ch]
   (let [redirects (into []
                     (comp
                       (filter :id)
@@ -465,7 +465,7 @@
 (defn hash-content [{:keys [title name date fileName] :as article}]
   (assoc article :hash (sha256 (str title name date fileName))))
 
-(defn twitter-images [articles write-file-ch]
+(defn twitter-images [{:keys [articles]} write-file-ch]
   (let [images-meta (into [] (comp (map article->image) (map hash-content)) articles)
         json (json/generate-string images-meta)]
     (go (>! write-file-ch
@@ -499,9 +499,10 @@
     (println)
     (println "Reading content...")
     (let [articles (read-articles content)
+          collections {:articles articles}
           write-file-ch (async/chan)]
       (println "Generating content...")
-      (run! #(async/thread (% articles write-file-ch)) generators)
+      (run! #(async/thread (% collections write-file-ch)) generators)
       (<!! (go-loop []
              (when-let [file (<! write-file-ch)]
                (write-file dist file)
