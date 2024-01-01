@@ -20,7 +20,14 @@ async function main({ token }) {
 
   do {
     const { pagination, releases } = await getReleases(page, token);
-    result.push(...releases);
+    const items = releases.map(x => x.basic_information).map(x => ({
+      id: x.id,
+      title: x.title,
+      image: x.cover_image,
+      year: x.year,
+      artist: { id: x.artists[0].id, name: x.artists[0].name }
+    }));
+    result.push(...items);
     stop = pagination.pages === page++;
   } while (!stop);
 
