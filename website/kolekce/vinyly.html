@@ -89,6 +89,7 @@
     }
 
     .album {
+      position: relative;
       filter: saturate(0.2);
       transition: filter ease-in-out 200ms;
 
@@ -126,6 +127,14 @@
 
     #player::backdrop {
       backdrop-filter: blur(4px);
+    }
+
+    @media screen and (max-width: 479px) {
+      #player {
+        aspect-ratio: initial;
+        width: 84dvw;
+        height: 84dvh;
+      }
     }
   </style>
   <script type="module">
