@@ -6,9 +6,7 @@ import { Discogs } from "../../website/assets/esm/discogs.js";
  */
 
 function registerGlobals(global) {
-  for (const [key, val] of Object.entries(global)) {
-    globalThis[key] = val;
-  }
+  globalThis.HTMLElement = global.HTMLElement;
   return global;
 }
 
@@ -19,7 +17,7 @@ export async function onRequestGet({ env }) {
   const resp = await env.ASSETS.fetch("/kolekce/vinyly.html");
   const html = await resp.text();
   const { document, customElements } = registerGlobals(parseHTML(html));
-  customElements.customElements.define("rarous-discogs", Discogs);
+  customElements.define("rarous-discogs", Discogs);
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
   return new Response(document.toString(), {
