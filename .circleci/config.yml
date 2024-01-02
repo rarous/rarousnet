@@ -106,10 +106,9 @@ jobs:
           root: .
           paths: .gryphoon
   test: 
+    docker:
+      - image: cimg/node:20.10-browsers
     resource_class: large
-    executor: 
-      name: node/default
-      tag: 'lts-browsers'
     steps: 
       - checkout
       - attach_workspace: 
@@ -147,7 +146,7 @@ jobs:
           path: ./results
   pages_deploy: 
     docker: 
-      - image: cimg/node:lts
+      - image: cimg/node:20.10
     resource_class: arm.large
     steps: 
       - checkout
