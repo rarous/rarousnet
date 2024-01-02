@@ -59,13 +59,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:4.20231218.0":
-  version: 4.20231218.0
-  resolution: "@cloudflare/workers-types@npm:4.20231218.0"
-  checksum: 96821a4aab6cf5fdf0767b77dd5804c6da179b5acdebce24b11fb2f730e851d29eb70e012a2e504b8690f8ad6763001325a0bda9d156c70135b5b76adb5e1f8d
-  languageName: node
-  linkType: hard
-
 "@cspotcode/source-map-support@npm:0.8.1":
   version: 0.8.1
   resolution: "@cspotcode/source-map-support@npm:0.8.1"
@@ -5443,15 +5436,6 @@ __metadata:
   dependencies:
     pend: "npm:~1.2.0"
   checksum: 304dd70270298e3ffe3bcc05e6f7ade2511acc278bc52d025f8918b48b6aa3b77f10361bddfadfe2a28163f7af7adbdce96f4d22c31b2f648ba2901f0c5fc20e
-  languageName: node
-  linkType: hard
-
-"feed@npm:4.2.2":
-  version: 4.2.2
-  resolution: "feed@npm:4.2.2"
-  dependencies:
-    xml-js: "npm:^1.6.11"
-  checksum: c0849bde569da94493224525db00614fd1855a5d7c2e990f6e8637bd0298e85c3d329efe476cba77e711e438c3fb48af60cd5ef0c409da5bcd1f479790b0a372
   languageName: node
   linkType: hard
 
@@ -11272,14 +11256,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rarousnet@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20231218.0"
     "@types/browser-sync": "npm:2.29.0"
     ava: "npm:6.0.1"
     broken-link-checker-local: "npm:0.2.1"
     browser-sync: "npm:3.0.2"
     cssnano: "npm:6.0.2"
     dprint: "npm:0.45.0"
-    feed: "npm:4.2.2"
     gulp: "npm:4.0.2"
     gulp-htmlmin: "npm:5.0.1"
     gulp-if: "npm:3.0.0"
@@ -11291,7 +11273,6 @@ __metadata:
     gulp-rev-replace: "npm:0.4.4"
     gulp-sizereport: "npm:1.2.1"
     lighthouse: "npm:11.4.0"
-    linkedom: "npm:0.16.5"
     local-web-server: "npm:5.3.0"
     npm-run-all: "npm:4.1.5"
     open-props: "npm:1.6.16"
@@ -11951,13 +11932,6 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: 7e3c8b2e88a1841c9671094bbaeebd94448111dd90a81a1f606f3f67708a6ec57763b3b47f06da09fc6054193e0e6709e77325415dc8422b04497a8070fa02d4
-  languageName: node
-  linkType: hard
-
-"sax@npm:^1.2.4":
-  version: 1.3.0
-  resolution: "sax@npm:1.3.0"
-  checksum: 599dbe0ba9d8bd55e92d920239b21d101823a6cedff71e542589303fa0fa8f3ece6cf608baca0c51be846a2e88365fac94a9101a9c341d94b98e30c4deea5bea
   languageName: node
   linkType: hard
 
@@ -14354,17 +14328,6 @@ __metadata:
   version: 4.0.0
   resolution: "xdg-basedir@npm:4.0.0"
   checksum: 1b5d70d58355af90363a4e0a51c992e77fc5a1d8de5822699c7d6e96a6afea9a1e048cb93312be6870f338ca45ebe97f000425028fa149c1e87d1b5b8b212a06
-  languageName: node
-  linkType: hard
-
-"xml-js@npm:^1.6.11":
-  version: 1.6.11
-  resolution: "xml-js@npm:1.6.11"
-  dependencies:
-    sax: "npm:^1.2.4"
-  bin:
-    xml-js: ./bin/cli.js
-  checksum: c83631057f10bf90ea785cee434a8a1a0030c7314fe737ad9bf568a281083b565b28b14c9e9ba82f11fc9dc582a3a907904956af60beb725be1c9ad4b030bc5a
   languageName: node
   linkType: hard
 

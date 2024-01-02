@@ -9,12 +9,7 @@
     "> 5%",
     "last 4 versions"
   ],
-  "dependencies": {
-    "feed": "4.2.2",
-    "linkedom": "0.16.5"
-  },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20231218.0",
     "@types/browser-sync": "2.29.0",
     "ava": "6.0.1",
     "broken-link-checker-local": "0.2.1",
@@ -60,6 +55,7 @@
   },
   "workspaces": [
     "cards",
+    "functions",
     "infrastructure",
     "scripts"
   ],
