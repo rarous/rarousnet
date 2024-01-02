@@ -66,12 +66,6 @@ jobs:
           name: Restore deps cache
           keys: 
             - v4-dependencies-{{ checksum "generator/deps.edn" }}
-      - restore_cache: 
-          name: Restore Gryphoon cache
-          keys: 
-            - &gryphoon-key v1-gryphoon-generator-{{ .Revision }}
-            - v1-gryphoon-generator
-            - v1-gryphoon
       - run: 
           name: Generate static web site content
           working_directory: generator
@@ -82,11 +76,6 @@ jobs:
           paths: 
             - ~/.m2
             - generator/.cpcache
-      - save_cache: 
-          name: Store Gryphoon cache
-          key: *gryphoon-key
-          paths: 
-            - .gryphoon/.cache
       - persist_to_workspace: 
           root: .
           paths: .gryphoon
