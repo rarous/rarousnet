@@ -1,7 +1,10 @@
 /**
- * @typedef {import("../../env.d.ts").Env} Env
+ * @typedef {import("../../../env.d.ts").Env} Env
  */
 
+/**
+ * @param {EventContext<Env>} context
+ */
 export async function onRequestPost({ env, request, next }) {
   const body = await request.formData();
   const token = body.get("cf-turnstile-response");

@@ -5,6 +5,7 @@ import { Feed } from "feed";
  */
 
 /**
+ * Generates RSS feed with latest comments on weblog
  * @param {EventContext<Env>} context
  */
 export async function onRequestGet({ env }) {

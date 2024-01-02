@@ -1,5 +1,5 @@
 /**
- * @typedef {import("../env.d.ts").Env} Env
+ * @typedef {import("./env.d.ts").Env} Env
  */
 
 /**
