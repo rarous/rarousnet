@@ -129,7 +129,33 @@
       backdrop-filter: blur(4px);
     }
 
+    @keyframes --saturate-in-and-out {
+      entry 60% {
+        filter: saturate(0.2);
+      }
+      entry 100% {
+        filter: saturate(1);
+      }
+      exit 0% {
+        filter: saturate(1);
+      }
+      exit 60% {
+        filter: saturate(0.2);
+      }
+    }
+
     @media screen and (max-width: 479px) {
+      .album {
+        filter: saturate(1);
+      }
+      @supports (animation-timeline: view()) {
+        .album {
+          filter: saturate(0.2);
+          animation: linear --saturate-in-and-out;
+          animation-timeline: view();
+        }
+      }
+
       #player {
         aspect-ratio: initial;
         width: 84dvw;
