@@ -40,7 +40,7 @@ function injectItems(section, template, items, applyTemplate) {
  * @param {EventContext<Env>} context
  */
 export async function onRequestGet({ env }) {
-  const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly.html");
+  const resp = await env.ASSETS.fetch("/kolekce/vinyly");
   const html = await resp.text();
   const { document, customElements, HTMLElement } = parseHTML(html);
 
