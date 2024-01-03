@@ -1,4 +1,4 @@
-import { parseHTML } from "linkedom/worker";
+import { parseHTML, HTMLElement } from "linkedom/worker";
 
 /**
  * @typedef {import("../env.d.ts").Env} Env
@@ -43,7 +43,6 @@ export async function onRequestGet({ env }) {
   const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly");
   const html = await resp.text();
   console.log(html);
-  const { document, customElements, HTMLElement } = parseHTML(html);
 
   class Discogs extends HTMLElement {
     constructor() {
@@ -84,6 +83,7 @@ export async function onRequestGet({ env }) {
       injectItems(collection, template, albums, itemTemplate);
     }
   }
+  const { document, customElements } = parseHTML(html);
   customElements.define("rarous-discogs", Discogs);
 
   const discogs = document.querySelector("rarous-discogs");
