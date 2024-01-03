@@ -40,7 +40,7 @@ function injectItems(section, template, items, applyTemplate) {
  * @param {EventContext<Env>} context
  */
 export async function onRequestGet({ env }) {
-  const resp = await env.ASSETS.fetch("/kolekce/vinyly");
+  const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly");
   const html = await resp.text();
   const { document, customElements, HTMLElement } = parseHTML(html);
 
@@ -83,13 +83,9 @@ export async function onRequestGet({ env }) {
       injectItems(collection, template, albums, itemTemplate);
     }
   }
-
   customElements.define("rarous-discogs", Discogs);
+
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
-  return new Response(document.toString(), {
-    headers: {
-      "content-type": "text/html",
-    },
-  });
+  return new Response(document.toString(), resp);
 }
