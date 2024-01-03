@@ -43,11 +43,15 @@ export async function onRequestGet({ env }) {
   const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly");
   const html = await resp.text();
   const window = parseHTML(html);
-  console.log(window);
+
+  console.log({ window });
+
   globalThis.HTMLElement = HTMLElement;
   const { Discogs } = await import("../../website/assets/esm/discogs.js");
+
+  console.log({ HTMLElement, Discogs });
+  const { document, customElements } = window;
   customElements.define("rarous-discogs", Discogs);
-  const document = window.document;
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
   return new Response(document.toString(), resp);
