@@ -5,6 +5,7 @@ target/
 .lein*
 .nrepl*
 .gryphoon/
+.wrangler/
 yarn-error.log
 generator/.cpcache/
 vendor/

@@ -156,8 +156,8 @@ jobs:
       - node/install-yarn
       - node/install-packages: 
           pkg-manager: yarn-berry
-          cache-version: v1-publish
-          override-ci-command: yarn workspaces focus --production @rarousnet/functions
+          cache-version: v2-publish
+          override-ci-command: yarn workspaces focus rarousnet @rarousnet/functions
       - run: 
           name: Publish to Cloudflare Pages
           command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet
