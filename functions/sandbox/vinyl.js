@@ -42,6 +42,7 @@ function injectItems(section, template, items, applyTemplate) {
 export async function onRequestGet({ env }) {
   const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly");
   const html = await resp.text();
+  console.log(html);
   const { document, customElements, HTMLElement } = parseHTML(html);
 
   class Discogs extends HTMLElement {
