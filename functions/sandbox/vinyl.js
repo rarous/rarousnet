@@ -1,4 +1,4 @@
-import { parseHTML, HTMLElement } from "linkedom/worker";
+import { HTMLElement, parseHTML } from "linkedom/worker";
 
 /**
  * @typedef {import("../env.d.ts").Env} Env
@@ -42,12 +42,12 @@ function injectItems(section, template, items, applyTemplate) {
 export async function onRequestGet({ env }) {
   const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly");
   const html = await resp.text();
-  console.log(html);
-  const { document, customElements } = parseHTML(html);
+  const window = parseHTML(html);
+  console.log(window);
   globalThis.HTMLElement = HTMLElement;
   const { Discogs } = await import("../../website/assets/esm/discogs.js");
   customElements.define("rarous-discogs", Discogs);
-
+  const document = window.document;
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
   return new Response(document.toString(), resp);
