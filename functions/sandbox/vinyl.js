@@ -43,47 +43,9 @@ export async function onRequestGet({ env }) {
   const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly");
   const html = await resp.text();
   console.log(html);
-
-  class Discogs extends HTMLElement {
-    constructor() {
-      super();
-    }
-
-    set data(albums) {
-      if (!albums?.length) return;
-
-      const template = this.querySelector("template");
-      const collection = this.querySelector("section");
-
-      function itemTemplate(content, item) {
-        const link = content.querySelector("a");
-        link.href = link.href + item.id;
-
-        const img = content.querySelector("img");
-        img.src = `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${item.image}`;
-        img.alt = `Obal desky ${item.artist.name} - ${item.title} (${item.year})`;
-
-        const name = content.querySelector("[property=name]");
-        name.textContent = item.title;
-
-        const byArtist = content.querySelector("[property=byArtist]");
-        byArtist.textContent = item.artist.name;
-
-        const copyrightYear = content.querySelector("[property=copyrightYear]");
-        copyrightYear.textContent = item.year;
-
-        const button = content.querySelector("button");
-        if (!item.spotifyUri) {
-          button.remove();
-        } else {
-          button.dataset.spotifyUri = item.spotifyUri;
-        }
-      }
-
-      injectItems(collection, template, albums, itemTemplate);
-    }
-  }
   const { document, customElements } = parseHTML(html);
+  globalThis.HTMLElement = HTMLElement;
+  const { Discogs } = await import("../../website/assets/esm/discogs.js");
   customElements.define("rarous-discogs", Discogs);
 
   const discogs = document.querySelector("rarous-discogs");
