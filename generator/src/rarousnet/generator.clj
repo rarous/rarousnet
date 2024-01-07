@@ -273,7 +273,7 @@
     (println "Writing file" file-path)
     (io/make-parents file-path)
     (if preppend
-      (spit file (str content (slurp file)))
+      (spit file (str content "\n" (slurp file)))
       (spit file content :append append))))
 
 (defn latest [n articles]
