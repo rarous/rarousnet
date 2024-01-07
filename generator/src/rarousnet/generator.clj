@@ -267,12 +267,14 @@
         with-html #(assoc % :html (-> % :file-name html))]
     (into [] (map with-html) articles)))
 
-(defn write-file [dist {:file/keys [name dir content append]}]
+(defn write-file [dist {:file/keys [name dir content append preppend]}]
   (let [file (.getCanonicalFile (io/file dist (or dir ".") name))
         file-path (.getCanonicalPath file)]
     (println "Writing file" file-path)
     (io/make-parents file-path)
-    (spit file content :append append)))
+    (if preppend
+      (spit file (str content (slurp file)))
+      (spit file content :append append))))
 
 (defn latest [n articles]
   (->>
@@ -450,7 +452,7 @@
                {:file/name "_redirects"
                 :file/dir "."
                 :file/content (string/join "\n" redirects)
-                :file/append true}))))
+                :file/preppend true}))))
 
 (defn article->image [article]
   {:title (:title article)
