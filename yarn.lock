@@ -987,12 +987,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koa/cors@npm:^3.4.3":
-  version: 3.4.3
-  resolution: "@koa/cors@npm:3.4.3"
+"@koa/cors@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@koa/cors@npm:5.0.0"
   dependencies:
     vary: "npm:^1.1.2"
-  checksum: a43ae2e7031c9a93dfe37e261f18e8926466f5dc41a90c8af6922bcdc06f29da7f817d04dbc19519bd1802300313ab54680541b07e753be3711da8990dfe192b
+  checksum: 49e5f3b861590bd81aa3663a2f0658234a9b378840bb54a2947b3c5f2067f9d966b6fa2e9049fdc7c74c787456d1885bacd0b7ee1f134274d28282c7df99c3fd
   languageName: node
   linkType: hard
 
@@ -4165,6 +4165,13 @@ __metadata:
   version: 1.1.0
   resolution: "current-module-paths@npm:1.1.0"
   checksum: e124e1c1636792f2688e9b1d9e0b4b996a6e4cf28e2ab7086150654a69613e000295a4d0064c06d1613ac745fe75a6f58ed1ddc0609ae2f2b64a074f4b856dd0
+  languageName: node
+  linkType: hard
+
+"current-module-paths@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "current-module-paths@npm:1.1.1"
+  checksum: 6b50b90b40206577fa9f58b2c0b35655ac781f09a296869ccf0919691876dea86a590dcdac594ff8f70317c9ef593c3f165c105f4934200500bba7abafb6e719
   languageName: node
   linkType: hard
 
@@ -8135,18 +8142,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"local-web-server@npm:5.3.0":
-  version: 5.3.0
-  resolution: "local-web-server@npm:5.3.0"
+"local-web-server@npm:5.3.1":
+  version: 5.3.1
+  resolution: "local-web-server@npm:5.3.1"
   dependencies:
-    current-module-paths: "npm:^1.1.0"
+    current-module-paths: "npm:^1.1.1"
     lws: "npm:^4.1.2"
     lws-basic-auth: "npm:^2.0.0"
     lws-blacklist: "npm:^3.0.0"
     lws-body-parser: "npm:^3.0.0"
     lws-compress: "npm:^3.1.0"
     lws-conditional-get: "npm:^2.0.0"
-    lws-cors: "npm:^4.2.0"
+    lws-cors: "npm:^4.2.1"
     lws-index: "npm:^3.1.1"
     lws-json: "npm:^2.0.0"
     lws-log: "npm:^2.0.0"
@@ -8158,7 +8165,7 @@ __metadata:
     lws-static: "npm:^3.1.0"
   bin:
     ws: bin/cli.mjs
-  checksum: ca12c6c86330750cb0359cb75b42c2147c96ba0feb3c4e8bdb2322ed134d6c6c766f9e52bdb350ed6be34c60ab6da2c8d5a7f269703671a72652bb7727b19ad2
+  checksum: 120fbbce6045fb52e7f14e7e1650f0bc06f84ae3135b817950f8bf99f496e45401892356461eabf77777e2f2501baa97cdaf4e4d10ee538b161f1c804230303e
   languageName: node
   linkType: hard
 
@@ -8385,12 +8392,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lws-cors@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "lws-cors@npm:4.2.0"
+"lws-cors@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "lws-cors@npm:4.2.1"
   dependencies:
-    "@koa/cors": "npm:^3.4.3"
-  checksum: 90fabdb36a10ab1f715b715ce4edf372498e34257269676effa8b16e2fae2528de041d79624e06bc4355bd5dcbc95d11effa519ae165dfa3cc2ce7bf339b084c
+    "@koa/cors": "npm:^5.0.0"
+  checksum: 3e9983e3950e638c079c7f5f28ec2ef9a96afff33a50c9e298982e5d83fcbeb0610f91fe63bd4dbe74d1632ff2b02ed22e5450aab36e3b2c56b339a926e58695
   languageName: node
   linkType: hard
 
@@ -11299,7 +11306,7 @@ __metadata:
     gulp-rev-replace: "npm:0.4.4"
     gulp-sizereport: "npm:1.2.1"
     lighthouse: "npm:11.4.0"
-    local-web-server: "npm:5.3.0"
+    local-web-server: "npm:5.3.1"
     npm-run-all: "npm:4.1.5"
     open-props: "npm:1.6.17"
     pagefind: "npm:1.0.4"
