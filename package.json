@@ -27,7 +27,7 @@
     "gulp-rev-replace": "0.4.4",
     "gulp-sizereport": "1.2.1",
     "lighthouse": "11.4.0",
-    "local-web-server": "5.3.0",
+    "local-web-server": "5.3.1",
     "npm-run-all": "4.1.5",
     "open-props": "1.6.17",
     "pagefind": "1.0.4",
