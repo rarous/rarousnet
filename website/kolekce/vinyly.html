@@ -90,11 +90,25 @@
 
     .album {
       position: relative;
-      filter: saturate(0.2);
-      transition: filter ease-in-out 200ms;
+      @media (hover: hover) {
+        filter: saturate(0.2);
+        transition: filter ease-in-out 200ms;
 
-      &:hover, &:focus {
-        filter: saturate(1);
+        &:hover, &:focus {
+          filter: saturate(1);
+        }
+      }
+      @media (hover: none) {
+        .album {
+          filter: saturate(1);
+        }
+        @supports (animation-timeline: view()) {
+          .album {
+            filter: saturate(0.2);
+            animation: linear --saturate-in-and-out;
+            animation-timeline: view();
+          }
+        }
       }
     }
 
@@ -118,16 +132,26 @@
     }
 
     #player {
-      min-width: 19rem;
-      width: 100%;
-      max-width: 60rem;
-      aspect-ratio: 4/3;
       overflow: hidden;
+      min-width: 19rem;
+      max-width: 60rem;
+
+      @media screen and (orientation: landscape) {
+        width: 100%;
+        aspect-ratio: 4/3;
+      }
+
+      @media screen and (orientation: portrait) {
+        aspect-ratio: initial;
+        width: 84dvw;
+        height: 84dvh;
+      }
     }
 
     #player::backdrop {
       backdrop-filter: blur(4px);
     }
+
 
     @keyframes --saturate-in-and-out {
       entry 60% {
@@ -141,25 +165,6 @@
       }
       exit 40% {
         filter: saturate(0.2);
-      }
-    }
-
-    @media screen and (max-width: 479px) {
-      .album {
-        filter: saturate(1);
-      }
-      @supports (animation-timeline: view()) {
-        .album {
-          filter: saturate(0.2);
-          animation: linear --saturate-in-and-out;
-          animation-timeline: view();
-        }
-      }
-
-      #player {
-        aspect-ratio: initial;
-        width: 84dvw;
-        height: 84dvh;
       }
     }
   </style>
