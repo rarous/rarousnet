@@ -90,6 +90,7 @@
 
     .album {
       position: relative;
+
       @media (hover: hover) {
         filter: saturate(0.2);
         transition: filter ease-in-out 200ms;
@@ -98,16 +99,14 @@
           filter: saturate(1);
         }
       }
+
       @media (hover: none) {
-        .album {
-          filter: saturate(1);
-        }
+        filter: saturate(1);
+
         @supports (animation-timeline: view()) {
-          .album {
-            filter: saturate(0.2);
-            animation: linear --saturate-in-and-out;
-            animation-timeline: view();
-          }
+          filter: saturate(0.2);
+          animation: linear --saturate-in-and-out;
+          animation-timeline: view();
         }
       }
     }
