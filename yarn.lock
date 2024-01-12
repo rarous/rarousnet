@@ -5390,6 +5390,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fancy-log@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "fancy-log@npm:2.0.0"
+  dependencies:
+    color-support: "npm:^1.1.3"
+  checksum: a6e116f3346756a7363eea343b551c1375d2cd2afc2a92d224feb78589b6b3cff85db9dc5d5df89792a0f7c1e17f731f52cb3d2807302f0516422be6269b95a8
+  languageName: node
+  linkType: hard
+
 "fast-deep-equal@npm:^3.1.1":
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
@@ -6312,17 +6321,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gulp-postcss@npm:9.0.1":
-  version: 9.0.1
-  resolution: "gulp-postcss@npm:9.0.1"
+"gulp-postcss@npm:9.1.0":
+  version: 9.1.0
+  resolution: "gulp-postcss@npm:9.1.0"
   dependencies:
-    fancy-log: "npm:^1.3.3"
-    plugin-error: "npm:^1.0.1"
-    postcss-load-config: "npm:^3.0.0"
+    fancy-log: "npm:^2.0.0"
+    plugin-error: "npm:^2.0.1"
+    postcss-load-config: "npm:^5.0.0"
     vinyl-sourcemaps-apply: "npm:^0.2.1"
   peerDependencies:
     postcss: ^8.0.0
-  checksum: e4f75748036064a4dc32be5812e9a9cc36e337ceb9583d0b2e4b41049eafedf17e6cd7d37053a33d258054ceaddbd33a76bb55a0ea2ba0f2ae5cfa2ca1d1ee25
+  checksum: 3f434f3cad6e970abd080ed56ea8cd04595ecb06d1d4b142505ca5c5c1c170ffafab481f46570a8d3fd3de827fe738f62fd761432960a79c333cbfabf88d9212
   languageName: node
   linkType: hard
 
@@ -8047,13 +8056,6 @@ __metadata:
     lighthouse: cli/index.js
     smokehouse: cli/test/smokehouse/frontends/smokehouse-bin.js
   checksum: 62d881c63cdcb36ac7f58859c6a4235801cc3273cbc80f87aaea6ef55151acaca3eded101e5b22ab25176e678392290c5e248a9a67c49ca490447121d09f1004
-  languageName: node
-  linkType: hard
-
-"lilconfig@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "lilconfig@npm:2.0.5"
-  checksum: eed9afcecf1b864405f4b7299abefb87945edba250c70896de54b19b08b87333abc268cc6689539bc33f0e8d098139578704bf51af8077d358f1ac95d58beef0
   languageName: node
   linkType: hard
 
@@ -10255,6 +10257,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"plugin-error@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "plugin-error@npm:2.0.1"
+  dependencies:
+    ansi-colors: "npm:^1.0.1"
+  checksum: f4ad7de56dd72455f01257680733c51884c3d7f74fbc111483da72489d52fa86a52e45d64ef89b869efce78a5ae17737ff89738d9bd5508d6220968ccd02b308
+  languageName: node
+  linkType: hard
+
 "plur@npm:^5.1.0":
   version: 5.1.0
   resolution: "plur@npm:5.1.0"
@@ -10552,21 +10563,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-load-config@npm:^3.0.0":
-  version: 3.1.4
-  resolution: "postcss-load-config@npm:3.1.4"
+"postcss-load-config@npm:^5.0.0":
+  version: 5.0.2
+  resolution: "postcss-load-config@npm:5.0.2"
   dependencies:
-    lilconfig: "npm:^2.0.5"
-    yaml: "npm:^1.10.2"
+    lilconfig: "npm:^3.0.0"
+    yaml: "npm:^2.3.4"
   peerDependencies:
+    jiti: ">=1.21.0"
     postcss: ">=8.0.9"
-    ts-node: ">=9.0.0"
   peerDependenciesMeta:
+    jiti:
+      optional: true
     postcss:
       optional: true
-    ts-node:
-      optional: true
-  checksum: 7d2cc6695c2fc063e4538316d651a687fdb55e48db453ff699de916a6ee55ab68eac2b120c28a6b8ca7aa746a588888351b810a215b5cd090eabea62c5762ede
+  checksum: abc2194ce3dee6917d3602fa75c6e36672a7bf4c1e4713051b0833e730ce6033d256b471d45014d7d5e07589e46110dafccaaefc4a0143213bf0106967a25686
   languageName: node
   linkType: hard
 
@@ -11300,7 +11311,7 @@ __metadata:
     gulp-if: "npm:3.0.0"
     gulp-notify: "npm:4.0.0"
     gulp-plumber: "npm:1.2.1"
-    gulp-postcss: "npm:9.0.1"
+    gulp-postcss: "npm:9.1.0"
     gulp-rev: "npm:11.0.0"
     gulp-rev-delete-original: "npm:0.2.3"
     gulp-rev-replace: "npm:0.4.4"
@@ -14433,10 +14444,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^1.10.2":
-  version: 1.10.2
-  resolution: "yaml@npm:1.10.2"
-  checksum: 5c28b9eb7adc46544f28d9a8d20c5b3cb1215a886609a2fd41f51628d8aaa5878ccd628b755dbcd29f6bb4921bd04ffbc6dcc370689bb96e594e2f9813d2605f
+"yaml@npm:^2.3.4":
+  version: 2.3.4
+  resolution: "yaml@npm:2.3.4"
+  checksum: cf03b68f8fef5e8516b0f0b54edaf2459f1648317fc6210391cf606d247e678b449382f4bd01f77392538429e306c7cba8ff46ff6b37cac4de9a76aff33bd9e1
   languageName: node
   linkType: hard
 
