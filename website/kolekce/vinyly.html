@@ -236,7 +236,6 @@
     customElements.define("rarous-discogs", Discogs);
 
     const discogs = document.querySelector("rarous-discogs");
-    discogs.data = await fetchVinylCollection();
 
     window.onSpotifyIframeApiReady = function(IFrameAPI) {
       const element = document.getElementById("embed-iframe");
@@ -257,6 +256,8 @@
 
       IFrameAPI.createController(element, options, callback);
     };
+
+    discogs.data = await fetchVinylCollection();
 
     async function fetchVinylCollection() {
       const resp = await fetch("/api/v1/collections/vinyls");
