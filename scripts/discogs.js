@@ -29,7 +29,18 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
   return albums;
 }
 
-async function main({ token, spotifyToken }) {
+async function authSpotify(clientId, clientSecret) {
+  const resp = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      "Authorization": `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+    },
+    body: new URLSearchParams({ grant_type: "client_credentials" }),
+  });
+  return resp.json();
+}
+
+async function main({ token, clientId, clientSecret }) {
   const result = [];
 
   let page = 1;
@@ -49,26 +60,28 @@ async function main({ token, spotifyToken }) {
   } while (!stop);
 
   function byArtistAndYear(a, b) {
-    const comparison = a.artist.name.localeCompare(b.artist.name);
+    const comparison = a.artist?.name.localeCompare(b.artist?.name);
     if (comparison !== 0) return comparison;
     return a.year - b.year;
   }
 
-  for (const item of result.sort(byArtistAndYear)) {
+  const { access_token: spotifyToken } = await authSpotify(clientId, clientSecret);
+
+  for (const item of result) {
     let albums = await searchAlbumOnSpotify(
       `artist:${item.artist.name} album:${item.title} year:${item.year}`,
       spotifyToken,
     );
-    if (!albums.items.length) {
+    if (!albums?.items?.length) {
       // if we don't find album for exact release year, try to search for any year
       albums = await searchAlbumOnSpotify(`artist:${item.artist.name} album:${item.title}`, spotifyToken);
     }
     item.spotifyUri = albums.items?.[0]?.uri;
   }
 
-  console.log(JSON.stringify(result));
+  console.log(JSON.stringify(result.sort(byArtistAndYear)));
 }
 
 await main(parse(Deno.args));
 
-// deno run --allow-net=api.discogs.com,api.spotify.com discogs.js --token="$(op read 'op://Private/Discogs/API/Access Token')"
+// deno run --allow-net=api.discogs.com,api.spotify.com,accounts.spotify.com discogs.js --token="$(op read 'op://Private/Discogs/API/Access Token')" --clientId="$(op read 'op://rarous.net/Spotify/username')" --clientSecret "$(op read 'op://rarous.net/Spotify/credential')"
