@@ -1,0 +1,9 @@
+{
+  "name": "@rarousnet/workers",
+  "description": "rarous.net Cloudflare Workers",
+  "type": "module",
+  "license": "EPL-2.0",
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20231218.0"
+  }
+}

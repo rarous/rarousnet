@@ -1,5 +1,7 @@
 environment: 
   - rarous-cloudflare
+  - rarous-discogs
+  - rarous-spotify
 config: 
   rarousnet:domain: www.rarous.net
   rarousnet:webhook-secret: 

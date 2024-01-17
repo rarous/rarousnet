@@ -57,7 +57,8 @@
     "cards",
     "functions",
     "infrastructure",
-    "scripts"
+    "scripts",
+    "workers"
   ],
   "packageManager": "yarn@4.0.2"
 }

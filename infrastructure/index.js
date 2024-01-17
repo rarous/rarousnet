@@ -1,8 +1,20 @@
 import cloudflare from "@pulumi/cloudflare";
 import pulumi from "@pulumi/pulumi";
+import path from "node:path";
+import url from "node:url";
+import { build } from "./worker-builder.js";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
+
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+
+function buildAsset(fileName) {
+  return build(
+    path.join(__dirname, "../workers", fileName),
+    true,
+  );
+}
 
 const account = new cloudflare.Account(
   "rarous",
@@ -124,6 +136,23 @@ const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
   accountId: account.id,
   domain: wwwRecord.hostname,
   projectName: weblogPages.name,
+});
+
+const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-worker", {
+  accountId: account.id,
+  name: "discogs-schedule-worker",
+  content: buildAsset("discogs-schedule.js"),
+  kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
+  plainTextBindings: [{ name: "SLACK_CLIENT_ID", text: config.require("spotify-clientId") }],
+  secretTextBindings: [
+    { name: "DISCOGS_TOKEN", text: config.require("discogs-apiToken") },
+    { name: "SLACK_CLIENT_SECRET", text: config.require("spotify-clientSecret") },
+  ],
+});
+const discogsScheduleTrigger = new cloudflare.WorkerCronTrigger("discogs-schedule-trigger", {
+  accountId: account.id,
+  scriptName: discogsScheduleWorker.name,
+  schedules: ["0 0 * * sun"],
 });
 
 export const accountId = account.id;

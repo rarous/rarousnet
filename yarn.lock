@@ -1462,6 +1462,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rarousnet/workers@workspace:workers":
+  version: 0.0.0-use.local
+  resolution: "@rarousnet/workers@workspace:workers"
+  dependencies:
+    "@cloudflare/workers-types": "npm:4.20231218.0"
+  languageName: unknown
+  linkType: soft
+
 "@rollup/pluginutils@npm:^4.0.0":
   version: 4.2.1
   resolution: "@rollup/pluginutils@npm:4.2.1"
