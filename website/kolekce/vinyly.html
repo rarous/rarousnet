@@ -257,7 +257,10 @@
       IFrameAPI.createController(element, options, callback);
     };
 
-    discogs.data = await fetchVinylCollection();
+    if (discogs.getAttribute("loaded") == null) {
+      // fetch data only when not already loaded - possibly with SSR
+      discogs.data = await fetchVinylCollection();
+    }
 
     async function fetchVinylCollection() {
       const resp = await fetch("/api/v1/collections/vinyls");
