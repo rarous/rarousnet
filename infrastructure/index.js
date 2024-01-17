@@ -142,6 +142,7 @@ const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-work
   accountId: account.id,
   name: "discogs-schedule-worker",
   content: buildAsset("discogs-schedule.js"),
+  module: true,
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
   plainTextBindings: [{ name: "SLACK_CLIENT_ID", text: config.require("spotify-clientId") }],
   secretTextBindings: [
