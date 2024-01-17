@@ -21,7 +21,7 @@ function injectItems(section, template, items, applyTemplate) {
   }
   itemsCounter(section, items);
   const list = section.querySelector(".items");
-  const listItems = document.createDocumentFragment();
+  const listItems = section.ownerDocument.createDocumentFragment();
   for (const item of items) {
     const { content } = template.cloneNode(true);
     applyTemplate(content, item, section);
@@ -37,6 +37,7 @@ export class Discogs extends HTMLElement {
 
   set data(albums) {
     if (!albums?.length) return;
+    this.setAttribute("loaded", "");
 
     const template = this.querySelector("template");
     const collection = this.querySelector("section");
