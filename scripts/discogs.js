@@ -84,4 +84,4 @@ async function main({ token, clientId, clientSecret }) {
 
 await main(parse(Deno.args));
 
-// deno run --allow-net=api.discogs.com,api.spotify.com,accounts.spotify.com discogs.js --token="$(op read 'op://Private/Discogs/API/Access Token')" --clientId="$(op read 'op://rarous.net/Spotify/username')" --clientSecret "$(op read 'op://rarous.net/Spotify/credential')"
+// deno run --allow-net=api.discogs.com,api.spotify.com,accounts.spotify.com discogs.js --token="$(op read 'op://rarous.net/Discogs/credential')" --clientId="$(op read 'op://rarous.net/Spotify/username')" --clientSecret "$(op read 'op://rarous.net/Spotify/credential')"
