@@ -44,11 +44,12 @@ export async function onRequestGet({ env }) {
   const html = await resp.text();
   const window = parseHTML(html);
 
-  globalThis.HTMLElement = HTMLElement;
-  const { Discogs } = await import("../../website/assets/esm/discogs.js");
-
   const { document, customElements } = window;
-  customElements.define("rarous-discogs", Discogs);
+  if (!customElements.get("rarous-discogs")) {
+    globalThis.HTMLElement = HTMLElement;
+    const { Discogs } = await import("../../website/assets/esm/discogs.js");
+    customElements.define("rarous-discogs", Discogs);
+  }
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
   return new Response(document.toString(), resp);
