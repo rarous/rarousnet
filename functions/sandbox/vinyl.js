@@ -44,12 +44,9 @@ export async function onRequestGet({ env }) {
   const html = await resp.text();
   const window = parseHTML(html);
 
-  console.log({ window });
-
   globalThis.HTMLElement = HTMLElement;
   const { Discogs } = await import("../../website/assets/esm/discogs.js");
 
-  console.log({ HTMLElement, Discogs });
   const { document, customElements } = window;
   customElements.define("rarous-discogs", Discogs);
   const discogs = document.querySelector("rarous-discogs");

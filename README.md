@@ -19,12 +19,18 @@ Cards generator is Node.js program that uses Playwright to generate Social media
 
 ## Build
 
-```
+```bash
 yarn build
 ```
 
-## Run
+## Run local development for HTML/CSS/JS hot reloading
 
-```
+```bash
 yarn start
+```
+
+## Run wrangler for local development of Cloudflare Pages Functions
+
+```bash
+op run --env-file=.dev.vars -- yarn wrangler pages dev .gryphoon/dist --kv=weblog --r2=storage --compatibility-flag=nodejs_compat --compatibility-date=2023-09-29
 ```

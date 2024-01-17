@@ -1,4 +1,5 @@
 /node_modules/
+/results/
 .idea/
 target/
 *.iml
@@ -13,4 +14,3 @@ vendor/
 .yarn/cache
 .yarn/install-state.gz
 .DS_Store
-/results/
