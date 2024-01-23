@@ -1258,6 +1258,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@paulirish/trace_engine@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "@paulirish/trace_engine@npm:0.0.7"
+  checksum: fe8ed2c96c413672fe262a7d6d8d4c86bd7b62bc85fc9fe7d853d87f9fe1c76c7ce0c6fd6b510a7fc1c2db9cd325ddd7e60bb752ac501f96824d8814bcce6c2e
+  languageName: node
+  linkType: hard
+
 "@protobufjs/aspromise@npm:^1.1.1, @protobufjs/aspromise@npm:^1.1.2":
   version: 1.1.2
   resolution: "@protobufjs/aspromise@npm:1.1.2"
@@ -1405,9 +1412,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@puppeteer/browsers@npm:1.9.0":
-  version: 1.9.0
-  resolution: "@puppeteer/browsers@npm:1.9.0"
+"@puppeteer/browsers@npm:1.9.1":
+  version: 1.9.1
+  resolution: "@puppeteer/browsers@npm:1.9.1"
   dependencies:
     debug: "npm:4.3.4"
     extract-zip: "npm:2.0.1"
@@ -1418,7 +1425,7 @@ __metadata:
     yargs: "npm:17.7.2"
   bin:
     browsers: lib/cjs/main-cli.js
-  checksum: 5aae372c48f2fff8ced28a13db5cfa7adf54af8da20de44d23fcbd6f615534b638e1759f3e84fbac864e8015a1290e9823e9115ad98070ff62169761a37a67c3
+  checksum: 8cbde5ec8060c2bdfdc0d7149711cf0cccc6648ed61d0b969cd305918108e7973ce8a7ff3f7533fcc3c49552afe1955755cd7a3924c1fdbea7330d48094b35ee
   languageName: node
   linkType: hard
 
@@ -3370,15 +3377,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromium-bidi@npm:0.5.1":
-  version: 0.5.1
-  resolution: "chromium-bidi@npm:0.5.1"
+"chromium-bidi@npm:0.5.2":
+  version: 0.5.2
+  resolution: "chromium-bidi@npm:0.5.2"
   dependencies:
     mitt: "npm:3.0.1"
     urlpattern-polyfill: "npm:9.0.0"
   peerDependencies:
     devtools-protocol: "*"
-  checksum: da75399e3df64b659ac36435f316c0a144f20d0480ece3f30b422a1390a958aa799b6ccea092d86c20bbec8c56064070a4a8e6f8e226b4daf4d5129cffdc6507
+  checksum: 720993902b2285b10a6c9818fc02b81fcfb33dd8e50b7ca0f7d67e35051c3e709e3f60906d86f51b6b99383c6bb4975f4b1200718a9aa77df01ace881ffec745
   languageName: node
   linkType: hard
 
@@ -8052,10 +8059,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lighthouse@npm:11.4.0":
-  version: 11.4.0
-  resolution: "lighthouse@npm:11.4.0"
+"lighthouse@npm:11.5.0":
+  version: 11.5.0
+  resolution: "lighthouse@npm:11.5.0"
   dependencies:
+    "@paulirish/trace_engine": "npm:^0.0.7"
     "@sentry/node": "npm:^6.17.4"
     axe-core: "npm:^4.8.1"
     chrome-launcher: "npm:^1.1.0"
@@ -8075,7 +8083,7 @@ __metadata:
     open: "npm:^8.4.0"
     parse-cache-control: "npm:1.0.1"
     ps-list: "npm:^8.0.0"
-    puppeteer-core: "npm:^21.5.2"
+    puppeteer-core: "npm:^21.7.0"
     robots-parser: "npm:^3.0.1"
     semver: "npm:^5.3.0"
     speedline-core: "npm:^1.4.3"
@@ -8088,7 +8096,7 @@ __metadata:
     chrome-debug: core/scripts/manual-chrome-launcher.js
     lighthouse: cli/index.js
     smokehouse: cli/test/smokehouse/frontends/smokehouse-bin.js
-  checksum: 62d881c63cdcb36ac7f58859c6a4235801cc3273cbc80f87aaea6ef55151acaca3eded101e5b22ab25176e678392290c5e248a9a67c49ca490447121d09f1004
+  checksum: 9e55602a90521261484ef7137dcfa0a361a280312105f414302f4dba111857f3f442d447534f17d6220077468993c2affed2bdf38529187d16e8533602aca224
   languageName: node
   linkType: hard
 
@@ -11262,17 +11270,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:^21.5.2":
-  version: 21.6.0
-  resolution: "puppeteer-core@npm:21.6.0"
+"puppeteer-core@npm:^21.7.0":
+  version: 21.7.0
+  resolution: "puppeteer-core@npm:21.7.0"
   dependencies:
-    "@puppeteer/browsers": "npm:1.9.0"
-    chromium-bidi: "npm:0.5.1"
+    "@puppeteer/browsers": "npm:1.9.1"
+    chromium-bidi: "npm:0.5.2"
     cross-fetch: "npm:4.0.0"
     debug: "npm:4.3.4"
     devtools-protocol: "npm:0.0.1203626"
-    ws: "npm:8.14.2"
-  checksum: 735f08e8002dcafed95e22102967090da471998d9b7b09179490e7390f3b6e538cdc493bbcd3f5cc985f0050418b6f05f90614a1c9c7ab3109dd2387b16e4899
+    ws: "npm:8.16.0"
+  checksum: 8ecf1f6eb93a0dfd48a944492b08a6c3f49032c09e2bf39872db72079d0945f44f2b341d5a6ba505952ded4c948605aab37d6056dcb24e50702b3b343124d080
   languageName: node
   linkType: hard
 
@@ -11349,7 +11357,7 @@ __metadata:
     gulp-rev-delete-original: "npm:0.2.3"
     gulp-rev-replace: "npm:0.4.4"
     gulp-sizereport: "npm:1.2.1"
-    lighthouse: "npm:11.4.0"
+    lighthouse: "npm:11.5.0"
     local-web-server: "npm:5.3.1"
     npm-run-all: "npm:4.1.5"
     open-props: "npm:1.6.17"
@@ -14375,9 +14383,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:8.14.2, ws@npm:^8.11.0":
-  version: 8.14.2
-  resolution: "ws@npm:8.14.2"
+"ws@npm:8.16.0":
+  version: 8.16.0
+  resolution: "ws@npm:8.16.0"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -14386,7 +14394,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 35b4c2da048b8015c797fd14bcb5a5766216ce65c8a5965616a5440ca7b6c3681ee3cbd0ea0c184a59975556e9d58f2002abf8485a14d11d3371770811050a16
+  checksum: a7783bb421c648b1e622b423409cb2a58ac5839521d2f689e84bc9dc41d59379c692dd405b15a997ea1d4c0c2e5314ad707332d0c558f15232d2bc07c0b4618a
   languageName: node
   linkType: hard
 
@@ -14402,6 +14410,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: f856382d94dfa8d722337d79117fe4f16d48ef7d7f77a58e94af7d7f32e863fce8403c00992ddddbf1efd5a334c581c2a987aea66255f7ee368680e59f78ae15
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.11.0":
+  version: 8.14.2
+  resolution: "ws@npm:8.14.2"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 35b4c2da048b8015c797fd14bcb5a5766216ce65c8a5965616a5440ca7b6c3681ee3cbd0ea0c184a59975556e9d58f2002abf8485a14d11d3371770811050a16
   languageName: node
   linkType: hard
 
