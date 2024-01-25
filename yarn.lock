@@ -1347,9 +1347,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.103.0":
-  version: 3.103.0
-  resolution: "@pulumi/pulumi@npm:3.103.0"
+"@pulumi/pulumi@npm:3.103.1":
+  version: 3.103.1
+  resolution: "@pulumi/pulumi@npm:3.103.1"
   dependencies:
     "@grpc/grpc-js": "npm:1.9.6"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -1363,6 +1363,7 @@ __metadata:
     "@opentelemetry/semantic-conventions": "npm:^1.6.0"
     "@pulumi/query": "npm:^0.3.0"
     "@types/google-protobuf": "npm:^3.15.5"
+    "@types/semver": "npm:^7.5.6"
     "@types/tmp": "npm:^0.2.6"
     execa: "npm:^5.1.0"
     google-protobuf: "npm:^3.5.0"
@@ -1380,7 +1381,7 @@ __metadata:
     ts-node: "npm:^7.0.1"
     typescript: "npm:~3.8.3"
     upath: "npm:^1.1.0"
-  checksum: 72d2c70a591e023f9c2e52c8b1d41a9edf56b238e695e326f38517d13b1169bd208db1378e0e8c87a38c736c755193deff9c73c94f5918b57b966f1051b3f402
+  checksum: c2e4371e1bfde5ddf1cfd033a3b99720ee29e5ced271ecd1285061c17830bccc283009e2e152d3505bb1f19c0cfeb32bd298f1c19b6fab12da0c7de08a9d696d
   languageName: node
   linkType: hard
 
@@ -1456,7 +1457,7 @@ __metadata:
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
     "@pulumi/cloudflare": "npm:5.19.0"
-    "@pulumi/pulumi": "npm:3.103.0"
+    "@pulumi/pulumi": "npm:3.103.1"
     esbuild: "npm:0.19.12"
   languageName: unknown
   linkType: soft
@@ -1857,6 +1858,13 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: a58ba341cb9e7d74f71810a88862da7b2a6fa42e2a1fc0ce40498f6ea1d44382f0640117057da779f74c47039f7166bf48fad02dc876f94e005c7afa50f5e129
+  languageName: node
+  linkType: hard
+
+"@types/semver@npm:^7.5.6":
+  version: 7.5.6
+  resolution: "@types/semver@npm:7.5.6"
+  checksum: 196dc32db5f68cbcde2e6a42bb4aa5cbb100fa2b7bd9c8c82faaaf3e03fbe063e205dbb4f03c7cdf53da2edb70a0d34c9f2e601b54281b377eb8dc1743226acd
   languageName: node
   linkType: hard
 
