@@ -35,7 +35,7 @@
     "postcss-jit-props": "1.0.14",
     "postcss-preset-env": "9.3.0",
     "tap-xunit": "2.4.1",
-    "wrangler": "3.25.0"
+    "wrangler": "3.26.0"
   },
   "scripts": {
     "build:website": "cd generator && clojure -M -m rarousnet.generator ../",
