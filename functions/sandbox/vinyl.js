@@ -1,40 +1,9 @@
-import { HTMLElement, parseHTML } from "linkedom/worker";
+import { parseHTML } from "linkedom/worker";
+import { defDiscogs } from "../../website/assets/esm/discogs.js";
 
 /**
  * @typedef {import("../env.d.ts").Env} Env
  */
-
-/**
- * @param {Element} section
- * @param {Array} items
- */
-function itemsCounter(section, items) {
-  const counter = section.querySelector("data");
-  counter.value = items.length;
-  counter.textContent = items.length;
-  return counter;
-}
-
-/**
- * @param {Element} section
- * @param {Element} template
- * @param {Array} items
- * @param {Function} applyTemplate
- */
-function injectItems(section, template, items, applyTemplate) {
-  if (!items?.length) {
-    return section.remove();
-  }
-  itemsCounter(section, items);
-  const list = section.querySelector(".items");
-  const listItems = document.createDocumentFragment();
-  for (const item of items) {
-    const { content } = template.cloneNode(true);
-    applyTemplate(content, item, section);
-    listItems.appendChild(content);
-  }
-  list.replaceChildren(listItems);
-}
 
 /**
  * @param {EventContext<Env>} context
@@ -43,13 +12,8 @@ export async function onRequestGet({ env }) {
   const resp = await env.ASSETS.fetch("https://www.rarous.net/kolekce/vinyly");
   const html = await resp.text();
   const window = parseHTML(html);
-
-  const { document, customElements } = window;
-  if (!customElements.get("rarous-discogs")) {
-    globalThis.HTMLElement = HTMLElement;
-    const { Discogs } = await import("../../website/assets/esm/discogs.js");
-    customElements.define("rarous-discogs", Discogs);
-  }
+  defDiscogs(window).register("rarous-discogs");
+  const { document } = window;
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
   return new Response(document.toString(), resp);

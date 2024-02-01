@@ -30,43 +30,53 @@ function injectItems(section, template, items, applyTemplate) {
   list.replaceChildren(listItems);
 }
 
-export class Discogs extends HTMLElement {
-  constructor() {
-    super();
-  }
-
-  set data(albums) {
-    if (!albums?.length) return;
-    this.setAttribute("loaded", "");
-
-    const template = this.querySelector("template");
-    const collection = this.querySelector("section");
-
-    function itemTemplate(content, item) {
-      const link = content.querySelector("a");
-      link.href = link.href + item.id;
-
-      const img = content.querySelector("img");
-      img.src = `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${item.image}`;
-      img.alt = `Obal desky ${item.artist.name} - ${item.title} (${item.year})`;
-
-      const name = content.querySelector("[property=name]");
-      name.textContent = item.title;
-
-      const byArtist = content.querySelector("[property=byArtist]");
-      byArtist.textContent = item.artist.name;
-
-      const copyrightYear = content.querySelector("[property=copyrightYear]");
-      copyrightYear.textContent = item.year;
-
-      const button = content.querySelector("button");
-      if (!item.spotifyUri) {
-        button.remove();
-      } else {
-        button.dataset.spotifyUri = item.spotifyUri;
-      }
+/**
+ * @param {Window} window
+ */
+export function defDiscogs({ HTMLElement, customElements }) {
+  class Discogs extends HTMLElement {
+    constructor() {
+      super();
     }
 
-    injectItems(collection, template, albums, itemTemplate);
+    static register(tagName = "rarous-discogs") {
+      customElements.define(tagName, this);
+    }
+
+    set data(albums) {
+      if (!albums?.length) return;
+      this.setAttribute("loaded", "");
+
+      const template = this.querySelector("template");
+      const collection = this.querySelector("section");
+
+      function itemTemplate(content, item) {
+        const link = content.querySelector("a");
+        link.href = link.href + item.id;
+
+        const img = content.querySelector("img");
+        img.src = `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${item.image}`;
+        img.alt = `Obal desky ${item.artist.name} - ${item.title} (${item.year})`;
+
+        const name = content.querySelector("[property=name]");
+        name.textContent = item.title;
+
+        const byArtist = content.querySelector("[property=byArtist]");
+        byArtist.textContent = item.artist.name;
+
+        const copyrightYear = content.querySelector("[property=copyrightYear]");
+        copyrightYear.textContent = item.year;
+
+        const button = content.querySelector("button");
+        if (!item.spotifyUri) {
+          button.remove();
+        } else {
+          button.dataset.spotifyUri = item.spotifyUri;
+        }
+      }
+
+      injectItems(collection, template, albums, itemTemplate);
+    }
   }
+  return Discogs;
 }

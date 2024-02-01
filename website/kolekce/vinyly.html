@@ -231,10 +231,9 @@
   </dialog>
 
   <script type="module">
-    import { Discogs } from "/assets/esm/discogs.js";
+    import { defDiscogs } from "/assets/esm/discogs.js";
 
-    customElements.define("rarous-discogs", Discogs);
-
+    defDiscogs(window).register("rarous-discogs");
     const discogs = document.querySelector("rarous-discogs");
 
     window.onSpotifyIframeApiReady = function(IFrameAPI) {
