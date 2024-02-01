@@ -1375,9 +1375,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.104.0":
-  version: 3.104.0
-  resolution: "@pulumi/pulumi@npm:3.104.0"
+"@pulumi/pulumi@npm:3.104.1":
+  version: 3.104.1
+  resolution: "@pulumi/pulumi@npm:3.104.1"
   dependencies:
     "@grpc/grpc-js": "npm:^1.9.14"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -1409,7 +1409,7 @@ __metadata:
     ts-node: "npm:^7.0.1"
     typescript: "npm:~3.8.3"
     upath: "npm:^1.1.0"
-  checksum: 10c0/e70784d2ebf273427626fe884455de0a322a94a9ddf2c98e90b6b9078bd84b965e4e8c06de9a22a29b868e68af84b872febf3eba62928277b9832a2940b45087
+  checksum: 10c0/b4ea9036cdde84182d3ba30bf835e9a8b52eed80e9f78d97f14d6d02ebedf4cf4a68924be3d9ebd026729f4a15ebe58ce54dbdb4b2270553516c9500791d6d58
   languageName: node
   linkType: hard
 
@@ -1485,7 +1485,7 @@ __metadata:
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
     "@pulumi/cloudflare": "npm:5.19.0"
-    "@pulumi/pulumi": "npm:3.104.0"
+    "@pulumi/pulumi": "npm:3.104.1"
     esbuild: "npm:0.20.0"
   languageName: unknown
   linkType: soft
