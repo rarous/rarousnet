@@ -1,2 +1,5 @@
 /kolekce/vinyly
   Cache-Control: public, max-age=3600
+
+https://rarousnet.pages.dev/*
+  X-Robots-Tag: noindex
