@@ -16,6 +16,5 @@ export async function onRequestGet({ request, env }) {
   Discogs.register("rarous-discogs");
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
-  resp.headers.append("Cache-Control", "public, max-age=3600");
   return new Response(document.toString(), resp);
 }
