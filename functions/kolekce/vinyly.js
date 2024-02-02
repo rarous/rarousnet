@@ -9,7 +9,6 @@ import { defDiscogs } from "../../website/assets/esm/discogs.js";
  * @param {EventContext<Env>} context
  */
 export async function onRequestGet({ request, env }) {
-  console.log("Handling", request.url);
   const resp = await env.ASSETS.fetch(new URL(request.url));
   const html = await resp.text();
   const { document, window } = parseHTML(html);
@@ -17,7 +16,6 @@ export async function onRequestGet({ request, env }) {
   Discogs.register("rarous-discogs");
   const discogs = document.querySelector("rarous-discogs");
   discogs.data = await env.weblog.get("/kolekce/vinyly", "json");
-  console.log(`Got ${discogs.data.length} items`);
   resp.headers.append("Cache-Control", "public, max-age=3600");
   return new Response(document.toString(), resp);
 }
