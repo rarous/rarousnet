@@ -55,8 +55,8 @@ export function defDiscogs({ HTMLElement, customElements }) {
         link.href = link.href + item.id;
 
         const img = content.querySelector("img");
-        img.src = `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${item.image}`;
-        img.alt = `Obal desky ${item.artist.name} - ${item.title} (${item.year})`;
+        img.src += item.image;
+        img.alt += ` ${item.artist.name} - ${item.title} (${item.year})`;
 
         const name = content.querySelector("[property=name]");
         name.textContent = item.title;
