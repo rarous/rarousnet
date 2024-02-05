@@ -1478,7 +1478,7 @@ __metadata:
   resolution: "@rarousnet/workers@workspace:workers"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20240129.0"
-    discogs-ts: "npm:^0.0.1"
+    discogs-ts: "npm:0.0.1"
   languageName: unknown
   linkType: soft
 
@@ -4632,7 +4632,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discogs-ts@npm:^0.0.1":
+"discogs-ts@npm:0.0.1":
   version: 0.0.1
   resolution: "discogs-ts@npm:0.0.1"
   dependencies:
