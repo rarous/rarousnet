@@ -1478,6 +1478,7 @@ __metadata:
   resolution: "@rarousnet/workers@workspace:workers"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20240129.0"
+    discogs-ts: "npm:^0.0.1"
   languageName: unknown
   linkType: soft
 
@@ -2675,6 +2676,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:1.1.3":
+  version: 1.1.3
+  resolution: "axios@npm:1.1.3"
+  dependencies:
+    follow-redirects: "npm:^1.15.0"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/78aea19cc15019fb0fb86ec737a9dccb88a8f8e8f00b0e6c5024a76d8df523daf88a7abf8c6593b0cdd9a346806be9f41285d793d8b6653c99877de11245bfa4
+  languageName: node
+  linkType: hard
+
 "b4a@npm:^1.6.4":
   version: 1.6.4
   resolution: "b4a@npm:1.6.4"
@@ -3776,7 +3788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"combined-stream@npm:^1.0.6, combined-stream@npm:~1.0.6":
+"combined-stream@npm:^1.0.6, combined-stream@npm:^1.0.8, combined-stream@npm:~1.0.6":
   version: 1.0.8
   resolution: "combined-stream@npm:1.0.8"
   dependencies:
@@ -4617,6 +4629,15 @@ __metadata:
   version: 3.5.0
   resolution: "diff@npm:3.5.0"
   checksum: 10c0/fc62d5ba9f6d1b8b5833380969037007913d4886997838c247c54ec6934f09ae5a07e17ae28b1f016018149d81df8ad89306f52eac1afa899e0bed49015a64d1
+  languageName: node
+  linkType: hard
+
+"discogs-ts@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "discogs-ts@npm:0.0.1"
+  dependencies:
+    axios: "npm:1.1.3"
+  checksum: 10c0/c7aa999832d5ea639188c397a8c4935d6a4d36f0cb743206e59435a436ad39b2f5dd9e5b35195dafe264c0c1a82c2519eced58b598c5a7897537179bb9137863
   languageName: node
   linkType: hard
 
@@ -5816,6 +5837,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.15.0":
+  version: 1.15.5
+  resolution: "follow-redirects@npm:1.15.5"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 10c0/418d71688ceaf109dfd6f85f747a0c75de30afe43a294caa211def77f02ef19865b547dfb73fde82b751e1cc507c06c754120b848fe5a7400b0a669766df7615
+  languageName: node
+  linkType: hard
+
 "for-in@npm:^1.0.1, for-in@npm:^1.0.2":
   version: 1.0.2
   resolution: "for-in@npm:1.0.2"
@@ -5856,6 +5887,17 @@ __metadata:
     mime: "npm:^1.3.4"
     uuid: "npm:^2.0.1"
   checksum: 10c0/1e1909525b94c7e443f9bcb16a1d6f0293b3f9fe3ff700539e059a5f909a0f84f9720b8cc4c11f3d3a50b3f0d6c3ee8ca5613a19ae9b59b4c205304f3acc3904
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    mime-types: "npm:^2.1.12"
+  checksum: 10c0/cb6f3ac49180be03ff07ba3ff125f9eba2ff0b277fb33c7fc47569fc5e616882c5b1c69b9904c4c4187e97dd0419dd03b134174756f296dec62041e6527e2c6e
   languageName: node
   linkType: hard
 

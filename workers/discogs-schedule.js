@@ -1,8 +1,14 @@
 /** @typedef {import("@cloudflare/worker-types/2023-07-01").ScheduledEvent} ScheduledEvent */
 
 /** @typedef {import("@cloudflare/worker-types/2023-07-01").ExecutionContext} ExecutionContext */
+/** @typedef {import("discogs-ts/dist/types/releases.js").DiscogsReleaseResponse} DiscogsReleaseResponse */
 /** @typedef {import("./env.d.ts").Env} Env */
 
+/**
+ * @param {string} page
+ * @param {string} token
+ * @returns Promise<DiscogsReleaseResponse>
+ */
 async function getReleases(page, token) {
   const params = new URLSearchParams({
     page,
@@ -32,7 +38,7 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
   return albums;
 }
 
-async function authSpotify(clientId, clientSecret) {
+async function authSpotify({ clientId, clientSecret }) {
   const resp = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
@@ -44,16 +50,25 @@ async function authSpotify(clientId, clientSecret) {
 }
 
 /**
+ * @param {string} token
+ * @returns {AsyncGenerator<DiscogsReleaseResponse, never, void>}
+ */
+async function* getAllReleases(token) {
+  let page = 1;
+  let stop = false;
+  do {
+    const { pagination, releases } = await getReleases(page, token);
+    yield releases;
+    stop = pagination.pages === page++;
+  } while (!stop);
+}
+
+/**
  * @param {Env} env
  */
 async function updateDiscogsCollection(env) {
   const result = [];
-
-  let page = 1;
-  let stop = false;
-
-  do {
-    const { pagination, releases } = await getReleases(page, token);
+  for await (const releases of getAllReleases(env.DISCOGS_TOKEN)) {
     const items = releases.map(x => x.basic_information).map(x => ({
       id: x.id,
       title: x.title,
@@ -62,8 +77,7 @@ async function updateDiscogsCollection(env) {
       artist: { id: x.artists[0].id, name: cleanArtistName(x.artists[0].name) },
     }));
     result.push(...items);
-    stop = pagination.pages === page++;
-  } while (!stop);
+  }
 
   function byArtistAndYear(a, b) {
     const comparison = a.artist?.name.localeCompare(b.artist?.name);
@@ -71,7 +85,10 @@ async function updateDiscogsCollection(env) {
     return a.year - b.year;
   }
 
-  const { access_token: spotifyToken } = await authSpotify(clientId, clientSecret);
+  const { access_token: spotifyToken } = await authSpotify({
+    clientId: env.SPOTIFY_CLIENT_ID,
+    clientSecret: env.SPOTIFY_CLIENT_SECRET,
+  });
 
   for (const item of result) {
     let albums = await searchAlbumOnSpotify(
