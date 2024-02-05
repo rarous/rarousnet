@@ -153,7 +153,7 @@ const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-work
 const discogsScheduleTrigger = new cloudflare.WorkerCronTrigger("discogs-schedule-trigger", {
   accountId: account.id,
   scriptName: discogsScheduleWorker.name,
-  schedules: ["0 0 * * sun"],
+  schedules: ["0 0 * * *"],
 });
 
 export const accountId = account.id;
