@@ -2,10 +2,6 @@ import { parseHTML } from "linkedom/worker";
 import { defDiscogs } from "../../website/assets/esm/discogs.js";
 
 /**
- * @typedef {import("../env.d.ts").Env} Env
- */
-
-/**
  * @param {EventContext<Env>} context
  */
 export async function onRequestGet({ request, env }) {

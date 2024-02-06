@@ -1,8 +1,4 @@
 /**
- * @typedef {import("./env.d.ts").Env} Env
- */
-
-/**
  * @param {EventContext<Env>} context
  */
 export async function onRequest({ env, next, request }) {

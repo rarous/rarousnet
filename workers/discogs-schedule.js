@@ -1,9 +1,3 @@
-/** @typedef {import("@cloudflare/worker-types/2023-07-01").ScheduledEvent} ScheduledEvent */
-
-/** @typedef {import("@cloudflare/worker-types/2023-07-01").ExecutionContext} ExecutionContext */
-/** @typedef {import("discogs-ts/dist/types/releases.js").DiscogsReleaseResponse} DiscogsReleaseResponse */
-/** @typedef {import("./env.d.ts").Env} Env */
-
 /**
  * @param {string} page
  * @param {string} token
@@ -19,6 +13,20 @@ async function getReleases(page, token) {
     headers: { "Authorization": `Discogs token=${token}` },
   });
   return resp.json();
+}
+
+/**
+ * @param {string} token
+ * @returns {AsyncGenerator<Release[], never, void>}
+ */
+async function* getAllReleases(token) {
+  let page = 1;
+  let done = false;
+  do {
+    const { pagination, releases } = await getReleases(page, token);
+    yield releases;
+    done = pagination.pages === page++;
+  } while (!done);
 }
 
 function cleanArtistName(name) {
@@ -47,20 +55,6 @@ async function authSpotify({ clientId, clientSecret }) {
     body: new URLSearchParams({ grant_type: "client_credentials" }),
   });
   return resp.json();
-}
-
-/**
- * @param {string} token
- * @returns {AsyncGenerator<DiscogsReleaseResponse, never, void>}
- */
-async function* getAllReleases(token) {
-  let page = 1;
-  let stop = false;
-  do {
-    const { pagination, releases } = await getReleases(page, token);
-    yield releases;
-    stop = pagination.pages === page++;
-  } while (!stop);
 }
 
 /**

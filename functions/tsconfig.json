@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "lib": [
-      "esnext"
-    ],
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ES2023"],
     "types": [
-      "@cloudflare/workers-types"
+      "@cloudflare/workers-types/2023-07-01",
+      "@rarousnet/functions"
     ]
   }
 }

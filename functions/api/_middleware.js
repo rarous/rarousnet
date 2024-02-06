@@ -1,8 +1,3 @@
-/**
- * @typedef {import("../env.d.ts").Env} Env
- */
-
-// Respond to OPTIONS method
 export async function onRequestOptions() {
   return new Response(null, {
     status: 204,

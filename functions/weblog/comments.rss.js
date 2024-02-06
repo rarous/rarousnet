@@ -1,10 +1,6 @@
 import { Feed } from "feed";
 
 /**
- * @typedef {import("../env.d.ts").Env} Env
- */
-
-/**
  * Generates RSS feed with latest comments on weblog
  * @param {EventContext<Env>} context
  */

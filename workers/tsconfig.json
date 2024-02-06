@@ -2,11 +2,10 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["ES2023"],
     "types": [
-      "@cloudflare/workers-types"
+      "@cloudflare/workers-types/2023-07-01",
+      "@rarousnet/workers"
     ]
   }
 }

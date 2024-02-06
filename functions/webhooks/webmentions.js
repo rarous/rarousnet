@@ -1,8 +1,4 @@
 /**
- * @typedef {import("../env.d.ts").Env} Env
- */
-
-/**
  * @param {KVNamespace} weblog
  * @param {string} url
  */

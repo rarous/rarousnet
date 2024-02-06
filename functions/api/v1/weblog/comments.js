@@ -1,7 +1,3 @@
-/**
- * @typedef {import("../../../env.d.ts").Env} Env
- */
-
 // TODO: possibly inject this thru ENV from managed vercel Project, or get rid of it and use JS implementation of Texy
 const texyServiceEndpoint = "https://rarousnet.vercel.app/api/index";
 

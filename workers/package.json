@@ -4,7 +4,6 @@
   "type": "module",
   "license": "EPL-2.0",
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20240129.0",
-    "discogs-ts": "0.0.1"
+    "@cloudflare/workers-types": "4.20240129.0"
   }
 }
