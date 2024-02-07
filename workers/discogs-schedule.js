@@ -11,6 +11,7 @@ async function getReleases(page, token) {
   });
   const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/1/releases?${params}`, {
     headers: {
+      "Accept": "application/json",
       "Authorization": `Discogs token=${token}`,
       "User-Agent": "rarous.net vinyl collection"
     },
@@ -44,6 +45,7 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
   });
   const resp = await fetch(`https://api.spotify.com/v1/search?${params}`, {
     headers: {
+      "Accept": "application/json",
       "Authorization": `Bearer ${spotifyToken}`,
       "User-Agent": "rarous.net vinyl collection"
     },
@@ -56,12 +58,19 @@ async function authSpotify({ clientId, clientSecret }) {
   const resp = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
+      "Accept": "application/json",
       "Authorization": `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
       "User-Agent": "rarous.net vinyl collection",
     },
     body: new URLSearchParams({ grant_type: "client_credentials" }),
   });
   return resp.json();
+}
+
+function byArtistAndYear(a, b) {
+  const comparison = a.artist?.name.localeCompare(b.artist?.name);
+  if (comparison !== 0) return comparison;
+  return a.year - b.year;
 }
 
 /**
@@ -80,18 +89,16 @@ async function updateDiscogsCollection(env) {
     result.push(...items);
   }
 
-  function byArtistAndYear(a, b) {
-    const comparison = a.artist?.name.localeCompare(b.artist?.name);
-    if (comparison !== 0) return comparison;
-    return a.year - b.year;
-  }
-
-  const { access_token: spotifyToken } = await authSpotify({
+  const { error, access_token: spotifyToken } = await authSpotify({
     clientId: env.SPOTIFY_CLIENT_ID,
     clientSecret: env.SPOTIFY_CLIENT_SECRET,
   });
 
   for (const item of result) {
+    if (error) {
+      console.error(error);
+      break;
+    }
     let albums = await searchAlbumOnSpotify(
       `artist:${item.artist.name} album:${item.title} year:${item.year}`,
       spotifyToken,
