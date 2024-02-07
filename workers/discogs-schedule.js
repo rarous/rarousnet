@@ -10,7 +10,10 @@ async function getReleases(page, token) {
     sort: "artist",
   });
   const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/1/releases?${params}`, {
-    headers: { "Authorization": `Discogs token=${token}` },
+    headers: {
+      "Authorization": `Discogs token=${token}`,
+      "User-Agent": "rarous.net vinyl collection"
+    },
   });
   return resp.json();
 }
@@ -40,7 +43,10 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
     limit: 1,
   });
   const resp = await fetch(`https://api.spotify.com/v1/search?${params}`, {
-    headers: { Authorization: `Bearer ${spotifyToken}` },
+    headers: {
+      "Authorization": `Bearer ${spotifyToken}`,
+      "User-Agent": "rarous.net vinyl collection"
+    },
   });
   const { albums } = await resp.json();
   return albums;
@@ -51,6 +57,7 @@ async function authSpotify({ clientId, clientSecret }) {
     method: "POST",
     headers: {
       "Authorization": `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+      "User-Agent": "rarous.net vinyl collection",
     },
     body: new URLSearchParams({ grant_type: "client_credentials" }),
   });

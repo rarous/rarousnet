@@ -144,10 +144,10 @@ const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-work
   content: buildAsset("discogs-schedule.js"),
   module: true,
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
-  plainTextBindings: [{ name: "SLACK_CLIENT_ID", text: config.require("spotify-clientId") }],
+  plainTextBindings: [{ name: "SPOTIFY_CLIENT_ID", text: config.require("spotify-clientId") }],
   secretTextBindings: [
     { name: "DISCOGS_TOKEN", text: config.require("discogs-apiToken") },
-    { name: "SLACK_CLIENT_SECRET", text: config.require("spotify-clientSecret") },
+    { name: "SPOTIFY_CLIENT_SECRET", text: config.require("spotify-clientSecret") },
   ],
 });
 const discogsScheduleTrigger = new cloudflare.WorkerCronTrigger("discogs-schedule-trigger", {
