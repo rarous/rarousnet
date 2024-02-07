@@ -13,7 +13,7 @@ async function getReleases(page, token) {
     headers: {
       "Accept": "application/json",
       "Authorization": `Discogs token=${token}`,
-      "User-Agent": "rarous.net vinyl collection"
+      "User-Agent": "rarous.net vinyl collection",
     },
   });
   return resp.json();
@@ -47,7 +47,7 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
     headers: {
       "Accept": "application/json",
       "Authorization": `Bearer ${spotifyToken}`,
-      "User-Agent": "rarous.net vinyl collection"
+      "User-Agent": "rarous.net vinyl collection",
     },
   });
   const { albums } = await resp.json();
@@ -60,6 +60,7 @@ async function authSpotify({ clientId, clientSecret }) {
     headers: {
       "Accept": "application/json",
       "Authorization": `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+      "Content-type": "application/x-www-form-urlencoded",
       "User-Agent": "rarous.net vinyl collection",
     },
     body: new URLSearchParams({ grant_type: "client_credentials" }),
