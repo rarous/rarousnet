@@ -115,6 +115,7 @@
   (rdfa "BlogPosting" "Person" "name") (html/content author)
   (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
   (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article))
+  [:gryphoon-weblog] (html/set-attr :href (permalink article))
   [:article :.tags] (html/substitute (article-tags tags)))
 
 (defsnippet page-header "weblog/index.html" [:#head] []

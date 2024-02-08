@@ -31,6 +31,8 @@ function injectItems(section, template, items, applyTemplate) {
     return section.remove();
   }
   itemsCounter(section, items);
+  if (!template) return;
+
   const list = section.querySelector(".items");
   const listItems = document.createDocumentFragment();
   for (const item of items) {
@@ -98,7 +100,7 @@ class Comments extends HTMLElement {
   set data(comments) {
     if (!comments?.length) return;
     const template = this.querySelector("template");
-    const section = this.querySelector("section");
+    const section = this.querySelector("#comments");
 
     async function itemTemplate(content, item, section) {
       const date = new Date(item.created);

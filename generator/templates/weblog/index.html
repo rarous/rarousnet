@@ -152,7 +152,22 @@
               <li><a class="p-category" property="articleSection" rel="tag" href="" data-pagefind-filter="tag"></a></li>
             </ul>
           </nav>
-          <!-- TODO: reactions -->
+          <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog">
+            <gryphoon-webmentions id="webmentions">
+              <span class="webmentions" id="like-of">
+                ;&nbsp;<data>Líbilo se</data>
+              </span>
+              <span class="webmentions" id="repost-of">
+                ;&nbsp;<data>Přeposláno dál</data>
+              </span>
+            </gryphoon-webmentions>
+
+            <gryphoon-comments id="komentare">
+              <span class="comments" id="comments">
+                ;&nbsp;<data>Okomentováno</data>
+              </span>
+            </gryphoon-comments>
+          </gryphoon-weblog>
         </footer>
       </article>
     </section>
@@ -161,6 +176,8 @@
       <p><a href="https://feeds.feedburner.com/rarous-weblog">RSS Feed</a> · <a href="/weblog/feed/" rel="feed">HTML
         Feed</a></p>
     </section>
+
+    <script type="module" src="/assets/esm/gryphoon.js"></script>
   </main>
 
   <footer class="footer" property="author" typeof="Person">
