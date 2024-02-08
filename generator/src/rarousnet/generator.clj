@@ -95,6 +95,13 @@
 (defn- script [src] [:script (html/attr= :src src)])
 (defn- input [name] [:input (html/attr= :name name)])
 
+(defsnippet article-tags "weblog/blogpost.html" [:.tags]
+  [tags]
+  [:li] (html/clone-for [tag tags]
+          [:a] (html/do->
+                 (html/content tag)
+                 (html/set-attr :href (str blog-relative-url "tag/" (slug tag) ".html")))))
+
 (defsnippet article-listing "weblog/index.html" [:.feed :article]
   [{:keys [title author category html published] :as article}]
   (conj (rdfa "BlogPosting" "headline") :a) (html/do->
@@ -107,7 +114,8 @@
   (rdfa "BlogPosting" "articleBody") (html/html-content html)
   (rdfa "BlogPosting" "Person" "name") (html/content author)
   (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
-  (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article)))
+  (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article))
+  [:article :.tags] (html/substitute (article-tags tags)))
 
 (defsnippet page-header "weblog/index.html" [:#head] []
   [:.year] (html/content (str (time/year (time/today)))))
@@ -138,13 +146,6 @@
   [:.month (html/attr= :property "name")] (html/content month-name)
   [:.day] (html/set-attr :href (str blog-relative-url year "/" month "/" day "/"))
   [:.day (html/attr= :property "name")] (html/content (str day)))
-
-(defsnippet article-tags "weblog/blogpost.html" [:.tags]
-  [tags]
-  [:li] (html/clone-for [tag tags]
-          [:a] (html/do->
-                 (html/content tag)
-                 (html/set-attr :href (str blog-relative-url "tag/" (slug tag) ".html")))))
 
 (deftemplate blogpost-template "weblog/blogpost.html"
   [{:keys [title author description published tags syndication] :as article}]
