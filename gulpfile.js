@@ -44,10 +44,10 @@ function staticHtml() {
 
 function hashAssets() {
   return pipeline(
-    src(["./.gryphoon/dist/assets/**/*.css", "./.gryphoon/dist/assets/**/*.js"], { base: "dist" }),
+    src(["./.gryphoon/dist/assets/**/*.css", "./.gryphoon/dist/assets/**/*.js"], { base: ".gryphoon/dist" }),
     hash(),
     deleteNotHashed(),
-    dest("./dist"),
+    dest("./.gryphoon/dist"),
     hash.manifest("assets-manifest.json", { merge: true }),
     dest("./.gryphoon"),
   );
