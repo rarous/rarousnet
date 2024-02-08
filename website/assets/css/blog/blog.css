@@ -690,7 +690,7 @@ article footer {
     padding: 1em 4em;
     display: grid;
     grid-gap: 1.5em;
-    grid-template-columns: 200px 200px 320px;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .footer .footer__copyright {
