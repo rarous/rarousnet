@@ -103,7 +103,7 @@
                  (html/set-attr :href (str blog-relative-url "tag/" (slug tag) ".html")))))
 
 (defsnippet article-listing "weblog/index.html" [:.feed :article]
-  [{:keys [title author category html published] :as article}]
+  [{:keys [title author category html published tags] :as article}]
   (conj (rdfa "BlogPosting" "headline") :a) (html/do->
                                                    (html/content (process-typo title))
                                                    (html/set-attr :href (rel-link article)))
