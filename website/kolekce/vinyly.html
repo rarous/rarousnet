@@ -229,6 +229,37 @@
     </section>
   </rarous-discogs>
 
+  <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog" href="https://www.rarous.net/kolekce/vinyly>
+    <gryphoon-webmentions id="webmentions">
+      <h2>Reakce v síti</h2>
+      <section class="webmentions" id="like-of">
+        <p>
+          <data>Líbilo se</data>
+        </p>
+        <ul class="items">
+          <li>Načítají se data&hellip;</li>
+        </ul>
+      </section>
+      <section class="webmentions" id="repost-of">
+        <p>
+          <data>Přeposláno dál</data>
+        </p>
+        <ul class="items">
+          <li>Načítají se data&hellip;</li>
+        </ul>
+      </section>
+      <template>
+        <li>
+          <a>
+            <time></time>
+            <img alt="" src="" width="32" height="32" loading="lazy" decoding="async">
+          </a>
+        </li>
+      </template>
+    </gryphoon-webmentions>
+  </gryphoon-weblog>
+
+
   <dialog id="player" onclick="event.target === this && this.close()">
     <div id="embed-iframe"></div>
   </dialog>
@@ -270,6 +301,7 @@
     }
   </script>
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script type="module" src="/assets/esm/gryphoon.js"></script>
 </main>
 <footer class="footer">
   <div class="footer__copyright">
