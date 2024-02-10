@@ -12,6 +12,16 @@ async function getReleases(page, token) {
   return resp.json();
 }
 
+async function* getAllReleases(token) {
+  let page = 1;
+  let done = false;
+  do {
+    const { pagination, releases } = await getReleases(page, token);
+    yield releases;
+    done = pagination.pages === page++;
+  } while (!done);
+}
+
 function cleanArtistName(name) {
   return name.replace(/\s\(\d+\)$/, "");
 }
@@ -29,7 +39,7 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
   return albums;
 }
 
-async function authSpotify(clientId, clientSecret) {
+async function authSpotify({ clientId, clientSecret }) {
   const resp = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
@@ -40,14 +50,15 @@ async function authSpotify(clientId, clientSecret) {
   return resp.json();
 }
 
+function byArtistAndYear(a, b) {
+  const comparison = a.artist?.name.localeCompare(b.artist?.name);
+  if (comparison !== 0) return comparison;
+  return a.year - b.year;
+}
+
 async function main({ token, clientId, clientSecret }) {
   const result = [];
-
-  let page = 1;
-  let stop = false;
-
-  do {
-    const { pagination, releases } = await getReleases(page, token);
+  for await (const releases of getAllReleases(token)) {
     const items = releases.map(x => x.basic_information).map(x => ({
       id: x.id,
       title: x.title,
@@ -56,18 +67,15 @@ async function main({ token, clientId, clientSecret }) {
       artist: { id: x.artists[0].id, name: cleanArtistName(x.artists[0].name) },
     }));
     result.push(...items);
-    stop = pagination.pages === page++;
-  } while (!stop);
-
-  function byArtistAndYear(a, b) {
-    const comparison = a.artist?.name.localeCompare(b.artist?.name);
-    if (comparison !== 0) return comparison;
-    return a.year - b.year;
   }
 
-  const { access_token: spotifyToken } = await authSpotify(clientId, clientSecret);
+  const { error, access_token: spotifyToken } = await authSpotify({ clientId, clientSecret });
 
   for (const item of result) {
+    if (error) {
+      console.error(error);
+      break;
+    }
     let albums = await searchAlbumOnSpotify(
       `artist:${item.artist.name} album:${item.title} year:${item.year}`,
       spotifyToken,
