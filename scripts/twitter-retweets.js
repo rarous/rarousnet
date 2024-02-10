@@ -42,4 +42,4 @@ async function main({ token }) {
 
 await main(parse(Deno.args));
 
-// deno run --allow-read=data --allow-net=www.rarous.net twitter-retweets.js --token="$(op read 'op://Private/rarousnet webmentions webhook/credential')"
+// deno run --allow-read=data --allow-net=www.rarous.net twitter-retweets.js --token="$(op read 'op://rarous.net/rarousnet webmentions webhook/credential')"

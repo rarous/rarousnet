@@ -4,8 +4,8 @@ async function main({ token }) {
   const { default: data } = await import("./data/twitter-likes.json", {
     with: { type: "json" },
   });
-  const target = "https://www.rarous.net/weblog/2023/11/14/peopleops-4.html";
-  const source = "https://twitter.com/alesroubicek/status/1724388917762203682";
+  const target = "https://www.rarous.net/kolekce/vinyly";
+  const source = "https://twitter.com/alesroubicek/status/1741818458701001086";
   const { entries } = data.favoriters_timeline.timeline.instructions[0];
   const users = entries
     .filter((x) => x.content.entryType === "TimelineTimelineItem")
@@ -40,4 +40,4 @@ async function main({ token }) {
 
 await main(parse(Deno.args));
 
-// deno run --allow-read=data --allow-net=www.rarous.net twitter-likes.js --token="$(op read 'op://Private/rarousnet webmentions webhook/credential')"
+// deno run --allow-read=data --allow-net=www.rarous.net twitter-likes.js --token="$(op read 'op://rarous.net/rarousnet webmentions webhook/credential')"
