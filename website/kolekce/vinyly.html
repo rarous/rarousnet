@@ -22,6 +22,8 @@
   <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-bold.woff2">
   <link rel="preload" as="font" crossorigin type="font/woff2"
         href="/assets/fonts/iosevka/woff2/iosevka-sparkle-bolditalic.woff2">
+  <link rel="preload" as="style" href="/assets/css/global.css">
+  <link rel="preload" as="style" href="/assets/css/webmentions.css">
   <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
   <meta name="copyright" content="&copy; 2004 - 2024 Aleš Roubíček. Creative Commons 4.0 BY-SA">
   <meta name="description" content="Sbírka gramofonových desek Aleše Roubíčka.">
@@ -33,52 +35,14 @@
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
   <style>
-    :root {
-      --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
-      --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
-      "Lucida Console", "Monaco CE", fixed, monospace;
-      --iosevka-sparkle: "Iosevka Sparkle Web", Cambria, Georgia, "New York CE", utopia,
-      serif;
-      --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
-      "Hoefler Text", "Times New Roman", serif;
-      --main-font: var(--futura);
-      --content-font: var(--iosevka-sparkle);
-      --citation-font: var(--garamond);
-      --code-font: var(--iosevka);
-
-      --heading-font: 800 2.5em var(--main-font);
-    }
-
-    body {
-      border-block: var(--border-width) solid var(--border-color);
-      font: 16px var(--main-font);
-      font-kerning: normal;
-      font-variant-numeric: lining-nums slashed-zero;
-      font-variant-ligatures: common-ligatures contextual;
-      -webkit-text-size-adjust: 100%;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: geometricPrecision;
-    }
-
-    h1 {
-      font: var(--heading-font);
-      letter-spacing: -1px;
-      text-wrap: balance;
-      margin: 0;
-      z-index: 20;
-    }
-
-    p {
-      text-wrap: pretty;
-      max-width: 48rem;
-    }
+    @import "/assets/css/global.css";
+    @import "/assets/css/webmentions.css";
 
     data[property=collectionSize] {
       font-family: var(--content-font);
     }
 
-    .items {
+    .collection .items {
       list-style-type: none;
       padding: 0;
       display: grid;
@@ -151,7 +115,6 @@
       backdrop-filter: blur(4px);
     }
 
-
     @keyframes --saturate-in-and-out {
       entry 60% {
         filter: saturate(0.2);
@@ -190,7 +153,7 @@
   </a>
 </header>
 <main typeof="Collection" vocab="https://schema.org/">
-  <rarous-discogs>
+  <rarous-discogs api-endpoint="https://www.rarous.net/api/v1/collections/vinyls">
     <template>
       <li class="album" property="hasPart" typeof="MusicAlbum">
         <a href="https://www.discogs.com/release/" property="sameAs">
@@ -209,7 +172,7 @@
         </a>
       </li>
     </template>
-    <section>
+    <section class="collection">
       <h1 property="name">Kolekce vinylů</h1>
       <p>Desky jsem začal sbírat na jaře 2013, když vyšly <a href="https://daftpunk.lnk.to/RAM_Originals">Random Access
         Memories</a>.
@@ -259,13 +222,13 @@
     </gryphoon-webmentions>
   </gryphoon-weblog>
 
-
   <dialog id="player" onclick="event.target === this && this.close()">
     <div id="embed-iframe"></div>
   </dialog>
 
   <script type="module">
-    import { defDiscogs } from "/assets/esm/discogs.js?v=2";
+    import "/assets/esm/gryphoon.js";
+    import { defDiscogs } from "/assets/esm/discogs.js";
 
     defDiscogs(window).register("rarous-discogs");
     const discogs = document.querySelector("rarous-discogs");
@@ -290,18 +253,10 @@
       IFrameAPI.createController(element, options, callback);
     };
 
-    if (discogs.getAttribute("loaded") == null) {
-      // fetch data only when not already loaded - possibly with SSR
-      discogs.data = await fetchVinylCollection();
-    }
-
-    async function fetchVinylCollection() {
-      const resp = await fetch("/api/v1/collections/vinyls");
-      return resp.json();
-    }
+    // Spotify handler has to be registered before data loading, there is possible race condition
+    await discogs.loadDataFromApi();
   </script>
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-  <script type="module" src="/assets/esm/gryphoon.js"></script>
 </main>
 <footer class="footer">
   <div class="footer__copyright">
