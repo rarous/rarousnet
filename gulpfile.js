@@ -14,6 +14,7 @@ import util from "node:util";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 import presetEnv from "postcss-preset-env";
+import postcssImport from "postcss-import";
 
 const pipeline = util.promisify(stream.pipeline);
 const { dest, series, src, watch } = gulp;
@@ -23,6 +24,7 @@ function css() {
     presetEnv({
       minimumVendorImplementations: 2,
     }),
+    postcssImport(),
     cssnano(),
     jitProps(OpenProps),
   ];
