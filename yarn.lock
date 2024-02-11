@@ -10523,7 +10523,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-import@npm:^16.0.0":
+"postcss-import@npm:16.0.0":
   version: 16.0.0
   resolution: "postcss-import@npm:16.0.0"
   dependencies:
@@ -11285,7 +11285,7 @@ __metadata:
     open-props: "npm:1.6.18"
     pagefind: "npm:1.0.4"
     postcss: "npm:8.4.35"
-    postcss-import: "npm:^16.0.0"
+    postcss-import: "npm:16.0.0"
     postcss-jit-props: "npm:1.0.14"
     postcss-preset-env: "npm:9.3.0"
     tap-xunit: "npm:2.4.1"
