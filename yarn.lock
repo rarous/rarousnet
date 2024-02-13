@@ -15,12 +15,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/kv-asset-handler@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@cloudflare/kv-asset-handler@npm:0.2.0"
+"@cloudflare/kv-asset-handler@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@cloudflare/kv-asset-handler@npm:0.3.1"
   dependencies:
     mime: "npm:^3.0.0"
-  checksum: 10c0/ec9816bb2901edff26e932566e77acff56c0a63927d78be6f05e44977209f0632103a802ba1498a2592bfc34c1e1502edba3644e8ff21ca10b201783ac5ff883
+  checksum: 10c0/ba4f20a6aa84803381ab4f50e05b2009806b651803aad576292995ec68e31ef42562c3de69697bcb7101cc09aa867410d5db1a2afbfa553737a4d833750e8a22
   languageName: node
   linkType: hard
 
@@ -8883,9 +8883,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20240129.1":
-  version: 3.20240129.1
-  resolution: "miniflare@npm:3.20240129.1"
+"miniflare@npm:3.20240129.2":
+  version: 3.20240129.2
+  resolution: "miniflare@npm:3.20240129.2"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     acorn: "npm:^8.8.0"
@@ -8901,7 +8901,7 @@ __metadata:
     zod: "npm:^3.20.6"
   bin:
     miniflare: bootstrap.js
-  checksum: 10c0/509cb9dfc160133ba856e880aa9ec445bba6886367d201f0886cc6e13a6435658e39a2e3bcfecfa9cd2eb1579fcfba3f909628f3b0a1858f8860b9df518a2454
+  checksum: 10c0/25548e5233d5506178b88be60d0654c31ad552bcae6cc7aab4a2b255582b62eda19f3ae74f81b02dc0628440d13336826552d25de6c86515be7f0553a8d86c03
   languageName: node
   linkType: hard
 
@@ -11289,7 +11289,7 @@ __metadata:
     postcss-jit-props: "npm:1.0.14"
     postcss-preset-env: "npm:9.3.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.28.1"
+    wrangler: "npm:3.28.2"
   languageName: unknown
   linkType: soft
 
@@ -14174,18 +14174,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.28.1":
-  version: 3.28.1
-  resolution: "wrangler@npm:3.28.1"
+"wrangler@npm:3.28.2":
+  version: 3.28.2
+  resolution: "wrangler@npm:3.28.2"
   dependencies:
-    "@cloudflare/kv-asset-handler": "npm:^0.2.0"
+    "@cloudflare/kv-asset-handler": "npm:0.3.1"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
     blake3-wasm: "npm:^2.1.5"
     chokidar: "npm:^3.5.3"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:3.20240129.1"
+    miniflare: "npm:3.20240129.2"
     nanoid: "npm:^3.3.3"
     path-to-regexp: "npm:^6.2.0"
     resolve: "npm:^1.22.8"
@@ -14204,7 +14204,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/357503f1a443cf02177b3d4c66bb188b43bbb9b3b1468a05be0e4fe388392a4ef03d2ead1dd5e935fee5d9452a37fd95ded0b80eb5b103fdb068192978e1ce80
+  checksum: 10c0/36158512ec086c5443b9d2bafd183faf46ab77279423c74fe25218e13b0b1de76d6755694d0e1fc32e1c0e354494d0c8a2e7208298dcd8b464f3094b2df1644c
   languageName: node
   linkType: hard
 
