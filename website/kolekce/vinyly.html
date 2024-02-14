@@ -36,7 +36,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
   <style>
     @import "/assets/css/global.css";
-    @import "/assets/css/webmentions.css";
 
     data[property=collectionSize] {
       font-family: var(--content-font);
@@ -195,6 +194,7 @@
 
   <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog" href="https://www.rarous.net/kolekce/vinyly">
     <gryphoon-webmentions id="webmentions">
+      <link rel="stylesheet" href="/assets/css/webmentions.css">
       <h2>Reakce v síti</h2>
       <section class="webmentions" id="like-of">
         <p>
