@@ -205,7 +205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/postcss-gamut-mapping@npm:^1.0.0":
+"@csstools/postcss-gamut-mapping@npm:^1.0.0, @csstools/postcss-gamut-mapping@npm:^1.0.2":
   version: 1.0.2
   resolution: "@csstools/postcss-gamut-mapping@npm:1.0.2"
   dependencies:
@@ -11263,6 +11263,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rarousnet@workspace:."
   dependencies:
+    "@csstools/postcss-gamut-mapping": "npm:^1.0.2"
     "@types/browser-sync": "npm:2.29.0"
     ava: "npm:6.1.1"
     broken-link-checker-local: "npm:0.2.1"

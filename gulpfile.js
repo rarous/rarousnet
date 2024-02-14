@@ -1,3 +1,4 @@
+import postcssGamutMapping from "@csstools/postcss-gamut-mapping";
 import browserSync from "browser-sync";
 import cssnano from "cssnano";
 import gulp from "gulp";
@@ -12,9 +13,9 @@ import sizereport from "gulp-sizereport";
 import stream from "node:stream";
 import util from "node:util";
 import OpenProps from "open-props";
+import postcssImport from "postcss-import";
 import jitProps from "postcss-jit-props";
 import presetEnv from "postcss-preset-env";
-import postcssImport from "postcss-import";
 
 const pipeline = util.promisify(stream.pipeline);
 const { dest, series, src, watch } = gulp;
@@ -24,6 +25,7 @@ function css() {
     presetEnv({
       minimumVendorImplementations: 2,
     }),
+    postcssGamutMapping(),
     postcssImport(),
     cssnano(),
     jitProps(OpenProps),
