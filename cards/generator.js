@@ -51,6 +51,7 @@ async function prepareOutputPath(fileName) {
 }
 
 async function readManifest(manifestFileName) {
+  return [];
   if (!existsSync(manifestFileName)) return [];
   const data = await fs.readFile(manifestFileName, "utf-8");
   return JSON.parse(data);
