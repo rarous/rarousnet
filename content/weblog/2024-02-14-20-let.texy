@@ -4,7 +4,9 @@
  :author "Aleš Roubíček",
  :tags #{"jen tak"},
  :published "2024-02-14T08:28:00.000"
- :syndication []}
+ :syndication
+ ["https://twitter.com/alesroubicek/status/1757671266121597398"
+  "https://indieweb.social/@alesroubicek/111928708391467827"]}
 ---
 
 Přiznávám, že poslední dobou jsem sem přidával spíše meta příspěvky - blogposty o tom, jak dělám blog.
