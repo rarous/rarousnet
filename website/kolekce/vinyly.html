@@ -156,7 +156,8 @@
   <rarous-discogs api-endpoint="https://www.rarous.net/api/v1/collections/vinyls">
     <template>
       <li class="album" property="hasPart" typeof="MusicAlbum">
-        <a href="https://www.discogs.com/release/" property="sameAs">
+        <!-- HACK: iOS Safari is nuts about `media hover` so let's try to prevent desktop event simulation on touch -->
+        <a href="https://www.discogs.com/release/" property="sameAs" onpointerup="event.preventDefault()">
           <div>
             <img
               alt="Obal desky"
