@@ -1,5 +1,4 @@
-import { comp, count, filter, iterator, partition } from "@thi.ng/transducers";
-import { existsSync } from "node:fs";
+import { count, partition } from "@thi.ng/transducers";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "playwright";
@@ -50,31 +49,13 @@ async function prepareOutputPath(fileName) {
   return outputPath;
 }
 
-async function readManifest(manifestFileName) {
-  return [];
-  if (!existsSync(manifestFileName)) return [];
-  const data = await fs.readFile(manifestFileName, "utf-8");
-  return JSON.parse(data);
-}
-
-async function writeManifest(manifestFileName, manifest) {
-  console.log(`Writing manifest file ${manifestFileName}`);
-  const content = JSON.stringify(Array.from(manifest));
-  await fs.mkdir(path.dirname(manifestFileName), { recursive: true });
-  return fs.writeFile(manifestFileName, content);
-}
-
 async function main(url, manifestFileName, POOL_SIZE) {
   console.log("Gryphoon 3.5 - static website generator");
   console.log("Twitter Card images generator");
   console.log("");
 
-  const manifestData = await readManifest(manifestFileName);
-  const manifest = new Map(manifestData);
-  const updateManifest = ([fileName, hash]) => manifest.set(fileName, hash);
-  const differentHash = x => manifest.get(x.fileName) !== x.hash;
   try {
-    const items = iterator(comp(filter(differentHash), partition(POOL_SIZE, true)), data);
+    const items = partition(POOL_SIZE, true, data);
     const itemsCount = count(items);
     if (!itemsCount) {
       return console.log("Nothing to generate.\n\nDONE");
@@ -93,12 +74,11 @@ async function main(url, manifestFileName, POOL_SIZE) {
       await twittedCardPage.navigate(url);
       tabsPool.push(twittedCardPage);
     }
-    console.log(`Will generate ${itemsCount} images`);
+    console.log(`Will generate ${data.length} images`);
 
     for (const chunk of items) {
-      await Promise.all(chunk.map((post, i) => generateCard(tabsPool[i], post).then(updateManifest)));
+      await Promise.all(chunk.map((post, i) => generateCard(tabsPool[i], post)));
     }
-    await writeManifest(manifestFileName, manifest);
     console.log("");
     console.log("DONE");
     await browser.close();
