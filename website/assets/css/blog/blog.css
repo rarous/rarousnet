@@ -452,63 +452,61 @@ article footer {
   width: 3rem;
 }
 
-@layer components {
-  .comments {
-    .items {
-      counter-set: --comment 0;
-      list-style: none;
+.comments {
+  .items {
+    counter-set: --comment 0;
+    list-style: none;
+  }
+
+  .items > li {
+    counter-increment: --comment;
+    position: relative;
+    scroll-margin-block-start: 1em;
+    border-bottom: 1px solid var(--border-color);
+    margin-block-start: 2em;
+  }
+
+  [rel=bookmark]::after {
+    content: counter(--comment);
+    font-weight: normal;
+  }
+
+  .h-card {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .avatar {
+      line-height: 1;
+      position: absolute;
+      translate: -2.5em 0.5em;
     }
 
-    .items > li {
-      counter-increment: --comment;
-      position: relative;
-      scroll-margin-block-start: 1em;
-      border-bottom: 1px solid var(--border-color);
-      margin-block-start: 2em;
-    }
-
-    [rel=bookmark]::after {
-      content: counter(--comment);
-      font-weight: normal;
-    }
-
-    .h-card {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      .avatar {
-        line-height: 1;
-        position: absolute;
-        translate: -2.5em 0.5em;
-      }
-
-      h3 {
-        margin: 0;
-        font-size: 1em;
-      }
-    }
-
-    img.u-photo {
-      aspect-ratio: var(--ratio-square);
-      border-radius: var(--radius-round);
-    }
-
-    footer p {
-      font-family: var(--main-font);
+    h3 {
+      margin: 0;
+      font-size: 1em;
     }
   }
 
-  #search {
-    width: 100%;
-    max-width: clamp(20em, 100vw - 4em, 52em);
-    min-width: clamp(12em, 100vw - 4em, 32em);
+  img.u-photo {
+    aspect-ratio: var(--ratio-square);
+    border-radius: var(--radius-round);
   }
 
-  #search .pagefind-ui__result-title {
-    font: var(--heading-font);
-    letter-spacing: -1px;
+  footer p {
+    font-family: var(--main-font);
   }
+}
+
+#search {
+  width: 100%;
+  max-width: clamp(20em, 100vw - 4em, 52em);
+  min-width: clamp(12em, 100vw - 4em, 32em);
+}
+
+#search .pagefind-ui__result-title {
+  font: var(--heading-font);
+  letter-spacing: -1px;
 }
 
 .footer {

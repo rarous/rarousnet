@@ -13,7 +13,6 @@ import sizereport from "gulp-sizereport";
 import stream from "node:stream";
 import util from "node:util";
 import OpenProps from "open-props";
-import postcssImport from "postcss-import";
 import jitProps from "postcss-jit-props";
 import presetEnv from "postcss-preset-env";
 
