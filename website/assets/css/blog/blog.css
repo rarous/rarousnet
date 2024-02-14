@@ -10,67 +10,65 @@
   inherits: true;
 }
 
-@layer theme, components, layout;
-
 /* https://material.io/tools/color/#!/?view.left=1&view.right=1&primary.color=F77146&secondary.color=33769D&primary.text.color=ffffff */
-@layer theme {
-  :root {
-    --primary-color: oklch(0.703 0.175 38.139);
-    --primary-dark-color: oklch(0.547 0.168 36.467);
-    --text-color-on-primary: oklch(1 0 89.876);
-    --secondary-color: oklch(0.543 0.091 237.043);
-    --secondary-dark-color: oklch(0.392 0.088 238.557);
 
-    --content-color: oklch(0.178 0 89.876);
-    --content-background: oklch(1 0 89.876);
-    --border-color: oklch(0.321 0 89.876);
-    --border-width: 2px;
+:root {
+  --primary-color: oklch(0.703 0.175 38.139);
+  --primary-dark-color: oklch(0.547 0.168 36.467);
+  --text-color-on-primary: oklch(1 0 89.876);
+  --secondary-color: oklch(0.543 0.091 237.043);
+  --secondary-dark-color: oklch(0.392 0.088 238.557);
 
-    --icon-color: var(--secondary-dark-color);
-    --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
-    --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
-    "Lucida Console", "Monaco CE", fixed, monospace;
-    --iosevka-sparkle: "Iosevka Sparkle Web", Cambria, Georgia, "New York CE", utopia,
-    serif;
-    --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
-    "Hoefler Text", "Times New Roman", serif;
-    --main-font: var(--futura);
-    --content-font: var(--iosevka-sparkle);
-    --citation-font: var(--garamond);
-    --code-font: var(--iosevka);
+  --content-color: oklch(0.178 0 89.876);
+  --content-background: oklch(1 0 89.876);
+  --border-color: oklch(0.321 0 89.876);
+  --border-width: 2px;
 
-    --heading-font: 800 2.5em var(--main-font);
+  --icon-color: var(--secondary-dark-color);
+  --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
+  --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
+  "Lucida Console", "Monaco CE", fixed, monospace;
+  --iosevka-sparkle: "Iosevka Sparkle Web", Cambria, Georgia, "New York CE", utopia,
+  serif;
+  --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
+  "Hoefler Text", "Times New Roman", serif;
+  --main-font: var(--futura);
+  --content-font: var(--iosevka-sparkle);
+  --citation-font: var(--garamond);
+  --code-font: var(--iosevka);
 
-    --pagefind-ui-scale: 1;
-    --pagefind-ui-primary: var(--primary-color);
-    --pagefind-ui-text: var(--content-color);
-    --pagefind-ui-background: var(--content-background);
-    --pagefind-ui-border: var(--border-color);
-    --pagefind-ui-border-width: var(--border-width);
-    --pagefind-ui-border-radius: 0;
-    --pagefind-ui-font: var(--content-font);
-  }
+  --heading-font: 800 2.5em var(--main-font);
 
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    background: var(--primary-color);
-    color: var(--text-color-on-primary);
-  }
-
-  body {
-    border-block: var(--border-width) solid var(--border-color);
-    font: 16px var(--main-font);
-    font-kerning: normal;
-    font-variant-numeric: lining-nums slashed-zero;
-    font-variant-ligatures: common-ligatures contextual;
-    -webkit-text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: geometricPrecision;
-  }
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--primary-color);
+  --pagefind-ui-text: var(--content-color);
+  --pagefind-ui-background: var(--content-background);
+  --pagefind-ui-border: var(--border-color);
+  --pagefind-ui-border-width: var(--border-width);
+  --pagefind-ui-border-radius: 0;
+  --pagefind-ui-font: var(--content-font);
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--primary-color);
+  color: var(--text-color-on-primary);
+}
+
+body {
+  border-block: var(--border-width) solid var(--border-color);
+  font: 16px var(--main-font);
+  font-kerning: normal;
+  font-variant-numeric: lining-nums slashed-zero;
+  font-variant-ligatures: common-ligatures contextual;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
 
 h2,
 article h1 {
@@ -344,6 +342,8 @@ iframe.player {
   border: none;
 }
 
+@layer components;
+
 @layer components {
 
   .youtube-player {
@@ -558,147 +558,145 @@ article footer {
   box-sizing: border-box;
 }
 
-@layer layout {
+#head h1 {
+  font-size: clamp(1.5rem, 13vw, 4rem);
+  font-weight: 800;
+  transform: rotate(-8deg) translateY(clamp(0em, -2vw + 0.5em, 0.5em));
+  transition: transform 200ms ease-in-out;
 
-  #head h1 {
-    font-size: clamp(1.5rem, 13vw, 4rem);
-    font-weight: 800;
-    transform: rotate(-8deg) translateY(clamp(0em, -2vw + 0.5em, 0.5em));
-    transition: transform 200ms ease-in-out;
-
-    @media screen and (min-width: 1440px) {
-      transform: rotate(-8deg) translateX(-230px) translateY(15px);
-    }
+  @media screen and (min-width: 1440px) {
+    transform: rotate(-8deg) translateX(-230px) translateY(15px);
   }
+}
 
-  #head h1 a {
-    color: var(--secondary-dark-color);
-    text-decoration: none;
-  }
+#head h1 a {
+  color: var(--secondary-dark-color);
+  text-decoration: none;
+}
 
-  #head nav {
-    --icon-size: 32px;
-    --gap: 16px;
+#head nav {
+  --icon-size: 32px;
+  --gap: 16px;
 
-    position: absolute;
-    top: var(--gap);
-    right: var(--gap);
-  }
+  position: absolute;
+  top: var(--gap);
+  right: var(--gap);
+}
 
-  #head nav ul {
-    list-style-type: none;
-    padding: 0;
+#head nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--gap);
+
+  > li {
     margin: 0;
+  }
+}
+
+#head nav a {
+  display: inline-flex;
+
+  &:hover {
+    --icon-color: oklch(1 0 89.876);
+    border-radius: 4px;
+  }
+}
+
+#head nav a svg {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+#content {
+  margin: 4em 0 1em 1ex;
+  padding: 1em;
+}
+
+
+#novy-komentar {
+  margin-block-start: 4em;
+
+  form {
+    margin-block-start: 2em;
+  }
+
+  fieldset > div + div {
+    margin-block-start: 1em;
+  }
+
+  label {
+    display: block;
+    font-weight: 700;
+  }
+
+  input, textarea {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 0;
+  }
+
+  input[name=name] {
+    font-family: var(--main-font);
+    font-weight: 600;
+  }
+
+  textarea {
+    font-family: var(--content-font);
+    width: 100%;
+    max-width: 40em;
+    box-sizing: border-box;
+  }
+
+  button {
+    font: 1.25rem/2 var(--main-font);
+    padding: 0 2em;
+    border: var(--border-width) solid var(--border-color)
+  }
+
+  p, span {
+    font: 0.9rem var(--main-font);
+  }
+
+  code {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (min-width: 701px) {
+  #top {
+    margin: 0 auto;
+    max-width: 60em;
+  }
+
+  #top > .footer {
+    margin-top: 1.4em;
+  }
+
+  .footer .footer__inner {
+    padding: 1em 4em;
     display: grid;
-    grid-auto-flow: column;
-    gap: var(--gap);
-
-    > li {
-      margin: 0;
-    }
+    grid-gap: 1.5em;
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  #head nav a {
-    display: inline-flex;
-
-    &:hover {
-      --icon-color: oklch(1 0 89.876);
-      border-radius: 4px;
-    }
-  }
-
-  #head nav a svg {
-    width: var(--icon-size);
-    height: var(--icon-size);
+  .footer .footer__copyright {
+    padding-left: 4em;
   }
 
   #content {
-    margin: 4em 0 1em 1ex;
-    padding: 1em;
+    margin: 4em 0 1em;
+    padding: 2em 4em;
+    max-width: 52em;
+    min-width: 38em;
   }
 
-
-  #novy-komentar {
-    margin-block-start: 4em;
-
-    form {
-      margin-block-start: 2em;
-    }
-
-    fieldset > div + div {
-      margin-block-start: 1em;
-    }
-
-    label {
-      display: block;
-      font-weight: 700;
-    }
-
-    input, textarea {
-      border: var(--border-width) solid var(--border-color);
-      border-radius: 0;
-    }
-
-    input[name=name] {
-      font-family: var(--main-font);
-      font-weight: 600;
-    }
-
-    textarea {
-      font-family: var(--content-font);
-      width: 100%;
-      max-width: 40em;
-      box-sizing: border-box;
-    }
-
-    button {
-      font: 1.25rem/2 var(--main-font);
-      padding: 0 2em;
-      border: var(--border-width) solid var(--border-color)
-    }
-
-    p, span {
-      font: 0.9rem var(--main-font);
-    }
-
-    code {
-      font-size: 0.9em;
-    }
-  }
-
-  @media screen and (min-width: 701px) {
-    #top {
-      margin: 0 auto;
-      max-width: 60em;
-    }
-
-    #top > .footer {
-      margin-top: 1.4em;
-    }
-
-    .footer .footer__inner {
-      padding: 1em 4em;
-      display: grid;
-      grid-gap: 1.5em;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .footer .footer__copyright {
-      padding-left: 4em;
-    }
-
-    #content {
-      margin: 4em 0 1em;
-      padding: 2em 4em;
-      max-width: 52em;
-      min-width: 38em;
-    }
-
-    #content:not(.category-listing) article + article {
-      margin-top: 8em;
-    }
+  #content:not(.category-listing) article + article {
+    margin-top: 8em;
   }
 }
+
 
 @media print {
   html,
