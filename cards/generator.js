@@ -55,12 +55,6 @@ async function main(url, manifestFileName, POOL_SIZE) {
   console.log("");
 
   try {
-    const items = partition(POOL_SIZE, true, data);
-    const itemsCount = count(items);
-    if (!itemsCount) {
-      return console.log("Nothing to generate.\n\nDONE");
-    }
-
     console.log("Starting Playwright...");
     const browser = await chromium.launch({
       // We need to disable Sandbox to be able to run in CircleCI environment
@@ -74,9 +68,9 @@ async function main(url, manifestFileName, POOL_SIZE) {
       await twittedCardPage.navigate(url);
       tabsPool.push(twittedCardPage);
     }
-    console.log(`Will generate ${data.length} images`);
+    console.log(`Will generate ${count(data)} images`);
 
-    for (const chunk of items) {
+    for (const chunk of partition(POOL_SIZE, true, data)) {
       await Promise.all(chunk.map((post, i) => generateCard(tabsPool[i], post)));
     }
     console.log("");
@@ -88,6 +82,6 @@ async function main(url, manifestFileName, POOL_SIZE) {
   }
 }
 
-const POOL_SIZE = parseInt(process.env.POOL_SIZE ?? 8, 10);
+const POOL_SIZE = parseInt(process.env.POOL_SIZE ?? 4, 10);
 const url = process.argv[2];
 await main(url, manifestFileName, POOL_SIZE);
