@@ -5,6 +5,8 @@
 async function getDetail(weblog, url) {
   const payload = await weblog.get(url, "json");
   if (payload) return payload;
+  const payloadHTML = await weblog.get(`${url}.html`, "json");
+  if (payloadHTML) return payloadHTML;
   return { webmentions: [] };
 }
 
