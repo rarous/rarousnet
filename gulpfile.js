@@ -25,7 +25,6 @@ function css() {
       minimumVendorImplementations: 2,
     }),
     postcssGamutMapping(),
-    postcssImport(),
     cssnano(),
     jitProps(OpenProps),
   ];
