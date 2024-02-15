@@ -1,3 +1,7 @@
+function getKeyWithHtml(key) {
+  return `${key}${key.endsWith("/") ? "" : "/"}index.html`;
+}
+
 /**
  * @param {EventContext<Env>} context
  */
@@ -14,6 +18,12 @@ export async function onRequest({ env, next, request }) {
     const headers = new Headers();
     blob.writeHttpMetadata(headers);
     return new Response(blob.body, { headers });
+  }
+  const blobHtml = await env.storage.get(getKeyWithHtml(key));
+  if (blobHtml) {
+    const headers = new Headers();
+    blobHtml.writeHttpMetadata(headers);
+    return new Response(blobHtml.body, { headers });
   }
 
   // Let Cloudflare decide what to do - most likely 404
