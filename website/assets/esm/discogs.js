@@ -82,7 +82,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
       if (this.getAttribute("loaded")) return;
       const endpoint = url ?? this.getAttribute("api-endpoint") ?? "/api/v1/collections/vinyls";
       const resp = await fetch(endpoint, {
-        headers: {"Accept": "application/json"}
+        headers: { "Accept": "application/json" },
       });
       this.data = await resp.json();
     }
