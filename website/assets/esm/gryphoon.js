@@ -168,9 +168,9 @@ export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentio
 
     static register(tagName = "gryphoon-weblog") {
       this.tagName = tagName;
-      customElements.define(tagName, this);
-      Comments.register();
       WebMentions.register();
+      Comments.register();
+      customElements.define(tagName, this);
     }
 
     async connectedCallback() {
