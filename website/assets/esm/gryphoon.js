@@ -43,35 +43,45 @@ function injectItems(section, template, items, applyTemplate) {
   list.replaceChildren(listItems);
 }
 
-class WebMentions extends HTMLElement {
-  constructor() {
-    super();
-  }
-
-  set data(webmentions) {
-    const likesOf = this.querySelector("#like-of");
-    const repostsOf = this.querySelector("#repost-of");
-    const template = this.querySelector("template");
-
-    const byType = groupByType(webmentions);
-
-    function itemTemplate(content, item, section) {
-      const link = content.querySelector("a");
-      link.href = item.url;
-      link.title = item.author.name;
-      link.classList.add(section.id);
-
-      const time = content.querySelector("time");
-      time.dateTime = item.published ?? item["wm-received"];
-
-      const img = content.querySelector("img");
-      img.alt = item.author.name;
-      img.src = item.author.photo;
+export function defWebMentions({ HTMLElement, customElements }) {
+  class WebMentions extends HTMLElement {
+    constructor() {
+      super();
     }
 
-    injectItems(likesOf, template, byType.get("like-of"), itemTemplate);
-    injectItems(repostsOf, template, byType.get("repost-of"), itemTemplate);
+    static register(tagName = "gryphoon-webmentions") {
+      this.tagName = tagName;
+      customElements.define(tagName, this);
+    }
+
+    set data(webmentions) {
+      // TODO: inject selectors via attributes
+      const likesOf = this.querySelector("#like-of");
+      const repostsOf = this.querySelector("#repost-of");
+      const template = this.querySelector("template");
+
+      const byType = groupByType(webmentions);
+
+      function itemTemplate(content, item, section) {
+        const link = content.querySelector("a");
+        link.href = item.url;
+        link.title = item.author.name;
+        link.classList.add(section.id);
+
+        const time = content.querySelector("time");
+        time.dateTime = item.published ?? item["wm-received"];
+
+        const img = content.querySelector("img");
+        img.alt = item.author.name;
+        img.src = item.author.photo;
+      }
+
+      injectItems(likesOf, template, byType.get("like-of"), itemTemplate);
+      injectItems(repostsOf, template, byType.get("repost-of"), itemTemplate);
+    }
   }
+
+  return WebMentions;
 }
 
 /**
@@ -92,81 +102,105 @@ async function gravatarUrl(item) {
   return `https://gravatar.com/avatar/${sha}?d=identicon`;
 }
 
-class Comments extends HTMLElement {
-  constructor() {
-    super();
-  }
+export function defComments({ HTMLElement, customElements }) {
+  class Comments extends HTMLElement {
+    constructor() {
+      super();
+    }
 
-  set data(comments) {
-    if (!comments?.length) return;
-    const template = this.querySelector("template");
-    const section = this.querySelector("#comments");
+    static register(tagName = "gryphoon-comments") {
+      this.tagName = tagName;
+      customElements.define(tagName, this);
+    }
 
-    async function itemTemplate(content, item, section) {
-      const date = new Date(item.created);
+    set data(comments) {
+      if (!comments?.length) return;
+      // TODO: inject selectors via attributes
+      const template = this.querySelector("template");
+      const section = this.querySelector("#comments");
 
-      const entry = content.querySelector(".h-entry");
-      entry.id = `komentar-${date.valueOf()}`;
-      const permalink = entry.querySelector(".u-url[rel=bookmark]");
-      permalink.href = "#" + entry.id;
+      async function itemTemplate(content, item, section) {
+        const date = new Date(item.created);
 
-      const img = entry.querySelector(".u-photo");
-      img.src = await gravatarUrl(item);
-      img.alt = item.author.name;
+        const entry = content.querySelector(".h-entry");
+        entry.id += date.valueOf();
+        const permalink = entry.querySelector(".u-url[rel=bookmark]");
+        permalink.href = "#" + entry.id;
 
-      const name = entry.querySelector(".p-name");
-      if (item.author.web) {
-        const link = document.createElement("a");
-        link.href = item.author.web;
-        link.rel = "nofollow";
-        link.textContent = item.author.name;
-        name.insertAdjacentElement("beforeend", link);
-      } else {
-        name.textContent = item.author.name;
+        const img = entry.querySelector(".u-photo");
+        img.src = await gravatarUrl(item);
+        img.alt = item.author.name;
+
+        const name = entry.querySelector(".p-name");
+        if (item.author.web) {
+          const link = document.createElement("a");
+          link.href = item.author.web;
+          link.rel = "nofollow";
+          link.textContent = item.author.name;
+          name.insertAdjacentElement("beforeend", link);
+        } else {
+          name.textContent = item.author.name;
+        }
+
+        const website = entry.querySelector(".p-author .u-url");
+        website.href = item.author.web;
+
+        const cnt = entry.querySelector(".e-content");
+        cnt.innerHTML = item.text;
+
+        const published = entry.querySelector(".dt-published");
+        published.datetime = item.created;
+        published.textContent = `${date.toLocaleDateString("cs")} v ${date.toLocaleTimeString("cs")}`;
       }
 
-      const website = entry.querySelector(".p-author .u-url");
-      website.href = item.author.web;
-
-      const cnt = entry.querySelector(".e-content");
-      cnt.innerHTML = item.text;
-
-      const published = entry.querySelector(".dt-published");
-      published.datetime = item.created;
-      published.textContent = `${date.toLocaleDateString("cs")} v ${date.toLocaleTimeString("cs")}`;
+      injectItems(section, template, comments, itemTemplate);
     }
-
-    injectItems(section, template, comments, itemTemplate);
   }
+
+  return Comments;
 }
 
-class Weblog extends HTMLElement {
-  constructor() {
-    super();
-  }
-
-  async connectedCallback() {
-    const commentsComp = this.querySelector("gryphoon-comments");
-    const webMentionsComp = this.querySelector("gryphoon-webmentions");
-
-    const apiEndpoint = this.getAttribute("api-endpoint") ?? "/api/v1/weblog";
-    const url = this.getAttribute("href") ?? location.href;
-    const resp = await fetch(`${apiEndpoint}?${new URLSearchParams({ url })}`);
-
-    const { comments, webmentions } = await resp.json();
-
-    if (commentsComp && !comments?.length) {
-      commentsComp.remove();
-    }
-    if (webMentionsComp && !webmentions?.length) {
-      webMentionsComp.remove();
+export function defWeblog({ HTMLElement, customElements }) {
+  class Weblog extends HTMLElement {
+    constructor() {
+      super();
     }
 
-    if (commentsComp) commentsComp.data = comments;
-    if (webMentionsComp) webMentionsComp.data = webmentions;
+    static register(tagName = "gryphoon-weblog") {
+      this.tagName = tagName;
+      customElements.define(tagName, this);
+    }
+
+    async connectedCallback() {
+      const commentsComp = this.querySelector(Comments.tagName);
+      const webMentionsComp = this.querySelector(WebMentions.tagName);
+
+      // TODO: bypass auto-fetch when already hydrated
+
+      const apiEndpoint = this.getAttribute("api-endpoint") ?? "/api/v1/weblog";
+      const url = this.getAttribute("href") ?? location.href;
+      const resp = await fetch(`${apiEndpoint}?${new URLSearchParams({ url })}`);
+
+      const { comments, webmentions } = await resp.json();
+
+      if (commentsComp && !comments?.length) {
+        commentsComp.remove();
+      }
+      if (webMentionsComp && !webmentions?.length) {
+        webMentionsComp.remove();
+      }
+
+      if (commentsComp) commentsComp.data = comments;
+      if (webMentionsComp) webMentionsComp.data = webmentions;
+    }
   }
+
+  return Weblog;
 }
 
-customElements.define("gryphoon-comments", Comments);
-customElements.define("gryphoon-webmentions", WebMentions);
-customElements.define("gryphoon-weblog", Weblog);
+// autoregister components when in browser env with customELements support
+if (window?.customElements) {
+  defComments(window).register();
+  defWebMentions(window).register();
+  defWeblog(window).register();
+}

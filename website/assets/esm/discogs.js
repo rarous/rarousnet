@@ -40,6 +40,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
     }
 
     static register(tagName = "rarous-discogs") {
+      this.tagName = tagName;
       customElements.define(tagName, this);
     }
 
