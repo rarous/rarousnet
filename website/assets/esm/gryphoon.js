@@ -160,7 +160,7 @@ export function defComments({ HTMLElement, customElements }) {
   return Comments;
 }
 
-export function defWeblog({ HTMLElement, customElements }) {
+export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentions }) {
   class Weblog extends HTMLElement {
     constructor() {
       super();
@@ -169,6 +169,8 @@ export function defWeblog({ HTMLElement, customElements }) {
     static register(tagName = "gryphoon-weblog") {
       this.tagName = tagName;
       customElements.define(tagName, this);
+      Comments.register();
+      WebMentions.register();
     }
 
     async connectedCallback() {
@@ -200,7 +202,7 @@ export function defWeblog({ HTMLElement, customElements }) {
 
 // autoregister components when in browser env with customELements support
 if (window?.customElements) {
-  defComments(window).register();
-  defWebMentions(window).register();
-  defWeblog(window).register();
+  const Comments = defComments(window);
+  const WebMentions = defWebMentions(window);
+  defWeblog(window, { Comments, WebMentions }).register();
 }
