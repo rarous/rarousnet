@@ -4,7 +4,9 @@
  :author "Aleš Roubíček",
  :tags #{"moje prace", "indieweb", "microformats", "gryphoon"},
  :published "2024-02-18T09:20:00.000"
- :syndication []}
+ :syndication
+  ["https://twitter.com/alesroubicek/status/1759133073067647475"
+   "https://indieweb.social/@alesroubicek/111951536277075223"]}
 ---
 
 Zhruba před rokem jsem zase začal víc číst blogy a všiml jsem si,
