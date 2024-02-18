@@ -5,8 +5,6 @@
 async function getDetail(weblog, url) {
   const payload = await weblog.get(url, "json");
   if (payload) return payload;
-  const payloadHTML = await weblog.get(`${url}.html`, "json");
-  if (payloadHTML) return payloadHTML;
   return { webmentions: [] };
 }
 
@@ -33,7 +31,8 @@ export async function onRequestPost(context) {
     }
 
     const { post, target, deleted } = body;
-    const detail = await getDetail(env.weblog, target);
+    const key = target.endsWith(".html") ? target : `${target}.html`;
+    const detail = await getDetail(env.weblog, key);
     const webmentions = new Map(detail.webmentions.map((x) => [x.url, x]));
     if (deleted) {
       webmentions.delete(post.url);
@@ -41,7 +40,7 @@ export async function onRequestPost(context) {
       webmentions.set(post.url, post);
     }
     detail.webmentions = Array.from(webmentions.values());
-    await saveDetail(env.weblog, target, detail);
+    await saveDetail(env.weblog, key, detail);
     return new Response(null, { status: 202 });
   } catch (err) {
     console.log(err);
