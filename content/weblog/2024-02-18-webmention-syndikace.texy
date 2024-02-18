@@ -1,0 +1,91 @@
+---
+{:title "Webmention a Syndikace",
+ :description "Je tomu zhruba rok, co jsem na blog přidal podporu WebMentions a Syndikace obsahu. Pojďme se společně podívat, co to je a jak to funguje.",
+ :author "Aleš Roubíček",
+ :tags #{"moje prace", "indieweb", "microformats", "gryphoon"},
+ :published "2024-02-18T09:20:00.000"
+ :syndication []}
+---
+
+Zhruba před rokem jsem zase začal víc číst blogy a všiml jsem si,
+že se na nich začaly objevovat hromádky hlaviček lidí, kterým se článek líbil,
+poslali ho dál nebo dokonce textové reakce ze sociálních sítí.
+Což mi přišlo cool a chtěl jsem to mít taky. Tak jsem začal pátrat jak na to.
+
+Webmention
+==========
+
+"Webmention je doporučení W3C":[https://www.w3.org/TR/webmention/], které umožňuje
+poslat z jednoho serveru na druhý informaci o tom, že tahle URL zmínila tuhle URL u tebe.
+Jednoduchý protokol, který otevírá cestu decentralizovanému sociálnímu webu.
+
+Princip je jednoduchý:
+
+* Odesilatel prozkoumá odkazovanou stránku, jestli na ní je odkaz s `rel=webmention`. Odkaz může být vytvořen pomocí elementu `<a>` nebo `<link>` nebo pomocí HTTP hlavičky `Link`.
+* Pokud takový odkaz najde, použije jeho URL pro odeslání informace pomocí `POST` požadavku na danou URL s `application/x-www-form-urlencoded` dotazem, který má dva parametry: `source` a `target`. Oba parametry musí obsahovat URL.
+* Příjemce projde `source` stránku a najde na ní odkazy nebo vložená media, která odpovídají `target` a něco s tou informací může udělat.
+
+*Co konkrétně* s tím má udělat už není součástí specifikace.
+Což je v pohodě, protože v principu jde o jednoduchý protokol,
+který další detaily nechává na implementátorech. 
+
+Hnutí indieweb:[https://indieweb.org/] tento protokol rozšiřuje o mikroformáty:[/weblog/tag/microformats.html],
+které ho obohacují o další sematiku, jako třeba "o jaký druh odpovědi jde":[https://indieweb.org/responses].
+Jestli je to `like-of`, `repost-of`, `in-reply-to` a podobně.
+
+Pokud se nechcete trápit s vlastní implementací, můžete využít už hotová řešení,
+která integrujete do vašeho webu. Já jsem zvolil webmention.io:[https://webmention.io/] pro příjem
+a webmention.app:[https://webmention.app/] pro odesílání.
+Ale existuje "celá řada implementací":[https://indieweb.org/Webmention#Publisher_Services],
+který vám můžou vyhovovat víc. Obě zvolené služby mají dobrou dokumentaci,
+která vás provede procesem integrace s vaším webem.
+
+Každopádně, je dost nepravděpodobné, že by někdo záměrně odkazoval na můj
+web s mikroformátem, který říká *proč*...
+
+Syndikace
+=========
+
+Když publikuju článek na blogu, většinou o tom napíšu tweet nebo toot,
+který obsahuje odkaz na článek. I proto jsem se dělal
+s "generátorem obrázků pro sociální media":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html].
+Lidi už si zvykli nepoužívat RSS:[https://feeds.feedburner.com/rarous-weblog]
+a dostávat odkazy až pod nos na sociálních sítích. Je to dvousečná zbraň,
+ale o tom dnešní článek není. 
+
+Každopádně, dlouho dobu jsem bral sociální sítě jako místo, kde lidi na moje
+články reagují reakcema na daný příspěvek na sociálních sítích.
+V indieweb komunitě se tomu říká POSSE((Publish (on your) Own Site, Syndicate Elsewhere))
+nebo prostě syndikace. Proto jsem se příspěvky na sociálních sítích rozhodl vytěžit. 
+
+"Požádal jsem o export dat z Twitteru":[https://twitter.com/settings/download_your_data]
+a napsal jsem si několik scriptů, které našly tweety s odkazy na můj blog
+a ty pak použili pro získání reakcí z Twitter API.
+Další script vygeneroval mapu článků a jim přidruženým tweetů, kterou jsem využil
+k obohacení metadat mých článků o syndikační odkazy, které vkládám do stránky článku
+pomocí `<link rel=syndication>`. 
+
+Tím mi vznikla data, která jsem mohl využít k vyjádření vztahů mezi jednotlivými
+tweety a články, a mohl jsem je veřejně publikovat.
+Tato data využívá služba brid.gy:[https://brid.gy/] k tomu, aby konvertovala reakce
+na podporovaných sítích na webmention. Stačilo pak jen vytvořit "HTML feed všech mých článků":[/weblog/feed/],
+které už obsahují odkazy na syndikovaný obsah, který bridgy prošla a oscrapovala
+reakce a poslala je jako webmention.
+
+Když se mi podařilo všechno úspěšně zintegrovat a implementovat prezentační část,
+tak se Elon rozhodl zaříznout Twitter API přístup pro službu brid.gy.
+(Že je to nebytyčný kokot jsem věděl už dávno před tím - můj confirmation bias děkuje.)
+O historická data jsem nepřišel a ty budoucí už nějak doklepu - mám připravenou sadu scriptů,
+kterýma si ty reakce doplňuju ručně.
+
+Podobnou práci jsem udělal i pro svoje hudební:[/weblog/tag/muzika.html] a podcastové:[/weblog/tag/podcast.html] příspěvky.
+
+Závěr
+=====
+
+Zapojit svůj web do decentralizovaného sociálního webu je alternativa
+k centralizovaným hnojometům těžkého kalibru jako jsou Medium, Facebook,
+--Twitter--++X++ nebo LinkedIn.
+Syndikace a Webmention jsou stavební kameny takového webu.
+
+Jasně, musíte mít svůj web, ale proč primárně publikujete na cizích webech a nevlastníte svůj obsah? 
