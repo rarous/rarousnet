@@ -11321,7 +11321,7 @@ __metadata:
     postcss-jit-props: "npm:1.0.14"
     postcss-preset-env: "npm:9.3.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.28.3"
+    wrangler: "npm:3.28.4"
   languageName: unknown
   linkType: soft
 
@@ -14197,9 +14197,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.28.3":
-  version: 3.28.3
-  resolution: "wrangler@npm:3.28.3"
+"wrangler@npm:3.28.4":
+  version: 3.28.4
+  resolution: "wrangler@npm:3.28.4"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.1"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
@@ -14227,7 +14227,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/6b466d8cbb819d24589c48c23b9e560d8458bed3dce591ce6fccba23f1e92273ee8061c3ab57ef9b09305b37ae94e9c1837195dd39fed927bf336a95aee2ea62
+  checksum: 10c0/182362bf9d9d8ec44f3dc21189b745162154955a5178348781f4d7ee76816835fb3598357bdbb7390dd030be668585e88b3d8feb5a40c319f9a1f5106ce6a013
   languageName: node
   linkType: hard
 
