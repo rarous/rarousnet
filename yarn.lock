@@ -1492,7 +1492,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/cards@workspace:cards"
   dependencies:
-    "@thi.ng/transducers": "npm:8.9.5"
+    "@thi.ng/transducers": "npm:8.9.6"
     playwright: "npm:1.41.2"
   languageName: unknown
   linkType: soft
@@ -1521,7 +1521,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@thi.ng/transducers": "npm:8.9.5"
+    "@thi.ng/transducers": "npm:8.9.6"
     csv-parse: "npm:5.5.3"
     linkedom: "npm:0.16.8"
     schema-dts: "npm:1.1.2"
@@ -1735,9 +1735,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/transducers@npm:8.9.5":
-  version: 8.9.5
-  resolution: "@thi.ng/transducers@npm:8.9.5"
+"@thi.ng/transducers@npm:8.9.6":
+  version: 8.9.6
+  resolution: "@thi.ng/transducers@npm:8.9.6"
   dependencies:
     "@thi.ng/api": "npm:^8.9.25"
     "@thi.ng/arrays": "npm:^2.8.2"
@@ -1747,7 +1747,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.4.18"
     "@thi.ng/math": "npm:^5.10.2"
     "@thi.ng/random": "npm:^3.6.32"
-  checksum: 10c0/d8cd6b7d29d7d678ae9f0f8831c9e71fc7c577b011bc32b4b5aab87c51cf7c3a915e39bc62001e66832d9ca5d91725245c9d836ce24b8376de112fa1ce98b9f7
+  checksum: 10c0/993e234738daca7a3bea65a9513cfdb081df1116cdc3777feeafa347c31baaa57ae27bb76a663e7d913dda42a139fe4db91640abced436a5832fa018140cf295
   languageName: node
   linkType: hard
 
