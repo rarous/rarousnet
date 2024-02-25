@@ -1,6 +1,6 @@
 ---
 {:title "Zobrazování Webmentions ve stránce",
- :description "Je tomu zhruba rok, co jsem na blog přidal podporu WebMentions. Dnes si ukážeme jak jsem implementoval jejich zobrazování.",
+ :description "Je tomu zhruba rok, co jsem na blog přidal podporu Webmentions. Dnes si ukážeme jak jsem implementoval jejich zobrazování.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "indieweb", "webmentions", "lit-html", "webcomponents", "gryphoon"},
  :published "2024-02-25T12:20:00.000"
@@ -91,7 +91,7 @@ importoval do něj lit-html:[https://www.rarous.net/weblog/2021/05/04/lit-html.h
 \--code
 
 Měl jsem rychle hotovo a fungovalo to. Deset měsíců jsem na to nešahal, ale pak jsem si chtěl ověřit,
-jak by to vypadalo, kdybych z toho udělal WebComponentu:[https://developer.mozilla.org/en-US/docs/Web/API/Web_components]
+jak by to vypadalo, kdybych z toho udělal "Web komponentu":[https://developer.mozilla.org/en-US/docs/Web/API/Web_components]
 bez závislostí.
 Z `lit-html` šablon jsem udělal markup v `<template>` a kód komponenty extrahoval do samostatného ESM((ECMAScript Module)).
 
@@ -236,13 +236,13 @@ customElements.define("rarous-webmentions", WebMentions);
 
 Na první pohled je to o dost víc kódu. Na druhý pohled jsme se zbavili ~2KiB (gzip) závislosti
 a doplnili nějaké "JSDoc komentáře":[https://jsdoc.app/]. Dalším rysem je, že jsme přesunuli znalost,
-z jaké URL((Uniform Resource Locator)) se mají data načíst, z kódu do markupu (pomocí atributu `api-endpoint`).
+z jaké URL((Uniform Resource Locator)) se mají data načíst, z JS((JavaScript)) kódu do markupu (pomocí atributu `api-endpoint`).
 
-Také můžeme explicitně nastavit URL článku (atribut `url`), pro který chceme Webmentions zobrazovat.
+Také můžeme explicitně nastavit URL článku (atribut `href`), pro který chceme Webmentions zobrazovat.
 Tím se dá komponenta znovupoužít na jiném webu, nebo k zobrazování dat z jiného webu, nebo
 víc článků na jedné stránce. Prostě se z toho stala komponenta, kterou jde snadno použít v různých kontextech.
 
-Šablona se přesunula z ES šablonovaných literálů do HTML((Hypertext Markup Language)).
+Šablona se přesunula z ES((ECMAScript)) šablonovaných literálů do HTML((Hypertext Markup Language)).
 V první řadě máme vytažený HTML kód, který se zobrazí hned, když do browseru doteče
 a nemusí se čekat na to, až se stáhne a zpracuje JavaScript.
 Ve chvíli, kdy JavaScript naběhne a stáhne nám data, tak se nám doplní očekávané tváře reagujících
