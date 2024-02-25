@@ -1,0 +1,261 @@
+---
+{:title "Webmention a Syndikace",
+ :description "Je tomu zhruba rok, co jsem na blog přidal podporu WebMentions. Dnes si ukážeme jak jsem implementoval jejich zobrazování.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "indieweb", "webmentions", "lit-html", "webcomponents", "gryphoon"},
+ :published "2024-02-25T012:20:00.000"
+ :syndication
+  []}
+---
+
+Když jsem zhruba před rokem přidával na blog podporu Webmention, začal jsem celkem snadno.
+Ve stránce jsem si udělal inline `script`, importoval lit-html:[https://www.rarous.net/weblog/2021/05/04/lit-html.html],
+`fetch`nul data a na ně aplikoval `lit-html` šablonu.
+`view = f(data)` ve své nejčistší podobě.
+
+/--code html
+<section id="webmentions"></section>
+<script type="module">
+  import { render, html } from "https://cdn.skypack.dev/lit-html?min";
+  const titles = new Map([
+    ["like-of", "Líbilo se"],
+    ["repost-of", "Přeposlal dál"],
+  ]);
+
+  function groupByType(webmentions) {
+    const byType = new Map();
+    for (const post of webmentions) {
+      const key = post["wm-property"];
+      const values = byType.get(key) ?? [];
+      values.push(post);
+      byType.set(key, values);
+    }
+    return byType;
+  }
+
+  function groupTemplate(type, title, items) {
+    if (!items?.length) return;
+    return html`
+      <section class="webmentions">
+        <p><data value="${items.length}">${items.length}x ${title}</data></p>
+        <ul>
+          ${items.map(
+            (item) => html`
+              <li>
+                <a
+                  class="${type}"
+                  href="${item.url}"
+                  title="${item.author.name}"
+                >
+                  <date datetime="${item.published}"></date>
+                  <img
+                    alt="${item.author.name}"
+                    src="${item.author.photo}"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              </li>
+            `,
+          )}
+        </ul>
+      </section>
+    `;
+  }
+
+  function webmentionsTemplate(webmentions) {
+    if (!webmentions?.length) return;
+    const byType = groupByType(webmentions);
+    return html`
+      <h2>Reakce v síti</h2>
+      ${groupTemplate("u-like", "se líbilo", byType.get("like-of"))}
+      ${groupTemplate("u-repost", "přeposláno dál", byType.get("repost-of"))}
+    `;
+  }
+
+  async function main({ url, webmentionsRoot }) {
+    const resp = await fetch(`/api/v1/weblog?${new URLSearchParams({ url })}`);
+    if (!resp.ok) return;
+    const { webmentions } = await resp.json();
+    render(webmentionsTemplate(webmentions), webmentionsRoot);
+  }
+
+  await main({
+    url: location.href,
+    webmentionsRoot: document.getElementById("webmentions"),
+  });
+</script>
+\—code
+
+Měl jsem rychle hotovo a fungovalo to. Dest měsíců jsem na to nešahal, ale pak jsem si chtěl ověřit,
+jak by to vypadalo, kdybych z toho udělal WebComponentu:[https://developer.mozilla.org/en-US/docs/Web/API/Web_components]
+bez závislostí.
+Z `lit-html` šablon jsem udělal markup v `<template>` a kód komponenty extrahoval do samostatného ESM((ECMAScript Module)).
+
+/--code html
+<rarous-webmentions
+  api-endpoint="https://www.rarous.net/api/v1/weblog"
+  id="webmentions"
+>
+  <h2>Reakce v síti</h2>
+  <section class="webmentions" id="like-of">
+    <p>
+      <data>Líbilo se</data>
+    </p>
+    <ul class="items">
+      <li>Načítají se data&hellip;</li>
+    </ul>
+  </section>
+  <section class="webmentions" id="repost-of">
+    <p>
+      <data>Přeposláno dál</data>
+    </p>
+    <ul class="items">
+      <li>Načítají se data&hellip;</li>
+    </ul>
+  </section>
+  <template>
+    <li>
+      <a>
+        <date></date>
+        <img width="32" height="32" loading="lazy" decoding="async" />
+      </a>
+    </li>
+  </template>
+</rarous-webmentions>
+
+<script type="module" src="/assets/esm/webmentions.js"></script>
+\--code
+
+A kód web komponenty:
+
+/--code javascript
+function groupByType(webmentions) {
+  const byType = new Map();
+  for (const post of webmentions) {
+    const key = post["wm-property"];
+    const values = byType.get(key) ?? [];
+    values.push(post);
+    byType.set(key, values);
+  }
+  return byType;
+}
+
+/**
+ * @param {Node} itemTemplate
+ * @param {*} item
+ * @param {Element} section
+ */
+function webmentionLink(itemTemplate, item, section) {
+  console.log(itemTemplate);
+  const link = itemTemplate.querySelector("a");
+  console.log(link);
+  link.href = item.url;
+  link.title = item.author.name;
+  link.classList.add(section.id);
+}
+
+/**
+ * @param {Node} itemTemplate
+ * @param {*} item
+ */
+function webmentionDate(itemTemplate, item) {
+  const date = itemTemplate.querySelector("date");
+  date.dateTime = item.published;
+}
+
+/**
+ * @param {Node} itemTemplate
+ * @param {*} item
+ */
+function webmentionAvatar(itemTemplate, item) {
+  const img = itemTemplate.querySelector("img");
+  img.alt = item.author.name;
+  img.src = item.author.photo;
+}
+
+/**
+ * @param {Element} section
+ * @param {Array} items
+ */
+function webmentionsCounter(section, items) {
+  const counter = section.querySelector("data");
+  counter.value = items.length;
+  counter.insertAdjacentText("beforeend", ` ${items.length}x`);
+}
+
+/**
+ * @param {Element} section
+ * @param {DocumentFragment} template
+ * @param {Array} items
+ */
+function injectItems(section, template, items) {
+  if (!items?.length) {
+    return section.remove();
+  }
+  webmentionsCounter(section, items);
+  const list = section.querySelector(".items");
+  const listItems = document.createDocumentFragment();
+  for (const item of items) {
+    const itemTemplate = template.cloneNode(true).content;
+    webmentionLink(itemTemplate, item, section);
+    webmentionDate(itemTemplate, item);
+    webmentionAvatar(itemTemplate, item);
+    listItems.appendChild(itemTemplate);
+  }
+  list.replaceChildren(listItems);
+}
+
+class WebMentions extends HTMLElement {
+  async connectedCallback() {
+    const likesOf = this.querySelector("#like-of");
+    const repostsOf = this.querySelector("#repost-of");
+    const template = this.querySelector("template");
+    const apiEndpoint = this.getAttribute("api-endpoint") ?? "/api/v1/weblog";
+    const url = this.getAttribute("href") ?? location.href;
+    const resp = await fetch(`${apiEndpoint}?${new URLSearchParams({ url })}`);
+    if (!resp.ok) {
+      this.remove();
+      return;
+    }
+    const { webmentions } = await resp.json();
+    if (!webmentions.length) {
+      this.remove();
+    }
+    const byType = groupByType(webmentions);
+    injectItems(likesOf, template, byType.get("like-of"));
+    injectItems(repostsOf, template, byType.get("repost-of"));
+  }
+}
+
+customElements.define("rarous-webmentions", WebMentions);
+\--code
+
+Na první pohled je to o dost víc kódu. Na druhý pohled jsme se zbavili ~2KiB (gzip) závislosti
+a doplnili nějaké "JSDoc komentáře":[https://jsdoc.app/]. Dalším rysem je, že jsme přesunuli znalost,
+z jaké URL se mají data načíst, z kódu do markupu (pomocí atributu `api-endpoint`).
+Také můžeme explicitně nastavit URL článku (atribut `url`), pro který chceme WebMentions zobrazovat.
+Tím se dá komponenta znovupoužít na jiném webu nebo k zobrazování dat z jiného webu nebo
+víc článků na jedné stránce. Prostě se z toho stala komponenta, kterou jde snadno použít v různých kontextech.
+
+Šablona se přesunula z JS šablonovaných literálů do HTML((Hypertext Markup Language)).
+V první řadě máme vytažený HTML kód, který se zobrazí hned, když do browseru doteče
+a nemusí se čekat na to, až se stáhne a zpracuje JavaScript.
+Ve chvíli, kdy JavaScript naběhne a stáhne nám data, tak se nám doplní očekávané hlavičky
+aplikací dat na kód v `<template>`, nebo kód z DOM((Document Object Model))u odstraníme,
+když nemáme co zobrazovat.
+
+Závěr
+=====
+
+Ačkoliv tady moje iterování nad touto komponentou neskončilo, myslím, že i tak je to zajímavá ukázka,
+jak snadno vyprototypovat kus UI((User Interface)) pomocí `lit-html` a pak to převést na web komponentu,
+která nepotřebuje žádné závislosti. 
+
+Příště si ukážeme, jak jsem implementoval zobrazování komentářů a další iterací udělal
+z komponenty čistě zobrazovací. A dostane se i na serverové renderování.
+"Přihlaste se k odběru RSS":[https://feeds.feedburner.com/rarous-weblog]
+nebo mě "sledujte na Mastodonu":[https://indieweb.social/@alesroubicek], aby vám to neuteklo.
+

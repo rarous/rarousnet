@@ -2,7 +2,7 @@
 {:title "Webmention a Syndikace",
  :description "Je tomu zhruba rok, co jsem na blog přidal podporu WebMentions a Syndikace obsahu. Pojďme se společně podívat, co to je a jak to funguje.",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "indieweb", "microformats", "gryphoon"},
+ :tags #{"moje práce", "indieweb", "webmentions", "microformats", "gryphoon"},
  :published "2024-02-18T09:20:00.000"
  :syndication
   ["https://twitter.com/alesroubicek/status/1759133073067647475"
