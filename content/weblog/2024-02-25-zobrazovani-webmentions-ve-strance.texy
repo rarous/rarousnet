@@ -8,9 +8,10 @@
   []}
 ---
 
-Když jsem zhruba před rokem přidával na blog podporu Webmention, začal jsem celkem snadno.
-Ve stránce jsem si udělal inline `script`, importoval lit-html:[https://www.rarous.net/weblog/2021/05/04/lit-html.html],
-`fetch`nul data a na ně aplikoval `lit-html` šablonu.
+Když jsem zhruba před rokem "přidával na blog podporu Webmention":[https://www.rarous.net/weblog/2024/02/18/webmention-syndikace],
+začal jsem celkem snadno. Ve stránce jsem si udělal inline `<script>`,
+importoval do něj lit-html:[https://www.rarous.net/weblog/2021/05/04/lit-html.html],
+`fetch`nul v něm data a na ně aplikoval `lit-html` šablonu.
 `view = f(data)` ve své nejčistší podobě.
 
 /--code html
@@ -87,9 +88,9 @@ Ve stránce jsem si udělal inline `script`, importoval lit-html:[https://www.ra
     webmentionsRoot: document.getElementById("webmentions"),
   });
 </script>
-\—code
+\--code
 
-Měl jsem rychle hotovo a fungovalo to. Dest měsíců jsem na to nešahal, ale pak jsem si chtěl ověřit,
+Měl jsem rychle hotovo a fungovalo to. Deset měsíců jsem na to nešahal, ale pak jsem si chtěl ověřit,
 jak by to vypadalo, kdybych z toho udělal WebComponentu:[https://developer.mozilla.org/en-US/docs/Web/API/Web_components]
 bez závislostí.
 Z `lit-html` šablon jsem udělal markup v `<template>` a kód komponenty extrahoval do samostatného ESM((ECMAScript Module)).
@@ -235,17 +236,18 @@ customElements.define("rarous-webmentions", WebMentions);
 
 Na první pohled je to o dost víc kódu. Na druhý pohled jsme se zbavili ~2KiB (gzip) závislosti
 a doplnili nějaké "JSDoc komentáře":[https://jsdoc.app/]. Dalším rysem je, že jsme přesunuli znalost,
-z jaké URL se mají data načíst, z kódu do markupu (pomocí atributu `api-endpoint`).
-Také můžeme explicitně nastavit URL článku (atribut `url`), pro který chceme WebMentions zobrazovat.
-Tím se dá komponenta znovupoužít na jiném webu nebo k zobrazování dat z jiného webu nebo
+z jaké URL((Uniform Resource Locator)) se mají data načíst, z kódu do markupu (pomocí atributu `api-endpoint`).
+
+Také můžeme explicitně nastavit URL článku (atribut `url`), pro který chceme Webmentions zobrazovat.
+Tím se dá komponenta znovupoužít na jiném webu, nebo k zobrazování dat z jiného webu, nebo
 víc článků na jedné stránce. Prostě se z toho stala komponenta, kterou jde snadno použít v různých kontextech.
 
-Šablona se přesunula z JS šablonovaných literálů do HTML((Hypertext Markup Language)).
+Šablona se přesunula z ES šablonovaných literálů do HTML((Hypertext Markup Language)).
 V první řadě máme vytažený HTML kód, který se zobrazí hned, když do browseru doteče
 a nemusí se čekat na to, až se stáhne a zpracuje JavaScript.
-Ve chvíli, kdy JavaScript naběhne a stáhne nám data, tak se nám doplní očekávané hlavičky
+Ve chvíli, kdy JavaScript naběhne a stáhne nám data, tak se nám doplní očekávané tváře reagujících
 aplikací dat na kód v `<template>`, nebo kód z DOM((Document Object Model))u odstraníme,
-když nemáme co zobrazovat.
+pokud nemáme co zobrazovat.
 
 Závěr
 =====
@@ -255,7 +257,7 @@ jak snadno vyprototypovat kus UI((User Interface)) pomocí `lit-html` a pak to p
 která nepotřebuje žádné závislosti. 
 
 Příště si ukážeme, jak jsem implementoval zobrazování komentářů a další iterací udělal
-z komponenty čistě zobrazovací. A dostane se i na serverové renderování.
-"Přihlaste se k odběru RSS":[https://feeds.feedburner.com/rarous-weblog]
+z komponenty čistě zobrazovací. A dostane se i na serverové renderování (aka SSR((Server-Side Rendering))).
+"Přihlaste se k odběru RSS((Really Simple Syndication))":[https://feeds.feedburner.com/rarous-weblog]
 nebo mě "sledujte na Mastodonu":[https://indieweb.social/@alesroubicek], aby vám to neuteklo.
 
