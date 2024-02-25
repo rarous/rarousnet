@@ -1,5 +1,5 @@
 ---
-{:title "Webmention a Syndikace",
+{:title "Zobrazování Webmentions ve stránce",
  :description "Je tomu zhruba rok, co jsem na blog přidal podporu WebMentions. Dnes si ukážeme jak jsem implementoval jejich zobrazování.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "indieweb", "webmentions", "lit-html", "webcomponents", "gryphoon"},
