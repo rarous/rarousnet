@@ -3,7 +3,7 @@
  :description "Je tomu zhruba rok, co jsem na blog přidal podporu WebMentions. Dnes si ukážeme jak jsem implementoval jejich zobrazování.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "indieweb", "webmentions", "lit-html", "webcomponents", "gryphoon"},
- :published "2024-02-25T012:20:00.000"
+ :published "2024-02-25T12:20:00.000"
  :syndication
   []}
 ---
