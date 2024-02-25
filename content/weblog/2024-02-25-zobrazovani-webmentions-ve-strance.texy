@@ -5,7 +5,8 @@
  :tags #{"moje práce", "indieweb", "webmentions", "lit-html", "webcomponents", "gryphoon"},
  :published "2024-02-25T12:20:00.000"
  :syndication
-  []}
+  ["https://indieweb.social/@alesroubicek/111992343119016847",
+   "https://twitter.com/alesroubicek/status/1761745005322866712"]}
 ---
 
 Když jsem zhruba před rokem "přidával na blog podporu Webmention":[/weblog/2024/02/18/webmention-syndikace.html],
