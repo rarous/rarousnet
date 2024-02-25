@@ -239,10 +239,10 @@ Tím se dá komponenta znovupoužít na jiném webu, nebo k zobrazování dat z 
 víc článků na jedné stránce. Prostě se z toho stala komponenta, kterou jde snadno použít v různých kontextech.
 
 Šablona se přesunula z ES((ECMAScript)) šablonovaných literálů do HTML((Hypertext Markup Language)).
-V první řadě máme vytažený HTML kód, který se zobrazí hned, když do browseru doteče
+V první řadě máme vytažený HTML kód, který **se zobrazí hned, jak do browseru doteče**
 a nemusí se čekat na to, až se stáhne a zpracuje JavaScript.
 Ve chvíli, kdy JavaScript naběhne a stáhne nám data, tak se nám doplní očekávané tváře reagujících
-aplikací dat na kód v `<template>`, nebo kód z DOM((Document Object Model))u odstraníme,
+- aplikací dat na kód v `<template>`, nebo kód z DOM((Document Object Model))u odstraníme,
 pokud nemáme co zobrazovat.
 
 Závěr
