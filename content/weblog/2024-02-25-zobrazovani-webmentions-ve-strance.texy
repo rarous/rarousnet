@@ -8,9 +8,9 @@
   []}
 ---
 
-Když jsem zhruba před rokem "přidával na blog podporu Webmention":[https://www.rarous.net/weblog/2024/02/18/webmention-syndikace],
+Když jsem zhruba před rokem "přidával na blog podporu Webmention":[/weblog/2024/02/18/webmention-syndikace.html],
 začal jsem celkem snadno. Ve stránce jsem si udělal inline `<script>`,
-importoval do něj lit-html:[https://www.rarous.net/weblog/2021/05/04/lit-html.html],
+importoval do něj lit-html:[/weblog/2021/05/04/lit-html.html],
 `fetch`nul v něm data a na ně aplikoval `lit-html` šablonu.
 `view = f(data)` ve své nejčistší podobě.
 
@@ -18,10 +18,6 @@ importoval do něj lit-html:[https://www.rarous.net/weblog/2021/05/04/lit-html.h
 <section id="webmentions"></section>
 <script type="module">
   import { render, html } from "https://cdn.skypack.dev/lit-html?min";
-  const titles = new Map([
-    ["like-of", "Líbilo se"],
-    ["repost-of", "Přeposlal dál"],
-  ]);
 
   function groupByType(webmentions) {
     const byType = new Map();
