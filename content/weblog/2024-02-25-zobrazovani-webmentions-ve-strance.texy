@@ -12,8 +12,8 @@
 Když jsem zhruba před rokem "přidával na blog podporu Webmention":[/weblog/2024/02/18/webmention-syndikace.html],
 začal jsem celkem snadno. Ve stránce jsem si udělal inline `<script>`,
 importoval do něj lit-html:[/weblog/2021/05/04/lit-html.html],
-`fetch`nul v něm data a na ně aplikoval `lit-html` šablonu.
-`view = f(data)` ve své nejčistší podobě.
+`fetch`nul:[https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data#the_fetch_api]
+v něm data a na ně aplikoval `lit-html` šablonu. `view = f(data)` ve své nejčistší podobě.
 
 /--code html
 <section id="webmentions"></section>
