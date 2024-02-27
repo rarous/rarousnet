@@ -5,7 +5,8 @@
  :tags #{"moje práce", "webfonts", "webperf"},
  :published "2024-02-27T14:36:00.000"
  :syndication
-  []}
+  ["https://indieweb.social/@alesroubicek/112003721123338554",
+   "https://twitter.com/alesroubicek/status/1762473911525023816"]}
 ---
 
 V neděli jsem psal, "jak jsem se dokázal zbavit 2 KiB (gzip) závislosti na `lit-html`":[/weblog/2024/02/25/zobrazovani-webmentions-ve-strance.html],
@@ -22,20 +23,23 @@ a viníka máte hned. V mém připadě to byly **custom fonty**. Používám web
 "Iosevka Sparkle":[https://github.com/be5invis/Iosevka/releases/tag/v4.5.0].
 Futuru používám z Adobe Fonts a moc toho s ní neudělám. Iosevky si hostuju sám a ty teda za poslední dobu dost narostly...
 
-Iosevku si čas od času aktualizuju na poslední verzi. Stáhnu si variantu webového fontu a woff2 soubory přesunu do assetů.
-Detaily jsem moc neřešil, myslel jsem si, že už je to pro web přece optimalizovaný. Ale spletl jsem se. Optimalizace je
-jen v podobě brotli komprese.
+Iosevku si čas od času aktualizuju na poslední verzi. Stáhnu si variantu webového fontu a woff2((Web Open Font Format 2))
+soubory přesunu do assetů. Detaily jsem moc neřešil, myslel jsem si, že už je to pro web přece optimalizovaný.
+
+Ale spletl jsem se.
+
+Optimalizace je jen v podobě brotli komprese.
 
 Řešení
 ======
 
 Co s tím? Jednou z možností je nasadit jiný font, nebo používat nějaký systémový. Nevim. Dál.
  
-Řešení, které jsem nakonec použil já je "font subsetting":[https://fonts.google.com/knowledge/glossary/subsetting].
+Řešení, které jsem nakonec použil já, je "font subsetting":[https://fonts.google.com/knowledge/glossary/subsetting].
 Pomocí nástroje `pyftsubset`:[https://fonttools.readthedocs.io/en/latest/subset/] můžete ze zdrojového TTF((TrueType Font))
 souboru udělat mnohem menší soubory woff2, které budou obsahovat jen vybrané Unicode rozsahy a vlastnosti rozložení.
  
-Adobe Fonts nebo Google Fonst typicky mají zvlášť skupiny `latin` a `latin-ext`, které na svém webu potřebuju,
+Adobe Fonts nebo Google Fonts typicky mají zvlášť skupiny `latin` a `latin-ext`, které na svém webu potřebuju,
 protože se snažím psat s diakritikou. Zbytek unicode rozsahů ale vlastně nepotřebuju vůbec. Takže pryč s nima!
 
 Jak na to?
