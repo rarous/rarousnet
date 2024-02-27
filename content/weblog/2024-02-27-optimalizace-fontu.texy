@@ -1,0 +1,103 @@
+---
+{:title "Optimalizace fontů",
+ :description ".",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "webfonts", "webperf"},
+ :published "2024-02-27T14:20:00.000"
+ :syndication
+  []}
+---
+
+V neděli jsem psal, "jak jsem se dokázal zbavit 2 KiB (gzip) závislosti na `lit-html`":[/weblog/2024/02/25/zobrazovani-webmentions-ve-strance.html],
+díky čistým web components bez frameworků. Když jsem se koukal do DevTools/Network trochu jsem se opotil.
+Vyskočila na mne suma kolem 6 MiB dat na jeden blogpost. Se vysmívám Mediu a podobným, ale vlastně na tom
+nejsem o moc líp.
+
+Hledání příčiny
+===============
+
+Naštěstí se zdroj takového problému nehledá těžko - prostě si necháte závislosti seřadit podle velikosti
+a viníka máte hned. V mém připadě to byly **custom fonty**. Používám webové fonty
+"Futura PT":[https://fonts.adobe.com/fonts/futura-pt], Iosevka:[https://github.com/be5invis/Iosevka/releases/] a
+"Iosevka Sparkle":[https://github.com/be5invis/Iosevka/releases/tag/v4.5.0].
+Futuru používám z Adobe Fonts a moc toho s ní neudělám. Iosevky si hostuju sám a ty teda za poslední dobu dost narostly...
+
+Iosevku si čas od času aktualizuju na poslední verzi. Stáhnu si variantu webového fontu a woff2 soubory přesunu do assetů.
+Detaily jsem moc neřešil, myslel jsem si, že už je to pro web přece optimalizovaný. Ale spletl jsem se. Optimalizace je
+jen v podobě brotli komprese.
+
+Řešení
+======
+
+Co s tím? Jednou z možností je nasadit jiný font, nebo používat nějaký systémový. Nevim. Dál.
+ 
+Řešení, které jsem nakonec použil já je "font subsetting":[https://fonts.google.com/knowledge/glossary/subsetting].
+Pomocí nástroje `pyftsubset`:[https://fonttools.readthedocs.io/en/latest/subset/] můžete ze zdrojového TTF((TrueType Font))
+souboru udělat mnohem menší soubory woff2, které budou obsahovat jen vybrané Unicode rozsahy a vlastnosti rozložení.
+ 
+Adobe Fonts nebo Google Fonst typicky mají zvlášť skupiny `latin` a `latin-ext`, které na svém webu potřebuju,
+protože se snažím psat s diakritikou. Zbytek unicode rozsahů ale vlastně nepotřebuju vůbec. Takže pryč s nima!
+
+Jak na to?
+
+Vynechám detaily, jak si rozběhat `pyftsubset` (`pip install fonttools`) a `brotli` pro kompresi do woff2 (`pip install brotli`).
+A jdeme rovnou na věc:
+
+latin subset
+------------
+
+/--code bash
+pyftsubset Iosevka-Regular.ttf \
+  --output-file=iosevka-regular.latin.woff2 \
+  --flavor=woff2 \
+  --layout-features='*' \
+  --unicodes=U+0-FF,U+131,U+152,U+153,U+2BB,U+2BC,U+2C6,U+2DA,U+2DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD
+\--code
+
+latin-ext subset
+----------------
+
+/--code bash
+pyftsubset Iosevka-Regular.ttf \
+  --output-file=iosevka-regular.latin-ext.woff2 \
+  --flavor=woff2 \
+  --layout-features='*' \
+  --unicodes=100-17F
+\--code
+
+Obě ukázky jsou si dost podobné, liší se v názvu výstupního souboru a unicode rozsahu.
+Parametr `--layout-features='*'` nám zachová všechny OpenType featury (nemusíte, já je využívám pro
+typografické hinty na různé druhy ligatur podle kontextu jazyka).
+
+Ve stylech pak importuji fonty s patřičnými rozsahy:
+
+/--code css
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-regular.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
+}
+\--code
+
+Proč jsem oba rozsahy nedal do jednoho souboru? Výhodou tohoto řešení je, že pokud na stránce nejsou
+znaky z daného rozsahu, tak se subset nepoužije a tudíž se nemusí stahovat.
+
+Závěr
+=====
+
+Webové fonty nám umožnily vytvářet stránky s osobitým charakterem i na úrovni typografie a za to jim patří dík.
+Přináší však nové výzvy a často i problémy, které není radno zanedbávat. U mne tato změna znamenala,
+že jsem se ze zhruba 4 MiB fontů, potřebných na vyrenderování této stránky, dostal na zhruba 0.5 MiB.
+Takřka 8x úspora!  
