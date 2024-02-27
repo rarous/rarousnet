@@ -9,15 +9,31 @@ function groupByType(webmentions) {
   return byType;
 }
 
+function transform(el, transformations) {
+  for (const [selector, props] of Object.entries(transformations)) {
+    const target = el.querySelector(selector);
+    if (typeof props === "function") {
+      props(target);
+      continue;
+    }
+    for (const [key, val] of Object.entries(props)) {
+      if (typeof val === "function") val(target[key]);
+      else target[key] = val;
+    }
+  }
+}
+
 /**
  * @param {Element} section
  * @param {Array} items
  */
 function itemsCounter(section, items) {
-  const counter = section.querySelector("data");
-  counter.value = items.length;
-  counter.insertAdjacentText("beforeend", ` ${items.length}x`);
-  return counter;
+  transform(section, {
+    "data": {
+      value: items.length,
+      textContent: `${items.length}x`,
+    },
+  });
 }
 
 /**
@@ -63,17 +79,18 @@ export function defWebMentions({ HTMLElement, customElements }) {
       const byType = groupByType(webmentions);
 
       function itemTemplate(content, item, section) {
-        const link = content.querySelector("a");
-        link.href = item.url;
-        link.title = item.author.name;
-        link.classList.add(section.id);
-
-        const time = content.querySelector("time");
-        time.dateTime = item.published ?? item["wm-received"];
-
-        const img = content.querySelector("img");
-        img.alt = item.author.name;
-        img.src = item.author.photo;
+        transform(content, {
+          "a": {
+            href: item.url,
+            title: item.author.name,
+            classList: (x) => x.add(section.id),
+          },
+          "time": { dateTime: item.published ?? item["wm-received"] },
+          "img": {
+            alt: item.author.name,
+            src: item.author.photo,
+          },
+        });
       }
 
       injectItems(likesOf, template, byType.get("like-of"), itemTemplate);
@@ -124,12 +141,6 @@ export function defComments({ HTMLElement, customElements }) {
 
         const entry = content.querySelector(".h-entry");
         entry.id += date.valueOf();
-        const permalink = entry.querySelector(".u-url[rel=bookmark]");
-        permalink.href = "#" + entry.id;
-
-        const img = entry.querySelector(".u-photo");
-        img.src = await gravatarUrl(item);
-        img.alt = item.author.name;
 
         const name = entry.querySelector(".p-name");
         if (item.author.web) {
@@ -142,15 +153,19 @@ export function defComments({ HTMLElement, customElements }) {
           name.textContent = item.author.name;
         }
 
-        const website = entry.querySelector(".p-author .u-url");
-        website.href = item.author.web;
-
-        const cnt = entry.querySelector(".e-content");
-        cnt.innerHTML = item.text;
-
-        const published = entry.querySelector(".dt-published");
-        published.datetime = item.created;
-        published.textContent = `${date.toLocaleDateString("cs")} v ${date.toLocaleTimeString("cs")}`;
+        transform(entry, {
+          ".u-url[rel=bookmark]": { href: `#${entry.id}` },
+          ".u-photo": {
+            src: await gravatarUrl(item),
+            alt: item.author.name,
+          },
+          ".p-author .u-url": { href: item.author.web },
+          ".e-content": { innerHTML: item.text },
+          ".dt-published": {
+            datetime: item.created,
+            textContent: `${date.toLocaleDateString("cs")} v ${date.toLocaleTimeString("cs")}`,
+          },
+        });
       }
 
       injectItems(section, template, comments, itemTemplate);
