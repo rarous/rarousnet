@@ -1522,7 +1522,7 @@ __metadata:
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
     "@thi.ng/transducers": "npm:8.9.7"
-    csv-parse: "npm:5.5.3"
+    csv-parse: "npm:5.5.4"
     linkedom: "npm:0.16.8"
     schema-dts: "npm:1.1.2"
   languageName: unknown
@@ -4280,10 +4280,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csv-parse@npm:5.5.3":
-  version: 5.5.3
-  resolution: "csv-parse@npm:5.5.3"
-  checksum: 10c0/2f85cd52ea11b08d85cb97a1c90db6ed52f9d3c4e3805831da8c59c589e04870adff067ac88855deb9863a16649b3827a1ed576fd021bdf3937b1cf4de8a03ba
+"csv-parse@npm:5.5.4":
+  version: 5.5.4
+  resolution: "csv-parse@npm:5.5.4"
+  checksum: 10c0/657249f297043bd46b2352a41dd199a696d9aad592a7c50d63c159f8eae61f60093dd0e199a061f57beec9637e1a1d51d8d0ba6709cef285249ac8f026e7bd63
   languageName: node
   linkType: hard
 
