@@ -3,7 +3,17 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.woff2") format("woff2");
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Sparkle Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
 }
 
 @font-face {
@@ -11,7 +21,17 @@
   font-weight: 400;
   font-style: italic;
   font-display: swap;
-  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-italic.woff2") format("woff2");
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-italic.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Sparkle Web";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-italic.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
 }
 
 @font-face {
@@ -19,7 +39,17 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-bold.woff2") format("woff2");
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-bold.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Sparkle Web";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-bold.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
 }
 
 @font-face {
@@ -27,7 +57,17 @@
   font-weight: 700;
   font-style: italic;
   font-display: swap;
-  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-bolditalic.woff2") format("woff2");
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-bolditalic.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Sparkle Web";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-sparkle-bolditalic.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
 }
 
 @font-face {
@@ -35,7 +75,17 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("/assets/fonts/iosevka/woff2/iosevka-regular.woff2") format("woff2");
+  src: url("/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-regular.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
 }
 
 @font-face {
@@ -43,7 +93,17 @@
   font-weight: 400;
   font-style: italic;
   font-display: swap;
-  src: url("/assets/fonts/iosevka/woff2/iosevka-italic.woff2") format("woff2");
+  src: url("/assets/fonts/iosevka/woff2/iosevka-italic.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-italic.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
 }
 
 @font-face {
@@ -51,5 +111,15 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("/assets/fonts/iosevka/woff2/iosevka-bold.woff2") format("woff2");
+  src: url("/assets/fonts/iosevka/woff2/iosevka-bold.latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152, U+153, U+2BB, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Iosevka Web";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/iosevka/woff2/iosevka-bold.latin-ext.woff2") format("woff2");
+  unicode-range: U+100-17F;
 }
