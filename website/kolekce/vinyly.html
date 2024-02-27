@@ -129,21 +129,6 @@
       }
     }
   </style>
-  <script type="module">
-    function send(tid, en) {
-      const data = new URLSearchParams({
-        v: 2,
-        tid,
-        cid: `${Date.now()}${Math.random()}`,
-        dl: location.href,
-        aip: 1,
-        en
-      });
-      navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
-    }
-
-    send("G-B3W7LTZE6J", "page_view");
-  </script>
 </head>
 <body>
 <header>

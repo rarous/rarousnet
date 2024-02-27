@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="delegate-ch" content="sec-ch-dpr https://res.cloudinary.com;">
   <title>Aleš Roubíček - Software for the Masses</title>
-  <link rel="dns-prefetch" href="//chart.googleapis.com">
-  <link rel="dns-prefetch" href="//google-analytics.com">
-  <link rel="preconnect" href="//res.cloudinary.com">
+  <link rel="dns-prefetch" href="https://chart.googleapis.com">
+  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="preconnect" href="https://static.cloudflareinsights.com">
+  <link rel="preconnect" href="https://challenges.cloudflare.com">
   <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
   <meta name="copyright" content="&copy; 2004 - 2024 Aleš Roubíček. Creative Commons 4.0 BY-SA">
   <meta name="description" content="Aleš Roubíček vývojář webových aplikací.">
@@ -19,21 +20,6 @@
         title="rarouš.weblog - komentáře">
   <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
   <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
-  <script type="module">
-    function send(tid, en) {
-      const data = new URLSearchParams({
-        v: 2,
-        tid,
-        cid: `${Date.now()}${Math.random()}`,
-        dl: location.href,
-        aip: 1,
-        en
-      });
-      navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
-    }
-
-    send("G-B3W7LTZE6J", "page_view");
-  </script>
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
   <style>

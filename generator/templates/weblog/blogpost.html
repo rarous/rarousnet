@@ -10,9 +10,10 @@
   <link rel="canonical" href="">
   <link rel="syndication" href="">
   <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
-  <link rel="preconnect" href="//www.google-analytics.com">
   <link rel="preconnect" href="https://use.typekit.net">
   <link rel="preconnect" href="https://p.typekit.net">
+  <link rel="preconnect" href="https://static.cloudflareinsights.com">
+  <link rel="preconnect" href="https://challenges.cloudflare.com">
   <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin.woff2">
   <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin-ext.woff2">
   <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2">
@@ -37,21 +38,6 @@
   <meta name="twitter:title" property="og:title" content="">
   <meta name="twitter:image" property="og:image" content="">
   <meta name="twitter:description" content="">
-  <script type="module">
-    function send(tid, en) {
-      const data = new URLSearchParams({
-        v: 2,
-        tid,
-        cid: `${Date.now()}${Math.random()}`,
-        dl: location.href,
-        aip: 1,
-        en
-      });
-      navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${data}`);
-    }
-
-    send("G-B3W7LTZE6J", "page_view");
-  </script>
   <!--[if lt IE 9]>
   <script src=https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js></script><![endif]-->
   <link rel="stylesheet" href="https://use.typekit.net/xhz7oko.css">
