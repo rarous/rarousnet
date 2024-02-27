@@ -21,10 +21,12 @@ Naštěstí se zdroj takového problému nehledá těžko - prostě si necháte 
 a viníka máte hned. V mém připadě to byly **custom fonty**. Používám webové fonty
 "Futura PT":[https://fonts.adobe.com/fonts/futura-pt], Iosevka:[https://github.com/be5invis/Iosevka/releases/] a
 "Iosevka Sparkle":[https://github.com/be5invis/Iosevka/releases/tag/v4.5.0].
-Futuru používám z Adobe Fonts a moc toho s ní neudělám. Iosevky si hostuju sám a ty teda za poslední dobu dost narostly...
+Futuru používám z Adobe Fonts a moc toho s ní neudělám. Iosevky si hostuju sám
+a ty teda za poslední dobu dost narostly...
 
-Iosevku si čas od času aktualizuju na poslední verzi. Stáhnu si variantu webového fontu a woff2((Web Open Font Format 2))
-soubory přesunu do assetů. Detaily jsem moc neřešil, myslel jsem si, že už je to pro web přece optimalizovaný.
+Iosevku si čas od času aktualizuju na poslední verzi. Stáhnu si variantu webového fontu
+a WOFF2((Web Open Font Format 2)) soubory přesunu do assetů. Detaily jsem moc neřešil,
+myslel jsem si, že už je to pro web přece optimalizovaný.
 
 Ale spletl jsem se.
 
@@ -36,16 +38,18 @@ Optimalizace je jen v podobě brotli komprese.
 Co s tím? Jednou z možností je nasadit jiný font, nebo používat nějaký systémový. Nevim. Dál.
  
 Řešení, které jsem nakonec použil já, je "font subsetting":[https://fonts.google.com/knowledge/glossary/subsetting].
-Pomocí nástroje `pyftsubset`:[https://fonttools.readthedocs.io/en/latest/subset/] můžete ze zdrojového TTF((TrueType Font))
-souboru udělat mnohem menší soubory woff2, které budou obsahovat jen vybrané Unicode rozsahy a vlastnosti rozložení.
+Pomocí nástroje `pyftsubset`:[https://fonttools.readthedocs.io/en/latest/subset/] můžete
+ze zdrojového TTF((TrueType Font)) souboru udělat mnohem menší soubory woff2,
+které budou obsahovat jen vybrané Unicode rozsahy a vlastnosti rozložení.
  
-Adobe Fonts nebo Google Fonts typicky mají zvlášť skupiny `latin` a `latin-ext`, které na svém webu potřebuju,
-protože se snažím psat s diakritikou. Zbytek unicode rozsahů ale vlastně nepotřebuju vůbec. Takže pryč s nima!
+Adobe Fonts nebo Google Fonts typicky mají zvlášť skupiny `latin` a `latin-ext`,
+které na svém webu potřebuju, protože se snažím psat s diakritikou. Zbytek unicode
+rozsahů ale vlastně nepotřebuju vůbec. Takže pryč s nima!
 
 Jak na to?
 
-Vynechám detaily, jak si rozběhat `pyftsubset` (`pip install fonttools`) a `brotli` pro kompresi do woff2 (`pip install brotli`).
-A jdeme rovnou na věc:
+Vynechám detaily, jak si rozběhat `pyftsubset` (`pip install fonttools`) a `brotli`
+pro kompresi do woff2 (`pip install brotli`). A jdeme rovnou na věc:
 
 latin subset
 ------------
@@ -104,4 +108,4 @@ Závěr
 Webové fonty nám umožnily vytvářet stránky s osobitým charakterem i na úrovni typografie a za to jim patří dík.
 Přináší však nové výzvy a často i problémy, které není radno zanedbávat. U mne tato změna znamenala,
 že jsem se ze zhruba 4 MiB fontů, potřebných na vyrenderování této stránky, dostal na zhruba 0.5 MiB.
-Takřka 8x úspora!  
+Takřka 8x úspora!
