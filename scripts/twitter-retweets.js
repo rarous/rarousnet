@@ -1,13 +1,11 @@
 import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 
 async function main({ token }) {
-  const {
-    default: { data },
-  } = await import("./data/twitter-retweets.json", {
+  const { default: data } = await import("./data/twitter-retweets.json", {
     with: { type: "json" },
   });
-  const target = "https://www.rarous.net/weblog/2023/10/23/pagefind.html";
-  const source = "https://twitter.com/alesroubicek/status/1716417697607455226";
+  const target = "https://www.rarous.net/weblog/2024/02/27/optimalizace-fontu.html";
+  const source = "https://twitter.com/alesroubicek/status/1762473911525023816";
   const { entries } = data.retweeters_timeline.timeline.instructions[0];
   const users = entries
     .filter((x) => x.content.entryType === "TimelineTimelineItem")
