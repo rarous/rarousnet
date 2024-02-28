@@ -310,30 +310,6 @@ pre.language-php:has(> code) {
   font-feature-settings: "calt" 0, "PHPX" 1;
 }
 
-a {
-  color: var(--secondary-dark-color);
-}
-
-a img {
-  border: 0;
-}
-
-a:visited {
-  color: oklch(0.45 0 89.876);
-}
-
-a:hover {
-  background: var(--primary-dark-color);
-  color: var(--text-color-on-primary);
-  text-decoration: none;
-}
-
-a[disabled] {
-  pointer-events: none;
-  filter: saturate(0);
-  opacity: 0.66;
-}
-
 li {
   padding: 0;
   margin: 0 0 0 2.5em;
@@ -350,29 +326,11 @@ iframe.player {
   border: none;
 }
 
-
 .youtube-player {
   width: 100%;
   height: auto;
   aspect-ratio: 16/9;
 }
-
-.wai a {
-  position: absolute;
-  top: -1000px;
-  left: -1000px;
-}
-
-.wai a:focus,
-.wai a:active {
-  margin: 0.6em 1em;
-  padding: 0.2em 0.4em;
-  background: oklch(0.988 0.065 107.54);
-  z-index: 100;
-  top: 0;
-  left: 0;
-}
-
 
 #content {
   anchor-name: --content;
@@ -576,7 +534,7 @@ article footer {
   text-decoration: none;
 }
 
-#head nav {
+#head>nav {
   --icon-size: 32px;
   --gap: 16px;
 
@@ -589,7 +547,7 @@ article footer {
   align-items: end;
 }
 
-#head nav ul {
+#head>nav>ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -602,7 +560,7 @@ article footer {
   }
 }
 
-#head nav a {
+#head>nav a {
   display: inline-flex;
 
   &:hover, &:focus {
@@ -616,24 +574,15 @@ article footer {
   height: var(--icon-size);
 }
 
-#hamburger {
-  width: 100%;
-  max-width: clamp(20em, 100vw - 4em, 52em);
-  min-width: clamp(12em, 100vw - 4em, 32em);
-}
-
 #hamburger nav {
   display: contents;
 }
 
 #hamburger nav ul {
   font-family: var(--main-font);
-  margin-block: var(--gap);
-  grid-auto-flow: row;
 }
 
 #hamburger nav a {
-  padding-inline: .5em;
   &:hover, &:focus {
     border-radius: 0;
   }
