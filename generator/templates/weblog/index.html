@@ -11,10 +11,14 @@
   <link rel="preconnect" href="https://p.typekit.net">
   <link rel="preconnect" href="https://static.cloudflareinsights.com">
   <link rel="preconnect" href="https://challenges.cloudflare.com">
-  <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin.woff2">
-  <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin-ext.woff2">
-  <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2">
-  <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/iosevka/woff2/iosevka-bold.latin.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/assets/fonts/iosevka/woff2/iosevka-sparkle-regular.latin-ext.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/assets/fonts/iosevka/woff2/iosevka-bold.latin.woff2">
   <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
   <meta name="copyright" content="&copy; 2004 - 2024 Aleš Roubíček. Creative Commons 4.0 BY-SA">
   <meta name="description" content="Aleš RoubíLček píše o webdesignu a čistém kódu.">
@@ -84,6 +88,17 @@
             </svg>
           </a>
         </li>
+        <li>
+          <a href="#hamburger"
+            title="otevřít menu"
+            onclick="event.preventDefault();menuDialog.showModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+              fill="var(--icon-color)">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+          </a>
+        </li>
       </ul>
     </nav>
     <dialog id="searchDialog" onclick="event.target === this && this.close()">
@@ -109,6 +124,19 @@
           }
         });
       </script>
+    </dialog>
+    <dialog id="menuDialog" onclick="event.target === this && this.close()">
+      <div id="hamburger">
+        <nav>
+          <h2>Navigace</h2>
+          <ul>
+            <li><a href="/">Domovská stránka</a></li>
+            <li><a href="/weblog/">Weblog</a></li>
+            <li><a href="/kolekce/vinyly">Kolekce vinylů</a></li>
+            <li><a href="/w3b" disabled>Doporučené články</a></li>
+          </ul>
+        </nav>
+      </div>
     </dialog>
   </header>
 
@@ -155,8 +183,9 @@
     </section>
 
     <section>
-      <p><a property="webFeed" href="https://feeds.feedburner.com/rarous-weblog" type="application/rss+xml">RSS Feed</a> · <a href="/weblog/feed/" rel="feed">HTML
-        Feed</a></p>
+      <p><a property="webFeed" href="https://feeds.feedburner.com/rarous-weblog" type="application/rss+xml">RSS Feed</a>
+        · <a href="/weblog/feed/" rel="feed">HTML
+          Feed</a></p>
     </section>
 
     <script type="module" src="/assets/esm/gryphoon.js"></script>
@@ -237,15 +266,15 @@
           </li>
           <li property="memberOf" typeof="Organization">
             <a property="sameAs"
-              href="https://frontendisti.cz/">Frontendisti</a>
+               href="https://frontendisti.cz/">Frontendisti</a>
           </li>
           <li property="memberOf" typeof="Organization">
             <a property="sameAs"
-              href="https://www.meetup.com/Lambda-Meetup-Group/">PragueLambda</a>
+               href="https://www.meetup.com/Lambda-Meetup-Group/">PragueLambda</a>
           </li>
           <li property="memberOf" typeof="Organization">
             <a property="sameAs"
-              href="https://caffe.topmonks.cz/">TopMonks Caffè</a>
+               href="https://caffe.topmonks.cz/">TopMonks Caffè</a>
           </li>
           <li property="memberOf" typeof="Organization">
             <a property="sameAs" href="https://www.meetup.com/fsharping/">Fsharping</a>

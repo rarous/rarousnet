@@ -146,6 +146,10 @@ code {
   padding: 0 0.125em;
 }
 
+dialog::backdrop {
+  backdrop-filter: blur(5px)
+}
+
 pre {
   border: 1px solid oklch(0.845 0 89.876);
   margin: 1em 0;
@@ -322,6 +326,12 @@ a:hover {
   background: var(--primary-dark-color);
   color: var(--text-color-on-primary);
   text-decoration: none;
+}
+
+a[disabled] {
+  pointer-events: none;
+  filter: saturate(0);
+  opacity: 0.66;
 }
 
 li {
@@ -540,7 +550,6 @@ article footer {
   }
 }
 
-
 .footer .footer__inner {
   padding: 1em 1.5em;
 }
@@ -596,7 +605,7 @@ article footer {
 #head nav a {
   display: inline-flex;
 
-  &:hover {
+  &:hover, &:focus {
     --icon-color: oklch(1 0 89.876);
     border-radius: 4px;
   }
@@ -605,6 +614,29 @@ article footer {
 #head nav a svg {
   width: var(--icon-size);
   height: var(--icon-size);
+}
+
+#hamburger {
+  width: 100%;
+  max-width: clamp(20em, 100vw - 4em, 52em);
+  min-width: clamp(12em, 100vw - 4em, 32em);
+}
+
+#hamburger nav {
+  display: contents;
+}
+
+#hamburger nav ul {
+  font-family: var(--main-font);
+  margin-block: var(--gap);
+  grid-auto-flow: row;
+}
+
+#hamburger nav a {
+  padding-inline: .5em;
+  &:hover, &:focus {
+    border-radius: 0;
+  }
 }
 
 #content {
