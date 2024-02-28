@@ -1,12 +1,6 @@
 :root {
   --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
-  --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console", "Monaco CE", fixed, monospace;
-  --iosevka-sparkle: "Iosevka Sparkle Web", Cambria, Georgia, "New York CE", utopia, serif;
-  --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
   --main-font: var(--futura);
-  --content-font: var(--iosevka-sparkle);
-  --citation-font: var(--garamond);
-  --code-font: var(--iosevka);
 
   --heading-font: 800 2.5em var(--main-font);
 
@@ -106,6 +100,7 @@ a[disabled] {
   padding: 0;
   line-height: 2;
 }
+
 #hamburger nav li {
   margin: 0;
 }
