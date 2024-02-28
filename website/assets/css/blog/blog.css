@@ -572,8 +572,12 @@ article footer {
   --gap: 16px;
 
   position: absolute;
-  top: var(--gap);
+  top: calc(var(--gap) / 2);
   right: var(--gap);
+  left: calc(var(--gap) / 2);
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
 }
 
 #head nav ul {
