@@ -42,6 +42,7 @@ async function* getEntries(url) {
   for (const entry of entries) {
     yield parseEntry(entry);
   }
+  console.log(nextFeedUrl);
   if (!nextFeedUrl) return;
   yield* getEntries(nextFeedUrl);
 }
@@ -50,8 +51,10 @@ async function* getEntries(url) {
  * @param {EventContext<Env>} context
  */
 export async function onRequestGet({ env }) {
+  const promises = [];
   for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
-    await env.w3b.put(entry.link, JSON.stringify({ entry, stats: { clicks: 0, likes: 0 } }));
+    promises.push(env.w3b.put(entry.link, JSON.stringify({ entry, stats: { clicks: 0, likes: 0 } })));
   }
+  await Promise.all(promises);
   return new Response("ok");
 }
