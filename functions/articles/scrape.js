@@ -49,7 +49,7 @@ async function* getEntries(url) {
 /**
  * @param {EventContext<Env>} context
  */
-async function onRequestGet({ env }) {
+export async function onRequestGet({ env }) {
   for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
     await env.w3b.put(entry.link, JSON.stringify({ entry, stats: { clicks: 0, likes: 0 } }));
   }
