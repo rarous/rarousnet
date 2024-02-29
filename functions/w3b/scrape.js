@@ -53,5 +53,5 @@ async function onRequestGet({ env }) {
   for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
     await env.w3b.put(entry.link, JSON.stringify({ entry, stats: { clicks: 0, likes: 0 } }));
   }
-  return Response.json({ status: "ok" });
+  return new Response("ok");
 }
