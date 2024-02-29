@@ -36,9 +36,12 @@ function parseEntry(entry) {
 }
 
 async function* getEntries(url) {
+  console.log(url);
   const feed = await getFeed(url);
   const nextFeedUrl = feed.querySelector("link[rel=next]")?.getAttribute("href");
+  console.log(feed.querySelector("link[rel=next]"));
   const entries = feed.querySelectorAll("entry");
+  console.log(entries.length)
   for (const entry of entries) {
     yield parseEntry(entry);
   }
