@@ -79,6 +79,11 @@ const weblogNS = new cloudflare.WorkersKvNamespace("weblog-kv-ns", {
   title: "rarous-net-weblog",
 });
 
+const w3bNS = new cloudflare.WorkersKvNamespace("w3b-kv-ns", {
+  accountId: account.id,
+  title: "rarous-net-w3b",
+});
+
 const turnstile = new cloudflare.TurnstileWidget("rarousnet", {
   accountId: account.id,
   name: "rarousnet",
@@ -116,6 +121,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       },
       kvNamespaces: {
         weblog: weblogNS.id,
+        w3b: w3bNS.id,
       },
       r2Buckets: {
         storage: weblogBucket.name,
@@ -163,5 +169,6 @@ export const websiteUri = `https://${domain}`;
 export const weblogDomains = weblogPages.domains;
 export const weblogKvNsId = weblogNS.id;
 export const weblogBucketName = weblogBucket.name;
+export const w3bKvNsId = w3bNS.id;
 export const turnstileSecretKey = turnstile.secret;
 export const turnstileSiteKey = turnstile.id;
