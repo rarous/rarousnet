@@ -1,8 +1,14 @@
-import { DOMParser } from "linkedom/worker";
+import {DOMParser} from "linkedom/worker";
 
 async function getFeed(url) {
-  const resp = await fetch(url);
+  const resp = await fetch(url, {
+    headers: {
+      accept: "text/xml",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }
+  });
   const text = await resp.text();
+  console.log(text)
   return new DOMParser().parseFromString(text, "text/xml");
 }
 
@@ -53,10 +59,10 @@ async function* getEntries(url) {
 /**
  * @param {EventContext<Env>} context
  */
-export async function onRequestGet({ env }) {
+export async function onRequestGet({env}) {
   const promises = [];
   for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
-    promises.push(env.w3b.put(entry.link, JSON.stringify({ entry, stats: { clicks: 0, likes: 0 } })));
+    promises.push(env.w3b.put(entry.link, JSON.stringify({entry, stats: {clicks: 0, likes: 0}})));
   }
   await Promise.all(promises);
   return new Response("ok");
