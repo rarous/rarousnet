@@ -9,6 +9,7 @@ async function getFeed(url) {
   });
   const text = await resp.text();
   console.log({ url, status: resp.status });
+  if (!resp.ok) console.log(text);
   return new DOMParser().parseFromString(text, "text/xml");
 }
 
