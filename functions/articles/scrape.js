@@ -1,14 +1,14 @@
-import {DOMParser} from "linkedom/worker";
+import { DOMParser } from "linkedom/worker";
 
 async function getFeed(url) {
   const resp = await fetch(url, {
     headers: {
       accept: "text/xml",
-      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0"
-    }
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0",
+    },
   });
   const text = await resp.text();
-  console.log(text)
+  console.log({ url, status: resp.status });
   return new DOMParser().parseFromString(text, "text/xml");
 }
 
@@ -18,8 +18,9 @@ function parseExcerpt(html) {
 }
 
 function getAuthor(entry) {
-  const name = entry.querySelector("author>name")?.textContent ?? entry.querySelector("source>title")?.textContent
-    ?? "";
+  const authorName = entry.querySelector("author > name")?.textContent;
+  const sourceTitle = entry.querySelector("source > title")?.textContent;
+  const name = authorName ?? sourceTitle ?? "";
   return name.split("\n").at(0).trim();
 }
 
@@ -42,16 +43,15 @@ function parseEntry(entry) {
 }
 
 async function* getEntries(url) {
-  console.log(url);
   const feed = await getFeed(url);
   const nextFeedUrl = feed.querySelector("link[rel=next]")?.getAttribute("href");
-  console.log(feed.querySelector("link[rel=next]"));
+  console.log({ link: feed.querySelector("link[rel=next]") });
   const entries = feed.querySelectorAll("entry");
-  console.log(entries.length)
+  console.log({ entriesCount: entries.length });
   for (const entry of entries) {
     yield parseEntry(entry);
   }
-  console.log(nextFeedUrl);
+  console.log({ nextFeedUrl });
   if (!nextFeedUrl) return;
   yield* getEntries(nextFeedUrl);
 }
@@ -59,10 +59,10 @@ async function* getEntries(url) {
 /**
  * @param {EventContext<Env>} context
  */
-export async function onRequestGet({env}) {
+export async function onRequestGet({ env }) {
   const promises = [];
   for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
-    promises.push(env.w3b.put(entry.link, JSON.stringify({entry, stats: {clicks: 0, likes: 0}})));
+    promises.push(env.w3b.put(entry.link, JSON.stringify({ entry, stats: { clicks: 0, likes: 0 } })));
   }
   await Promise.all(promises);
   return new Response("ok");
