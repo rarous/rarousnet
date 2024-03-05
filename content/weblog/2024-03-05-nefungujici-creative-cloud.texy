@@ -1,0 +1,43 @@
+---
+{:title "Nefungující Creative Cloud",
+ :description "Po instalaci nového počítače jsem narazil na problém, že mi nefungovalo nic z Adobe Creative Cloud. Tady je řešení.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "adobe"},
+ :published "2024-03-05T15:36:00.000"
+ :syndication
+  []}
+---
+
+Na zbrusu novém Macbooku jsem nainstaloval Lightroom a odmítal naběhnout. Stejný problém u Adobe Rush.
+A protože jsem ztrávil dost času s hledáním celkem jednoduchého řešení, tak si ho tu raději uložím.
+
+Lightroom padal s hláškou `Failed To Initialize Camera RAW`, Rush se zasekl na načítání `QuickTime.bundle`.
+Různé projevy, ale stejnáá příčina - rozhašený práva na foldery.
+
+Takže řešením je buď je ručně přidat klikáním ve Finderu, nebo "si z Adobe HelpX stáhnout script":[script],
+ který to udělá za nás.
+
+A kdyby ten script třeba zmizel, tak tady je jeho záloha v textové podobě:
+
+/--code bash
+#!/bin/bash
+echo === `date`
+id=`id -u -nr`
+home=/Users/$id
+declare -a arr=( "Documents/Adobe/" "Library/Preferences/Adobe/" "Library/Caches/Adobe/" "Library/Application Support/Adobe/" )
+for i in "${arr[@]}"
+do
+   echo "----------------------------------"
+   echo "Process folder: $home/$i"
+   echo "Restore owner: sudo chown -R $id $home/$i"
+   sudo chown -R $id "$home/$i"
+   echo "Restore read/write permission: chmod -RL +rwX $home/$i"
+   chmod -RL +rwX "$home/$i"
+   echo "Remove ACL: chmod -RN $home/$i"
+   chmod -RN "$home/$i"
+done
+\--code
+
+Smazal jsem nesouvisející komentář a prázdné řádky.
+
+[script]: https://helpx.adobe.com/ca/lightroom-classic/kb/lightroom-basic-troubleshooting-fix-most-issues.html#Useascripttorestorepermissions
