@@ -2,7 +2,7 @@
 {:title "Nefungující Creative Cloud",
  :description "Po instalaci nového počítače jsem narazil na problém, že mi nefungovalo nic z Adobe Creative Cloud. Tady je řešení.",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "adobe"},
+ :tags #{"support", "adobe"},
  :published "2024-03-05T15:36:00.000"
  :syndication
   []}
