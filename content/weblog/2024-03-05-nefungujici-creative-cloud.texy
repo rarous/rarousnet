@@ -9,15 +9,15 @@
 ---
 
 Na zbrusu novém Macbooku jsem nainstaloval Lightroom a odmítal naběhnout. Stejný problém u Adobe Rush.
-A protože jsem ztrávil dost času s hledáním celkem jednoduchého řešení, tak si ho tu raději uložím.
+A protože jsem strávil dost času s hledáním celkem jednoduchého řešení, tak si ho tu raději uložím.
 
 Lightroom padal s hláškou `Failed To Initialize Camera RAW`, Rush se zasekl na načítání `QuickTime.bundle`.
-Různé projevy, ale stejnáá příčina - rozhašený práva na foldery.
+Různé projevy, ale stejná příčina - rozhašený práva na foldery.
 
 Takže řešením je buď je ručně přidat klikáním ve Finderu, nebo "si z Adobe HelpX stáhnout script":[script],
- který to udělá za nás.
+který to udělá za nás.
 
-A kdyby ten script třeba zmizel, tak tady je jeho záloha v textové podobě:
+Kdyby ten script třeba zmizel, tak tady je jeho záloha v textové podobě:
 
 /--code bash
 #!/bin/bash
