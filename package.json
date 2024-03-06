@@ -15,7 +15,7 @@
     "ava": "6.1.2",
     "broken-link-checker-local": "0.2.1",
     "browser-sync": "3.0.2",
-    "cssnano": "6.0.5",
+    "cssnano": "6.1.0",
     "dprint": "0.45.0",
     "gulp": "4.0.2",
     "gulp-htmlmin": "5.0.1",
