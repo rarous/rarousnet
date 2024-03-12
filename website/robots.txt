@@ -1,25 +1,18 @@
 Sitemap: https://www.rarous.net/sitemap.xml
 User-agent: *
 Disallow:
-
 # Dark Visitors robots.txt
-
-# AI Assistant
-# https://darkvisitors.com/agents/chatgpt-user
-
-User-agent: ChatGPT-User
-Disallow: /
-
-# AI Assistant
-# https://darkvisitors.com/agents/cohere-ai
-
-User-agent: cohere-ai
-Disallow: /
 
 # AI Data Scraper
 # https://darkvisitors.com/agents/anthropic-ai
 
 User-agent: anthropic-ai
+Disallow: /
+
+# AI Data Scraper
+# https://darkvisitors.com/agents/bytespider
+
+User-agent: Bytespider
 Disallow: /
 
 # AI Data Scraper
@@ -47,10 +40,7 @@ User-agent: GPTBot
 Disallow: /
 
 # AI Data Scraper
-# https://darkvisitors.com/agents/omgilibot
-
-User-agent: omgilibot
-Disallow: /
+# https://darkvisitors.com/agents/omgili
 
 User-agent: omgili
 Disallow: /
