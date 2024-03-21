@@ -32,7 +32,7 @@
     "npm-run-all2": "6.1.2",
     "open-props": "1.6.21",
     "pagefind": "1.0.4",
-    "postcss": "8.4.37",
+    "postcss": "8.4.38",
     "postcss-jit-props": "1.0.14",
     "postcss-preset-env": "9.5.2",
     "tap-xunit": "2.4.1",
