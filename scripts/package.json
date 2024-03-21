@@ -4,7 +4,7 @@
   "type": "module",
   "license": "EPL-2.0",
   "dependencies": {
-    "@thi.ng/transducers": "8.9.14",
+    "@thi.ng/transducers": "8.9.15",
     "linkedom": "0.16.10",
     "schema-dts": "1.1.2"
   },
