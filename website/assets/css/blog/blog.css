@@ -395,8 +395,10 @@ article footer {
 }
 
 .category-listing section > h1 {
+  margin: -.3ex 0;
   position: absolute;
-  margin: -0.2ex 0;
+  font-family: var(--content-font);
+  font-size: 2rem;
 }
 
 .category-listing article {
@@ -519,13 +521,14 @@ article footer {
 }
 
 #head h1 {
-  font-size: clamp(1.5rem, 13vw, 4rem);
+  font-size: clamp(1.5rem, 12vw, 4rem);
   font-weight: 800;
-  transform: rotate(-8deg) translateY(clamp(0em, -2vw + 0.5em, 0.5em));
-  transition: transform 200ms ease-in-out;
+  rotate: -8deg;
+  translate: 0 clamp(0rem, -1vw + 1.25em, 1.5rem);
+  transition: translate 200ms ease-in-out;
 
   @media screen and (min-width: 1440px) {
-    transform: rotate(-8deg) translateX(-230px) translateY(15px);
+    translate: -220px 45px;
   }
 }
 
