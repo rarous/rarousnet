@@ -59,7 +59,8 @@ export function defDiscogs({ HTMLElement, customElements }) {
         const img = content.querySelector("img");
         img.src += item.image;
         img.alt += ` ${item.artist.name} - ${item.title} (${item.year})`;
-        if (index < 5) img.removeAttribute("loading");
+        // TODO: chose value depending on media query
+        if (index < 1) img.removeAttribute("loading");
 
         const name = content.querySelector("[property=name]");
         name.textContent = item.title;
