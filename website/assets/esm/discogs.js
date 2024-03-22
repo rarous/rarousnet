@@ -22,9 +22,10 @@ function injectItems(section, template, items, applyTemplate) {
   itemsCounter(section, items);
   const list = section.querySelector(".items");
   const listItems = section.ownerDocument.createDocumentFragment();
+  let index = 0;
   for (const item of items) {
     const { content } = template.cloneNode(true);
-    applyTemplate(content, item, section);
+    applyTemplate(content, item, section, index++);
     listItems.appendChild(content);
   }
   list.replaceChildren(listItems);
@@ -51,13 +52,14 @@ export function defDiscogs({ HTMLElement, customElements }) {
       const template = this.querySelector("template");
       const collection = this.querySelector("section");
 
-      function itemTemplate(content, item) {
+      function itemTemplate(content, item, section, index) {
         const link = content.querySelector("a");
         link.href = link.href + item.id;
 
         const img = content.querySelector("img");
         img.src += item.image;
         img.alt += ` ${item.artist.name} - ${item.title} (${item.year})`;
+        if (index < 5) img.removeAttribute("loading");
 
         const name = content.querySelector("[property=name]");
         name.textContent = item.title;
