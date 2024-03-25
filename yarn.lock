@@ -1687,7 +1687,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20240320.1"
     feed: "npm:4.2.2"
-    linkedom: "npm:0.16.10"
+    linkedom: "npm:0.16.11"
   languageName: unknown
   linkType: soft
 
@@ -1707,7 +1707,7 @@ __metadata:
   dependencies:
     "@thi.ng/transducers": "npm:8.9.15"
     csv-parse: "npm:5.5.5"
-    linkedom: "npm:0.16.10"
+    linkedom: "npm:0.16.11"
     schema-dts: "npm:1.1.2"
   languageName: unknown
   linkType: soft
@@ -8655,16 +8655,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"linkedom@npm:0.16.10":
-  version: 0.16.10
-  resolution: "linkedom@npm:0.16.10"
+"linkedom@npm:0.16.11":
+  version: 0.16.11
+  resolution: "linkedom@npm:0.16.11"
   dependencies:
     css-select: "npm:^5.1.0"
     cssom: "npm:^0.5.0"
     html-escaper: "npm:^3.0.3"
     htmlparser2: "npm:^9.1.0"
     uhyphen: "npm:^0.2.0"
-  checksum: 10c0/3e167125ab0dddf61744477e41de46937e5ca3b6e50b6c8eb53e7c43384c733e73db297793e9133caa1f06e54935aa6561f1fb8b2fdf3e75e52a395b44e3385f
+  checksum: 10c0/6a8928ac91f84caa2c4ba6253989f42521139a5c5a3e386df5fc259ccd256cfd3eb1a6009afd74dbef64133358dc1c99ab181f909567f9f04d00eb260c9fea84
   languageName: node
   linkType: hard
 
