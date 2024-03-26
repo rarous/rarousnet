@@ -1560,12 +1560,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/cloudflare@npm:5.22.0":
-  version: 5.22.0
-  resolution: "@pulumi/cloudflare@npm:5.22.0"
+"@pulumi/cloudflare@npm:5.23.0":
+  version: 5.23.0
+  resolution: "@pulumi/cloudflare@npm:5.23.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.0.0"
-  checksum: 10c0/fe576213f246185abc735a4dc058c1619848d1168d8cc6764ad0d059be6b19426910b3928d0d962a3c30dae927d19f7de2fd1a3fb55dd64e3b741bd021c61ad0
+  checksum: 10c0/d2c22e35c11f5363c2873bcb1b34f2f47a8e5eb3213e54c75f2cdaee61136f2bf6c677d0edc77ba4d7c14b4a0591842330c6a3b2a20472cee11ea9f1281fd636
   languageName: node
   linkType: hard
 
@@ -1695,7 +1695,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@pulumi/cloudflare": "npm:5.22.0"
+    "@pulumi/cloudflare": "npm:5.23.0"
     "@pulumi/pulumi": "npm:3.111.1"
     esbuild: "npm:0.20.2"
   languageName: unknown
