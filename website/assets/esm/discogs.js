@@ -22,10 +22,9 @@ function injectItems(section, template, items, applyTemplate) {
   itemsCounter(section, items);
   const list = section.querySelector(".items");
   const listItems = section.ownerDocument.createDocumentFragment();
-  let index = 0;
-  for (const item of items) {
+  for (const [index, item] of items.entries()) {
     const { content } = template.cloneNode(true);
-    applyTemplate(content, item, section, index++);
+    applyTemplate(content, item, section, index);
     listItems.appendChild(content);
   }
   list.replaceChildren(listItems);
