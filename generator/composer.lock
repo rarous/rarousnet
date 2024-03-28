@@ -4,30 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca848bf82cb751e68137981a941838d1",
+    "content-hash": "6867cc5b522700fdd69f97448c733628",
     "packages": [
         {
             "name": "texy/texy",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/texy.git",
-                "reference": "6d8365c9d4de85604331eeada9bc9a2c2d8b546d"
+                "reference": "99f4261956fda6fb3a28c1264ff33abce725044b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/texy/zipball/6d8365c9d4de85604331eeada9bc9a2c2d8b546d",
-                "reference": "6d8365c9d4de85604331eeada9bc9a2c2d8b546d",
+                "url": "https://api.github.com/repos/dg/texy/zipball/99f4261956fda6fb3a28c1264ff33abce725044b",
+                "reference": "99f4261956fda6fb3a28c1264ff33abce725044b",
                 "shasum": ""
             },
             "require": {
                 "php": "8.1 - 8.3"
             },
+            "conflict": {
+                "latte/latte": ">=3.0.0 <3.0.14"
+            },
             "replace": {
                 "dg/texy": "*"
             },
             "require-dev": {
-                "latte/latte": "^2.6 || ^3.0.2",
+                "latte/latte": "^2.6 || ^3.0.14",
                 "nette/tester": "^2.5",
                 "phpstan/phpstan": "^1",
                 "tracy/tracy": "^2.9"
@@ -68,9 +71,9 @@
                 "wiki"
             ],
             "support": {
-                "source": "https://github.com/dg/texy/tree/v3.2.0"
+                "source": "https://github.com/dg/texy/tree/v3.2.1"
             },
-            "time": "2023-11-21T13:02:47+00:00"
+            "time": "2024-03-19T12:03:31+00:00"
         }
     ],
     "packages-dev": [],
