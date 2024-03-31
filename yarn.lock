@@ -7980,9 +7980,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"local-web-server@npm:5.3.1":
-  version: 5.3.1
-  resolution: "local-web-server@npm:5.3.1"
+"local-web-server@npm:5.3.3":
+  version: 5.3.3
+  resolution: "local-web-server@npm:5.3.3"
   dependencies:
     current-module-paths: "npm:^1.1.1"
     lws: "npm:^4.1.2"
@@ -8003,7 +8003,7 @@ __metadata:
     lws-static: "npm:^3.1.0"
   bin:
     ws: bin/cli.mjs
-  checksum: 10c0/120fbbce6045fb52e7f14e7e1650f0bc06f84ae3135b817950f8bf99f496e45401892356461eabf77777e2f2501baa97cdaf4e4d10ee538b161f1c804230303e
+  checksum: 10c0/8f339350ca139e5b8829b501c8b3a4485d18e23f468ff923f4a9cd0e1ff6f69ce8ae0ee9e2cc0f83b18d1b44d50b3fbc09830da501c5133a23637abc4edf73b8
   languageName: node
   linkType: hard
 
@@ -10947,7 +10947,7 @@ __metadata:
     gulp-rev-replace: "npm:0.4.4"
     gulp-sizereport: "npm:1.2.1"
     lighthouse: "npm:11.7.0"
-    local-web-server: "npm:5.3.1"
+    local-web-server: "npm:5.3.3"
     npm-run-all2: "npm:6.1.2"
     open-props: "npm:1.6.21"
     pagefind: "npm:1.0.4"
