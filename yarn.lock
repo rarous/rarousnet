@@ -12507,10 +12507,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open-props@npm:1.7.0":
-  version: 1.7.0
-  resolution: "open-props@npm:1.7.0"
-  checksum: 10c0/88df4f3e358cfeb8dd07c1cabde643d75dcdfb18c3a8e126d671b43e4ecd436b0114bea766d7d7a462f3b154253d0e6279dc2682390c8c4d1dc697649303aa79
+"open-props@npm:1.7.2":
+  version: 1.7.2
+  resolution: "open-props@npm:1.7.2"
+  checksum: 10c0/901c2a6fa067457507c0280861c9fcacf67783e93b143f23f28857b9fbc13f42203f092da594c053836944a189d47facc76d4acf2c0258afe350f84eb2f1bde3
   languageName: node
   linkType: hard
 
@@ -14149,7 +14149,7 @@ __metadata:
     lighthouse: "npm:11.7.0"
     local-web-server: "npm:5.3.3"
     npm-run-all2: "npm:6.1.2"
-    open-props: "npm:1.7.0"
+    open-props: "npm:1.7.2"
     pagefind: "npm:1.1.0"
     postcss-jit-props: "npm:1.0.14"
     tap-xunit: "npm:2.4.1"

@@ -18,7 +18,7 @@
     "lighthouse": "11.7.0",
     "local-web-server": "5.3.3",
     "npm-run-all2": "6.1.2",
-    "open-props": "1.7.0",
+    "open-props": "1.7.2",
     "pagefind": "1.1.0",
     "postcss-jit-props": "1.0.14",
     "tap-xunit": "2.4.1",
