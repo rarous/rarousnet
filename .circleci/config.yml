@@ -2,119 +2,121 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
-orbs: 
+orbs:
   browser-tools: circleci/browser-tools@1.4.8
   github: topmonks/github@1.4.0
   node: circleci/node@5.2.0
   php: circleci/php@1.1.0
   pulumi: pulumi/pulumi@2.1.0
 
-executors: 
-  pw-focal-development: 
-    docker: 
+executors:
+  pw-focal-development:
+    docker:
       - image: mcr.microsoft.com/playwright:v1.43.0-focal
 
-commands: 
-  install_browsers: 
-    steps: 
-      - restore_cache: 
+commands:
+  install_browsers:
+    steps:
+      - restore_cache:
           name: Restore Playwright browsers
-          keys: 
+          keys:
             - v2-browsers-{{ checksum "cards/package.json" }}
-      - run: 
+      - run:
           name: Install Playwright browsers
           command: yarn playwright install --with-deps chromium
           working_directory: cards
-      - save_cache: 
+      - save_cache:
           name: Cache Playwright browsers
           key: v2-browsers-{{ checksum "cards/package.json" }}
-          paths: 
+          paths:
             - ~/.cache/ms-playwright
 
-jobs: 
-  provision: 
-    docker: 
-      - image: cimg/node:lts
+jobs:
+  provision:
+    docker:
+      - image: cimg/node:current
     resource_class: arm.large
-    steps: 
+    steps:
       - checkout
       - pulumi/login
       - node/install-yarn
-      - node/install-packages: 
+      - node/install-packages:
           pkg-manager: yarn-berry
           cache-version: v1-provision
           override-ci-command: yarn workspaces focus @rarousnet/infrastructure
-      - pulumi/update: 
+      - pulumi/update:
           working_directory: infrastructure
           stack: prod
           skip-preview: true
-  generate: 
+  generate:
     resource_class: large
-    docker: 
-      - image: cimg/clojure:1.11
-        environment: 
+    docker:
+      - image: cimg/clojure:1.11-node
+        environment:
           LEIN_JVM_OPTS: "-Xmx400m"
           JVM_OPTS: "-Xmx3200m"
-    steps: 
+    steps:
       - checkout
-      - php/install-php: 
-          version: "$(jq --raw-data '.platform.php' generator/composer.lock)"
-      - php/install-composer
-      - attach_workspace: 
-          at: .
-      - php/install-packages: 
-          app-dir: ~/project/generator
-          install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
-      - restore_cache: 
-          name: Restore deps cache
-          keys: 
-            - v4-dependencies-{{ checksum "generator/deps.edn" }}
-      - run: 
-          name: Generate static web site content
-          working_directory: generator
-          command: clojure -m rarousnet.generator `realpath ..`
-      - save_cache: 
-          name: Store deps cache
-          key: v4-dependencies-{{ checksum "generator/deps.edn" }}
-          paths: 
-            - ~/.m2
-            - generator/.cpcache
-      - persist_to_workspace: 
-          root: .
-          paths: .gryphoon
-  postprocess: 
-    resource_class: large
-    executor: pw-focal-development
-    steps: 
-      - checkout
-      - attach_workspace: 
+      - attach_workspace:
           at: .
       - node/install
       - node/install-yarn
-      - node/install-packages: 
+      - php/install-php:
+          version: "$(jq --raw-data '.platform.php' generator/composer.lock)"
+      - php/install-composer
+      - node/install-packages:
+          pkg-manager: yarn-berry
+          cache-version: v1-build
+          override-ci-command: yarn workspaces focus rarousnet @rarousnet/website
+      - php/install-packages:
+          app-dir: ~/project/generator
+          install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
+      - restore_cache:
+          name: Restore deps cache
+          keys:
+            - v4-dependencies-{{ checksum "generator/deps.edn" }}
+      - run:
+          name: Build website
+          command: yarn build:website
+      - save_cache:
+          name: Store deps cache
+          key: v4-dependencies-{{ checksum "generator/deps.edn" }}
+          paths:
+            - ~/.m2
+            - generator/.cpcache
+      - persist_to_workspace:
+          root: .
+          paths: .gryphoon
+  postprocess:
+    resource_class: large
+    executor: pw-focal-development
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - node/install
+      - node/install-yarn
+      - node/install-packages:
           pkg-manager: yarn-berry
           cache-version: v2-pw
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
       - install_browsers
-      - run: 
+      - run:
           name: Generate Twitter Card images
           command: node ./cards/generator.js "file://`pwd -P`/cards/card.html"
-      - run: 
+      - run:
           name: Generate search index
           command: yarn build:index
-      - run: 
-          name: Postprocess resources
-          command: yarn build:assets
-      - persist_to_workspace: 
+      - persist_to_workspace:
           root: .
           paths: .gryphoon
-  test: 
+  test:
     docker:
       - image: cimg/node:20.12-browsers
     resource_class: large
-    steps: 
+    steps:
       - checkout
-      - attach_workspace: 
+      - attach_workspace:
           at: .
       - run: |
           sudo apt-get update
@@ -122,11 +124,11 @@ jobs:
       - browser-tools/install-chrome
       - node/install
       - node/install-yarn
-      - node/install-packages: 
+      - node/install-packages:
           pkg-manager: yarn-berry
           cache-version: v1-test
           override-ci-command: yarn workspaces focus rarousnet
-      - run: 
+      - run:
           name: Install self-signed cert for localhost
           command: |
             mkdir -p $HOME/.pki/nssdb
@@ -134,71 +136,71 @@ jobs:
             certutil -N -d $HOME/.pki/nssdb --empty-password
             certutil -A -d sql:$HOME/.pki/nssdb -t TC -n lws-cert -i ./node_modules/lws/ssl/lws-cert.pem
             certutil -L -d sql:$HOME/.pki/nssdb
-      - run: 
+      - run:
           name: Serve site content
           command: yarn serve
           background: true
-      - run: 
+      - run:
           name: Test site with Lighthouse
           command: |
             yarn test:lighthouse
             yarn test:ava
-      - store_artifacts: 
+      - store_artifacts:
           path: ./results
-      - store_test_results: 
+      - store_test_results:
           path: ./results
-  pages_deploy: 
-    docker: 
+  pages_deploy:
+    docker:
       - image: cimg/node:20.12
     resource_class: arm.large
-    steps: 
+    steps:
       - checkout
-      - attach_workspace: 
+      - attach_workspace:
           at: .
       - node/install
       - node/install-yarn
-      - node/install-packages: 
+      - node/install-packages:
           pkg-manager: yarn-berry
           cache-version: v2-publish
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/functions
-      - run: 
+      - run:
           name: Publish to Cloudflare Pages
           command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet
-  merge_pr: 
-    docker: 
+  merge_pr:
+    docker:
       - image: cimg/base:current
-    steps: 
+    steps:
       - checkout
       - github/install
-      - github/merge_pr: 
+      - github/merge_pr:
           rebase: true
-workflows: 
-  build_and_deploy: 
-    jobs: 
+workflows:
+  build_and_deploy:
+    jobs:
       - generate
-      - postprocess: 
-          requires: 
+      - postprocess:
+          requires:
             - generate
-      - provision: 
+      - provision:
           context: aws
-          filters: 
-            branches: 
+          filters:
+            branches:
               only: trunk
-      - test: 
-          requires: 
+      - test:
+          requires:
             - postprocess
-      - merge_pr: 
+      - merge_pr:
           context: github-cli
-          requires: 
+          requires:
             - test
-          filters: 
-            branches: 
+          filters:
+            branches:
               only: /revovate\/.*/
-      - pages_deploy: 
+      - pages_deploy:
           context: cloudflare
-          requires: 
+          requires:
             - provision
             - test
-          filters: 
-            branches: 
+          filters:
+            branches:
               only: trunk

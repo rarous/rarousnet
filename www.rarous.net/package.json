@@ -1,0 +1,7 @@
+{
+  "name": "@rarousnet/website",
+  "packageManager": "yarn@4.1.1",
+  "devDependencies": {
+    "undertaker-registry": "^2.0.0"
+  }
+}
