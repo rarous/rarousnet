@@ -1406,10 +1406,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:4.20240404.0":
-  version: 4.20240404.0
-  resolution: "@cloudflare/workers-types@npm:4.20240404.0"
-  checksum: 10c0/b6df441f23a7e039ddff3d5dc9bad5575df64ac68ed70c82c077469bb65f2ec40b4e8843315cd173a921ab90bb8f18720a770f29c1500fea9e7ee12754433b63
+"@cloudflare/workers-types@npm:4.20240405.0":
+  version: 4.20240405.0
+  resolution: "@cloudflare/workers-types@npm:4.20240405.0"
+  checksum: 10c0/887961d47c9d8f62b99fb9c6987d6d9c5b7c463f2dcc0d134565fddea76444674f07860c7fb18657365fc814f1794210ecead13e897ec4f21cca26cffeb8d0b5
   languageName: node
   linkType: hard
 
@@ -2524,14 +2524,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:8.0.6":
-  version: 8.0.6
-  resolution: "@hckr_/blendid@npm:8.0.6"
+"@hckr_/blendid@npm:8.0.7":
+  version: 8.0.7
+  resolution: "@hckr_/blendid@npm:8.0.7"
   dependencies:
     "@vitejs/plugin-basic-ssl": "npm:1.1.0"
     browser-sync: "npm:3.0.2"
     browserslist: "npm:4.23.0"
-    caniuse-lite: "npm:1.0.30001605"
+    caniuse-lite: "npm:1.0.30001606"
     cloudinary: "npm:2.1.0"
     cssnano: "npm:6.1.2"
     del: "npm:7.1.0"
@@ -2583,7 +2583,7 @@ __metadata:
     workbox-build: "npm:7.0.0"
   bin:
     blendid: bin/blendid.js
-  checksum: 10c0/3b9b2af93d263cbe1796ee912b38bc5b0c2cac3f4886426701b29d950817f3fea23c9ec85a5ccb25a40e9f7f28ef60ae451f3eb4f666a17cc6edfb49218a7361
+  checksum: 10c0/cbdd72e402b062f9174009a9d6d94df3ccc6e2f27da99ea803554b1cab06fce3af7ed04cfffff0714d6ed85808a635ea62fc599393f407a7a43a05a918cac0c1
   languageName: node
   linkType: hard
 
@@ -3317,7 +3317,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/functions@workspace:functions"
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20240404.0"
+    "@cloudflare/workers-types": "npm:4.20240405.0"
     feed: "npm:4.2.2"
     linkedom: "npm:0.16.11"
   languageName: unknown
@@ -3348,6 +3348,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
+    "@csstools/postcss-gamut-mapping": "npm:1.0.6"
+    "@hckr_/blendid": "npm:8.0.7"
+    open-props: "npm:1.7.2"
+    postcss-jit-props: "npm:1.0.14"
     undertaker-registry: "npm:^2.0.0"
   languageName: unknown
   linkType: soft
@@ -3356,7 +3360,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/workers@workspace:workers"
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20240404.0"
+    "@cloudflare/workers-types": "npm:4.20240405.0"
   languageName: unknown
   linkType: soft
 
@@ -5435,10 +5439,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:1.0.30001605":
-  version: 1.0.30001605
-  resolution: "caniuse-lite@npm:1.0.30001605"
-  checksum: 10c0/ceb96a0ecfdaee6510c00aebaaa63db20aaeafab03450d4e3b214e009cb632f87385a70c299cdd1ca4c17e1473883d8fa2051c5b2d083a454338c0c779b25cbc
+"caniuse-lite@npm:1.0.30001606":
+  version: 1.0.30001606
+  resolution: "caniuse-lite@npm:1.0.30001606"
+  checksum: 10c0/fc9816f7d073e4f655c00acf9d6625f923e722430545b0aabefb9dc01347f3093608eb18841cf981acbd464fcac918a708908549738a8cd9517a14ac005bf8fc
   languageName: node
   linkType: hard
 
@@ -12507,10 +12511,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open-props@npm:1.7.0":
-  version: 1.7.0
-  resolution: "open-props@npm:1.7.0"
-  checksum: 10c0/88df4f3e358cfeb8dd07c1cabde643d75dcdfb18c3a8e126d671b43e4ecd436b0114bea766d7d7a462f3b154253d0e6279dc2682390c8c4d1dc697649303aa79
+"open-props@npm:1.7.2":
+  version: 1.7.2
+  resolution: "open-props@npm:1.7.2"
+  checksum: 10c0/901c2a6fa067457507c0280861c9fcacf67783e93b143f23f28857b9fbc13f42203f092da594c053836944a189d47facc76d4acf2c0258afe350f84eb2f1bde3
   languageName: node
   linkType: hard
 
@@ -14141,19 +14145,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rarousnet@workspace:."
   dependencies:
-    "@csstools/postcss-gamut-mapping": "npm:1.0.6"
-    "@hckr_/blendid": "npm:8.0.6"
     ava: "npm:6.1.2"
     broken-link-checker-local: "npm:0.2.1"
     dprint: "npm:0.45.1"
     lighthouse: "npm:11.7.0"
     local-web-server: "npm:5.3.3"
     npm-run-all2: "npm:6.1.2"
-    open-props: "npm:1.7.0"
     pagefind: "npm:1.1.0"
-    postcss-jit-props: "npm:1.0.14"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.47.1"
+    wrangler: "npm:3.48.0"
   languageName: unknown
   linkType: soft
 
@@ -17914,9 +17914,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.47.1":
-  version: 3.47.1
-  resolution: "wrangler@npm:3.47.1"
+"wrangler@npm:3.48.0":
+  version: 3.48.0
+  resolution: "wrangler@npm:3.48.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.1"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
@@ -17944,7 +17944,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/4b3b089f104c36863eb243796190da5459faa5ef8025c41daa56c3c9b90733b7c5ae4ee9ed68a215e9ce70b23aa6a8d334e785cc85c9f7e7039d7c5528194839
+  checksum: 10c0/a076957ed62d06988250cc697fc6110b512105407c07650a0328d75927a8f9a7f8ae3b69a6956d3aa2bff24261453907f512b8ed66b2e1ded3cff444d575489d
   languageName: node
   linkType: hard
 

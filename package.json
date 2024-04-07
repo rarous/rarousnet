@@ -10,32 +10,29 @@
     "last 4 versions"
   ],
   "devDependencies": {
-    "@csstools/postcss-gamut-mapping": "1.0.6",
-    "@hckr_/blendid": "8.0.6",
     "ava": "6.1.2",
     "broken-link-checker-local": "0.2.1",
     "dprint": "0.45.1",
     "lighthouse": "11.7.0",
     "local-web-server": "5.3.3",
     "npm-run-all2": "6.1.2",
-    "open-props": "1.7.0",
     "pagefind": "1.1.0",
-    "postcss-jit-props": "1.0.14",
     "tap-xunit": "2.4.1",
-    "wrangler": "3.47.1"
+    "wrangler": "3.48.0"
   },
   "scripts": {
-    "build:website": "BLENDID_CONFIG_PATH=./www.rarous.net/config/ blendid build --production",
-    "build:content": "cd generator && clojure -M -m rarousnet.generator ../",
+    "build:website": "yarn workspace @rarousnet/website build",
     "build:index": "pagefind --site ./.gryphoon/dist",
     "build": "run-s 'build:*'",
     "fmt": "dprint fmt \"**/*.{md,mjs,js,json}\"",
+    "generate": "cd generator && clojure -M -m rarousnet.generator ../",
     "serve": "ws --compress --http2 -d ./.gryphoon/dist",
     "start": "BLENDID_CONFIG_PATH=./www.rarous.net/config/ blendid",
     "sync": "wrangler pages deploy ./.gryphoon/dist --project=rarousnet --environment=production",
     "test:lighthouse:init": "mkdir ./results",
     "test:lighthouse:root": "lighthouse https://localhost:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
     "test:lighthouse:weblog": "lighthouse https://localhost:8000/weblog/ --config-path .lighthouse.json --output json --output html --output-path ./results/weblog.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
+    "test:lighthouse:vinyly": "lighthouse https://localhost:8000/kolekce/vinyly.html --config-path .lighthouse.json --output json --output html --output-path ./results/kolekce.vinyly.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
     "test:lighthouse": "run-s 'test:lighthouse:*'",
     "test:ava": "ava | tap-xunit > ./results/ava.xml",
     "test:broken-links": "blcl ./.gryphoon/dist -ro"

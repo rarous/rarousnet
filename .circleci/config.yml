@@ -66,8 +66,8 @@ jobs:
       - php/install-composer
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v1-build
-          override-ci-command: yarn workspaces focus rarousnet @rarousnet/website
+          cache-version: v2-build
+          override-ci-command: yarn workspaces focus @rarousnet/website
       - php/install-packages:
           app-dir: ~/project/generator
           install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
@@ -98,7 +98,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v2-pw
+          cache-version: v3-pw
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
       - install_browsers
       - run:
@@ -161,8 +161,8 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v2-publish
-          override-ci-command: yarn workspaces focus rarousnet @rarousnet/functions
+          cache-version: v3-publish
+          override-ci-command: yarn workspaces focus @rarousnet/functions
       - run:
           name: Publish to Cloudflare Pages
           command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet

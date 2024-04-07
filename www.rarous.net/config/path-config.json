@@ -1,6 +1,6 @@
 {
-  "src": "./www.rarous.net/src",
-  "dest": "./.gryphoon/dist",
+  "src": "./src",
+  "dest": "../.gryphoon/dist",
 
   "html": {
     "src": "html",

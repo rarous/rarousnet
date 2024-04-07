@@ -18,7 +18,7 @@ class GryphoonRegistry extends DefaultRegistry {
   init({task}) {
     task("generate-content", (done) => {
       const clj = spawn("clojure", ["-M", "-m", "rarousnet.generator", "../"], {
-        cwd: projectPath("generator")
+        cwd: projectPath("../generator")
       });
       clj.stdout.on('data', (data) => process.stdout.write(data));
       clj.stderr.on('data', (data) => process.stderr.write(data));
@@ -107,10 +107,10 @@ export default {
 
   additionalTasks: {
     development: {
-      postbuild: ["generate-content"],
+      prebuild: ["generate-content"],
     },
     production: {
-      postbuild: ["generate-content"],
+      prebuild: ["generate-content"],
     },
   },
 };
