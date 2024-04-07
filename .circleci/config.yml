@@ -4,7 +4,6 @@
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.4.8
-  github: topmonks/github@1.4.0
   node: circleci/node@5.2.0
   php: circleci/php@1.1.0
   pulumi: pulumi/pulumi@2.1.0
@@ -126,7 +125,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v1-test
+          cache-version: v2-test
           override-ci-command: yarn workspaces focus rarousnet
       - run:
           name: Install self-signed cert for localhost
@@ -166,14 +165,6 @@ jobs:
       - run:
           name: Publish to Cloudflare Pages
           command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet
-  merge_pr:
-    docker:
-      - image: cimg/base:current
-    steps:
-      - checkout
-      - github/install
-      - github/merge_pr:
-          rebase: true
 workflows:
   build_and_deploy:
     jobs:
@@ -189,13 +180,6 @@ workflows:
       - test:
           requires:
             - postprocess
-      - merge_pr:
-          context: github-cli
-          requires:
-            - test
-          filters:
-            branches:
-              only: /revovate\/.*/
       - pages_deploy:
           context: cloudflare
           requires:
