@@ -3352,7 +3352,7 @@ __metadata:
     "@hckr_/blendid": "npm:8.0.7"
     open-props: "npm:1.7.2"
     postcss-jit-props: "npm:1.0.14"
-    undertaker-registry: "npm:^2.0.0"
+    undertaker-registry: "npm:2.0.0"
   languageName: unknown
   linkType: soft
 
