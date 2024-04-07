@@ -3320,7 +3320,6 @@ __metadata:
     "@cloudflare/workers-types": "npm:4.20240405.0"
     feed: "npm:4.2.2"
     linkedom: "npm:0.16.11"
-    wrangler: "npm:3.48.0"
   languageName: unknown
   linkType: soft
 
