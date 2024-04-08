@@ -1,0 +1,24 @@
+---
+{:title "Webperf.cz meetup - Optimalizace fontů",
+ :description "Na prvním setkání webperf.cz komunity jsem povídal o optimalizaci fontů. Podívejte se na záznam a slajdy.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "webfonts", "webperf", "prezentace", "meetup"},
+ :published "2024-04-08T14:28:00.000"
+ :syndication
+  []}
+---
+
+Před nedávnem jsem psal o tom, "jak optimalizovat webové fonty":[https://www.rarous.net/weblog/2024/02/27/optimalizace-fontu.html].
+Nedlouho po tom vypsali kluci z webperf.cz:[https://webperf.cz/] CFP((Call for Presentations)):[https://webperf.cz/cfp]
+ a tak jsem jim poslal námět na přednášku. Vzhledem k tomu, že jsem byl jediný, kdo se na CFP ozval, tak jsem taky mluvil. :)
+
+Nemyslím si, že je to nějaká raketová věda, ale fonty jsou hodně častý performance problém a celkem snadno řešitelný.
+Nebojte se, přednáška není kopií článku, ačkoliv ho tam zmiňuju, tak stihnu zmínit mnohem víc užitečných věcí.
+
+Tady je záznam na Youtube:
+
+{{youtube: tVfmY5twh80}}
+
+A tady jsou slajdy, s klikatelnými odkazy v popisu prezentace:
+
+{{speakerdeck: 0d9c4bf797b241cba301d99d3db1d5e2}}
