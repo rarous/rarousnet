@@ -27,7 +27,7 @@
     "fmt": "dprint fmt \"**/*.{md,mjs,js,json}\"",
     "generate": "cd generator && clojure -M -m rarousnet.generator ../",
     "serve": "ws --compress --http2 -d ./.gryphoon/dist",
-    "start": "BLENDID_CONFIG_PATH=./www.rarous.net/config/ blendid",
+    "start": "yarn workspace @rarousnet/website start",
     "sync": "wrangler pages deploy ./.gryphoon/dist --project=rarousnet --environment=production",
     "test:lighthouse:init": "mkdir ./results",
     "test:lighthouse:root": "lighthouse https://localhost:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless --ignore-certificate-errors\"",

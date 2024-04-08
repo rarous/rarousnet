@@ -9,6 +9,7 @@
     "undertaker-registry": "2.0.0"
   },
   "scripts": {
-    "build": "blendid build --production"
+    "build": "blendid build --production",
+    "start": "blendid"
   }
 }
