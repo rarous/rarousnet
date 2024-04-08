@@ -5,7 +5,8 @@
  :tags #{"moje práce", "webfonts", "webperf", "prezentace", "meetup"},
  :published "2024-04-08T14:28:00.000"
  :syndication
-  ["https://indieweb.social/@alesroubicek/112235664041851115"]}
+  ["https://indieweb.social/@alesroubicek/112235664041851115",
+   "https://twitter.com/alesroubicek/status/1777317349097378151"]}
 ---
 
 Před nedávnem jsem psal o tom, "jak optimalizovat webové fonty":[https://www.rarous.net/weblog/2024/02/27/optimalizace-fontu.html].
@@ -28,7 +29,7 @@ A nakonec odkazy z prezentace:
 * článek na blogu z roku 2008 "Zvyště výkon vašeho webu":[https://www.rarous.net/weblog/2008/06/05/zvyste-vykon-vaseho-webu]
 * záznam prezentace "Frontendisti.cz - optimalizace responzivních obrázků":[https://youtu.be/Ue-VygGkn-A]
 * "Fontotéka Davida Grudla":[https://web.archive.org/web/20070404214111/http://www.dgx.cz/tools/fonts/]
-* "SIFR":[https://mikeindustries.com/blog/sifr]
+* "sIFR":[https://mikeindustries.com/blog/sifr]
 * "Variable Fonts":[https://v-fonts.com/]
 * článek na blogu "Optimalizace fontů":[https://www.rarous.net/weblog/2024/02/27/optimalizace-fontu]
 * "Modern fontstacks":[https://modernfontstacks.com/]
