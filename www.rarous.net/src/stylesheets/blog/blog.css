@@ -23,13 +23,14 @@
   --border-width: 2px;
 
   --icon-color: var(--secondary-dark-color);
+  --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
   --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
   "Lucida Console", "Monaco CE", fixed, monospace;
   --iosevka-sparkle: "Iosevka Sparkle Web", Cambria, Georgia, "New York CE", utopia,
   serif;
   --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
   "Hoefler Text", "Times New Roman", serif;
-  --main-font: var(--sixten);
+  --main-font: var(--futura);
   --content-font: var(--iosevka-sparkle);
   --citation-font: var(--garamond);
   --code-font: var(--iosevka);
@@ -73,7 +74,7 @@ article h1 {
   letter-spacing: -1px;
   text-wrap: balance;
   margin: 0;
-  text-transform: none;
+  z-index: 20;
 }
 
 h2 a {
@@ -521,14 +522,13 @@ article footer {
 
 #head h1 {
   font-size: clamp(1.5rem, 12vw, 4rem);
-  font-weight: 900;
-  text-transform: lowercase;
+  font-weight: 800;
   rotate: -8deg;
   translate: 0 clamp(0rem, -1vw + 1.25em, 1.5rem);
   transition: translate 200ms ease-in-out;
 
   @media screen and (min-width: 1440px) {
-    translate: -197px 41px;
+    translate: -220px 45px;
   }
 }
 

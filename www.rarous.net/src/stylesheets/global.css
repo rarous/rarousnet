@@ -1,12 +1,8 @@
-@font-face {
-  font-family: sixten;
-  src: url("/assets/fonts/sixten.woff2") format("woff2");
-}
 :root {
-  --sixten: sixten, 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
-  --main-font: var(--sixten);
+  --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
+  --main-font: var(--futura);
 
-  --heading-font: 800 4em var(--main-font);
+  --heading-font: 800 2.5em var(--main-font);
 
   --primary-color: oklch(0.703 0.175 38.139);
   --primary-dark-color: oklch(0.547 0.168 36.467);
@@ -17,7 +13,7 @@
 
 body {
   border-block: var(--border-width) solid var(--border-color);
-  font: 1.25em var(--main-font);
+  font: 16px var(--main-font);
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero;
   font-variant-ligatures: common-ligatures contextual;
@@ -29,16 +25,14 @@ body {
 
 h1 {
   font: var(--heading-font);
-  font-feature-settings: "ss06";
+  letter-spacing: -1px;
   text-wrap: balance;
-  text-transform: uppercase;
   margin: 0;
   z-index: 20;
 }
 
 p {
   text-wrap: pretty;
-  font-variation-settings: "wdth" 120;
   max-width: 48rem;
 }
 
