@@ -7,6 +7,7 @@ async function processText(text, references) {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ text, references: JSON.stringify(references) }),
   });
+  if (!resp.ok) throw new Error(await resp.text());
   return resp.text();
 }
 
@@ -33,12 +34,14 @@ export async function onRequestPost(context) {
       getDetail(env.weblog, target),
       request.formData(),
     ]);
+    console.log({comment});
     // TODO: validate comment
     const comments = detail?.comments ?? [];
     const references = comments.filter(x => x.isEnabled).map((x, i) => [i.toString(), {
       link: `#komentar-${new Date(x.created).valueOf()}`,
       label: `[${i + 1}] @${x.author.name}`,
     }]);
+    console.log({comment, references});
     const textResult = processText(comment.get("text"), references);
     const isEnabled = true; // TODO: check for spam, hate etc. -> isEnabled = false;
     const created = now.toISOString();
