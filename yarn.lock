@@ -3105,10 +3105,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@paulirish/trace_engine@npm:^0.0.12":
-  version: 0.0.12
-  resolution: "@paulirish/trace_engine@npm:0.0.12"
-  checksum: 10c0/4a0155d60b4190e340611793667cf17f9b48aeec831185e3ee38f3ce06779e3f4688ab13ba7833849c84a246907ee06a9cee0143e42a49e7e7c78957f0b411a3
+"@paulirish/trace_engine@npm:^0.0.19":
+  version: 0.0.19
+  resolution: "@paulirish/trace_engine@npm:0.0.19"
+  checksum: 10c0/a6ad87ecb51eb4463a8e9254840fbaf3d49437a7fc812019dbbef959b0ab82fd807be0e75c1e4cb87c528e60997d860ea33def4466ae5d6c11a19d7e0e6ac69d
   languageName: node
   linkType: hard
 
@@ -4762,10 +4762,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:^4.8.4":
-  version: 4.8.4
-  resolution: "axe-core@npm:4.8.4"
-  checksum: 10c0/1100ac42c4b8cde1fb7c428d2b76e5a14e20d9d41fe635c55048e4ba27f1eded729b838379a036b5ef9cf25ba7f7bedeef01ebd3b4accd2afee397b10b0265c4
+"axe-core@npm:^4.9.0":
+  version: 4.9.0
+  resolution: "axe-core@npm:4.9.0"
+  checksum: 10c0/0d3ef5f0f8d738b7fa31a869913d9988f04f6e283690d828d7066be2a6661d194ddcb863a9bfa5109600553ffa89faa5f16b5eeee839d1c4135f480458f04d37
   languageName: node
   linkType: hard
 
@@ -10815,13 +10815,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lighthouse@npm:11.7.0":
-  version: 11.7.0
-  resolution: "lighthouse@npm:11.7.0"
+"lighthouse@npm:11.7.1":
+  version: 11.7.1
+  resolution: "lighthouse@npm:11.7.1"
   dependencies:
-    "@paulirish/trace_engine": "npm:^0.0.12"
+    "@paulirish/trace_engine": "npm:^0.0.19"
     "@sentry/node": "npm:^6.17.4"
-    axe-core: "npm:^4.8.4"
+    axe-core: "npm:^4.9.0"
     chrome-launcher: "npm:^1.1.1"
     configstore: "npm:^5.0.1"
     csp_evaluator: "npm:1.1.1"
@@ -10852,7 +10852,7 @@ __metadata:
     chrome-debug: core/scripts/manual-chrome-launcher.js
     lighthouse: cli/index.js
     smokehouse: cli/test/smokehouse/frontends/smokehouse-bin.js
-  checksum: 10c0/995e91b39db0bc3472939db3cf058737070ee495144295e005056278c2e76ad5fc9a44403a26743f8f6de22b263ab8bb63a3b18f3b2f95994577a2fd783f3df8
+  checksum: 10c0/c75f2ac54885e6ae4df477f67965d2365cfae525b5df6f7e0a9382c1cc484036a68ef32c81f6cb3b9ec7e89ab52cc1e93c5ca26aeb7af6d49f122ab72e40f201
   languageName: node
   linkType: hard
 
@@ -14148,7 +14148,7 @@ __metadata:
     ava: "npm:6.1.2"
     broken-link-checker-local: "npm:0.2.1"
     dprint: "npm:0.45.1"
-    lighthouse: "npm:11.7.0"
+    lighthouse: "npm:11.7.1"
     local-web-server: "npm:5.3.3"
     npm-run-all2: "npm:6.1.2"
     pagefind: "npm:1.1.0"
