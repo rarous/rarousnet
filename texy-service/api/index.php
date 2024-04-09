@@ -20,6 +20,7 @@ $texy->headingModule->top = 4;
 $references = json_decode($_REQUEST['references'], true);
 
 foreach ($references as $name => $comment) {
+  if (!$comment['link']) continue;
   $link = new Texy\Link($comment['link']);
   $link->label = $comment['label'];
   $texy->linkModule->addReference("$name", $link);
