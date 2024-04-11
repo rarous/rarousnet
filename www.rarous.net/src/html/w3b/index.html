@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="delegate-ch"
         content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
-  <title>Vinyly Aleše Roubíčka</title>
+  <title>W3B - Výběr z článků - čtení doporučené Alešem Roubíčkem</title>
   <link rel="preconnect" href="https://use.typekit.net">
   <link rel="preconnect" href="https://res.cloudinary.com">
   <link rel="preconnect" href="https://open.spotify.com">
@@ -19,10 +19,12 @@
   <link rel="preload" as="style" href="/assets/css/webmentions.css">
   <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
   <meta name="copyright" content="&copy; 2004 - 2024 Aleš Roubíček. Creative Commons 4.0 BY-SA">
-  <meta name="description" content="Sbírka gramofonových desek Aleše Roubíčka.">
-  <link rel="canonical" href="https://www.rarous.net/kolekce/vinyly">
+  <meta name="description" content="Výběr z článků, které stojí za to si přečíst. Ručně vybíráno Alešem Roubíčkem">
+  <link rel="canonical" href="https://www.rarous.net/w3b">
   <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
   <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
+  <link rel="alternate" type="application/atom+xml" href="https://feeds2.feedburner.com/rarous/w3b"
+        title="W3B - výběr z článků - čtení doporučené Alešem Roubíčkem">
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
   <style>
@@ -92,139 +94,6 @@
       font-display:swap;font-style:italic;font-weight:600;font-stretch:normal;
     }
   </style>
-  <style>
-    @import "/assets/css/global.css";
-
-    data[property=collectionSize] {
-      font-family: var(--content-font);
-    }
-
-    dialog::backdrop {
-      backdrop-filter: blur(5px)
-    }
-
-    header nav {
-      --icon-size: 32px;
-      --gap: 16px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header nav a {
-      display: inline-flex;
-      &:hover {
-        --icon-color: var(--text-color-on-primary);
-      }
-    }
-
-    header nav a svg {
-      width: var(--icon-size);
-      height: var(--icon-size);
-    }
-
-    .collection .items {
-      list-style-type: none;
-      padding: 0;
-      display: grid;
-      margin-inline: auto;
-      max-width: 90rem;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-    }
-
-    .album {
-      position: relative;
-
-      @media (hover: hover) {
-        filter: saturate(0.2);
-        transition: filter ease-in-out 200ms;
-
-        &:hover, &:focus {
-          filter: saturate(1);
-        }
-      }
-
-      @media (hover: none) {
-        filter: saturate(1);
-
-        @supports (animation-timeline: view()) {
-          filter: saturate(0.2);
-          animation: linear --saturate-in-and-out;
-          animation-timeline: view();
-        }
-      }
-    }
-
-    .album a:hover {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    .album img {
-      width: 100%;
-      height: auto;
-    }
-
-    .album h2 {
-      font-size: 1.25em;
-      font-weight: 900;
-    }
-    .album h3 {
-      font-size: 1em;
-    }
-
-    .album :is(h2, h3, p) {
-      margin: 0;
-    }
-
-    .album button {
-      font: 700 1rem/2 var(--main-font);
-      border: none;
-      border-radius: 24px;
-      margin-block-start: 1em;
-      padding-inline: 2em;
-      color: white;
-      background-color: #1DB954;
-    }
-
-    #player {
-      overflow: hidden;
-      min-width: 19rem;
-      max-width: 60rem;
-
-      @media screen and (orientation: landscape) {
-        width: 100%;
-        aspect-ratio: 4/3;
-      }
-
-      @media screen and (orientation: portrait) {
-        aspect-ratio: initial;
-        width: 84dvw;
-        height: 84dvh;
-      }
-    }
-
-    #player::backdrop {
-      backdrop-filter: blur(4px);
-    }
-
-    @keyframes --saturate-in-and-out {
-      entry 60% {
-        filter: saturate(0.2);
-      }
-      entry 100% {
-        filter: saturate(1);
-      }
-      exit 0% {
-        filter: saturate(1);
-      }
-      exit 40% {
-        filter: saturate(0.2);
-      }
-    }
-  </style>
 </head>
 <body>
 <div class="wai">
@@ -236,10 +105,10 @@
       <img alt="Aleš Roubíček" class="logo" src="/assets/logo.svg" width="60" height="43">
     </a>
     <a href="#hamburger"
-      title="otevřít menu"
-      onclick="event.preventDefault();menuDialog.showModal()">
+       title="otevřít menu"
+       onclick="event.preventDefault();menuDialog.showModal()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-        fill="var(--icon-color)">
+           fill="var(--icon-color)">
         <path d="M0 0h24v24H0z" fill="none"/>
         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
       </svg>
@@ -259,112 +128,14 @@
     </div>
   </dialog>
 </header>
-<main typeof="Collection" vocab="https://schema.org/" id="content">
-  <rarous-discogs api-endpoint="https://www.rarous.net/api/v1/collections/vinyls">
-    <template>
-      <li class="album" property="hasPart" typeof="MusicAlbum">
-        <a href="https://www.discogs.com/release/" property="sameAs">
-          <div>
-            <img
-              alt="Obal desky"
-              src="https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/"
-              property="image" width="400" height="400" sizes="auto" loading="lazy">
-            <hgroup>
-              <h2 property="name"></h2>
-              <h3 property="byArtist"></h3>
-              <p property="copyrightYear"></p>
-            </hgroup>
-            <button>Přehrát na spotify</button>
-          </div>
-        </a>
-      </li>
-    </template>
-    <section class="collection">
-      <h1 property="name">Kolekce vinylů</h1>
-      <p>Desky jsem začal sbírat na jaře 2013, když vyšly <a href="https://daftpunk.lnk.to/RAM_Originals">Random Access
-        Memories</a>.
-        To byl první kousek v&nbsp;mé kolekci. Trvalo další rok, než jsem si pořídil
-        vlastní gramofon <a
-          href="https://www.project-audio.com/en/product/elemental/">Pro-Ject Audio
-          ELEMENTAL</a>. Časem jsem přebral kus kolekce od rodičů, kteří už si je
-        nemají na čem pouštět. Tyto desky ale nemám ještě všechny
-        katalogizované.</p>
-      <p>Počet katalogizovaných desek v kolekci:
-        <data property="collectionSize" value=""></data>
-      </p>
-      <ul class="items"></ul>
-      <p>Zdrojem dat je <a href="https://www.discogs.com/user/rarous/collection">moje kolekce na Discogs</a>.</p>
-      <p>Pokud mi chcete udělat radost, deska vždycky potěší. Inspirovat se můžete na
-        <a href="https://www.amazon.de/hz/wishlist/ls/1P9UQLRGAKPG3?ref_=wl_share">seznamu mých hudebních přání</a>.</p>
-    </section>
-  </rarous-discogs>
-
-  <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog" href="https://www.rarous.net/kolekce/vinyly">
-    <gryphoon-webmentions id="webmentions">
-      <link rel="stylesheet" href="/assets/css/webmentions.css">
-      <h2>Reakce v síti</h2>
-      <section class="webmentions" id="like-of">
-        <p>
-          Líbilo se&nbsp;<data></data>
-        </p>
-        <ul class="items">
-          <li>Načítají se data&hellip;</li>
-        </ul>
-      </section>
-      <section class="webmentions" id="repost-of">
-        <p>
-          Přeposláno dál&nbsp;<data></data>
-        </p>
-        <ul class="items">
-          <li>Načítají se data&hellip;</li>
-        </ul>
-      </section>
-      <template>
-        <li>
-          <a>
-            <time></time>
-            <img alt="" src="" width="32" height="32" loading="lazy" decoding="async">
-          </a>
-        </li>
-      </template>
-    </gryphoon-webmentions>
-  </gryphoon-weblog>
-
-  <dialog id="player" onclick="event.target === this && this.close()">
-    <div id="embed-iframe"></div>
-  </dialog>
-
-  <script type="module">
-    import "/assets/esm/gryphoon.js";
-    import { defDiscogs } from "/assets/esm/discogs.js";
-
-    defDiscogs(window).register("rarous-discogs");
-    const discogs = document.querySelector("rarous-discogs");
-
-    window.onSpotifyIframeApiReady = function(IFrameAPI) {
-      const element = document.getElementById("embed-iframe");
-      const player = document.getElementById("player");
-      const options = {
-        width: "100%",
-        height: "100%"
-      };
-
-      function callback(EmbedController) {
-        discogs.addEventListener("click", e => {
-          if (e.target.localName !== "button") return;
-          e.preventDefault();
-          EmbedController.loadUri(e.target.dataset.spotifyUri);
-          player.showModal();
-        });
-      }
-
-      IFrameAPI.createController(element, options, callback);
-    };
-
-    // Spotify handler has to be registered before data loading, there is possible race condition
-    await discogs.loadDataFromApi();
-  </script>
-  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+<main id="content">
+  <hgroup>
+    <h1>W3B - Výběr z článků</h1>
+    <p>Ručně vybíráno Alešem Roubíčkem</p>
+  </hgroup>
+  <p>Na stránce se pracuje. Zatím se můžete
+    <a href="https://feeds2.feedburner.com/rarous/w3b" type="application/atom+xml"
+       title="Přihlásit se k odběru pomocí RSS">přihlásit k odběru článků pomocí RSS</a>.</p>
 </main>
 <footer class="footer">
   <div class="footer__copyright">
