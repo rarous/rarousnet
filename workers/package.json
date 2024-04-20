@@ -4,6 +4,6 @@
   "type": "module",
   "license": "EPL-2.0",
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20240405.0"
+    "@cloudflare/workers-types": "4.20240419.0"
   }
 }
