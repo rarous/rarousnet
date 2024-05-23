@@ -19,6 +19,10 @@ function meCard(card) {
   return builder.join(";");
 }
 
+function searchParams(obj) {
+  return new URLSearchParams(obj).toString();
+}
+
 export default {
   currentYear: new Date().getFullYear(),
   contact: {
@@ -27,5 +31,6 @@ export default {
     email: "ales@roubicek.name",
     web: "https://www.rarous.net/"
   },
-  meCard
+  meCard,
+  searchParams
 }
