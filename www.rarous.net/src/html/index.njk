@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://static.cloudflareinsights.com">
   <link rel="preconnect" href="https://challenges.cloudflare.com">
   <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
-  <meta name="copyright" content="&copy; 2004 - 2024 Aleš Roubíček. Creative Commons 4.0 BY-SA">
+  <meta name="copyright" content="&copy; 2004 - {{ currentYear }} Aleš Roubíček. Creative Commons 4.0 BY-SA">
   <meta name="description" content="Aleš Roubíček vývojář webových aplikací.">
   <link rel="canonical" href="https://www.rarous.net/">
   <link rel="feed" href="/weblog/feed/">
@@ -297,7 +297,7 @@
   <section id="kontakt" vocab="https://schema.org" typeof="Person" class="vcard">
     <div class="qr-code">
       <img alt="QR kód s kontaktem"
-           src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=L|0&chl=MECARD%3AN%3AAle%25C5%25A1%2520Roub%25C3%25AD%25C4%258Dek%3BTEL%3A%2B420737461283%3BEMAIL%3Aales%40roubicek.name%3BURL%3Ahttp%3A%2F%2Fwww.rarous.net"
+           src="https://www.rarous.net/api/v1/qr?text={{ meCard(contact) | urlencode }}"
            title="Oskenuj si kontakt do mobilu" width="200" height="200">
     </div>
     <hgroup>

@@ -6,22 +6,6 @@ import jitProps from "postcss-jit-props";
 import DefaultRegistry from "undertaker-registry";
 import { getPathConfig } from "@hckr_/blendid/lib/getPathConfig.mjs";
 
-let meCardTags = new Map([
-  ["email", "EMAIL"],
-  ["name", "N"],
-  ["phone", "TEL"],
-  ["web", "URL"]
-]);
-
-function meCard(card) {
-  const builder = ["MECARD:"];
-  for (const [key, value] of Object.entries(card)) {
-    builder.push(`${meCardTags.get(key) ?? "key"}:${value}`);
-  }
-  builder.push(";");
-  return builder.join(";");
-}
-
 class GryphoonRegistry extends DefaultRegistry {
   constructor(config, pathConfig) {
     super();
@@ -73,10 +57,6 @@ export default {
   html: {
     dataFile: "global.mjs",
     nunjucksRender: {
-      globals: {
-        currentYear: new Date().getFullYear(),
-        meCard
-      },
       filters: {
         isoDate(x) {
           return new Date(x).toISOString();
