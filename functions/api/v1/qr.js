@@ -1,4 +1,4 @@
-import { getSVG } from "qreator/lib/svg.js";
+import { getSVG } from "qreator/lib/svg";
 
 export async function onRequestGet({ request }) {
   const { searchParams } = new URL(request.url);
