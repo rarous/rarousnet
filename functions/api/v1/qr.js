@@ -1,13 +1,16 @@
-import { imageSync } from "qr-image";
+import { getSVG } from "qreator/lib/svg.js";
 
 export async function onRequestGet({ request }) {
   const { searchParams } = new URL(request.url);
   const text = searchParams.get("text");
-  const size = parseInt(searchParams.get("size") ?? "200");
   if (!text) return new Response("Missing required parameter: text", { status: 400 });
 
-  const buffer = imageSync(text, { type: "png", size });
+  const buffer = await getSVG(text);
   return new Response(buffer, {
-    headers: { "Content-Type": "image/png" },
+    status: 200,
+    headers: {
+      "Content-Type": "image/svg+xml",
+      'Access-Control-Allow-Origin': 'www.rarous.net',
+    },
   });
 }
