@@ -2,10 +2,13 @@ import { getSVG } from "qreator/lib/svg";
 
 export async function onRequestGet({ request }) {
   const { searchParams } = new URL(request.url);
-  const text = searchParams.get("text");
+  const text = searchParams.get("t") ?? searchParams.get("text");
   if (!text) return new Response("Missing required parameter: text", { status: 400 });
 
-  const buffer = await getSVG(text);
+  const color = searchParams.get("c") ?? searchParams.get("color");
+  const bgColor = searchParams.get("bg") ?? searchParams.get("bgColor");
+  const borderRadius = searchParams.get("br") ?? searchParams.get("borderRadius");
+  const buffer = await getSVG(text, { color, bgColor, borderRadius });
   return new Response(buffer, {
     status: 200,
     headers: {
