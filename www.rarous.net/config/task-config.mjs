@@ -1,10 +1,26 @@
-import {spawn} from "node:child_process";
+import { spawn } from "node:child_process";
 import postcssGamutMapping from "@csstools/postcss-gamut-mapping";
 import projectPath from "@hckr_/blendid/lib/projectPath.mjs";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 import DefaultRegistry from "undertaker-registry";
-import {getPathConfig} from "@hckr_/blendid/lib/getPathConfig.mjs";
+import { getPathConfig } from "@hckr_/blendid/lib/getPathConfig.mjs";
+
+let meCardTags = new Map([
+  ["email", "EMAIL"],
+  ["name", "N"],
+  ["phone", "TEL"],
+  ["web", "URL"]
+]);
+
+function meCard(card) {
+  const builder = ["MECARD:"];
+  for (const [key, value] of Object.entries(card)) {
+    builder.push(`${meCardTags.get(key) ?? "key"}:${value}`);
+  }
+  builder.push(";");
+  return builder.join(";");
+}
 
 class GryphoonRegistry extends DefaultRegistry {
   constructor(config, pathConfig) {
@@ -15,7 +31,7 @@ class GryphoonRegistry extends DefaultRegistry {
     }
   }
 
-  init({task}) {
+  init({ task }) {
     task("generate-content", (done) => {
       const clj = spawn("clojure", ["-M", "-m", "rarousnet.generator", "../"], {
         cwd: projectPath("../generator")
@@ -59,6 +75,7 @@ export default {
     nunjucksRender: {
       globals: {
         currentYear: new Date().getFullYear(),
+        meCard
       },
       filters: {
         isoDate(x) {
@@ -92,7 +109,7 @@ export default {
   },
 
   vite: {
-    server: {port: 3001},
+    server: { port: 3001 },
     browser: "google chrome canary",
     browserArgs: "--ignore-certificate-errors --allow-insecure-localhost",
   },
