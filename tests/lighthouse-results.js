@@ -1,5 +1,5 @@
 import test from "ava";
-import results from "../results/root.report.json" assert { type: "json" };
+import results from "../results/root.report.json" with { type: "json" };
 
 const assertThreshold = ({ score }, threshold) => (t) =>
   t.true(

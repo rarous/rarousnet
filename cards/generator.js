@@ -2,7 +2,7 @@ import { count, partition } from "@thi.ng/transducers";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "playwright";
-import data from "../.gryphoon/cards.json" assert { type: "json" };
+import data from "../.gryphoon/cards.json" with { type: "json" };
 
 const distDir = "./.gryphoon/dist/weblog/";
 const manifestFileName = "./.gryphoon/.cache/cards.json";
