@@ -5,7 +5,7 @@
   "license": "EPL-2.0",
   "dependencies": {
     "feed": "4.2.2",
-    "linkedom": "0.18.0",
+    "linkedom": "0.18.2",
     "qreator": "9.2.0"
   },
   "devDependencies": {
