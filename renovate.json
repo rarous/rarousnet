@@ -10,10 +10,6 @@
   "rangeStrategy": "pin",
   "packageRules": [
     {
-      "groupName": "eslint",
-      "extends": "packages:eslint"
-    },
-    {
       "groupName": "pulumi",
       "matchPackagePrefixes": ["@pulumi/"]
     }
