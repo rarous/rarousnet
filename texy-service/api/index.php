@@ -6,12 +6,17 @@ if (@!include __DIR__ . '/../vendor/autoload.php') {
 
 use \Rollbar\Rollbar;
 use \Rollbar\Payload\Level;
+use \Texy\Texy;
 
-$config = array(
-  'access_token' => '16eb2b188b784fada411b451d37848ee',
-  'environment' => 'production',
+Rollbar::init(
+  array(
+    'access_token' => '16eb2b188b784fada411b451d37848ee',
+    'environment' => 'production',
+  )
 );
-Rollbar::init($config);
+
+header('Content-Type: text/html; charset=utf-8');
+header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
 $texy = new Texy();
 
@@ -33,19 +38,22 @@ Rollbar::log(
   $_REQUEST['references']
 );
 Rollbar::log(
-   Level::INFO,
-   'references decoded: ',
-   $references
- );
+  Level::INFO,
+  'references decoded: ',
+  $references
+);
 
 foreach ($references as $name => $comment) {
+  Rollbar::log(
+    Level::INFO,
+    'comment: ',
+    $comment
+  );
   if (!$comment['link']) continue;
   $link = new Texy\Link($comment['link']);
   $link->label = $comment['label'];
   $texy->linkModule->addReference("$name", $link);
 }
 
-header('Content-Type: text/html; charset=utf-8');
-header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
 echo $texy->process($_REQUEST['text']);
