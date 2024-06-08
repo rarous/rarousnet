@@ -4,6 +4,15 @@ if (@!include __DIR__ . '/../vendor/autoload.php') {
   die('Install packages using `composer install`');
 }
 
+use \Rollbar\Rollbar;
+use \Rollbar\Payload\Level;
+
+$config = array(
+  'access_token' => '16eb2b188b784fada411b451d37848ee',
+  'environment' => 'production',
+);
+Rollbar::init($config);
+
 $texy = new Texy();
 
 Texy\Configurator::safeMode($texy);
@@ -18,6 +27,16 @@ $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
 $references = json_decode($_REQUEST['references'], true);
+Rollbar::log(
+  Level::INFO,
+  'references raw: ',
+  $_REQUEST['references']
+);
+Rollbar::log(
+   Level::INFO,
+   'references decoded: ',
+   $references
+ );
 
 foreach ($references as $name => $comment) {
   if (!$comment['link']) continue;
