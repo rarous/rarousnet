@@ -52,7 +52,7 @@ foreach ($references as $name => $comment) {
     'comment: ',
     $comment
   );
-  if (!$comment['link']) continue;
+  if (!isset($comment['link'])) continue;
   $link = new Texy\Link($comment['link']);
   $link->label = $comment['label'];
   $texy->linkModule->addReference("$name", $link);
