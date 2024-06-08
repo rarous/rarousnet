@@ -7,6 +7,7 @@ if (@!include __DIR__ . '/../vendor/autoload.php') {
 use \Rollbar\Rollbar;
 use \Rollbar\Payload\Level;
 use \Texy\Texy;
+use \Texy\Configurator
 
 Rollbar::init(
   array(
@@ -20,7 +21,7 @@ header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
 
 $texy = new Texy();
 
-Texy\Configurator::safeMode($texy);
+Configurator::safeMode($texy);
 
 $texy->allowed['phrase/ins'] = true;
 $texy->allowed['phrase/sup'] = true;
@@ -54,6 +55,5 @@ foreach ($references as $name => $comment) {
   $link->label = $comment['label'];
   $texy->linkModule->addReference("$name", $link);
 }
-
 
 echo $texy->process($_REQUEST['text']);
