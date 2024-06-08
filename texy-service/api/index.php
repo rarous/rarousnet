@@ -12,9 +12,11 @@ use \Texy\Configurator
 Rollbar::init(
   array(
     'access_token' => '16eb2b188b784fada411b451d37848ee',
-    'environment' => 'production',
+    'environment' => 'production'
   )
 );
+Rollbar::log(Level::INFO, 'Test info message');
+throw new Exception('Test exception');
 
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
