@@ -4,19 +4,9 @@ if (@!include __DIR__ . '/../vendor/autoload.php') {
   die('Install packages using `composer install`');
 }
 
-use \Rollbar\Rollbar;
-use \Rollbar\Payload\Level;
 use \Texy\Texy;
-use \Texy\Configurator
-
-Rollbar::init(
-  array(
-    'access_token' => '16eb2b188b784fada411b451d37848ee',
-    'environment' => 'production'
-  )
-);
-Rollbar::log(Level::INFO, 'Test info message');
-throw new Exception('Test exception');
+use \Texy\Link;
+use \Texy\Configurator;
 
 header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: s-maxage=0, max-age=0, must-revalidate');
@@ -35,25 +25,11 @@ $texy->allowedTags = false;
 $texy->headingModule->top = 4;
 
 $references = json_decode($_REQUEST['references'], true);
-Rollbar::log(
-  Level::INFO,
-  'references raw: ',
-  $_REQUEST['references']
-);
-Rollbar::log(
-  Level::INFO,
-  'references decoded: ',
-  $references
-);
 
-foreach ($references as $name => $comment) {
-  Rollbar::log(
-    Level::INFO,
-    'comment: ',
-    $comment
-  );
+foreach ($references as $index => $comment) {
   if (!isset($comment['link'])) continue;
-  $link = new Texy\Link($comment['link']);
+  $name = $index + 1;
+  $link = new Link($comment['link']);
   $link->label = $comment['label'];
   $texy->linkModule->addReference("$name", $link);
 }
