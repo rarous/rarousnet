@@ -39,7 +39,7 @@ export async function onRequestPost(context) {
     const comments = detail?.comments ?? [];
     const references = comments.filter(x => x.isEnabled).map((x, i) => [i.toString(), {
       link: `#komentar-${new Date(x.created).valueOf()}`,
-      label: `[${i + 1}] @${x.author.name}`,
+      label: `#${i + 1} @${x.author.name}`,
     }]);
     console.log({comment, references});
     const textResult = processText(comment.get("text"), references);
