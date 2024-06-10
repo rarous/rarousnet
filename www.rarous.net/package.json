@@ -1,6 +1,6 @@
 {
   "name": "@rarousnet/website",
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.0",
   "devDependencies": {
     "@csstools/postcss-gamut-mapping": "1.0.9",
     "@hckr_/blendid": "8.1.0",
