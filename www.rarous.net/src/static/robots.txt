@@ -44,3 +44,7 @@ Disallow: /
 
 User-agent: omgili
 Disallow: /
+
+# AI Data Scraper
+User-agent: Applebot
+Disallow: /
