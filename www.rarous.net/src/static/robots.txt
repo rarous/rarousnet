@@ -48,3 +48,7 @@ Disallow: /
 # AI Data Scraper
 User-agent: Applebot
 Disallow: /
+
+#AI Data Scraper
+User-agent: Applebot-Extended
+Disallow: /
