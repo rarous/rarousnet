@@ -3,7 +3,7 @@
   "packageManager": "yarn@4.3.1",
   "devDependencies": {
     "@csstools/postcss-gamut-mapping": "1.0.9",
-    "@hckr_/blendid": "8.3.0",
+    "@hckr_/blendid": "8.4.1",
     "open-props": "1.7.4",
     "postcss-jit-props": "1.0.14",
     "undertaker-registry": "2.0.0"
