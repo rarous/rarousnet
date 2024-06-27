@@ -150,7 +150,7 @@ jobs:
           path: ./results
   pages_deploy:
     docker:
-      - image: cimg/node:22.3
+      - image: cimg/node:15.13
     resource_class: arm.large
     steps:
       - checkout
