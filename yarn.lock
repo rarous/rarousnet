@@ -2533,9 +2533,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:8.4.3":
-  version: 8.4.3
-  resolution: "@hckr_/blendid@npm:8.4.3"
+"@hckr_/blendid@npm:8.5.2":
+  version: 8.5.2
+  resolution: "@hckr_/blendid@npm:8.5.2"
   dependencies:
     "@vitejs/plugin-basic-ssl": "npm:1.1.0"
     browser-sync: "npm:3.0.2"
@@ -2593,7 +2593,7 @@ __metadata:
     workbox-build: "npm:7.1.1"
   bin:
     blendid: bin/blendid.js
-  checksum: 10c0/f9d611df3319480e48ad02304db77bdbf124069c948784f9e7916248a7deead7681fc4a0ea2f41ede40ea11c5c2894949088feb2a280198cae6eb266d7583c90
+  checksum: 10c0/49c13e72a0f13d2d73a66d55579bac7c688bc5f1d6976a16f77bc80c7a793fb3b41fa28ba5f1d59f4bd75a4f1c0986f66b84b39d1de8755b6ad59772614ece6c
   languageName: node
   linkType: hard
 
@@ -3559,7 +3559,7 @@ __metadata:
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
     "@csstools/postcss-gamut-mapping": "npm:1.0.10"
-    "@hckr_/blendid": "npm:8.4.3"
+    "@hckr_/blendid": "npm:8.5.2"
     open-props: "npm:1.7.5"
     postcss-jit-props: "npm:1.0.14"
     undertaker-registry: "npm:2.0.0"
