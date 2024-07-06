@@ -2,7 +2,7 @@
   "name": "@rarousnet/website",
   "packageManager": "yarn@4.3.1",
   "devDependencies": {
-    "@csstools/postcss-gamut-mapping": "1.0.10",
+    "@csstools/postcss-gamut-mapping": "1.0.11",
     "@hckr_/blendid": "8.5.2",
     "open-props": "1.7.5",
     "postcss-jit-props": "1.0.14",
