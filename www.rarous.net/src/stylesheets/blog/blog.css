@@ -1,10 +1,10 @@
 @property --icon-size {
-  syntax: "length";
+  syntax: "<length>";
   inherits: true;
 }
 
 @property --icon-color {
-  syntax: "color";
+  syntax: "<color>";
   inherits: true;
 }
 
