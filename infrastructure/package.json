@@ -6,7 +6,7 @@
   "license": "EPL-2.0",
   "dependencies": {
     "@pulumi/cloudflare": "5.33.1",
-    "@pulumi/pulumi": "3.122.0",
+    "@pulumi/pulumi": "3.123.0",
     "esbuild": "0.23.0"
   }
 }
