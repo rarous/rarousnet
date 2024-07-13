@@ -115,7 +115,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
     production: {
       compatibilityDate: "2023-09-29",
       compatibilityFlags: ["nodejs_compat"],
-      environmentVariables: {
+      secrets: {
         TURNSTILE_SECRET_KEY: turnstile.secret,
         WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
       },
