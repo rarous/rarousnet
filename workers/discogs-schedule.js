@@ -108,7 +108,7 @@ async function updateDiscogsCollection(env) {
       // if we don't find album for exact release year, try to search for any year
       albums = await searchAlbumOnSpotify(`artist:${item.artist.name} album:${item.title}`, spotifyToken);
     }
-    item.spotifyUri = albums.items?.[0]?.uri;
+    item.spotifyUri = albums?.items?.[0]?.uri;
   }
 
   await env.weblog.put("/kolekce/vinyly", JSON.stringify(result.sort(byArtistAndYear)));
