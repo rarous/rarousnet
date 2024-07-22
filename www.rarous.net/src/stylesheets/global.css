@@ -15,7 +15,7 @@ body {
   border-block: var(--border-width) solid var(--border-color);
   font: 16px var(--main-font);
   font-kerning: normal;
-  font-variant-numeric: lining-nums slashed-zero;
+  font-variant-numeric: lining-nums slashed-zero diagonal-fractions;
   font-variant-ligatures: common-ligatures contextual;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -58,6 +58,23 @@ a[disabled] {
   pointer-events: none;
   filter: saturate(0);
   opacity: 0.66;
+}
+
+abbr {
+  font-variant-caps: all-petite-caps;
+}
+
+sup, sub {
+  font-size: inherit;
+  vertical-align: baseline;
+  font-variant-position: super;
+}
+sub {
+  font-variant-position: sub;
+}
+
+table {
+  font-variant-numeric: tabular-nums slashed-zero;
 }
 
 .wai a {
