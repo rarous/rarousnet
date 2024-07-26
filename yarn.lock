@@ -12239,9 +12239,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20240718.0":
-  version: 3.20240718.0
-  resolution: "miniflare@npm:3.20240718.0"
+"miniflare@npm:3.20240718.1":
+  version: 3.20240718.1
+  resolution: "miniflare@npm:3.20240718.1"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     acorn: "npm:^8.8.0"
@@ -12257,7 +12257,7 @@ __metadata:
     zod: "npm:^3.22.3"
   bin:
     miniflare: bootstrap.js
-  checksum: 10c0/bea17491a2d2515f8e308660ef99795842fc33d702af1b2aa89abd9e2c9e8c32f186252306f64b7230717cd94c3eaa1c9330157d4b8c2eda0d6761940b0fc441
+  checksum: 10c0/561d8e41e79c0a2d098223aedf40aa4a68eb39e98beb060fdb93aa4b625d32b4654f8d45996195edabeb15a25638c401f20338c2ecfad0a5cd775f886dd43f9a
   languageName: node
   linkType: hard
 
@@ -14794,7 +14794,7 @@ __metadata:
     npm-run-all2: "npm:6.2.2"
     pagefind: "npm:1.1.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.67.0"
+    wrangler: "npm:3.67.1"
   languageName: unknown
   linkType: soft
 
@@ -18490,9 +18490,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.67.0":
-  version: 3.67.0
-  resolution: "wrangler@npm:3.67.0"
+"wrangler@npm:3.67.1":
+  version: 3.67.1
+  resolution: "wrangler@npm:3.67.1"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
@@ -18502,7 +18502,7 @@ __metadata:
     date-fns: "npm:^3.6.0"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:3.20240718.0"
+    miniflare: "npm:3.20240718.1"
     nanoid: "npm:^3.3.3"
     path-to-regexp: "npm:^6.2.0"
     resolve: "npm:^1.22.8"
@@ -18523,7 +18523,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/935d4d23fce4da0cdc0da58a012ec2d4ac7dcaa672a9f991f72e6947a91ace2611586885ff6636cdc4969c539843dcf7d2e63de5268872fdcc91ccd1dc96937f
+  checksum: 10c0/4780ab82dc7cd4d83b103add85662caf3adba323078e458f0afc171b9bec078f9282321ec302780cafd62c0320795bae7d7ceb34aa0b89063e950f220dba76c0
   languageName: node
   linkType: hard
 
