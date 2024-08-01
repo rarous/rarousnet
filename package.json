@@ -14,7 +14,7 @@
     "broken-link-checker-local": "0.2.1",
     "dprint": "0.47.2",
     "lighthouse": "12.1.0",
-    "local-web-server": "5.3.4",
+    "local-web-server": "5.4.0",
     "npm-run-all2": "6.2.2",
     "pagefind": "1.1.0",
     "tap-xunit": "2.4.1",
