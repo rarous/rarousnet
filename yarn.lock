@@ -1409,10 +1409,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:4.20240729.0":
-  version: 4.20240729.0
-  resolution: "@cloudflare/workers-types@npm:4.20240729.0"
-  checksum: 10c0/5759d0f091c875702674652fb3a2449d991fb3d6cc1314d793b8c9d2f58843da7a81f7d88dd3ee45758e912cd1bc289fd6fbc35686ee2a70b85bff98eb046a98
+"@cloudflare/workers-types@npm:4.20240806.0":
+  version: 4.20240806.0
+  resolution: "@cloudflare/workers-types@npm:4.20240806.0"
+  checksum: 10c0/09dc7152915b63dc251c612f94bd875dcb145fab652d334a99d6cb829becc924e41efa0e5711fbef05d2f42a1bdfe6dd90f652f9a338dd1af47d81b198aeffc5
   languageName: node
   linkType: hard
 
@@ -3757,7 +3757,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/functions@workspace:functions"
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20240729.0"
+    "@cloudflare/workers-types": "npm:4.20240806.0"
     feed: "npm:4.2.2"
     linkedom: "npm:0.18.4"
     qreator: "npm:9.3.0"
@@ -3801,7 +3801,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/workers@workspace:workers"
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20240729.0"
+    "@cloudflare/workers-types": "npm:4.20240806.0"
   languageName: unknown
   linkType: soft
 
