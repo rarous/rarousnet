@@ -1409,6 +1409,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cloudflare/workers-shared@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@cloudflare/workers-shared@npm:0.1.0"
+  checksum: 10c0/1a13f36e8eb204b6a5cb659836a47ac62597ad9f88fb62b89a229b48a255c8e282ce30e09499da84eb849859437835a8778bd11234ca72dc3d55861888430e28
+  languageName: node
+  linkType: hard
+
 "@cloudflare/workers-types@npm:4.20240806.0":
   version: 4.20240806.0
   resolution: "@cloudflare/workers-types@npm:4.20240806.0"
@@ -14842,7 +14849,7 @@ __metadata:
     npm-run-all2: "npm:6.2.2"
     pagefind: "npm:1.1.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.68.0"
+    wrangler: "npm:3.69.1"
   languageName: unknown
   linkType: soft
 
@@ -18520,11 +18527,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.68.0":
-  version: 3.68.0
-  resolution: "wrangler@npm:3.68.0"
+"wrangler@npm:3.69.1":
+  version: 3.69.1
+  resolution: "wrangler@npm:3.69.1"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
+    "@cloudflare/workers-shared": "npm:0.1.0"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
     blake3-wasm: "npm:^2.1.5"
@@ -18553,7 +18561,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/d5738fbfa88727352de1f83d9d2c16b5e6da1533df94ddb1be58e3a1157f448a4e80c8735c90ed9cc4cac8e8b7cbf03ec00e760352db32c151f4df45180926b9
+  checksum: 10c0/3c13a8764b4bdb43308a43bd435cb46085c2f64cc454f153772264e26125d73914cbab56cb6c927d5eb2c44fd4b25d911ccd3cc5a8d293b9958612de4f49ad89
   languageName: node
   linkType: hard
 
