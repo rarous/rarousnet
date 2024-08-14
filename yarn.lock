@@ -1449,6 +1449,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@csstools/color-helpers@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@csstools/color-helpers@npm:5.0.1"
+  checksum: 10c0/77fa3b7236eaa3f36dea24708ac0d5e53168903624ac5aed54615752a0730cd20773fda50e742ce868012eca8c000cc39688e05869e79f34714230ab6968d1e6
+  languageName: node
+  linkType: hard
+
 "@csstools/css-calc@npm:^2.0.0":
   version: 2.0.0
   resolution: "@csstools/css-calc@npm:2.0.0"
@@ -1469,6 +1476,19 @@ __metadata:
     "@csstools/css-parser-algorithms": ^3.0.0
     "@csstools/css-tokenizer": ^3.0.0
   checksum: 10c0/9b56ba3b56691d2133f1d9b881131bfd9745024a79f825284109adac05578e15ae3eed0e99c98db162932d69770fc970b5b005996c32cdf7167af3418da263c3
+  languageName: node
+  linkType: hard
+
+"@csstools/css-color-parser@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@csstools/css-color-parser@npm:3.0.1"
+  dependencies:
+    "@csstools/color-helpers": "npm:^5.0.1"
+    "@csstools/css-calc": "npm:^2.0.0"
+  peerDependencies:
+    "@csstools/css-parser-algorithms": ^3.0.0
+    "@csstools/css-tokenizer": ^3.0.0
+  checksum: 10c0/8890a621f916cbbf49e749d4e85e934ce55c9f9c339abcc5f4a64bc165605a6e8dd3cad9d3bbc994d2419a3b38981dca84b93ae50aa91d492fb5f0f4c9d95969
   languageName: node
   linkType: hard
 
@@ -1579,7 +1599,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/postcss-gamut-mapping@npm:2.0.0, @csstools/postcss-gamut-mapping@npm:^2.0.0":
+"@csstools/postcss-gamut-mapping@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@csstools/postcss-gamut-mapping@npm:2.0.1"
+  dependencies:
+    "@csstools/css-color-parser": "npm:^3.0.1"
+    "@csstools/css-parser-algorithms": "npm:^3.0.0"
+    "@csstools/css-tokenizer": "npm:^3.0.0"
+  peerDependencies:
+    postcss: ^8.4
+  checksum: 10c0/3415c420463dd481a3ddf5b104f15661492d9aa3613c109f9b7354b2664965a92036045e157945348cf2c06e075b89a0c0c4f49c8a00d41c827c5b61de297cd0
+  languageName: node
+  linkType: hard
+
+"@csstools/postcss-gamut-mapping@npm:^2.0.0":
   version: 2.0.0
   resolution: "@csstools/postcss-gamut-mapping@npm:2.0.0"
   dependencies:
@@ -3744,7 +3777,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
-    "@csstools/postcss-gamut-mapping": "npm:2.0.0"
+    "@csstools/postcss-gamut-mapping": "npm:2.0.1"
     "@hckr_/blendid": "npm:8.6.0"
     open-props: "npm:1.7.5"
     postcss-jit-props: "npm:1.0.14"
