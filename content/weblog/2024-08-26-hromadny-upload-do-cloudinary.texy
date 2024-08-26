@@ -38,6 +38,7 @@ for file in *.avif; do cld uploader upload "$file" use_filename=true unique_file
 \--code
 
 Je potřeba zapnout flag `use_filename`, aby se zachoval název souboru, a vypnout flag `unique_filename`, aby se k němu
- nepřidával hash jako v případě webového rozhranní.
+nepřidával hash jako v případě webového rozhranní.
+"Dokumentace parametrů":[https://cloudinary.com/documentation/image_upload_api_reference#upload_optional_parameters] je tady.
 Taky je potřeba mít nastavenou ENV proměnnou `CLOUDINARY_URL`, aby `cld` věděl kam to šoupat.
 
