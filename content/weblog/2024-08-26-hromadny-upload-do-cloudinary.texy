@@ -1,23 +1,27 @@
 ---
 {:title "Hromadný upload do Cloudinary",
- :description "Potřeboval jsem nahrát sadu obrázků ve vysoký kvalitě do Cloudinary. Narazil jsem le na několik problémů.",
+ :description "Potřeboval jsem nahrát sadu obrázků ve vysoký kvalitě do Cloudinary. Narazil jsem ale na několik problémů.",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "cloudinary", "avif"},
  :published "2024-08-26T15:45:00.000"
  :syndication []}
 ---
 
-Potřeboval jsem nahrát sadu obrázků ve vysoký kvalitě do Cloudinary. Narazil jsem le na několik problémů.
+Potřeboval jsem nahrát sadu obrázků ve vysoký kvalitě do Cloudinary:[]https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/lbkvpambwo114uoe81jw?t=default.
+ Narazil jsem ale na několik problémů.
 
 ## Upload limit 10MiB
 Cloudinary ve free planu umožňuje upload maximálně 10MiB souborů.
 Zdrojové soubory v JPEG však byly ve většině případů větší.
 
-Rozhodl jsem se, že obrázky nebudu změnšovat, ani zhoršovat kvalitu, ale převedu je do efektivnějšího formátu,
+Rozhodl jsem se, že obrázky nebudu změnšovat, ani zhoršovat kvalitu, ale převedu je do efektivnějšího formátu -
 v mém případě AVIF. Výsledné soubory mají okolo 2.5MiB. Jak jsem to udělal?
 
 /--code bash
-for file in *.jpg; do ffmpeg -i "$file" "${file%.jpg}.avif"; done
+for file in *.jpg
+do
+  ffmpeg -i "$file" "${file%.jpg}.avif"
+done
 \--code
 
 ## Přidávání hashe do názvu souboru
@@ -34,7 +38,10 @@ pipx install cloudinary-cli
 Je potřeba mít v `PATH` cestu do `$HOME/.local/bin`, aby `cld` příkaz fungoval ať jsme kdekoliv.
 
 /--code bash
-for file in *.avif; do cld uploader upload "$file" use_filename=true unique_filename=false; done
+for file in *.avif
+do
+  cld uploader upload "$file" use_filename=true unique_filename=false
+done
 \--code
 
 Je potřeba zapnout flag `use_filename`, aby se zachoval název souboru, a vypnout flag `unique_filename`, aby se k němu
