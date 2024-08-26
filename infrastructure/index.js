@@ -1,17 +1,14 @@
 import cloudflare from "@pulumi/cloudflare";
 import pulumi from "@pulumi/pulumi";
 import path from "node:path";
-import url from "node:url";
 import { build } from "./worker-builder.js";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-
 function buildAsset(fileName) {
   return build(
-    path.join(__dirname, "../workers", fileName),
+    path.join(import.meta.dirname, "../workers", fileName),
     true,
   );
 }
@@ -65,7 +62,7 @@ new cloudflare.Record(`${domain}/dns-record-keybase`, {
   zoneId: zone.id,
   name: "@",
   type: "TXT",
-  value: "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
+  content: "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
   ttl: 3600,
 });
 
@@ -134,7 +131,7 @@ const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
   zoneId: zone.id,
   name: "www",
   type: "CNAME",
-  value: weblogPages.domains[0],
+  content: weblogPages.domains[0],
   ttl: 1,
   proxied: true,
 });
