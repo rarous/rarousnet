@@ -33,30 +33,25 @@ const zone = new cloudflare.Zone(
   { protect: true },
 );
 
-// new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
-//   zoneId: zone.id,
-//   settings: {
-//     alwaysUseHttps: "on",
-//     automaticHttpsRewrites: "on",
-//     minTlsVersion: "1.2",
-//     http3: "on",
-//     zeroRtt: "on",
-//     ipv6: "on",
-//     brotli: "on",
-//     minify: {
-//       css: "on",
-//       html: "on",
-//       js: "on",
-//     },
-//     securityHeader: {
-//       enabled: true,
-//       includeSubdomains: true,
-//       nosniff: true,
-//       preload: true,
-//       maxAge: 31536000,
-//     },
-//   },
-// });
+new cloudflare.ZoneSettingsOverride(`${domain}/zone-settings`, {
+  zoneId: zone.id,
+  settings: {
+    alwaysUseHttps: "on",
+    automaticHttpsRewrites: "on",
+    minTlsVersion: "1.2",
+    http3: "on",
+    zeroRtt: "on",
+    ipv6: "on",
+    brotli: "on",
+    securityHeader: {
+      enabled: true,
+      includeSubdomains: true,
+      nosniff: true,
+      preload: true,
+      maxAge: 31536000,
+    },
+  },
+});
 
 new cloudflare.Record(`${domain}/dns-record-keybase`, {
   zoneId: zone.id,
