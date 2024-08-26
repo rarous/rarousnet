@@ -8,7 +8,7 @@
 ---
 
 Potřeboval jsem nahrát sadu obrázků ve vysoký kvalitě do Cloudinary:[https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/xglirviwegxkzuzk4yxo?t=default].
- Narazil jsem ale na několik problémů.
+Narazil jsem ale na několik problémů.
 
 ## Upload limit 10MiB
 Cloudinary ve free planu umožňuje upload maximálně 10MiB souborů.
