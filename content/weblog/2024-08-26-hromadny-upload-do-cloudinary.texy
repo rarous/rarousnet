@@ -1,0 +1,43 @@
+---
+{:title "Hromadný upload do Cloudinary",
+ :description "Potřeboval jsem nahrát sadu obrázků ve vysoký kvalitě do Cloudinary. Narazil jsem le na několik problémů.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "cloudinary", "avif"},
+ :published "2024-08-26T15:45:00.000"
+ :syndication []}
+---
+
+Potřeboval jsem nahrát sadu obrázků ve vysoký kvalitě do Cloudinary. Narazil jsem le na několik problémů.
+
+## Upload limit 10MiB
+Cloudinary ve free planu umožňuje upload maximálně 10MiB souborů.
+Zdrojové soubory v JPEG však byly ve většině případů větší.
+
+Rozhodl jsem se, že obrázky nebudu změnšovat, ani zhoršovat kvalitu, ale převedu je do efektivnějšího formátu,
+v mém případě AVIF. Výsledné soubory mají okolo 2.5MiB. Jak jsem to udělal?
+
+/--code bash
+for file in *.jpg; do ffmpeg -i "$file" "${file%.jpg}.avif"; done
+\--code
+
+## Přidávání hashe do názvu souboru
+Když jsem zmenšené soubory nauploadoval přes webové rozhranní do Cloudinary, všiml jsem si, že každý soubor má
+do názvu přidaný `_$hash`, který se snaží, mít unikátní názvy pro nahrané soubory. To může být zajímavá feature,
+pokud máte v content managementu bordel, ale já ve svém use case potřebuju mít názvy souborů nezměněné.
+
+Řešením je použít "Cloudinary CLI":[https://cloudinary.com/documentation/cloudinary_cli].
+
+/--code bash
+pipx install cloudinary-cli
+\--code
+
+Je potřeba mít v `PATH` cestu do `$HOME/.local/bin`, aby `cld` příkaz fungoval ať jsme kdekoliv.
+
+/--code bash
+for file in *.avif; do cld uploader upload "$file" use_filename=true unique_filename=false; done
+\--code
+
+Je potřeba zapnout flag `use_filename`, aby se zachoval název souboru, a vypnout flag `unique_filename`, aby se k němu
+ nepřidával hash jako v případě webového rozhranní.
+Taky je potřeba mít nastavenou ENV proměnnou `CLOUDINARY_URL`, aby `cld` věděl kam to šoupat.
+
