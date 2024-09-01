@@ -6,7 +6,7 @@
   "dependencies": {
     "feed": "4.2.2",
     "linkedom": "0.18.4",
-    "qreator": "9.3.0"
+    "qreator": "9.4.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20240821.1"
