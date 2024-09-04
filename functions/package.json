@@ -9,6 +9,6 @@
     "qreator": "9.4.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20240821.1"
+    "@cloudflare/workers-types": "4.20240903.0"
   }
 }
