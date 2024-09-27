@@ -20,6 +20,9 @@
     "tap-xunit": "2.4.1",
     "wrangler": "3.78.10"
   },
+  "resolutions": {
+    "sass": "1.78.0"
+  },
   "scripts": {
     "build:website": "yarn workspace @rarousnet/website build",
     "build:index": "pagefind --site ./.gryphoon/dist",
