@@ -14089,7 +14089,7 @@ __metadata:
     npm-run-all2: "npm:6.2.3"
     pagefind: "npm:1.1.1"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.78.10"
+    wrangler: "npm:3.78.12"
   languageName: unknown
   linkType: soft
 
@@ -17479,9 +17479,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.78.10":
-  version: 3.78.10
-  resolution: "wrangler@npm:3.78.10"
+"wrangler@npm:3.78.12":
+  version: 3.78.12
+  resolution: "wrangler@npm:3.78.12"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
     "@cloudflare/workers-shared": "npm:0.5.4"
@@ -17512,7 +17512,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/a3995e5a16e5a4069b26a5c9d9b2423c1e886c09d6881a4bfc41a73b5b366c4256bd20c3aaa6e9921c974b2228d9eeffb15ac01a03bb318d2395d396b0060494
+  checksum: 10c0/3999ae518d43cea6c00f2be806f934e20e79460a8ba01629250e85a48c0c281399be5782f0bdc94aa245295cb464e346f59edd601fee3f924e03acccbb96ffe9
   languageName: node
   linkType: hard
 
