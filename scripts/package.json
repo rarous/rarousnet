@@ -2,7 +2,7 @@
   "name": "@rarousnet/scripts",
   "description": "rarous.net scripts",
   "type": "module",
-  "license": "EPL-2.0",
+  "license": "EUPL-1.2",
   "dependencies": {
     "@thi.ng/transducers": "9.2.4",
     "linkedom": "0.18.5",

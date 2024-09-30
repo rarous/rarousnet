@@ -3,7 +3,7 @@
   "description": "rarous.net cards generator",
   "type": "module",
   "main": "generator.js",
-  "license": "EPL-2.0",
+  "license": "EUPL-1.2",
   "dependencies": {
     "@thi.ng/transducers": "9.2.4",
     "playwright": "1.47.2"

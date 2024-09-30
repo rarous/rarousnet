@@ -3,7 +3,7 @@
   "description": "rarous.net infrastructure",
   "type": "module",
   "main": "index.js",
-  "license": "EPL-2.0",
+  "license": "EUPL-1.2",
   "dependencies": {
     "@pulumi/cloudflare": "5.39.1",
     "@pulumi/pulumi": "3.134.1",

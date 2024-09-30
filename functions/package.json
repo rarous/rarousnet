@@ -2,7 +2,7 @@
   "name": "@rarousnet/functions",
   "description": "rarous.net Cloudflare Pages Functions",
   "type": "module",
-  "license": "EPL-2.0",
+  "license": "EUPL-1.2",
   "dependencies": {
     "feed": "4.2.2",
     "linkedom": "0.18.5",

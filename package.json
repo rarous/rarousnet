@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "main": "gulpfile.js",
-  "license": "EPL-2.0",
+  "license": "EUPL-1.2",
   "browserslist": [
     "> 5%",
     "last 4 versions"

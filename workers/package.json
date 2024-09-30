@@ -2,7 +2,7 @@
   "name": "@rarousnet/workers",
   "description": "rarous.net Cloudflare Workers",
   "type": "module",
-  "license": "EPL-2.0",
+  "license": "EUPL-1.2",
   "devDependencies": {
     "@cloudflare/workers-types": "4.20240925.0"
   }
