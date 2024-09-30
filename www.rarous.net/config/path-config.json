@@ -16,6 +16,11 @@
     "dest": "www.rarous.net"
   },
 
+  "cloudflare": {
+    "src": "cloudflare",
+    "dest": "./"
+  },
+
   "static": {
     "src": "static",
     "dest": "./"

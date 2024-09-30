@@ -1,10 +1,15 @@
 import { spawn } from "node:child_process";
 import postcssGamutMapping from "@csstools/postcss-gamut-mapping";
 import projectPath from "@hckr_/blendid/lib/projectPath.mjs";
+import { getPathConfig } from "@hckr_/blendid/lib/getPathConfig.mjs";
+import { CloudflareRegistry } from "@hckr_/blendid/tasks/cloudflare.mjs";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 import DefaultRegistry from "undertaker-registry";
-import { getPathConfig } from "@hckr_/blendid/lib/getPathConfig.mjs";
+
+/** @typedef {import("@types/nunjucks").Environment} Environment */
+
+const pathConfig = getPathConfig();
 
 class GryphoonRegistry extends DefaultRegistry {
   constructor(config, pathConfig) {
@@ -26,8 +31,6 @@ class GryphoonRegistry extends DefaultRegistry {
     });
   }
 }
-
-/** @typedef {import("@types/nunjucks").Environment} Environment */
 
 export default {
   images: true,
@@ -99,15 +102,16 @@ export default {
   },
 
   registries: [
-    new GryphoonRegistry({}, getPathConfig())
+    new CloudflareRegistry({}, pathConfig),
+    new GryphoonRegistry({}, pathConfig)
   ],
 
   additionalTasks: {
     development: {
-      prebuild: ["generate-content"],
+      prebuild: ["cloudflare-pages", "generate-content"],
     },
     production: {
-      prebuild: ["generate-content"],
+      prebuild: ["cloudflare-pages", "generate-content"],
     },
   },
 };
