@@ -109,6 +109,6 @@ export function defDiscogs({ HTMLElement, customElements }) {
 }
 
 // auto-register component when in browser env with customElements support
-if (window?.customElements) {
-  defDiscogs(window).register();
+if (globalThis.window?.customElements) {
+  defDiscogs(globalThis.window).register();
 }
