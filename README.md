@@ -32,5 +32,11 @@ yarn start
 ## Run wrangler for local development of Cloudflare Pages Functions
 
 ```bash
-op run --env-file=.dev.vars -- yarn wrangler pages dev .gryphoon/dist --kv=weblog --r2=storage --compatibility-flag=nodejs_compat --compatibility-date=2023-09-29
+op run --env-file=.env -- yarn wrangler pages dev .gryphoon/dist --kv=weblog --r2=storage --compatibility-flag=nodejs_compat --compatibility-date=2023-09-29
+```
+
+## Run wrangler for local development of CRON scripts
+
+```bash
+op run --env-file=.env  --no-masking  -- wrangler dev --test-scheduled workers/discogs-schedule.js 
 ```
