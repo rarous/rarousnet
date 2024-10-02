@@ -105,7 +105,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
   },
   deploymentConfigs: {
     production: {
-      compatibilityDate: "2023-09-29",
+      compatibilityDate: "2024-09-02",
       compatibilityFlags: ["nodejs_compat"],
       secrets: {
         TURNSTILE_SECRET_KEY: turnstile.secret,
@@ -140,6 +140,7 @@ const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-work
   accountId: account.id,
   name: "discogs-schedule-worker",
   content: buildAsset("discogs-schedule.js"),
+  compatibilityDate: "2024-09-02",
   module: true,
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
   plainTextBindings: [{ name: "SPOTIFY_CLIENT_ID", text: config.require("spotify-clientId") }],
