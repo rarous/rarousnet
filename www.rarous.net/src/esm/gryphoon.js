@@ -59,6 +59,11 @@ function injectItems(section, template, items, applyTemplate) {
   list.replaceChildren(listItems);
 }
 
+/**
+ *
+ * @param {Window} window
+ * @returns {typeof WebMentions}
+ */
 export function defWebMentions({ HTMLElement, customElements }) {
   class WebMentions extends HTMLElement {
     constructor() {
@@ -119,6 +124,11 @@ async function gravatarUrl(item) {
   return `https://gravatar.com/avatar/${sha}?d=identicon`;
 }
 
+/**
+ *
+ * @param {Window} window
+ * @returns {typeof Comments}
+ */
 export function defComments({ HTMLElement, customElements }) {
   class Comments extends HTMLElement {
     constructor() {
@@ -175,6 +185,14 @@ export function defComments({ HTMLElement, customElements }) {
   return Comments;
 }
 
+/**
+ *
+ * @param {Window} window
+ * @param {Object} dependencies
+ * @param {typeof Comments} dependencies.Comments
+ * @param {typeof WebMentions} dependencies.WebMentions
+ * @returns {typeof Weblog}
+ */
 export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentions }) {
   class Weblog extends HTMLElement {
     constructor() {
@@ -216,8 +234,8 @@ export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentio
 }
 
 // auto-register components when in browser env with customElements support
-if (window?.customElements) {
-  const Comments = defComments(window);
-  const WebMentions = defWebMentions(window);
-  defWeblog(window, { Comments, WebMentions }).register();
+if (globalThis.window?.customElements) {
+  const Comments = defComments(globalThis.window);
+  const WebMentions = defWebMentions(globalThis.window);
+  defWeblog(globalThis.window, { Comments, WebMentions }).register();
 }

@@ -32,6 +32,7 @@ function injectItems(section, template, items, applyTemplate) {
 
 /**
  * @param {Window} window
+ * @return {typeof Discogs}
  */
 export function defDiscogs({ HTMLElement, customElements }) {
   class Discogs extends HTMLElement {
