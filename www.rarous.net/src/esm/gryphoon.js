@@ -215,7 +215,7 @@ export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentio
   return Weblog;
 }
 
-// autoregister components when in browser env with customELements support
+// autoregister components when in browser env with customElements support
 if (window?.customElements) {
   const Comments = defComments(window);
   const WebMentions = defWebMentions(window);
