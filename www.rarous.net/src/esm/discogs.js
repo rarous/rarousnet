@@ -44,9 +44,25 @@ export function defDiscogs({ HTMLElement, customElements }) {
       customElements.define(tagName, this);
     }
 
+    get endpoint() {
+      return this.getAttribute("api-endpoint") ?? "/api/v1/collections/vinyls";
+    }
+
+    get loaded() {
+      return this.hasAttribute("loaded");
+    }
+    set loaded(isLoaded) {
+      if (isLoaded) {
+        this.setAttribute("loaded", "");
+      }
+      else {
+        this.removeAttribute("loaded");
+      }
+    }
+
     set data(albums) {
       if (!albums?.length) return;
-      this.setAttribute("loaded", "");
+      this.loaded = true;
 
       const template = this.querySelector("template");
       const collection = this.querySelector("section");
@@ -82,13 +98,17 @@ export function defDiscogs({ HTMLElement, customElements }) {
     }
 
     async loadDataFromApi(url) {
-      if (this.getAttribute("loaded")) return;
-      const endpoint = url ?? this.getAttribute("api-endpoint") ?? "/api/v1/collections/vinyls";
-      const resp = await fetch(endpoint, {
+      if (this.loaded) return;
+      const resp = await fetch(url ?? this.endpoint, {
         headers: { "Accept": "application/json" },
       });
       this.data = await resp.json();
     }
   }
   return Discogs;
+}
+
+// auto-register component when in browser env with customElements support
+if (window?.customElements) {
+  defDiscogs(window).register();
 }
