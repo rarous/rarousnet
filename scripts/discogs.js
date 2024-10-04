@@ -32,11 +32,21 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
     type: "album,track",
     limit: 1,
   });
-  const resp = await fetch(`https://api.spotify.com/v1/search?${params}`, {
-    headers: { Authorization: `Bearer ${spotifyToken}` },
-  });
-  const { albums } = await resp.json();
-  return albums;
+  let result = null;
+  do {
+    const resp = await fetch(`https://api.spotify.com/v1/search?${params}`, {
+      headers: { Authorization: `Bearer ${spotifyToken}` },
+    });
+    const { error, albums } = await resp.json();
+    if (error) {
+      const retryAfter = Number.parseInt(resp.headers.get("Retry-After"), 10) * 1000;
+      await new Promise(resolve => setTimeout(resolve, retryAfter));
+    }
+    else {
+      result = albums;
+    }
+  } while (!result);
+  return result;
 }
 
 async function authSpotify({ clientId, clientSecret }) {
@@ -84,7 +94,8 @@ async function main({ token, clientId, clientSecret }) {
       // if we don't find album for exact release year, try to search for any year
       albums = await searchAlbumOnSpotify(`artist:${item.artist.name} album:${item.title}`, spotifyToken);
     }
-    item.spotifyUri = albums.items?.[0]?.uri;
+    if (!albums) console.warn(`No albums found for artis:${item.artist.name} album:${item.title}`);
+    else item.spotifyUri = albums.items?.[0]?.uri;
   }
 
   console.log(JSON.stringify(result.sort(byArtistAndYear)));
