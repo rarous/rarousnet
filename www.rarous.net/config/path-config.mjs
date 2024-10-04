@@ -1,4 +1,4 @@
-{
+export default {
   "src": "./src",
   "dest": "../.gryphoon/dist",
 

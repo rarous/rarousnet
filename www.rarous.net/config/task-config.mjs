@@ -2,14 +2,13 @@ import { spawn } from "node:child_process";
 import postcssGamutMapping from "@csstools/postcss-gamut-mapping";
 import projectPath from "@hckr_/blendid/lib/projectPath.mjs";
 import { getPathConfig } from "@hckr_/blendid/lib/getPathConfig.mjs";
-import { CloudflareRegistry } from "@hckr_/blendid/tasks/cloudflare.mjs";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 import DefaultRegistry from "undertaker-registry";
 
 /** @typedef {import("@types/nunjucks").Environment} Environment */
 
-const pathConfig = getPathConfig();
+const pathConfig = await getPathConfig();
 
 class GryphoonRegistry extends DefaultRegistry {
   constructor(config, pathConfig) {
@@ -34,11 +33,18 @@ class GryphoonRegistry extends DefaultRegistry {
 
 export default {
   images: true,
+  cloudflare: true,
   cloudinary: false,
   fonts: true,
   svgSprite: true,
   javascripts: false,
   workboxBuild: false,
+
+  static: {
+    srcConfig: {
+      encoding: false
+    }
+  },
 
   stylesheets: {
     postcss: {
@@ -51,14 +57,7 @@ export default {
     }
   },
 
-  static: {
-    srcConfig: {
-      encoding: false
-    }
-  },
-
   html: {
-    dataFile: "global.mjs",
     nunjucksRender: {
       filters: {
         isoDate(x) {
@@ -93,25 +92,18 @@ export default {
 
   vite: {
     server: { port: 3001 },
-    browser: "google chrome canary",
+    browser: "firefox developer edition",
     browserArgs: "--ignore-certificate-errors --allow-insecure-localhost",
   },
 
-  production: {
-    rev: true,
-  },
-
-  registries: [
-    new CloudflareRegistry({}, pathConfig),
-    new GryphoonRegistry({}, pathConfig)
-  ],
+  registries: [new GryphoonRegistry({}, pathConfig)],
 
   additionalTasks: {
     development: {
-      prebuild: ["cloudflare-pages", "generate-content"],
+      prebuild: ["generate-content"],
     },
     production: {
-      prebuild: ["cloudflare-pages", "generate-content"],
+      prebuild: ["generate-content"],
     },
   },
 };
