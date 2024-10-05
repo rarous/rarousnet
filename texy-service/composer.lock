@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "683247e73de8b7aef069f5e9745901db",
+    "content-hash": "503f0d638a12543a4b0e4f1ac282cb00",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -222,20 +222,20 @@
         },
         {
             "name": "texy/texy",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/texy.git",
-                "reference": "cd1068e6abef89808f969347076aaaace9215bd5"
+                "reference": "a441883938f1ab79f4e22c949e6a1169a119a078"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/texy/zipball/cd1068e6abef89808f969347076aaaace9215bd5",
-                "reference": "cd1068e6abef89808f969347076aaaace9215bd5",
+                "url": "https://api.github.com/repos/dg/texy/zipball/a441883938f1ab79f4e22c949e6a1169a119a078",
+                "reference": "a441883938f1ab79f4e22c949e6a1169a119a078",
                 "shasum": ""
             },
             "require": {
-                "php": "8.1 - 8.3"
+                "php": "8.1 - 8.4"
             },
             "conflict": {
                 "latte/latte": ">=3.0.0 <3.0.14"
@@ -285,20 +285,20 @@
                 "wiki"
             ],
             "support": {
-                "source": "https://github.com/dg/texy/tree/v3.2.2"
+                "source": "https://github.com/dg/texy/tree/v3.2.3"
             },
-            "time": "2024-05-27T12:24:38+00:00"
+            "time": "2024-10-05T15:06:56+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "8.3.12"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
