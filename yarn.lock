@@ -2221,7 +2221,7 @@ __metadata:
     "@csstools/postcss-gamut-mapping": "npm:2.0.2"
     "@hckr_/blendid": "npm:9.0.0-beta.10"
     "@types/undertaker-registry": "npm:1.0.4"
-    open-props: "npm:1.7.6"
+    open-props: "npm:1.7.7"
     postcss-jit-props: "npm:1.0.14"
     undertaker-registry: "npm:2.0.0"
   languageName: unknown
@@ -9765,10 +9765,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open-props@npm:1.7.6":
-  version: 1.7.6
-  resolution: "open-props@npm:1.7.6"
-  checksum: 10c0/868c697aaa530446554cb7ab5bf8b90cad17c12d8b9a48b9cf67a06e1a95ca501efeb7e7a832c055b888bd291eeae7b6090a64e0fc91fd56e0e297268a60160d
+"open-props@npm:1.7.7":
+  version: 1.7.7
+  resolution: "open-props@npm:1.7.7"
+  checksum: 10c0/4959b66f9d4f2aa912035cdc7626181b931ff82d603bdc027f24d4bb41460fb4bb62005004c5ee47c4e9bec6050a1d75c0326711de1f64e7e90b317d80aac70c
   languageName: node
   linkType: hard
 
