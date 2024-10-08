@@ -37,8 +37,6 @@ export default {
   cloudinary: false,
   fonts: true,
   svgSprite: true,
-  javascripts: false,
-  workboxBuild: false,
 
   static: {
     srcConfig: {
