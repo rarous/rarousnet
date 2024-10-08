@@ -234,7 +234,7 @@ export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentio
 }
 
 // auto-register components when in browser env with customElements support
-if (globalThis.window?.customElements) {
+if (new URL(import.meta.url).searchParams.has("define") && globalThis.window?.customElements) {
   const Comments = defComments(globalThis.window);
   const WebMentions = defWebMentions(globalThis.window);
   defWeblog(globalThis.window, { Comments, WebMentions }).register();

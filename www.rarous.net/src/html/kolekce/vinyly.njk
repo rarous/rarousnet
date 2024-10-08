@@ -335,8 +335,9 @@
   </dialog>
 
   <script type="module">
-    import "/assets/esm/gryphoon.js";
-    import "/assets/esm/discogs.js";
+    import "/assets/esm/gryphoon.js?define";
+    import "/assets/esm/discogs.js?define";
+
     const discogs = document.querySelector("rarous-discogs");
 
     window.onSpotifyIframeApiReady = function(IFrameAPI) {

@@ -110,6 +110,6 @@ export function defDiscogs({ HTMLElement, customElements }) {
 }
 
 // auto-register component when in browser env with customElements support
-if (globalThis.window?.customElements) {
+if (new URL(import.meta.url).searchParams.has("define") && globalThis.window?.customElements) {
   defDiscogs(globalThis.window).register();
 }

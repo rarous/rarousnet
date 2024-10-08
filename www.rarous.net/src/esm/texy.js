@@ -80,22 +80,35 @@ function definePatterns({ singleQuotes, doubleQuotes }) {
 }
 
 /**
- * Apply typografic substitutions to given text input.
+ * Apply typographic substitutions to given text input.
  * @param {string} input
  * @param {Object} options
  * @param {string} options.locale Locale determines what quotation marks will be applied. Default `cs`
  */
 export function processTypo(input, { locale } = { locale: "cs" }) {
-  const patterns = definePatterns(locales.get(locale ?? "en"));
+  const patterns = definePatterns(locales.get(locale ?? "cs"));
   return patterns.reduce((i, [p, r]) => i.replaceAll(p, r), input);
 }
 
-class TexyTypography extends HTMLElement {
-  connectedCallback() {
-    const text = this.textContent;
-    const locale = this.getAttribute("lang") ?? "cs";
-    this.innerText = processTypo(text, { locale });
+/**
+ *
+ * @param {Window}
+ * @returns {typeof TexyTypography}
+ */
+export function defTexyTypography({ HTMLElement, customElements, document}) {
+  class TexyTypography extends HTMLElement {
+    static register(tagName = "texy-typo") {
+      customElements.define(tagName, this);
+    }
+    connectedCallback() {
+      const text = this.textContent;
+      const locale = this.getAttribute("lang") ?? document?.documentElement?.lang ?? "cs";
+      this.innerText = processTypo(text, { locale });
+    }
   }
+  return TexyTypography;
 }
 
-customElements.define("texy-typo", TexyTypography);
+if (new URL(import.meta.url).searchParams.has("define") && globalThis.window?.customElements) {
+  defTexyTypography(globalThis.window).register("texy-typo");
+}
