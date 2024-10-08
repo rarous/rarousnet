@@ -65,7 +65,7 @@ jobs:
       - php/install-composer
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v2-build
+          cache-version: v3-build
           override-ci-command: yarn workspaces focus @rarousnet/website
       - php/install-packages:
           app-dir: ~/project/generator
