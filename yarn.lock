@@ -11393,7 +11393,7 @@ __metadata:
     npm-run-all2: "npm:6.2.3"
     pagefind: "npm:1.1.1"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.80.2"
+    wrangler: "npm:3.80.3"
   languageName: unknown
   linkType: soft
 
@@ -13430,15 +13430,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unenv@npm:unenv-nightly@2.0.0-20240919-125358-9a64854":
-  version: 2.0.0-20240919-125358-9a64854
-  resolution: "unenv-nightly@npm:2.0.0-20240919-125358-9a64854"
+"unenv@npm:unenv-nightly@2.0.0-20241009-125958-e8ea22f":
+  version: 2.0.0-20241009-125958-e8ea22f
+  resolution: "unenv-nightly@npm:2.0.0-20241009-125958-e8ea22f"
   dependencies:
     defu: "npm:^6.1.4"
     ohash: "npm:^1.1.4"
     pathe: "npm:^1.1.2"
     ufo: "npm:^1.5.4"
-  checksum: 10c0/1f4bae2d616c75b219d35564e7e2de263de5dd16be32e8ee4ed503c388fc8dce5b28511a6f3db48b4bb3d376be0e920d82f8a628a18aad4ea9233b12db623771
+  checksum: 10c0/ec1e5b52f865c55e43d3d9eec333fda72901d16ea2d957db33d4bcc73eab40b96a0dacd61bed44d4f72cd4920f6754a6a47d5410bfb995f0918193b2e35ee562
   languageName: node
   linkType: hard
 
@@ -13952,9 +13952,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.80.2":
-  version: 3.80.2
-  resolution: "wrangler@npm:3.80.2"
+"wrangler@npm:3.80.3":
+  version: 3.80.3
+  resolution: "wrangler@npm:3.80.3"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
     "@cloudflare/workers-shared": "npm:0.5.4"
@@ -13971,7 +13971,7 @@ __metadata:
     resolve.exports: "npm:^2.0.2"
     selfsigned: "npm:^2.0.1"
     source-map: "npm:^0.6.1"
-    unenv: "npm:unenv-nightly@2.0.0-20240919-125358-9a64854"
+    unenv: "npm:unenv-nightly@2.0.0-20241009-125958-e8ea22f"
     workerd: "npm:1.20240925.0"
     xxhash-wasm: "npm:^1.0.1"
   peerDependencies:
@@ -13985,7 +13985,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/f988a8d145e5a6900207ad73638b5b04e5f11e23b3c22f5bf960f41dd03624e75539a42904652d5410c7b3c19cf29c24ba30d4795aaeed2a5bd10ed2bd8736ba
+  checksum: 10c0/7cd3bcf281d8cf6191b8e0ae2a9b835e67b19e125fc558ab9efa4b3333f2b258a8d105b2a982df3369ab760e7eb9287e755eaba0d261f7e35b87e84b69b197a1
   languageName: node
   linkType: hard
 
