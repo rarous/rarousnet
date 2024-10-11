@@ -2195,7 +2195,7 @@ __metadata:
     "@cloudflare/workers-types": "npm:4.20241004.0"
     feed: "npm:4.2.2"
     linkedom: "npm:0.18.5"
-    qreator: "npm:9.5.1"
+    qreator: "npm:9.5.2"
   languageName: unknown
   linkType: soft
 
@@ -11325,15 +11325,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qreator@npm:9.5.1":
-  version: 9.5.1
-  resolution: "qreator@npm:9.5.1"
+"qreator@npm:9.5.2":
+  version: 9.5.2
+  resolution: "qreator@npm:9.5.2"
   dependencies:
     color-string: "npm:^1.9.1"
     js-base64: "npm:^3.7.7"
     pdf-lib: "npm:^1.17.1"
     sharp: "npm:^0.33.5"
-  checksum: 10c0/a252c936f289d36e0e3556c3a469c9962a761dadb78e41545c46b4b22957bf9d54dbcca62a50653e27433062cd811d073879cf4c0990d20e7fffaff6b1dbc772
+  checksum: 10c0/0beadf17d371a0badec172fd7671d67aab8ac5ed12be9b82036d95e0477a49d60fb4a45aa8440c14194a7c227e98941b059d64ea8d903dd335591dbb986fa00b
   languageName: node
   linkType: hard
 
