@@ -21,7 +21,7 @@
     "wrangler": "3.80.3"
   },
   "resolutions": {
-    "sass": "=1.78.0"
+    "sass": "=1.79.5"
   },
   "scripts": {
     "build:website": "yarn workspace @rarousnet/website build",
