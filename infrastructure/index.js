@@ -87,6 +87,22 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
   accountId: account.id,
   name: "rarousnet",
   productionBranch: "trunk",
+  source: {
+    type: "github",
+    config: {
+      owner: "rarous",
+      repoName: "rarousnet",
+      deploymentsEnabled: false,
+      productionDeploymentEnabled: false,
+      productionBranch: "trunk",
+      previewBranchIncludes: ["*"],
+      prCommentsEnabled: false,
+    },
+  },
+  buildConfig: {
+    buildCommand: "yarn build",
+    destinationDir: "dist",
+  },
   deploymentConfigs: {
     production: {
       compatibilityDate: "2024-09-02",
