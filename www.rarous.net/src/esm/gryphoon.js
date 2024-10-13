@@ -50,7 +50,7 @@ function injectItems(section, template, items, applyTemplate) {
   if (!template) return;
 
   const list = section.querySelector(".items");
-  const listItems = document.createDocumentFragment();
+  const listItems = section.ownerDocument.createDocumentFragment();
   for (const item of items) {
     const { content } = template.cloneNode(true);
     applyTemplate(content, item, section);
@@ -64,11 +64,8 @@ function injectItems(section, template, items, applyTemplate) {
  * @param {Window} window
  * @returns {typeof WebMentions}
  */
-export function defWebMentions({ HTMLElement, customElements }) {
+export function defWebMentions({ HTMLElement, customElements, document }) {
   class WebMentions extends HTMLElement {
-    constructor() {
-      super();
-    }
 
     static register(tagName = "gryphoon-webmentions") {
       this.tagName = tagName;
@@ -76,7 +73,6 @@ export function defWebMentions({ HTMLElement, customElements }) {
     }
 
     set data(webmentions) {
-      // TODO: inject selectors via attributes
       const likesOf = this.querySelector("#like-of");
       const repostsOf = this.querySelector("#repost-of");
       const template = this.querySelector("template");
@@ -129,24 +125,26 @@ async function gravatarUrl(item) {
  * @param {Window} window
  * @returns {typeof Comments}
  */
-export function defComments({ HTMLElement, customElements }) {
+export function defComments({ HTMLElement, customElements, document }) {
   class Comments extends HTMLElement {
-    constructor() {
-      super();
-    }
 
     static register(tagName = "gryphoon-comments") {
       this.tagName = tagName;
       customElements.define(tagName, this);
     }
 
+    get lang() {
+      return this.getAttribute("lang") ?? document.documentElement.lang ?? "cs"
+    }
+
     set data(comments) {
       if (!comments?.length) return;
-      // TODO: inject selectors via attributes
+
       const template = this.querySelector("template");
       const section = this.querySelector("#comments");
+      const locale = this.lang;
 
-      async function itemTemplate(content, item, section) {
+      async function itemTemplate(content, item) {
         const date = new Date(item.created);
 
         const entry = content.querySelector(".h-entry");
@@ -173,7 +171,7 @@ export function defComments({ HTMLElement, customElements }) {
           ".e-content": { innerHTML: item.text },
           ".dt-published": {
             datetime: item.created,
-            textContent: `${date.toLocaleDateString("cs")} v ${date.toLocaleTimeString("cs")}`,
+            textContent: `${date.toLocaleDateString(locale)} v ${date.toLocaleTimeString(locale)}`,
           },
         });
       }
@@ -193,11 +191,8 @@ export function defComments({ HTMLElement, customElements }) {
  * @param {typeof WebMentions} dependencies.WebMentions
  * @returns {typeof Weblog}
  */
-export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentions }) {
+export function defWeblog({ HTMLElement, customElements, location }, { Comments, WebMentions }) {
   class Weblog extends HTMLElement {
-    constructor() {
-      super();
-    }
 
     static register(tagName = "gryphoon-weblog") {
       this.tagName = tagName;
@@ -206,27 +201,44 @@ export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentio
       customElements.define(tagName, this);
     }
 
+    get apiEndpoint() {
+      return this.getAttribute("api-endpoint") ?? "/api/v1/weblog";
+    }
+
+    get url() {
+      return this.getAttribute("href") ?? location.href;
+    }
+
+    get loaded() {
+      return this.hasAttribute("loaded");
+    }
+
+    set loaded(isLoaded) {
+      if (isLoaded) {
+        this.setAttribute("loaded", "");
+      }
+      else {
+        this.removeAttribute("loaded");
+      }
+    }
+
     async connectedCallback() {
       const commentsComp = this.querySelector(Comments.tagName);
       const webMentionsComp = this.querySelector(WebMentions.tagName);
 
-      // TODO: bypass auto-fetch when already hydrated
+      if (this.loaded) return;
 
-      const apiEndpoint = this.getAttribute("api-endpoint") ?? "/api/v1/weblog";
-      const url = this.getAttribute("href") ?? location.href;
-      const resp = await fetch(`${apiEndpoint}?${new URLSearchParams({ url })}`);
-
+      const params = new URLSearchParams({ url: this.url });
+      const resp = await fetch(`${this.apiEndpoint}?${params}`);
       const { comments, webmentions } = await resp.json();
 
-      if (commentsComp && !comments?.length) {
-        commentsComp.remove();
-      }
-      if (webMentionsComp && !webmentions?.length) {
-        webMentionsComp.remove();
-      }
-
+      if (commentsComp && !comments?.length) commentsComp.remove();
       if (commentsComp) commentsComp.data = comments;
+
+      if (webMentionsComp && !webmentions?.length) webMentionsComp.remove();
       if (webMentionsComp) webMentionsComp.data = webmentions;
+
+      this.loaded = true;
     }
   }
 
@@ -235,7 +247,7 @@ export function defWeblog({ HTMLElement, customElements }, { Comments, WebMentio
 
 // auto-register components when in browser env with customElements support
 if (globalThis.window?.customElements) {
-  const Comments = defComments(globalThis.window);
-  const WebMentions = defWebMentions(globalThis.window);
-  defWeblog(globalThis.window, { Comments, WebMentions }).register();
+  const Comments = defComments(window);
+  const WebMentions = defWebMentions(window);
+  defWeblog(window, { Comments, WebMentions }).register();
 }

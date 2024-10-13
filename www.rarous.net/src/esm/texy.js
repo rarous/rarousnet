@@ -92,23 +92,30 @@ export function processTypo(input, { locale } = { locale: "cs" }) {
 
 /**
  *
- * @param {Window}
+ * @param {Window} globalScope
  * @returns {typeof TexyTypography}
  */
-export function defTexyTypography({ HTMLElement, customElements, document}) {
+export function defTexyTypography({ HTMLElement, customElements, document }) {
   class TexyTypography extends HTMLElement {
     static register(tagName = "texy-typo") {
+      this.tagName = tagName;
       customElements.define(tagName, this);
     }
+
+    get lang() {
+      return this.getAttribute("lang") ?? document?.documentElement?.lang ?? "cs";
+    }
+
     connectedCallback() {
       const text = this.textContent;
-      const locale = this.getAttribute("lang") ?? document?.documentElement?.lang ?? "cs";
+      const locale = this.lang;
       this.innerText = processTypo(text, { locale });
     }
   }
+
   return TexyTypography;
 }
 
-if (new URL(import.meta.url).searchParams.has("define") && globalThis.window?.customElements) {
-  defTexyTypography(globalThis.window).register("texy-typo");
+if (globalThis.window?.customElements) {
+  defTexyTypography(window).register();
 }

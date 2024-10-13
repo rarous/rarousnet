@@ -1,11 +1,11 @@
 /**
  * @param {Element} section
- * @param {Array} items
+ * @param {Number} itemsLength
  */
-function itemsCounter(section, items) {
+function itemsCounter(section, itemsLength) {
   const counter = section.querySelector("data");
-  counter.value = items.length;
-  counter.textContent = items.length;
+  counter.value = itemsLength;
+  counter.textContent = itemsLength;
   return counter;
 }
 
@@ -16,10 +16,9 @@ function itemsCounter(section, items) {
  * @param {Function} applyTemplate
  */
 function injectItems(section, template, items, applyTemplate) {
-  if (!items?.length) {
-    return section.remove();
-  }
-  itemsCounter(section, items);
+  if (!items?.length) return section.remove();
+
+  itemsCounter(section, items.length);
   const list = section.querySelector(".items");
   const listItems = section.ownerDocument.createDocumentFragment();
   for (const [index, item] of items.entries()) {
@@ -36,9 +35,6 @@ function injectItems(section, template, items, applyTemplate) {
  */
 export function defDiscogs({ HTMLElement, customElements }) {
   class Discogs extends HTMLElement {
-    constructor() {
-      super();
-    }
 
     static register(tagName = "rarous-discogs") {
       this.tagName = tagName;
@@ -52,6 +48,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
     get loaded() {
       return this.hasAttribute("loaded");
     }
+
     set loaded(isLoaded) {
       if (isLoaded) {
         this.setAttribute("loaded", "");
@@ -106,10 +103,11 @@ export function defDiscogs({ HTMLElement, customElements }) {
       this.data = await resp.json();
     }
   }
+
   return Discogs;
 }
 
 // auto-register component when in browser env with customElements support
 if (globalThis.window?.customElements) {
-  defDiscogs(globalThis.window).register();
+  defDiscogs(window).register();
 }
