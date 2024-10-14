@@ -67,4 +67,4 @@ export async function renderDOM({ next, data }) {
   return new Response(document.toString(), resp);
 }
 
-export const onRequest = [loadData, parseDOM, renderComments, renderDOM];
+export const onRequest = [loadData]; // , parseDOM, renderComments, renderDOM
