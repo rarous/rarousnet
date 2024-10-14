@@ -30,45 +30,27 @@ export async function loadData({ request, env, data, next }) {
 /**
  * @param {EventContext<Env>} context
  */
-export async function parseDOM({ next, data }) {
+export async function renderWebComponents({ next, data }) {
   const resp = await next();
   const contentType = resp.headers.get("content-type");
   console.log({ contentType });
   if (contentType.startsWith("text/html")) {
-    console.log("Read HTML response")
-    const html = await resp.text();
-    console.log("Parse HTML into DOM");
-    data.window = parseHTML(html);
+    if (data.weblog.comments.length) {
+      console.log("Read HTML response")
+      const html = await resp.text();
+      console.log("Parse HTML into DOM");
+      const { document, window } = parseHTML(html);
+
+      const Comments = defComments(window);
+      Comments.register();
+      const el = document.querySelector(Comments.tagName);
+      if (el) {
+        el.data = data.weblog.comments;
+      }
+      return new Response(document.toString(), resp);
+    }
   }
   return resp;
 }
 
-/**
- * @param {EventContext<Env, string, Data>} context
- */
-export async function renderComments({ data, next }) {
-  const resp = await next();
-  if (!data.window) return resp;
-
-  const { document, window } = data.window;
-  const Comments = defComments(window);
-  Comments.register();
-  const el = document.querySelector(Comments.tagName);
-  if (el) {
-    el.data = data.weblog.comments;
-  }
-  return resp;
-}
-
-/**
- * @param {EventContext<Env, string, Data>} context
- */
-export async function renderDOM({ next, data }) {
-  const resp = await next();
-  if (!data.window) return resp;
-
-  const { document } = data.window;
-  return new Response(document.toString(), resp);
-}
-
-export const onRequest = [loadData, parseDOM]; // , parseDOM, renderComments, renderDOM
+export const onRequest = [loadData, renderWebComponents];
