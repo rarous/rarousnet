@@ -1,5 +1,5 @@
 import { parseHTML } from "linkedom/worker";
-import { defComments } from "@rarousnet/website/src/esm/gryphoon.js";
+import { defComments } from "@rarousnet/website/gryphoon.js";
 
 /**
  * @typedef {Object} Data
