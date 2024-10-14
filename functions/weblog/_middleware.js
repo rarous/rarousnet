@@ -1,5 +1,5 @@
 import { parseHTML } from "linkedom/worker";
-import { defComments } from "@rarousnet/website/gryphoon.js";
+import { defComments, defWebMentions } from "@rarousnet/website/gryphoon.js";
 
 /**
  * @typedef {Object} Data
@@ -35,7 +35,7 @@ export async function renderWebComponents({ next, data }) {
   const contentType = resp.headers.get("content-type");
   console.log({ headers: Object.fromEntries(resp.headers) });
   if (contentType?.startsWith("text/html")) {
-    if (data.weblog.comments.length) {
+    if (data.weblog.comments.length || data.weblog.webmentions.length) {
       console.log("Read HTML response")
       const html = await resp.text();
       console.log("Parse HTML into DOM");
@@ -43,9 +43,16 @@ export async function renderWebComponents({ next, data }) {
 
       const Comments = defComments(window);
       Comments.register();
-      const el = document.querySelector(Comments.tagName);
-      if (el) {
-        el.data = data.weblog.comments;
+      const commentsEl = document.querySelector(Comments.tagName);
+      if (commentsEl) {
+        commentsEl.data = data.weblog.comments;
+      }
+
+      const WebMentions = defWebMentions(window);
+      WebMentions.register();
+      const webMentionsEl = document.querySelector(WebMentions.tagName);
+      if (webMentionsEl) {
+        webMentionsEl.data = data.weblog.webmentions;
       }
       return new Response(document.toString(), resp);
     }
