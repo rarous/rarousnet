@@ -8,19 +8,6 @@ import { defComments } from "@rarousnet/website/gryphoon.js";
  */
 
 /**
- * @param {EventContext<Env>} context
- */
-export async function parseDOM({ next, data }) {
-  const resp = await next();
-  const contentType = resp.headers.get("content-type");
-  if (contentType.startsWith("text/html")) {
-    const html = await resp.text();
-    data.window = parseHTML(html);
-  }
-  return resp;
-}
-
-/**
  * @param {KVNamespace} weblog
  * @param {string} url
  * @return {Promise<{webmentions: Array, comments: Array}>}
@@ -36,7 +23,24 @@ async function getDetail(weblog, url) {
  */
 export async function loadData({ request, env, data, next }) {
   data.weblog = await getDetail(env.weblog, request.url);
+  console.log(data);
   return next();
+}
+
+/**
+ * @param {EventContext<Env>} context
+ */
+export async function parseDOM({ next, data }) {
+  const resp = await next();
+  const contentType = resp.headers.get("content-type");
+  console.log({ contentType });
+  if (contentType.startsWith("text/html")) {
+    console.log("Read HTML response")
+    const html = await resp.text();
+    console.log("Parse HTML into DOM");
+    data.window = parseHTML(html);
+  }
+  return resp;
 }
 
 /**
@@ -67,4 +71,4 @@ export async function renderDOM({ next, data }) {
   return new Response(document.toString(), resp);
 }
 
-export const onRequest = [loadData]; // , parseDOM, renderComments, renderDOM
+export const onRequest = [loadData, parseDOM]; // , parseDOM, renderComments, renderDOM
