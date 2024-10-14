@@ -33,8 +33,8 @@ export async function loadData({ request, env, data, next }) {
 export async function renderWebComponents({ next, data }) {
   const resp = await next();
   const contentType = resp.headers.get("content-type");
-  console.log({ contentType });
-  if (contentType.startsWith("text/html")) {
+  console.log({ headers: Object.fromEntries(resp.headers) });
+  if (contentType?.startsWith("text/html")) {
     if (data.weblog.comments.length) {
       console.log("Read HTML response")
       const html = await resp.text();
