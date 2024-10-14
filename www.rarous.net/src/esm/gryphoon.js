@@ -137,6 +137,9 @@ export function defComments({ HTMLElement, customElements, document }) {
       return this.getAttribute("lang") ?? document.documentElement.lang ?? "cs"
     }
 
+    /**
+     * @param {Array} comments
+     */
     set data(comments) {
       if (!comments?.length) return;
 
@@ -216,8 +219,7 @@ export function defWeblog({ HTMLElement, customElements, location }, { Comments,
     set loaded(isLoaded) {
       if (isLoaded) {
         this.setAttribute("loaded", "");
-      }
-      else {
+      } else {
         this.removeAttribute("loaded");
       }
     }
