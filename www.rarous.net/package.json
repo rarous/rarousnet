@@ -1,6 +1,9 @@
 {
   "name": "@rarousnet/website",
   "packageManager": "yarn@4.5.0",
+  "exports": {
+    "./*.js": "./src/esm/*.js"
+  },
   "devDependencies": {
     "@csstools/postcss-gamut-mapping": "2.0.3",
     "@hckr_/blendid": "9.0.0-beta.10",

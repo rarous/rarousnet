@@ -1,5 +1,5 @@
 import { parseHTML } from "linkedom/worker";
-import { defDiscogs } from "../../www.rarous.net/src/esm/discogs.js";
+import { defDiscogs } from "@rarousnet/website/discogs.js";
 
 /**
  * @param {EventContext<Env>} context
