@@ -154,7 +154,7 @@ Protože je tohle užitečný vzor, který často opakuju, vytvořil jsem si ve 
 která psaní definice usnadní. Najdete ji v tomto gistu:
 "Isomorphic Web Component definition, Live Template for Webstorm":[https://gist.github.com/rarous/b4dff9466392bb05ea1aea4fad857a48]
 
-# Zapojení webové komponenty do DOMu ve Workeru
+## Zapojení webové komponenty do DOMu ve Workeru
 
 Tak, teď máme webovou komponentu připravenou na to, aby šla použít v různých kontextech, bez globálních závislostí,
 a můžeme ji začít používat v našem middleware:
