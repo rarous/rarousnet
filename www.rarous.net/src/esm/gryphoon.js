@@ -64,7 +64,7 @@ function injectItems(section, template, items, applyTemplate) {
  * @param {Window} window
  * @returns {typeof WebMentions}
  */
-export function defWebMentions({ HTMLElement, customElements, document }) {
+export function defWebMentions({ HTMLElement, customElements }) {
   class WebMentions extends HTMLElement {
 
     static register(tagName = "gryphoon-webmentions") {
