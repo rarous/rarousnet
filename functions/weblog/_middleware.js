@@ -23,8 +23,23 @@ async function getDetail(weblog, url) {
  */
 export async function loadData({ request, env, data, next }) {
   data.weblog = await getDetail(env.weblog, request.url);
-  console.log(data);
   return next();
+}
+
+function renderComments(window, comments) {
+  const Comments = defComments(window);
+  Comments.register();
+  const el = window.document.querySelector(Comments.tagName);
+  if (!el) return;
+  el.data = comments;
+}
+
+function renderWebMentions(window, webmentions) {
+  const WebMentions = defWebMentions(window);
+  WebMentions.register();
+  const el = window.document.querySelector(WebMentions.tagName);
+  if (!el) return;
+  el.data = webmentions;
 }
 
 /**
@@ -33,27 +48,14 @@ export async function loadData({ request, env, data, next }) {
 export async function renderWebComponents({ next, data }) {
   const resp = await next();
   const contentType = resp.headers.get("content-type");
-  console.log({ headers: Object.fromEntries(resp.headers) });
   if (contentType?.startsWith("text/html")) {
     if (data.weblog.comments.length || data.weblog.webmentions.length) {
-      console.log("Read HTML response")
       const html = await resp.text();
-      console.log("Parse HTML into DOM");
       const { document, window } = parseHTML(html);
 
-      const Comments = defComments(window);
-      Comments.register();
-      const commentsEl = document.querySelector(Comments.tagName);
-      if (commentsEl) {
-        commentsEl.data = data.weblog.comments;
-      }
+      renderComments(window, data.weblog.comments);
+      renderWebMentions(window, data.weblog.webmentions);
 
-      const WebMentions = defWebMentions(window);
-      WebMentions.register();
-      const webMentionsEl = document.querySelector(WebMentions.tagName);
-      if (webMentionsEl) {
-        webMentionsEl.data = data.weblog.webmentions;
-      }
       return new Response(document.toString(), resp);
     }
   }
