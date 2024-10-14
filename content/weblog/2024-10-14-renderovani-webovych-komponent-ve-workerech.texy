@@ -17,7 +17,7 @@ třetí strany využil KV((Key-Value)) už vytvořený pro WebMentions a k němu
 Dneska jsem si konečně udělal čas na to přesunout renderování webových komponent pro výpis WebMentions a komentářů
 do serverless/edge funkce. Tak pojďme na to!
 
-# Cloudflare Pages
+## Cloudflare Pages
 
 Zhruba před rokem jsem tento web přesunul do "Cloudflare Pages":[https://pages.dev].
 Už před tím jsem víc jak 10 let používal Cloudflare CDN((Content Delivery Network)) jak před Clojure backendem,
@@ -36,7 +36,7 @@ který stačí nasměrovat na vaše Git repo, říct jaký script se má spustit
 a kde najde výsledek, který má nasadit. Na svým webu jejich CI nevyužívám, protože mám historicky
 CD((Continuous Deployment)) pipeline v CircleCI, která v Cloudflare není replikovatelná.
 
-# Cloudflare Pages Functions
+## Cloudflare Pages Functions
 
 Další super valstností Pages je, že to není jen statický hosting, ale můžete ho snadno rozhýbat pomocí
 "Pages Functions":[https://developers.cloudflare.com/pages/functions/]. V rootu projektu si uděláte složku
@@ -53,7 +53,7 @@ Pokud potřebuje odchytávat hlubší zanoření URL segmentů, máme tu `[[catc
 Nebo můžeme myužít `_middleware.js`, který bude augmentovat všechny URLs v dané složce a podsložkách.
 A to je přesně to, co nám poslouží pro renderování webových komponent.
 
-# Renderovací middleware
+## Renderovací middleware
 
 Webové komponenty se vyznačují tím, že pro svůj životní cyklus vyžadují DOM((Document Object Model)).
 Workery se vyznačijí tím, že DOM nemají. Jinak mají "spoustu Webových APIs":[https://developers.cloudflare.com/workers/runtime-apis/web-standards/],
@@ -102,7 +102,7 @@ což se nám hodí.
 Takovýto middleware je zatím jen overhead v podobě parsování a serializace DOMu, se kterým nic neděláme. Ale je to dobrý
 odrazový můstek, pro to, čeho potřebujeme dosáhnout.
 
-# Příprava webových komponent
+## Příprava webových komponent
 
 Když se vrátím k článku "zobrazování WebMentions ve stránce":[/weblog/2024/02/25/zobrazovani-webmentions-ve-strance],
 skončili jsme definicí webové komponenty, která z nadhledu vypadala nějak tak:
@@ -202,7 +202,7 @@ aplikuje šablona a nakonec se výsledné elementy vloží do DOMu.
 
 A tím máme renderování hotové!
 
-# Závěr
+## Závěr
 
 Tenhle článek měl být původně "přednáška na FrontKonu":[https://www.frontkon.cz/#ales-roubicek, ale její delivery
 se mi úplně nevyvedla dle mých představ. Únava z celodenního hraní v chillout-zóně spojená s time-pressem,
