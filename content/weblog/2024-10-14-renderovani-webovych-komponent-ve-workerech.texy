@@ -4,7 +4,7 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "cloudflare", "indieweb", "webmentions", "webcomponents", "gryphoon"},
  :published "2024-10-14T19:36:00.000"
- :syndication []}
+ :syndication ["https://x.com/alesroubicek/status/1845893549554045241"]}
 ---
 
 Minule jsme si ukázali, jak jsem předělal "zobrazování WebMentions ve stránce pomocí webových komponent":[/weblog/2024/02/25/zobrazovani-webmentions-ve-strance].
@@ -62,7 +62,7 @@ která mají s oknem browseru společná. No a když nám DOM ve workeru chybí,
 
 O knihovně "Linkedom":[/weblog/2022/07/06/linkedom] už jsem tu psal, i když v trochu jiném kontextu - scrapování.
 Ale ona vznikla právě kvůli **renderování webových komponent**, tak ji dneska použijeme na to, na co byla určená.
-Linkedom má vyexportovaný ESM přímo pro používání ve Workerech - když tu píšu Worker, myslím tím jako Cloudflare Worker,
+Linkedom má vyexportovaný ESM přímo pro používání ve Workerech - když tu píšu Worker, myslím tím jak Cloudflare Worker,
 tak "Web Worker":[https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers] v browseru.
 
 Takže si vytvoříme soubor `functions/weblog/_middleware.js`:
@@ -90,19 +90,19 @@ export async function onRequestGet(context) {
 
 Pages Functions a Middleware musí exportovat asynchronní funkci `onRequest` nebo variantu specifickou pro konkrétní
 HTTP verb. V našem případě chceme obsluhovat jen `GET` requesty, proto exportujeme funkci `onRequestGet`.
-Tato funkce dostává `context`, ve kterém jsou informace o požadavku, prostředí funkce, předávaných datech
-nebo parametry z URL.
+Tato funkce dostává `context`, ve kterém jsou informace o požadavku `request`, prostředí funkce `env`,
+předávaných datech `data` nebo parametry z URL `params`.
 
 Zavoláním `context.next()` dostaneme odpověď z dalšího handleru v řadě. Pokud vrácená odpověď nemá `Content-Type`
 `text/html`, tak tu odpověď rovnou vrátíme, protože s ní nic dělat neumíme.
 
 Pokud to je HTML, tak si z něj uděláme DOM. Funkce `parseHTML` vrací globální scope z browseru, tj. implementaci
-rozhranní `Window`. Implementaci oživení webových komponent zatím přeskočíme. Nakonec serializujeme DOM do HTML a vrátíme
-ho v odpovědi. Když předáme konstruktoru `Response` jako druhý parametr původní response `resp`, převezme od ní hlavičky,
-což se nám hodí.
+rozhranní `Window`. *Implementaci oživení webových komponent zatím přeskočíme.* Nakonec serializujeme DOM do HTML
+a vrátíme ho v odpovědi. Když předáme konstruktoru `Response` jako druhý parametr původní response `resp`,
+převezme od ní hlavičky, což se nám hodí.
 
-Takovýto middleware je zatím jen overhead v podobě parsování a serializace DOMu, se kterým nic neděláme. Ale je to dobrý
-odrazový můstek, pro to, čeho potřebujeme dosáhnout.
+Takovýto middleware je zatím jen overhead v podobě parsování a serializace DOMu, se kterým nic neděláme.
+Ale je to dobrý odrazový můstek, pro to, čeho potřebujeme dosáhnout.
 
 ## Příprava webových komponent
 
