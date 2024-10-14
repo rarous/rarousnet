@@ -122,7 +122,7 @@ třeba použít ve Workeru.
 
 Krom toho, že se komponenta sama registruje, tak taky očekává globálně dostupné `HTMLElement` a `customElements`,
 což ve většině browserů máme, ale ve Workerech ne. Proto budeme muset udělat lehký refactoring, který nám ze scriptu
-udělá modul, automatickou registraci provede, jen pokud je modul importovaný v browseru a z globálního scope nám
+udělá modul, automatickou registraci provede, jen pokud je modul importovaný v browseru, a z globálního scope nám
 udělá lexikální:
 
 /--code javascript
@@ -141,7 +141,7 @@ export function defWebMentions({ HTMLElement, customElements }) {
       // apply template to injected data
     }
   }
-  return WebMention;
+  return WebMentions;
 }
 
 // auto-register components when in browser env with customElements support
