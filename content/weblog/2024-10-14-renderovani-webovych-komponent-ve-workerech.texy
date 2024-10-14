@@ -8,7 +8,7 @@
 ---
 
 Minule jsme si ukázali, jak jsem předělal "zobrazování WebMentions ve stránce pomocí webových komponent":[/weblog/2024/02/25/zobrazovani-webmentions-ve-strance].
-Uteklo jen necelých 8 měsíců a konečně jsem se dostal k pokračování.
+Uteklo jen necelých 8 měsíců a konečně jsem se dostal k pokračování. Hurá!
 
 Po zobrazování WebMentions jsem naimplementoval i "zobrazování starých komentářů k článkům":[/weblog/2023/12/27/komentare-jsou-zpet]
 a taky přidávání nových. Proces u komentářů byl podobný jako u WebMentions, jen jsem místo služby
@@ -20,10 +20,10 @@ do serverless/edge funkce. Tak pojďme na to!
 ## Cloudflare Pages
 
 Zhruba před rokem jsem tento web přesunul do "Cloudflare Pages":[https://pages.dev].
-Už před tím jsem víc jak 10 let používal Cloudflare CDN((Content Delivery Network)) jak před Clojure backendem,
+Už před tím jsem víc jak 10 let používal Cloudflare CDN((Content Delivery Network)) jak **před** Clojure backendem,
 tak pak před staticky vygenerovanou site. Důvod? Jejich CDN slouží jako proxy, která dělá spoustu on-the-fly optimalizací,
 používá moderní crypto a kompresní algorytmy, chrání před DDoS útoky, cachuje stránky blízko uživatelům,
-rychle adoptuje moderní protokoly a to všechno zadarmo. (Konec neplacené reklamy.)
+rychle adoptuje moderní protokoly a to všechno zadarmo. (*Konec neplacené reklamy.*)
 
 Časem jsem přidal i "Cloudflare Worker":[https://workers.dev], který obsluhoval původní implementaci WebMentions k článkům.
 Jenže to bylo příliš mnoho součástek (něco v AWS, něco v Cloudflare, managované přes Pulumi),
@@ -32,13 +32,14 @@ a tohle fakt jednoduchý nebylo. :)
 
 Takže jsem se zbavil S3 v AWS, Workeru v Cloudflare a nahradil jsem je Cloudflare Pages. Krom toho, že je to příjemná
 služba na friction less hostování statického obsahu, mají i vlastní CI((Continuous Integration)),
-který stačí nasměrovat na vaše Git repo, říct jaký script se má spustit (nebo si vybrat ze seznamu spousty podporovaných frameworků),
+který stačí nasměrovat na vaše Git repo, říct jaký script se má spustit
+(nebo "si vybrat ze seznamu spousty podporovaných frameworků":[https://developers.cloudflare.com/pages/framework-guides/]),
 a kde najde výsledek, který má nasadit. Na svým webu jejich CI nevyužívám, protože mám historicky
 CD((Continuous Deployment)) pipeline v CircleCI, která v Cloudflare není replikovatelná.
 
 ## Cloudflare Pages Functions
 
-Další super valstností Pages je, že to není jen statický hosting, ale můžete ho snadno rozhýbat pomocí
+Další super vlastností Pages je, že to není jen statický hosting, ale můžete ho snadno rozhýbat pomocí
 "Pages Functions":[https://developers.cloudflare.com/pages/functions/]. V rootu projektu si uděláte složku
 `functions` a ta se publikuje jako Worker, který poslouchá na vybraných URLs.
 
@@ -56,7 +57,7 @@ A to je přesně to, co nám poslouží pro renderování webových komponent.
 ## Renderovací middleware
 
 Webové komponenty se vyznačují tím, že pro svůj životní cyklus vyžadují DOM((Document Object Model)).
-Workery se vyznačijí tím, že DOM nemají. Jinak mají "spoustu Webových APIs":[https://developers.cloudflare.com/workers/runtime-apis/web-standards/],
+Workery se vyznačují tím, že DOM nemají. Jinak mají "spoustu Webových APIs":[https://developers.cloudflare.com/workers/runtime-apis/web-standards/],
 která mají s oknem browseru společná. No a když nám DOM ve workeru chybí, tak si ho tam přidáme.
 
 O knihovně "Linkedom":[/weblog/2022/07/06/linkedom] už jsem tu psal, i když v trochu jiném kontextu - scrapování.
@@ -89,12 +90,13 @@ export async function onRequestGet(context) {
 
 Pages Functions a Middleware musí exportovat asynchronní funkci `onRequest` nebo variantu specifickou pro konkrétní
 HTTP verb. V našem případě chceme obsluhovat jen `GET` requesty, proto exportujeme funkci `onRequestGet`.
-Tato funkce dostává `context`, ve kterém jsou informace o požadavku, prostředí funkce, přdávaných datech nebo parametry z URL.
+Tato funkce dostává `context`, ve kterém jsou informace o požadavku, prostředí funkce, předávaných datech
+nebo parametry z URL.
 
 Zavoláním `context.next()` dostaneme odpověď z dalšího handleru v řadě. Pokud vrácená odpověď nemá `Content-Type`
 `text/html`, tak tu odpověď rovnou vrátíme, protože s ní nic dělat neumíme.
 
-Pokud to ale je HTML, tak si z něj uděláme DOM. Funkce `parseHTML` vrací globální scope z browseru, tj. implementaci
+Pokud to je HTML, tak si z něj uděláme DOM. Funkce `parseHTML` vrací globální scope z browseru, tj. implementaci
 rozhranní `Window`. Implementaci oživení webových komponent zatím přeskočíme. Nakonec serializujeme DOM do HTML a vrátíme
 ho v odpovědi. Když předáme konstruktoru `Response` jako druhý parametr původní response `resp`, převezme od ní hlavičky,
 což se nám hodí.
@@ -154,7 +156,7 @@ která psaní definice usnadní. Najdete ji v tomto gistu:
 
 # Zapojení webové komponenty do DOMu ve Workeru
 
-Tak teď máme webovou komponentu připravenou na to, aby šla použít v různých kontextech, bez globálních závislostí,
+Tak, teď máme webovou komponentu připravenou na to, aby šla použít v různých kontextech, bez globálních závislostí,
 a můžeme ji začít používat v našem middleware:
 
 /--code javascript
@@ -204,7 +206,7 @@ A tím máme renderování hotové!
 
 ## Závěr
 
-Tenhle článek měl být původně "přednáška na FrontKonu":[https://www.frontkon.cz/#ales-roubicek, ale její delivery
+Tenhle článek měl být původně "přednáška na FrontKonu":[https://www.frontkon.cz/#ales-roubicek], ale její delivery
 se mi úplně nevyvedla dle mých představ. Únava z celodenního hraní v chillout-zóně spojená s time-pressem,
 zvládnout to celý za 20 min, udělali svoje.
 
@@ -217,3 +219,5 @@ Osobně nevidím nutnost oživovat na serveru všechny webový komponenty, kter�
 dává smysl a má přínos pro uživatele. Tím, že se mi do toho nemotá žádný framework, můžu se snadno rozhodnout,
 jakou strategii zvolit.
 
+Tohle řešení zatím nefunguje pro komponenty, které mají ShadowDOM. Ještě chybí standardizované mechanismy,
+jak toho dosáhnout.
