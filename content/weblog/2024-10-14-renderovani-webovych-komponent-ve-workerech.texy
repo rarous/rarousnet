@@ -210,13 +210,13 @@ Tenhle článek měl být původně "přednáška na FrontKonu":[https://www.fro
 se mi úplně nevyvedla dle mých představ. Únava z celodenního hraní v chillout-zóně spojená s time-pressem,
 zvládnout to celý za 20 min, udělali svoje.
 
-Cílem bylo představit techniku, kterou jsem zatím nikde jinde neviděl, jak vytvářet definice vlastních elemntů,
+Cílem bylo představit techniku, kterou jsem zatím nikde jinde neviděl, jak vytvářet definice vlastních elementů,
 které můžete používat v různých kontextech (běhových prostředích). Viděl jsem "řešení, které definuje čistě serverové
 webové komponenty":[https://www.mayank.co/blog/server-side-custom-elements], tj. definujete si jinou implementaci
-vlastní značky pro server, než máte pro klienta. Což může mít takysvoje výhody a ve výsledku je možné obě řešení kombinovat.
+vlastní značky pro server, než máte pro klienta. Což může mít taky svoje výhody a ve výsledku je možné obě řešení kombinovat.
 
 Osobně nevidím nutnost oživovat na serveru všechny webový komponenty, který ve stránce máte, ale jen ty, u kterých to
-dává smysl a má přínos pro uživatele. Tím, že se mi do toho nemotá žádný framework, můžu se snadno rozhodnout,
+dává smysl a má přínos pro uživatele. Protože se mi do toho nemotá žádný framework, můžu se snadno rozhodnout,
 jakou strategii zvolit.
 
 Tohle řešení zatím nefunguje pro komponenty, které mají ShadowDOM. Ještě chybí standardizované mechanismy,
