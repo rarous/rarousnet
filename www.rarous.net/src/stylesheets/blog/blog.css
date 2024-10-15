@@ -332,6 +332,12 @@ iframe.player {
   aspect-ratio: 16/9;
 }
 
+.speakerdeck {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+}
+
 #content {
   anchor-name: --content;
   background-color: var(--content-background);
