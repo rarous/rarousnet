@@ -1,0 +1,21 @@
+{
+  "name": "@cloudflare/pages-plugin-rollbar",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist",
+    "index.d.ts",
+    "tsconfig.json"
+  ],
+  "dependencies": {
+    "error-stack-parser": "2.1.4",
+    "rollbar": "^2.26.4"
+  },
+  "devDependencies": {
+    "wrangler": "3.72.2"
+  },
+  "scripts": {
+    "build": "wrangler pages functions build --plugin --outdir=dist",
+    "prepare": "npm run build"
+  }
+}
