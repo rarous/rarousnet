@@ -465,8 +465,8 @@ article footer {
   }
 
   img.u-photo {
-    aspect-ratio: var(--ratio-square);
-    border-radius: var(--radius-round);
+    aspect-ratio: var(--ratio-square, 1);
+    border-radius: var(--radius-round, 50%);
   }
 
   footer p {
