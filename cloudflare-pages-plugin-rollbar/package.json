@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "error-stack-parser": "2.1.4",
-    "rollbar": "^2.26.4"
+    "rollbar": "2.26.4"
   },
   "devDependencies": {
     "wrangler": "3.72.2"
