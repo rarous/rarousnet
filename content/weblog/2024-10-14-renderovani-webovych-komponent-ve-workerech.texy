@@ -4,7 +4,9 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "cloudflare", "indieweb", "webmentions", "webcomponents", "gryphoon"},
  :published "2024-10-14T19:36:00.000"
- :syndication ["https://x.com/alesroubicek/status/1845893549554045241"]}
+ :syndication
+  ["https://x.com/alesroubicek/status/1845893549554045241"
+   "https://www.linkedin.com/feed/update/urn:li:activity:7251837350995984384/"]}
 ---
 
 Minule jsme si ukázali, jak jsem předělal "zobrazování WebMentions ve stránce pomocí webových komponent":[/weblog/2024/02/25/zobrazovani-webmentions-ve-strance].
