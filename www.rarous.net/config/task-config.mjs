@@ -94,6 +94,12 @@ export default {
     browserArgs: "--ignore-certificate-errors --allow-insecure-localhost",
   },
 
+  production: {
+    rev: {
+      exclude: ["_headers", "_redirects", "weblog/articles.rss", "weblog/sitemap.xml"]
+    }
+  },
+
   registries: [new GryphoonRegistry({}, pathConfig)],
 
   additionalTasks: {
