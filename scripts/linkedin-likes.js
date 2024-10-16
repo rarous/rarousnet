@@ -1,7 +1,8 @@
 import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 
+// Open Network tab in Dev Tools, open reactions list by clicking on Names under post, there will be `graphql?variables=` request.
 // Reactions are returned with a custom MIME type not decoded in Browser Network view.
-// Copy it as cURL and | pbcopy it, it's just plain JSON.
+// Copy it as cURL and `> ./data/li-likes.json` it, it's just plain JSON.
 
 async function main({ token }) {
   const { default: { included }} = await import("./data/li-likes.json", { with: { type: "json" }});
@@ -11,7 +12,8 @@ async function main({ token }) {
   for (const reaction of reactions) {
     const userId = reaction.actorUrn;
     const user = reaction.reactorLockup;
-    const image = user.image.attributes[0].detailData.nonEntityProfilePicture.vectorImage;
+    let detailData = user.image.attributes[0].detailData;
+    const image = detailData.nonEntityProfilePicture?.vectorImage ?? detailData.nonEntityCompanyLogo.vectorImage;
     const { rootUrl } = image;
     const imageId = image.artifacts[0].fileIdentifyingUrlPathSegment;
     const resp = await fetch("https://www.rarous.net/webhooks/webmentions", {
