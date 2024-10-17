@@ -5,7 +5,7 @@
   "main": "generator.js",
   "license": "EUPL-1.2",
   "dependencies": {
-    "@thi.ng/transducers": "9.2.6",
+    "@thi.ng/transducers": "9.2.7",
     "playwright": "1.48.1"
   }
 }

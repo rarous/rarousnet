@@ -4,7 +4,7 @@
   "type": "module",
   "license": "EUPL-1.2",
   "dependencies": {
-    "@thi.ng/transducers": "9.2.6",
+    "@thi.ng/transducers": "9.2.7",
     "linkedom": "0.18.5",
     "schema-dts": "1.1.2"
   },
