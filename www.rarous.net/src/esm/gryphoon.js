@@ -245,11 +245,16 @@ function getSha256(input) {
   return hashArray.map((x) => x.toString(16).padStart(2, "0")).join("");
 }
 
+const gravatarCache = new Map();
+
 function gravatarUrl(item) {
   const email = item.author?.email ?? item.author?.name ?? crypto.randomUUID();
   const normalized = email.trim().toLowerCase();
-  const sha = getSha256(normalized);
-  return `https://gravatar.com/avatar/${sha}?d=identicon`;
+  if (!gravatarCache.has(normalized)) {
+    const sha = getSha256(normalized);
+    gravatarCache.set(normalized, `https://gravatar.com/avatar/${sha}?d=identicon`);
+  }
+  return gravatarCache.get(normalized);
 }
 
 /**
