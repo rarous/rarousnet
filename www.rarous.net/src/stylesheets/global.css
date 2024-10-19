@@ -125,7 +125,7 @@ dialog::backdrop {
 }
 
 
-header nav {
+header>nav {
   --icon-color: var(--text-color);
   --icon-size: 32px;
   --gap: 16px;
@@ -134,11 +134,25 @@ header nav {
   justify-content: space-between;
   align-items: center;
 
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-auto-flow: column;
+    gap: var(--gap);
+
+    > li {
+      margin: 0;
+    }
+  }
+
   a {
     display: inline-flex;
 
-    &:hover {
+    &:hover, &:focus {
       --icon-color: var(--text-color-on-primary);
+      border-radius: 4px;
     }
     svg:not(.logo) {
       width: var(--icon-size);

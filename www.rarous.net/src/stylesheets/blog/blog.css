@@ -518,46 +518,6 @@ article footer {
   align-items: end;
 }
 
-#head>nav>ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-auto-flow: column;
-  gap: var(--gap);
-
-  > li {
-    margin: 0;
-  }
-}
-
-#head>nav a {
-  display: inline-flex;
-
-  &:hover, &:focus {
-    --icon-color: oklch(1 0 89.876);
-    border-radius: 4px;
-  }
-}
-
-#head nav a svg {
-  width: var(--icon-size);
-  height: var(--icon-size);
-}
-
-#hamburger nav {
-  display: contents;
-}
-
-#hamburger nav ul {
-  font-family: var(--main-font);
-}
-
-#hamburger nav a {
-  &:hover, &:focus {
-    border-radius: 0;
-  }
-}
 
 #content {
   margin: 0 0 1em 1ex;
