@@ -48,7 +48,7 @@
 <header>
   <nav>
     <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
-      <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="60" height="43">
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43" >
         <path fill="#b4b4b4"
               d="M20.215 13.222 3.096 52.548H9.88l3.604-8.427h13.462l3.604 8.427h6.731L20.215 13.222M15.869 38.61l4.346-10.229 4.346 10.23h-8.692"/>
         <path fill="#b4b4b4"
@@ -94,7 +94,7 @@
   </dialog>
 </header>
 <main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content">
-
+  {% block content %}{% endblock %}
 </main>
 <footer class="footer">
   {% block footer %}{% endblock %}

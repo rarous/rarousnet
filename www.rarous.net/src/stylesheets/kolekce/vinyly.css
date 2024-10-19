@@ -1,0 +1,95 @@
+.collection .items {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  margin-inline: auto;
+  max-width: 90rem;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+:is(.album) {
+  position: relative;
+
+  @media (hover: hover) {
+    filter: saturate(0.2);
+    transition: filter ease-in-out 200ms;
+
+    &:hover, &:focus {
+      filter: saturate(1);
+    }
+  }
+
+  @media (hover: none) {
+    filter: saturate(1);
+
+    @supports (animation-timeline: view()) {
+      filter: saturate(0.2);
+      animation: linear --saturate-in-and-out;
+      animation-timeline: view();
+    }
+  }
+}
+
+.album a {
+  --link-color: var(--text-color);
+  text-decoration: none;
+}
+.album a:hover {
+  --link-color: inherit;
+  text-decoration: underline;
+}
+
+.album img {
+  width: 100%;
+  height: auto;
+}
+
+.album h2 {
+  font-size: 1.25em;
+}
+.album h3 {
+  font-size: 1em;
+}
+
+.album :is(h2, h3, p) {
+  margin: 0;
+}
+
+.album button {
+  font: 700 1rem/2 var(--main-font);
+  border: none;
+  border-radius: 24px;
+  margin-block-start: 1em;
+  padding-inline: 2em;
+  color: white;
+  background-color: #1DB954;
+}
+
+#player {
+  overflow: hidden;
+  min-width: 19rem;
+  max-width: 60rem;
+
+  @media screen and (orientation: landscape) {
+    width: 100%;
+    aspect-ratio: 4/3;
+  }
+
+  @media screen and (orientation: portrait) {
+    aspect-ratio: initial;
+    width: 84dvw;
+    height: 84dvh;
+  }
+}
+
+#player::backdrop {
+  backdrop-filter: blur(4px);
+}
+
+@keyframes --saturate-in-and-out {
+  entry 60% { filter: saturate(0.2); }
+  entry 100% { filter: saturate(1); }
+  exit 0% { filter: saturate(1); }
+  exit 40% { filter: saturate(0.2); }
+}

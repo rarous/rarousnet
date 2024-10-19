@@ -1,208 +1,20 @@
-<!doctype html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta http-equiv="delegate-ch"
-        content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
-  <title>Vinyly Aleše Roubíčka</title>
-  <link rel="preconnect" href="https://res.cloudinary.com">
+
+{%- extends "layouts/common-layout.njk"  -%}
+{% set title = "Vinyly Aleše Roubíčka" %}
+{% set description = "Sbírka gramofonových desek Aleše Roubíčka." %}
+{% set contentSchema = "Collection" %}
+{% set images = true %}
+
+{% block preload %}
   <link rel="preconnect" href="https://open.spotify.com">
   <link rel="preconnect" href="https://static.cloudflareinsights.com">
-  <link rel="preload" as="font" crossorigin="anonymous" href="{{ "innovator-grotesk/variable.woff2" | assetUrl("fonts") }}">
-  <link rel="preload" as="font" crossorigin="anonymous" href="{{ "agrandir/variable.ttf" | assetUrl("fonts") }}">
-  <link rel="preload" as="style" href="{{ "global.css" | assetUrl("stylesheets") }}">
-  <link rel="preload" as="style" href="{{ "webmentions.css" | assetUrl("stylesheets") }}">
-  <meta name="author" content="all: Aleš Roubíček; mailto:ales&#64;roubicek.name">
-  <meta name="copyright" content="&copy; 2004 - 2024 Aleš Roubíček. Creative Commons 4.0 BY-SA">
-  <meta name="description" content="Sbírka gramofonových desek Aleše Roubíčka.">
-  <link rel="canonical" href="https://www.rarous.net/kolekce/vinyly">
-  <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
-  <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
-  <!--[if lt IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
-  <style>
-    @font-face {
-      font-family: "Innovator Grotesk";
-      src:url("{{ "innovator-grotesk/variable.woff2" | assetUrl("fonts") }}") format("woff2");
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'agrandir';
-      src: url("{{ "agrandir/variable.ttf" | assetUrl("fonts") }}");
-      font-weight: 100 900;
-      font-display: swap;
-    }
-  </style>
-  <style>
-    @import "/assets/css/global.css";
+{% endblock %}
 
-    data[property=collectionSize] {
-      font-family: var(--content-font);
-    }
+{% block head %}
+  <link rel="stylesheet" href="{{ "kolekce/vinyly.css" | assetUrl("stylesheets") }}">
+{% endblock %}
 
-    dialog::backdrop {
-      backdrop-filter: blur(5px)
-    }
-
-    header nav {
-      --icon-size: 32px;
-      --gap: 16px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header nav a {
-      display: inline-flex;
-      &:hover {
-        --icon-color: var(--text-color-on-primary);
-      }
-    }
-
-    header nav a svg {
-      width: var(--icon-size);
-      height: var(--icon-size);
-    }
-
-    .collection .items {
-      list-style-type: none;
-      padding: 0;
-      display: grid;
-      margin-inline: auto;
-      max-width: 90rem;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-    }
-
-    .album {
-      position: relative;
-
-      @media (hover: hover) {
-        filter: saturate(0.2);
-        transition: filter ease-in-out 200ms;
-
-        &:hover, &:focus {
-          filter: saturate(1);
-        }
-      }
-
-      @media (hover: none) {
-        filter: saturate(1);
-
-        @supports (animation-timeline: view()) {
-          filter: saturate(0.2);
-          animation: linear --saturate-in-and-out;
-          animation-timeline: view();
-        }
-      }
-    }
-
-    .album a:hover {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    .album img {
-      width: 100%;
-      height: auto;
-    }
-
-    .album h2 {
-      font-size: 1.25em;
-    }
-    .album h3 {
-      font-size: 1em;
-    }
-
-    .album :is(h2, h3, p) {
-      margin: 0;
-    }
-
-    .album button {
-      font: 700 1rem/2 var(--main-font);
-      border: none;
-      border-radius: 24px;
-      margin-block-start: 1em;
-      padding-inline: 2em;
-      color: white;
-      background-color: #1DB954;
-    }
-
-    #player {
-      overflow: hidden;
-      min-width: 19rem;
-      max-width: 60rem;
-
-      @media screen and (orientation: landscape) {
-        width: 100%;
-        aspect-ratio: 4/3;
-      }
-
-      @media screen and (orientation: portrait) {
-        aspect-ratio: initial;
-        width: 84dvw;
-        height: 84dvh;
-      }
-    }
-
-    #player::backdrop {
-      backdrop-filter: blur(4px);
-    }
-
-    @keyframes --saturate-in-and-out {
-      entry 60% {
-        filter: saturate(0.2);
-      }
-      entry 100% {
-        filter: saturate(1);
-      }
-      exit 0% {
-        filter: saturate(1);
-      }
-      exit 40% {
-        filter: saturate(0.2);
-      }
-    }
-  </style>
-</head>
-<body>
-<div class="wai">
-  <a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
-</div>
-<header>
-  <nav>
-    <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
-      <img alt="Aleš Roubíček" class="logo" src="/assets/logo.svg" width="60" height="43">
-    </a>
-    <a href="#hamburger"
-      title="otevřít menu"
-      onclick="event.preventDefault();menuDialog.showModal()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-        fill="var(--icon-color)">
-        <path d="M0 0h24v24H0z" fill="none"/>
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-      </svg>
-    </a>
-  </nav>
-  <dialog id="menuDialog" onclick="event.target === this && this.close()">
-    <div id="hamburger">
-      <nav>
-        <h2>Navigace</h2>
-        <ul>
-          <li><a href="/">Domovská stránka</a></li>
-          <li><a href="/weblog/">Weblog</a></li>
-          <li><a href="/kolekce/vinyly">Kolekce vinylů</a></li>
-          <li><a href="/w3b">Doporučené články</a></li>
-        </ul>
-      </nav>
-    </div>
-  </dialog>
-</header>
-<main typeof="Collection" vocab="https://schema.org/" id="content">
+{% block content %}
   <rarous-discogs api-endpoint="https://www.rarous.net/api/v1/collections/vinyls">
     <template>
       <li class="album" property="hasPart" typeof="MusicAlbum">
@@ -278,8 +90,8 @@
   </dialog>
 
   <script type="module">
-    import "/assets/esm/gryphoon.js?define";
-    import "/assets/esm/discogs.js?define";
+    import "/assets/esm/gryphoon.js";
+    import "/assets/esm/discogs.js";
 
     const discogs = document.querySelector("rarous-discogs");
 
@@ -307,12 +119,4 @@
     await discogs.loadDataFromApi();
   </script>
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-</main>
-<footer class="footer">
-  <div class="footer__copyright">
-    <p property="copyrightNotice">© 2004&ndash;<span class="year">{{ currentYear }}</span> Aleš Roubíček.
-      Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
-  </div>
-</footer>
-</body>
-</html>
+{% endblock %}
