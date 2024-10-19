@@ -13,13 +13,10 @@
   --border-width: 2px;
 
   --icon-color: var(--secondary-dark-color);
-  --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
-  "Lucida Console", "Monaco CE", fixed, monospace;
   --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
   "Hoefler Text", "Times New Roman", serif;
   --content-font: var(--main-font);
   --citation-font: var(--garamond);
-  --code-font: var(--iosevka);
 
   --heading-font: 800 2.5em var(--headings-font);
 

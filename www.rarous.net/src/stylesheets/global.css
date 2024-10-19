@@ -10,7 +10,8 @@
 
 :root {
   --main-font: "Innovator Grotesk", futura-pt, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  --headings-font: agrandir, "Neue Montreal", futura-pt, sans-serif;
+  --headings-font: Agrandir, "Neue Montreal", futura-pt, sans-serif;
+  --code-font: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console", "Monaco CE", fixed, monospace;
   --content-font: var(--main-font);
   --text-color: oklch(0 0 0);
   --background-color: oklch(1 0 89.876);
