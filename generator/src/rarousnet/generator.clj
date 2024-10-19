@@ -205,7 +205,7 @@
 
 (defsnippet year-items "weblog/category.html" [:#content :section] [years]
   (html/clone-for [{:keys [year articles]} years]
-    [:section :h1] (html/content (str year))
+    [:section :h3] (html/content (str year))
     [:article] (html/substitute (tag-items articles))))
 
 (deftemplate tag-template "weblog/category.html" [{:keys [page-title title url years]}]

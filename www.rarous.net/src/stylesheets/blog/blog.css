@@ -366,42 +366,48 @@ article footer {
 
 .category-listing {
   font-family: var(--code-font);
-}
 
-.category-listing h2 {
-  margin-bottom: 1em;
-}
+  h2 {
+    margin-bottom: 1em;
+  }
 
-.category-listing section {
-  position: relative;
-}
+  section {
+    display: grid;
+    grid-template-columns:
+      [year] 5rem
+      [date] 3.5rem
+      [title] 1fr;
+    gap: 1rem;
+    &+& {
+      margin-top: 1em;
+    }
+  }
 
-.category-listing section > h1 {
-  margin: -.3ex 0;
-  position: absolute;
-  font-family: var(--content-font);
-  font-size: 2rem;
-}
+  h3 {
+    font-family: var(--headings-font);
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0;
+  }
 
-.category-listing article {
-  --offset: 5rem;
-  position: relative;
-  left: var(--offset);
-  padding-bottom: 1.5em;
-  width: calc(100% - var(--offset));
-  display: flex;
-  flex-flow: row-reverse;
-  justify-content: flex-end;
-  gap: 2rem;
-}
+  article {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 2/4;
 
-.category-listing article h1 {
-  font-size: 1.5em;
-}
+    h4 {
+      font: 800 1.5em var(--headings-font);
+      margin: 0;
+      text-wrap: balance;
+      grid-area: title;
+    }
 
-.category-listing article time {
-  font-size: 1em;
-  width: 3rem;
+    time {
+      font-size: 1em;
+      line-height: 2;
+      grid-area: date;
+    }
+  }
 }
 
 .comments {
