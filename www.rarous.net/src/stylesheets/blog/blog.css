@@ -17,11 +17,9 @@
   --icon-color: var(--secondary-dark-color);
   --iosevka: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas,
   "Lucida Console", "Monaco CE", fixed, monospace;
-  --iosevka-sparkle: "Iosevka Sparkle Web", Cambria, Georgia, "New York CE", utopia,
-  serif;
   --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
   "Hoefler Text", "Times New Roman", serif;
-  --content-font: var(--iosevka-sparkle);
+  --content-font: var(--main-font);
   --citation-font: var(--garamond);
   --code-font: var(--iosevka);
 
@@ -82,7 +80,8 @@ p,
 ul,
 ol,
 dl {
-  font: 1em/1.5 var(--content-font);
+  font: 1em var(--content-font);
+  line-height: 1.5;
   text-wrap: pretty;
   margin: 0.125em 0 1em;
   padding: 0;
