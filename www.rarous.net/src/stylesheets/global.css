@@ -1,8 +1,6 @@
 :root {
-  --futura: futura-pt, "Trebuchet MS", Arial, sans-serif;
-  --main-font: var(--futura);
-
-  --heading-font: 800 2.5em var(--main-font);
+  --main-font: "Innovator Grotesk", futura-pt, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --headings-font: agrandir, "Neue Montreal", futura-pt, sans-serif;
 
   --primary-color: oklch(0.703 0.175 38.139);
   --primary-dark-color: oklch(0.547 0.168 36.467);
@@ -24,11 +22,15 @@ body {
 }
 
 h1 {
-  font: var(--heading-font);
+  font: 800 2.5em var(--headings-font);
   letter-spacing: -1px;
   text-wrap: balance;
   margin: 0;
   z-index: 20;
+}
+h2 {
+  font: 700 2em var(--headings-font);
+  font-variation-settings: "wdth" 60;
 }
 
 p {
@@ -37,27 +39,28 @@ p {
 }
 
 a {
-  color: var(--secondary-dark-color);
-}
+  --link-color: var(--secondary-dark-color);
+  color: var(--link-color);
 
-a img {
-  border: 0;
-}
+  &:visited {
+    --link-color: oklch(0.45 0 89.876);
+  }
 
-a:visited {
-  color: oklch(0.45 0 89.876);
-}
+  &:hover {
+    --link-color: var(--text-color-on-primary);
+    background: var(--primary-dark-color);
+    text-decoration: none;
+  }
 
-a:hover {
-  background: var(--primary-dark-color);
-  color: var(--text-color-on-primary);
-  text-decoration: none;
-}
+  &[disabled] {
+    pointer-events: none;
+    filter: saturate(0);
+    opacity: 0.66;
+  }
 
-a[disabled] {
-  pointer-events: none;
-  filter: saturate(0);
-  opacity: 0.66;
+  img {
+    border: 0;
+  }
 }
 
 abbr {
@@ -69,6 +72,7 @@ sup, sub {
   vertical-align: baseline;
   font-variant-position: super;
 }
+
 sub {
   font-variant-position: sub;
 }
@@ -77,20 +81,46 @@ table {
   font-variant-numeric: tabular-nums slashed-zero;
 }
 
+dialog::backdrop {
+  backdrop-filter: blur(5px)
+}
+
 .wai a {
   position: absolute;
   top: -1000px;
   left: -1000px;
+
+  &:is(:focus, :active) {
+    margin: 0.6em 1em;
+    padding: 0.2em 0.4em;
+    background: oklch(0.988 0.065 107.54);
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+  }
 }
 
-.wai a:focus,
-.wai a:active {
-  margin: 0.6em 1em;
-  padding: 0.2em 0.4em;
-  background: oklch(0.988 0.065 107.54);
-  z-index: 100;
-  top: 0;
-  left: 0;
+
+header nav {
+  --icon-size: 32px;
+  --gap: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    display: inline-flex;
+
+    &:hover {
+      --icon-color: var(--text-color-on-primary);
+    }
+    svg {
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
+  }
 }
 
 #hamburger {
@@ -100,7 +130,6 @@ table {
 }
 
 #hamburger h2 {
-  font: var(--heading-font);
   letter-spacing: -1px;
   text-wrap: balance;
   margin: 0;

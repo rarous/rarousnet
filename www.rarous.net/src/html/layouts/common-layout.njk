@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{{ title or meta.title }}{% endblock %}</title>
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% if images %}
+    <meta http-equiv="delegate-ch"
+          content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
+    <link rel="preconnect" href="https://res.cloudinary.com">
+  {% endif %}
+  <link rel="preload" as="font" crossorigin="anonymous"
+        href="{{ "innovator-grotesk/variable.woff2" | assetUrl("fonts") }}">
+  <link rel="preload" as="font" crossorigin="anonymous" href="{{ "agrandir/variable.ttf" | assetUrl("fonts") }}">
+  <link rel="preload" as="style" href="{{ "global.css" | assetUrl("stylesheets") }}">
+  {% block preload %}{% endblock %}
+  <meta name="author" content="all: {{ contact.name }}; mailto:{{ contact.email }}">
+  <meta name="copyright" content="&copy; 2004 - {{ currentYear }} Aleš Roubíček. Creative Commons 4.0 BY-SA">
+  <meta name="description" content="{{ description or meta.description }}">
+  <link rel="canonical" href="{{ canonicalUrl }}">
+  <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
+  <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+  <style>
+    @font-face {
+      font-family: "Innovator Grotesk";
+      src: url("{{ "innovator-grotesk/variable.woff2" | assetUrl("fonts") }}") format("woff2");
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'agrandir';
+      src: url("{{ "agrandir/variable.ttf" | assetUrl("fonts") }}");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+  </style>
+  <link rel="stylesheet" href="{{ "global.css" | assetUrl("stylesheets") }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="{{ bodyClass }}">
+<div class="wai">
+  <a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
+</div>
+<header>
+  <nav>
+    <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="60" height="43">
+        <path fill="#b4b4b4"
+              d="M20.215 13.222 3.096 52.548H9.88l3.604-8.427h13.462l3.604 8.427h6.731L20.215 13.222M15.869 38.61l4.346-10.229 4.346 10.23h-8.692"/>
+        <path fill="#b4b4b4"
+              d="M66.304 38.344a11.006 11.006 0 0 0 4.558-3.021c2.067-2.28 3.18-5.46 3.18-9.063 0-3.657-1.113-6.837-3.18-9.116-1.59-1.802-4.611-3.922-9.805-3.922h-11.66v39.325h6.148V39.245h4.505l9.911 13.302h6.943l-10.6-14.203m-10.759-4.611V18.787h5.512c2.544 0 4.452.689 5.671 2.067 1.484 1.59 1.749 3.816 1.749 5.406 0 1.537-.265 3.763-1.749 5.353-1.219 1.378-3.127 2.12-5.671 2.12h-5.512"/>
+        <path fill="#b30d00" fill-rule="evenodd" d="M20.333 13.234h39.653v39.544H20.333V13.234z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m38.796 26.468 1.338-1.246s.992 3.774.92 7.6c-.073 3.826-1.259 7.896-1.259 7.896l-1.181-1.22s.866-3.423.866-6.651c0-3.24-.684-6.379-.684-6.379z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m41.338 24.1 1.162-1.075s1.655 2.97 1.653 9.75c-.002 5.942-1.961 10.467-1.961 10.467l-1.104-1.158s1.588-4.57 1.588-9.528c0-5.424-1.338-8.456-1.338-8.456z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m48.437 17.515 1.261-1.172s4.06 5.642 4.06 16.33c0 11.87-4.989 17.43-4.989 17.43l-1.008-1.047s4.521-6.215 4.521-16.601c0-8.905-3.845-14.94-3.845-14.94z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m43.465 22.131 1.31-1.227s2.456 4.318 2.456 11.563c0 7.232-2.947 12.968-2.947 12.968l-1.124-1.193s2.45-6.118 2.45-11.75c0-6.429-2.145-10.36-2.145-10.36z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m45.934 19.834 1.297-1.2s3.297 5.373 3.297 13.727c0 10.508-3.893 15.517-3.893 15.517l-1.153-1.216s3.276-5.61 3.32-14.285c.036-7.155-2.868-12.543-2.868-12.543z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="M26.561 30.364c.41-8.172 2.874-14.455 5.831-14.455 3.285 0 6.201 5.913 5.914 16.796-.206 9.24-2.629 16.755-5.914 16.755-2.916 0-5.338-6.037-5.831-13.922l.944-.04.288 1.765 6.652-2.053-.041-4.64-6.611-2.177-.206 1.971h-1.026m9.404-1.273.821-.74s.288 2.506.288 4.477c0 2.423-.657 4.394-.657 4.394l-.657-.698s.369-1.807.369-3.696c0-1.684-.164-3.737-.164-3.737"/>
+      </svg>
+    </a>
+    {% block header %}{% endblock %}
+    <a href="#hamburger"
+       title="otevřít menu"
+       onclick="event.preventDefault();menuDialog.showModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="var(--icon-color)">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+    </a>
+  </nav>
+  <dialog id="menuDialog" onclick="event.target === this && this.close()">
+    <div id="hamburger">
+      <nav>
+        <h2>Navigace</h2>
+        <ul>
+          <li><a href="/">Domovská stránka</a></li>
+          <li><a href="/weblog/">Weblog</a></li>
+          <li><a href="/kolekce/vinyly">Kolekce vinylů</a></li>
+          <li><a href="/w3b">Doporučené články</a></li>
+        </ul>
+      </nav>
+    </div>
+  </dialog>
+</header>
+<main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content">
+
+</main>
+<footer class="footer">
+  {% block footer %}{% endblock %}
+  <div class="footer__copyright">
+    <p property="copyrightNotice">© 2004&ndash;<span class="year">{{ currentYear }}</span> Aleš Roubíček.
+      Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
+  </div>
+</footer>
+</body>
+</html>
