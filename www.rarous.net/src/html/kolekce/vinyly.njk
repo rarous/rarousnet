@@ -11,6 +11,14 @@
 {% endblock %}
 
 {% block head %}
+  <style>
+    @keyframes --saturate-in-and-out {
+      entry 60%  { filter: saturate(0.2); }
+      entry 100% { filter: saturate(1); }
+      exit 0% { filter: saturate(1); }
+      exit 40% { filter: saturate(0.2); }
+    }
+  </style>
   <link rel="stylesheet" href="{{ "kolekce/vinyly.css" | assetUrl("stylesheets") }}">
 {% endblock %}
 

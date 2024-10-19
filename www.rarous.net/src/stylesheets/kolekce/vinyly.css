@@ -8,7 +8,7 @@
   grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 }
 
-:is(.album) {
+.album {
   position: relative;
 
   @media (hover: hover) {
@@ -29,41 +29,43 @@
       animation-timeline: view();
     }
   }
-}
 
-.album a {
-  --link-color: var(--text-color);
-  text-decoration: none;
-}
-.album a:hover {
-  --link-color: inherit;
-  text-decoration: underline;
-}
+  a {
+    --link-color: var(--text-color);
+    text-decoration: none;
 
-.album img {
-  width: 100%;
-  height: auto;
-}
+    &:hover {
+      --link-color: inherit;
+      text-decoration: underline;
+    }
 
-.album h2 {
-  font-size: 1.25em;
-}
-.album h3 {
-  font-size: 1em;
-}
+    img {
+      width: 100%;
+      height: auto;
+    }
 
-.album :is(h2, h3, p) {
-  margin: 0;
-}
+    h2 {
+      font-size: 1.25em;
+    }
 
-.album button {
-  font: 700 1rem/2 var(--main-font);
-  border: none;
-  border-radius: 24px;
-  margin-block-start: 1em;
-  padding-inline: 2em;
-  color: white;
-  background-color: #1DB954;
+    h3 {
+      font-size: 1em;
+    }
+
+    :is(h2, h3, p) {
+      margin: 0;
+    }
+
+    button {
+      font: 700 1rem/2 var(--main-font);
+      border: none;
+      border-radius: 24px;
+      margin-block-start: 1em;
+      padding-inline: 2em;
+      color: white;
+      background-color: #1DB954;
+    }
+  }
 }
 
 #player {
@@ -85,11 +87,4 @@
 
 #player::backdrop {
   backdrop-filter: blur(4px);
-}
-
-@keyframes --saturate-in-and-out {
-  entry 60% { filter: saturate(0.2); }
-  entry 100% { filter: saturate(1); }
-  exit 0% { filter: saturate(1); }
-  exit 40% { filter: saturate(0.2); }
 }
