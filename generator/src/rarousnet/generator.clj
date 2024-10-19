@@ -490,15 +490,10 @@
 (defn -main [& args]
   (let [root (or (first args) "..")
         dist (.getCanonicalPath (io/file root ".gryphoon" "dist"))
-        static (.getCanonicalPath (io/file root "static"))
-        content (.getCanonicalFile (io/file root "content"))
-        website (.getCanonicalPath (io/file root "website"))]
+        content (.getCanonicalFile (io/file root "content"))]
     (println)
     (println "Gryphoon 3.5 - static website generator")
     (println "Content generator")
-    (println)
-    (println "Copying website content to distribution folder...")
-    (static-content website dist)
     (println)
     (println "Reading content...")
     (let [articles (read-articles content)
