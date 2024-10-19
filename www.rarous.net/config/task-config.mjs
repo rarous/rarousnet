@@ -7,18 +7,23 @@ import jitProps from "postcss-jit-props";
 import DefaultRegistry from "undertaker-registry";
 
 /** @typedef {import("@types/nunjucks").Environment} Environment */
+/** @typedef {import("@types/gulp").Gulp} Gulp */
 
 const pathConfig = await getPathConfig();
 
 class GryphoonRegistry extends DefaultRegistry {
-  constructor(config, pathConfig) {
+  constructor(config, pathConfig, mode) {
     super();
     this.config = config;
+    this.mode = mode;
     this.paths = {
       dest: projectPath(pathConfig.src, pathConfig.html.src)
     }
   }
 
+  /**
+   * @param {Gulp} gulp
+   */
   init({ task }) {
     task("generate-content", (done) => {
       const clj = spawn("clojure", ["-M", "-m", "rarousnet.generator", "../"], {
