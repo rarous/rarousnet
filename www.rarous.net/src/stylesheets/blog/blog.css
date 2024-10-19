@@ -1,5 +1,3 @@
-
-
 /* https://material.io/tools/color/#!/?view.left=1&view.right=1&primary.color=F77146&secondary.color=33769D&primary.text.color=ffffff */
 
 :root {
@@ -470,23 +468,26 @@ article footer {
 .footer {
   color: var(--text-color);
   background-color: var(--background-color);
-}
 
+  h2 {
+    font-size: clamp(1.5em, 2vw + 0.5em, 2em);
+  }
 
-.footer ul li {
-  padding: 0;
-  margin: 0;
-  line-height: 1.6;
-  list-style-type: none;
-}
+  ul li {
+    padding: 0;
+    margin: 0;
+    line-height: 1.6;
+    list-style-type: none;
+  }
 
-.footer .footer__inner {
-  padding: 1em 1.5em;
-}
+  .footer__inner {
+    padding: 1em 1.5em;
+  }
 
-.footer .footer__copyright {
-  padding: 0.25em 1.5em;
-  box-sizing: border-box;
+  .footer__copyright {
+    padding: 0.25em 1.5em;
+    box-sizing: border-box;
+  }
 }
 
 #head h1 {
@@ -495,23 +496,23 @@ article footer {
   font-weight: 900;
   z-index: 0;
   translate: 1rem 2.5rem;
-}
 
-#head h1 a {
-  -webkit-text-stroke: 2px var(--secondary-dark-color);
-  color: transparent;
-  text-decoration: none;
+  a {
+    -webkit-text-stroke: 2px var(--secondary-dark-color);
+    color: transparent;
+    text-decoration: none;
 
-  &:hover {
-    background-color: transparent;
-    text-decoration: underline;
-    color: var(--secondary-dark-color);
-    -webkit-text-stroke: 2px transparent;
-    text-decoration-color: var(--secondary-dark-color);
+    &:hover {
+      background-color: transparent;
+      text-decoration: underline;
+      color: var(--secondary-dark-color);
+      -webkit-text-stroke: 2px transparent;
+      text-decoration-color: var(--secondary-dark-color);
+    }
   }
 }
 
-#head>nav {
+#head > nav {
   --icon-size: 32px;
   --gap: 16px;
 
@@ -524,12 +525,10 @@ article footer {
   align-items: end;
 }
 
-
 #content {
   margin: 0 0 1em 1ex;
   padding: 1em;
 }
-
 
 #novy-komentar {
   margin-block-start: 4em;
@@ -588,6 +587,7 @@ article footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media screen and (min-width: 761px) {
   #top {
     margin: 0 auto;
