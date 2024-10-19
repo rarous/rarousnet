@@ -11,7 +11,9 @@
 :root {
   --main-font: "Innovator Grotesk", futura-pt, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   --headings-font: agrandir, "Neue Montreal", futura-pt, sans-serif;
+  --content-font: var(--main-font);
   --text-color: oklch(0 0 0);
+  --background-color: oklch(1 0 89.876);
   --primary-color: oklch(0.703 0.175 38.139);
   --primary-dark-color: oklch(0.547 0.168 36.467);
   --text-color-on-primary: oklch(1 0 89.876);
@@ -43,8 +45,15 @@ h2 {
   font-variation-settings: "wdth" 60;
 }
 
-p {
+p,
+ul,
+ol,
+dl {
+  font: 1em var(--content-font);
+  line-height: 1.5;
   text-wrap: pretty;
+  margin: 0.125em 0 1em;
+  padding: 0;
   max-width: 48rem;
 }
 
@@ -89,6 +98,10 @@ sub {
 
 table {
   font-variant-numeric: tabular-nums slashed-zero;
+}
+
+input, textarea, select, button, table {
+  font-family: inherit;
 }
 
 dialog::backdrop {
