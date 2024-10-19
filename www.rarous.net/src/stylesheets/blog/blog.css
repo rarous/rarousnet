@@ -573,7 +573,16 @@ article footer {
   }
 }
 
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 481px) and (max-width: 760px) {
+  .footer .footer__inner {
+    padding: 1em 1.5em;
+    display: grid;
+    grid-gap: 1.5em;
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 761px) {
   #top {
     margin: 0 auto;
     max-width: 60em;
@@ -587,6 +596,7 @@ article footer {
     padding: 1em 4em;
     display: grid;
     grid-gap: 1.5em;
+
     grid-template-columns: repeat(4, 1fr);
   }
 
