@@ -39,6 +39,7 @@
       font-weight: 100 900;
       font-display: swap;
     }
+
     @font-face {
       font-family: "Iosevka Web";
       font-weight: 400;
@@ -93,6 +94,69 @@
       unicode-range: U+100-17F;
     }
 
+    @font-face {
+      font-family: "Atkinson Hyperlegible";
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url("{{ "atkinson-hyperlegible/italic.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Atkinson Hyperlegible";
+      font-style: italic;
+      font-weight: 700;
+      font-display: swap;
+      src: url("{{ "atkinson-hyperlegible/bolditalic.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Atkinson Hyperlegible";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("{{ "atkinson-hyperlegible/regular.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Atkinson Hyperlegible";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("{{ "atkinson-hyperlegible/bold.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
+
+    @font-face {
+      font-family: "OpenDyslexic";
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url("{{ "opendyslexic/italic.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
+
+    @font-face {
+      font-family: "OpenDyslexic";
+      font-style: italic;
+      font-weight: 700;
+      font-display: swap;
+      src: url("{{ "opendyslexic/bolditalic.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
+
+    @font-face {
+      font-family: "OpenDyslexic";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("{{ "opendyslexic/regular.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
+
+    @font-face {
+      font-family: "OpenDyslexic";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("{{ "opendyslexic/bold.woff2" | assetUrl("fonts") }}") format("woff2");
+    }
   </style>
   <link rel="stylesheet" href="{{ "global.css" | assetUrl("stylesheets") }}">
   {% block head %}{% endblock %}

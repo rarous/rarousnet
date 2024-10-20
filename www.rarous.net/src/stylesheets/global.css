@@ -10,8 +10,11 @@
 
 @layer theme {
   :root {
-    --agrandir: Agrandir, "Neue Montreal", futura-pt, sans-serif;
-    --innovator-grotesk: "Innovator Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --system-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --agrandir: Agrandir, "Neue Montreal", sans-serif;
+    --innovator-grotesk: "Innovator Grotesk", var(--system-font);
+    --atkinson-hyperlegible: "Atkinson Hyperlegible", var(--system-font);
+    --opendyslexic: "OpenDyslexic", var(--system-font);
     --main-font: var(--innovator-grotesk);
     --headings-font: var(--agrandir);
     --code-font: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console", "Monaco CE", fixed, monospace;
@@ -25,14 +28,21 @@
     --secondary-dark-color: oklch(0.392 0.088 238.557);
   }
 
-  :root[data-theme='dark'] body,
-  :root:has(input[name='theme'][value='dark']:checked) body {
+  :root[data-theme='dark'] body {
     color-scheme: dark !important;
   }
 
-  :root[data-theme='light'] body,
-  :root:has(input[name='theme'][value='light']:checked) body {
+  :root[data-theme='light'] body {
     color-scheme: light !important;
+  }
+  :root[data-font-family='innovator'] {
+    --main-font: var(--innovator-grotesk);
+  }
+  :root[data-font-family='hyperlegible'] {
+    --main-font: var(--atkinson-hyperlegible);
+  }
+  :root[data-font-family='dyslexic'] {
+    --main-font: var(--opendyslexic);
   }
 }
 
