@@ -108,8 +108,8 @@ pre.console code {
 
 code[class*="language-"],
 pre:has(> code) {
-  color: oklch(0.178 0 89.876);
-  background-color: oklch(0.998 0.009 106.565);
+  color: light-dark(oklch(0.178 0 89.876), oklch(0.989 0.004 286.327));
+  background-color: light-dark(oklch(0.998 0.009 106.565), oklch(0.29 0.016 290.44));
   font-family: var(--code-font);
   text-align: left;
   white-space: pre;
@@ -142,7 +142,7 @@ pre:has(> code) ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
   text-shadow: none;
-  background: oklch(0.953 0.091 98.352);
+  background: light-dark(oklch(0.953 0.091 98.352), oklch(0.407 0.015 37.358));
 }
 
 pre:has(> code) {
@@ -153,7 +153,7 @@ pre:has(> code) {
 
 :not(pre) > code[class*="language-"],
 pre:has(> code) {
-  background: oklch(0.998 0.009 106.565);
+  background: light-dark(oklch(0.998 0.009 106.565), oklch(0.29 0.016 290.44));
 }
 
 :not(pre) > code[class*="language-"] {
@@ -527,6 +527,7 @@ article footer {
 
   p, span {
     font: 0.9rem var(--main-font);
+    line-height: 1.4;
   }
 
   code {
