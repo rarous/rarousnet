@@ -7,8 +7,7 @@
 :published "2019-01-28T10:30:00.000"
 :syndication ["https://twitter.com/alesroubicek/status/1089821260215918593"]}
 ---
-
-Sociální média umožňují (v rámci boje o uživatelovu pozornost) postovat bohaté příspěvky.
+<p>Sociální média umožňují (v rámci boje o uživatelovu pozornost) postovat bohaté příspěvky.
 V případě Twitteru jde o tzv. "Twitter Cards":[https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html],
 které umožňují nahradit odkaz požadovanými metadaty. Mezi ně patří název, popisek a obrázek.
 Můžete si dokonce vybrat, jestli chcete čtvercovou ikonu nebo pořádnej 2:1 billboard.
@@ -19,7 +18,7 @@ asi těžko souviset. Takže jsem musel vymyslet něco jinýho. Docela se mi lí
 prezentace ze Speakerdecku. A protože se mi vyloženě líbí, jak vypadaj "moje prezentace":[https://speakerdeck.com/rarous],
 tak jsem se rozhodl, že to obšlehnu. Aby se na první pohled dalo poznat, že nejde o prezentaci,
 ale o blog, rozhodl jsem se pro "jinou barvu pozadí .{background: #f77146;color: #fff}".
-Ale bílá "futura .{font-family: futura-pt}" zůstává. :)
+Ale bílá "futura .{font-family: futura-pt, Futura}" zůstává. :)
 
 Tak, nápad by byl, teď už jen jak ho realizovat?
 

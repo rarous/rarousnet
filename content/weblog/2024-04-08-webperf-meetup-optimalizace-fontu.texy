@@ -11,7 +11,7 @@
 
 Před nedávnem jsem psal o tom, "jak optimalizovat webové fonty":[https://www.rarous.net/weblog/2024/02/27/optimalizace-fontu.html].
 Nedlouho po tom vypsali kluci z webperf.cz:[https://webperf.cz/] "CFP((Call for Presentations))":[https://webperf.cz/cfp]
- a tak jsem jim poslal námět na přednášku. Vzhledem k tomu, že jsem byl jediný, kdo se na CFP ozval, tak jsem taky mluvil. :)
+a tak jsem jim poslal námět na přednášku. Vzhledem k tomu, že jsem byl jediný, kdo se na CFP ozval, tak jsem taky mluvil. :)
 
 Nemyslím si, že je to nějaká raketová věda, ale fonty jsou hodně častý performance problém a celkem snadno řešitelný.
 Nebojte se, přednáška není kopií článku, ačkoliv ho tam zmiňuju, tak stihnu zmínit mnohem víc užitečných věcí.
@@ -26,7 +26,7 @@ A tady jsou slajdy:
 
 A nakonec odkazy z prezentace:
 
-* článek na blogu z roku 2008 "Zvyště výkon vašeho webu":[https://www.rarous.net/weblog/2008/06/05/zvyste-vykon-vaseho-webu]
+* článek na blogu z roku 2008 "Zvyšte výkon vašeho webu":[https://www.rarous.net/weblog/2008/06/05/zvyste-vykon-vaseho-webu]
 * záznam prezentace "Frontendisti.cz - optimalizace responzivních obrázků":[https://youtu.be/Ue-VygGkn-A]
 * "Fontotéka Davida Grudla":[https://web.archive.org/web/20070404214111/http://www.dgx.cz/tools/fonts/]
 * "sIFR":[https://mikeindustries.com/blog/sifr]

@@ -26,7 +26,7 @@ done
 
 ## Přidávání hashe do názvu souboru
 Když jsem zmenšené soubory nauploadoval přes webové rozhranní do Cloudinary, všiml jsem si, že každý soubor má
-do názvu přidaný `_$hash`, který se snaží, mít unikátní názvy pro nahrané soubory. To může být zajímavá feature,
+do názvu přidaný `_$hash`, který se snaží mít unikátní názvy pro nahrané soubory. To může být zajímavá feature,
 pokud máte v content managementu bordel, ale já ve svém use case potřebuju mít názvy souborů nezměněné.
 
 Řešením je použít "Cloudinary CLI":[https://cloudinary.com/documentation/cloudinary_cli].
