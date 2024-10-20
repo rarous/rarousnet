@@ -7,9 +7,10 @@
   --secondary-color: oklch(0.543 0.091 237.043);
   --secondary-dark-color: oklch(0.392 0.088 238.557);
 
-  --content-color: oklch(0.178 0 89.876);
-  --content-background: rgba(256, 256, 256, 0.8);
-  --border-color: oklch(0.321 0 89.876);
+  --background-color: light-dark(#ffffff, #3c312d);
+  --content-color: light-dark(#111, #f5f5f5);
+  --content-background: light-dark(rgba(256, 256, 256, 0.8), rgb(39, 28, 24, 0.7));
+  --border-color: light-dark(#333, #98918f);
   --border-width: 2px;
 
   --icon-color: var(--secondary-dark-color);
@@ -29,6 +30,7 @@
   --pagefind-ui-border-radius: 0;
   --pagefind-ui-font: var(--content-font);
 }
+
 
 html,
 body {
@@ -65,7 +67,7 @@ h2 a {
 }
 
 h3 {
-  color: #000;
+  color: var(--h3-color, var(--text-color));
   font: 500 1.5em var(--headings-font);
   font-variation-settings: "wdth" 60;
   margin: 1.5em 0 0.25em;
@@ -92,49 +94,6 @@ aside p {
   --content-font: var(--citation-font);
 }
 
-figure {
-  margin: 1rem 0 1.5rem;
-
-  figcaption {
-    max-width: 80%;
-    margin: 1em auto 0;
-    text-align: center;
-    text-wrap: balance;
-  }
-}
-
-img.right {
-  float: right;
-  margin: 0.4em;
-}
-
-abbr,
-acronym {
-  border-bottom: 1px dotted oklch(0.45 0 89.876);
-}
-
-code {
-  background: oklch(0.974 0.012 106.618);
-  font: 1em var(--code-font);
-  padding: 0 0.125em;
-}
-
-
-pre {
-  border: 1px solid oklch(0.845 0 89.876);
-  margin: 1em 0;
-  padding: 0.5em;
-  overflow: auto;
-}
-
-pre code {
-  background-color: transparent;
-  padding: 0;
-}
-
-* html pre {
-  overflow-y: visible;
-}
 
 pre.console {
   background: oklch(0 0 0);
@@ -543,9 +502,9 @@ article footer {
     font-weight: 700;
   }
 
-  input, textarea {
+  input, textarea, fieldset {
     border: var(--border-width) solid var(--border-color);
-    border-radius: 0;
+    border-radius: var(--border-radius, 0);
   }
 
   input[name=name] {

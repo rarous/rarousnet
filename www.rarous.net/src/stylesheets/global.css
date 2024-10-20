@@ -8,23 +8,28 @@
   inherits: true;
 }
 
-:root {
-  --main-font: "Innovator Grotesk", futura-pt, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  --headings-font: Agrandir, "Neue Montreal", futura-pt, sans-serif;
-  --code-font: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console", "Monaco CE", fixed, monospace;
-  --content-font: var(--main-font);
-  --text-color: oklch(0 0 0);
-  --background-color: oklch(1 0 89.876);
-  --primary-color: oklch(0.703 0.175 38.139);
-  --primary-dark-color: oklch(0.547 0.168 36.467);
-  --text-color-on-primary: oklch(1 0 89.876);
-  --secondary-color: oklch(0.543 0.091 237.043);
-  --secondary-dark-color: oklch(0.392 0.088 238.557);
+@layer theme {
+  :root {
+    --main-font: "Innovator Grotesk", futura-pt, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --headings-font: Agrandir, "Neue Montreal", futura-pt, sans-serif;
+    --code-font: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console", "Monaco CE", fixed, monospace;
+    --content-font: var(--main-font);
+    --text-color: light-dark(#000000, #fff);
+    --background-color: light-dark(#ffffff, #271c18);
+    --primary-color: oklch(0.703 0.175 38.139);
+    --primary-dark-color: oklch(0.547 0.168 36.467);
+    --text-color-on-primary: oklch(1 0 89.876);
+    --secondary-color: oklch(0.543 0.091 237.043);
+    --secondary-dark-color: oklch(0.392 0.088 238.557);
+  }
+  :root[data-theme='dark'] {}
 }
 
 body {
+  color-scheme: light dark;
   font: 16px var(--main-font);
   color: var(--text-color);
+  background-color: var(--background-color);
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero diagonal-fractions;
   font-variant-ligatures: common-ligatures contextual;
@@ -59,7 +64,7 @@ dl {
 }
 
 :where(a) {
-  --link-color: var(--secondary-dark-color);
+  --link-color: light-dark(var(--secondary-dark-color), var(--secondary-color));
   color: var(--link-color);
 
   &:visited {
@@ -85,6 +90,49 @@ dl {
 
 abbr {
   font-variant-caps: all-petite-caps;
+}
+
+figure {
+  margin: 1rem 0 1.5rem;
+
+  figcaption {
+    max-width: 80%;
+    margin: 1em auto 0;
+    text-align: center;
+    text-wrap: balance;
+  }
+}
+
+img.right {
+  float: right;
+  margin: 0.4em;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted oklch(0.45 0 89.876);
+}
+
+code {
+  background: light-dark(oklch(0.974 0.012 106.618), #514744);
+  font: 1em var(--code-font);
+  padding: 0 0.125em;
+}
+
+pre {
+  border: 1px solid oklch(0.845 0 89.876);
+  margin: 1em 0;
+  padding: 0.5em;
+  overflow: auto;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+* html pre {
+  overflow-y: visible;
 }
 
 sup, sub {
