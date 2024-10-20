@@ -11,13 +11,13 @@
   margin-inline-end: -9px;
   padding: 0;
   will-change: translate;
-  transition: translate .8s var(--ease-squish-3);
-}
+  translate: 0 0;
+  transition: translate 800ms var(--ease-bounce-3);
 
-.webmentions li:hover {
-  translate: 0 -7px;
+  &:hover {
+    translate: 0 -7px;
+  }
 }
-
 .webmentions img {
   aspect-ratio: var(--ratio-square, 1);
   border-radius: var(--radius-round, 50%);

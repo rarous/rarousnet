@@ -51,12 +51,10 @@ export default {
 
   stylesheets: {
     postcss: {
-      postcss: {
-        plugins: [
-          postcssGamutMapping(),
-          jitProps(OpenProps),
-        ]
-      }
+      plugins: [
+        postcssGamutMapping(),
+        jitProps(OpenProps),
+      ]
     }
   },
 
