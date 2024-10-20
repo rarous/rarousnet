@@ -35,13 +35,13 @@
   :root[data-theme='light'] body {
     color-scheme: light !important;
   }
-  :root[data-font-family='innovator'] {
+  [data-font-family='innovator'] {
     --main-font: var(--innovator-grotesk);
   }
-  :root[data-font-family='hyperlegible'] {
+  [data-font-family='hyperlegible'] {
     --main-font: var(--atkinson-hyperlegible);
   }
-  :root[data-font-family='dyslexic'] {
+  [data-font-family='dyslexic'] {
     --main-font: var(--opendyslexic);
   }
 }
@@ -51,6 +51,7 @@ body {
   font: 16px var(--main-font);
   color: var(--text-color);
   background-color: var(--background-color);
+  accent-color: var(--primary-color);
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero diagonal-fractions;
   font-variant-ligatures: common-ligatures contextual;
@@ -171,12 +172,8 @@ table {
   font-variant-numeric: tabular-nums slashed-zero;
 }
 
-input, textarea, select, button, table {
-  font-family: inherit;
-}
-
-dialog::backdrop {
-  backdrop-filter: blur(5px)
+input, textarea, select, button, table, fieldset, label {
+  font-family: var(--main-font);
 }
 
 .wai a {
@@ -191,7 +188,6 @@ dialog::backdrop {
     z-index: 100;
     top: 0;
     left: 0;
-
   }
 }
 
@@ -234,34 +230,42 @@ header > nav {
   }
 }
 
-#hamburger {
+dialog {
   width: 100%;
   max-width: clamp(20em, 100vw - 4em, 52em);
   min-width: clamp(12em, 100vw - 4em, 32em);
+
+  &::backdrop {
+    backdrop-filter: blur(5px)
+  }
+
+  h2 {
+    letter-spacing: -1px;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  nav, form {
+    display: contents;
+  }
 }
 
-#hamburger h2 {
-  letter-spacing: -1px;
-  text-wrap: balance;
-  margin: 0;
-}
+#hamburger {
+  nav {
+    ul {
+      font-family: var(--main-font);
+      margin-block: var(--gap);
+      list-style-type: none;
+      padding: 0;
+      line-height: 2;
+    }
 
-#hamburger nav {
-  display: contents;
-}
+    li {
+      margin: 0;
+    }
 
-#hamburger nav ul {
-  font-family: var(--main-font);
-  margin-block: var(--gap);
-  list-style-type: none;
-  padding: 0;
-  line-height: 2;
-}
-
-#hamburger nav li {
-  margin: 0;
-}
-
-#hamburger nav a {
-  padding: 0.25em .5em;
+    a {
+      padding: 0.25em .5em;
+    }
+  }
 }

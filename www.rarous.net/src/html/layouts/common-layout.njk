@@ -31,6 +31,17 @@
     <ul>
       {% block navbar %}{% endblock %}
       <li>
+        <a href="#preferences"
+           title="otevřít menu nastavení"
+           onclick="event.preventDefault();preferencesDialog.showModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--icon-color)"
+               viewBox="0 -960 960 960" transform="scale(0.8)">
+            <path
+              d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
         <a href="#hamburger"
            title="otevřít menu"
            onclick="event.preventDefault();menuDialog.showModal()">
@@ -39,7 +50,8 @@
             <path d="M0 0h24v24H0z" fill="none"/>
             <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
           </svg>
-        </a></li>
+        </a>
+      </li>
     </ul>
   </nav>
   <dialog id="menuDialog" onclick="event.target === this && this.close()">
@@ -55,6 +67,29 @@
         </ul>
       </nav>
     </div>
+  </dialog>
+  <dialog id="preferencesDialog" onclick="event.target === this && this.close()">
+    <script type="module" src="{{ "settings-form.js" | assetUrl("esm") }}"></script>
+    <settings-form id="preferences">
+      <form method="dialog">
+        <h2>Nastavení</h2>
+        <fieldset>
+          <legend>Barevné téma</legend>
+          <label><input type="radio" name="theme" value="auto" checked> Automaticky</label>
+          <label><input type="radio" name="theme" value="light"> Světlé</label>
+          <label><input type="radio" name="theme" value="dark"> Tmavé</label>
+        </fieldset>
+        <fieldset>
+          <legend>Rodina fontů</legend>
+          <label data-font-family="innovator"><input type="radio" name="fontFamily" value="innovator" checked> Innovator Grotesk</label>
+          <label data-font-family="hyperlegible"><input type="radio" name="fontFamily" value="hyperlegible"> Atkinson Hyperlegible</label>
+          <label data-font-family="dyslexic"><input type="radio" name="fontFamily" value="dyslexic"> OpenDyslexic</label>
+        </fieldset>
+        <div>
+          <button>Uložit</button>
+        </div>
+      </form>
+    </settings-form>
   </dialog>
 </header>
 <main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content">
