@@ -21,14 +21,14 @@
 
   --heading-font: 800 2.5em var(--headings-font);
 
-  --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: var(--primary-color);
-  --pagefind-ui-text: var(--content-color);
-  --pagefind-ui-background: var(--content-background);
-  --pagefind-ui-border: var(--border-color);
-  --pagefind-ui-border-width: var(--border-width);
-  --pagefind-ui-border-radius: 0;
-  --pagefind-ui-font: var(--content-font);
+  --pagefind-ui-scale: 1 !important;
+  --pagefind-ui-primary: var(--primary-color) !important;
+  --pagefind-ui-text: var(--content-color) !important;
+  --pagefind-ui-background: var(--content-background) !important;
+  --pagefind-ui-border: var(--border-color) !important;
+  --pagefind-ui-border-width: var(--border-width) !important;
+  --pagefind-ui-border-radius: 0 !important;
+  --pagefind-ui-font: var(--content-font) !important;
 }
 
 
@@ -452,6 +452,16 @@ article footer {
   font-weight: 900;
   z-index: 0;
   translate: 1rem 2.5rem;
+  transition: translate 350ms linear(
+    0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077,
+    1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%,
+    1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%,
+    0.997 69.8%, 1.003 76.9%, 1
+  );
+
+  &:hover {
+    translate: 1rem 1rem;
+  }
 
   a {
     -webkit-text-stroke: 2px var(--secondary-dark-color);
