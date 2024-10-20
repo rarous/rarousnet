@@ -217,7 +217,7 @@ header > nav {
   a {
     display: inline-flex;
 
-    &:hover, &:focus {
+    &:hover {
       --icon-color: var(--text-color-on-primary);
       border-radius: 4px;
     }
