@@ -19,11 +19,14 @@
     --headings-font: var(--agrandir);
     --code-font: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console", "Monaco CE", fixed, monospace;
     --content-font: var(--main-font);
+    --text-color: oklch(0 0 0);
     --text-color: light-dark(oklch(0 0 0), oklch(0.922 0.021 17.538));
+    --background-color: oklch(1 0 89.876);
     --background-color: light-dark(oklch(1 0 89.876), oklch(0.239 0.019 40.904));
     --primary-color: oklch(0.703 0.175 38.139);
     --primary-dark-color: oklch(0.547 0.168 36.467);
     --text-color-on-primary: oklch(1 0 89.876);
+    --secondary-color: oklch(0.543 0.091 237.043);
     --secondary-color: light-dark(oklch(0.543 0.091 237.043), oklch(0.655 0.101 239.128));
     --secondary-dark-color: oklch(0.392 0.088 238.557);
   }
@@ -35,12 +38,15 @@
   :root[data-theme='light'] body {
     color-scheme: light !important;
   }
+
   [data-font-family='innovator'] {
     --main-font: var(--innovator-grotesk);
   }
+
   [data-font-family='hyperlegible'] {
     --main-font: var(--atkinson-hyperlegible);
   }
+
   [data-font-family='dyslexic'] {
     --main-font: var(--opendyslexic);
   }
@@ -87,6 +93,7 @@ dl {
 }
 
 :where(a) {
+  --link-color: var(--secondary-dark-color);
   --link-color: light-dark(var(--secondary-dark-color), var(--secondary-color));
   color: var(--link-color);
 
@@ -137,6 +144,7 @@ acronym {
 }
 
 code {
+  background: oklch(0.974 0.012 106.618);
   background: light-dark(oklch(0.974 0.012 106.618), #514744);
   font: 1em var(--code-font);
   padding: 0 0.125em;
