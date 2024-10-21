@@ -10,14 +10,15 @@
 
 @layer theme {
   :root {
-    --system-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    color-scheme: light dark;
+
     --agrandir: Agrandir, "Neue Montreal", sans-serif;
-    --innovator-grotesk: "Innovator Grotesk", var(--system-font);
-    --atkinson-hyperlegible: "Atkinson Hyperlegible", var(--system-font);
-    --opendyslexic: "OpenDyslexic", var(--system-font);
+    --innovator-grotesk: "Innovator Grotesk", var(--font-sans);
+    --atkinson-hyperlegible: "Atkinson Hyperlegible", var(--font-sans);
+    --opendyslexic: "OpenDyslexic", var(--font-sans);
     --main-font: var(--innovator-grotesk);
     --headings-font: var(--agrandir);
-    --code-font: Iosevka, "Iosevka Web", Monaco, "Source Code Pro", Consolas, "Lucida Console", "Monaco CE", fixed, monospace;
+    --code-font: Iosevka, "Iosevka Web", var(--font-mono);
     --content-font: var(--main-font);
     --text-color: oklch(0 0 0);
     --text-color: light-dark(oklch(0 0 0), oklch(0.922 0.021 17.538));
@@ -31,11 +32,11 @@
     --secondary-dark-color: oklch(0.392 0.088 238.557);
   }
 
-  :root[data-theme='dark'] body {
+  :root[data-theme='dark'] {
     color-scheme: dark !important;
   }
 
-  :root[data-theme='light'] body {
+  :root[data-theme='light'] {
     color-scheme: light !important;
   }
 
@@ -53,7 +54,6 @@
 }
 
 body {
-  color-scheme: light dark;
   font: 16px var(--main-font);
   color: var(--text-color);
   background-color: var(--background-color);
