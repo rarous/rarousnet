@@ -75,6 +75,14 @@ h3 {
   margin: 1.5em 0 0.25em;
 }
 
+
+h4 {
+  color: var(--h4-color, var(--text-color));
+  font: 500 1.25em var(--headings-font);
+  line-height: 1.25;
+  margin: 1.5em 0 0.25em;
+}
+
 blockquote {
   border-left: var(--border-width) solid var(--border-color);
   color: oklch(0.51 0 89.876);
@@ -345,13 +353,6 @@ article footer {
   h3 {
     font-family: var(--headings-font);
     font-size: 2rem;
-    line-height: 1.25;
-    margin: 0;
-  }
-
-  h4 {
-    font-family: var(--headings-font);
-    font-size: 1.5rem;
     line-height: 1.25;
     margin: 0;
   }

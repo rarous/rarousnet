@@ -4,7 +4,7 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "indieweb", "webcomponents", "webdesign", "webfonts"},
  :published "2024-10-21T17:44:00.000"
- :syndication []}
+ :syndication ["https://x.com/alesroubicek/status/1848407097454493708"]}
 ---
 
 O víkendu jsem se pustil do občerstvení designu tohoto webu. Chtěl jsem harmonizovat vzhled blogu s dalšími stránkami
@@ -29,7 +29,7 @@ které jsou připravené v lehkém stylu. Barevné schéma zůstaváná zachovan
 okolo obsahu blogu. Mám ale v plánu si s tím ještě trochu pohrát, protože nejsou doladěný kontrasty.
 
 Původní barevné schéma jsem vytvořil pomocí *Material Color Tool*, který už neexistuje - nebo link,
-který jsme měl uložený, nefunguje. Nově chci využít
+který jsem měl uložený, nefunguje. Nově chci využít
 "Open Props":[https://open-props.style/] a OKLCH:[https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch]
 k definování barevných palet postavených okolo vybraného Hue (`--color-hue`).
 
@@ -48,8 +48,8 @@ základní barvy.
 ### Přepínání barevných variant
 
 Primárně jsem využíval nové CSS funkce `light-dark()`:[https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark],
-kde jsem ke světlé variantě doplnit i tmavou. Aby funkce fungovala, je potřeba mít daklavovanou vlastnost
-`color-scheme`:[https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme] ideálně s hodnoutou `light dark`.
+kde jsem ke světlé variantě doplnil i tmavou. Aby funkce fungovala, je potřeba mít deklavovanou vlastnost
+`color-scheme`:[https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme] - ideálně s hodnoutou `light dark`.
 Tato hodnota říká, že podporujeme světlou i tmavou variantu - a světlá je preferovaná.
 
 Browser pak přizpůsobuje barvy nativních UI prvků aktivnímu schématu. Když máme definovanou vlastnost `color-scheme`
