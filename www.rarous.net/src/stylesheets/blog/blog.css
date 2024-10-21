@@ -349,6 +349,13 @@ article footer {
     margin: 0;
   }
 
+  h4 {
+    font-family: var(--headings-font);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin: 0;
+  }
+
   article {
     display: grid;
     grid-template-columns: subgrid;

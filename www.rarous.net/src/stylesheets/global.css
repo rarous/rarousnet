@@ -144,10 +144,14 @@ acronym {
 }
 
 code {
-  background: oklch(0.974 0.012 106.618);
-  background: light-dark(oklch(0.974 0.012 106.618), #514744);
-  font: 1em var(--code-font);
-  padding: 0 0.125em;
+  font-size: 1em;
+  font-family: var(--code-font);
+
+  :not(a)>& {
+    background: oklch(0.974 0.012 106.618);
+    background: light-dark(oklch(0.974 0.012 106.618), #514744);
+    padding: 0 0.125em;
+  }
 }
 
 pre {

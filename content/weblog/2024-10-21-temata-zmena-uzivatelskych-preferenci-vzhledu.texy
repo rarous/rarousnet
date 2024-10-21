@@ -1,0 +1,255 @@
+---
+{:title "Témata a změna uživatelských preferencí vzhledu",
+ :description "Dneska se podíváme na to, jak jsem přidal podporu změny barevných témat a fontů pomocí moderního CSS a webové komponenty, a dal tam uživatelům možnost zpříjemnit si čtení.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "indieweb", "webcomponents", "webdesign", "webfonts"},
+ :published "2024-10-21T17:44:00.000"
+ :syndication []}
+---
+
+O víkendu jsem se pustil do občerstvení designu tohoto webu. Chtěl jsem harmonizovat vzhled blogu s dalšími stránkami
+a připravit tak základ pro další budování. Zároveň jsem chtěl přidat podporu tmavého tématu a možnost volby fontů
+pro lepší čitelnost.
+
+Vydal jsem se cestou refactoringu, kdy jsem malými iterativními změnami došel, kam jsem potřeboval.
+Když jsem měl ucelenější změnu hotovou, poslal jsem ji rovnou do produkce. Pokud někdo z vás o víkendu refreshoval
+tenhle web (podle statistik dost nepravděpodobné), mohl vidět postupnou proměnu v přímém přenosu.
+
+Dlouhodobě se snažím styly udržovat aktuální a ve formě, takže už jsem měl připravené
+"CSS Custom Properties":[https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties]
+(vlastní vlastnosti), aby šly věci měnit z jednoho místa. Některé styly jsem začal přesouvat do globálního
+stylopisu, který je společný pro všechny (udržované) stránky. Musel jsem upravit kaskádu, aby se architektura
+vlastních vlastností hezky vrstvila a pomáhala tam, kde bylo vhodné se lišit. Tohle je ještě v procesu,
+kdy je potřeba dost věcí dočistit a uklidit, ale prvního cíle jsem byl schopný dosáhnout.
+
+### Nová témata
+
+První viditelnou změnou je, že blog už není oranžový, ale bílý. Tím se sladil se zbytkem nových stránek,
+které jsou připravené v lehkém stylu. Barevné schéma zůstaváná zachované, jen se oranžová nepoužívá jako pozadí
+okolo obsahu blogu. Mám ale v plánu si s tím ještě trochu pohrát, protože nejsou doladěný kontrasty.
+
+Původní barevné schéma jsem vytvořil pomocí *Material Color Tool*, který už neexistuje - nebo link,
+který jsme měl uložený, nefunguje. Nově chci využít
+"Open Props":[https://open-props.style/] a OKLCH:[https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch]
+k definování barevných palet postavených okolo vybraného Hue (`--color-hue`).
+
+Druhou změnou je změna font stacku. Články už nejsou sázeny v *Iosevka Slab* (`--content-font`),
+ale používají "Innovator Grotesk":[https://www.yeptype.com/fonts/innovator-grotesk] (`--main-font`).
+Futuru v nadpisech nahradil "Agrandir .{font-family: var(--agrandir)}":[https://pangrampangram.com/products/agrandir] (`--headings-font`).
+Oba fonty jsou variabilní a snižují tak množství potřebných souborů pro vykreslení.
+Zatím jsem je ještě neoptimalizoval a je tam "prostor pro efektivnější načítání":[/weblog/2024/02/27/optimalizace-fontu.html].
+
+"Iosevku .{font-family: var(--code-font)}":[https://typeof.net/Iosevka/] (`--code-font`) jsem zachoval na výpisy kódu.
+
+Když jsem byl spokojený s tím, jak vypadá světlá varianta, začal jsem řešit variantu tmavou. K tomu jsem využil
+nástroj "Dark Theme Generator":[https://colorffy.com/dark-theme-generator], který mi navrhl barevné schema na základě
+základní barvy.
+
+### Přepínání barevných variant
+
+Primárně jsem využíval nové CSS funkce `light-dark()`:[https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark],
+kde jsem ke světlé variantě doplnit i tmavou. Aby funkce fungovala, je potřeba mít daklavovanou vlastnost
+`color-scheme`:[https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme] ideálně s hodnoutou `light dark`.
+Tato hodnota říká, že podporujeme světlou i tmavou variantu - a světlá je preferovaná.
+
+Browser pak přizpůsobuje barvy nativních UI prvků aktivnímu schématu. Když máme definovanou vlastnost `color-scheme`
+a používáme funkci `light-dark()`, tak browser automaticky mění barevné schéma na základě systémových preferencí
+nebo změnou nastavení v DevTools.
+
+/--code css
+@layer theme {
+  :root {
+    color-scheme: light dark;
+    --text-color: light-dark(oklch(0% 0 0), oklch(92.2% 0.021 17.538));
+    --background-color: light-dark(oklch(100% 0 89.876), oklch(23.9% 0.019 40.904));
+  }
+}
+\--code
+
+Tohle je minimum, co musíme udělat, pro to, abychom měli základ podpory přepínání světlých a tmavých témat.
+
+Automatická změna je dobrý začátek, ale já jsem chtěl, aby si mohl ctěný čtenář/uživatel vybrat sám na úrovni
+konkrétního webu, nejen celého systému. Začal jsem tím, že jsem si nadefinoval přepínače témat v HTML.
+
+Rozhodl jsem se, že se téma bude přepínat pomocí definice `data-theme` atributu na `html` elementu.
+
+/--code css
+@layer theme {
+  :root[data-theme='dark'] {
+    color-scheme: dark !important;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light !important;
+  }
+}
+\--code
+
+Funguje to tak, že, když je vybrané téma uživatelem (existuje `data-theme` atribut), se přepíše `color-scheme`
+na uživatelem vybranou variantu. Krása, hotovo. :)
+
+Při vývoji jsem narazil na jednu takovou věc se Safari. Původně jsem `color-scheme` definoval až na `body` a to v něm
+úplně nefungovalo. Chápu asi proč, ale je to hloupé a všude jinde to fungovalo dle mých očekávání. Takže pokud chcete
+předejít zbytečným bugům, definujte `color-scheme` už na `:root`.
+
+### Uživatelova volba
+
+Takže máme za sebou automatickou volbu podle systémových preferencí a zavedli jsme možnost, jak ovlivnit výběr pomocí
+data atributu. Teď už jen, jak ho tam dostat?
+
+## Vstupní formulář
+
+Začal jsem tím, že jsem do horní lišty přidal další ikonku, která otevírá další modální `dialog`. A v tom dialogu jsem
+udělal formulář `<form method="dialog">`. Přepínání jednotlivých variant se dělá pomocí radio buttonů, konkrétně tak:
+
+/--code html
+<fieldset>
+  <legend>Barevné téma</legend>
+  <label><input type="radio" name="theme" value="auto" checked> Automaticky</label>
+  <label><input type="radio" name="theme" value="light"> Světlé</label>
+  <label><input type="radio" name="theme" value="dark"> Tmavé</label>
+</fieldset>
+\--code
+
+Tím, že mají inputy stejnou hodnotu atributu `name`, vytvoříme skupinu, která umožňuje výběr právě jedné varianty.
+Na výběr je ze tří variant: `auto`, `light` a `dark`. Variantu **`auto`** nemáme ve stylech explicitně deklarovanou,
+protože je to **implicitní default**.
+
+## Web komponenta na zpracování formuláře
+
+Tak, máme UI, a co s ním dál?
+
+Tím, že máme u formuláře definovanou metodu `dialog`, se nám browser nebude pokoušet posílat formulář na server,
+ale očekává zpracování na straně klienta. Výchozí chování je, že se zavře `dialog`.
+
+Já jsme se pro zpracování formuláře rozhodl využít webovou komponentu, která využívá
+"progressive enhancement":[https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement]
+k přidání nového chování. Takže jsem formulář obalil do vlastní značky `settings-form`:
+
+/--code html
+<settings-form>
+  <form method="dialog"></form>
+</settings-from>
+\--code
+
+To samo o sobě nemá vliv na nic, protože nemáme definovaný to chování:
+
+/--code javascript
+class SettingsForm extends HTMLElement {
+  connectedCallback() {
+    const root = document.documentElement;
+    const form = this.querySelector("form");
+
+    form.addEventListener("submit", e => {
+      const data = new FormData(e.target);
+      updateSettings(root, data);
+      localStorage.setItem("settings", JSON.stringify(Object.fromEntries(data)));
+    });
+
+    const settings = Object.entries(JSON.parse(localStorage.getItem("settings") ?? "{}"));
+    updateSettings(root, settings);
+    updateForm(form, settings);
+  }
+}
+\--code
+
+Využil jsem "vzor definice webové komponenty":[/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech],
+který jsem představil minule, takže ho tady nebudu opakovat. :)
+
+Pojďme se rovnou soustředit na nové chování. Budeme obohacovat rootový element, tedy `html`, tak si ho
+uložíme do proměnné `root`. Potom budeme pracovat s vnořeným formulářem a ten si taky uložíme, do proměnné `form`.
+Metoda `querySelector("form")` nám vrátí prvního potomka, který je formulář. Je jedno jak moc je zanořený,
+nebo jestli jich tam je víc. Vezme toho prvního.
+
+Když uživatel zmáčkne tlačítko *Uložit*, vyvolá se se na formuláři událost `submit`.
+V ovladači události si přečteme odeslaná data a nastavíme je do `data-` atributů `html` elementu (`updateSettings()`).
+Taky si vybrané preference uložíme do `localStorage`, aby se zapamatovaly mezi jednotlivými návštěvami.
+
+Dále si při registraci vlastní značky přečteme preference z `localStorage`, aplikujeme je na `html` element (`updateSettings()`)
+a označíme je jako vybrané ve formuláři (`updateForm()`), aby, když ho uživatel otevře, viděl, co má nastaveno.
+
+/--code javascript
+/**
+ * @param {HTMLElement} root
+ * @param {IterableIterator<[key: string, value: string]>} data
+ */
+function updateSettings(root, data) {
+  for (const [key, value] of data) {
+    root.dataset[key] = value;
+  }
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @param {IterableIterator<[key: string, value: string]>} data
+ */
+function updateForm(form, data) {
+  for (const [key, value] of data) {
+    form[key].value = value;
+  }
+}
+\--code
+
+No, a to je celý. "Výsledný kód komponenty":[https://github.com/rarous/rarousnet/blob/trunk/www.rarous.net/src/esm/settings-form.js]
+najdete u mne na Githubu.
+
+## Změna font stacku
+
+A teď můžeme přidat možnost měnit fonty. Do formuláře přidáme další radio button set:
+
+/--code html
+<fieldset>
+  <legend>Rodina fontů</legend>
+  <label data-font-family="innovator">
+    <input type="radio" name="fontFamily" value="innovator" checked>
+    Innovator Grotesk
+  </label>
+  <label data-font-family="hyperlegible">
+    <input type="radio" name="fontFamily" value="hyperlegible">
+    Atkinson Hyperlegible
+  </label>
+  <label data-font-family="dyslexic">
+    <input type="radio" name="fontFamily" value="dyslexic">
+    OpenDyslexic
+  </label>
+</fieldset>
+\--code
+
+Do stylů pak přidáme re-definici vlastních vlastností na základě uživatelova výběru:
+
+/--code css
+@layer theme {
+  [data-font-family='innovator'] {
+    --main-font: var(--innovator-grotesk);
+  }
+  [data-font-family='hyperlegible'] {
+    --main-font: var(--atkinson-hyperlegible);
+  }
+  [data-font-family='dyslexic'] {
+    --main-font: var(--opendyslexic);
+  }
+}
+\--code
+
+Všimněte si, že tady nemám před atributem definovaný žádný scope, takže ho můžu použít kdekoliv ve struktuře HTML.
+A to právě hned využívám v samotném formuláři, kde jsou jednotlivé popisky voleb vykresleny patřičným fontem.
+Po potvrzení výběru se pravidlo aplikuje na root a překreslí se celá stránka v novém fontu.
+
+Prozatím jsem přidal jen dvě alternativy - "Atkinson Hyperligible .{font-family: var(--atkinson-hyperlegible)}":[https://www.brailleinstitute.org/freefont/]
+a "OpenDyslexic .{font-family: var(--opendyslexic)}":[https://opendyslexic.org/], které by měly být lepší na čtení obecně nebo pokud trpíte dyslexií.
+Brzy asi přibudou ještě patkové a monospace alternativy.
+
+S využitím Open Props, můžu třeba využít všechny "Modern Fontstacks":[https://modernfontstacks.com/],
+které nevyžadují stahování webových fontů.
+
+### Závěr
+
+Moderní CSS a webové komponenty nám umožňují **jenoduše a rychle** implementovat funkcionalitu, která ještě před pár lety
+byla mnohem složitější nebo nerealizovatelná vůbec. Pomocí jednoduchých a snadno použitelných vzorů jsem vytvořil
+**otevřený systém**, jak umožnit uživateli ovlivňovat vzhed tak, aby lépe vyhovoval jeho potřebám a omezením.
+
+Otevřený píšu, protože web komponenta samotná řeší jen mechaniku, jak z formulářohého pole `xxx` dostat hodnotu
+do atributu `data-xxx` na rootovém elementu. Mně už pak stačí přidávat další radio button sety a další definice v CSS.
+Když budu chtít přidat změnu třeba velikosti fontu, je to otázka definice patřičných voleb ve formuláři a pravidel v CSS.
+
+Jaké jsou vaše zkušenosti s implementací barevných témat a přístupnějších variant fontů?
