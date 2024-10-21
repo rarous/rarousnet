@@ -4,7 +4,9 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "indieweb", "webcomponents", "webdesign", "webfonts"},
  :published "2024-10-21T17:44:00.000"
- :syndication ["https://x.com/alesroubicek/status/1848407097454493708"]}
+ :syndication
+ ["https://x.com/alesroubicek/status/1848407097454493708"
+  "https://indieweb.social/@alesroubicek/113346566941842915"]}
 ---
 
 O víkendu jsem se pustil do občerstvení designu tohoto webu. Chtěl jsem harmonizovat vzhled blogu s dalšími stránkami
@@ -239,8 +241,8 @@ Prozatím jsem přidal jen dvě alternativy - "Atkinson Hyperligible .{font-fami
 a "OpenDyslexic .{font-family: var(--opendyslexic)}":[https://opendyslexic.org/], které by měly být lepší na čtení obecně nebo pokud trpíte dyslexií.
 Brzy asi přibudou ještě patkové a monospace alternativy.
 
-S využitím Open Props, můžu třeba využít všechny "Modern Fontstacks":[https://modernfontstacks.com/],
-které nevyžadují stahování webových fontů.
+S využitím Open Props, můžu třeba využít všechny "Modern Fontstacks":[https://modernfontstacks.com/], které nevyžadují
+stahování webových fontů.
 
 ### Závěr
 
@@ -248,7 +250,7 @@ Moderní CSS a webové komponenty nám umožňují **jenoduše a rychle** implem
 byla mnohem složitější nebo nerealizovatelná vůbec. Pomocí jednoduchých a snadno použitelných vzorů jsem vytvořil
 **otevřený systém**, jak umožnit uživateli ovlivňovat vzhed tak, aby lépe vyhovoval jeho potřebám a omezením.
 
-Otevřený píšu, protože web komponenta samotná řeší jen mechaniku, jak z formulářohého pole `xxx` dostat hodnotu
+Otevřený píšu, protože web komponenta samotná řeší jen mechaniku, jak z formulářového pole `xxx` dostat hodnotu
 do atributu `data-xxx` na rootovém elementu. Mně už pak stačí přidávat další radio button sety a další definice v CSS.
 Když budu chtít přidat změnu třeba velikosti fontu, je to otázka definice patřičných voleb ve formuláři a pravidel v CSS.
 
