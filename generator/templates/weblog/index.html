@@ -149,17 +149,69 @@
       <settings-form id="preferences">
         <form method="dialog">
           <h2>Nastavení</h2>
-          <fieldset>
+          <fieldset class="theme">
             <legend>Barevné téma</legend>
-            <label><input type="radio" name="theme" value="auto" checked> Automaticky</label>
-            <label><input type="radio" name="theme" value="light"> Světlé</label>
-            <label><input type="radio" name="theme" value="dark"> Tmavé</label>
+            <ul>
+              <li><label><input type="radio" name="theme" value="auto" checked> Automaticky</label></li>
+              <li><label><input type="radio" name="theme" value="light"> Světlé</label></li>
+              <li><label><input type="radio" name="theme" value="dark"> Tmavé</label></li>
+            </ul>
           </fieldset>
           <fieldset>
             <legend>Rodina fontů</legend>
-            <label data-font-family="innovator"><input type="radio" name="fontFamily" value="innovator" checked> Innovator Grotesk</label>
-            <label data-font-family="hyperlegible"><input type="radio" name="fontFamily" value="hyperlegible"> Atkinson Hyperlegible</label>
-            <label data-font-family="dyslexic"><input type="radio" name="fontFamily" value="dyslexic"> OpenDyslexic</label>
+            <div class="columns">
+              <section>
+                <h3>rarouš default</h3>
+                <ul>
+                  <li><label data-font-family="innovator"><input type="radio" name="fontFamily" value="innovator"
+                                                                 checked>
+                    Innovator Grotesk</label></li>
+                </ul>
+                <h3>Přístupnější fonty</h3>
+                <ul>
+                  <li><label data-font-family="hyperlegible"><input type="radio" name="fontFamily" value="hyperlegible">
+                    Atkinson Hyperlegible</label></li>
+                  <li><label data-font-family="dyslexic"><input type="radio" name="fontFamily" value="dyslexic">
+                    OpenDyslexic</label></li>
+                </ul>
+              </section>
+              <section>
+                <h3>Modern fontstacks</h3>
+                <ul>
+                  <li><label data-font-family="system-ui"><input type="radio" name="fontFamily" value="system-ui">
+                    System UI</label></li>
+                  <li><label data-font-family="ui-serif"><input type="radio" name="fontFamily" value="ui-serif">
+                    Serif</label></li>
+                  <li><label data-font-family="transitional"><input type="radio" name="fontFamily" value="transitional">
+                    Transitional</label></li>
+                  <li><label data-font-family="old-style"><input type="radio" name="fontFamily" value="old-style">
+                    Old style</label></li>
+                  <li><label data-font-family="humanist"><input type="radio" name="fontFamily" value="humanist">
+                    Humanist</label></li>
+                  <li><label data-font-family="geometric-humanist"><input type="radio" name="fontFamily"
+                                                                          value="geometric-humanist">
+                    Geometric Humanist</label></li>
+                  <li><label data-font-family="classical-humanist"><input type="radio" name="fontFamily"
+                                                                          value="classical-humanist">
+                    Classical Humanist</label></li>
+                  <li><label data-font-family="neo-grotesque"><input type="radio" name="fontFamily"
+                                                                     value="neo-grotesque">
+                    Neo Grotesque</label></li>
+                  <li><label data-font-family="industrial"><input type="radio" name="fontFamily" value="industrial">
+                    Industrial</label></li>
+                  <li><label data-font-family="rounded-sans"><input type="radio" name="fontFamily" value="rounded-sans">
+                    Rounded Sans</label></li>
+                  <li><label data-font-family="slab-serif"><input type="radio" name="fontFamily" value="slab-serif">
+                    Slab Serif</label></li>
+                  <li><label data-font-family="antique"><input type="radio" name="fontFamily" value="antique">
+                    Antique</label></li>
+                  <li><label data-font-family="didone"><input type="radio" name="fontFamily" value="didone">
+                    Didone</label></li>
+                  <li><label data-font-family="handwritten"><input type="radio" name="fontFamily" value="handwritten">
+                    Handwritten</label></li>
+                </ul>
+              </section>
+            </div>
           </fieldset>
           <div>
             <button>Uložit</button>

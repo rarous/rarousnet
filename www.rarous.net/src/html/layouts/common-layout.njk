@@ -1,108 +1,161 @@
 {%- extends "layouts/common-base.njk" -%}
 
 {% block body %}
-<div class="wai">
-  <a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
-</div>
-<header>
-  <nav>
-    <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
-      <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43" >
-        <path fill="#b4b4b4"
-              d="M20.215 13.222 3.096 52.548H9.88l3.604-8.427h13.462l3.604 8.427h6.731L20.215 13.222M15.869 38.61l4.346-10.229 4.346 10.23h-8.692"/>
-        <path fill="#b4b4b4"
-              d="M66.304 38.344a11.006 11.006 0 0 0 4.558-3.021c2.067-2.28 3.18-5.46 3.18-9.063 0-3.657-1.113-6.837-3.18-9.116-1.59-1.802-4.611-3.922-9.805-3.922h-11.66v39.325h6.148V39.245h4.505l9.911 13.302h6.943l-10.6-14.203m-10.759-4.611V18.787h5.512c2.544 0 4.452.689 5.671 2.067 1.484 1.59 1.749 3.816 1.749 5.406 0 1.537-.265 3.763-1.749 5.353-1.219 1.378-3.127 2.12-5.671 2.12h-5.512"/>
-        <path fill="#b30d00" fill-rule="evenodd" d="M20.333 13.234h39.653v39.544H20.333V13.234z"/>
-        <path fill="#fff" fill-rule="evenodd"
-              d="m38.796 26.468 1.338-1.246s.992 3.774.92 7.6c-.073 3.826-1.259 7.896-1.259 7.896l-1.181-1.22s.866-3.423.866-6.651c0-3.24-.684-6.379-.684-6.379z"/>
-        <path fill="#fff" fill-rule="evenodd"
-              d="m41.338 24.1 1.162-1.075s1.655 2.97 1.653 9.75c-.002 5.942-1.961 10.467-1.961 10.467l-1.104-1.158s1.588-4.57 1.588-9.528c0-5.424-1.338-8.456-1.338-8.456z"/>
-        <path fill="#fff" fill-rule="evenodd"
-              d="m48.437 17.515 1.261-1.172s4.06 5.642 4.06 16.33c0 11.87-4.989 17.43-4.989 17.43l-1.008-1.047s4.521-6.215 4.521-16.601c0-8.905-3.845-14.94-3.845-14.94z"/>
-        <path fill="#fff" fill-rule="evenodd"
-              d="m43.465 22.131 1.31-1.227s2.456 4.318 2.456 11.563c0 7.232-2.947 12.968-2.947 12.968l-1.124-1.193s2.45-6.118 2.45-11.75c0-6.429-2.145-10.36-2.145-10.36z"/>
-        <path fill="#fff" fill-rule="evenodd"
-              d="m45.934 19.834 1.297-1.2s3.297 5.373 3.297 13.727c0 10.508-3.893 15.517-3.893 15.517l-1.153-1.216s3.276-5.61 3.32-14.285c.036-7.155-2.868-12.543-2.868-12.543z"/>
-        <path fill="#fff" fill-rule="evenodd"
-              d="M26.561 30.364c.41-8.172 2.874-14.455 5.831-14.455 3.285 0 6.201 5.913 5.914 16.796-.206 9.24-2.629 16.755-5.914 16.755-2.916 0-5.338-6.037-5.831-13.922l.944-.04.288 1.765 6.652-2.053-.041-4.64-6.611-2.177-.206 1.971h-1.026m9.404-1.273.821-.74s.288 2.506.288 4.477c0 2.423-.657 4.394-.657 4.394l-.657-.698s.369-1.807.369-3.696c0-1.684-.164-3.737-.164-3.737"/>
-      </svg>
-    </a>
-    {% block header %}{% endblock %}
-    <ul>
-      {% block navbar %}{% endblock %}
-      <li>
-        <a href="#preferences"
-           title="otevřít menu nastavení"
-           onclick="event.preventDefault();preferencesDialog.showModal()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--icon-color)"
-               viewBox="0 -960 960 960" transform="scale(0.8)">
-            <path
-              d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z"/>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="#hamburger"
-           title="otevřít menu"
-           onclick="event.preventDefault();menuDialog.showModal()">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-               fill="var(--icon-color)">
-            <path d="M0 0h24v24H0z" fill="none"/>
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-          </svg>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <dialog id="menuDialog" onclick="event.target === this && this.close()">
-    <div id="hamburger">
-      <nav>
-        <h2>Navigace</h2>
-        <ul>
-          <li><a href="/">Domovská stránka</a></li>
-          <li><a href="/weblog/">Weblog</a></li>
-          <li><a href="/kolekce/vinyly">Kolekce vinylů</a></li>
-          <li><a href="/w3b">Doporučené články</a></li>
-          <li><a href="https://hckr.studio">hckr.studio</a></li>
-        </ul>
-      </nav>
-    </div>
-  </dialog>
-  <dialog id="preferencesDialog" onclick="event.target === this && this.close()">
-    <script type="module" src="{{ "settings-form.js" | assetUrl("esm") }}"></script>
-    <settings-form id="preferences">
-      <form method="dialog">
-        <h2>Nastavení</h2>
-        <fieldset>
-          <legend>Barevné téma</legend>
-          <label><input type="radio" name="theme" value="auto" checked> Automaticky</label>
-          <label><input type="radio" name="theme" value="light"> Světlé</label>
-          <label><input type="radio" name="theme" value="dark"> Tmavé</label>
-        </fieldset>
-        <fieldset>
-          <legend>Rodina fontů</legend>
-          <label data-font-family="innovator"><input type="radio" name="fontFamily" value="innovator" checked> Innovator Grotesk</label>
-          <label data-font-family="hyperlegible"><input type="radio" name="fontFamily" value="hyperlegible"> Atkinson Hyperlegible</label>
-          <label data-font-family="dyslexic"><input type="radio" name="fontFamily" value="dyslexic"> OpenDyslexic</label>
-        </fieldset>
-        <div>
-          <button>Uložit</button>
-        </div>
-      </form>
-    </settings-form>
-  </dialog>
-</header>
-<main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content">
-  {% block content %}{% endblock %}
-</main>
-<footer class="footer">
-  {% block footer %}{% endblock %}
-  <div class="footer__copyright">
-    <p>Tento web je postaven na otevřených webových standardech a principech <a href="https://indieweb.org/IndieWeb">indie webu</a>,
-      běží na <a href="https://pages.dev">Cloudflare Pages</a> a kód je hostován
-      <a href="https://github.com/rarous/rarousnet">na Githubu</a>.
-    <p property="copyrightNotice">© 2004&ndash;<span class="year">{{ currentYear }}</span> Aleš Roubíček.
-      Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
+  <div class="wai">
+    <a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
   </div>
-</footer>
+  <header>
+    <nav>
+      <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43">
+          <path fill="#b4b4b4"
+                d="M20.215 13.222 3.096 52.548H9.88l3.604-8.427h13.462l3.604 8.427h6.731L20.215 13.222M15.869 38.61l4.346-10.229 4.346 10.23h-8.692"/>
+          <path fill="#b4b4b4"
+                d="M66.304 38.344a11.006 11.006 0 0 0 4.558-3.021c2.067-2.28 3.18-5.46 3.18-9.063 0-3.657-1.113-6.837-3.18-9.116-1.59-1.802-4.611-3.922-9.805-3.922h-11.66v39.325h6.148V39.245h4.505l9.911 13.302h6.943l-10.6-14.203m-10.759-4.611V18.787h5.512c2.544 0 4.452.689 5.671 2.067 1.484 1.59 1.749 3.816 1.749 5.406 0 1.537-.265 3.763-1.749 5.353-1.219 1.378-3.127 2.12-5.671 2.12h-5.512"/>
+          <path fill="#b30d00" fill-rule="evenodd" d="M20.333 13.234h39.653v39.544H20.333V13.234z"/>
+          <path fill="#fff" fill-rule="evenodd"
+                d="m38.796 26.468 1.338-1.246s.992 3.774.92 7.6c-.073 3.826-1.259 7.896-1.259 7.896l-1.181-1.22s.866-3.423.866-6.651c0-3.24-.684-6.379-.684-6.379z"/>
+          <path fill="#fff" fill-rule="evenodd"
+                d="m41.338 24.1 1.162-1.075s1.655 2.97 1.653 9.75c-.002 5.942-1.961 10.467-1.961 10.467l-1.104-1.158s1.588-4.57 1.588-9.528c0-5.424-1.338-8.456-1.338-8.456z"/>
+          <path fill="#fff" fill-rule="evenodd"
+                d="m48.437 17.515 1.261-1.172s4.06 5.642 4.06 16.33c0 11.87-4.989 17.43-4.989 17.43l-1.008-1.047s4.521-6.215 4.521-16.601c0-8.905-3.845-14.94-3.845-14.94z"/>
+          <path fill="#fff" fill-rule="evenodd"
+                d="m43.465 22.131 1.31-1.227s2.456 4.318 2.456 11.563c0 7.232-2.947 12.968-2.947 12.968l-1.124-1.193s2.45-6.118 2.45-11.75c0-6.429-2.145-10.36-2.145-10.36z"/>
+          <path fill="#fff" fill-rule="evenodd"
+                d="m45.934 19.834 1.297-1.2s3.297 5.373 3.297 13.727c0 10.508-3.893 15.517-3.893 15.517l-1.153-1.216s3.276-5.61 3.32-14.285c.036-7.155-2.868-12.543-2.868-12.543z"/>
+          <path fill="#fff" fill-rule="evenodd"
+                d="M26.561 30.364c.41-8.172 2.874-14.455 5.831-14.455 3.285 0 6.201 5.913 5.914 16.796-.206 9.24-2.629 16.755-5.914 16.755-2.916 0-5.338-6.037-5.831-13.922l.944-.04.288 1.765 6.652-2.053-.041-4.64-6.611-2.177-.206 1.971h-1.026m9.404-1.273.821-.74s.288 2.506.288 4.477c0 2.423-.657 4.394-.657 4.394l-.657-.698s.369-1.807.369-3.696c0-1.684-.164-3.737-.164-3.737"/>
+        </svg>
+      </a>
+      {% block header %}{% endblock %}
+      <ul>
+        {% block navbar %}{% endblock %}
+        <li>
+          <a href="#preferences"
+             title="otevřít menu nastavení"
+             onclick="event.preventDefault();preferencesDialog.showModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--icon-color)"
+                 viewBox="0 -960 960 960" transform="scale(0.8)">
+              <path
+                d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#hamburger"
+             title="otevřít menu"
+             onclick="event.preventDefault();menuDialog.showModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 fill="var(--icon-color)">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <dialog id="menuDialog" onclick="event.target === this && this.close()">
+      <div id="hamburger">
+        <nav>
+          <h2>Navigace</h2>
+          <ul>
+            <li><a href="/">Domovská stránka</a></li>
+            <li><a href="/weblog/">Weblog</a></li>
+            <li><a href="/kolekce/vinyly">Kolekce vinylů</a></li>
+            <li><a href="/w3b">Doporučené články</a></li>
+            <li><a href="https://hckr.studio">hckr.studio</a></li>
+          </ul>
+        </nav>
+      </div>
+    </dialog>
+    <dialog id="preferencesDialog" onclick="event.target === this && this.close()">
+      <script type="module" src="{{ "settings-form.js" | assetUrl("esm") }}"></script>
+      <settings-form id="preferences">
+        <form method="dialog">
+          <h2>Nastavení</h2>
+          <fieldset class="theme">
+            <legend>Barevné téma</legend>
+            <ul>
+              <li><label><input type="radio" name="theme" value="auto" checked> Automaticky</label></li>
+              <li><label><input type="radio" name="theme" value="light"> Světlé</label></li>
+              <li><label><input type="radio" name="theme" value="dark"> Tmavé</label></li>
+            </ul>
+          </fieldset>
+          <fieldset class="fonts">
+            <legend>Rodina fontů</legend>
+            <div class="columns">
+              <section>
+                <h3>rarouš default</h3>
+                <ul>
+                  <li><label data-font-family="innovator"><input type="radio" name="fontFamily" value="innovator"
+                                                                 checked>
+                      Innovator Grotesk</label></li>
+                </ul>
+                <h3>Přístupnější fonty</h3>
+                <ul>
+                  <li><label data-font-family="hyperlegible"><input type="radio" name="fontFamily" value="hyperlegible">
+                      Atkinson Hyperlegible</label></li>
+                  <li><label data-font-family="dyslexic"><input type="radio" name="fontFamily" value="dyslexic">
+                      OpenDyslexic</label></li>
+                </ul>
+              </section>
+              <section>
+                <h3>Modern fontstacks</h3>
+                <ul>
+                  <li><label data-font-family="system-ui"><input type="radio" name="fontFamily" value="system-ui">
+                      System UI</label></li>
+                  <li><label data-font-family="ui-serif"><input type="radio" name="fontFamily" value="ui-serif">
+                      Serif</label></li>
+                  <li><label data-font-family="transitional"><input type="radio" name="fontFamily" value="transitional">
+                      Transitional</label></li>
+                  <li><label data-font-family="old-style"><input type="radio" name="fontFamily" value="old-style">
+                      Old style</label></li>
+                  <li><label data-font-family="humanist"><input type="radio" name="fontFamily" value="humanist">
+                      Humanist</label></li>
+                  <li><label data-font-family="geometric-humanist"><input type="radio" name="fontFamily"
+                                                                          value="geometric-humanist">
+                      Geometric Humanist</label></li>
+                  <li><label data-font-family="classical-humanist"><input type="radio" name="fontFamily"
+                                                                          value="classical-humanist">
+                      Classical Humanist</label></li>
+                  <li><label data-font-family="neo-grotesque"><input type="radio" name="fontFamily"
+                                                                     value="neo-grotesque">
+                      Neo Grotesque</label></li>
+                  <li><label data-font-family="industrial"><input type="radio" name="fontFamily" value="industrial">
+                      Industrial</label></li>
+                  <li><label data-font-family="rounded-sans"><input type="radio" name="fontFamily" value="rounded-sans">
+                      Rounded Sans</label></li>
+                  <li><label data-font-family="slab-serif"><input type="radio" name="fontFamily" value="slab-serif">
+                      Slab Serif</label></li>
+                  <li><label data-font-family="antique"><input type="radio" name="fontFamily" value="antique">
+                      Antique</label></li>
+                  <li><label data-font-family="didone"><input type="radio" name="fontFamily" value="didone">
+                      Didone</label></li>
+                  <li><label data-font-family="handwritten"><input type="radio" name="fontFamily" value="handwritten">
+                      Handwritten</label></li>
+                </ul>
+              </section>
+            </div>
+          </fieldset>
+          <div>
+            <button>Uložit</button>
+          </div>
+        </form>
+      </settings-form>
+    </dialog>
+  </header>
+  <main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    {% block footer %}{% endblock %}
+    <div class="footer__copyright">
+      <p>Tento web je postaven na otevřených webových standardech a principech <a href="https://indieweb.org/IndieWeb">indie
+          webu</a>,
+        běží na <a href="https://pages.dev">Cloudflare Pages</a> a kód je hostován
+        <a href="https://github.com/rarous/rarousnet">na Githubu</a>.
+      <p property="copyrightNotice">© 2004&ndash;<span class="year">{{ currentYear }}</span> Aleš Roubíček.
+        Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
+    </div>
+  </footer>
 {% endblock %}

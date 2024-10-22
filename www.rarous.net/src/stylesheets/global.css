@@ -51,6 +51,65 @@
   --main-font: var(--opendyslexic);
 }
 
+[data-font-family='dyslexic'] {
+  --main-font: var(--opendyslexic);
+}
+
+[data-font-family='system-ui'] {
+  --main-font: var(--font-system-ui);
+}
+
+[data-font-family='ui-serif'] {
+  --main-font: var(--font-serif);
+}
+
+[data-font-family='transitional'] {
+  --main-font: var(--font-transitional);
+}
+
+[data-font-family='old-style'] {
+  --main-font: var(--font-old-style);
+}
+
+[data-font-family='humanist'] {
+  --main-font: var(--font-humanist);
+}
+
+[data-font-family='geometric-humanist'] {
+  --main-font: var(--font-geometric-humanist);
+}
+
+[data-font-family='classical-humanist'] {
+  --main-font: var(--font-classical-humanist);
+}
+
+[data-font-family='neo-grotesque'] {
+  --main-font: var(--font-neo-grotesque);
+}
+
+[data-font-family='industrial'] {
+  --main-font: var(--font-industrial);
+}
+
+[data-font-family='rounded-sans'] {
+  --main-font: var(--font-rounded-sans);
+}
+
+[data-font-family='slab-serif'] {
+  --main-font: var(--font-slab-serif);
+}
+
+[data-font-family='antique'] {
+  --main-font: var(--font-antique);
+}
+
+[data-font-family='didone'] {
+  --main-font: var(--font-didone);
+}
+
+[data-font-family='handwritten'] {
+  --main-font: var(--font-handwritten);
+}
 
 body {
   font: 16px var(--main-font);
@@ -278,5 +337,35 @@ dialog {
     a {
       padding: 0.25em .5em;
     }
+  }
+}
+
+#preferences {
+  h3 {
+    font-size: var(--font-size-fluid-0);
+  }
+  fieldset {
+    margin-block: 1em;
+  }
+  ul {
+    list-style-type: none;
+    line-height: 2;
+  }
+  button {
+    font: 1.25rem/2 var(--main-font);
+    padding: 0 2em;
+    border: var(--border-width) solid var(--border-color)
+  }
+
+  .theme {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
