@@ -15,6 +15,7 @@
   --innovator-grotesk: "Innovator Grotesk", var(--font-sans);
   --atkinson-hyperlegible: "Atkinson Hyperlegible", var(--font-sans);
   --opendyslexic: "OpenDyslexic", var(--font-sans);
+  --andika: "AndikaW", cursive;
   --main-font: var(--innovator-grotesk);
   --headings-font: var(--agrandir);
   --code-font: Iosevka, "Iosevka Web", var(--font-mono);
@@ -49,6 +50,10 @@
 
 [data-font-family='dyslexic'] {
   --main-font: var(--opendyslexic);
+}
+
+[data-font-family='andika'] {
+  --main-font: var(--andika);
 }
 
 [data-font-family='dyslexic'] {

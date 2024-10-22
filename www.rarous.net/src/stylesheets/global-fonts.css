@@ -74,3 +74,27 @@
   font-display: swap;
   src: asset-url("fonts", "opendyslexic/bold.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: AndikaW;
+  src: asset-url("fonts", "andika/regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: AndikaW;
+  font-style: italic;
+  src: asset-url("fonts", "andika/italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: AndikaW;
+  font-weight: bold;
+  src: asset-url("fonts", "andika/bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: AndikaW;
+  font-weight: bold;
+  font-style: italic;
+  src: asset-url("fonts", "andika/boldiotalic.woff2") format("woff2");
+}

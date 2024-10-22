@@ -157,6 +157,30 @@
       font-display: swap;
       src: url("{{ "opendyslexic/bold.woff2" | assetUrl("fonts") }}") format("woff2");
     }
+
+    @font-face {
+      font-family: AndikaW;
+      src: url("{{ "andika/regular.woff2" | assetUrl("fonts") }}");
+    }
+
+    @font-face {
+      font-family: AndikaW;
+      font-style: italic;
+      src: url("{{ "andika/italic.woff2" | assetUrl("fonts") }}");
+    }
+
+    @font-face {
+      font-family: AndikaW;
+      font-weight: bold;
+      src: url("{{ "andika/bold.woff2" | assetUrl("fonts") }}");
+    }
+
+    @font-face {
+      font-family: AndikaW;
+      font-weight: bold;
+      font-style: italic;
+      src: url("{{ "andika/bolditalic.woff2" | assetUrl("fonts") }}");
+    }
   </style>
   <link rel="stylesheet" href="{{ "global.css" | assetUrl("stylesheets") }}">
   {% block head %}{% endblock %}
