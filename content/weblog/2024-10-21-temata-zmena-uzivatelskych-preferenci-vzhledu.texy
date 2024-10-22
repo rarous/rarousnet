@@ -242,7 +242,7 @@ Prozatím jsem přidal jen dvě alternativy - "Atkinson Hyperligible .{font-fami
 a "OpenDyslexic .{font-family: var(--opendyslexic)}":[https://opendyslexic.org/], které by měly být lepší na čtení obecně nebo pokud trpíte dyslexií.
 Brzy asi přibudou ještě patkové a monospace alternativy.
 
-S využitím Open Props, můžu třeba využít všechny "Modern Fontstacks":[https://modernfontstacks.com/], které nevyžadují
+S využitím Open Props, můžu třeba využít všechny "Modern Font stacks":[https://modernfontstacks.com/], které nevyžadují
 stahování webových fontů.
 
 ### Závěr
