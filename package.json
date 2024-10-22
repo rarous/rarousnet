@@ -15,7 +15,7 @@
     "dprint": "0.47.4",
     "lighthouse": "12.2.1",
     "local-web-server": "5.4.0",
-    "npm-run-all2": "6.2.6",
+    "npm-run-all2": "7.0.0",
     "pagefind": "1.1.1",
     "tap-xunit": "2.4.1",
     "wrangler": "3.81.0"
