@@ -350,6 +350,9 @@ dialog {
   ul {
     list-style-type: none;
     line-height: 2;
+    li {
+      margin: 0;
+    }
   }
   button {
     font: 1.25rem/2 var(--main-font);
