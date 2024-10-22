@@ -32,6 +32,7 @@
   font-size: 100%;
   color-scheme: light dark;
   accent-color: var(--primary-color);
+  interpolate-size: allow-keywords;
 }
 
 :root[data-theme='dark'] {
@@ -116,6 +117,16 @@
 
 [data-font-family='handwritten'] {
   --main-font: var(--font-handwritten);
+}
+
+@view-transition {
+  navigation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }
 
 body {
@@ -302,6 +313,35 @@ header > nav {
       width: var(--icon-size);
       height: var(--icon-size);
       fill: var(--icon-color);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* enable transitions */
+  [popover],
+  dialog,
+  ::backdrop {
+    transition: display 300ms allow-discrete, overlay 300ms allow-discrete,
+    opacity 300ms;
+    opacity: 0;
+  }
+
+  /* IN */
+  :popover-open,
+  :popover-open::backdrop,
+  [open],
+  [open]::backdrop {
+    opacity: 1;
+  }
+
+  /* OUT */
+  @starting-style {
+    :popover-open,
+    :popover-open::backdrop,
+    [open],
+    [open]::backdrop {
+      opacity: 0;
     }
   }
 }
