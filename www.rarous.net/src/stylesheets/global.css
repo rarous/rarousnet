@@ -9,8 +9,6 @@
 }
 
 :root {
-  color-scheme: light dark;
-
   --agrandir: Agrandir, "Neue Montreal", sans-serif;
   --innovator-grotesk: "Innovator Grotesk", var(--font-sans);
   --atkinson-hyperlegible: "Atkinson Hyperlegible", var(--font-sans);
@@ -30,6 +28,10 @@
   --secondary-color: oklch(0.543 0.091 237.043);
   --secondary-color: light-dark(oklch(0.543 0.091 237.043), oklch(0.655 0.101 239.128));
   --secondary-dark-color: oklch(0.392 0.088 238.557);
+
+  font-size: 100%;
+  color-scheme: light dark;
+  accent-color: var(--primary-color);
 }
 
 :root[data-theme='dark'] {
@@ -117,10 +119,9 @@
 }
 
 body {
-  font: 16px var(--main-font);
+  font-family: var(--main-font);
   color: var(--text-color);
   background-color: var(--background-color);
-  accent-color: var(--primary-color);
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero diagonal-fractions;
   font-variant-ligatures: common-ligatures contextual;
