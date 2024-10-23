@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "@csstools/postcss-gamut-mapping": "2.0.3",
-    "@hckr_/blendid": "9.0.0-beta.12",
+    "@hckr_/blendid": "9.0.0-beta.13",
     "@types/gulp": "4.0.17",
     "@types/undertaker-registry": "1.0.4",
     "open-props": "1.7.7",

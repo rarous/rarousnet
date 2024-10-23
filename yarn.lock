@@ -1232,9 +1232,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:9.0.0-beta.12":
-  version: 9.0.0-beta.12
-  resolution: "@hckr_/blendid@npm:9.0.0-beta.12"
+"@hckr_/blendid@npm:9.0.0-beta.13":
+  version: 9.0.0-beta.13
+  resolution: "@hckr_/blendid@npm:9.0.0-beta.13"
   dependencies:
     "@vitejs/plugin-basic-ssl": "npm:1.1.0"
     cloudinary: "npm:2.5.1"
@@ -1281,7 +1281,7 @@ __metadata:
     vite: "npm:6.0.0-beta.3"
   bin:
     blendid: bin/blendid.js
-  checksum: 10c0/d3d1235e00d86233d425f22dc7fa7af11c0ce3ca84a71652900c6a138aa5ccaf9e39c94ce0da86a0cc1ea3c25dc229edca460628adbd2078ee3ece24b1a03d75
+  checksum: 10c0/1bd9558270acbb0cf9866e453a39deaf719493cb06030606521c6be3ae1cafb79e62ad86f936b4b228d816bdf9bcd24c803fb5c92d8992c46078f13105e6bddd
   languageName: node
   linkType: hard
 
@@ -2230,7 +2230,7 @@ __metadata:
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
     "@csstools/postcss-gamut-mapping": "npm:2.0.3"
-    "@hckr_/blendid": "npm:9.0.0-beta.12"
+    "@hckr_/blendid": "npm:9.0.0-beta.13"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
     open-props: "npm:1.7.7"
