@@ -18,14 +18,6 @@ async function getDetail(weblog, url) {
   return Object.assign({ webmentions: [], comments: [] }, payload);
 }
 
-/**
- * @param {EventContext<Env>} context
- */
-export async function loadData({ request, env, data, next }) {
-  data.weblog = await getDetail(env.weblog, request.url);
-  return next();
-}
-
 function renderComments(window, comments) {
   const Comments = defComments(window);
   Comments.register();
@@ -45,16 +37,17 @@ function renderWebMentions(window, webmentions) {
 /**
  * @param {EventContext<Env>} context
  */
-export async function renderWebComponents({ next, data }) {
+export async function renderWebComponents({ next, request, env }) {
   const resp = await next();
   const contentType = resp.headers.get("content-type");
-  if (contentType?.startsWith("text/html")) {
-    if (data.weblog.comments.length || data.weblog.webmentions.length) {
+  if (resp.ok && contentType?.startsWith("text/html")) {
+    const weblog = await getDetail(env.weblog, request.url);
+    if (weblog.comments.length || weblog.webmentions.length) {
       const html = await resp.text();
       const { document, window } = parseHTML(html);
 
-      renderComments(window, data.weblog.comments);
-      renderWebMentions(window, data.weblog.webmentions);
+      renderComments(window, weblog.comments);
+      renderWebMentions(window, weblog.webmentions);
 
       return new Response(document.toString(), resp);
     }
@@ -62,4 +55,4 @@ export async function renderWebComponents({ next, data }) {
   return resp;
 }
 
-export const onRequest = [loadData, renderWebComponents];
+export const onRequest = [renderWebComponents];
