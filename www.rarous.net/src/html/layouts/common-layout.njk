@@ -4,7 +4,8 @@
   <div id="top" class="wai">
     <a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
   </div>
-  <header>
+  <header id="{{ headerId }}">
+    {% block headerContent %}{% endblock %}
     <nav>
       <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
         <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43">
