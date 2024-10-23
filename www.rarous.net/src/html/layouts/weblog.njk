@@ -69,6 +69,12 @@
   </li>
 {% endblock %}
 
+{% block body %}
+  <div id="top">
+    {{ super() }}
+  </div>
+{% endblock %}
+
 {% block footer %}
   <div class="footer__inner" property="author" typeof="Person">
     <link rel="me" href="/" property="sameAs">
