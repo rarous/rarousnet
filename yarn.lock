@@ -9231,15 +9231,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "minimatch@npm:10.0.1"
-  dependencies:
-    brace-expansion: "npm:^2.0.1"
-  checksum: 10c0/e6c29a81fe83e1877ad51348306be2e8aeca18c88fdee7a99df44322314279e15799e41d7cb274e4e8bb0b451a3bc622d6182e157dfa1717d6cda75e9cd8cd5d
-  languageName: node
-  linkType: hard
-
 "minimatch@npm:^3.0.3, minimatch@npm:^3.1.1":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
@@ -9698,14 +9689,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all2@npm:7.0.0":
-  version: 7.0.0
-  resolution: "npm-run-all2@npm:7.0.0"
+"npm-run-all2@npm:7.0.1":
+  version: 7.0.1
+  resolution: "npm-run-all2@npm:7.0.1"
   dependencies:
     ansi-styles: "npm:^6.2.1"
     cross-spawn: "npm:^7.0.3"
     memorystream: "npm:^0.3.1"
-    minimatch: "npm:^10.0.1"
+    minimatch: "npm:^9.0.0"
     pidtree: "npm:^0.6.0"
     read-package-json-fast: "npm:^4.0.0"
     shell-quote: "npm:^1.7.3"
@@ -9715,7 +9706,7 @@ __metadata:
     npm-run-all2: bin/npm-run-all/index.js
     run-p: bin/run-p/index.js
     run-s: bin/run-s/index.js
-  checksum: 10c0/ee09d88820e67d61497b3058a179e4d13ff9518242546d0114bdb6e657e3ba8427e672ce99abf3b680ac4433fa79639a47897b232a90f465d9a6eea5744b56bc
+  checksum: 10c0/1f2438341473280f7f55015f04a9c5bbbb3226e8235ef50811f50f98514f10ff2ac1640da592e0d5a2e6c7b95060e1bb1c7a86b5177fa746151912ac99a8f3b7
   languageName: node
   linkType: hard
 
@@ -11501,7 +11492,7 @@ __metadata:
     dprint: "npm:0.47.4"
     lighthouse: "npm:12.2.1"
     local-web-server: "npm:5.4.0"
-    npm-run-all2: "npm:7.0.0"
+    npm-run-all2: "npm:7.0.1"
     pagefind: "npm:1.1.1"
     tap-xunit: "npm:2.4.1"
     wrangler: "npm:3.82.0"
