@@ -146,6 +146,7 @@
         </form>
       </settings-form>
     </dialog>
+    {% block navDialogs %}{% endblock %}
   </header>
   <main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content" role="{{ contentRole }}" class="{{ contentClass }}">
     {% block content %}{% endblock %}
