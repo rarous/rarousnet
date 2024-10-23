@@ -1,7 +1,7 @@
 {%- extends "layouts/common-base.njk" -%}
 
 {% block body %}
-  <div class="wai">
+  <div id="top" class="wai">
     <a href="#content" accesskey="0" tabindex="0">Na obsah stránky</a>
   </div>
   <header>
@@ -146,7 +146,7 @@
       </settings-form>
     </dialog>
   </header>
-  <main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content">
+  <main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content" role="{{ contentRole }}" class="{{ contentClass }}">
     {% block content %}{% endblock %}
   </main>
   <footer class="footer">

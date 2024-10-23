@@ -1,0 +1,182 @@
+{%- extends "layouts/weblog.njk" -%}
+{%- set prefix= "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" %}
+
+{% block links %}
+  {{ super() }}
+  <link rel="syndication" href="">
+  <link rel="home" href="/weblog/">
+{% endblock %}
+{% block meta %}
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="rarouš.weblog">
+  <meta property="article:published_time" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="rarous.net">
+  <meta name="twitter:site" content="@rarousweblog">
+  <meta name="twitter:creator" content="">
+  <meta name="twitter:title" property="og:title" content="">
+  <meta name="twitter:image" property="og:image" content="">
+  <meta name="twitter:description" content="">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{% endblock %}
+
+{% set contentClass = "h-entry" %}
+
+{% block content %}
+  <article vocab="https://schema.org" typeof="BlogPosting" data-pagefind-body>
+    <link class="u-featured" property="image" href="">
+    <header>
+      <h1 class="p-name" property="headline" data-pagefind-meta="title"></h1>
+      <p class="info" data-pagefind-ignore="all">
+          <span class="p-author" property="author" typeof="Person">
+            <strong property="name" data-pagefind-filter="author"></strong>
+          </span>
+        |
+        <time class="dt-published" property="datePublished" datetime="" data-pagefind-sort="date[datetime]"></time>
+        <span class="noprint"> | <a property="url" rel="bookmark" href="#" title="Permalink"># permalink</a></span>
+      </p>
+    </header>
+    <div class="e-content" property="articleBody"></div>
+    <footer data-pagefind-ignore="all">
+      Publikováno v:&nbsp;
+      <nav class="breadcrumbs" typeof="BreadcrumbList">
+          <span property="itemListElement" typeof="ListItem"><data
+              property="position" value="1"></data><a
+              property="item" typeof="WebPage" href="/"><span
+                property="name">rarouš.net</span></a></span>/<span
+          property="itemListElement" typeof="ListItem"><data
+            property="position" value="2"></data><a
+            property="item" typeof="WebPage" href="/weblog/"><span
+              property="name">weblog</span></a></span>/<span
+          property="itemListElement" typeof="ListItem"><data
+            property="position" value="3"></data><a
+            property="item" typeof="WebPage" class="year" href="/weblog/2021/"><span
+              property="name">2021</span></a></span>/<span
+          property="itemListElement" typeof="ListItem"><data
+            property="position" value="4"></data><a
+            property="item" typeof="WebPage" class="month" href="/weblog/2021/03/"><span
+              property="name">březen</span></a></span>/<span
+          property="itemListElement" typeof="ListItem"><data
+            property="position" value="5"></data><a
+            property="item" typeof="WebPage" class="day" href="/weblog/2021/03/20/"><span
+              property="name">20</span></a></span>
+      </nav>
+      |&nbsp;Označeno štítky:&nbsp;
+      <nav class="tags">
+        <ul>
+          <li><a class="p-category" property="articleSection" rel="tag" href="" data-pagefind-filter="tag"></a></li>
+        </ul>
+      </nav>
+    </footer>
+  </article>
+
+  <p>Našli jste v článku chybu? Máte námět na reportáž? <a href="https://github.com/rarous/rarousnet/issues/new">Založte
+      mi ticket</a>.</p>
+
+  <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog">
+    <gryphoon-webmentions id="webmentions">
+      <link rel="stylesheet" href="/assets/css/webmentions.css">
+      <h2>Reakce v síti</h2>
+      <section class="webmentions" id="like-of">
+        <p>
+          Líbilo se&nbsp;<data></data>
+        </p>
+        <ul class="items">
+          <li>Načítají se data&hellip;</li>
+        </ul>
+      </section>
+      <section class="webmentions" id="repost-of">
+        <p>
+          Přeposláno dál&nbsp;<data></data>
+        </p>
+        <ul class="items">
+          <li>Načítají se data&hellip;</li>
+        </ul>
+      </section>
+      <template>
+        <li>
+          <a>
+            <time></time>
+            <img alt="" src="" width="32" height="32" loading="lazy" decoding="async">
+          </a>
+        </li>
+      </template>
+    </gryphoon-webmentions>
+
+    <gryphoon-comments id="komentare">
+      <h2>Komentáře</h2>
+      <section class="comments" id="comments">
+        <p>
+          Okomentováno&nbsp;<data></data>
+        </p>
+        <ol class="items h-feed">
+        </ol>
+      </section>
+      <template>
+        <li id="komentar-" class="p-comment h-entry">
+          <header class="p-author h-card">
+            <div class="avatar">
+              <a class="u-url" rel="nofollow">
+                <img alt="" src="" width="32" height="32"
+                     loading="lazy" decoding="async"
+                     class="u-photo">
+              </a>
+            </div>
+            <h3 class="p-name"></h3>
+          </header>
+          <div class="e-content"></div>
+          <footer>
+            <p class="info">
+              <a href="" class="u-url" title="Trvalý odkaz na komentář" rel="bookmark">#</a>
+              | okomentováno
+              <time class="dt-published"></time>
+            </p>
+          </footer>
+        </li>
+      </template>
+    </gryphoon-comments>
+
+    <div id="novy-komentar">
+      <h2>Zapoj se do konverzace</h2>
+      <form id="new-comment"
+            action="/api/v1/weblog/comments?url=${permalink}"
+            method="post"
+            enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="article-title">
+        <fieldset>
+          <legend>Nový komentář</legend>
+          <div>
+            <label for="comment-name">Jméno</label>
+            <input id="comment-name" name="name" required>
+            <span>(povinné)</span>
+          </div>
+          <div>
+            <label for="comment-email">E-mail</label>
+            <input id="comment-email" name="email" type="email">
+            <p>Používá se pro zobrazení <a href="https://cs.gravatar.com/">Gravataru</a></p>
+          </div>
+          <div>
+            <label for="comment-web">Web</label>
+            <input id="comment-web" name="web" type="url">
+            <p>Odkaz na tvůj web nebo profil na sociálních sítích</p>
+          </div>
+          <div>
+            <label for="comment-text">Text komentáře</label>
+            <textarea name="text" id="comment-text" cols="60" rows="10" required minlength="5"></textarea>
+            <p>Podporuje formátování pomocí <a href="https://texy.info/cs/syntax" target="texy">Texy!</a><br>
+              Například: <code><strong>**tučný text**</strong></code>, <code><em>*kurzíva*</em></code>, <code>"text
+                odkazu":adresa</code>.<br>
+              Internetové adresy jsou převáděny na odkazy.<br>
+              Na komentáře se můžete odkazovat pomocí <code>[<em>číslo komentáře</em>]</code>.</p>
+            </p>
+          </div>
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAAAOCSb93_fOUweSv"
+               data-language="cs"
+               data-appearance="interaction-only"></div>
+          <button>Zveřejnit</button>
+        </fieldset>
+      </form>
+    </div>
+  </gryphoon-weblog>
+{% endblock %}

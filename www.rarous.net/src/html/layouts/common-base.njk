@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="cs">
-<head>
+<head prefix="{{ prefix }}">
   <meta charset="UTF-8">
   <title>{% block title %}{{ title or meta.title }}{% endblock %}</title>
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   {% if images %}
     <meta http-equiv="delegate-ch"
@@ -19,7 +18,9 @@
   <meta name="author" content="all: {{ contact.name }}; mailto:{{ contact.email }}">
   <meta name="copyright" content="&copy; 2004 - {{ currentYear }} Aleš Roubíček. Creative Commons 4.0 BY-SA">
   <meta name="description" content="{{ description or meta.description }}">
-  <meta name="generator" content="@hckr_/blendid - static site generator and assets pipeline">
+  <meta name="generator" content="{{ generator or '@hckr_/blendid - static site generator and assets pipeline' }}">
+  <link rel="me" href="https://indieweb.social/@alesroubicek">
+  <link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
   <link rel="canonical" href="{{ canonicalUrl }}">
   <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
   <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
@@ -185,7 +186,8 @@
   <link rel="stylesheet" href="{{ "global.css" | assetUrl("stylesheets") }}">
   {% block head %}{% endblock %}
 </head>
-<body class="{{ bodyClass }}">
+<body class="{{ bodyClass or body.class }}" id="{{ bodyId or body.id }}">
 {% block body %}{% endblock %}
+{% block scripts %}{% endblock %}
 </body>
 </html>

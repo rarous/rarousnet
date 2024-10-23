@@ -1,0 +1,63 @@
+{%- extends "layouts/weblog.njk" -%}
+
+{%- set contentSchema = "Blog" -%}
+{%- set contentRole = "feed" -%}
+
+{% block meta %}
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.rarous.net/weblog/">
+<meta property="og:title" content="rarouš.weblog">
+<meta property="og:locale" content="cs_CZ">
+{% endblock %}
+
+{% block content %}
+  <section class="feed">
+    <article property="blogPost" typeof="BlogPosting">
+      <link property="image" href="">
+      <header>
+        <h2 property="headline"><a property="sameAs" href=""></a></h2>
+        <p class="info">
+      <span typeof="Person" property="author">
+        <strong property="name">Aleš Roubíček</strong>
+      </span>
+          |
+          <time datetime="" property="datePublished"></time>
+        </p>
+      </header>
+      <div property="articleBody"></div>
+      <footer data-pagefind-ignore="all">
+        Označeno štítky:&nbsp;
+        <nav class="tags">
+          <ul>
+            <li><a class="p-category" property="articleSection" rel="tag" href="" data-pagefind-filter="tag"></a>
+            </li>
+          </ul>
+        </nav>
+        <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog">
+          <gryphoon-webmentions id="webmentions">
+          <span class="webmentions" id="like-of">
+            |&nbsp;Líbilo se&nbsp;<data></data>
+          </span>
+            <span class="webmentions" id="repost-of">
+            |&nbsp;Přeposláno dál&nbsp;<data></data>
+          </span>
+          </gryphoon-webmentions>
+
+          <gryphoon-comments id="komentare">
+          <span class="comments" id="comments">
+            |&nbsp;Okomentováno&nbsp;<data></data>
+          </span>
+          </gryphoon-comments>
+        </gryphoon-weblog>
+      </footer>
+    </article>
+  </section>
+
+  <section>
+    <p>Přihlaste se k odběru:
+      <a property="webFeed" href="https://feeds.feedburner.com/rarous-weblog" type="application/rss+xml">RSS Feed</a>
+      · <a href="/weblog/feed/" rel="feed">HTML Feed</a>
+    </p>
+  </section>
+{% endblock %}
+

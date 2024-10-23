@@ -1,0 +1,177 @@
+{%- extends "layouts/common-layout.njk" -%}
+{%- set prefix = "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#" -%}
+{%- set images = true -%}
+{%- set title= "rarouš.weblog" -%}
+{%- set description = "Aleš Roubíček píše o webdesignu a čistém kódu." -%}
+{%- set generator = "Gryphoon 3.5 - static site generator" -%}
+{%- set bodyId = "rarous" -%}
+
+{% block preload %}
+  <link rel="preconnect" href="https://static.cloudflareinsights.com">
+  <link rel="preconnect" href="https://challenges.cloudflare.com">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2"
+        href="/assets/fonts/iosevka/woff2/iosevka-bold.latin.woff2">
+{% endblock %}
+
+{% block links %}
+  <link rel="feed" href="/weblog/feed/">
+  <link rel="alternate" type="text/mf2+html" href="/weblog/feed/" title="rarouš.weblog - všechny články">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous-weblog"
+        title="rarouš.weblog - poslední články">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/weblog/comments"
+        title="rarouš.weblog - komentáře k článkům">
+  <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/w3b"
+        title="rarouš.w3b - doporučené čtení">
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/assets/css/iosevka.css">
+  <link rel="stylesheet" href="/assets/css/blog/blog.css">
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+  {% block meta %}{% endblock %}
+  <meta name="theme-color" content="#f77146">
+{% endblock %}
+
+{% block navbar %}
+  <li>
+    <a
+      href="#search"
+      title="Hledat na blogu"
+      onclick="event.preventDefault();searchDialog.showModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="var(--icon-color)">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path
+          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+    </a>
+  </li>
+  <li>
+    <a
+      href="https://feeds.feedburner.com/rarous-weblog"
+      type="application/rss+xml"
+      title="Přihlásit se k odběru pomocí RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="var(--icon-color)">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="6.18" cy="17.82" r="2.18"/>
+        <path
+          d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+      </svg>
+    </a>
+  </li>
+{% endblock %}
+
+{% block footer %}
+  <div class="footer__inner" property="author" typeof="Person">
+    <link rel="me" href="/" property="sameAs">
+    <nav id="rubriky" class="footer__box">
+      <h2>Rubriky</h2>
+      <ul>
+        <li><a href="/weblog/tag/webdesign.html" title="Vypsat články z rubriky Webdesign">Webdesign</a>
+        <li><a href="/weblog/tag/cleancode.html" title="Vypsat články z rubriky Čistý kód">Čistý kód</a>
+        <li><a href="/weblog/tag/functional.html" title="Vypsat články z rubriky Funkcionální programování">Funkcionální
+            programování</a>
+        <li><a href="/weblog/tag/ci.html" title="Vypsat články z rubriky Kontinuální integrace">Kontinuální
+            integrace</a>
+        <li><a href="/weblog/tag/radar.html" title="Vypsat články z rubriky Technologický radar">Technologický
+            radar</a>
+        <li><a href="/weblog/tag/moje-prace.html" title="Vypsat články z rubriky Moje práce">Moje pr&#225;ce</a>
+        <li><a href="/weblog/tag/podcast.html" title="Vypsat články z rubriky Podcast">Podcasty</a>
+        <li><a href="/weblog/tag/jen-tak.html" title="Vypsat články z rubriky Jen tak">Jen tak</a>
+        <li><a href="/weblog/tag/muzika.html" title="Vypsat články z rubriky Muzika">Muzika</a>
+      </ul>
+    </nav>
+    <div id="social" class="footer__box">
+      <h2>Profily</h2>
+      <ul>
+        <li><a property="sameAs" href="https://indieweb.social/@alesroubicek" rel="me">Mastodon</a></li>
+        <li><a property="sameAs" href="https://github.com/rarous" rel="me">Github</a></li>
+        <li><a property="sameAs" href="https://instagram.com/alesroubicek" rel="me">Instagram</a></li>
+        <li><a property="sameAs" href="https://mixcloud.com/alessiobusta" rel="me">Mixcloud</a></li>
+        <li><a property="sameAs" href="https://speakerdeck.com/rarous" rel="me">Speakerdeck</a></li>
+        <li><a property="sameAs" href="https://www.goodreads.com/rarous" rel="me">Goodreads</a></li>
+        <li><a property="sameAs" href="https://twitter.com/alesroubicek" rel="me">Twitter</a></li>
+        <li><a property="sameAs" href="https://youtube.com/@rarous" rel="me">Youtube</a></li>
+      </ul>
+    </div>
+    <div id="friends" class="footer__box">
+      <h2>Přátelé</h2>
+      <ul>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://www.izatlouk.cz/pisu"
+             rel="sweetheart co-resident met">Irena Zatloukalová</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://veronikamatejkova.com/"
+             rel="kin met">Veronika Matějková</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://www.behance.net/ptrnka?locale=cs_CZ"
+             rel="friend co-worker met">Pavel Trnka</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="http://maly.in/"
+             rel="friend met">Michal Malý</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://fakan.cz/"
+             rel="friend co-worker met">Daniel Hromada</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://fotkyodveroniky.cz/"
+             rel="friend met">Veronika Vajdiaková</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://fczbkk.com/"
+             rel="friend colleague met">Riki Fridrich</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://petr.severa.name/"
+             rel="friend colleague met">Petr Severa</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://www.dzoukr.cz/"
+             rel="friend colleague met">Roman Provazník</a></li>
+        <li property="knows" typeof="Person">
+          <a property="sameAs" href="https://zezivotarecruiterky.com/"
+             rel="friend met">Luu Ly Fabián Nguyen</a></li>
+      </ul>
+    </div>
+    <div id="meetupy" class="footer__box">
+      <h2>Meetupy</h2>
+      <ul>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs"
+             href="https://www.datamesh.cz/">DATA mesh</a>
+        </li>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs"
+             href="https://www.meetup.com/webperf-cz/">WebPerf CZ</a>
+        </li>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs"
+             href="https://frontendisti.cz/">Frontendisti</a>
+        </li>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs"
+             href="https://www.meetup.com/Lambda-Meetup-Group/">PragueLambda</a>
+        </li>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs"
+             href="https://caffe.topmonks.cz/">TopMonks Caffè</a>
+        </li>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs" href="https://www.meetup.com/fsharping/">Fsharping</a>
+        </li>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs"
+             href="https://www.meetup.com/CodeRetreat-CZ/">CodeRetreat</a>
+        </li>
+        <li property="memberOf" typeof="Organization">
+          <a property="sameAs"
+             href="https://www.meetup.com/NerdDinner-CZ/">NerdDinner</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/assets/esm/gryphoon.js"></script>
+  <script defer src="/assets/js/prism.js"></script>
+{% endblock %}

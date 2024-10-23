@@ -107,10 +107,10 @@ export default {
 
   additionalTasks: {
     development: {
-      prebuild: ["generate-content"],
+      posthtml: ["generate-content"],
     },
     production: {
-      prebuild: ["generate-content"],
+      posthtml: ["generate-content"],
     },
   },
 };
