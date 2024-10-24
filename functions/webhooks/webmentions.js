@@ -11,7 +11,7 @@ async function getDetail(weblog, url) {
 /**
  * @param {KVNamespace} weblog
  * @param {string} url
- * @param payload
+ * @param {*} payload
  */
 async function saveDetail(weblog, url, payload) {
   return weblog.put(url, JSON.stringify(payload));
@@ -27,14 +27,26 @@ function normalizeKey(target) {
 }
 
 /**
+ * @param {Map<String, *>} webmentions
+ * @param {*} post
+ * @param {Boolean|undefined} deleted
+ */
+function updateWebmentions(webmentions, post, deleted) {
+  if (deleted) {
+    webmentions.delete(post.url);
+  } else {
+    webmentions.set(post.url, post);
+  }
+  return Array.from(webmentions.values());
+}
+
+/**
  * @param {EventContext<Env>} context
  */
 export async function onRequestPost(context) {
   try {
     const { env, request } = context;
     const body = await request.json();
-
-    console.log(body);
 
     const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
     if (body.secret !== secret) {
@@ -46,13 +58,8 @@ export async function onRequestPost(context) {
     const detail = await getDetail(env.weblog, key);
     const webmentions = new Map(detail.webmentions.map((x) => [x.url, x]));
     const isChanged = deleted || !webmentions.has(post.url);
-    if (deleted) {
-      webmentions.delete(post.url);
-    } else {
-      webmentions.set(post.url, post);
-    }
     if (isChanged) {
-      detail.webmentions = Array.from(webmentions.values());
+      detail.webmentions = updateWebmentions(webmentions, post, deleted);
       await saveDetail(env.weblog, key, detail);
     }
     return new Response(null, { status: 202 });
