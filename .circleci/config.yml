@@ -65,8 +65,8 @@ jobs:
       - php/install-composer
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v3-build
-          override-ci-command: yarn workspaces focus @rarousnet/website
+          cache-version: v4-build
+          override-ci-command: yarn workspaces focus rarousnet @rarousnet/website
       - php/install-packages:
           app-dir: ~/project/generator
           install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
@@ -76,7 +76,7 @@ jobs:
             - v4-dependencies-{{ checksum "generator/deps.edn" }}
       - run:
           name: Build website
-          command: yarn build:website
+          command: yarn build
       - save_cache:
           name: Store deps cache
           key: v4-dependencies-{{ checksum "generator/deps.edn" }}
@@ -98,14 +98,11 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn-berry
           cache-version: v3-pw
-          override-ci-command: yarn workspaces focus rarousnet @rarousnet/cards
+          override-ci-command: yarn workspaces focus @rarousnet/cards
       - install_browsers
       - run:
           name: Generate Twitter Card images
           command: node ./cards/generator.js "file://`pwd -P`/cards/card.html"
-      - run:
-          name: Generate search index
-          command: yarn build:index
       - persist_to_workspace:
           root: .
           paths: .gryphoon
