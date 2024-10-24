@@ -18,6 +18,15 @@ async function saveDetail(weblog, url, payload) {
 }
 
 /**
+ * @param {String} target
+ */
+function normalizeKey(target) {
+  if (target.endsWith("/")) return target;
+  if (target.endsWith(".html")) return target;
+  return `${target}.html`;
+}
+
+/**
  * @param {EventContext<Env>} context
  */
 export async function onRequestPost(context) {
@@ -25,13 +34,15 @@ export async function onRequestPost(context) {
     const { env, request } = context;
     const body = await request.json();
 
+    console.log(body);
+
     const secret = env.WEBMENTIONS_WEBHOOK_SECRET;
     if (body.secret !== secret) {
       return new Response("Invalid secret", { status: 403 });
     }
 
     const { post, target, deleted } = body;
-    const key = target.endsWith(".html") ? target : `${target}.html`;
+    const key = normalizeKey(target);
     const detail = await getDetail(env.weblog, key);
     const webmentions = new Map(detail.webmentions.map((x) => [x.url, x]));
     if (deleted) {
