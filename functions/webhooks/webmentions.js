@@ -45,13 +45,16 @@ export async function onRequestPost(context) {
     const key = normalizeKey(target);
     const detail = await getDetail(env.weblog, key);
     const webmentions = new Map(detail.webmentions.map((x) => [x.url, x]));
+    const isChanged = deleted || !webmentions.has(post.url);
     if (deleted) {
       webmentions.delete(post.url);
     } else {
       webmentions.set(post.url, post);
     }
-    detail.webmentions = Array.from(webmentions.values());
-    await saveDetail(env.weblog, key, detail);
+    if (isChanged) {
+      detail.webmentions = Array.from(webmentions.values());
+      await saveDetail(env.weblog, key, detail);
+    }
     return new Response(null, { status: 202 });
   } catch (err) {
     console.log(err);
