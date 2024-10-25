@@ -6,6 +6,6 @@
   "license": "EUPL-1.2",
   "dependencies": {
     "@thi.ng/transducers": "9.2.7",
-    "playwright": "1.48.1"
+    "playwright": "1.48.2"
   }
 }
