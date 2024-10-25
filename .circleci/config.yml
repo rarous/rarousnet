@@ -108,7 +108,7 @@ jobs:
           paths: .gryphoon
   test:
     docker:
-      - image: cimg/node:23.0-browsers
+      - image: cimg/node:23.1-browsers
     resource_class: large
     steps:
       - checkout
@@ -147,7 +147,7 @@ jobs:
           path: ./results
   pages_deploy:
     docker:
-      - image: cimg/node:23.0
+      - image: cimg/node:23.1
     resource_class: arm.large
     steps:
       - checkout
