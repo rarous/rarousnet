@@ -162,4 +162,10 @@
         Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
     </div>
   </footer>
+  <script type="module">
+    if (!HTMLDialogElement) {
+      // <dialog> polyfill
+      await import("https://cdn.jsdelivr.net/gh/nuxodin/dialog-polyfill@1.4.2/dialog.min.js");
+    }
+  </script>
 {% endblock %}
