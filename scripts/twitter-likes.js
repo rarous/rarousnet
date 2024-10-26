@@ -4,8 +4,8 @@ async function main({ token }) {
   const { default: data } = await import("./data/twitter-likes.json", {
     with: { type: "json" },
   });
-  const target = "https://www.rarous.net/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech";
-  const source = "https://x.com/alesroubicek/status/1845893549554045241";
+  const target = "https://www.rarous.net/weblog/2024/10/21/temata-zmena-uzivatelskych-preferenci-vzhledu";
+  const source = "https://x.com/alesroubicek/status/1848407097454493708";
   const { entries } = data.favoriters_timeline.timeline.instructions[0];
   const users = entries
     .filter((x) => x.content.entryType === "TimelineTimelineItem")
@@ -24,7 +24,7 @@ async function main({ token }) {
           author: {
             name: user.name,
             photo: `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${user.profile_image_url_https}`,
-            url: `https://twitter.com/${user.screen_name}`,
+            url: `https://x.com/${user.screen_name}`,
           },
           url: `${source}#favorited-by-${rest_id}`,
           published: null,

@@ -6,8 +6,8 @@ import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 
 async function main({ token }) {
   const { default: { included }} = await import("./data/li-likes.json", { with: { type: "json" }});
-  const target = "https://www.rarous.net/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech";
-  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7251837350995984384/";
+  const target = "https://www.rarous.net/weblog/2024/10/21/temata-zmena-uzivatelskych-preferenci-vzhledu";
+  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7254335322145144834/";
   const reactions = included.filter(x => x["$type"] === "com.linkedin.voyager.dash.social.Reaction")
   for (const reaction of reactions) {
     const userId = reaction.actorUrn;
