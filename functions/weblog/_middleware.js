@@ -31,7 +31,11 @@ function renderWebMentions(window, webmentions) {
   WebMentions.register();
   const el = window.document.querySelector(WebMentions.tagName);
   if (!el) return;
-  const myself = new Set(["https://twitter.com/alesroubicek", "https://x.com/alesroubicek"]);
+  const myself = new Set([
+    "https://twitter.com/alesroubicek",
+    "https://x.com/alesroubicek",
+    "https://indieweb.social/@alesroubicek",
+  ]);
   el.data = webmentions.filter((x) => myself.has(x.author.url));
 }
 
