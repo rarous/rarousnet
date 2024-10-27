@@ -92,6 +92,7 @@ export default {
     htmlmin: {
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
+      preserveLineBreaks: true,
       minifyJS: true,
       removeAttributeQuotes: true,
       removeComments: true,
