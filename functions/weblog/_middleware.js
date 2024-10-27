@@ -67,7 +67,6 @@ async function renderWebComponents({ next, request, env }) {
  * @return {Promise<Response>}
  */
 async function renderSocialMediaImages({ next, request, env }) {
-  console.log(request.url);
   // Handle only PNG image requests
   if (!request.url.endsWith(".png")) return next();
 
@@ -78,7 +77,6 @@ async function renderSocialMediaImages({ next, request, env }) {
 
   // Try to get cached image
   const cachedImage = await env.weblog.get(request.url, "stream");
-  console.log({ cachedImage })
   if (cachedImage) {
     return new Response(cachedImage, {
       status: 200,
@@ -86,16 +84,13 @@ async function renderSocialMediaImages({ next, request, env }) {
     });
   }
 
-  const [page, cards] = Promise.all([
+  const [page, cards] = await Promise.all([
     puppeteer.launch(env.browser).then(x => x.newPage()),
     env.weblog.get("/weblog/cards", "json")
   ]);
-  console.log({ cards });
   const detail = new Map(cards).get(request.url);
-  console.log({ detail });
   const params = new URLSearchParams(Object.entries(detail));
   // Set data via GET parameters
-  console.log({ params });
   await page.goto(`https://www.rarous.net/weblog/card?${params}`);
   // take a screenshot of card element
   const buffer = await page.locator("#card").screenshot({ encoding: "binary" });
