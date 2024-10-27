@@ -108,6 +108,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       compatibilityDate: "2024-09-02",
       compatibilityFlags: ["nodejs_compat"],
       secrets: {
+        RAROUS_WEBLOG_CARDS_SECRET: config.require("weblog-cards-secret"),
         TURNSTILE_SECRET_KEY: turnstile.secret,
         WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
       },

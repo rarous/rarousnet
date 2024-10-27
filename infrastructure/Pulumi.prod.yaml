@@ -1,8 +1,10 @@
-environment: 
+environment:
   - rarous-cloudflare
   - rarous-discogs
   - rarous-spotify
-config: 
+config:
   rarousnet:domain: www.rarous.net
-  rarousnet:webhook-secret: 
+  rarousnet:webhook-secret:
     secure: AAABAMDlnk5eyssfU+XvFCw8R3vZApfj1ZWdi/i8J7VlS9h0tF+tnLWhPBwcSSvvE/JYyX0FOtufVrx2jOOkiwEgY06mxmw86yTLLf43ZInf7Q==
+  rarousnet:weblog-cards-secret:
+    secure: AAABAPUMti3n0lkVWaFF6cgCIzbVA9P7369ij1K3o05TNPgPtZ76JtdYb07lmix4ufWaUf9YChnFOM22kCrRoPrD1eiSppo7D7KW/GQABACTVQ==

@@ -23,7 +23,7 @@
     }
   </style>
 
-  <div id="twitter-card">
+  <div id="card">
     <div class="inner">
       <h1 id="title">Nový život pro rarouš.weblog</h1>
       <p><span id="name">@alesroubicek</span> |
@@ -36,8 +36,9 @@
     const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
     const params = new URLSearchParams(location.search);
     document.getElementById("title").textContent = params.get("title");
-    document.getElementById("date").datetime = params.get("date");
-    document.getElementById("date").textContent = formatter.format(new Date(params.get("date")));
     document.getElementById("name").textContent = params.get("name");
+    const date = document.getElementById("date");
+    date.datetime = params.get("date");
+    date.textContent = formatter.format(new Date(params.get("date")));
   </script>
 {% endblock %}

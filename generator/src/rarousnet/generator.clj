@@ -81,6 +81,11 @@
     "Aleš Roubíček" "@alesroubicek"
     "Alessio Busta" "@alessiobusta"
     nil))
+(defn author-handle [{:keys [author]}]
+  (case author
+    "Aleš Roubíček" "@alesroubicek@indieweb.social"
+    "Alessio Busta" "@alessiobusta"
+    nil))
 (defn card-image [article]
   (string/replace (permalink article) #"\.html" ".png"))
 
@@ -457,8 +462,11 @@
 
 (defn article->image [article]
   {:title (:title article)
-   :name (author-twitter article)
+   :name (author-handle article)
    :date (last (string/split (long-date-time (:published article)) #" - "))
+   ;; TODO: add tags
+   :url (str blog-url (string/replace (:file-name article) #"\.html$" ".png"))
+   ;; TODO: remove
    :fileName (string/replace (:file-name article) #"\.html$" ".png")})
 
 (defn sha256 [^String string]
