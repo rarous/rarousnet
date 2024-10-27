@@ -88,12 +88,12 @@ async function renderSocialMediaImages({ next, request, env }) {
     puppeteer.launch(env.browser).then(x => x.newPage()),
     env.weblog.get("/weblog/cards", "json")
   ]);
-
+  console.log({ cards });
   const detail = new Map(cards).get(request.url);
   console.log({ detail });
   const params = new URLSearchParams(Object.entries(detail));
   // Set data via GET parameters
-  console.log({ params })
+  console.log({ params });
   await page.goto(`https://www.rarous.net/weblog/card?${params}`);
   // take a screenshot of card element
   const buffer = await page.locator("#card").screenshot({ encoding: "binary" });
