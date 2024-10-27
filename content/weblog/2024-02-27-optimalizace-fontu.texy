@@ -36,12 +36,12 @@ Optimalizace je jen v podobě brotli komprese.
 ======
 
 Co s tím? Jednou z možností je nasadit jiný font, nebo používat nějaký systémový. Nevim. Dál.
- 
+
 Řešení, které jsem nakonec použil já, je "font subsetting":[https://fonts.google.com/knowledge/glossary/subsetting].
 Pomocí nástroje `pyftsubset`:[https://fonttools.readthedocs.io/en/latest/subset/] můžete
 ze zdrojového TTF((TrueType Font)) souboru udělat mnohem menší soubory woff2,
 které budou obsahovat jen vybrané Unicode rozsahy a vlastnosti rozložení.
- 
+
 Adobe Fonts nebo Google Fonts typicky mají zvlášť skupiny `latin` a `latin-ext`,
 které na svém webu potřebuju, protože se snažím psat s diakritikou. Zbytek unicode
 rozsahů ale vlastně nepotřebuju vůbec. Takže pryč s nima!
@@ -70,7 +70,7 @@ pyftsubset Iosevka-Regular.ttf \
   --output-file=iosevka-regular.latin-ext.woff2 \
   --flavor=woff2 \
   --layout-features='*' \
-  --unicodes=100-17F
+  --unicodes=U+0100-0101,U+0104-0130,U+0132-0151,U+0154-017F,U+018F,U+0192,U+01A0-01A1,U+01AF-01B0,U+01FA-01FF,U+0218-021B,U+0237,U+0259,U+1E80-1E85,U+1E9E,U+20A1,U+20A4,U+20A6,U+20A8-20AA,U+20AD-20AE,U+20B1-20B2,U+20B4-20B5,U+20B8-20BA,U+20BD,U+20BF
 \--code
 
 Obě ukázky jsou si dost podobné, liší se v názvu výstupního souboru a unicode rozsahu.
@@ -95,7 +95,7 @@ Ve stylech pak importuji fonty s patřičnými rozsahy:
   font-style: normal;
   font-display: swap;
   src: url("/assets/fonts/iosevka/woff2/iosevka-regular.latin-ext.woff2") format("woff2");
-  unicode-range: U+100-17F;
+  unicode-range: U+0100-0101, U+0104-0130, U+0132-0151, U+0154-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0, U+01FA-01FF, U+0218-021B, U+0237, U+0259, U+1E80-1E85, U+1E9E, U+20A1, U+20A4, U+20A6, U+20A8-20AA, U+20AD-20AE, U+20B1-20B2, U+20B4-20B5, U+20B8-20BA, U+20BD, U+20BF;
 }
 \--code
 
