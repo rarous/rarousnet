@@ -43,7 +43,7 @@ function renderWebMentions(window, webmentions) {
 /**
  * @param {EventContext<Env>} context
  */
-export async function renderWebComponents({ next, request, env }) {
+async function renderWebComponents({ next, request, env }) {
   const resp = await next();
   const contentType = resp.headers.get("content-type");
   if (resp.ok && contentType?.startsWith("text/html")) {
@@ -67,6 +67,7 @@ export async function renderWebComponents({ next, request, env }) {
  * @return {Promise<Response>}
  */
 async function renderSocialMediaImages({ next, request, env }) {
+  console.log(request.url);
   // Handle only PNG image requests
   if (!request.url.endsWith(".png")) return next();
 
@@ -77,6 +78,7 @@ async function renderSocialMediaImages({ next, request, env }) {
 
   // Try to get cached image
   const cachedImage = await env.weblog.get(request.url, "stream");
+  console.log({ cachedImage })
   if (cachedImage) {
     return new Response(cachedImage, {
       status: 200,
