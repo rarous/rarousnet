@@ -12,7 +12,8 @@
   {% endif %}
   <link rel="preload" as="font" crossorigin="anonymous"
         href="{{ "innovator-grotesk/variable.woff2" | assetUrl("fonts") }}">
-  <link rel="preload" as="font" crossorigin="anonymous" href="{{ "agrandir/variable.ttf" | assetUrl("fonts") }}">
+  <link rel="preload" as="font" crossorigin="anonymous"
+        href="{{ "agrandir/variable.latin.woff2" | assetUrl("fonts") }}">
   <link rel="preload" as="style" href="{{ "global.css" | assetUrl("stylesheets") }}">
   {% block preload %}{% endblock %}
   <meta name="author" content="all: {{ contact.name }}; mailto:{{ contact.email }}">
