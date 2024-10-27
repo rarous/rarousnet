@@ -1,0 +1,43 @@
+{% extends "layouts/common-base.njk" %}
+
+{% block body %}
+  <style>
+
+    h1 {
+      font-weight: 900;
+      margin-bottom: 0;
+      text-wrap: balance;
+    }
+
+    #twitter-card {
+      background: #f77146;
+      color: #fff;
+      width: 1012px;
+      height: 505px;
+      display: flex;
+    }
+
+    .inner {
+      margin: auto;
+      padding: 2em;
+    }
+  </style>
+
+  <div id="twitter-card">
+    <div class="inner">
+      <h1 id="title">Nový život pro rarouš.weblog</h1>
+      <p><span id="name">@alesroubicek</span> |
+        <time id="date">28. ledna 2019</time>
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
+    const params = new URLSearchParams(location.search);
+    document.getElementById("title").textContent = params.get("title");
+    document.getElementById("date").datetime = params.get("date");
+    document.getElementById("date").textContent = formatter.format(new Date(params.get("date")));
+    document.getElementById("name").textContent = params.get("name");
+  </script>
+{% endblock %}
