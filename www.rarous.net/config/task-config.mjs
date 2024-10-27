@@ -37,7 +37,7 @@ class GryphoonRegistry extends DefaultRegistry {
       const { default: contents } = await import(this.paths.cards, { with: { type: "json" } });
       await fetch("https://www.rarous.net/api/v1/weblog/cards", {
         method: "POST",
-        headers: { "Content-Type": "application/json", },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           secret: process.env.RAROUS_WEBLOG_CARDS_SECRET,
           items: contents.map((x) => [x.url, x])

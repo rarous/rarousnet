@@ -2,6 +2,7 @@
  * @param {EventContext<Env>} context
  */
 export async function onRequestPost({ env, request, next }) {
+  if (request.headers.get("content-type") === "application/json") return next();
   const body = await request.formData();
   const token = body.get("cf-turnstile-response");
   const ip = request.headers.get("CF-Connecting-IP");
