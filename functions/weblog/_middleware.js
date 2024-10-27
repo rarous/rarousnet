@@ -23,7 +23,7 @@ function renderComments(window, comments) {
   Comments.register();
   const el = window.document.querySelector(Comments.tagName);
   if (!el) return;
-  el.data = comments;
+  el.data = comments.filter(x => x.isEnabled);
 }
 
 function renderWebMentions(window, webmentions) {
@@ -31,7 +31,8 @@ function renderWebMentions(window, webmentions) {
   WebMentions.register();
   const el = window.document.querySelector(WebMentions.tagName);
   if (!el) return;
-  el.data = webmentions;
+  const myself = new Set(["https://twitter.com/alesroubicek", "https://x.com/alesroubicek"]);
+  el.data = webmentions.filter((x) => myself.has(x.author.url));
 }
 
 /**
