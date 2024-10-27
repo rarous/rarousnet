@@ -186,6 +186,9 @@ workflows:
   build_and_deploy:
     jobs:
       - generate
+      - postprocess:
+          requires:
+            - generate
       - provision:
           context: aws
           filters:
@@ -193,7 +196,7 @@ workflows:
               only: trunk
       - test:
           requires:
-            - generate
+            - postprocess
       - pages_deploy:
           context: cloudflare
           requires:

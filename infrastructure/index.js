@@ -119,6 +119,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       r2Buckets: {
         storage: weblogBucket.name,
       },
+      // TODO: browsers: { browser: ??? } - needs the Terraform provider v5 where it is supported
     },
   },
 });

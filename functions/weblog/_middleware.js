@@ -99,4 +99,4 @@ async function renderSocialMediaImages({ next, request, env }) {
   return new Response(buffer, { headers });
 }
 
-export const onRequest = [renderSocialMediaImages, renderWebComponents];
+export const onRequest = [/*renderSocialMediaImages*/, renderWebComponents];
