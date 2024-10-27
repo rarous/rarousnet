@@ -50,7 +50,6 @@ jobs:
           skip-preview: true
       - slack/notify:
           event: fail
-          channel: C06C2QP1TNY
           template: basic_fail_1
   generate:
     resource_class: large
@@ -90,10 +89,10 @@ jobs:
             - generator/.cpcache
       - persist_to_workspace:
           root: .
-          paths: .gryphoon
+          paths:
+            - .gryphoon
       - slack/notify:
           event: fail
-          channel: C06C2QP1TNY
           template: basic_fail_1
   postprocess:
     resource_class: large
@@ -117,12 +116,11 @@ jobs:
           paths: .gryphoon
       - slack/notify:
           event: fail
-          channel: C06C2QP1TNY
           template: basic_fail_1
   test:
+    resource_class: large
     docker:
       - image: cimg/node:23.1-browsers
-    resource_class: large
     steps:
       - checkout
       - attach_workspace:
@@ -160,7 +158,6 @@ jobs:
           path: ./results
       - slack/notify:
           event: fail
-          channel: C06C2QP1TNY
           template: basic_fail_1
   pages_deploy:
     docker:
@@ -181,7 +178,6 @@ jobs:
           command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet
       - slack/notify:
           event: fail
-          channel: C06C2QP1TNY
           template: basic_fail_1
       - slack/notify:
           event: pass
