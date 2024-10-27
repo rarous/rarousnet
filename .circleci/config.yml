@@ -7,6 +7,7 @@ orbs:
   node: circleci/node@6.0.0
   php: circleci/php@1.1.0
   pulumi: pulumi/pulumi@2.1.0
+  slack: circleci/slack@5.0.0
 
 executors:
   pw-focal-development:
@@ -47,6 +48,10 @@ jobs:
           working_directory: infrastructure
           stack: prod
           skip-preview: true
+      - slack/notify:
+          event: fail
+          channel: C06C2QP1TNY
+          template: basic_fail_1
   generate:
     resource_class: large
     docker:
@@ -86,6 +91,10 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: .gryphoon
+      - slack/notify:
+          event: fail
+          channel: C06C2QP1TNY
+          template: basic_fail_1
   postprocess:
     resource_class: large
     executor: pw-focal-development
@@ -106,6 +115,10 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: .gryphoon
+      - slack/notify:
+          event: fail
+          channel: C06C2QP1TNY
+          template: basic_fail_1
   test:
     docker:
       - image: cimg/node:23.1-browsers
@@ -145,6 +158,10 @@ jobs:
           path: ./results
       - store_test_results:
           path: ./results
+      - slack/notify:
+          event: fail
+          channel: C06C2QP1TNY
+          template: basic_fail_1
   pages_deploy:
     docker:
       - image: cimg/node:23.1
@@ -162,6 +179,13 @@ jobs:
       - run:
           name: Publish to Cloudflare Pages
           command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet
+      - slack/notify:
+          event: fail
+          channel: C06C2QP1TNY
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
 workflows:
   build_and_deploy:
     jobs:
