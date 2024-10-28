@@ -27,7 +27,7 @@ async function main({ token }) {
           type: "entry",
           author: {
             name: user.title.text,
-            photo: `${rootUrl}${imageId}`,
+            photo: `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${rootUrl}${imageId}`,
             url: user.navigationUrl,
           },
           url: `${source}#liked-by-${userId}`,
