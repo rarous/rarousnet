@@ -37,7 +37,7 @@ function renderWebMentions(window, webmentions) {
     "https://x.com/alesroubicek",
     "https://indieweb.social/@alesroubicek",
   ]);
-  el.data = webmentions.filter((x) => myself.has(x.author.url));
+  el.data = webmentions.filter((x) => !myself.has(x.author.url));
 }
 
 /**
