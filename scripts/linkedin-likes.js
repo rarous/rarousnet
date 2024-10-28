@@ -7,15 +7,15 @@ import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 async function main({ token }) {
   const { default: { included }} = await import("./data/li-likes.json", { with: { type: "json" }});
   const target = "https://www.rarous.net/weblog/2024/10/21/temata-zmena-uzivatelskych-preferenci-vzhledu";
-  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7254335322145144834/";
+  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7255459066544558080/";
   const reactions = included.filter(x => x["$type"] === "com.linkedin.voyager.dash.social.Reaction")
   for (const reaction of reactions) {
     const userId = reaction.actorUrn;
     const user = reaction.reactorLockup;
     let detailData = user.image.attributes[0].detailData;
-    const image = detailData.nonEntityProfilePicture?.vectorImage ?? detailData.nonEntityCompanyLogo.vectorImage;
+    const image = detailData.nonEntityProfilePicture?.vectorImage ?? detailData.nonEntityCompanyLogo?.vectorImage ?? {};
     const { rootUrl } = image;
-    const imageId = image.artifacts[0].fileIdentifyingUrlPathSegment;
+    const imageId = image.artifacts?.[0]?.fileIdentifyingUrlPathSegment;
     const resp = await fetch("https://www.rarous.net/webhooks/webmentions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
