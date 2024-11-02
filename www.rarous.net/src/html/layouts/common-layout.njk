@@ -6,7 +6,7 @@
   </div>
   <header id="{{ headerId }}">
     {% block headerContent %}{% endblock %}
-    <nav>
+    <nav aria-label="Hlavní menu">
       <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
         <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43">
           <path fill="#b4b4b4"
@@ -72,7 +72,7 @@
   </footer>
   <dialog id="menuDialog" onclick="event.target === this && this.close()">
     <div id="hamburger">
-      <nav>
+      <nav aria-label="Navigace po webu">
         <h2>Navigace</h2>
         <ul>
           <li><a href="/">Domovská stránka</a></li>
