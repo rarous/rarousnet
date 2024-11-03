@@ -1,12 +1,10 @@
 {%- extends "layouts/weblog.njk" -%}
 {%- set prefix= "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" %}
 
-{% block links %}
-  {{ super() }}
+{% block head %}
   <link rel="syndication" href="">
   <link rel="home" href="/weblog/">
-{% endblock %}
-{% block meta %}
+  {{ super() }}
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="rarouš.weblog">
   <meta property="article:published_time" content="">
@@ -21,7 +19,6 @@
 {% endblock %}
 
 {% set contentClass = "h-entry" %}
-
 {% block content %}
   <article vocab="https://schema.org" typeof="BlogPosting" data-pagefind-body>
     <link class="u-featured" property="image" href="">

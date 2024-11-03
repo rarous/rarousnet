@@ -2,33 +2,16 @@
 <html lang="cs">
 <head prefix="{{ prefix }}">
   <meta charset="UTF-8">
-  <title>{% block title %}{{ title or meta.title }}{% endblock %}</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="color-scheme" content="light dark">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   {% if images %}
     <meta http-equiv="delegate-ch"
           content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
-    <link rel="preconnect" href="https://res.cloudinary.com">
   {% endif %}
-  <link rel="preload" as="font" crossorigin="anonymous"
-        href="{{ "innovator-grotesk/variable.woff2" | assetUrl("fonts") }}">
-  <link rel="preload" as="font" crossorigin="anonymous"
-        href="{{ "agrandir/variable.latin.woff2" | assetUrl("fonts") }}">
-  <link rel="preload" as="style" href="{{ "global.css" | assetUrl("stylesheets") }}">
-  {% block preload %}{% endblock %}
-  <meta name="author" content="all: {{ contact.name }}; mailto:{{ contact.email }}">
-  <meta name="copyright" content="&copy; 2004 - {{ currentYear }} Aleš Roubíček. Creative Commons 4.0 BY-SA">
-  <meta name="description" content="{{ description or meta.description }}">
-  <meta name="generator" content="{{ generator or '@hckr_/blendid - static site generator and assets pipeline' }}">
-  <link rel="me" href="https://indieweb.social/@alesroubicek">
-  <link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
-  <link rel="canonical" href="{{ canonicalUrl }}">
-  <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
-  <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
-  {% block links %}{% endblock %}
-  <!--[if lt IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+  {% block head_pragma %}{% endblock %}
+  <title>{% block title %}{{ title or meta.title }}{% endblock %}</title>
+  {% if images %}
+    <link rel="preconnect" href="https://res.cloudinary.com">{% endif %}
+  {% block head_preconnect %}{% endblock %}
   <style>
     @font-face {
       font-family: "Innovator Grotesk";
@@ -211,6 +194,26 @@
     }
   </style>
   <link rel="stylesheet" href="{{ "global.css" | assetUrl("stylesheets") }}">
+  {% block head_stylesheets %}{% endblock %}
+  <link rel="preload" as="font" crossorigin="anonymous"
+        href="{{ "innovator-grotesk/variable.woff2" | assetUrl("fonts") }}">
+  <link rel="preload" as="font" crossorigin="anonymous"
+        href="{{ "agrandir/variable.latin.woff2" | assetUrl("fonts") }}">
+  <link rel="preload" as="style" href="{{ "global.css" | assetUrl("stylesheets") }}">
+  {% block head_preload %}{% block preload %}{% endblock %}{% endblock %}
+  {% block head_async_scripts %}{% endblock %}
+  <meta name="color-scheme" content="light dark">
+  <meta name="author" content="all: {{ contact.name }}; mailto:{{ contact.email }}">
+  <meta name="copyright" content="&copy; 2004 - {{ currentYear }} Aleš Roubíček. Creative Commons 4.0 BY-SA">
+  <meta name="description" content="{{ description or meta.description }}">
+  <meta name="generator" content="{{ generator or '@hckr_/blendid - static site generator and assets pipeline' }}">
+  <link rel="me" href="https://indieweb.social/@alesroubicek">
+  <link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+  <link rel="canonical" href="{{ canonicalUrl }}">
+  <link rel="webmention" href="https://webmention.io/www.rarous.net/webmention">
+  <link rel="pingback" href="https://webmention.io/www.rarous.net/xmlrpc">
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
   {% block head %}{% endblock %}
 </head>
 <body class="{{ bodyClass or body.class }}" id="{{ bodyId or body.id }}">

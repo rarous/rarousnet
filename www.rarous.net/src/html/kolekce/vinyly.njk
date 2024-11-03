@@ -5,12 +5,12 @@
 {% set canonicalUrl = "https://www.rarous.net/kolekce/vinyly" %}
 {% set images = true %}
 
-{% block preload %}
+{% block head_preconnect %}
   <link rel="preconnect" href="https://open.spotify.com">
   <link rel="preconnect" href="https://static.cloudflareinsights.com">
 {% endblock %}
 
-{% block head %}
+{% block head_stylesheets %}
   <style>
     @keyframes --saturate-in-and-out {
       entry 60%  { filter: saturate(0.2); }

@@ -1,8 +1,8 @@
 {%- extends "layouts/weblog.njk" -%}
 
-{% block links %}
-{{ super() }}
+{% block head %}
   <link rel="home" href="/weblog/">
+  {{ super() }}
 {% endblock %}
 
 {% set contentClass = "category-listing h-feed" %}

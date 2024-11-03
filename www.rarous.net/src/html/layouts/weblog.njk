@@ -6,16 +6,25 @@
 {%- set generator = "Gryphoon 3.5 - static site generator" -%}
 {%- set bodyId = "rarous" -%}
 
-{% block preload %}
-  <link rel="preconnect" href="https://static.cloudflareinsights.com">
-  <link rel="preconnect" href="https://challenges.cloudflare.com">
+{% block head_preconnect %}
+<link rel="preconnect" href="https://static.cloudflareinsights.com">
+<link rel="preconnect" href="https://challenges.cloudflare.com">
+{% endblock %}
+
+{% block head_preload %}
   <link rel="preload" as="font" crossorigin type="font/woff2"
         href="/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2">
   <link rel="preload" as="font" crossorigin type="font/woff2"
         href="/assets/fonts/iosevka/woff2/iosevka-bold.latin.woff2">
 {% endblock %}
 
-{% block links %}
+{% block head_stylesheets %}
+<link rel="stylesheet" href="{{ "iosevka.css" | assetUrl("stylesheets") }}">
+<link rel="stylesheet" href="{{ "blog/blog.css" | assetUrl("stylesheets") }}">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+{% endblock %}
+
+{% block head %}
   <link rel="feed" href="/weblog/feed/">
   <link rel="alternate" type="text/mf2+html" href="/weblog/feed/" title="rarouš.weblog - všechny články">
   <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous-weblog"
@@ -24,13 +33,6 @@
         title="rarouš.weblog - komentáře k článkům">
   <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/w3b"
         title="rarouš.w3b - doporučené čtení">
-{% endblock %}
-
-{% block head %}
-  <link rel="stylesheet" href="/assets/css/iosevka.css">
-  <link rel="stylesheet" href="/assets/css/blog/blog.css">
-  <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
-  {% block meta %}{% endblock %}
   <meta name="theme-color" content="#f77146">
 {% endblock %}
 
@@ -211,6 +213,6 @@
 {% endblock %}
 
 {% block scripts %}
-  <script type="module" src="/assets/esm/gryphoon.js"></script>
+  <script type="module" src="{{  "gryphoon.js" | assetUrl("esm") }}"></script>
   <script defer src="/assets/js/prism.js"></script>
 {% endblock %}
