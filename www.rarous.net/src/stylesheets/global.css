@@ -32,8 +32,8 @@
 
   font-size: 100%;
   color-scheme: light dark;
-  accent-color: var(--primary-color);
   interpolate-size: allow-keywords;
+  accent-color: var(--primary-color);
 }
 
 :root[data-theme='dark'] {
