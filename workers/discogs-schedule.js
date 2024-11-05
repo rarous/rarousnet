@@ -78,6 +78,9 @@ function byArtistAndYear(a, b) {
  * @param {Env} env
  */
 async function updateDiscogsCollection(env) {
+  const current = await env.weblog.get("/kolekce/vinyly", "json");
+  const knownSpotifyIds = new Map(current.map(x => [x.id, x.spotifyUri]));
+
   const result = [];
   for await (const releases of getAllReleases(env.DISCOGS_TOKEN)) {
     const items = releases.map(x => x.basic_information).map(x => ({
@@ -99,6 +102,11 @@ async function updateDiscogsCollection(env) {
     if (error) {
       console.error(error);
       break;
+    }
+    if (knownSpotifyIds.has(item.id)) {
+      // skip already known album uris
+      item.spotifyUri = knownSpotifyIds.get(item.id);
+      continue;
     }
     let albums = await searchAlbumOnSpotify(
       `artist:${item.artist.name} album:${item.title} year:${item.year}`,
