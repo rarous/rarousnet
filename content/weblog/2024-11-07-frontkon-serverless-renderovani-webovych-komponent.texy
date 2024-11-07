@@ -1,0 +1,56 @@
+---
+{:title "FrontKon - Serverless renderování Webových komponent",
+ :description "Záznam a prezentace z mé přednášky na FrontKonu.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "webcomponents", "frontkon", "prezentace", "serverless", "cloudflare"},
+ :published "2024-11-07T14:08:00.000"
+ :syndication
+  ["https://indieweb.social/@alesroubicek/113441386059916139"
+   "https://www.youtube.com/watch?v=k1cicAsjWjg"]}
+---
+
+Na jaře jsem poslal CFP na konferenci "frontkon.cz":[https://www.frontkon.cz/], submitnul jsem dvě témata:
+
+1. Ztracená dekáda
+2. Cloudflare Pages jako BFF frontendového vývojáře
+
+Máchal:[https://www.vzhurudolu.cz/] si nakonec vybral druhé téma a chtěl to víc stočit k SSR((Server Side Rendering)),
+protože to je tématický blok, který na FrontKonu bude.
+
+Věnoval jsem se tématu, který už jsem přetavil i do blogpostu "Renderování Webových komponent ve Workerech":[weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech].
+Tento přístup se mi velmi osvědčil a používám ho na většině projektů, na kterých jsem za poslední půl rok dělal.
+Například na nové verzi DataTalk:[https://www.datatalk.cz/] webu jsem dosáhl 3-5x zrychlení oproti původní verzi
+běžící na WordPressu. (v době psaní článku ještě běží původní WP site)
+
+Tady je záznam na Youtube:
+
+{{youtube: k1cicAsjWjg}}
+
+A tady jsou slajdy:
+
+{{speakerdeck: b548695b44174e8083d74ceb6f5b8b8a}}
+
+A nakonec odkazy z prezentace:
+
+- "Cloudflare Pages":[https://pages.dev/]
+- "OpenNext - Next.js na Cloudflare Pages":[https://opennext.js.org/cloudflare]
+
+- "Public registry webových komponent":[https://webcomponents.org/]
+- https://front-end.social/@heydon/113225763140995122
+- "Using custom elements na MDN":[https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements]
+
+- "Linkedom na Githubu":[https://github.com/webreflection/linkedom/]
+
+Prior art
+- "Linkedom intro":[https://webreflection.medium.com/linkedom-a-jsdom-alternative-53dd8f699311]
+- "Server-side custom elements":[https://www.mayank.co/blog/server-side-custom-elements]
+
+rarouš.weblog
+- "Refactoring web components z Lit na no-deps":[https://www.rarous.net/weblog/2024/02/25/zobrazovani-webmentions-ve-strance]
+- "Ukázka Isomorfní Web komponenty v praxi":[https://github.com/rarous/rarousnet/blob/trunk/www.rarous.net/src/esm/discogs.js]
+-  "Ukázka použití Isomorfní Web komponenty v praxi v Cloudflare Pages Function":[https://github.com/rarous/rarousnet/blob/trunk/functions/kolekce/vinyly.js]
+
+Použil jsem obrázky "Joan Cornellà":[https://joancornella.net/en/]
+Obrázek *Spa Day* od Heydona si můžete pořídit jako "slušivé tričko":[https://webbed-briefs.teemill.com/product/spa-day-tee/]
+
+Užívejte!
