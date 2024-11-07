@@ -1,22 +1,9 @@
-/* https://material.io/tools/color/#!/?view.left=1&view.right=1&primary.color=F77146&secondary.color=33769D&primary.text.color=ffffff */
-
 :root {
-  --primary-color: oklch(0.703 0.175 38.139);
-  --primary-dark-color: oklch(0.547 0.168 36.467);
-  --text-color-on-primary: oklch(1 0 89.876);
-  --secondary-color: oklch(0.543 0.091 237.043);
-  --secondary-dark-color: oklch(0.392 0.088 238.557);
-
-  --background-color: light-dark(#fff, #3c312d);
   --content-color: #111;
-  --content-color: light-dark(#111, #f5f5f5);
-  --content-background: rgba(256, 256, 256, 0.8);
-  --content-background: light-dark(rgba(256, 256, 256, 0.8), rgb(39, 28, 24, 0.7));
-  --border-color: #333;
-  --border-color: light-dark(#333, #98918f);
-  --border-width: 2px;
+  --content-color: light-dark(oklch(17.8% 0 89.876), oklch(97% 0 89.876));
+  --content-background: rgba(255, 255, 255, 0.8);
+  --content-background: light-dark(oklch(100% 0 89.876 / 0.8), oklch(23.9% 0.019 40.904 / 0.7));
 
-  --icon-color: var(--secondary-dark-color);
   --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
   "Hoefler Text", "Times New Roman", serif;
   --content-font: var(--main-font);
@@ -34,30 +21,10 @@
   --pagefind-ui-font: var(--content-font) !important;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background: var(--background-color);
-  color: var(--text-color);
-}
-
-body {
-  border-block: var(--border-width) solid var(--border-color);
-  font: 16px var(--main-font);
-  font-kerning: normal;
-  font-variant-numeric: lining-nums slashed-zero;
-  font-variant-ligatures: common-ligatures contextual;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: geometricPrecision;
-}
-
-
 h2,
 article h1 {
   font: var(--heading-font);
+  font-size: var(--font-size-fluid-2);
   letter-spacing: -1px;
   text-wrap: balance;
   margin: 0;
@@ -74,7 +41,6 @@ h3 {
   font-variation-settings: "wdth" 60;
   margin: 1.5em 0 0.25em;
 }
-
 
 h4 {
   color: var(--h4-color, var(--text-color));
@@ -104,7 +70,6 @@ aside p {
   --content-font: var(--citation-font);
 }
 
-
 pre.console {
   background: oklch(0 0 0);
   color: oklch(0.808 0 89.876);
@@ -118,32 +83,21 @@ pre.console code {
 
 code[class*="language-"],
 pre:has(> code) {
-  color: oklch(0.178 0 89.876);
+  color: #111;
   color: light-dark(oklch(0.178 0 89.876), oklch(0.989 0.004 286.327));
-  background-color: oklch(0.998 0.009 106.565);
+  background-color: #fffff8;
   background-color: light-dark(oklch(0.998 0.009 106.565), oklch(0.29 0.016 290.44));
   font-family: var(--code-font);
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
   tab-size: 4;
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
 }
-
-/* ((fg "#111111")
-      (fg-table "#222291")
-      (bg "#fffff8")
-      (bg-light "#ddddd8")
-      (fg-light "#ddddd8")
-      (bg-highlight "#FFF1AA")
-      (bg-highlight-2 "LightCyan")
-      (bg-highlight-3 "LightGreen"))*/
 
 pre:has(> code)::-moz-selection,
 pre:has(> code) ::-moz-selection,
@@ -154,8 +108,8 @@ pre:has(> code) ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
   text-shadow: none;
-  background: oklch(0.953 0.091 98.352);
-  background: light-dark(oklch(0.953 0.091 98.352), oklch(0.407 0.015 37.358));
+  background: #fff1aa;
+  background: light-dark(oklch(0.953 0.091 var(--primary-hue)), oklch(0.407 0.015 var(--secondary-hue)));
 }
 
 pre:has(> code) {
@@ -166,8 +120,8 @@ pre:has(> code) {
 
 :not(pre) > code[class*="language-"],
 pre:has(> code) {
-  background: oklch(0.998 0.009 106.565);
-  background: light-dark(oklch(0.998 0.009 106.565), oklch(0.29 0.016 290.44));
+  background: #fffdfa;
+  background: light-dark(oklch(0.998 0.009 var(--primary-hue)), oklch(0.29 0.016 var(--secondary-hue)));
 }
 
 :not(pre) > code[class*="language-"] {
@@ -282,10 +236,21 @@ iframe.player {
 }
 
 #content {
+  --body-column: extra;
+  display: block grid;
+  grid: inherit;
+
   anchor-name: --content;
   background-color: var(--content-background);
   backdrop-filter: blur(3px);
   color: var(--content-color);
+
+  > * {
+    grid-column: main;
+  }
+  > :is(h2, .feed, article, gryphoon-weblog) {
+    grid-column: wide;
+  }
 }
 
 #content:not(.category-listing) article {
@@ -450,25 +415,38 @@ article footer {
   }
 
   .footer__inner {
-    padding: 1em 1.5em;
+    padding-block: 1em;
   }
 
   .footer__copyright {
-    padding: 0.25em 1.5em;
+    padding-block: 0.25em;
     box-sizing: border-box;
   }
 }
 
+#head {
+  position: relative;
+  padding-block-end: 2em;
+}
 #head h1 {
-  font-size: clamp(3rem, 6vw + 1.5rem, 6rem);
-  line-height: 6rem;
+  --boost: 1.5;
+  @media (max-width: 800px) {
+    --boost: 1.25;
+  }
+  @media (max-width: 600px) {
+    --boost: 1;
+  }
+  position: absolute;
+  grid-column: extra;
+  font-size: calc(var(--boost) * var(--font-size-fluid-3));
+  line-height: 1;
   font-weight: 900;
   z-index: 0;
-  translate: 1rem 2.5rem;
+  translate: 2rem calc(var(--boost) * 1.75rem);
   transition: translate 350ms var(--ease-spring-3);
 
   &:hover {
-    translate: 1rem 1rem;
+    translate: 2rem 1rem;
   }
 
   a {
@@ -484,24 +462,6 @@ article footer {
       text-decoration-color: var(--secondary-dark-color);
     }
   }
-}
-
-#head > nav {
-  --icon-size: 32px;
-  --gap: 16px;
-
-  position: absolute;
-  top: calc(var(--gap) / 2);
-  right: var(--gap);
-  left: calc(var(--gap) / 2);
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-}
-
-#content {
-  margin: 0 0 1em 1ex;
-  padding: 1em;
 }
 
 #novy-komentar {
@@ -555,7 +515,7 @@ article footer {
 
 @media screen and (min-width: 481px) and (max-width: 760px) {
   .footer .footer__inner {
-    padding: 1em 1.5em;
+    padding-block: 1em;
     display: grid;
     grid-gap: 1.5em;
 
@@ -564,36 +524,24 @@ article footer {
 }
 
 @media screen and (min-width: 761px) {
-  #top {
-    margin: 0 auto;
-    max-width: 60em;
-  }
-
-  #top > .footer {
+  .footer {
     margin-block-start: 1.4em;
   }
 
   .footer .footer__inner {
-    padding: 1em 4em;
+    padding-block: 1em;
     display: grid;
     grid-gap: 1.5em;
 
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .footer .footer__copyright {
-    padding-inline-start: 4em;
-  }
-
   #content {
-    margin-block-end: 1em;
-    padding: 2em 4em;
-    max-width: 52em;
-    min-width: 38em;
+    padding-block: 2em;
   }
 
   #content:not(.category-listing) article + article {
-    margin-block-start: 8em;
+    margin-block-start: 8rem;
   }
 }
 

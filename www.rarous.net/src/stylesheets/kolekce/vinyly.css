@@ -1,3 +1,8 @@
+#content,
+body > footer {
+  --body-column: extra;
+}
+
 .collection .items {
   list-style-type: none;
   padding: 0;
