@@ -1,7 +1,7 @@
-{%- extends "layouts/weblog.njk" -%}
+{% extends "layouts/weblog.njk" %}
 
-{%- set contentSchema = "Blog" -%}
-{%- set contentRole = "feed" -%}
+{% set contentSchema = "Blog" %}
+{% set contentRole = "feed" %}
 
 {% block head %}
   {{ super() }}
@@ -28,7 +28,7 @@
       <div property="articleBody"></div>
       <footer data-pagefind-ignore="all">
         Označeno štítky:&nbsp;
-        <nav class="tags">
+        <nav class="tags" aria-label="Štítky">
           <ul>
             <li><a class="p-category" property="articleSection" rel="tag" href="" data-pagefind-filter="tag"></a>
             </li>

@@ -1,5 +1,5 @@
-{%- extends "layouts/weblog.njk" -%}
-{%- set prefix= "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" %}
+{% extends "layouts/weblog.njk" %}
+{% set prefix= "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" %}
 
 {% block head %}
   <link rel="syndication" href="">
@@ -36,7 +36,7 @@
     <div class="e-content" property="articleBody"></div>
     <footer data-pagefind-ignore="all">
       Publikováno v:&nbsp;
-      <nav class="breadcrumbs" typeof="BreadcrumbList">
+      <nav class="breadcrumbs" typeof="BreadcrumbList" aria-label="Drobečky">
           <span property="itemListElement" typeof="ListItem"><data
               property="position" value="1"></data><a
               property="item" typeof="WebPage" href="/"><span
@@ -59,7 +59,7 @@
               property="name">20</span></a></span>
       </nav>
       |&nbsp;Označeno štítky:&nbsp;
-      <nav class="tags">
+      <nav class="tags" aria-label="Štítky">
         <ul>
           <li><a class="p-category" property="articleSection" rel="tag" href="" data-pagefind-filter="tag"></a></li>
         </ul>
