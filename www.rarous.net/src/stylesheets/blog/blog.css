@@ -248,7 +248,7 @@ iframe.player {
   > * {
     grid-column: main;
   }
-  > :is(h2, .feed, article, gryphoon-weblog) {
+  > :is(h2, section, article, gryphoon-weblog) {
     grid-column: wide;
   }
 }
@@ -426,27 +426,35 @@ article footer {
 
 #head {
   position: relative;
-  padding-block-end: 2em;
-}
-#head h1 {
-  --boost: 1.5;
-  @media (max-width: 800px) {
-    --boost: 1.25;
-  }
-  @media (max-width: 600px) {
-    --boost: 1;
-  }
-  position: absolute;
-  grid-column: extra;
-  font-size: calc(var(--boost) * var(--font-size-fluid-3));
-  line-height: 1;
-  font-weight: 900;
-  z-index: 0;
-  translate: 2rem calc(var(--boost) * 1.75rem);
-  transition: translate 350ms var(--ease-spring-3);
 
-  &:hover {
-    translate: 2rem 1rem;
+  @media (min-width: 600px) {
+    padding-block-end: 2em;
+  }
+}
+
+#head h1 {
+  grid-column: extra;
+  order: 2;
+  line-height: 1.3;
+  font-weight: 900;
+  text-align: center;
+
+  @media (min-width: 600px) {
+    --boost: 1.5;
+    @media (max-width: 800px) {
+      --boost: 1.25;
+    }
+    position: absolute;
+    font-size: calc(var(--boost) * var(--font-size-fluid-3));
+    line-height: 1;
+    text-align: left;
+    z-index: 0;
+    translate: 2rem calc(var(--boost) * 1.75rem);
+    transition: translate 350ms var(--ease-spring-3);
+
+    &:hover {
+      translate: 2rem 1rem;
+    }
   }
 
   a {
