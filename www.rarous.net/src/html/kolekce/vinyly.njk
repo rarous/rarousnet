@@ -62,7 +62,7 @@
 
   <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog" href="https://www.rarous.net/kolekce/vinyly">
     <gryphoon-webmentions id="webmentions">
-      <link rel="stylesheet" href="/assets/css/webmentions.css">
+      <link rel="stylesheet" href="{{ "webmentions.css" | assetUrl("stylesheets") }}">
       <h2>Reakce v síti</h2>
       <section class="webmentions" id="like-of">
         <p>
@@ -121,7 +121,7 @@
       IFrameAPI.createController(element, options, callback);
     };
 
-    // Spotify handler has to be registered before data loading, there is possible race condition
+    // Spotify handler has to be registered before data loading, there is a possible race condition
     await discogs.loadDataFromApi();
   </script>
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
