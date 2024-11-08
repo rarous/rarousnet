@@ -19,7 +19,7 @@ Na jaře jsem poslal CFP na konferenci "frontkon.cz":[https://www.frontkon.cz/],
 Máchal:[https://www.vzhurudolu.cz/] si nakonec vybral druhé téma a chtěl to víc stočit k SSR((Server Side Rendering)),
 protože to je tématický blok, který na FrontKonu bude.
 
-Věnoval jsem se tématu, který už jsem přetavil i do blogpostu "Renderování Webových komponent ve Workerech":[weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech].
+Věnoval jsem se tématu, který už jsem přetavil i do blogpostu "Renderování Webových komponent ve Workerech":[/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech].
 Tento přístup se mi velmi osvědčil a používám ho na většině projektů, na kterých jsem za poslední půl rok dělal.
 Například na nové verzi DataTalk:[https://www.datatalk.cz/] webu jsem dosáhl 3-5x zrychlení oproti původní verzi
 běžící na WordPressu. (v době psaní článku ještě běží původní WP site)
