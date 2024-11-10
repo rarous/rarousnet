@@ -3,7 +3,7 @@
  :description
  "Srdceryvný příběh o tom, jak jsme si v TopMonks připravili vlastní infrastrukturu na hostování našich aplikací. Původně vyšlo v angličtině na Medium TopMonks",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "swarmpit", "infrastruktura", "cloud", "aws", "docker"},
+ :tags #{"moje práce", "swarmpit", "infrastruktura", "cloud", "aws", "docker", "devops"},
  :published "2018-07-16T14:15:43.855Z"
  :syndication
   ["https://medium.com/topmonks/route-to-tmcloud-9c4bb62b6920",

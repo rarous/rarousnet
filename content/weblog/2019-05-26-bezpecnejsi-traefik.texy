@@ -3,7 +3,7 @@
 :description
 "Jak nastavit HSTS a silnější šifrování na reverzní proxy Traefik?",
 :author "Aleš Roubíček",
-:tags #{"moje práce"},
+:tags #{"moje práce", "devops"},
 :published "2019-05-26T09:10:00.000"
 :syndication ["https://twitter.com/alesroubicek/status/1132550724456505345"]}
 ---

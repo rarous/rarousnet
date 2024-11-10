@@ -4,7 +4,7 @@
  :description
  "Jeden tip jak zamezit neviditelným stránkám a nepříjmnému probliknutí textů, když používáme custom fonty.",
  :author "Aleš Roubíček",
- :tags #{"webdesign"},
+ :tags #{"webdesign", "webperf"},
  :published "2015-06-16T18:15:00.663"
  :syndication ["https://twitter.com/alesroubicek/status/610849969944272897"]}
 ---

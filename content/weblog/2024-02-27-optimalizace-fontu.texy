@@ -2,7 +2,7 @@
 {:title "Optimalizace fontů",
  :description "Jak zoptimalizovat webové fonty, aby se rychleji načítaly a nespotřebovávaly tolik dat?",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "webfonts", "webperf"},
+ :tags #{"moje práce", "webdesign", "webfonts", "webperf"},
  :published "2024-02-27T14:36:00.000"
  :syndication
   ["https://indieweb.social/@alesroubicek/112003721123338554",

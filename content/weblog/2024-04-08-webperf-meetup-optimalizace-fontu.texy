@@ -2,7 +2,7 @@
 {:title "Webperf.cz meetup - Optimalizace fontů",
  :description "Na prvním setkání webperf.cz komunity jsem povídal o optimalizaci fontů. Podívejte se na záznam a slajdy.",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "webfonts", "webperf", "prezentace", "meetup"},
+ :tags #{"moje práce", "webdesign", "webfonts", "webperf", "prezentace", "meetup"},
  :published "2024-04-08T14:28:00.000"
  :syndication
   ["https://indieweb.social/@alesroubicek/112235664041851115",

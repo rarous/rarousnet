@@ -3,7 +3,7 @@
  :description
  "Rutinní práci by neměli dělat drahocení inženýři, ale roboti. I my v TopMonks roboty zaměstnáváme.",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "topmonks"},
+ :tags #{"moje práce", "topmonks", "devops"},
  :published "2018-09-28T11:58:00.777"
  :syndication ["https://twitter.com/alesroubicek/status/1090946508118282242"]}
 ---

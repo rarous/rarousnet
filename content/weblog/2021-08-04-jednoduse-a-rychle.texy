@@ -2,7 +2,7 @@
 {:title "Jednoduše a rychle",
 :description "Včera jsme měli s Rikim povídání o webovém vývoji na TopMonks Caffè a téma bylo: Jednoduše a rychle",
 :author "Aleš Roubíček",
-:tags #{"moje práce" "topmonks caffe"},
+:tags #{"moje práce", "webdesign", "topmonks caffe"},
 :published "2021-08-04T10:10:00.000"
 :syndication ["https://www.youtube.com/watch?v=Uxwtxn_OaVU"]}
 ---

@@ -3,7 +3,7 @@
  :title "Mikroslužby",
  :description "Definice mikroslužeb.",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "cleancode"},
+ :tags #{"moje práce", "cleancode", "devops", "microservices"},
  :published "2014-03-26T07:00:00.663"
  :syndication
  ["https://twitter.com/alesroubicek/status/448708792197201921"

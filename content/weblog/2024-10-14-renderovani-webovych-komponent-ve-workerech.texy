@@ -2,7 +2,7 @@
 {:title "Renderování Webových komponent ve Workerech",
  :description "Minule jsme si ukázali, jak jsem předělal zobrazování WebMentions ve stránce pomocí webových komponent. Dneska si je vyrenderujeme v serverless funkci.",
  :author "Aleš Roubíček",
- :tags #{"moje práce", "cloudflare", "indieweb", "webmentions", "webcomponents", "gryphoon"},
+ :tags #{"moje práce", "cloudflare", "indieweb", "webmentions", "webcomponents", "gryphoon", "webperf"},
  :published "2024-10-14T19:36:00.000"
  :syndication
   ["https://x.com/alesroubicek/status/1845893549554045241"
