@@ -16,8 +16,7 @@ async function processText(text, references) {
  * @param {string} url
  */
 async function getDetail(weblog, url) {
-  const payload = (await weblog.get(url, "json"))
-    ?? (await weblog.get(url + ".html", "json"));
+  const payload = (await weblog.get(url, "json")) ?? (await weblog.get(url + ".html", "json"));
   return Object.assign({ webmentions: [], comments: [] }, payload);
 }
 
@@ -30,16 +29,18 @@ export async function onRequestPost(context) {
     const { env, request } = context;
     const url = new URL(request.url);
     const target = url.searchParams.get("url");
-    const [detail, comment] = await Promise.all([
-      getDetail(env.weblog, target),
-      request.formData(),
-    ]);
+    const [detail, comment] = await Promise.all([getDetail(env.weblog, target), request.formData()]);
     // TODO: validate comment
     const comments = detail?.comments ?? [];
-    const references = comments.filter(x => x.isEnabled).map((x, i) => [i.toString(), {
-      link: `#komentar-${new Date(x.created).valueOf()}`,
-      label: `#${i + 1} @${x.author.name}`,
-    }]);
+    const references = comments
+      .filter(x => x.isEnabled)
+      .map((x, i) => [
+        i.toString(),
+        {
+          link: `#komentar-${new Date(x.created).valueOf()}`,
+          label: `#${i + 1} @${x.author.name}`,
+        },
+      ]);
     const textResult = processText(comment.get("text"), references);
     const isEnabled = true; // TODO: check for spam, hate etc. -> isEnabled = false;
     const created = now.toISOString();
@@ -56,10 +57,15 @@ export async function onRequestPost(context) {
     await env.weblog.put(target, JSON.stringify(upsert));
 
     const lastComments = (await env.weblog.get("/weblog/comments", "json")) ?? [];
-    lastComments.push(Object.assign({
-      href: target + `#komentar-${now.valueOf()}`,
-      article: { title: comment.get("article-title") ?? "" },
-    }, insert));
+    lastComments.push(
+      Object.assign(
+        {
+          href: target + `#komentar-${now.valueOf()}`,
+          article: { title: comment.get("article-title") ?? "" },
+        },
+        insert,
+      ),
+    );
     if (lastComments.length > 10) lastComments.shift();
     await env.weblog.put("/weblog/comments", JSON.stringify(lastComments));
 

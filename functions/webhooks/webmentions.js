@@ -56,12 +56,12 @@ export async function onRequestPost(context) {
     const { post, target, deleted } = body;
     const key = normalizeKey(target);
     const detail = await getDetail(env.weblog, key);
-    const webmentions = new Map(detail.webmentions.map((x) => [x.url, x]));
+    const webmentions = new Map(detail.webmentions.map(x => [x.url, x]));
     const isChanged = deleted || !webmentions.has(post.url);
-    //if (isChanged) {
+    if (isChanged) {
       detail.webmentions = updateWebmentions(webmentions, post, deleted);
       await saveDetail(env.weblog, key, detail);
-    //}
+    }
     return new Response(null, { status: 202 });
   } catch (err) {
     console.log(err);

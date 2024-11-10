@@ -8,7 +8,7 @@ let meCardTags = new Map([
   ["address", "ADR"],
   ["birthday", "BDAY"],
   ["sound", "SOUND"],
-  ["videophone", "TEL-AV"]
+  ["videophone", "TEL-AV"],
 ]);
 
 function formatAddress(contact) {
@@ -20,13 +20,15 @@ function formatAddress(contact) {
     contact.city,
     contact.prefecture,
     contact.postCode,
-    contact.country
-  ].map(x => x ?? "").join(",");
+    contact.country,
+  ]
+    .map(x => x ?? "")
+    .join(",");
 }
 
 function formatName(contact) {
   if (contact.name) return contact.name;
-  if  (!(contact.lastName || contact.firstName)) return undefined;
+  if (!(contact.lastName || contact.firstName)) return undefined;
   return `${contact.lastName},${contact.firstName}`;
 }
 
@@ -47,7 +49,7 @@ function normalizeTags(contact) {
     address: formatAddress(contact),
     birthday: formatBirthday(contact),
     note: contact.note,
-  }
+  };
 }
 
 /**
@@ -75,8 +77,8 @@ export default {
     name: "Roubíček,Aleš",
     phone: "+420737461283",
     email: "ales@roubicek.name",
-    web: "https://www.rarous.net/"
+    web: "https://www.rarous.net/",
   },
   meCard,
-  searchParams
-}
+  searchParams,
+};

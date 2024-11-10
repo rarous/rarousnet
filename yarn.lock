@@ -15,6 +15,97 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@biomejs/biome@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/biome@npm:1.9.4"
+  dependencies:
+    "@biomejs/cli-darwin-arm64": "npm:1.9.4"
+    "@biomejs/cli-darwin-x64": "npm:1.9.4"
+    "@biomejs/cli-linux-arm64": "npm:1.9.4"
+    "@biomejs/cli-linux-arm64-musl": "npm:1.9.4"
+    "@biomejs/cli-linux-x64": "npm:1.9.4"
+    "@biomejs/cli-linux-x64-musl": "npm:1.9.4"
+    "@biomejs/cli-win32-arm64": "npm:1.9.4"
+    "@biomejs/cli-win32-x64": "npm:1.9.4"
+  dependenciesMeta:
+    "@biomejs/cli-darwin-arm64":
+      optional: true
+    "@biomejs/cli-darwin-x64":
+      optional: true
+    "@biomejs/cli-linux-arm64":
+      optional: true
+    "@biomejs/cli-linux-arm64-musl":
+      optional: true
+    "@biomejs/cli-linux-x64":
+      optional: true
+    "@biomejs/cli-linux-x64-musl":
+      optional: true
+    "@biomejs/cli-win32-arm64":
+      optional: true
+    "@biomejs/cli-win32-x64":
+      optional: true
+  bin:
+    biome: bin/biome
+  checksum: 10c0/b5655c5aed9a6fffe24f7d04f15ba4444389d0e891c9ed9106fab7388ac9b4be63185852cc2a937b22940dac3e550b71032a4afd306925cfea436c33e5646b3e
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-darwin-arm64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-darwin-arm64@npm:1.9.4"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-darwin-x64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-darwin-x64@npm:1.9.4"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-linux-arm64-musl@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:1.9.4"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-linux-arm64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-linux-arm64@npm:1.9.4"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-linux-x64-musl@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-linux-x64-musl@npm:1.9.4"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-linux-x64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-linux-x64@npm:1.9.4"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-win32-arm64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-win32-arm64@npm:1.9.4"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-win32-x64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@biomejs/cli-win32-x64@npm:1.9.4"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@cloudflare/kv-asset-handler@npm:0.3.4":
   version: 0.3.4
   resolution: "@cloudflare/kv-asset-handler@npm:0.3.4"
@@ -570,62 +661,6 @@ __metadata:
   peerDependencies:
     postcss: ^8.4
   checksum: 10c0/be5c31437b726928f64cd4bb3e47f5b90bfd2e2a69a8eaabd8e89cc6c0977e4f0f7ee48de50c8ed8b07e04e3956a02293247e0da3236d521fb2e836f88f65822
-  languageName: node
-  linkType: hard
-
-"@dprint/darwin-arm64@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/darwin-arm64@npm:0.47.5"
-  conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@dprint/darwin-x64@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/darwin-x64@npm:0.47.5"
-  conditions: os=darwin & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@dprint/linux-arm64-glibc@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/linux-arm64-glibc@npm:0.47.5"
-  conditions: os=linux & cpu=arm64 & libc=glibc
-  languageName: node
-  linkType: hard
-
-"@dprint/linux-arm64-musl@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/linux-arm64-musl@npm:0.47.5"
-  conditions: os=linux & cpu=arm64 & libc=musl
-  languageName: node
-  linkType: hard
-
-"@dprint/linux-x64-glibc@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/linux-x64-glibc@npm:0.47.5"
-  conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
-"@dprint/linux-x64-musl@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/linux-x64-musl@npm:0.47.5"
-  conditions: os=linux & cpu=x64 & libc=musl
-  languageName: node
-  linkType: hard
-
-"@dprint/win32-arm64@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/win32-arm64@npm:0.47.5"
-  conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@dprint/win32-x64@npm:0.47.5":
-  version: 0.47.5
-  resolution: "@dprint/win32-x64@npm:0.47.5"
-  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -5427,41 +5462,6 @@ __metadata:
   dependencies:
     is-obj: "npm:^2.0.0"
   checksum: 10c0/93f0d343ef87fe8869320e62f2459f7e70f49c6098d948cc47e060f4a3f827d0ad61e83cb82f2bd90cd5b9571b8d334289978a43c0f98fea4f0e99ee8faa0599
-  languageName: node
-  linkType: hard
-
-"dprint@npm:0.47.5":
-  version: 0.47.5
-  resolution: "dprint@npm:0.47.5"
-  dependencies:
-    "@dprint/darwin-arm64": "npm:0.47.5"
-    "@dprint/darwin-x64": "npm:0.47.5"
-    "@dprint/linux-arm64-glibc": "npm:0.47.5"
-    "@dprint/linux-arm64-musl": "npm:0.47.5"
-    "@dprint/linux-x64-glibc": "npm:0.47.5"
-    "@dprint/linux-x64-musl": "npm:0.47.5"
-    "@dprint/win32-arm64": "npm:0.47.5"
-    "@dprint/win32-x64": "npm:0.47.5"
-  dependenciesMeta:
-    "@dprint/darwin-arm64":
-      optional: true
-    "@dprint/darwin-x64":
-      optional: true
-    "@dprint/linux-arm64-glibc":
-      optional: true
-    "@dprint/linux-arm64-musl":
-      optional: true
-    "@dprint/linux-x64-glibc":
-      optional: true
-    "@dprint/linux-x64-musl":
-      optional: true
-    "@dprint/win32-arm64":
-      optional: true
-    "@dprint/win32-x64":
-      optional: true
-  bin:
-    dprint: bin.js
-  checksum: 10c0/9d087e4143eec801d7399d028c1b5f0b10100d3e7838b2e329637d7e29bcfbbdf27a7db17a1adbbb5de38820e9dca2b2cd4b5662bc4127d023e19ed6af965e44
   languageName: node
   linkType: hard
 
@@ -11681,9 +11681,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rarousnet@workspace:."
   dependencies:
+    "@biomejs/biome": "npm:1.9.4"
     ava: "npm:6.2.0"
     broken-link-checker-local: "npm:0.2.1"
-    dprint: "npm:0.47.5"
     lighthouse: "npm:12.2.1"
     local-web-server: "npm:5.4.0"
     npm-run-all2: "npm:7.0.1"

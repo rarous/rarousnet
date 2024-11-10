@@ -14,8 +14,12 @@ async function getFeed(url) {
 }
 
 function parseExcerpt(html) {
-  const document = new DOMParser().parseFromString(html, "text/html");
-  return document.querySelector("p").textContent;
+  try {
+    const document = new DOMParser().parseFromString(html, "text/html");
+    return document.querySelector("p").textContent;
+  } catch (e) {
+    return null;
+  }
 }
 
 function getAuthor(entry) {

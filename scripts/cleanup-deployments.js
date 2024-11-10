@@ -6,8 +6,8 @@ async function deleteDeployment(endpoint, deploymentId, token) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
   return resp.json();
 }
@@ -17,8 +17,8 @@ async function getDeployments(endpoint, env, page, token) {
   const resp = await fetch(`${endpoint}?${params}`, {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
   return resp.json();
 }
@@ -41,17 +41,17 @@ async function main({ accountId, projectName, token }) {
   console.log("Cleaning Preview deployments");
   for await (const { id, created_on } of getAllDeployments(endpoint, "preview", token)) {
     if (created_on > threshold) continue;
-    const { success, errors } = await deleteDeployment(endpoint, id, token)
+    const { success, errors } = await deleteDeployment(endpoint, id, token);
     console.log({ id, created_on, success, errors });
   }
   console.log("Cleaning Production deployments");
   for await (const { id, created_on } of getAllDeployments(endpoint, "production", token)) {
     if (created_on > threshold) continue;
-    const { success, errors } = await deleteDeployment(endpoint, id, token)
+    const { success, errors } = await deleteDeployment(endpoint, id, token);
     console.log({ id, created_on, success, errors });
   }
 }
 
-await main(parseArgs(Deno.args))
+await main(parseArgs(Deno.args));
 
 // deno run --allow-net=api.cloudflare.com cleanup-deployments.js --projectName=rarousnet --accountId=$(op read "op://rarous.net/Cloudflare Cleaner/username") --token=$(op read "op://rarous.net/Cloudflare Cleaner/credential")

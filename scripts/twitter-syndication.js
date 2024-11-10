@@ -12,12 +12,7 @@ for (const { url, tweet } of blogMentions) {
 }
 const input = Array.from(syndications).sort((a, b) => a[0].localeCompare(b[0]));
 const output = {};
-for (
-  const [url, syndication] of input
-) {
+for (const [url, syndication] of input) {
   output[url] = { syndication };
 }
-await Deno.writeTextFile(
-  "./data/syndication.json",
-  JSON.stringify(output, null, 2),
-);
+await Deno.writeTextFile("./data/syndication.json", JSON.stringify(output, null, 2));

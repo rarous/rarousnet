@@ -1,53 +1,53 @@
 export default {
-  "src": "./src",
-  "dest": "../.gryphoon/dist",
+  src: "./src",
+  dest: "../.gryphoon/dist",
 
-  "html": {
-    "src": "html",
-    "dest": "./"
+  html: {
+    src: "html",
+    dest: "./",
   },
 
-  "data": {
-    "src": "data"
+  data: {
+    src: "data",
   },
 
-  "cloudinary": {
-    "src": "cloudinary",
-    "dest": "www.rarous.net"
+  cloudinary: {
+    src: "cloudinary",
+    dest: "www.rarous.net",
   },
 
-  "cloudflare": {
-    "src": "cloudflare",
-    "dest": "./"
+  cloudflare: {
+    src: "cloudflare",
+    dest: "./",
   },
 
-  "static": {
-    "src": "static",
-    "dest": "./"
+  static: {
+    src: "static",
+    dest: "./",
   },
 
-  "stylesheets": {
-    "src": "stylesheets",
-    "dest": "assets/css"
+  stylesheets: {
+    src: "stylesheets",
+    dest: "assets/css",
   },
 
-  "esm": {
-    "src": "esm",
-    "dest": "assets/esm"
+  esm: {
+    src: "esm",
+    dest: "assets/esm",
   },
 
-  "images": {
-    "src": "images",
-    "dest": "assets/img"
+  images: {
+    src: "images",
+    dest: "assets/img",
   },
 
-  "fonts": {
-    "src": "fonts",
-    "dest": "assets/fonts"
+  fonts: {
+    src: "fonts",
+    dest: "assets/fonts",
   },
 
-  "icons": {
-    "src": "icons",
-    "dest": "assets/css"
-  }
-}
+  icons: {
+    src: "icons",
+    dest: "assets/css",
+  },
+};

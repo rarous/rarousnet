@@ -20,10 +20,7 @@ export function build(entrypoint, minify) {
   return result.outputFiles[0].text;
 }
 
-export function buildCodeAsset(
-  entrypoint,
-  minify = false,
-) {
+export function buildCodeAsset(entrypoint, minify = false) {
   return new pulumi.asset.AssetArchive({
     "index.js": new pulumi.asset.StringAsset(build(entrypoint, minify)),
   });

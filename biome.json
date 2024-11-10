@@ -1,0 +1,40 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "include": ["functions", "infrastructure", "scripts", "tests", "workers", "www.rarous.net"],
+    "ignoreUnknown": false,
+    "ignore": ["www.rarous.net/src/static/assets/js/prism.js"]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "lineWidth": 120,
+    "attributePosition": "auto"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": false,
+      "style": {
+        "useBlockStatements": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "always",
+      "arrowParentheses": "asNeeded"
+    }
+  },
+  "css": {
+    "formatter": {}
+  }
+}

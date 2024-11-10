@@ -8,7 +8,7 @@ export async function onRequest(context) {
   const { pluginArgs, ...ctx } = context;
   context.data.rollbar = new Rollbar({
     context: ctx,
-    pluginArgs
+    pluginArgs,
   });
 
   try {

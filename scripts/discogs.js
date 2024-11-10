@@ -7,7 +7,7 @@ async function getReleases(page, token) {
     sort: "artist",
   });
   const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/1/releases?${params}`, {
-    headers: { "Authorization": `Discogs token=${token}` },
+    headers: { Authorization: `Discogs token=${token}` },
   });
   return resp.json();
 }
@@ -41,8 +41,7 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
     if (error) {
       const retryAfter = Number.parseInt(resp.headers.get("Retry-After"), 10) * 1000;
       await new Promise(resolve => setTimeout(resolve, retryAfter));
-    }
-    else {
+    } else {
       result = albums;
     }
   } while (!result);
@@ -53,7 +52,7 @@ async function authSpotify({ clientId, clientSecret }) {
   const resp = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
-      "Authorization": `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+      Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
     },
     body: new URLSearchParams({ grant_type: "client_credentials" }),
   });
@@ -69,13 +68,15 @@ function byArtistAndYear(a, b) {
 async function main({ token, clientId, clientSecret }) {
   const result = [];
   for await (const releases of getAllReleases(token)) {
-    const items = releases.map(x => x.basic_information).map(x => ({
-      id: x.id,
-      title: x.title,
-      image: x.cover_image,
-      year: x.year,
-      artist: { id: x.artists[0].id, name: cleanArtistName(x.artists[0].name) },
-    }));
+    const items = releases
+      .map(x => x.basic_information)
+      .map(x => ({
+        id: x.id,
+        title: x.title,
+        image: x.cover_image,
+        year: x.year,
+        artist: { id: x.artists[0].id, name: cleanArtistName(x.artists[0].name) },
+      }));
     result.push(...items);
   }
 

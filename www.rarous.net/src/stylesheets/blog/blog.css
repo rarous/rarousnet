@@ -4,8 +4,8 @@
   --content-background: rgba(255, 255, 255, 0.8);
   --content-background: light-dark(oklch(100% 0 89.876 / 0.8), oklch(23.9% 0.019 40.904 / 0.7));
 
-  --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face",
-  "Hoefler Text", "Times New Roman", serif;
+  --garamond: cormorant-garamond, Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman",
+    serif;
   --content-font: var(--main-font);
   --citation-font: var(--garamond);
 
@@ -149,7 +149,6 @@ pre:has(> code) {
 .token.number,
 .token.constant,
 .token.symbol {
-
 }
 
 .token.selector,
@@ -165,7 +164,6 @@ pre:has(> code) {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-
 }
 
 .token.atrule,
@@ -226,13 +224,13 @@ iframe.player {
 .youtube-player {
   width: 100%;
   height: auto;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
 }
 
 .speakerdeck {
   width: 100%;
   height: auto;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
 }
 
 #content {
@@ -283,10 +281,13 @@ article img {
 article footer {
   border-block-start: var(--border-width) solid oklch(0.45 0 89.876);
   padding-block-start: 1em;
-  margin-block-start: 2em
+  margin-block-start: 2em;
 }
 
-.breadcrumbs, .tags, .tags ul, .tags ul > li {
+.breadcrumbs,
+.tags,
+.tags ul,
+.tags ul > li {
   display: inline;
   margin: 0;
   font-family: inherit;
@@ -310,7 +311,7 @@ article footer {
       [date] 3.5rem
       [title] 1fr;
     gap: 1rem;
-    &+& {
+    & + & {
       margin-block-start: 1em;
     }
   }
@@ -325,7 +326,7 @@ article footer {
   article {
     display: grid;
     grid-template-columns: subgrid;
-    grid-column: 2/4;
+    grid-column: 2 / 4;
 
     h4 {
       font: 800 1.5em var(--headings-font);
@@ -356,7 +357,7 @@ article footer {
     margin-block-start: 2em;
   }
 
-  [rel=bookmark]::after {
+  [rel="bookmark"]::after {
     content: counter(--comment);
     font-weight: normal;
   }
@@ -488,12 +489,14 @@ article footer {
     font-weight: 700;
   }
 
-  input, textarea, fieldset {
+  input,
+  textarea,
+  fieldset {
     border: var(--border-width) solid var(--border-color);
     border-radius: var(--border-radius, 0);
   }
 
-  input[name=name] {
+  input[name="name"] {
     font-family: var(--main-font);
     font-weight: 600;
   }
@@ -506,12 +509,13 @@ article footer {
   }
 
   button {
-    font: 1.25rem/2 var(--main-font);
+    font: 1.25rem / 2 var(--main-font);
     padding: 0 2em;
-    border: var(--border-width) solid var(--border-color)
+    border: var(--border-width) solid var(--border-color);
   }
 
-  p, span {
+  p,
+  span {
     font: 0.9rem var(--main-font);
     line-height: 1.4;
   }
@@ -552,7 +556,6 @@ article footer {
     margin-block-start: 8rem;
   }
 }
-
 
 @media print {
   html,
@@ -625,7 +628,7 @@ article footer {
   }
 
   #head h1 {
-    font: 1.2em/2 Cambria, Georgia, "New York CE", utopia, serif;
+    font: 1.2em / 2 Cambria, Georgia, "New York CE", utopia, serif;
     border-block-end: 1pt solid oklch(0.6 0 89.876);
     margin-block-end: 2em;
     position: static;

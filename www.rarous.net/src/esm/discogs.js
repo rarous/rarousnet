@@ -35,7 +35,6 @@ function injectItems(section, template, items, applyTemplate) {
  */
 export function defDiscogs({ HTMLElement, customElements }) {
   class Discogs extends HTMLElement {
-
     static register(tagName = "rarous-discogs") {
       this.tagName = tagName;
       customElements.define(tagName, this);
@@ -52,8 +51,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
     set loaded(isLoaded) {
       if (isLoaded) {
         this.setAttribute("loaded", "");
-      }
-      else {
+      } else {
         this.removeAttribute("loaded");
       }
     }
@@ -98,7 +96,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
     async loadDataFromApi(url) {
       if (this.loaded) return;
       const resp = await fetch(url ?? this.endpoint, {
-        headers: { "Accept": "application/json" },
+        headers: { Accept: "application/json" },
       });
       this.data = await resp.json();
     }

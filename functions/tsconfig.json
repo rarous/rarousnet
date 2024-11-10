@@ -4,10 +4,6 @@
     "module": "ESNext",
     "moduleResolution": "nodenext",
     "lib": ["ES2023"],
-    "types": [
-      "@cloudflare/puppeteer",
-      "@cloudflare/workers-types/2023-07-01",
-      "@rarousnet/functions"
-    ]
+    "types": ["@cloudflare/puppeteer", "@cloudflare/workers-types/2023-07-01", "@rarousnet/functions"]
   }
 }

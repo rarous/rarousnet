@@ -4,7 +4,7 @@ type Pagination = {
   per_page: number;
   items: number;
   urls: any;
-}
+};
 
 type Artist = {
   anv: string;
@@ -13,14 +13,14 @@ type Artist = {
   resource_url: string;
   role: string;
   tracks: string;
-}
+};
 
 type Format = {
   descriptions: string[];
   name: string;
   qty: string;
   text: string;
-}
+};
 
 type Release = {
   id: number;
@@ -39,10 +39,10 @@ type Release = {
     master_url: string;
     resource_url: string;
     formats: Format[];
-  }
-}
+  };
+};
 
 type DiscogsReleaseResponse = {
   pagination: Pagination;
   releases: Release[];
-}
+};

@@ -19,7 +19,7 @@ export async function onRequestGet({ request }) {
     status: 200,
     headers: {
       "Content-Type": "image/svg+xml",
-      'Access-Control-Allow-Origin': 'www.rarous.net',
+      "Access-Control-Allow-Origin": "www.rarous.net",
     },
   });
 }

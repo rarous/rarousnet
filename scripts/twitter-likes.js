@@ -8,8 +8,8 @@ async function main({ token }) {
   const source = "https://x.com/alesroubicek/status/1848407097454493708";
   const { entries } = data.favoriters_timeline.timeline.instructions[0];
   const users = entries
-    .filter((x) => x.content.entryType === "TimelineTimelineItem")
-    .map((x) => x.content.itemContent.user_results.result);
+    .filter(x => x.content.entryType === "TimelineTimelineItem")
+    .map(x => x.content.itemContent.user_results.result);
   console.log(`importing ${users.length} user likes`);
   for (const { legacy: user, rest_id } of users) {
     const resp = await fetch("https://www.rarous.net/webhooks/webmentions", {

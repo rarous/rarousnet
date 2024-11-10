@@ -14,8 +14,7 @@ import puppeteer from "@cloudflare/puppeteer";
  * @return {Promise<{webmentions: Array, comments: Array}>}
  */
 async function getDetail(weblog, url) {
-  const payload = (await weblog.get(url, "json"))
-    ?? (await weblog.get(url + ".html", "json"));
+  const payload = (await weblog.get(url, "json")) ?? (await weblog.get(url + ".html", "json"));
   return Object.assign({ webmentions: [], comments: [] }, payload);
 }
 
@@ -37,7 +36,7 @@ function renderWebMentions(window, webmentions) {
     "https://x.com/alesroubicek",
     "https://indieweb.social/@alesroubicek",
   ]);
-  el.data = webmentions.filter((x) => !myself.has(x.author.url));
+  el.data = webmentions.filter(x => !myself.has(x.author.url));
 }
 
 /**
@@ -61,7 +60,6 @@ async function renderWebComponents({ next, request, env }) {
   return resp;
 }
 
-
 /**
  * @param {EventContext<Env>} context
  * @return {Promise<Response>}
@@ -72,7 +70,7 @@ async function renderSocialMediaImages({ next, request, env }) {
 
   const headers = {
     "Content-Type": "image/png",
-    "Cache-Control": "public, max-age=3600"
+    "Cache-Control": "public, max-age=3600",
   };
 
   // Try to get cached image
@@ -80,13 +78,13 @@ async function renderSocialMediaImages({ next, request, env }) {
   if (cachedImage) {
     return new Response(cachedImage, {
       status: 200,
-      headers
+      headers,
     });
   }
 
   const [page, cards] = await Promise.all([
     puppeteer.launch(env.browser).then(x => x.newPage()),
-    env.weblog.get("/weblog/cards", "json")
+    env.weblog.get("/weblog/cards", "json"),
   ]);
   const detail = new Map(cards).get(request.url);
   const params = new URLSearchParams(Object.entries(detail));
@@ -99,4 +97,4 @@ async function renderSocialMediaImages({ next, request, env }) {
   return new Response(buffer, { headers });
 }
 
-export const onRequest = [/*renderSocialMediaImages*/, renderWebComponents];
+export const onRequest = [/*renderSocialMediaImages*/ , renderWebComponents];

@@ -18,19 +18,19 @@ class GryphoonRegistry extends DefaultRegistry {
     this.mode = mode;
     this.paths = {
       cards: projectPath(pathConfig.dest, "..", "cards.json"),
-    }
+    };
   }
 
   /**
    * @param {Gulp} gulp
    */
   init({ task }) {
-    task("generate-content", (done) => {
+    task("generate-content", done => {
       const clj = spawn("clojure", ["-M", "-m", "rarousnet.generator", "../"], {
-        cwd: projectPath("../generator")
+        cwd: projectPath("../generator"),
       });
-      clj.stdout.on('data', (data) => process.stdout.write(data));
-      clj.stderr.on('data', (data) => process.stderr.write(data));
+      clj.stdout.on("data", data => process.stdout.write(data));
+      clj.stderr.on("data", data => process.stderr.write(data));
       clj.on("close", done);
     });
     task("upload-cards", async () => {
@@ -40,7 +40,7 @@ class GryphoonRegistry extends DefaultRegistry {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           secret: process.env.RAROUS_WEBLOG_CARDS_SECRET,
-          items: contents.map((x) => [x.url, x])
+          items: contents.map(x => [x.url, x]),
         }),
       });
     });
@@ -56,17 +56,14 @@ export default {
 
   static: {
     srcConfig: {
-      encoding: false
-    }
+      encoding: false,
+    },
   },
 
   stylesheets: {
     postcss: {
-      plugins: [
-        postcssGamutMapping(),
-        jitProps(OpenProps),
-      ]
-    }
+      plugins: [postcssGamutMapping(), jitProps(OpenProps)],
+    },
   },
 
   html: {
@@ -86,7 +83,7 @@ export default {
             day: "numeric",
             month: "numeric",
           }).format(new Date(x));
-        }
+        },
       },
     },
     htmlmin: {
@@ -100,7 +97,7 @@ export default {
       removeRedundantAttributes: true,
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true,
-    }
+    },
   },
 
   vite: {
@@ -111,8 +108,8 @@ export default {
 
   production: {
     rev: {
-      exclude: ["_headers", "_redirects", "weblog/articles.rss", "weblog/sitemap.xml"]
-    }
+      exclude: ["_headers", "_redirects", "weblog/articles.rss", "weblog/sitemap.xml"],
+    },
   },
 
   registries: [new GryphoonRegistry({}, pathConfig)],

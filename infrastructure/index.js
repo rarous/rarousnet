@@ -7,10 +7,7 @@ const config = new pulumi.Config();
 const domain = config.require("domain");
 
 function buildAsset(fileName) {
-  return build(
-    path.join(import.meta.dirname, "../workers", fileName),
-    true,
-  );
+  return build(path.join(import.meta.dirname, "../workers", fileName), true);
 }
 
 const account = new cloudflare.Account(

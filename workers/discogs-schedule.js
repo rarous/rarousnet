@@ -11,8 +11,8 @@ async function getReleases(page, token) {
   });
   const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/1/releases?${params}`, {
     headers: {
-      "Accept": "application/json",
-      "Authorization": `Discogs token=${token}`,
+      Accept: "application/json",
+      Authorization: `Discogs token=${token}`,
       "User-Agent": "rarous.net vinyl collection",
     },
   });
@@ -45,8 +45,8 @@ async function searchAlbumOnSpotify(q, spotifyToken) {
   });
   const resp = await fetch(`https://api.spotify.com/v1/search?${params}`, {
     headers: {
-      "Accept": "application/json",
-      "Authorization": `Bearer ${spotifyToken}`,
+      Accept: "application/json",
+      Authorization: `Bearer ${spotifyToken}`,
       "User-Agent": "rarous.net vinyl collection",
     },
   });
@@ -58,8 +58,8 @@ async function authSpotify({ clientId, clientSecret }) {
   const resp = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
-      "Accept": "application/json",
-      "Authorization": `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+      Accept: "application/json",
+      Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
       "Content-type": "application/x-www-form-urlencoded",
       "User-Agent": "rarous.net vinyl collection",
     },
@@ -83,13 +83,15 @@ async function updateDiscogsCollection(env) {
 
   const result = [];
   for await (const releases of getAllReleases(env.DISCOGS_TOKEN)) {
-    const items = releases.map(x => x.basic_information).map(x => ({
-      id: x.id,
-      title: x.title,
-      image: x.cover_image,
-      year: x.year,
-      artist: { id: x.artists[0].id, name: cleanArtistName(x.artists[0].name) },
-    }));
+    const items = releases
+      .map(x => x.basic_information)
+      .map(x => ({
+        id: x.id,
+        title: x.title,
+        image: x.cover_image,
+        year: x.year,
+        artist: { id: x.artists[0].id, name: cleanArtistName(x.artists[0].name) },
+      }));
     result.push(...items);
   }
 
