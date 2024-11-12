@@ -4,21 +4,29 @@
  :description
  "Zajímavé je, jak se problematice celkem rozšířené vlastnosti webových aplikací v éře Webu 2.0, kterou tag cloud bezesporu je, věnuje málo prostoru. Pojďme to trochu napravit.",
  :author "Aleš Roubíček",
- :tags #{"webdesign" "microformats" "tagcloud"},
+ :tags #{"webdesign" "microformats" "tagcloud" "semantic web"},
  :published "2009-02-28T18:53:49.357"}
 ---
 
-Zajímavé je, jak se problematice celkem rozšířené vlastnosti webových aplikací v éře Webu 2.0, kterou "tag cloud":[tagcloud] bezesporu je, věnuje málo prostoru. Protože pracuju na jednom sociálním webu a k implementaci tag cloudu jsem se také dostal, tak se na něj pojďme podívat.
+Zajímavé je, jak se problematice celkem rozšířené vlastnosti webových aplikací v éře Webu 2.0, kterou
+"tag cloud":[tagcloud] bezesporu je, věnuje málo prostoru. Protože pracuju na jednom sociálním webu a k implementaci
+tag cloudu jsem se také dostal, tak se na něj pojďme podívat.
 
 Top-down design
 ==============
 
-Začneme implementací na výstupu. To je to, co vidí uživatel. Porozhlédněme se nejprve po nějakém vhodném mikroformátu. Na snadě je `rel-tag`, který slouží k označování odkazů tagu. Když budeme hledat dál, jistě narazíme na **hTagCloud**. Tento mikroformát je sice ve stádiu návrhu, ale dá se říct, že je použitelný v praxi. Jak vypadá?
+Začneme implementací na výstupu. To je to, co vidí uživatel. Porozhlédněme se nejprve po nějakém vhodném mikroformátu.
+Na snadě je `rel-tag`, který slouží k označování odkazů tagu. Když budeme hledat dál, jistě narazíme na **hTagCloud**.
+Tento mikroformát je sice ve stádiu návrhu, ale dá se říct, že je použitelný v praxi. Jak vypadá?
 
 hTagCloud
 =========
 
-Cloud je vyznačen elementem s třídou `hTagCloud`. Tento element by měl obsahovat seznam tagů. Seznam můžeme označit třídou, zda jde je seřazen podle abecedy (`class="alphabetical"`) nebo podle popularity (`class="popularity"`). Popularitu jednotlivých tagů označíme posléze třídou. Základní úroveň popularity vyznačuje třída `popular`. Oblíbenější tagy mají třídu `v-popular`. Nejoblíbenější tagy pak třídou `vvvv-popular`. Můžeme takto tedy odlišit pět úrovní popularity.
+Cloud je vyznačen elementem s třídou `hTagCloud`. Tento element by měl obsahovat seznam tagů. Seznam můžeme označit
+třídou, zda jde je seřazen podle abecedy (`class="alphabetical"`) nebo podle popularity (`class="popularity"`).
+Popularitu jednotlivých tagů označíme posléze třídou. Základní úroveň popularity vyznačuje třída `popular`.
+Oblíbenější tagy mají třídu `v-popular`. Nejoblíbenější tagy pak třídou `vvvv-popular`. Můžeme takto tedy odlišit
+pět úrovní popularity.
 
 Ukázka mikroformátu přímo z wiki autorů:
 
@@ -62,7 +70,10 @@ public class Tag {
 }
 \--code
 
-Teď budeme potřebovat vypočítat, jak populární vlastně konkrétní tag je. Tady se dostáváme k poměrně zajímavému problému. Nejprve potřebujeme spočítat váhu tagu v cloudu a tu pak promítnout na pětistupňové škále. Praxí je ověřeno, že hezky cloud vypadá, když se použije logaritmická distribuční funkce. Proto si vytvoříme jednoduchý helper, který nám bude váhu tagu vypočítávat a rovnou nám vrátí CSS třídu vhodnou pro hTagCloud.
+Teď budeme potřebovat vypočítat, jak populární vlastně konkrétní tag je. Tady se dostáváme k poměrně zajímavému
+problému. Nejprve potřebujeme spočítat váhu tagu v cloudu a tu pak promítnout na pětistupňové škále.
+Praxí je ověřeno, že hezky cloud vypadá, když se použije logaritmická distribuční funkce. Proto si vytvoříme
+jednoduchý helper, který nám bude váhu tagu vypočítávat a rovnou nám vrátí CSS třídu vhodnou pro hTagCloud.
 
 /--code csharp
 using System;
@@ -107,7 +118,8 @@ public static class TagCloudExtensions {
 }
 \--code
 
-Tento helper rozšiřuje kolekci tagů o metodu o metodu, která vrátí CSS třídu pro konkrétní tag. A to je vše. Happy tagging!
+Tento helper rozšiřuje kolekci tagů o metodu o metodu, která vrátí CSS třídu pro konkrétní tag. A to je vše.
+Happy tagging!
 
 /--div .[hslice #related]
 Související .[entry-title]

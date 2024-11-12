@@ -4,7 +4,7 @@
  :description
  "TDD není tak těžké jako život, stačí mu pouze tři přikázání.",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "tdd" "cleancode"},
+ :tags #{"moje práce" "tdd" "cleancode" "xp"},
  :published "2011-12-25T14:29:10.877"
  :syndication ["https://twitter.com/alesroubicek/status/447315353421348864"]}
 ---

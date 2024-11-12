@@ -4,7 +4,7 @@
  :description
  "Jistě mi dáte za pravdu, že správa verzí rozsáhlého systému není žádná slast a je poměrně nákladná. Dnes si ukážeme dvě techniky, které by nám měli umožnit snížit náklady a zvýšit flexibilitu systému.",
  :author "Aleš Roubíček",
- :tags #{"ci" "moje práce" "cleancode"},
+ :tags #{"ci" "moje práce" "cleancode" "devops"},
  :published "2011-06-11T09:01:43.860"
  :syndication ["https://twitter.com/alesroubicek/status/680309118293401600"]}
 ---

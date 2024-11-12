@@ -4,23 +4,32 @@
  :description
  "Vyhledávače přicházejí s podporou nového link tagu canonical. Pojďme se podívat, jak předcházet duplicitnímu obsahu a rozmělňování page ranku, jak pomocí tohoto tagu, tak pomocí URL rewritingu.",
  :author "Aleš Roubíček",
- :tags #{"apache" "webdesign" "url" "seo" "rewriting" "iis7"},
+ :tags #{"webdesign" "url" "seo" "rewriting" "iis7"},
  :published "2009-02-13T07:27:54.080"}
 ---
 
-Jedním z velkých problémů dnešních vyhledávačů je duplicitní obsah. Musejí se poprat s velkým množstvím stránek, které vypadají na první pohled shodně a liší se pouze v URL((Uniform Resource Locator)) adrese. Jak mají rozhodnout, kterou z těchto adres vrátit uživateli jako jedinou správnou?
+Jedním z velkých problémů dnešních vyhledávačů je duplicitní obsah. Musejí se poprat s velkým množstvím stránek,
+které vypadají na první pohled shodně a liší se pouze v URL((Uniform Resource Locator)) adrese.
+Jak mají rozhodnout, kterou z těchto adres vrátit uživateli jako jedinou správnou?
 
 Problém duplicitního obsahu
 ===========================
 
-Duplicitní obsah může vzniknout velice jednoduše, nemusí ani dojít ke zkopírování stránky někým jiným. Prostě stačí mít blbě nastavený server a vracet stejný obsah pro URL s i bez `www.` na začátku. Další možností je, že se vaše adresy dynamických stránek v čase vyvíjí. Začínal jsem s nepěknými adresami ve tvaru `clanek.aspx?id=4`, pak jsem časem přešel na SEO URL ve tvaru `clanek.aspx/4-nejaky-nadpis`, později jsem přidal URL rewriter a mé URL vypadaly takto `clanek/4-nejaky-nadpis.aspx`. Všechny tyto adresy vedou na stejný obsah, ale protože mají jinou URL, jsou to pro vyhledávacího robota různé stránky.
+Duplicitní obsah může vzniknout velice jednoduše, nemusí ani dojít ke zkopírování stránky někým jiným.
+Prostě stačí mít blbě nastavený server a vracet stejný obsah pro URL s i bez `www.` na začátku.
+Další možností je, že se vaše adresy dynamických stránek v čase vyvíjí. Začínal jsem s nepěknými adresami
+ve tvaru `clanek.aspx?id=4`, pak jsem časem přešel na SEO URL ve tvaru `clanek.aspx/4-nejaky-nadpis`,
+později jsem přidal URL rewriter a mé URL vypadaly takto `clanek/4-nejaky-nadpis.aspx`. Všechny tyto adresy vedou
+ na stejný obsah, ale protože mají jinou URL, jsou to pro vyhledávacího robota různé stránky.
 
-Jako správný poskytovatel obsahu bych měl zajistit, že všechny verze URL jsou stále funkční, ale měly by směřovat na jedinou platnou. Ale jak?
+Jako správný poskytovatel obsahu bych měl zajistit, že všechny verze URL jsou stále funkční, ale měly by směřovat
+na jedinou platnou. Ale jak?
 
 Řešení
 =======
 
-Cest k cíli vede samozřejmě spousta. Pokud máte tu možnost, využijte nějaký URL rewriter. Zvolte si kanonickou formu vašich adres a tu všude používejte. Pokud nechcete používat v adresách prefix `www.`, stačí málo.
+Cest k cíli vede samozřejmě spousta. Pokud máte tu možnost, využijte nějaký URL rewriter. Zvolte si kanonickou
+formu vašich adres a tu všude používejte. Pokud nechcete používat v adresách prefix `www.`, stačí málo.
 
 Na IIS7 s URL Rewriterem přidejte do vašeho `web.config` souboru do sekce `system.webServer/rewrite/rules` následující kód:
 
@@ -44,13 +53,15 @@ RewriteRule ^/(.*) http://domain.com/$1 [RP]
 
 Co ale dělat, pokud nemáte na serveru možnost URL rewriting provádět?
 
-Naštěstí existuje alternativa. Vývojáři Google, Yahoo a Live Search se domluvili na zavedení `link` tagu, který určuje kanonickou URL přímo v dokumentu. Do sekce `html/head` vašich stránek přidejte následující tag:
+Naštěstí existuje alternativa. Vývojáři Google, Yahoo a Live Search se domluvili na zavedení `link` tagu,
+který určuje kanonickou URL přímo v dokumentu. Do sekce `html/head` vašich stránek přidejte následující tag:
 
 /--code xml
 <link rel="canonical" href="http://domain.com/kanonicka/adresa-stranky" />
 \--code
 
-Tím dosáhnete toho, že pokud crawler navštíví vaši stránku přes různé adresy, vždy ji bude považovat za jednu a tu samou s adresou, která je hodnotou atributu `href`.
+Tím dosáhnete toho, že pokud crawler navštíví vaši stránku přes různé adresy, vždy ji bude považovat za jednu
+a tu samou s adresou, která je hodnotou atributu `href`.
 
 /--div .[hslice #related]
 Související .[entry-title]

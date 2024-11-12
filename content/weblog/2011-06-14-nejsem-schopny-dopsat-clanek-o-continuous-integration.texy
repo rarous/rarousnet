@@ -4,7 +4,7 @@
  :description
  "Je třeba si nalát čistého vína a přiznt si, že to nedokážu. Pokud se najde někdo lepší, kdo je schopný dovést článek do zdárrného konce, tady je k dispozici.",
  :author "Aleš Roubíček",
- :tags #{"ci" "moje práce"},
+ :tags #{"ci" "moje práce" "xp"},
  :published "2011-06-14T07:50:45.570"}
 ---
 

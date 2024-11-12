@@ -4,7 +4,7 @@
  :description
  "Často se při vývoji setkáme s potřebou některé featury zapínat a vypínat dle potřeby. Malá ukázka, jak to vypínat featury při deployi.",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "deployment" "ci" "cleancode"},
+ :tags #{"moje práce" "deployment" "ci" "cleancode" "devops"},
  :published "2012-08-30T12:38:43.723"}
 ---
 

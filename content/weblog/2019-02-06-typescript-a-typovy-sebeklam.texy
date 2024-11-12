@@ -35,7 +35,7 @@ kde stále existují coercions a dynamičnost, kde vám (nejen) po drátě přij
 TypeScript vás dokonce nenechá přeložit "naprosto korektní program":[https://github.com/rarous/rarousnet/blob/e454d7b73c0dc042abea271d8231778835511e1d/index.js#L5-L6],
 který neodpovídá jeho omezené schopnosti popsat skutečné typy.
 
-Lidi raději věří lži než aby žili v nejistotě...
+Lidi raději věří lži, než aby žili v nejistotě...
 
 Související studijní materiál
 ==============================
