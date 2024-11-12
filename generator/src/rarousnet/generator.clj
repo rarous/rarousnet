@@ -86,6 +86,10 @@
     "Aleš Roubíček" "@alesroubicek@indieweb.social"
     "Alessio Busta" "@alessiobusta"
     nil))
+(defn author-fediverse [{:keys [author]}]
+  (case author
+    "Aleš Roubíček" "@alesroubicek@indieweb.social"
+    nil))
 (defn card-image [article]
   (string/replace (permalink article) #"\.html" ".png"))
 
@@ -163,6 +167,7 @@
   [(meta-n "twitter:description")] (html/set-attr :content description)
   [(meta-n "twitter:image")] (html/set-attr :content (card-image article))
   [(meta-p "article:published_time")] (html/set-attr :content (utc-date published))
+  [(meta-n "fediverse:creator")] (html/set-attr :content (author-fediverse article))
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "syndication")] (if syndication
                           (html/clone-for [url syndication] (html/set-attr :href url))
