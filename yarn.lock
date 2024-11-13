@@ -121,7 +121,7 @@ __metadata:
   dependencies:
     error-stack-parser: "npm:2.1.4"
     rollbar: "npm:2.26.4"
-    wrangler: "npm:3.86.0"
+    wrangler: "npm:3.86.1"
   languageName: unknown
   linkType: soft
 
@@ -11725,7 +11725,7 @@ __metadata:
     npm-run-all2: "npm:7.0.1"
     pagefind: "npm:1.2.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.86.0"
+    wrangler: "npm:3.86.1"
   languageName: unknown
   linkType: soft
 
@@ -14381,9 +14381,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.86.0":
-  version: 3.86.0
-  resolution: "wrangler@npm:3.86.0"
+"wrangler@npm:3.86.1":
+  version: 3.86.1
+  resolution: "wrangler@npm:3.86.1"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
     "@cloudflare/workers-shared": "npm:0.7.1"
@@ -14416,7 +14416,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/0d96f5c9dfc27b2bd8a0472321521d88d60f76d922b338eb644180a99d8b29158fe8c5e523090e1d2875026f23dccf11eb0a48d9c28ba3de186862145f9334a8
+  checksum: 10c0/a77b6b39e8681013ef402a95de117ba80255df9598dd68f117d81792b0d7c5b0fe1a82653e3fa2df65074f020140db212168024bfc8454f0a11da8575f732406
   languageName: node
   linkType: hard
 
