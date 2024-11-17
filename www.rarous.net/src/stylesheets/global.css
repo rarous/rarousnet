@@ -169,6 +169,8 @@ html {
   --inset: var(--gap, 1em);
   --outset: 0px;
 
+  block-size: 100%;
+
   @media (min-width: 40em) {
     --margin: var(--spacer, 2em);
     --outset: calc(var(--inset) * -1);
@@ -191,6 +193,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
 
+  box-sizing: border-box;
+  min-block-size: 100%;
+
   display: grid;
   row-gap: var(--gap);
   grid-template-columns:
@@ -204,6 +209,7 @@ body {
     [extra-end] minmax(0, 0.5fr)
     [page-end] var(--margin)
     [full-end];
+  grid-template-rows: auto auto 1fr auto;
 
   @media (max-width: 30em) {
     overflow-wrap: break-word;
@@ -430,7 +436,7 @@ body > footer {
 }
 
 dialog {
-  width: 100%;
+  inline-size: 100%;
   max-width: clamp(20em, 100vw - 4em, 52em);
   min-width: clamp(12em, 100vw - 4em, 32em);
 
