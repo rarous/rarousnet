@@ -1,6 +1,6 @@
+import path from "node:path";
 import cloudflare from "@pulumi/cloudflare";
 import pulumi from "@pulumi/pulumi";
-import path from "node:path";
 import { build } from "./worker-builder.js";
 
 const config = new pulumi.Config();
@@ -116,7 +116,9 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       r2Buckets: {
         storage: weblogBucket.name,
       },
-      // TODO: browsers: { browser: ??? } - needs the Terraform provider v5 where it is supported
+      serviceBindings: {
+        cards: "rarousnet-cards",
+      },
     },
   },
 });
@@ -138,7 +140,7 @@ const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
 const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-worker", {
   accountId: account.id,
   name: "discogs-schedule-worker",
-  content: buildAsset("discogs-schedule.js"),
+  content: buildAsset("discogs-schedule-worker/src/discogs-schedule.js"),
   compatibilityDate: "2024-09-02",
   module: true,
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],

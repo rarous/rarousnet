@@ -24,7 +24,7 @@
     "build:website": "yarn workspace @rarousnet/website build",
     "build:index": "pagefind --site ./.gryphoon/dist",
     "build": "run-s 'build:*'",
-    "fmt": "biome format --use-editorconfig=true --write",
+    "fmt": "biome format --write",
     "generate": "cd generator && clojure -M -m rarousnet.generator ../",
     "serve": "ws --compress --http2 -d ./.gryphoon/dist",
     "start": "yarn workspace @rarousnet/website start",
@@ -39,11 +39,11 @@
   },
   "workspaces": [
     "cards",
-    "functions",
     "infrastructure",
     "scripts",
-    "workers",
+    "workers/*",
     "www.rarous.net",
+    "www.rarous.net/functions",
     "cloudflare-pages-plugin-rollbar"
   ],
   "packageManager": "yarn@4.5.1"
