@@ -1,6 +1,5 @@
+import { defComments, defWebMentions } from "@rarousnet/website/gryphoon.js.js";
 import { parseHTML } from "linkedom/worker";
-import { defComments, defWebMentions } from "@rarousnet/website/gryphoon.js";
-import puppeteer from "@cloudflare/puppeteer";
 
 /**
  * @typedef {Object} Data
@@ -68,33 +67,8 @@ async function renderSocialMediaImages({ next, request, env }) {
   // Handle only PNG image requests
   if (!request.url.endsWith(".png")) return next();
 
-  const headers = {
-    "Content-Type": "image/png",
-    "Cache-Control": "public, max-age=3600",
-  };
-
-  // Try to get cached image
-  const cachedImage = await env.weblog.get(request.url, "stream");
-  if (cachedImage) {
-    return new Response(cachedImage, {
-      status: 200,
-      headers,
-    });
-  }
-
-  const [page, cards] = await Promise.all([
-    puppeteer.launch(env.browser).then(x => x.newPage()),
-    env.weblog.get("/weblog/cards", "json"),
-  ]);
-  const detail = new Map(cards).get(request.url);
-  const params = new URLSearchParams(Object.entries(detail));
-  // Set data via GET parameters
-  await page.goto(`https://www.rarous.net/weblog/card?${params}`);
-  // take a screenshot of card element
-  const buffer = await page.locator("#card").screenshot({ encoding: "binary" });
-  // cache image for one hour
-  await env.weblog.put(request.url, buffer, { expirationTtl: 3600 });
-  return new Response(buffer, { headers });
+  // delegate request to cards worker
+  return env.cards.fetch(request);
 }
 
-export const onRequest = [/*renderSocialMediaImages*/ , renderWebComponents];
+export const onRequest = [renderSocialMediaImages, renderWebComponents];

@@ -175,7 +175,8 @@ jobs:
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/website @rarousnet/functions
       - run:
           name: Publish to Cloudflare Pages
-          command: npx wrangler pages deploy .gryphoon/dist --project-name=rarousnet
+          working_directory: www.rarous.net
+          command: npx wrangler pages deploy ../.gryphoon/dist --project-name=rarousnet
       - slack/notify:
           event: fail
           template: basic_fail_1

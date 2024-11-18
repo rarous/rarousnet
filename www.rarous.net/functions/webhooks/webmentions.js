@@ -59,8 +59,8 @@ export async function onRequestPost(context) {
     const webmentions = new Map(detail.webmentions.map(x => [x.url, x]));
     const isChanged = deleted || !webmentions.has(post.url);
     //if (isChanged) {
-      detail.webmentions = updateWebmentions(webmentions, post, deleted);
-      await saveDetail(env.weblog, key, detail);
+    detail.webmentions = updateWebmentions(webmentions, post, deleted);
+    await saveDetail(env.weblog, key, detail);
     //}
     return new Response(null, { status: 202 });
   } catch (err) {

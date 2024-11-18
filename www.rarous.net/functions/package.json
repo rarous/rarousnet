@@ -4,7 +4,6 @@
   "type": "module",
   "license": "EUPL-1.2",
   "dependencies": {
-    "@cloudflare/puppeteer": "0.0.14",
     "feed": "4.2.2",
     "linkedom": "0.18.5",
     "qreator": "9.7.0"
