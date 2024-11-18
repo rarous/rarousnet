@@ -116,9 +116,12 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       r2Buckets: {
         storage: weblogBucket.name,
       },
-      serviceBindings: {
-        cards: "rarousnet-cards",
-      },
+      serviceBindings: [
+        {
+          name: "cards",
+          service: "rarousnet-cards",
+        },
+      ],
     },
   },
 });
