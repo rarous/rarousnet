@@ -1,4 +1,4 @@
-import { defComments, defWebMentions } from "@rarousnet/website/gryphoon.js.js";
+import { defComments, defWebMentions } from "@rarousnet/website/gryphoon.js";
 import { parseHTML } from "linkedom/worker";
 
 /**

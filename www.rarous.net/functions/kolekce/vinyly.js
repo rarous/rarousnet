@@ -1,4 +1,4 @@
-import { defDiscogs } from "@rarousnet/website/discogs.js.js";
+import { defDiscogs } from "@rarousnet/website/discogs.js";
 import { parseHTML } from "linkedom/worker";
 
 /**
