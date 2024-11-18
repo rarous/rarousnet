@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "include": ["functions", "infrastructure", "scripts", "tests", "workers", "www.rarous.net"],
+    "include": ["infrastructure", "scripts", "tests", "workers", "www.rarous.net"],
     "ignoreUnknown": false,
     "ignore": ["www.rarous.net/src/static/assets/js/prism.js"]
   },
@@ -14,7 +14,8 @@
     "enabled": true,
     "formatWithErrors": false,
     "lineWidth": 120,
-    "attributePosition": "auto"
+    "attributePosition": "auto",
+    "useEditorconfig": true
   },
   "organizeImports": {
     "enabled": true
