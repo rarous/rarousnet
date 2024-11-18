@@ -469,7 +469,8 @@
   {:title (:title article)
    :name (author-handle article)
    :date (:published article)
-   :tags (:tags article)})
+   :tags (:tags article)
+   :url (str blog-url (string/replace (:file-name article) #"\.html$" ".png"))})
 
 (defn sha256 [^String string]
   (let [digest (.digest (MessageDigest/getInstance "SHA-256") (.getBytes string "UTF-8"))]
