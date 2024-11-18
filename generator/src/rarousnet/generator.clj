@@ -468,11 +468,8 @@
 (defn article->image [article]
   {:title (:title article)
    :name (author-handle article)
-   :date (last (string/split (long-date-time (:published article)) #" - "))
-   ;; TODO: add tags
-   :url (str blog-url (string/replace (:file-name article) #"\.html$" ".png"))
-   ;; TODO: remove
-   :fileName (string/replace (:file-name article) #"\.html$" ".png")})
+   :date (:published article)
+   :tags (:tags article)})
 
 (defn sha256 [^String string]
   (let [digest (.digest (MessageDigest/getInstance "SHA-256") (.getBytes string "UTF-8"))]

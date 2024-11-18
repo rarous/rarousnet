@@ -2,43 +2,100 @@
 
 {% block body %}
   <style>
+    body {
+      font-size: 2em;
+    }
 
     h1 {
       font-weight: 900;
       margin-bottom: 0;
       text-wrap: balance;
+      color: var(--secondary-dark-color);
+    }
+
+    p {
+      letter-spacing: 1px;
+      max-inline-size: unset;
+    }
+
+    time {
+      text-transform: uppercase;
     }
 
     #card {
-      background: #f77146;
-      color: #fff;
-      width: 1012px;
-      height: 505px;
-      display: flex;
+      width: 1920px;
+      height: 1080px;
+      display: grid;
+
+      padding: 2em 4em;
+
+      > * {
+        grid-area: 1/1;
+      }
     }
 
     .inner {
-      margin: auto;
-      padding: 2em;
+      place-self: center;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2em;
+
+      h2 {
+        margin-block: 0;
+        -webkit-text-stroke: 1px var(--secondary-dark-color);
+        color: transparent;
+      }
+    }
+
+    .logo {
+      width: 120px;
+      height: auto;
     }
   </style>
 
-  <div id="card">
+  <main id="card">
+    <header>
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43">
+        <path fill="#b4b4b4"
+              d="M20.215 13.222 3.096 52.548H9.88l3.604-8.427h13.462l3.604 8.427h6.731L20.215 13.222M15.869 38.61l4.346-10.229 4.346 10.23h-8.692"/>
+        <path fill="#b4b4b4"
+              d="M66.304 38.344a11.006 11.006 0 0 0 4.558-3.021c2.067-2.28 3.18-5.46 3.18-9.063 0-3.657-1.113-6.837-3.18-9.116-1.59-1.802-4.611-3.922-9.805-3.922h-11.66v39.325h6.148V39.245h4.505l9.911 13.302h6.943l-10.6-14.203m-10.759-4.611V18.787h5.512c2.544 0 4.452.689 5.671 2.067 1.484 1.59 1.749 3.816 1.749 5.406 0 1.537-.265 3.763-1.749 5.353-1.219 1.378-3.127 2.12-5.671 2.12h-5.512"/>
+        <path fill="#b30d00" fill-rule="evenodd" d="M20.333 13.234h39.653v39.544H20.333V13.234z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m38.796 26.468 1.338-1.246s.992 3.774.92 7.6c-.073 3.826-1.259 7.896-1.259 7.896l-1.181-1.22s.866-3.423.866-6.651c0-3.24-.684-6.379-.684-6.379z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m41.338 24.1 1.162-1.075s1.655 2.97 1.653 9.75c-.002 5.942-1.961 10.467-1.961 10.467l-1.104-1.158s1.588-4.57 1.588-9.528c0-5.424-1.338-8.456-1.338-8.456z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m48.437 17.515 1.261-1.172s4.06 5.642 4.06 16.33c0 11.87-4.989 17.43-4.989 17.43l-1.008-1.047s4.521-6.215 4.521-16.601c0-8.905-3.845-14.94-3.845-14.94z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m43.465 22.131 1.31-1.227s2.456 4.318 2.456 11.563c0 7.232-2.947 12.968-2.947 12.968l-1.124-1.193s2.45-6.118 2.45-11.75c0-6.429-2.145-10.36-2.145-10.36z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="m45.934 19.834 1.297-1.2s3.297 5.373 3.297 13.727c0 10.508-3.893 15.517-3.893 15.517l-1.153-1.216s3.276-5.61 3.32-14.285c.036-7.155-2.868-12.543-2.868-12.543z"/>
+        <path fill="#fff" fill-rule="evenodd"
+              d="M26.561 30.364c.41-8.172 2.874-14.455 5.831-14.455 3.285 0 6.201 5.913 5.914 16.796-.206 9.24-2.629 16.755-5.914 16.755-2.916 0-5.338-6.037-5.831-13.922l.944-.04.288 1.765 6.652-2.053-.041-4.64-6.611-2.177-.206 1.971h-1.026m9.404-1.273.821-.74s.288 2.506.288 4.477c0 2.423-.657 4.394-.657 4.394l-.657-.698s.369-1.807.369-3.696c0-1.684-.164-3.737-.164-3.737"/>
+      </svg>
+      <h2>rarouš.weblog</h2>
+    </header>
     <div class="inner">
       <h1 id="title">Nový život pro rarouš.weblog</h1>
       <p><span id="name">@alesroubicek</span> |
         <time id="date">28. ledna 2019</time>
       </p>
     </div>
-  </div>
+  </main>
 
   <script type="module">
     const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
     const params = new URLSearchParams(location.search);
+    console.log(Object.fromEntries(params));
     document.getElementById("title").textContent = params.get("title");
     document.getElementById("name").textContent = params.get("name");
     const date = document.getElementById("date");
     date.datetime = params.get("date");
+    console.log(new Date(params.get("date")))
     date.textContent = formatter.format(new Date(params.get("date")));
   </script>
 {% endblock %}

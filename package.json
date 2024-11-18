@@ -38,7 +38,6 @@
     "test:broken-links": "blcl ./.gryphoon/dist -ro"
   },
   "workspaces": [
-    "cards",
     "infrastructure",
     "scripts",
     "workers/*",
