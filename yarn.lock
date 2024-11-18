@@ -2298,6 +2298,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rarousnet/cards-worker@workspace:workers/rarousnet-cards":
+  version: 0.0.0-use.local
+  resolution: "@rarousnet/cards-worker@workspace:workers/rarousnet-cards"
+  dependencies:
+    "@cloudflare/puppeteer": "npm:0.0.14"
+    "@cloudflare/vitest-pool-workers": "npm:0.5.28"
+    "@cloudflare/workers-types": "npm:4.20241112.0"
+    vitest: "npm:2.1.5"
+    wrangler: "npm:3.87.0"
+  languageName: unknown
+  linkType: soft
+
 "@rarousnet/cards@workspace:cards":
   version: 0.0.0-use.local
   resolution: "@rarousnet/cards@workspace:cards"
@@ -2307,11 +2319,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker":
+  version: 0.0.0-use.local
+  resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
+  dependencies:
+    "@cloudflare/workers-types": "npm:4.20241112.0"
+    wrangler: "npm:3.87.0"
+  languageName: unknown
+  linkType: soft
+
 "@rarousnet/functions@workspace:www.rarous.net/functions":
   version: 0.0.0-use.local
   resolution: "@rarousnet/functions@workspace:www.rarous.net/functions"
   dependencies:
-    "@cloudflare/puppeteer": "npm:0.0.14"
     "@cloudflare/workers-types": "npm:4.20241112.0"
     feed: "npm:4.2.2"
     linkedom: "npm:0.18.5"
@@ -2350,14 +2370,6 @@ __metadata:
     open-props: "npm:1.7.7"
     postcss-jit-props: "npm:1.0.14"
     undertaker-registry: "npm:2.0.0"
-  languageName: unknown
-  linkType: soft
-
-"@rarousnet/workers@workspace:workers":
-  version: 0.0.0-use.local
-  resolution: "@rarousnet/workers@workspace:workers"
-  dependencies:
-    "@cloudflare/workers-types": "npm:4.20241112.0"
   languageName: unknown
   linkType: soft
 
@@ -12074,17 +12086,6 @@ __metadata:
   checksum: 10c0/96c032ac2475c8027b7a4e9fe22dc0dfe0f6d90b85e496e0f016fbdb99d6d066de0112e680805075bd989905e2123b3b3d002765149294dce0c1f7f01fcc2ea0
   languageName: node
   linkType: hard
-
-"rarousnet-cards@workspace:workers/rarousnet-cards":
-  version: 0.0.0-use.local
-  resolution: "rarousnet-cards@workspace:workers/rarousnet-cards"
-  dependencies:
-    "@cloudflare/puppeteer": "npm:0.0.14"
-    "@cloudflare/vitest-pool-workers": "npm:0.5.28"
-    vitest: "npm:2.1.5"
-    wrangler: "npm:3.87.0"
-  languageName: unknown
-  linkType: soft
 
 "rarousnet@workspace:.":
   version: 0.0.0-use.local

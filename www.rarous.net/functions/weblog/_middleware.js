@@ -13,7 +13,7 @@ import { parseHTML } from "linkedom/worker";
  * @return {Promise<{webmentions: Array, comments: Array}>}
  */
 async function getDetail(weblog, url) {
-  const payload = (await weblog.get(url, "json")) ?? (await weblog.get(url + ".html", "json"));
+  const payload = (await weblog.get(url, "json")) ?? (await weblog.get(`${url}.html`, "json"));
   return Object.assign({ webmentions: [], comments: [] }, payload);
 }
 

@@ -1,9 +1,10 @@
 {
-  "name": "@rarousnet/workers",
+  "name": "@rarousnet/discogs-schedule-worker",
   "description": "rarous.net Cloudflare Workers",
   "type": "module",
   "license": "EUPL-1.2",
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20241112.0"
+    "@cloudflare/workers-types": "4.20241112.0",
+    "wrangler": "3.87.0"
   }
 }

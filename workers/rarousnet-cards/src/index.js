@@ -23,9 +23,12 @@ export default {
     const detail = new Map(cards).get(request.url);
     // Set data via GET parameters
     const params = new URLSearchParams(Object.entries(detail));
-    await page.goto(`https://www.rarous.net/weblog/card?${params}`);
+    const url = `https://www.rarous.net/weblog/card?${params}`;
+    console.log(`rendering card: ${url}`);
+    await page.goto(url);
     // take a screenshot of card element
-    const buffer = await page.locator("#card").screenshot({ encoding: "binary" });
+    const card = await page.waitForSelector("#card");
+    const buffer = await card.screenshot({ encoding: "binary" });
     // cache image for one hour
     await env.weblog.put(request.url, buffer, { expirationTtl: 3600 });
     return new Response(buffer, { headers });
