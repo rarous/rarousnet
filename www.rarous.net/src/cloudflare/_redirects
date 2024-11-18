@@ -1,2 +1,3 @@
+/about /o-mne
 /clanek/:slug /weblog/:slug 301
 /clanek.aspx/:slug /weblog/:slug.aspx 301
