@@ -1,6 +1,6 @@
 {% extends "layouts/common-base.njk" %}
 
-{% block body %}
+{% block head_stylesheets %}
   <style>
     body {
       font-size: 2em;
@@ -28,6 +28,7 @@
       display: grid;
       padding: 2em 4em;
     }
+
     #card > * {
       grid-area: 1/1;
     }
@@ -41,6 +42,7 @@
       grid-template-columns: auto 1fr;
       gap: 2em;
     }
+
     header h2 {
       margin: 0;
       -webkit-text-stroke: 1px var(--secondary-dark-color);
@@ -52,7 +54,9 @@
       height: auto;
     }
   </style>
+{% endblock %}
 
+{% block body %}
   <main id="card">
     <header>
       <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43">
