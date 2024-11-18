@@ -48,8 +48,8 @@ rozsahů ale vlastně nepotřebuju vůbec. Takže pryč s nima!
 
 Jak na to?
 
-Vynechám detaily, jak si rozběhat `pyftsubset` (`pip install fonttools`) a `brotli`
-pro kompresi do woff2 (`pip install brotli`). A jdeme rovnou na věc:
+Vynechám detaily, jak si rozběhat `pyftsubset` (`brew install fonttools`) a `brotli`
+pro kompresi do woff2 (`brew install brotli`). A jdeme rovnou na věc:
 
 latin subset
 ------------
