@@ -94,29 +94,6 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
-  postprocess:
-    resource_class: large
-    executor: pw-focal-development
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - node/install
-      - node/install-yarn
-      - node/install-packages:
-          pkg-manager: yarn-berry
-          cache-version: v3-pw
-          override-ci-command: yarn workspaces focus @rarousnet/cards
-      - install_browsers
-      - run:
-          name: Generate Twitter Card images
-          command: node ./cards/generator.js "file://`pwd -P`/cards/card.html"
-      - persist_to_workspace:
-          root: .
-          paths: .gryphoon
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
   test:
     resource_class: large
     docker:
@@ -187,9 +164,6 @@ workflows:
   build_and_deploy:
     jobs:
       - generate
-      - postprocess:
-          requires:
-            - generate
       - provision:
           context: aws
           filters:
@@ -197,7 +171,7 @@ workflows:
               only: trunk
       - test:
           requires:
-            - postprocess
+            - generate
       - pages_deploy:
           context: cloudflare
           requires:
