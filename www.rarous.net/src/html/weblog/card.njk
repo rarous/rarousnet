@@ -26,12 +26,10 @@
       width: 1920px;
       height: 1080px;
       display: grid;
-
       padding: 2em 4em;
-
-      > * {
-        grid-area: 1/1;
-      }
+    }
+    #card > * {
+      grid-area: 1/1;
     }
 
     .inner {
@@ -42,12 +40,11 @@
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 2em;
-
-      h2 {
-        margin-block: 0;
-        -webkit-text-stroke: 1px var(--secondary-dark-color);
-        color: transparent;
-      }
+    }
+    header h2 {
+      margin: 0;
+      -webkit-text-stroke: 1px var(--secondary-dark-color);
+      color: transparent;
     }
 
     .logo {
