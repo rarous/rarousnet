@@ -42,7 +42,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v1-provision
+          with-cachen: false
           override-ci-command: yarn workspaces focus @rarousnet/infrastructure
       - pulumi/update:
           working_directory: infrastructure
@@ -69,7 +69,7 @@ jobs:
       - php/install-composer
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v4-build
+          with-cachen: false
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/website
       - php/install-packages:
           app-dir: ~/project/generator
@@ -110,7 +110,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v2-test
+          with-cachen: false
           override-ci-command: yarn workspaces focus rarousnet
       - run:
           name: Install self-signed cert for localhost
@@ -148,7 +148,7 @@ jobs:
       - node/install-yarn
       - node/install-packages:
           pkg-manager: yarn-berry
-          cache-version: v5-publish
+          with-cachen: false
           override-ci-command: yarn workspaces focus rarousnet @rarousnet/website @rarousnet/functions
       - run:
           name: Publish to Cloudflare Pages
