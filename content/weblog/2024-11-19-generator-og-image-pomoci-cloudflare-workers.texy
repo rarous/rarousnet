@@ -4,7 +4,9 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce" "gryphoon" "blendid" "serverless" "cloudflare"},
  :published "2024-11-19T11:56:00.000"
- :syndication []}
+ :syndication
+ ["https://indieweb.social/@alesroubicek/113509566740374565"
+  "https://www.linkedin.com/feed/update/urn:li:activity:7264614592171929600/"]}
 ---
 
 Znovu jsem začal narážet na dlouhé časy generování náhledových obrázků, ale "místo optimalizace
