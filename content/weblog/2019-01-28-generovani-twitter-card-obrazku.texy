@@ -33,6 +33,6 @@ No, jsem přece web developer. Fonty dostanu přes --Typekit-- ++Adobe Fonts++, 
 Vytvořím tedy "kompozici v HTML":[https://github.com/rarous/rarousnet/blob/master/cards/card.html]
 a obrázky budu típat pomocí Puppeteera:[https://pptr.dev/]! Doplnil jsem do generátoru webu,
 aby připravil JSON((JavaScript Object Notation)) s daty, které budu potřebovat pro generování obrázků.
-Pak jsem napsal script:[https://github.com/rarous/rarousnet/blob/master/cards/generator.js], kterej otevře stránku
+Pak jsem napsal script:[https://github.com/rarous/rarousnet/blob/c71b89e49c1fa6d25970b07b0d74d32dd34b79ab/cards/generator.js], kterej otevře stránku
 a ve smyčce, projde data z JSONu, vloží je do DOMu a udělá screenshot. Není to úplně nejrychlejší řešení,
 ale 30 s na cca 470 článků není taky úplně nejhorší čas.
