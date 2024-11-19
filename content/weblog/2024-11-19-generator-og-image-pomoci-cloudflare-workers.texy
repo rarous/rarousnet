@@ -1,0 +1,191 @@
+---
+{:title "Generátor og:image pomocí Cloudflare Workers",
+ :description "Znovu jsem začal narážet na dlouhé časy generování náhledových obrázků, ale místo optimalizace kódu jsem se vydal cestou změny přístupu.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce" "gryphoon" "blendid" "serverless" "cloudflare"},
+ :published "2024-11-19T11:56:00.000"
+ :syndication []}
+---
+
+Znovu jsem začal narážet na dlouhé časy generování náhledových obrázků, ale "místo optimalizace
+kódu":[/weblog/2023/01/04/optimalizace-generatoru-nahledu] jsem se vydal cestou změny přístupu.
+Ono, generovat v každým buildu několikset obrázků, který se s nějvětší pravděpodobností ani nikdy nikomu neukáží,
+není asi úplně šťastné řešení.
+
+Je poplatné době, to ano. Ale časy a možnosti se mění a není třeba se trápit v pasti starých rozhodnutí.
+
+"Původní generátor":[/weblog/2019/01/28/generovani-twitter-card-obrazku] se spouštěl v rámci CD pipeline
+a pro každý článek vygeneroval obrázek, který se pak společně se zbytkem webu nahrál do CDN, odkud se při sdílení
+na sociálních sítích zobrazoval uživatelům. Na jednu stranu, chci mít u všech článků metadata, která fungují,
+na druhou stranu, staré články se pravděpodobně už nikdy sdílet nebudou...
+
+Řešením tedy není staticky generovat všehno, ale dynamicky obsluhovat jen to, co je zrovna požádované.
+A protože už mám tento web přesunutý do "Cloudflare Pages":[https://pages.dev], můžu směle využívat Workery tam,
+kde to dává smysl. "Předrenderování webmentions a komentářů":[/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech.html]
+mám za sebou, tak proč to nezkusit i s náhledy pro sociální sítě?
+
+*No, třeba proto, že původní řešení používalo Playwrigth/Puppeteer. Jak ho chceš dostat do Workera?*
+
+Asi by se dala najít nějaká jiná cesta, jak komponovat obrázky, ale není to potřeba. Cloudflare **podporuje
+"Browser Rendering":[https://developers.cloudflare.com/browser-rendering/]**, což jsou workery, které mají Puppeteer
+kompatibilní API. Takže by to celý mělo být tak snadný, jakože to vezmu a přesunu.
+
+Ale nebylo.
+
+Příprava dat
+============
+
+První věc, co pro generování náhledových obrázků potřebuju, jsou data. Gryphoon:[/weblog/tag/gryphoon] generuje
+`cards.json`, který vznikl pro potřeby původního card generátoru v CI. Tyhle data musím nějak dostat do Workeru.
+"Vytvořil jsem si proto API endpoint":[https://github.com/rarous/rarousnet/commit/50aaed8ac3e317f957a1bbf5994a2e56e71025a7#diff-1d4f15e8061ac2ccadf46e92df4f8dbcd5370ac8029bbf6dbda4a0cf48e22431],
+ který tento JSON uloží do Key Value store (dále KV), do kterého se už worker dostane snadno.
+
+"Do site builderu jsem přidal task":[https://github.com/rarous/rarousnet/commit/50aaed8ac3e317f957a1bbf5994a2e56e71025a7#diff-d6ea7f66fb64fc7739d614a1e608f6b381cab88746053955139a564f632fa5ce],
+který po vygenerovaní `cards.json` tento soubor odešle na vytvořený API endpoint.
+
+Příprava stránky
+================
+
+Původní stránka pro generování náhledu byla tak trochu vlastním ostrovem - ostatně jako všechno. Protože jsem
+věnoval nějaký čas tomu, abych nasadil "Blendid pro generovaní statické site a optimalizaci assetů":[https://github.com/hckr-studio/blendid],
+chtěl jsem mít i stránku na generování náhledů součástí webu, aby mohla snáz sdílet assety (fonty, style atd.).
+
+Původní stránka byla velmi jednoduchá šablona s pár elementy a styly. Vkládání dat probíhalo zvenku na straně Puppeteera.
+To přináší znalost vnitřních detailů a zhoršuje možnosti rošiřování. Proto jsem hydrataci dat přesunul přímo do stránky.
+Data se předávají pomocí GET parametrů (`location.search`). Tím jsem zapouzřil chování a ze stránky udělal funkci. :)
+
+/--code javascript
+const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
+const params = new URLSearchParams(location.search);
+document.getElementById("title").textContent = params.get("title");
+document.getElementById("name").textContent = params.get("name");
+const date = document.getElementById("date");
+date.datetime = params.get("date");
+date.textContent = formatter.format(new Date(params.get("date")));
+\--code
+
+Rovnou jsem předělal i styly, aby náhledy odpovídaly aktuálnímu vzhledu (ten se teď dědí ze společného layoutu).
+Pozicování jsem předělal na CSS Grid a přidal jsem branding.
+
+Implementace generátoru
+=======================
+
+Generátor jsem začal implementovat jako "Cloudflare Pages Functions Middleware":[https://developers.cloudflare.com/pages/functions/middleware/],
+který na celém blogu obsluhuje požadavky s příponou `.png`. Z KV si načte mapu metadat podle URL
+a z ní vybere data pro aktuální URL:
+
+/--code javascript
+if (!request.url.endsWith(".png")) return next();
+const cards = await env.weblog.get("/weblog/cards", "json");
+const detail = new Map(cards).get(request.url);
+\--code
+
+Když nic nenajde, vrátí `HTTP 404`:
+
+/--code javascript
+if (!detail) {
+  return new Response("Not Found", { status: 404 });
+}
+\--code
+
+Pokud data dostanu, tak si připravím parametry pro stránku a otevřu ji v browseru:
+
+/--code javascript
+const browser = await puppeteer.launch(env.browser);
+const page = await browser.newPage();
+const params = new URLSearchParams(Object.entries(detail));
+const url = `https://www.rarous.net/weblog/card?${params}`;
+console.log(`rendering card: ${url}`);
+await page.goto(url);
+\--code
+
+Na stránce najdu element `#card`, který obsahuje kompozici našeho obrázku a udělám z něj screenshot.
+Puppeteer podporuje dva módy, jak screenshoty udělat: Buď mu dám cestu, kam má screenshot uložit,
+nebo mu řeknu, ať mi vrátí `ArrayBuffer`:[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer]
+s obrázkem (`{ encoding: "binary" }`). Tento `ArrayBuffer` můžu použít jako tělo odpovědi, které nastavím do hlaviček,
+že jde o PNG obrázek a ať se cachuje na hodinu:
+
+/--code javascript
+const card = await page.waitForSelector("#card");
+const buffer = await card.screenshot({ encoding: "binary" });
+return new Response(buffer, {
+  headers: {
+    "Content-Type": "image/png",
+    "Cache-Control": "public, max-age=3600",
+  }
+});
+\--code
+
+Přímočaré. Jednoduché. Ale nefungovalo mi to.
+
+Problém byl v tom, že provisioning resources v Cloudflare řídím pomocí kódu v Pulumi programu.
+Ten obaluje Terraform provider, který v aktuální verzi neumí spoustu nových vlastností, které
+Cloudflare za poslední rok představil. Ano, "pracuje se na nové verzi":[https://blog.cloudflare.com/automatically-generating-cloudflares-terraform-provider/],
+která vychází z OpenAPI popisu a měla by teoreticky podporovat vše, ale je v preview verzi a zatím to tak není.
+"Navíc Pulumi jede stable verze":[https://github.com/pulumi/pulumi-cloudflare/issues/917]. Takže slepá ulička...
+
+No nic, vrátil jsem v CD pipelině zpátky krok s generováním náhledů a tiše trpěl dál.
+
+Pak jsem udělal novou verzi "Data Talk":[https://www.datatalk.cz/] webu, kde jsem používal na provisioning Workerů
+jen Wrangler:[https://developers.cloudflare.com/workers/wrangler/]. Sice nemá vše, co mi dává Pulumi,
+ale podporuje aktuální vlastnosti...
+
+Včera večer jsem tedy vzal původní kód z middleware a udělal z něj Worker, který není managovaný přes Pulumi,
+ale Wranglerem. Doufejme, že dočasně, dokud Cloudflare Terraform provider 5.0 nedospěje.
+
+Původní midleware nově využívá Service Binding k tomu, aby přímo volal nového workera bez overheadu volání přes HTTP:
+
+/--code javascript
+/**
+ * @param {EventContext<Env>} context
+ * @return {Promise<Response>}
+ */
+async function renderSocialMediaImages({ next, request, env }) {
+  // handle PNG image requests only
+  if (!request.url.endsWith(".png")) return next();
+  // delegate request to cards worker
+  return env.cards.fetch(request);
+}
+\--code
+
+A do workeru jsem ještě přidal cachování obrázků v KV na základě hashe jejich obsahu.
+
+/--code javascript
+// cache image for one month
+await env.weblog.put(`/weblog/cards/${detail.hash}`, buffer, {
+  expirationTtl: 2_629_746,
+});
+\--code
+
+Pokud expiruje hodinová cache v CDN, podívám se do KV, jestli tam mám předrenderovaný obrázek,
+a případně použiju ten. Tím předejdu zbytečnýmu spouštění browseru, který je náročnější na zdroje
+a hlavně prodlužuje dobu odpovědi na požadavek.
+
+/--code javascript
+// try to get cached image
+const cachedImage = await env.weblog.get(`/weblog/cards/${detail.hash}`, "stream");
+if (cachedImage) {
+  return new Response(cachedImage, { headers });
+}
+\--code
+
+No, a je to.
+
+Závěr
+=====
+
+Díky Cloudflare Workers a jejich novým dovednostem, jsem byl schopný překlopit kus funkcionality z build-time
+do run-time. A to s ne zas tak velkýma změnama. Většina byla přesouvání kusů kódu a jeho případné mazání,
+když se stal nepotřebným.
+
+"Cloudflare Browser Rendering":[https://developers.cloudflare.com/browser-rendering/], umožňuje v serverless
+přístupu používat headless browser. Nepotřebuje hosting, rozbíhat clustery nebo platit nějakou specializovanou
+automatizační službu, která jen přidá velké latence, křehkost a extra náklady.
+
+"Service bindings":[https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/] umožňují volat
+z Workerů jiné Workery bez nutnosti je vystavovat na HTTP vrstvě a přidávat tak ještě větší overhead vzdáleného volání.
+
+Jsem rád, že se mi proof of concept podařil, protože ho použiju na obnovu/opravu
+"Hlídače shopů pro sociální sítě":[/weblog/2020/12/14/hlidace-shopu-pro-socialni-site], který už je dva roky rozbitý...
+
+Co vy, napadá vás, jak tohle využít na vašich webech?

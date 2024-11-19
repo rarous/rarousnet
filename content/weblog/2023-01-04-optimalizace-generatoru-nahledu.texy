@@ -2,7 +2,7 @@
 {:title "Optimalizace generátoru náhledů",
 :description "Jak jsem zrychlil generování Twitter Card obrázků pomocí paralelizace. Názorné ukázky v ECMAScriptu.",
 :author "Aleš Roubíček",
-:tags #{"moje práce" "transducers" "ci" "ecmascript"},
+:tags #{"moje práce" "transducers" "ci" "ecmascript" "gryphoon"},
 :published "2023-01-04T08:00:00.000"
 :syndication ["https://twitter.com/alesroubicek/status/1610534129925226498"]}
 ---
@@ -94,7 +94,7 @@ abychom mohli bezpečně měnit dokumenty v další dávce.
 No a je to.
 
 Na CI serveru jsem změnil `recource_class` na `large`,
-abych dostal víc paměti a CPUček, a `POOL_SIZE` nastavil na `8`.
+abych dostal víc paměti a CPUček, a `POOL_SIZE` nastavil na `4`.
 Vzhledem k tomu, že děláme screenshot, který ukládáme do souboru,
 máme tu "IO bound konkurenci":[/weblog/2013/03/26/asynchronni-vs-paralelni-zpracovani-uloh.html].
 Větší pool nám nepřinese žádné zrychlení, protože se nám pak dusí fronta zápisu na disk.
