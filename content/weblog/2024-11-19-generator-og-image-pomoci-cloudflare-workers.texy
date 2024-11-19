@@ -30,7 +30,7 @@ Asi by se dala najít nějaká jiná cesta, jak komponovat obrázky, ale není t
 "Browser Rendering":[https://developers.cloudflare.com/browser-rendering/]**, což jsou workery, které mají Puppeteer
 kompatibilní API. Takže by to celý mělo být tak snadný, jakože to vezmu a přesunu.
 
-Ale nebylo.
+Mělo by, ale nebylo.
 
 Příprava dat
 ============
@@ -38,7 +38,7 @@ Příprava dat
 První věc, co pro generování náhledových obrázků potřebuju, jsou data. Gryphoon:[/weblog/tag/gryphoon] generuje
 `cards.json`, který vznikl pro potřeby původního card generátoru v CI. Tyhle data musím nějak dostat do Workeru.
 "Vytvořil jsem si proto API endpoint":[https://github.com/rarous/rarousnet/commit/50aaed8ac3e317f957a1bbf5994a2e56e71025a7#diff-1d4f15e8061ac2ccadf46e92df4f8dbcd5370ac8029bbf6dbda4a0cf48e22431],
- který tento JSON uloží do Key Value store (dále KV), do kterého se už worker dostane snadno.
+který tento JSON uloží do Key Value store (dále KV), do kterého se už worker dostane snadno.
 
 "Do site builderu jsem přidal task":[https://github.com/rarous/rarousnet/commit/50aaed8ac3e317f957a1bbf5994a2e56e71025a7#diff-d6ea7f66fb64fc7739d614a1e608f6b381cab88746053955139a564f632fa5ce],
 který po vygenerovaní `cards.json` tento soubor odešle na vytvořený API endpoint.
