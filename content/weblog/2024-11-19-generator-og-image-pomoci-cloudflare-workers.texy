@@ -55,7 +55,11 @@ To přináší znalost vnitřních detailů a zhoršuje možnosti rošiřování
 Data se předávají pomocí GET parametrů (`location.search`). Tím jsem zapouzřil chování a ze stránky udělal funkci. :)
 
 /--code javascript
-const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
+const formatter = new Intl.DateTimeFormat("cs", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
 const params = new URLSearchParams(location.search);
 document.getElementById("title").textContent = params.get("title");
 document.getElementById("name").textContent = params.get("name");
