@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@cloudflare/puppeteer": "0.0.14",
-    "@cloudflare/vitest-pool-workers": "0.5.28",
+    "@cloudflare/vitest-pool-workers": "0.5.29",
     "@cloudflare/workers-types": "4.20241112.0",
     "vitest": "2.1.5",
     "wrangler": "3.87.0"
