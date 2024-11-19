@@ -27,11 +27,8 @@
       width: 1920px;
       height: 1080px;
       display: grid;
+      grid-template-rows: auto 1fr;
       padding: 2em 4em;
-    }
-
-    #card > * {
-      grid-area: 1/1;
     }
 
     .inner {
@@ -42,17 +39,18 @@
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 2em;
+      align-content: center;
     }
 
     header h2 {
-      margin: 0;
+      font-size: 2.6em;
       -webkit-text-stroke: 2px var(--secondary-dark-color);
       color: transparent;
-      line-height: 1;
+      margin: 0;
     }
 
     .logo {
-      width: 120px;
+      width: 180px;
       height: auto;
     }
   </style>
