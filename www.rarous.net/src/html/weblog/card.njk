@@ -91,12 +91,10 @@
   <script type="module">
     const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
     const params = new URLSearchParams(location.search);
-    console.log(Object.fromEntries(params));
     document.getElementById("title").textContent = params.get("title");
     document.getElementById("name").textContent = params.get("name");
     const date = document.getElementById("date");
     date.datetime = params.get("date");
-    console.log(new Date(params.get("date")))
     date.textContent = formatter.format(new Date(params.get("date")));
   </script>
 {% endblock %}

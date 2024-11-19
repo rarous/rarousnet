@@ -7,21 +7,21 @@ const headers = {
 
 export default {
   async fetch(request, env, ctx) {
-    // Try to get cached image
-    const cachedImage = await env.weblog.get(request.url, "stream");
-    if (cachedImage) {
-      return new Response(cachedImage, {
-        status: 200,
-        headers,
-      });
+    const cards = await env.weblog.get("/weblog/cards", "json");
+    const detail = new Map(cards).get(request.url);
+    if (!detail) {
+      return new Response("Not Found", { status: 404 });
     }
 
-    const [page, cards] = await Promise.all([
-      puppeteer.launch(env.browser).then(x => x.newPage()),
-      env.weblog.get("/weblog/cards", "json"),
-    ]);
-    const detail = new Map(cards).get(request.url);
-    // Set data via GET parameters
+    // try to get cached image
+    const cachedImage = await env.weblog.get(`/weblog/cards/${detail.hash}`, "stream");
+    if (cachedImage) {
+      return new Response(cachedImage, { headers });
+    }
+
+    const browser = await puppeteer.launch(env.browser);
+    const page = await browser.newPage();
+    // set data via GET parameters
     const params = new URLSearchParams(Object.entries(detail));
     const url = `https://www.rarous.net/weblog/card?${params}`;
     console.log(`rendering card: ${url}`);
@@ -29,8 +29,8 @@ export default {
     // take a screenshot of card element
     const card = await page.waitForSelector("#card");
     const buffer = await card.screenshot({ encoding: "binary" });
-    // cache image for one hour
-    await env.weblog.put(request.url, buffer, { expirationTtl: 3600 });
+    // cache image for one month
+    await env.weblog.put(`/weblog/cards/${detail.hash}`, buffer, { expirationTtl: 2_629_746 });
     return new Response(buffer, { headers });
   },
 };
