@@ -128,7 +128,7 @@ Cloudflare za poslední rok představil. Ano, "pracuje se na nové verzi":[https
 která vychází z OpenAPI popisu a měla by teoreticky podporovat vše, ale je v preview verzi a zatím to tak není.
 "Navíc Pulumi jede stable verze":[https://github.com/pulumi/pulumi-cloudflare/issues/917]. Takže slepá ulička...
 
-No nic, vrátil jsem v CD pipelině zpátky krok s generováním náhledů a tiše trpěl dál.
+No nic. Vrátil jsem v CD pipelině zpátky krok s generováním náhledů a tiše trpěl dál.
 
 Pak jsem udělal novou verzi "Data Talk":[https://www.datatalk.cz/] webu, kde jsem používal na provisioning Workerů
 jen Wrangler:[https://developers.cloudflare.com/workers/wrangler/]. Sice nemá vše, co mi dává Pulumi,
