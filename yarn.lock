@@ -121,7 +121,7 @@ __metadata:
   dependencies:
     error-stack-parser: "npm:2.1.4"
     rollbar: "npm:2.26.4"
-    wrangler: "npm:3.88.0"
+    wrangler: "npm:3.89.0"
   languageName: unknown
   linkType: soft
 
@@ -2306,7 +2306,7 @@ __metadata:
     "@cloudflare/vitest-pool-workers": "npm:0.5.30"
     "@cloudflare/workers-types": "npm:4.20241112.0"
     vitest: "npm:2.1.5"
-    wrangler: "npm:3.88.0"
+    wrangler: "npm:3.89.0"
   languageName: unknown
   linkType: soft
 
@@ -2315,7 +2315,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20241112.0"
-    wrangler: "npm:3.88.0"
+    wrangler: "npm:3.89.0"
   languageName: unknown
   linkType: soft
 
@@ -9700,28 +9700,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20241106.0":
-  version: 3.20241106.0
-  resolution: "miniflare@npm:3.20241106.0"
-  dependencies:
-    "@cspotcode/source-map-support": "npm:0.8.1"
-    acorn: "npm:^8.8.0"
-    acorn-walk: "npm:^8.2.0"
-    capnp-ts: "npm:^0.7.0"
-    exit-hook: "npm:^2.2.1"
-    glob-to-regexp: "npm:^0.4.1"
-    stoppable: "npm:^1.1.0"
-    undici: "npm:^5.28.4"
-    workerd: "npm:1.20241106.1"
-    ws: "npm:^8.18.0"
-    youch: "npm:^3.2.2"
-    zod: "npm:^3.22.3"
-  bin:
-    miniflare: bootstrap.js
-  checksum: 10c0/b3d01509def845f52084661c39e4c158aafada23ba205ddaf1a96797a590e68ddf2d6c1c1a7ebef28aa3bbdbdcb0122be56d6f26d7b6682995bd20551845f396
-  languageName: node
-  linkType: hard
-
 "miniflare@npm:3.20241106.1":
   version: 3.20241106.1
   resolution: "miniflare@npm:3.20241106.1"
@@ -12069,7 +12047,7 @@ __metadata:
     npm-run-all2: "npm:7.0.1"
     pagefind: "npm:1.2.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.88.0"
+    wrangler: "npm:3.89.0"
   languageName: unknown
   linkType: soft
 
@@ -14994,45 +14972,6 @@ __metadata:
   bin:
     workerd: bin/workerd
   checksum: 10c0/5a3fee9081af3ab40471248941c094703540ac2d338099825b782820545fd1a792a09f8eb0698870e61cefdc735cd30328d37298ea9a62cf25a4223adae11503
-  languageName: node
-  linkType: hard
-
-"wrangler@npm:3.88.0":
-  version: 3.88.0
-  resolution: "wrangler@npm:3.88.0"
-  dependencies:
-    "@cloudflare/kv-asset-handler": "npm:0.3.4"
-    "@cloudflare/workers-shared": "npm:0.7.1"
-    "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
-    "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
-    blake3-wasm: "npm:^2.1.5"
-    chokidar: "npm:^4.0.1"
-    date-fns: "npm:^4.1.0"
-    esbuild: "npm:0.17.19"
-    fsevents: "npm:~2.3.2"
-    itty-time: "npm:^1.0.6"
-    miniflare: "npm:3.20241106.0"
-    nanoid: "npm:^3.3.3"
-    path-to-regexp: "npm:^6.3.0"
-    resolve: "npm:^1.22.8"
-    resolve.exports: "npm:^2.0.2"
-    selfsigned: "npm:^2.0.1"
-    source-map: "npm:^0.6.1"
-    unenv: "npm:unenv-nightly@2.0.0-20241111-080453-894aa31"
-    workerd: "npm:1.20241106.1"
-    xxhash-wasm: "npm:^1.0.1"
-  peerDependencies:
-    "@cloudflare/workers-types": ^4.20241106.0
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  peerDependenciesMeta:
-    "@cloudflare/workers-types":
-      optional: true
-  bin:
-    wrangler: bin/wrangler.js
-    wrangler2: bin/wrangler.js
-  checksum: 10c0/88e063f8347133c172d493e33edac9a15918418bf0c61e1471d30d7e4ff9d591c8645b5741a289be99a4a6b18f1f98f1c3ddcfb9e3783c375a73d77f9b918c69
   languageName: node
   linkType: hard
 
