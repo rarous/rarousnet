@@ -81,7 +81,7 @@ async function renderSocialMediaImages({ next, request, env }) {
   const { value, metadata } = await env.weblog.getWithMetadata(`/weblog/cards/${detail.hash}`, "arrayBuffer");
   if (value) {
     console.log(`found pre-rendered image in KV /weblog/cards/${detail.hash}`);
-    return new Response(value, { headers: metadata.headers ?? headers });
+    return new Response(value, { headers: metadata?.headers ?? headers });
   }
   const params = new URLSearchParams(Object.entries(detail));
   const url = `https://www.rarous.net/weblog/card?${params}`;
