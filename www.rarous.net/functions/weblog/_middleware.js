@@ -66,9 +66,40 @@ async function renderWebComponents({ next, request, env }) {
 async function renderSocialMediaImages({ next, request, env }) {
   // Handle only PNG image requests
   if (!request.url.endsWith(".png")) return next();
+  const headers = {
+    "Content-Type": "image/png",
+    "Cache-Control": "public, max-age=3600",
+  };
 
-  // delegate request to cards worker
-  return env.cards.fetch(request);
+  const cards = await env.weblog.get("/weblog/cards", "json");
+  const detail = new Map(cards).get(request.url);
+  if (!detail) {
+    return new Response("Not Found", { status: 404 });
+  }
+
+  // try to get cached image
+  const { value, metadata } = await env.weblog.getWithMetadata(`/weblog/cards/${detail.hash}`, "arrayBuffer");
+  if (value) {
+    console.log(`found pre-rendered image in KV /weblog/cards/${detail.hash}`);
+    return new Response(value, { headers: metadata.headers ?? headers });
+  }
+  const params = new URLSearchParams(Object.entries(detail));
+  const url = `https://www.rarous.net/weblog/card?${params}`;
+  const screenshotterParams = new URLSearchParams({
+    token: env.SCREENSHOTTER_SECRET,
+    selector: "#card",
+    type: "png",
+    url,
+  });
+  const resp = await env.screenshotter.fetch(`https://example.com/?${screenshotterParams}`);
+  const buffer = await resp.arrayBuffer();
+
+  // cache image for one month
+  await env.weblog.put(`/weblog/cards/${detail.hash}`, buffer, {
+    expirationTtl: 2_629_746,
+    metadata: { headers },
+  });
+  return new Response(buffer, { headers });
 }
 
 export const onRequest = [renderSocialMediaImages, renderWebComponents];

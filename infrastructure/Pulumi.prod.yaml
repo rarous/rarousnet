@@ -8,3 +8,5 @@ config:
     secure: AAABAMDlnk5eyssfU+XvFCw8R3vZApfj1ZWdi/i8J7VlS9h0tF+tnLWhPBwcSSvvE/JYyX0FOtufVrx2jOOkiwEgY06mxmw86yTLLf43ZInf7Q==
   rarousnet:weblog-cards-secret:
     secure: AAABAPUMti3n0lkVWaFF6cgCIzbVA9P7369ij1K3o05TNPgPtZ76JtdYb07lmix4ufWaUf9YChnFOM22kCrRoPrD1eiSppo7D7KW/GQABACTVQ==
+  rarousnet:screenshotter-secret:
+    secure: AAABAI7bY3VE5h7lYuhqG/iTGlunLJjFyaz69IE7qKlxoL7/Kw41ZInblVeuryvjL5rEEvU0ztNmA/8hUaPrPAPu6yh2/tov5AEO+GOwEImpKA==

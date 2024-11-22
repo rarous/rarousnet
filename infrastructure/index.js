@@ -108,6 +108,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
         RAROUS_WEBLOG_CARDS_SECRET: config.require("weblog-cards-secret"),
         TURNSTILE_SECRET_KEY: turnstile.secret,
         WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
+        SCREENSHOTTER_SECRET: config.require("screenshotter-secret"),
       },
       kvNamespaces: {
         weblog: weblogNS.id,
@@ -118,8 +119,8 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       },
       serviceBindings: [
         {
-          name: "cards",
-          service: "rarousnet-cards",
+          name: "screenshotter",
+          service: "hckr-screenshotter",
         },
       ],
     },
