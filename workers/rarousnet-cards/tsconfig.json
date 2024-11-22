@@ -4,6 +4,6 @@
     "module": "esnext",
     "moduleResolution": "nodenext",
     "lib": ["ES2023"],
-    "types": ["@cloudflare/workers-types/2023-07-01", "@rarousnet/discogs-schedule-worker"]
+    "types": ["@cloudflare/workers-types/2023-07-01", "@rarousnet/cards-worker"]
   }
 }

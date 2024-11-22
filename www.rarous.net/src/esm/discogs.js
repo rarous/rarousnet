@@ -49,11 +49,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
     }
 
     set loaded(isLoaded) {
-      if (isLoaded) {
-        this.setAttribute("loaded", "");
-      } else {
-        this.removeAttribute("loaded");
-      }
+      this.toggleAttribute("loaded", Boolean(isLoaded));
     }
 
     set data(albums) {
