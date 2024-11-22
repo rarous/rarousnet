@@ -84,14 +84,13 @@ async function renderSocialMediaImages({ next, request, env }) {
     return new Response(value, { headers: metadata?.headers ?? headers });
   }
   const params = new URLSearchParams(Object.entries(detail));
-  const url = `https://www.rarous.net/weblog/card?${params}`;
   const screenshotterParams = new URLSearchParams({
-    token: env.SCREENSHOTTER_SECRET,
+    url: `https://www.rarous.net/weblog/card?${params}`,
     selector: "#card",
     type: "png",
-    url,
+    token: env.SCREENSHOTTER_SECRET,
   });
-  const resp = await env.screenshotter.fetch(`https://example.com/?${screenshotterParams}`);
+  const resp = await env.screenshotter.fetch(`https://rarous.net/?${screenshotterParams}`);
   const buffer = await resp.arrayBuffer();
 
   // cache image for one month
