@@ -184,7 +184,7 @@ Díky Cloudflare Workers a jejich novým dovednostem, jsem byl schopný překlop
 do run-time. A to s ne zas tak velkýma změnama. Většina byla přesouvání kusů kódu a jeho případné mazání,
 když se stal nepotřebným.
 
-"Cloudflare Browser Rendering":[https://developers.cloudflare.com/browser-rendering/], umožňuje v serverless
+"Cloudflare Browser Rendering":[https://developers.cloudflare.com/browser-rendering/] umožňuje v serverless
 přístupu používat headless browser. Nepotřebuje hosting, rozbíhat clustery nebo platit nějakou specializovanou
 automatizační službu, která jen přidá velké latence, křehkost a extra náklady.
 
