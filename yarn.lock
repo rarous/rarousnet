@@ -1293,12 +1293,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:9.0.0-beta.19":
-  version: 9.0.0-beta.19
-  resolution: "@hckr_/blendid@npm:9.0.0-beta.19"
+"@hckr_/blendid@npm:9.0.0":
+  version: 9.0.0
+  resolution: "@hckr_/blendid@npm:9.0.0"
   dependencies:
     "@csstools/postcss-gamut-mapping": "npm:2.0.6"
-    "@vitejs/plugin-basic-ssl": "npm:1.1.0"
+    "@vitejs/plugin-basic-ssl": "npm:1.2.0"
     cloudinary: "npm:2.5.1"
     cssnano: "npm:7.0.6"
     del: "npm:8.0.0"
@@ -1322,7 +1322,7 @@ __metadata:
     gulp-svgstore: "npm:9.0.0"
     gulplog: "npm:2.2.0"
     lodash-es: "npm:4.17.21"
-    marked: "npm:15.0.0"
+    marked: "npm:15.0.2"
     marked-gfm-heading-id: "npm:4.1.1"
     marked-highlight: "npm:2.2.1"
     marked-mangle: "npm:1.1.10"
@@ -1341,10 +1341,10 @@ __metadata:
     undertaker-registry: "npm:2.0.0"
     vinyl: "npm:3.0.0"
     vinyl-file: "npm:5.0.0"
-    vite: "npm:6.0.0-beta.10"
+    vite: "npm:6.0.1"
   bin:
     blendid: bin/blendid.js
-  checksum: 10c0/7f7ee1d7b2e703bd6556c05fff91415937c1d19b9889897d6d4579f1aef8b2d2ff2410ecf1afb6cfdd0b74dbeb2499f3f484eea1a65dd87cc24e1f85488c4b4b
+  checksum: 10c0/7fce4c0a094f6038ff2742babed050499ba4242acb909be333ba1a0c297c010b4008985ce2717060e5aef08452500c314a2534abaa777f5fe3d4c18439c34335
   languageName: node
   linkType: hard
 
@@ -2292,7 +2292,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
-    "@hckr_/blendid": "npm:9.0.0-beta.19"
+    "@hckr_/blendid": "npm:9.0.0"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
     open-props: "npm:1.7.7"
@@ -2948,12 +2948,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-basic-ssl@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@vitejs/plugin-basic-ssl@npm:1.1.0"
+"@vitejs/plugin-basic-ssl@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@vitejs/plugin-basic-ssl@npm:1.2.0"
   peerDependencies:
-    vite: ^3.0.0 || ^4.0.0 || ^5.0.0
-  checksum: 10c0/98aadf5c7fd229995c67f973b4fb0f987a378031a4edcc5f714b412c00af12a6ecafb96659e76382ff9f8a831aac5243c74548e2807402ea8b02ec122d29f008
+    vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+  checksum: 10c0/0d360fcca01f91ade6e451edbea09a107ff9e95cd3c3766c7a069d1a168709df92d96c0bd1eccc66e2739a153e07c75a45321ec487450c0da942606200d8441d
   languageName: node
   linkType: hard
 
@@ -9087,12 +9087,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:15.0.0":
-  version: 15.0.0
-  resolution: "marked@npm:15.0.0"
+"marked@npm:15.0.2":
+  version: 15.0.2
+  resolution: "marked@npm:15.0.2"
   bin:
     marked: bin/marked.js
-  checksum: 10c0/717e641a7d4f14a099ceb4f094edf8f6048b84685e5d8e213889711b3f0ccd4756b3c576ce5c7378e0c54fe1ccbb116ef07ca663e18ad457be9a1bbc7b9c4c48
+  checksum: 10c0/6c288ac2b41f1b75671b6a06eea4d5f37bf49d42e93a4a175a7e0331d2fc339cdaef937429cf5e4d0e85b2a65926385cab28bdb4c90ac9f96fdc52cab4018466
   languageName: node
   linkType: hard
 
@@ -11314,7 +11314,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.49, postcss@npm:^8.4.48":
+"postcss@npm:8.4.49, postcss@npm:^8.4.49":
   version: 8.4.49
   resolution: "postcss@npm:8.4.49"
   dependencies:
@@ -14061,16 +14061,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:6.0.0-beta.10":
-  version: 6.0.0-beta.10
-  resolution: "vite@npm:6.0.0-beta.10"
+"vite@npm:6.0.1":
+  version: 6.0.1
+  resolution: "vite@npm:6.0.1"
   dependencies:
     esbuild: "npm:^0.24.0"
     fsevents: "npm:~2.3.3"
-    postcss: "npm:^8.4.48"
+    postcss: "npm:^8.4.49"
     rollup: "npm:^4.23.0"
   peerDependencies:
-    "@types/node": ^18.0.0 || >=20.0.0
+    "@types/node": ^18.0.0 || ^20.0.0 || >=22.0.0
     jiti: ">=1.21.0"
     less: "*"
     lightningcss: ^1.21.0
@@ -14109,7 +14109,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/517e0d84f4439a5ed1234c65e8780e0b2ae3cebf632829cb9dc921c1524fb83617c2b17dc8196511b2fcb0331f929a0ef9a69c0dd8905388c607fae0e5d76594
+  checksum: 10c0/e4d853eb9042ff29fa4d7cee1484738faaee4b1d9dcf786a94783bebb736b39af0afa7ac1a209000530638098d0a1b240b51f509d32addb028b222453f862916
   languageName: node
   linkType: hard
 
