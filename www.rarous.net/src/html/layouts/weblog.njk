@@ -27,7 +27,7 @@
 {% block head %}
   <link rel="feed" href="/weblog/feed/">
   <link rel="alternate" type="text/mf2+html" href="/weblog/feed/" title="rarouš.weblog - všechny články">
-  <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous-weblog"
+  <link rel="alternate" type="application/rss+xml" href="{{ weblog.articlesFeedUrl }}"
         title="rarouš.weblog - poslední články">
   <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/rarous/weblog/comments"
         title="rarouš.weblog - komentáře k článkům">
@@ -56,7 +56,7 @@
   </li>
   <li>
     <a
-      href="https://feeds.feedburner.com/rarous-weblog"
+      href="{{ weblog.articlesFeedUrl }}"
       type="application/rss+xml"
       title="Přihlásit se k odběru pomocí RSS">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

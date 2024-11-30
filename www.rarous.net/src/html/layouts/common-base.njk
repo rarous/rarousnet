@@ -3,10 +3,6 @@
 <head prefix="{{ prefix }}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  {% if images %}
-    <meta http-equiv="delegate-ch"
-          content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
-  {% endif %}
   {% block head_pragma %}{% endblock %}
   <title>{% block title %}{{ title or meta.title }}{% endblock %}</title>
   {% if images %}

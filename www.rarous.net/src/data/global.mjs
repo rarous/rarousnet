@@ -79,6 +79,11 @@ export default {
     email: "ales@roubicek.name",
     web: "https://www.rarous.net/",
   },
+  weblog: {
+    url: "https://www.rarous.net/weblog/",
+    apiEndpoint: "https://www.rarous.net/api/v1/weblog",
+    articlesFeedUrl: "https://feeds.feedburner.com/rarous-weblog",
+  },
   meCard,
   searchParams,
 };

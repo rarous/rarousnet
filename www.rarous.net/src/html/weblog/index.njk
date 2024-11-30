@@ -1,18 +1,18 @@
 {% extends "layouts/weblog.njk" %}
 
+{% set canonicalUrl = weblog.url %}
 {% set contentSchema = "Blog" %}
-{% set contentRole = "feed" %}
 
 {% block head %}
   {{ super() }}
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.rarous.net/weblog/">
+  <meta property="og:url" content="{{ weblog.url }}">
   <meta property="og:title" content="rarouš.weblog">
   <meta property="og:locale" content="cs_CZ">
 {% endblock %}
 
 {% block content %}
-  <section class="feed">
+  <section class="feed" role="feed">
     <article property="blogPost" typeof="BlogPosting">
       <link property="image" href="">
       <header>
@@ -34,7 +34,7 @@
             </li>
           </ul>
         </nav>
-        <gryphoon-weblog api-endpoint="https://www.rarous.net/api/v1/weblog">
+        <gryphoon-weblog api-endpoint="{{ weblog.apiEndpoint }}">
           <gryphoon-webmentions>
           <span class="webmentions like-of">
             &nbsp;|&nbsp;Líbilo se&nbsp;<data></data>
@@ -56,7 +56,7 @@
 
   <section>
     <p>Přihlaš se k odběru:
-      <a property="webFeed" href="https://feeds.feedburner.com/rarous-weblog" type="application/rss+xml">RSS Feed</a>
+      <a property="webFeed" href="{{ weblog.articlesFeedUrl }}" type="application/rss+xml">RSS Feed</a>
       · <a href="/weblog/feed/" rel="feed">HTML Feed</a>
     </p>
   </section>

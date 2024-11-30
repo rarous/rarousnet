@@ -52,7 +52,7 @@
 (def url-month-format (with-locale (formatter "MM") cs))
 (def url-day-format (with-locale (formatter "dd") cs))
 (def iso-format (formatters :date-time))
-(def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
+(def rss-format (formatters :rfc822))
 (defn iso-date [d]
   (unparse iso-format (from-date d)))
 (defn long-date-time [d]
