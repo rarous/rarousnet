@@ -1,0 +1,135 @@
+{% extends "layouts/common-layout.njk" %}
+
+{% set title = "Ooni Classic Pizza (Semolina Remix)" %}
+
+{% block head_stylesheets %}
+  <style>
+    fieldset label {
+      display: block;
+      line-height: 2;
+    }
+    fieldset+fieldset {
+      margin-block-start: 1em;
+    }
+    fieldset+p {
+      margin-block-start: 2em;
+    }
+    label:has(input[type=number]) {
+      display: grid;
+      grid-template-columns: 10ch 6ch 1fr;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% markdown %}
+    # Ooni Classic Pizza
+
+    S pecí [Onni Karu 12G](https://eu.ooni.com/products/ooni-karu-12g) jsem dostal i recept na těsto,
+    který jsem trochu upravil. Recept je na 4 porce a já často potřebuju přepočítávat množství.
+    Chvíli jsem to řešil kalkulačkou (Spotlight) a zápisem přepočtu nejčastejších dvou porcí do notýsku.
+
+    Tohle je pokus to zjednodušit.
+
+    ## Interaktivní recept
+  {% endmarkdown %}
+
+  <form name="recipe">
+    <fieldset>
+      <legend>preference</legend>
+      <label>Počet porcí <input type="number" name="pizzas" value="4" min="1"></label>
+      <label>Semolina <input type="number" name="semolinaRatio" value="0.2" step="0.1" min="0" max="0.2"></label>
+    </fieldset>
+    <fieldset>
+      <legend>kvasnice</legend>
+      <label><input type="radio" name="yeastType" value="dried" checked> sušené</label>
+      <label><input type="radio" name="yeastType" value="active"> droždí</label>
+    </fieldset>
+
+    <p>Do
+      <output name="water">368</output> ml vlažné
+      vody o teplotě <output name="waterTemp">42</output>°C
+      přidáme <output name="yeast">3,5</output> g kvasnic. Na hladině by se po chvíli měly objevovat bublinky = kvasinky makaj.
+    </p>
+
+    <p>V míse smícháme mouku a sůl (
+      <output name="salt">18</output> g). Váha postupně po přidání ukazuje:
+    </p>
+    <ol>
+      <li><span>Semolina</span>
+        <output name="semolina">122,5</output> g
+      </li>
+      <li><span>Mouka <q>00</q></span>
+        <output name="flour">613</output> g
+      </li>
+      <li><span>Sůl</span>
+        <output name="total">631</output> g
+      </li>
+    </ol>
+
+    {% markdown %}
+      Do mísy nalijeme vodu s kvasnicema a mícháme vařečkou než se začně tvořit těsto.
+      potom těsto vyklopíme na pracovní desku a hněteme - zhruba deset minut.
+      Používat techniku nátáhnout a přeložit - jednou rukou si chytnu těsto, druhou
+      přidržím na desce a táhnu. Přeložím zpět a zápěstím zmáčknu. Otočím o 90°a proces opakuju.
+
+      Z těsta vytvořím kuličku a potřu ji lžičkou olivovýho oleje. Těsto vrátím do mísy,
+      zakryju mokrou utěrkou a nechám 2 hodiny kynout při teplotě 27-32°C.
+
+      Po dvou hodinách by mělo těsto nakynout na dvounásobnou velikost.
+
+      Těsto rozdělím na <output name="pizzas">4</output> kusy. Každý kus ještě zvlášť prohnětu
+      a vytvořím z něj hladkou količku. Kuličky vložím do fermentovací nádoby, kterou jsem předtím
+      lehce vysypal Semolinou. Kuličky popráším semolinou, zavřu nádobu a nechám kynout zhruba 30 minut.
+
+      Během těch 30 minut roztopím pec na 350-400°C na kameni (ručička teploměru zhruba na 12h).
+
+      Těsto položím na pracovní desku a pěstí ho veprostřed rozmáčknu. Potom ručkuju jedu podle okrajů a nechám
+      gravitací těsto vytahovat. Snažím se o udržení kruhové symetrie.
+
+      Pokud se v těstě udělá díra, uždibnu z kraje kus těsta a díru jim zalepím.
+
+      Na těsto dám jednu lžíci suga a řádně rozetřu po celé ploše tenké části těsta.
+      Sugo pokapu trochou panenské olivového oleje - spojuje chuti. Přidám oregano, nastrouhanou mozarellu a další
+      obklad dle chuti.
+
+      Pizza se peče kolem 2 minut. Je potřeba ji párkrát otočit, aby se propekla rovnoměrně.
+
+      Po vyndání pizzy z pece je potřeba přiložit, aby byla rozehřátá na další kus.
+    {% endmarkdown %}
+  </form>
+  <script type="module">
+    const form = document.forms.recipe;
+    const ingredients = new Map([
+      ["water", 87],
+      ["salt", 4.5],
+      ["dried-yeast", 0.875],
+      ["active-yeast", 0.65],
+      ["flour", 153.25]
+    ]);
+    const waterTemps = new Map([
+      ["dried", 42],
+      ["active", 32],
+    ]);
+
+    const { water, waterTemp, salt, yeast, semolina, flour, total } = form.elements;
+
+    function update(pizzas, semolinaRatio, yeastType) {
+      water.value = Math.round(pizzas * ingredients.get("water"));
+      waterTemp.value = waterTemps.get(yeastType);
+      salt.value = (pizzas * ingredients.get("salt")).toFixed(1);
+      yeast.value = (pizzas * ingredients.get(`${yeastType}-yeast`)).toFixed(1);
+      semolina.value = (pizzas * semolinaRatio * ingredients.get("flour")).toFixed(1);
+      flour.value = Math.round(pizzas * ingredients.get("flour"));
+      total.value = Math.round(pizzas * ingredients.get("salt") + pizzas * ingredients.get("flour"))
+    }
+
+    form.addEventListener("change", e => {
+      const data = new FormData(e.target.form);
+      const pizzas = Number.parseInt(data.get("pizzas"), 10);
+      const semolinaRation = Number.parseFloat(data.get("semolinaRatio"));
+      const yeastType = data.get("yeastType");
+      update(pizzas, semolinaRation, yeastType);
+    });
+  </script>
+{% endblock %}
