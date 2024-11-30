@@ -1,6 +1,10 @@
+/*
+  Delegate-CH: sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: nosnippet
+  ! Delegate-CH
 
 /kolekce/vinyly
   Cache-Control: public, max-age=3600
