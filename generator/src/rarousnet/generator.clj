@@ -51,10 +51,10 @@
   (with-locale (formatter "MMM d") cs))
 (def url-month-format (with-locale (formatter "MM") cs))
 (def url-day-format (with-locale (formatter "dd") cs))
-(def utc-format (formatters :basic-date-time))
+(def iso-format (formatters :date-time))
 (def rss-format (formatter "EEE, d MMM yyyy HH:mm:ss Z"))
-(defn utc-date [d]
-  (unparse utc-format (from-date d)))
+(defn iso-date [d]
+  (unparse iso-format (from-date d)))
 (defn long-date-time [d]
   (unparse long-date-time-format (from-date d)))
 (defn long-date [dt]
@@ -118,7 +118,7 @@
                                                    (html/set-attr :href (rel-link article)))
   (rdfa "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date-time published))
-                                              (html/set-attr :datetime (utc-date published)))
+                                              (html/set-attr :datetime (iso-date published)))
   (rdfa "BlogPosting" "articleSection") (html/content category)
   (rdfa "BlogPosting" "articleBody") (html/html-content html)
   (rdfa "BlogPosting" "Person" "name") (html/content author)
@@ -141,7 +141,7 @@
   (rdfa "BlogPosting" "headline") (html/content (process-typo title))
   (rdfa "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date-time published))
-                                              (html/set-attr :datetime (utc-date published)))
+                                              (html/set-attr :datetime (iso-date published)))
   (rdfa "BlogPosting" "articleSection") (html/content category)
   (rdfa "BlogPosting" "articleBody") (html/html-content html)
   (rdfa "BlogPosting" "Person" "name") (html/content author)
@@ -166,7 +166,7 @@
   [(meta-n "twitter:title")] (html/set-attr :content title)
   [(meta-n "twitter:description")] (html/set-attr :content description)
   [(meta-n "twitter:image")] (html/set-attr :content (card-image article))
-  [(meta-p "article:published_time")] (html/set-attr :content (utc-date published))
+  [(meta-p "article:published_time")] (html/set-attr :content (iso-date published))
   [(meta-n "fediverse:creator")] (html/set-attr :content (author-fediverse article))
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "syndication")] (if syndication
@@ -211,7 +211,7 @@
     [:article :a] (html/content (process-typo title))
     [:article :a] (html/set-attr :href (rel-link article))
     [:article :time] (html/content (short-date published))
-    [:article :time] (html/set-attr :datetime (utc-date published))))
+    [:article :time] (html/set-attr :datetime (iso-date published))))
 
 (defsnippet year-items "weblog/category.html" [:#content :section] [years]
   (html/clone-for [{:keys [year articles]} years]
@@ -300,8 +300,11 @@
              :file/dir "weblog"
              :file/content rss}))))
 
+(defn render-html [template]
+  (string/replace (apply str template) #"\s/>" ">"))
+
 (defn page [article]
-    {:file/content (apply str (blogpost-template article))
+    {:file/content (render-html (blogpost-template article))
      :file/dir "weblog"
      :file/name (:file-name article)})
 
@@ -309,7 +312,7 @@
     (async/onto-chan! write-file-ch (map page articles)))
 
 (defn articles-index [{:keys [articles]} write-file-ch]
-  (let [html (apply str (index-template (latest 5 articles)))]
+  (let [html (render-html (index-template (latest 5 articles)))]
     (go (>! write-file-ch
             {:file/name "index.html"
              :file/dir "weblog"
@@ -321,7 +324,7 @@
               :page-title (str "Tag " tag)
               :url file-name
               :years items}
-        html (apply str (tag-template data))]
+        html (render-html (tag-template data))]
     {:file/name file-name
      :file/dir "weblog"
      :file/content html}))
@@ -356,7 +359,7 @@
                 :page-title (str "Denník " (long-date (date-time year month day)))
                 :url file-name
                 :years [{:year year :articles articles}]}
-          html (apply str (tag-template data))]
+          html (render-html (tag-template data))]
       {:file/name file-name
        :file/dir "weblog"
        :file/content html})))
@@ -375,7 +378,7 @@
                 :page-title (str "Měsíčník " (long-month-year (date-time year month)))
                 :url file-name
                 :years [{:year year :articles articles}]}
-          html (apply str (tag-template data))]
+          html (render-html (tag-template data))]
       (conj
         (map (day-index year month) items)
         {:file/name file-name
@@ -396,7 +399,7 @@
               :page-title (str "Ročenka " year)
               :url file-name
               :years [{:year year :articles articles}]}
-        html (apply str (tag-template data))]
+        html (render-html (tag-template data))]
     (conj
       (mapcat (month-index year) items)
       {:file/name file-name
