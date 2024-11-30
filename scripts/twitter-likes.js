@@ -4,8 +4,8 @@ async function main({ token }) {
   const { default: data } = await import("./data/twitter-likes.json", {
     with: { type: "json" },
   });
-  const target = "https://www.rarous.net/weblog/2024/10/21/temata-zmena-uzivatelskych-preferenci-vzhledu";
-  const source = "https://x.com/alesroubicek/status/1848407097454493708";
+  const target = "https://www.rarous.net/weblog/2024/09/25/hckr-radio-omnious-morning";
+  const source = "https://x.com/alessiobusta/status/1838898608050970854";
   const { entries } = data.favoriters_timeline.timeline.instructions[0];
   const users = entries
     .filter(x => x.content.entryType === "TimelineTimelineItem")

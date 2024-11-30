@@ -1,5 +1,5 @@
-import { parseArgs } from "jsr:@std/cli/parse-args";
 import { delay } from "jsr:@std/async/delay";
+import { parseArgs } from "jsr:@std/cli/parse-args";
 
 // Open Network tab in Dev Tools, open reactions list by clicking on Names under post, there will be `graphql?variables=` request.
 // Reactions are returned with a custom MIME type not decoded in Browser Network view.
@@ -9,8 +9,8 @@ async function main({ token }) {
   const {
     default: { included },
   } = await import("./data/li-likes.json", { with: { type: "json" } });
-  const target = "https://www.rarous.net/weblog/2024/10/21/temata-zmena-uzivatelskych-preferenci-vzhledu";
-  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7255459066544558080/";
+  const target = "https://www.rarous.net/weblog/2024/11/19/generator-og-image-pomoci-cloudflare-workers.html";
+  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7264614592171929600/";
   const reactions = included.filter(x => x["$type"] === "com.linkedin.voyager.dash.social.Reaction");
   for (const reaction of reactions) {
     const userId = reaction.actorUrn;
@@ -30,7 +30,7 @@ async function main({ token }) {
           type: "entry",
           author: {
             name: user.title.text,
-            photo: `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${rootUrl}${imageId}`,
+            photo: `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${encodeURIComponent(rootUrl)}${encodeURIComponent(imageId)}`,
             url: user.navigationUrl,
           },
           url: `${source}#liked-by-${userId}`,
