@@ -8,7 +8,7 @@
   "files": {
     "include": ["infrastructure", "scripts", "tests", "workers", "www.rarous.net"],
     "ignoreUnknown": false,
-    "ignore": ["www.rarous.net/src/static/assets/js/prism.js"]
+    "ignore": ["www.rarous.net/src/static/assets/js/prism.js", "www.rarous.net/src/esm/sha256.js"]
   },
   "formatter": {
     "enabled": true,
