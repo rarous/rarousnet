@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types=1); error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
 if (@!include __DIR__ . '/vendor/autoload.php') {
   die('Install packages using `composer install`');
@@ -45,7 +45,7 @@ function scriptHandler(Texy\HandlerInvocation $invocation, $command, array $args
   }
 }
 
-function imagehandler(Texy\HandlerInvocation $invocation, Texy\Image $image, Texy\Link $link = null): ?Texy\HtmlElement
+function imagehandler(Texy\HandlerInvocation $invocation, Texy\Image $image, ?Texy\Link $link = null): ?Texy\HtmlElement
 {
   $el = $invocation->proceed();
   // enables automatic resizing on cloudinary via Client Hints
