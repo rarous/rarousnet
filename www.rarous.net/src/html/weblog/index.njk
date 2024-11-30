@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-  <section class="feed" role="feed">
+  <div class="feed" role="feed">
     <article property="blogPost" typeof="BlogPosting">
       <link property="image" href="">
       <header>
@@ -52,13 +52,13 @@
         </gryphoon-weblog>
       </footer>
     </article>
-  </section>
+  </div>
 
-  <section>
+  <div>
     <p>Přihlaš se k odběru:
       <a property="webFeed" href="{{ weblog.articlesFeedUrl }}" type="application/rss+xml">RSS Feed</a>
       · <a href="/weblog/feed/" rel="feed">HTML Feed</a>
     </p>
-  </section>
+  </div>
 {% endblock %}
 

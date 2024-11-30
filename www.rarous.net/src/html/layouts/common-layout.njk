@@ -8,7 +8,7 @@
     {% block headerContent %}{% endblock %}
     <nav aria-label="Hlavní menu">
       <a href="/" title="Přejít na domovskou stránku Aleše Roubíčka">
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="60" height="43">
+        <svg class="logo" viewBox="0 0 80 64" width="60" height="43">
           <path fill="#b4b4b4"
                 d="M20.215 13.222 3.096 52.548H9.88l3.604-8.427h13.462l3.604 8.427h6.731L20.215 13.222M15.869 38.61l4.346-10.229 4.346 10.23h-8.692"/>
           <path fill="#b4b4b4"
@@ -35,10 +35,11 @@
           <a href="#preferences"
              title="otevřít menu nastavení"
              onclick="event.preventDefault();preferencesDialog.showModal()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--icon-color)"
-                 viewBox="0 -960 960 960" transform="scale(0.8)">
-              <path
-                d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z"/>
+            <svg width="24" height="24" fill="var(--icon-color)" viewBox="0 -960 960 960">
+              <g transform="scale(0.8)">
+                <path
+                  d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z"/>
+              </g>
             </svg>
           </a>
         </li>
@@ -46,8 +47,7 @@
           <a href="#hamburger"
              title="otevřít menu"
              onclick="event.preventDefault();menuDialog.showModal()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                 fill="var(--icon-color)">
+            <svg viewBox="0 0 24 24" fill="var(--icon-color)">
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
             </svg>
@@ -56,7 +56,9 @@
       </ul>
     </nav>
   </header>
-  <main typeof="{{ contentSchema }}" vocab="https://schema.org/" id="content" role="{{ contentRole }}" class="{{ contentClass }}">
+  <main typeof="{{ contentSchema or "WebPage" }}" vocab="https://schema.org/" id="content"
+        {% if contentRole %}role="{{ contentRole }}"{% endif %}
+        {% if contentClass %}class="{{ contentClass }}"{% endif %}>
     {% block content %}{% endblock %}
   </main>
   <footer class="footer">
