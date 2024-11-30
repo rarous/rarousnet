@@ -29,7 +29,7 @@ function transform(el, transformations) {
  */
 function itemsCounter(section, items) {
   transform(section, {
-    "data": {
+    data: {
       value: items.length,
       textContent: `${items.length}x`,
     },
@@ -66,7 +66,6 @@ function injectItems(section, template, items, applyTemplate) {
  */
 export function defWebMentions({ HTMLElement, customElements }) {
   class WebMentions extends HTMLElement {
-
     static register(tagName = "gryphoon-webmentions") {
       this.tagName = tagName;
       customElements.define(tagName, this);
@@ -81,13 +80,13 @@ export function defWebMentions({ HTMLElement, customElements }) {
 
       function itemTemplate(content, item, section) {
         transform(content, {
-          "a": {
+          a: {
             href: item.url,
             title: item.author.name,
-            classList: (x) => x.add(section.id),
+            classList: x => x.add(section.id),
           },
-          "time": { dateTime: item.published ?? item["wm-received"] },
-          "img": {
+          time: { dateTime: item.published ?? item["wm-received"] },
+          img: {
             alt: item.author.name,
             src: item.author.photo,
           },
@@ -264,14 +263,13 @@ function gravatarUrl(item) {
  */
 export function defComments({ HTMLElement, customElements, document }) {
   class Comments extends HTMLElement {
-
     static register(tagName = "gryphoon-comments") {
       this.tagName = tagName;
       customElements.define(tagName, this);
     }
 
     get lang() {
-      return this.getAttribute("lang") ?? document.documentElement.lang ?? "cs"
+      return this.getAttribute("lang") ?? document.documentElement.lang ?? "cs";
     }
 
     /**
@@ -333,7 +331,6 @@ export function defComments({ HTMLElement, customElements, document }) {
  */
 export function defWeblog({ HTMLElement, customElements, location }, { Comments, WebMentions }) {
   class Weblog extends HTMLElement {
-
     static register(tagName = "gryphoon-weblog") {
       this.tagName = tagName;
       WebMentions.register();
@@ -354,11 +351,7 @@ export function defWeblog({ HTMLElement, customElements, location }, { Comments,
     }
 
     set loaded(isLoaded) {
-      if (isLoaded) {
-        this.setAttribute("loaded", "");
-      } else {
-        this.removeAttribute("loaded");
-      }
+      this.toggleAttribute("loaded", Boolean(isLoaded));
     }
 
     async connectedCallback() {

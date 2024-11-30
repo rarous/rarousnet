@@ -20,7 +20,8 @@ body > footer {
     filter: saturate(0.2);
     transition: filter ease-in-out 200ms;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       filter: saturate(1);
     }
   }
@@ -62,13 +63,13 @@ body > footer {
     }
 
     button {
-      font: 700 1rem/2 var(--main-font);
+      font: 700 1rem / 2 var(--main-font);
       border: none;
       border-radius: 24px;
       margin-block-start: 1em;
       padding-inline: 2em;
       color: white;
-      background-color: #1DB954;
+      background-color: #1db954;
     }
   }
 }
@@ -80,7 +81,7 @@ body > footer {
 
   @media screen and (orientation: landscape) {
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
   }
 
   @media screen and (orientation: portrait) {
