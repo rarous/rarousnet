@@ -1,5 +1,6 @@
 import { defComments, defWebMentions } from "@rarousnet/website/gryphoon.js";
 import { parseHTML } from "linkedom/worker";
+import { highlightAllUnder } from "../../src/static/assets/js/prism.js";
 
 /**
  * @typedef {Object} Data
@@ -52,6 +53,8 @@ async function renderWebComponents({ next, request, env }) {
 
       renderComments(window, weblog.comments);
       renderWebMentions(window, weblog.webmentions);
+
+      highlightAllUnder(document);
 
       return new Response(document.toString(), resp);
     }
