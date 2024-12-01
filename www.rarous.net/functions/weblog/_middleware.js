@@ -90,7 +90,9 @@ async function renderSocialMediaImages({ next, request, env }) {
     type: "png",
     token: env.SCREENSHOTTER_SECRET,
   });
-  const resp = await env.screenshotter.fetch(`https://rarous.net/?${screenshotterParams}`);
+  const resp = await env.screenshotter.fetch(`https://rarous.net/?${screenshotterParams}`, {
+    headers: request.headers,
+  });
   const buffer = await resp.arrayBuffer();
 
   // cache image for one month
