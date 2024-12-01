@@ -25,6 +25,7 @@ h2,
 article h1 {
   font: var(--heading-font);
   font-size: var(--font-size-fluid-2);
+  font-variation-settings: "opsz" 20, "GRAD" 600, "YAXS" 1000;
   letter-spacing: -1px;
   text-wrap: balance;
   margin: 0;
@@ -38,13 +39,14 @@ h2 a {
 h3 {
   color: var(--h3-color, var(--text-color));
   font: 500 1.5em var(--headings-font);
-  font-variation-settings: "wdth" 60;
+  font-variation-settings: "wdth" 60, "opsz" 20, "GRAD" 500, "YAXS" 1000;
   margin: 1.5em 0 0.25em;
 }
 
 h4 {
   color: var(--h4-color, var(--text-color));
   font: 500 1.25em var(--headings-font);
+  font-variation-settings: "opsz" 20, "GRAD" 400, "YAXS" 1000;
   line-height: 1.25;
   margin: 1.5em 0 0.25em;
 }
