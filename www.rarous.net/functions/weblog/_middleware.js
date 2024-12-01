@@ -46,18 +46,15 @@ async function renderWebComponents({ next, request, env }) {
   const resp = await next();
   const contentType = resp.headers.get("content-type");
   if (resp.ok && contentType?.startsWith("text/html")) {
+    const html = await resp.text();
+    const { document, window } = parseHTML(html);
     const weblog = await getDetail(env.weblog, request.url);
     if (weblog.comments.length || weblog.webmentions.length) {
-      const html = await resp.text();
-      const { document, window } = parseHTML(html);
-
       renderComments(window, weblog.comments);
       renderWebMentions(window, weblog.webmentions);
-
-      highlightAllUnder(document);
-
-      return new Response(document.toString(), resp);
     }
+    highlightAllUnder(document);
+    return new Response(document.toString(), resp);
   }
   return resp;
 }
