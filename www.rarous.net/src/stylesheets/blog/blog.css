@@ -26,6 +26,7 @@ article h1 {
   font: var(--heading-font);
   font-size: var(--font-size-fluid-2);
   font-variation-settings: "opsz" 20, "GRAD" 600, "YAXS" 1000;
+  font-feature-settings: "ss11";
   letter-spacing: -1px;
   text-wrap: balance;
   margin: 0;
