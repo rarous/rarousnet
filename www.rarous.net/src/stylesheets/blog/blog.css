@@ -247,10 +247,12 @@ iframe.player {
 }
 
 article .info {
-  font: 0.625em var(--main-font);
+  font-family: var(--headings-font);
+  font-size: 0.625em;
+  font-feature-settings: "ss09";
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 0.5em 0 1em;
+  margin-block: 0.5em 1em;
 }
 
 @supports (initial-letter: 1) {
@@ -287,10 +289,12 @@ article footer {
 }
 
 .category-listing {
-  font-family: var(--code-font);
+  font-family: var(--heading-font);
+  font-feature-settings: "ss09";
 
   h2 {
     margin-block-end: 1em;
+    font-feature-settings: "ss11";
   }
 
   section {
@@ -306,9 +310,6 @@ article footer {
   }
 
   h3 {
-    font-family: var(--headings-font);
-    font-size: 2rem;
-    line-height: 1.25;
     margin: 0;
   }
 
@@ -318,7 +319,9 @@ article footer {
     grid-column: 2 / 4;
 
     h4 {
-      font: 800 1.5em var(--headings-font);
+      font-family: var(--headings-font);
+      font-weight: 800;
+      font-size: 1.5em;
       margin: 0;
       text-wrap: balance;
       grid-area: title;

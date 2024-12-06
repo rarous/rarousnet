@@ -47,7 +47,9 @@ export function defSettingsForm({ HTMLElement, customElements, document }) {
         localStorage.setItem("settings", JSON.stringify(Object.fromEntries(data)));
       });
 
-      const settings = Object.entries(JSON.parse(localStorage.getItem("settings") ?? "{}"));
+      const settings = Object.entries(
+        JSON.parse(localStorage.getItem("settings") ?? `{"--main-font":"var(--innovator-grotesk)"}`),
+      );
       updateSettings(root, settings);
       updateForm(form, settings);
     }
