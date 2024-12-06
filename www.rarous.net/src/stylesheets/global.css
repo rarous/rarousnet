@@ -159,6 +159,7 @@ h2 {
   font-weight: 700;
   font-size: 2em;
   font-variation-settings: "wdth" 60, "opsz" 20, 'GRAD' 500, "YAXS" 1000;
+  font-feature-settings: "ss10";
 }
 
 h3 {
@@ -167,7 +168,7 @@ h3 {
   font-weight: 500;
   font-size: 1.5em;
   font-variation-settings: "wdth" 60, "opsz" 20, "GRAD" 500, "YAXS" 1000;
-  font-feature-settings: "ss09";
+  font-feature-settings: "ss10";
   margin-block: 1.5em 0.25em;
 }
 
@@ -178,7 +179,7 @@ h4 {
   font-size: 1.25em;
   line-height: 1.25;
   font-variation-settings: "opsz" 20, "GRAD" 400, "YAXS" 1000;
-  font-feature-settings: "ss09";
+  font-feature-settings: "ss10";
   margin-block: 1.5em 0.25em;
 }
 
