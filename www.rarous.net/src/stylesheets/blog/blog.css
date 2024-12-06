@@ -290,7 +290,6 @@ article footer {
 
 .category-listing {
   font-family: var(--heading-font);
-  font-feature-settings: "ss09";
 
   h2 {
     margin-block-end: 1em;
@@ -311,6 +310,7 @@ article footer {
 
   h3 {
     margin: 0;
+    font-feature-settings: "ss09";
   }
 
   article {
@@ -322,13 +322,15 @@ article footer {
       font-family: var(--headings-font);
       font-weight: 800;
       font-size: 1.5em;
-      margin: 0;
+      font-feature-settings: "ss11";
       text-wrap: balance;
+      margin: 0;
       grid-area: title;
     }
 
     time {
       font-size: 1em;
+      font-feature-settings: "ss09";
       line-height: 2;
       grid-area: date;
     }
