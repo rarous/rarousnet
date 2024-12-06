@@ -25,7 +25,7 @@
   --lexend: "Lexend";
   --iosevka: Iosevka, "Iosevka Web";
   --main-font: var(--innovator-grotesk), var(--font-serif);
-  --headings-font: var(--agrandir), var(--font-serif);
+  --headings-font: var(--agrandir), Impact, var(--font-serif);
   --code-font: var(--iosevka), var(--font-mono);
   --content-font: var(--main-font);
 
@@ -68,12 +68,6 @@
   color-scheme: light dark;
   interpolate-size: allow-keywords;
   accent-color: var(--primary-color);
-}
-
-@container style(--main-font: "Innovator Grotesk") {
-  body {
-    font-feature-settings: "ss01", "ss02";
-  }
 }
 
 @view-transition {
@@ -163,16 +157,18 @@ h2 {
   font-variation-settings: "wdth" 60, "opsz" 20, 'GRAD' 500, "YAXS" 1000;
 }
 
-p,
-ul,
-ol,
-dl {
+p, ul, ol, dl {
   font: 1em var(--content-font);
   line-height: 1.5;
   text-wrap: pretty;
   margin: 0.125em 0 1em;
   padding: 0;
   max-width: 48rem;
+}
+@container root style(--main-font: "Innovator Grotesk") {
+  p, ul, ol, dl {
+    font-feature-settings: "ss01", "ss02";
+  }
 }
 
 :where(a) {
