@@ -4,7 +4,7 @@
  */
 function updateSettings(root, data) {
   for (const [key, value] of data) {
-    root.dataset[key] = value;
+    root.style.setProperty(key, value);
   }
 }
 

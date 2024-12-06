@@ -1,23 +1,32 @@
 @property --icon-size {
   syntax: "<length>";
   inherits: true;
+  initial-value: unset;
 }
 
 @property --icon-color {
   syntax: "<color>";
   inherits: true;
+  initial-value: unset;
+}
+
+@property --main-font {
+  syntax: "<font>";
+  inherits: true;
+  initial-value: unset;
 }
 
 :root {
   --agrandir: Agrandir, "Neue Montreal", sans-serif;
-  --innovator-grotesk: "Innovator Grotesk", var(--font-sans);
-  --atkinson-hyperlegible: "Atkinson Hyperlegible", var(--font-sans);
-  --opendyslexic: "OpenDyslexic", var(--font-sans);
-  --andika: "AndikaW", cursive;
-  --lexend: "Lexend", var(--font-sans);
-  --main-font: var(--innovator-grotesk);
-  --headings-font: var(--agrandir);
-  --code-font: Iosevka, "Iosevka Web", var(--font-mono);
+  --innovator-grotesk: "Innovator Grotesk";
+  --atkinson-hyperlegible: "Atkinson Hyperlegible";
+  --opendyslexic: "OpenDyslexic";
+  --andika: "AndikaW";
+  --lexend: "Lexend";
+  --iosevka: Iosevka, "Iosevka Web";
+  --main-font: var(--innovator-grotesk), var(--font-serif);
+  --headings-font: var(--agrandir), var(--font-serif);
+  --code-font: var(--iosevka), var(--font-mono);
   --content-font: var(--main-font);
 
   --primary-hue: 38.139;
@@ -61,92 +70,10 @@
   accent-color: var(--primary-color);
 }
 
-:root[data-theme='dark'] {
-  color-scheme: dark !important;
-}
-
-:root[data-theme='light'] {
-  color-scheme: light !important;
-}
-
-[data-font-family='innovator'] {
-  --main-font: var(--innovator-grotesk);
-}
-
-[data-font-family='hyperlegible'] {
-  --main-font: var(--atkinson-hyperlegible);
-}
-
-[data-font-family='dyslexic'] {
-  --main-font: var(--opendyslexic);
-}
-
-[data-font-family='andika'] {
-  --main-font: var(--andika);
-}
-
-[data-font-family='lexend'] {
-  --main-font: var(--lexend);
-}
-
-[data-font-family='dyslexic'] {
-  --main-font: var(--opendyslexic);
-}
-
-[data-font-family='system-ui'] {
-  --main-font: var(--font-system-ui);
-}
-
-[data-font-family='ui-serif'] {
-  --main-font: var(--font-serif);
-}
-
-[data-font-family='transitional'] {
-  --main-font: var(--font-transitional);
-}
-
-[data-font-family='old-style'] {
-  --main-font: var(--font-old-style);
-}
-
-[data-font-family='humanist'] {
-  --main-font: var(--font-humanist);
-}
-
-[data-font-family='geometric-humanist'] {
-  --main-font: var(--font-geometric-humanist);
-}
-
-[data-font-family='classical-humanist'] {
-  --main-font: var(--font-classical-humanist);
-}
-
-[data-font-family='neo-grotesque'] {
-  --main-font: var(--font-neo-grotesque);
-}
-
-[data-font-family='industrial'] {
-  --main-font: var(--font-industrial);
-}
-
-[data-font-family='rounded-sans'] {
-  --main-font: var(--font-rounded-sans);
-}
-
-[data-font-family='slab-serif'] {
-  --main-font: var(--font-slab-serif);
-}
-
-[data-font-family='antique'] {
-  --main-font: var(--font-antique);
-}
-
-[data-font-family='didone'] {
-  --main-font: var(--font-didone);
-}
-
-[data-font-family='handwritten'] {
-  --main-font: var(--font-handwritten);
+@container style(--main-font: "Innovator Grotesk") {
+  body {
+    font-feature-settings: "ss01", "ss02";
+  }
 }
 
 @view-transition {
@@ -170,6 +97,7 @@ html {
   --outset: 0px;
 
   block-size: 100%;
+  container-name: root;
 
   @media (min-width: 40em) {
     --margin: var(--spacer, 2em);

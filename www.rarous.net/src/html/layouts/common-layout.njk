@@ -92,11 +92,11 @@
       <form method="dialog">
         <h2>Nastavení</h2>
         <fieldset class="theme">
-          <legend>Barevné téma</legend>
+          <legend>Barevné schéma</legend>
           <ul>
-            <li><label><input type="radio" name="theme" value="auto" checked> Automaticky</label></li>
-            <li><label><input type="radio" name="theme" value="light"> Světlé</label></li>
-            <li><label><input type="radio" name="theme" value="dark"> Tmavé</label></li>
+            <li><label><input type="radio" name="color-scheme" value="auto" checked> Automaticky</label></li>
+            <li><label><input type="radio" name="color-scheme" value="light"> Světlé</label></li>
+            <li><label><input type="radio" name="color-scheme" value="dark"> Tmavé</label></li>
           </ul>
         </fieldset>
         <fieldset class="fonts">
@@ -105,55 +105,71 @@
             <section>
               <h3>rarouš default</h3>
               <ul>
-                <li><label data-font-family="innovator"><input type="radio" name="fontFamily" value="innovator"
-                                                               checked>
+                <li><label style="font-family: var(--innovator-grotesk)"><input type="radio" name="--main-font"
+                                                                                value="var(--innovator-grotesk)"
+                                                                                checked>
                     Innovator Grotesk</label></li>
               </ul>
               <h3>Přístupnější fonty</h3>
               <ul>
-                <li><label data-font-family="hyperlegible"><input type="radio" name="fontFamily" value="hyperlegible">
+                <li><label style="font-family: var(--atkinson-hyperlegible)"><input type="radio" name="--main-font"
+                                                                                    value="var(--atkinson-hyperlegible)">
                     Atkinson Hyperlegible</label></li>
-                <li><label data-font-family="andika"><input type="radio" name="fontFamily" value="andika">
+                <li><label style="font-family: var(--andika)"><input type="radio" name="--main-font"
+                                                                     value="var(--andika)">
                     Andika</label></li>
-                <li><label data-font-family="lexend"><input type="radio" name="fontFamily" value="lexend">
+                <li><label style="font-family: var(--lexend)"><input type="radio" name="--main-font"
+                                                                     value="var(--lexend)">
                     Lexend</label></li>
-                <li><label data-font-family="dyslexic"><input type="radio" name="fontFamily" value="dyslexic">
+                <li><label style="font-family: var(--opendyslexic)"><input type="radio" name="--main-font"
+                                                                           value="var(--opendyslexic)">
                     OpenDyslexic</label></li>
               </ul>
             </section>
             <section>
               <h3><a href="https://moderfontstacks.com/">Modern font stacks</a></h3>
               <ul>
-                <li><label data-font-family="system-ui"><input type="radio" name="fontFamily" value="system-ui">
+                <li><label style="font-family: var(--font-system-ui)"><input type="radio" name="--main-font"
+                                                                             value="var(--font-system-ui)">
                     System UI</label></li>
-                <li><label data-font-family="ui-serif"><input type="radio" name="fontFamily" value="ui-serif">
+                <li><label style="font-family: var(--font-serif)"><input type="radio" name="--main-font"
+                                                                         value="var(--font-serif)">
                     Serif</label></li>
-                <li><label data-font-family="transitional"><input type="radio" name="fontFamily" value="transitional">
+                <li><label style="font-family: var(--font-transitional)"><input type="radio" name="--main-font"
+                                                                                value="var(--font-transitional)">
                     Transitional</label></li>
-                <li><label data-font-family="old-style"><input type="radio" name="fontFamily" value="old-style">
+                <li><label style="font-family: var(--font-old-style)"><input type="radio" name="--main-font"
+                                                                             value="var(--font-old-style)">
                     Old style</label></li>
-                <li><label data-font-family="humanist"><input type="radio" name="fontFamily" value="humanist">
+                <li><label style="font-family: var(--font-humanist)"><input type="radio" name="--main-font"
+                                                                            value="var(--font-humanist)">
                     Humanist</label></li>
-                <li><label data-font-family="geometric-humanist"><input type="radio" name="fontFamily"
-                                                                        value="geometric-humanist">
+                <li><label style="font-family: var(--font-geometric-humanist)"><input type="radio" name="--main-font"
+                                                                                      value="var(--font-geometric-humanist)">
                     Geometric Humanist</label></li>
-                <li><label data-font-family="classical-humanist"><input type="radio" name="fontFamily"
-                                                                        value="classical-humanist">
+                <li><label style="font-family: var(--font-classical-humanist)"><input type="radio" name="--main-font"
+                                                                                      value="var(--font-classical-humanist)">
                     Classical Humanist</label></li>
-                <li><label data-font-family="neo-grotesque"><input type="radio" name="fontFamily"
-                                                                   value="neo-grotesque">
+                <li><label style="font-family: var(--font-neo-grotesque)"><input type="radio" name="--main-font"
+                                                                                 value="var(--font-neo-grotesque)">
                     Neo Grotesque</label></li>
-                <li><label data-font-family="industrial"><input type="radio" name="fontFamily" value="industrial">
+                <li><label style="font-family: var(--font-industrial)"><input type="radio" name="--main-font"
+                                                                              value="var(--font-industrial)">
                     Industrial</label></li>
-                <li><label data-font-family="rounded-sans"><input type="radio" name="fontFamily" value="rounded-sans">
+                <li><label style="font-family: var(--font-rounded-sans)"><input type="radio" name="--main-font"
+                                                                                value="var(--font-rounded-sans)">
                     Rounded Sans</label></li>
-                <li><label data-font-family="slab-serif"><input type="radio" name="fontFamily" value="slab-serif">
+                <li><label style="font-family: var(--font-slab-serif)"><input type="radio" name="--main-font"
+                                                                              value="var(--font-slab-serif)">
                     Slab Serif</label></li>
-                <li><label data-font-family="antique"><input type="radio" name="fontFamily" value="antique">
+                <li><label style="font-family: var(--font-antique)"><input type="radio" name="--main-font"
+                                                                           value="var(--font-antique)">
                     Antique</label></li>
-                <li><label data-font-family="didone"><input type="radio" name="fontFamily" value="didone">
+                <li><label style="font-family: var(--font-didone)"><input type="radio" name="--main-font"
+                                                                          value="var(--font-didone)">
                     Didone</label></li>
-                <li><label data-font-family="handwritten"><input type="radio" name="fontFamily" value="handwritten">
+                <li><label style="font-family: var(--font-handwritten)"><input type="radio" name="--main-font"
+                                                                               value="var(--font-handwritten)">
                     Handwritten</label></li>
               </ul>
             </section>
@@ -167,7 +183,7 @@
   </dialog>
   {% block dialogs %}{% endblock %}
   <script type="module">
-    if (!HTMLDialogElement) {
+    if (!window.HTMLDialogElement) {
       // <dialog> polyfill
       await import("https://cdn.jsdelivr.net/gh/nuxodin/dialog-polyfill@1.4.2/dialog.min.js");
     }
