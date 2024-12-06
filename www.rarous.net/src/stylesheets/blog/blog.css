@@ -225,7 +225,7 @@ iframe.player {
 #content {
   --body-column: extra;
   display: block grid;
-  grid: inherit;
+  grid-template-columns: subgrid;
 
   anchor-name: --content;
   background-color: var(--content-background);
@@ -233,10 +233,10 @@ iframe.player {
   color: var(--content-color);
 
   > * {
-    grid-column: main;
+    grid-column: var(--content-column, main);
   }
-  > :is(h2, section, article, gryphoon-weblog) {
-    grid-column: wide;
+  > :is(h2, section, article, gryphoon-weblog, .feed) {
+    grid-column: var(--content-column, wide);
   }
 }
 
