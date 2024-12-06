@@ -36,21 +36,6 @@ h2 a {
   text-decoration: none;
 }
 
-h3 {
-  color: var(--h3-color, var(--text-color));
-  font: 500 1.5em var(--headings-font);
-  font-variation-settings: "wdth" 60, "opsz" 20, "GRAD" 500, "YAXS" 1000;
-  margin: 1.5em 0 0.25em;
-}
-
-h4 {
-  color: var(--h4-color, var(--text-color));
-  font: 500 1.25em var(--headings-font);
-  font-variation-settings: "opsz" 20, "GRAD" 400, "YAXS" 1000;
-  line-height: 1.25;
-  margin: 1.5em 0 0.25em;
-}
-
 blockquote {
   border-left: var(--border-width) solid var(--border-color);
   color: oklch(0.51 0 89.876);
@@ -60,7 +45,8 @@ blockquote {
 
 blockquote,
 blockquote p {
-  font: 1.5rem var(--citation-font);
+  font-family: var(--citation-font);
+  font-size: 1.5rem;
 }
 
 aside {

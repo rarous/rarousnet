@@ -144,7 +144,9 @@ body {
 }
 
 h1 {
-  font: 800 2.5em var(--headings-font);
+  font-family: var(--headings-font);
+  font-weight: 800;
+  font-size: 2.5em;
   font-variation-settings: "opsz" 20, "GRAD" 600, "YAXS" 1000;
   letter-spacing: -1px;
   text-wrap: balance;
@@ -153,12 +155,35 @@ h1 {
 }
 
 h2 {
-  font: 700 2em var(--headings-font);
+  font-family: var(--headings-font);
+  font-weight: 700;
+  font-size: 2em;
   font-variation-settings: "wdth" 60, "opsz" 20, 'GRAD' 500, "YAXS" 1000;
 }
 
+h3 {
+  color: var(--h3-color, var(--text-color));
+  font-family: var(--headings-font);
+  font-weight: 500;
+  font-size: 1.5em;
+  font-variation-settings: "wdth" 60, "opsz" 20, "GRAD" 500, "YAXS" 1000;
+  font-feature-settings: "ss09";
+  margin-block: 1.5em 0.25em;
+}
+
+h4 {
+  color: var(--h4-color, var(--text-color));
+  font-family: var(--headings-font);
+  font-weight: 500;
+  font-size: 1.25em;
+  line-height: 1.25;
+  font-variation-settings: "opsz" 20, "GRAD" 400, "YAXS" 1000;
+  font-feature-settings: "ss09";
+  margin-block: 1.5em 0.25em;
+}
+
 p, ul, ol, dl {
-  font: 1em var(--content-font);
+  font-family: var(--content-font);
   line-height: 1.5;
   text-wrap: pretty;
   margin: 0.125em 0 1em;
@@ -419,7 +444,9 @@ dialog {
   }
 
   button {
-    font: 1.25rem/2 var(--main-font);
+    font-family: var(--main-font);
+    font-size: 1.25rem;
+    line-height: 2;
     padding: 0 2em;
     border: var(--border-width) solid var(--border-color)
   }
