@@ -23,7 +23,7 @@
 
 h2,
 article h1 {
-  font: var(--heading-font);
+  font-family: var(--heading-font);
   font-size: var(--font-size-fluid-2);
   font-variation-settings: "opsz" 20, "GRAD" 600, "YAXS" 1000;
   font-feature-settings: "ss11";
