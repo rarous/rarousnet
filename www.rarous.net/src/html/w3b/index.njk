@@ -10,12 +10,61 @@
         title="W3B - výběr z článků - čtení doporučené Alešem Roubíčkem">
 {% endblock %}
 
+{% block head_stylesheets %}
+<style>
+  .feed {
+    display: grid;
+    row-gap: 2em;
+  }
+  article h2 {
+    font-size: 1.5em;
+    margin-block: 0;
+  }
+  article p {
+    margin-block: 0;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
   <hgroup>
     <h1>W3B - Výběr z článků</h1>
     <p>Ručně vybíráno Alešem Roubíčkem</p>
   </hgroup>
-  <p>Na stránce se pracuje. Zatím se můžete
+
+  <div role="feed" class="feed">
+    <template>
+      <article typeof="BlogPosting" class="h-entry">
+        <h2 itemprop="headline" class="p-name"><a itemprop="sameAs" class="u-url" href=""></a></h2>
+        <p>Přidáno <time class="dt-published"></time> z webu <code></code>,</p>
+      </article>
+    </template>
+  </div>
+  <p>Na stránce se pracuje. Můžete se
     <a href="https://feeds2.feedburner.com/rarous/w3b" type="application/atom+xml"
        title="Přihlásit se k odběru pomocí RSS">přihlásit k odběru článků pomocí RSS</a>.</p>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module">
+    const resp = await fetch("https://www.rarous.net/api/v1/w3b/");
+    const data = await resp.json();
+    const feed = document.querySelector(".feed");
+    const itemTemplate = feed.querySelector("template");
+    const items = document.createDocumentFragment();
+    const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
+    for (const { entry } of Object.values(data).sort((a,b) => -1 * a.entry.published.localeCompare(b.entry.published))) {
+      const item = itemTemplate.content.cloneNode(true);
+      const a = item.querySelector("a");
+      a.href = entry.link;
+      a.textContent = entry.title;
+      const published = item.querySelector(".dt-published");
+      published.datetime = entry.published;
+      published.textContent = formatter.format(new Date(entry.published));
+      const hostname = item.querySelector("code");
+      hostname.textContent = entry.hostname;
+      items.appendChild(item);
+    }
+    feed.appendChild(items);
+  </script>
 {% endblock %}
