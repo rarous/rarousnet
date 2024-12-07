@@ -24,6 +24,23 @@
   --andika: "AndikaW";
   --lexend: "Lexend";
   --iosevka: Iosevka, "Iosevka Web";
+
+  /* prevent props GC for Modern font stacks */
+  --_font-system-ui: var(--font-system-ui);
+  --_font-serif: var(--font-serif);
+  --_font-transitional: var(--font-transitional);
+  --_font-old-style: var(--font-old-style);
+  --_font-humanist: var(--font-humanist);
+  --_font-geometric-humanist: var(--font-geometric-humanist);
+  --_font-classical-humanist: var(--font-classical-humanist);
+  --_font-neo-grotesque: var(--font-neo-grotesque);
+  --_font-industrial: var(--font-industrial);
+  --_font-rounded-sans: var(--font-rounded-sans);
+  --_font-slab-serif: var(--font-slab-serif);
+  --_font-antique: var(--font-antique);
+  --_font-didone: var(--font-didone);
+  --_font-handwritten: var(--font-handwritten);
+
   --main-font: var(--innovator-grotesk), var(--font-serif);
   --headings-font: var(--agrandir), Impact, var(--font-serif);
   --code-font: var(--iosevka), var(--font-mono);
