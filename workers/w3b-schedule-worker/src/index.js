@@ -1,4 +1,4 @@
-import { DOMParser } from "https://esm.sh/linkedom";
+import { DOMParser } from "linkedom/worker";
 
 async function getFeed(url) {
   const resp = await fetch(url);

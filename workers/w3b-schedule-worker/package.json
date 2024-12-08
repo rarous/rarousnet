@@ -3,6 +3,9 @@
   "description": "rarous.net Cloudflare Workers",
   "type": "module",
   "license": "EUPL-1.2",
+  "dependencies": {
+    "linkedom": "0.18.5"
+  },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20241205.0",
     "wrangler": "3.93.0"

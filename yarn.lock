@@ -2249,6 +2249,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rarousnet/w3b-schedule-worker@workspace:workers/w3b-schedule-worker":
+  version: 0.0.0-use.local
+  resolution: "@rarousnet/w3b-schedule-worker@workspace:workers/w3b-schedule-worker"
+  dependencies:
+    "@cloudflare/workers-types": "npm:4.20241205.0"
+    linkedom: "npm:0.18.5"
+    wrangler: "npm:3.93.0"
+  languageName: unknown
+  linkType: soft
+
 "@rarousnet/website@workspace:www.rarous.net":
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
