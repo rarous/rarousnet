@@ -1,4 +1,4 @@
-import { DOMParser } from "linkedom/worker";
+import { DOMParser } from "linkedom";
 
 async function getFeed(url) {
   const resp = await fetch(url);
