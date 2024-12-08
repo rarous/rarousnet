@@ -2,7 +2,7 @@
 {% set title = "W3B - Výběr z článků - čtení doporučené Alešem Roubíčkem" %}
 {% set description = "Výběr z článků, které stojí za to si přečíst. Ručně vybíráno Alešem Roubíčkem" %}
 {% set contentSchema = "Collection" %}
-{% set canonicalUrl = "https://www.rarous.net/w3b" %}
+{% set canonicalUrl = "https://www.rarous.net/w3b/" %}
 {% set images = true %}
 
 {% block head %}
@@ -85,5 +85,15 @@
       items.appendChild(item);
     }
     feed.appendChild(items);
+
+    feed.addEventListener("click", e => {
+      if (e.target.classList.contains("u-url")) {
+        const params = new URLSearchParams({
+          url: e.target.href,
+          event: "clicks"
+        });
+        navigator.sendBeacon("https://www.rarous.net/api/v1/w3b/beacon", params);
+      }
+    });
   </script>
 {% endblock %}
