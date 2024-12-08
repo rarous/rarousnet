@@ -171,7 +171,7 @@ const w3bScheduleWorker = new cloudflare.WorkerScript("w3b-schedule-worker", {
 const w3bScheduleTrigger = new cloudflare.WorkerCronTrigger("w3b-schedule-trigger", {
   accountId: account.id,
   scriptName: w3bScheduleWorker.name,
-  schedules: ["0 0 * * *"],
+  schedules: ["0 * * * *"],
 });
 
 export const accountId = account.id;
