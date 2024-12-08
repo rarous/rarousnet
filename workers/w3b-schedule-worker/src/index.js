@@ -46,7 +46,7 @@ async function updateArticlesFeed(env) {
     data.set(entry.link, { entry, stats: { clicks: 0, likes: 0 } });
   }
   const result = Object.fromEntries(data);
-  await env.weblog.put("/latest", JSON.stringify(result));
+  await env.w3b.put("/latest", JSON.stringify(result));
 }
 
 export default {
