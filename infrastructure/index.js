@@ -144,7 +144,7 @@ const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
 const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-worker", {
   accountId: account.id,
   name: "discogs-schedule-worker",
-  content: buildAsset("discogs-schedule-worker/src/discogs-schedule.js"),
+  content: buildAsset("discogs-schedule-worker/src/index.js"),
   compatibilityDate: "2024-09-02",
   module: true,
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
@@ -157,6 +157,20 @@ const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-work
 const discogsScheduleTrigger = new cloudflare.WorkerCronTrigger("discogs-schedule-trigger", {
   accountId: account.id,
   scriptName: discogsScheduleWorker.name,
+  schedules: ["0 0 * * *"],
+});
+
+const w3bScheduleWorker = new cloudflare.WorkerScript("w3b-schedule-worker", {
+  accountId: account.id,
+  name: "w3b-schedule-worker",
+  content: buildAsset("w3b-schedule-worker/src/index.js"),
+  compatibilityDate: "2024-09-02",
+  module: true,
+  kvNamespaceBindings: [{ name: "w3b", namespaceId: w3bNS.id }],
+});
+const w3bScheduleTrigger = new cloudflare.WorkerCronTrigger("w3b-schedule-trigger", {
+  accountId: account.id,
+  scriptName: w3bScheduleWorker.name,
   schedules: ["0 0 * * *"],
 });
 
