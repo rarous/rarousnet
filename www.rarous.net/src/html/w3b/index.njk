@@ -11,20 +11,22 @@
 {% endblock %}
 
 {% block head_stylesheets %}
-<style>
-  .feed {
-    display: grid;
-    row-gap: 2em;
-    margin-block: 2em;
-  }
-  article h2 {
-    font-size: 1.5em;
-    margin-block: 0;
-  }
-  article p {
-    margin-block: 0;
-  }
-</style>
+  <style>
+    .feed {
+      display: grid;
+      row-gap: 2em;
+      margin-block: 2em;
+    }
+
+    article h2 {
+      font-size: 1.5em;
+      margin-block: 0;
+    }
+
+    article p {
+      margin-block: 0;
+    }
+  </style>
 {% endblock %}
 
 {% block navbar %}
@@ -55,7 +57,10 @@
     <template>
       <article typeof="BlogPosting" class="h-entry">
         <h2 itemprop="headline" class="p-name" lang="en"><a itemprop="sameAs" class="u-url" href=""></a></h2>
-        <p>Přidáno <time class="dt-published"></time> z webu <code></code>.</p>
+        <p>Přidáno
+          <time class="dt-published"></time>
+          z webu <code></code>.
+        </p>
       </article>
     </template>
   </articles-feed>
@@ -79,6 +84,10 @@
           customElements.define(tagName, this);
         }
 
+        get lang() {
+          return this.getAttribute("lang") ?? this.ownerDocument.documentElement.lang ?? "cs";
+        }
+
         get loaded() {
           return this.hasAttribute("loaded");
         }
@@ -94,28 +103,25 @@
           }
         }
 
-        get lang() {
-          return this.getAttribute("lang") ?? this.ownerDocument.documentElement.lang ?? "cs";
-        }
-
         connectedCallback() {
           this.setAttribute("role", "feed");
           this.#itemTemplate = this.querySelector("template");
           this.addEventListener("click", e => {
             if (e.target.classList.contains("u-url")) {
-              const params = new URLSearchParams({
-                url: e.target.href,
-                event: "clicks"
-              });
-              navigator.sendBeacon("https://www.rarous.net/api/v1/w3b/beacon", params);
+              this.sendClickBeacon(e.target);
             }
           });
+        }
+
+        sendClickBeacon({ href }) {
+          const params = new URLSearchParams({ url: href, event: "clicks" });
+          navigator.sendBeacon("https://www.rarous.net/api/v1/w3b/beacon", params);
         }
 
         renderFeed(data) {
           const formatter = new Intl.DateTimeFormat(this.lang, { day: "numeric", month: "long", year: "numeric" });
           const items = this.ownerDocument.createDocumentFragment();
-          for (const { entry } of Object.values(data).sort((a, b) => -1 * a.entry.published.localeCompare(b.entry.published))) {
+          for (const { entry } of data) {
             items.appendChild(this.renderItem(entry, formatter));
           }
           return items;
@@ -142,6 +148,7 @@
           return item;
         }
       }
+
       return ArticlesFeed;
     }
 
