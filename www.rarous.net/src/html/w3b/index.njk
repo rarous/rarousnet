@@ -51,14 +51,14 @@
     <p>Ručně vybíráno Alešem Roubíčkem</p>
   </hgroup>
 
-  <div role="feed" class="feed">
+  <articles-feed class="feed">
     <template>
       <article typeof="BlogPosting" class="h-entry">
         <h2 itemprop="headline" class="p-name" lang="en"><a itemprop="sameAs" class="u-url" href=""></a></h2>
         <p>Přidáno <time class="dt-published"></time> z webu <code></code>.</p>
       </article>
     </template>
-  </div>
+  </articles-feed>
   <p>Na stránce se pracuje. Můžete se
     <a href="https://feeds2.feedburner.com/rarous/w3b" type="application/atom+xml"
        title="Přihlásit se k odběru pomocí RSS">přihlásit k odběru článků pomocí RSS</a>.</p>
@@ -66,34 +66,91 @@
 
 {% block scripts %}
   <script type="module">
-    const resp = await fetch("https://www.rarous.net/api/v1/w3b/");
-    const data = await resp.json();
-    const feed = document.querySelector(".feed");
-    const itemTemplate = feed.querySelector("template");
-    const items = document.createDocumentFragment();
-    const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
-    for (const { entry } of Object.values(data).sort((a,b) => -1 * a.entry.published.localeCompare(b.entry.published))) {
-      const item = itemTemplate.content.cloneNode(true);
-      const a = item.querySelector("a");
-      a.href = entry.link;
-      a.textContent = entry.title;
-      const published = item.querySelector(".dt-published");
-      published.datetime = entry.published;
-      published.textContent = formatter.format(new Date(entry.published));
-      const hostname = item.querySelector("code");
-      hostname.textContent = entry.hostname;
-      items.appendChild(item);
-    }
-    feed.appendChild(items);
+    /**
+     * @param {Window} globalScope
+     * @return {typeof ArticlesFeed}
+     */
+    export function defArticlesFeed({ HTMLElement, customElements }) {
+      class ArticlesFeed extends HTMLElement {
+        #itemTemplate;
 
-    feed.addEventListener("click", e => {
-      if (e.target.classList.contains("u-url")) {
-        const params = new URLSearchParams({
-          url: e.target.href,
-          event: "clicks"
-        });
-        navigator.sendBeacon("https://www.rarous.net/api/v1/w3b/beacon", params);
+        static register(tagName = "articles-feed") {
+          this.tagName = tagName;
+          customElements.define(tagName, this);
+        }
+
+        get loaded() {
+          return this.hasAttribute("loaded");
+        }
+
+        set loaded(isLoaded) {
+          this.toggleAttribute("loaded", Boolean(isLoaded));
+        }
+
+        set data(data) {
+          if (!this.loaded) {
+            this.appendChild(this.renderFeed(data));
+            this.loaded = true;
+          }
+        }
+
+        get lang() {
+          return this.getAttribute("lang") ?? this.ownerDocument.documentElement.lang ?? "cs";
+        }
+
+        connectedCallback() {
+          this.setAttribute("role", "feed");
+          this.#itemTemplate = this.querySelector("template");
+          this.addEventListener("click", e => {
+            if (e.target.classList.contains("u-url")) {
+              const params = new URLSearchParams({
+                url: e.target.href,
+                event: "clicks"
+              });
+              navigator.sendBeacon("https://www.rarous.net/api/v1/w3b/beacon", params);
+            }
+          });
+        }
+
+        renderFeed(data) {
+          const formatter = new Intl.DateTimeFormat(this.lang, { day: "numeric", month: "long", year: "numeric" });
+          const items = this.ownerDocument.createDocumentFragment();
+          for (const { entry } of Object.values(data).sort((a, b) => -1 * a.entry.published.localeCompare(b.entry.published))) {
+            items.appendChild(this.renderItem(entry, formatter));
+          }
+          return items;
+        }
+
+        /**
+         * @param {*} entry
+         * @param {Intl.DateTimeFormat} formatter
+         */
+        renderItem(entry, formatter) {
+          const item = this.#itemTemplate.content.cloneNode(true);
+
+          const a = item.querySelector("a");
+          a.href = entry.link;
+          a.textContent = entry.title;
+
+          const published = item.querySelector(".dt-published");
+          published.datetime = entry.published;
+          published.textContent = formatter.format(new Date(entry.published));
+
+          const hostname = item.querySelector("code");
+          hostname.textContent = entry.hostname;
+
+          return item;
+        }
       }
-    });
+      return ArticlesFeed;
+    }
+
+    if (globalThis.window?.customElements) {
+      defArticlesFeed(window).register();
+    }
+
+    const feed = document.querySelector(".feed");
+    const resp = await fetch("https://www.rarous.net/api/v1/w3b/");
+    feed.data = await resp.json();
   </script>
 {% endblock %}
