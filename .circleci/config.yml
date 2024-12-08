@@ -43,7 +43,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
-          override-ci-command: yarn workspaces focus @rarousnet/infrastructure
+          override-ci-command: yarn workspaces focus @rarousnet/infrastructure @rarousnet/w3b-schedule-worker
       - pulumi/update:
           working_directory: infrastructure
           stack: prod
@@ -165,7 +165,6 @@ workflows:
     jobs:
       - generate
       - provision:
-          context: aws
           filters:
             branches:
               only: trunk
