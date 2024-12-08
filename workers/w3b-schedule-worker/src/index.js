@@ -58,4 +58,9 @@ export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(updateArticlesFeed(env));
   },
+
+  async fetch(request, env, ctx) {
+    await updateArticlesFeed(env);
+    return new Response(null, { status: 202 });
+  },
 };
