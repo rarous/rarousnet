@@ -163,12 +163,11 @@ body {
 h1 {
   font-family: var(--headings-font);
   font-weight: 800;
-  font-size: 2.5em;
+  font-size: var(--font-size-fluid-2);
   font-variation-settings: "opsz" 20, "GRAD" 600, "YAXS" 1000;
   letter-spacing: -1px;
   text-wrap: balance;
   margin: 0;
-  z-index: 20;
 }
 
 h2 {
@@ -183,7 +182,7 @@ h3 {
   color: var(--h3-color, var(--text-color));
   font-family: var(--headings-font);
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: var(--font-size-fluid-1);
   font-variation-settings: "wdth" 60, "opsz" 20, "GRAD" 500, "YAXS" 1000;
   font-feature-settings: "ss10";
   margin-block: 1.5em 0.25em;
@@ -245,6 +244,11 @@ abbr {
   font-size: 1.05em;
 }
 
+abbr,
+acronym {
+  border-bottom: 1px dotted oklch(0.45 0 89.876);
+}
+
 figure {
   margin: 1rem 0 1.5rem;
 
@@ -261,18 +265,13 @@ img.right {
   margin: 0.4em;
 }
 
-abbr,
-acronym {
-  border-bottom: 1px dotted oklch(0.45 0 89.876);
-}
-
 code {
   font-size: 1em;
   font-family: var(--code-font);
 
-  :not(a) >& {
-    background: #f7f7ee;
-    background: light-dark(oklch(0.974 0.012 var(--primary-hue)), oklch(0.407 0.015 var(--primary-hue)));
+  :not(a, pre) > & {
+    background-color: #f7f7ee;
+    background-color: light-dark(oklch(0.974 0.012 var(--primary-hue)), oklch(0.407 0.015 var(--primary-hue)));
     padding: 0 0.125em;
   }
 }
@@ -282,11 +281,6 @@ pre {
   margin: 1em 0;
   padding: 0.5em;
   overflow: auto;
-}
-
-pre code {
-  background-color: transparent;
-  padding: 0;
 }
 
 * html pre {
@@ -308,7 +302,7 @@ table {
 }
 
 input, textarea, select, button, table, fieldset, label {
-  font-family: var(--main-font);
+  font-family: inherit;
 }
 
 .wai a {

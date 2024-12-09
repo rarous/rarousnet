@@ -1,0 +1,82 @@
+html,
+body {
+  font-size: 13pt;
+  color: oklch(0 0 0);
+  border: 0;
+}
+
+p,
+ul,
+ol,
+dl {
+  text-align: left;
+}
+
+a {
+  color: oklch(0 0 0);
+}
+
+code {
+  background: transparent;
+  font: 0.85em var(--code-font);
+}
+
+pre {
+  border: 0;
+  margin-block: 1em;
+  padding: 0.5em;
+  overflow: visible;
+}
+
+pre.console {
+  background: transparent;
+  color: oklch(0 0 0);
+}
+
+pre.console code {
+  font-family: var(--code-font);
+  color: oklch(0 0 0);
+}
+
+pre code {
+  background: transparent;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  text-shadow: none;
+}
+
+.noprint,
+.footer,
+.newComment,
+.menu,
+.search,
+.wai,
+#head h1 .image {
+  display: none;
+}
+
+#top {
+  border: 0;
+}
+
+#content {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+}
+
+#head h1 {
+  font: 1.2em / 2 Cambria, Georgia, "New York CE", utopia, serif;
+  border-block-end: 1pt solid oklch(0.6 0 89.876);
+  margin-block-end: 2em;
+  position: static;
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+#head h1 a {
+  text-decoration: none;
+}

@@ -9,8 +9,6 @@
   --content-font: var(--main-font);
   --citation-font: var(--garamond);
 
-  --heading-font: 800 2.5em var(--headings-font);
-
   --pagefind-ui-scale: 1 !important;
   --pagefind-ui-primary: var(--primary-color) !important;
   --pagefind-ui-text: var(--content-color) !important;
@@ -23,7 +21,7 @@
 
 h2,
 article h1 {
-  font-family: var(--heading-font);
+  font-weight: 800;
   font-size: var(--font-size-fluid-2);
   font-variation-settings: "opsz" 20, "GRAD" 600, "YAXS" 1000;
   font-feature-settings: "ss11";
@@ -178,25 +176,20 @@ pre:has(> code) {
   font-feature-settings: "calt" 1;
 }
 
-pre.language-javascript:has(> code) {
+pre:has(> code.language-javascript) {
   font-feature-settings: "calt" 0, "JSPT" 1;
 }
 
-pre.language-fsharp:has(> code) {
+pre:has(> code.language-fsharp) {
   font-feature-settings: "calt" 0, "FSHP" 1;
 }
 
-pre.language-csharp:has(> code) {
+pre:has(> code.language-csharp) {
   font-feature-settings: "calt" 0, "CLIK" 1;
 }
 
-pre.language-php:has(> code) {
+pre:has(> code.language-php) {
   font-feature-settings: "calt" 0, "PHPX" 1;
-}
-
-li {
-  padding: 0;
-  margin: 0 0 0 2.5em;
 }
 
 div.image {
@@ -548,90 +541,5 @@ article footer {
 
   #content:not(.category-listing) article + article {
     margin-block-start: 8rem;
-  }
-}
-
-@media print {
-  html,
-  body {
-    font-size: 13pt;
-    color: oklch(0 0 0);
-    border: 0;
-  }
-
-  p,
-  ul,
-  ol,
-  dl {
-    text-align: left;
-  }
-
-  a {
-    color: oklch(0 0 0);
-  }
-
-  code {
-    background: transparent;
-    font: 0.85em var(--code-font);
-  }
-
-  pre {
-    border: 0;
-    margin-block: 1em;
-    padding: 0.5em;
-    overflow: visible;
-  }
-
-  pre.console {
-    background: transparent;
-    color: oklch(0 0 0);
-  }
-
-  pre.console code {
-    font-family: var(--code-font);
-    color: oklch(0 0 0);
-  }
-
-  pre code {
-    background: transparent;
-  }
-
-  code[class*="language-"],
-  pre[class*="language-"] {
-    text-shadow: none;
-  }
-
-  .noprint,
-  .footer,
-  .newComment,
-  .menu,
-  .search,
-  .wai,
-  #head h1 .image {
-    display: none;
-  }
-
-  #top {
-    border: 0;
-  }
-
-  #content {
-    margin: 0;
-    max-width: none;
-    min-width: 0;
-  }
-
-  #head h1 {
-    font: 1.2em / 2 Cambria, Georgia, "New York CE", utopia, serif;
-    border-block-end: 1pt solid oklch(0.6 0 89.876);
-    margin-block-end: 2em;
-    position: static;
-    width: auto;
-    height: auto;
-    text-align: center;
-  }
-
-  #head h1 a {
-    text-decoration: none;
   }
 }
