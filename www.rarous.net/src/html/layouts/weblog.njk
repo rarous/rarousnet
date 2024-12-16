@@ -43,7 +43,7 @@
 
 {% set headerId = "head" %}
 {% block headerContent %}
-  <h1 property="headline"><a href="/weblog/" title="Přejít na weblog">rarouš.weblog</a></h1>
+  <h1 property="headline"><a href="/weblog/" title="Přejít na weblog" translate="no">rarouš.weblog</a></h1>
 {% endblock %}
 
 {% block navbar %}
@@ -54,6 +54,7 @@
       onclick="event.preventDefault();searchDialog.showModal()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
            fill="var(--icon-color)">
+        <title>Hledat</title>
         <path d="M0 0h24v24H0z" fill="none"/>
         <path
           d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -67,6 +68,7 @@
       title="Přihlásit se k odběru pomocí RSS">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
            fill="var(--icon-color)">
+        <title>Syndikace</title>
         <path d="M0 0h24v24H0z" fill="none"/>
         <circle cx="6.18" cy="17.82" r="2.18"/>
         <path
@@ -118,7 +120,7 @@
     </div>
     <div id="friends" class="footer__box">
       <h2>Přátelé</h2>
-      <ul>
+      <ul translate="no">
         <li property="knows" typeof="Person">
           <a property="sameAs" href="https://www.izatlouk.cz/pisu"
              rel="sweetheart co-resident met">Irena Zatloukalová</a></li>
@@ -153,7 +155,7 @@
     </div>
     <div id="meetupy" class="footer__box">
       <h2>Meetupy</h2>
-      <ul>
+      <ul translate="no">
         <li property="memberOf" typeof="Organization">
           <a property="sameAs"
              href="https://www.datamesh.cz/">DATA mesh</a>
