@@ -15,7 +15,7 @@
     "broken-link-checker-local": "0.2.1",
     "lighthouse": "12.3.0",
     "local-web-server": "5.4.0",
-    "npm-run-all2": "7.0.1",
+    "npm-run-all2": "7.0.2",
     "pagefind": "1.2.0",
     "tap-xunit": "2.4.1",
     "wrangler": "3.95.0"
