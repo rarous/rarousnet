@@ -1,12 +1,18 @@
-{%- extends "layouts/common-layout.njk" -%}
+{% extends "layouts/common-layout.njk" %}
 {% set title = "W3B - Výběr z článků - čtení doporučené Alešem Roubíčkem" %}
 {% set description = "Výběr z článků, které stojí za to si přečíst. Ručně vybíráno Alešem Roubíčkem" %}
 {% set contentSchema = "Collection" %}
 {% set canonicalUrl = "https://www.rarous.net/w3b/" %}
 {% set images = true %}
 
+{% block head_preload %}
+  <link rel="preload" as="font" crossorigin="anonymous" type="font/woff2"
+        href="/assets/fonts/iosevka/woff2/iosevka-regular.latin.woff2">
+{% endblock %}
+
 {% block head %}
-  <link rel="alternate" type="application/atom+xml" href="https://feeds2.feedburner.com/rarous/w3b"
+  <link rel="alternate" type="application/atom+xml"
+        href="https://feeds2.feedburner.com/rarous/w3b"
         title="W3B - výběr z článků - čtení doporučené Alešem Roubíčkem">
 {% endblock %}
 
