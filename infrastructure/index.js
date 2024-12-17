@@ -102,7 +102,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
   },
   deploymentConfigs: {
     production: {
-      compatibilityDate: "2024-09-02",
+      compatibilityDate: "2024-11-18",
       compatibilityFlags: ["nodejs_compat"],
       secrets: {
         RAROUS_WEBLOG_CARDS_SECRET: config.require("weblog-cards-secret"),
@@ -145,7 +145,7 @@ const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-work
   accountId: account.id,
   name: "discogs-schedule-worker",
   content: buildAsset("discogs-schedule-worker/src/index.js"),
-  compatibilityDate: "2024-09-02",
+  compatibilityDate: "2024-11-18",
   module: true,
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
   plainTextBindings: [{ name: "SPOTIFY_CLIENT_ID", text: config.require("spotify-clientId") }],
@@ -164,7 +164,7 @@ const w3bScheduleWorker = new cloudflare.WorkerScript("w3b-schedule-worker", {
   accountId: account.id,
   name: "w3b-schedule-worker",
   content: buildAsset("w3b-schedule-worker/src/index.js"),
-  compatibilityDate: "2024-09-02",
+  compatibilityDate: "2024-11-18",
   module: true,
   kvNamespaceBindings: [{ name: "w3b", namespaceId: w3bNS.id }],
 });
