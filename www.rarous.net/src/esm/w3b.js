@@ -1,3 +1,5 @@
+import { processTypo } from "./texy.js";
+
 /**
  * @param {Window} globalScope
  * @return {typeof ArticlesFeed}
@@ -75,7 +77,7 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
 
       const a = item.querySelector("a");
       a.href = entry.link;
-      a.textContent = entry.title;
+      a.textContent = processTypo(entry.title);
 
       const published = item.querySelector(".dt-published");
       published.datetime = entry.published;
