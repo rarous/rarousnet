@@ -18,7 +18,7 @@
     "npm-run-all2": "7.0.2",
     "pagefind": "1.2.0",
     "tap-xunit": "2.4.1",
-    "wrangler": "3.96.0"
+    "wrangler": "3.97.0"
   },
   "scripts": {
     "build:website": "yarn workspace @rarousnet/website build",
