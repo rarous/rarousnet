@@ -2453,7 +2453,7 @@ __metadata:
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
     open-props: "npm:1.7.8"
-    postcss-jit-props: "npm:1.0.14"
+    postcss-jit-props: "npm:1.0.15"
     undertaker-registry: "npm:2.0.0"
   languageName: unknown
   linkType: soft
@@ -11035,14 +11035,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-jit-props@npm:1.0.14":
-  version: 1.0.14
-  resolution: "postcss-jit-props@npm:1.0.14"
+"postcss-jit-props@npm:1.0.15":
+  version: 1.0.15
+  resolution: "postcss-jit-props@npm:1.0.15"
   dependencies:
     tiny-glob: "npm:^0.2.9"
   peerDependencies:
     postcss: ^8.2.8
-  checksum: 10c0/a3722bf5e93cc007436110b536a20faacb1859caf494147dfe190d7ed12e6e4e3d564d4f845028decf4e6dffc66f0929eeccfae31d6d273250f62687cddbe59d
+  checksum: 10c0/30d040e6f075e2a783c0dbd30d37a2fd98ad0ce16fe6fae4013a9acb0ddbf59b5550a4703e41965c5bb368e151262580338745eb5c96927a70a122ac6e76592f
   languageName: node
   linkType: hard
 
