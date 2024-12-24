@@ -5,7 +5,7 @@
     "./*.js": "./src/esm/*.js"
   },
   "devDependencies": {
-    "@hckr_/blendid": "9.0.1",
+    "@hckr_/blendid": "9.0.2",
     "@types/gulp": "4.0.17",
     "@types/undertaker-registry": "1.0.4",
     "open-props": "1.7.9",
