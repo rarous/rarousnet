@@ -2452,7 +2452,7 @@ __metadata:
     "@hckr_/blendid": "npm:9.0.1"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
-    open-props: "npm:1.7.8"
+    open-props: "npm:1.7.9"
     postcss-jit-props: "npm:1.0.15"
     undertaker-registry: "npm:2.0.0"
   languageName: unknown
@@ -10178,10 +10178,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open-props@npm:1.7.8":
-  version: 1.7.8
-  resolution: "open-props@npm:1.7.8"
-  checksum: 10c0/089bc34a1241676f0e9389a5043fb423d0e913fa212478ef8e9aa5ffc4ff6fd66832fc6368e6b404db437a9fec2b7625eb7bddea73f09fd16de92b06641616d8
+"open-props@npm:1.7.9":
+  version: 1.7.9
+  resolution: "open-props@npm:1.7.9"
+  checksum: 10c0/c171833ce0d6bcc707174fee6105b3ea72093af2b05d1c0e4f10b5bdc3cdef19c145ce919a02efe017d591d78440efa08cf61d2219d68792353406ee724d8334
   languageName: node
   linkType: hard
 
