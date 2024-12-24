@@ -1,28 +1,43 @@
 const locales = new Map([
-  ["cs", {
-    singleQuotes: ["‚", "‘"],
-    doubleQuotes: ["„", "“"],
-  }],
+  [
+    "cs",
+    {
+      singleQuotes: ["‚", "‘"],
+      doubleQuotes: ["„", "“"],
+    },
+  ],
 
-  ["en", {
-    singleQuotes: ["‘", "’"],
-    doubleQuotes: ["“", "”"],
-  }],
+  [
+    "en",
+    {
+      singleQuotes: ["‘", "’"],
+      doubleQuotes: ["“", "”"],
+    },
+  ],
 
-  ["fr", {
-    singleQuotes: ["‹", "›"],
-    doubleQuotes: ["«", "»"],
-  }],
+  [
+    "fr",
+    {
+      singleQuotes: ["‹", "›"],
+      doubleQuotes: ["«", "»"],
+    },
+  ],
 
-  ["de", {
-    singleQuotes: ["‚", "‘"],
-    doubleQuotes: ["„", "“"],
-  }],
+  [
+    "de",
+    {
+      singleQuotes: ["‚", "‘"],
+      doubleQuotes: ["„", "“"],
+    },
+  ],
 
-  ["pl", {
-    singleQuotes: ["‚", "’"],
-    doubleQuotes: ["„", "”"],
-  }],
+  [
+    "pl",
+    {
+      singleQuotes: ["‚", "’"],
+      doubleQuotes: ["„", "”"],
+    },
+  ],
 ]);
 
 function definePatterns({ singleQuotes, doubleQuotes }) {
@@ -67,9 +82,9 @@ function definePatterns({ singleQuotes, doubleQuotes }) {
     ],
 
     // double ""
-    [/(?<!"|\w)"(?![ "])((?:[^"]+|")+)(?<![ "])"(?!["\p{Letter}])()/gv, `${doubleQuotes[0]}$1${doubleQuotes[1]}`],
+    [/(?<!"|\w)"(?![ "])((?:[^"]+|")+?)(?<![ "])"(?!["\p{Letter}])()/gv, `${doubleQuotes[0]}$1${doubleQuotes[1]}`],
     // single ''
-    [/(?<!'|\w)'(?![ '])((?:[^']+|')+)(?<![ '])'(?!['\p{Letter}])()/gv, `${singleQuotes[0]}$1${singleQuotes[1]}`],
+    [/(?<!'|\w)'(?![ '])((?:[^']+|')+?)(?<![ '])'(?!['\p{Letter}])()/gv, `${singleQuotes[0]}$1${singleQuotes[1]}`],
   ];
 }
 
