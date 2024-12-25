@@ -1,4 +1,5 @@
 import { getPathConfig } from "@hckr_/blendid/lib/getPathConfig.mjs";
+import { texyTypography } from "@hckr_/blendid/lib/texy.mjs";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 import { GryphoonRegistry } from "./gryphoon-registry.mjs";
@@ -28,25 +29,7 @@ export default {
   },
 
   html: {
-    nunjucksRender: {
-      filters: {
-        isoDate(x) {
-          return new Date(x).toISOString();
-        },
-        longDate(x) {
-          return new Intl.DateTimeFormat("cs-CZ", {
-            day: "numeric",
-            month: "long",
-          }).format(new Date(x));
-        },
-        shortDate(x) {
-          return new Intl.DateTimeFormat("cs-CZ", {
-            day: "numeric",
-            month: "numeric",
-          }).format(new Date(x));
-        },
-      },
-    },
+    markedExtensions: [texyTypography("cs")],
     htmlmin: {
       collapseBooleanAttributes: true,
       collapseWhitespace: true,

@@ -24,6 +24,9 @@
     "enabled": true,
     "rules": {
       "recommended": false,
+      "complexity": {
+        "noThisInStatic": "off"
+      },
       "style": {
         "useBlockStatements": "off"
       }

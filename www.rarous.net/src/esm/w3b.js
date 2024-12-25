@@ -1,4 +1,4 @@
-import { processTypo } from "./texy.js";
+import { processTypo } from "@hckr_/blendid/lib/texy.mjs";
 
 /**
  * @param {Window} globalScope
