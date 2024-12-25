@@ -3,7 +3,6 @@
   "extends": [
     "config:base",
     "group:postcss",
-    "group:aws-sdk-js-v3Monorepo",
     ":dependencyDashboard",
     "customManagers:biomeVersions"
   ],
