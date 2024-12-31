@@ -8,7 +8,7 @@
     "@hckr_/blendid": "9.1.1",
     "@types/gulp": "4.0.17",
     "@types/undertaker-registry": "1.0.4",
-    "open-props": "1.7.9",
+    "open-props": "1.7.10",
     "postcss-jit-props": "1.0.15",
     "undertaker-registry": "2.0.0"
   },
