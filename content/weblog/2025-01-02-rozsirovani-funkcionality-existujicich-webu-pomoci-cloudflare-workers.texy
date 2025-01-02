@@ -38,7 +38,7 @@ async function rssFeed() {
     language: "cs-CZ"
   });
   for (const item of items) {
-    let image = parseSrcset(item.querySelector(".entry-media img").dataset.srcset)?.at(2)?.url;
+    const image = parseSrcset(item.querySelector(".entry-media img").dataset.srcset)?.at(2)?.url;
     feed.addItem({
       author: [{ email: "noreply@example.com", name: "Irena Zatloukalová" }],
       title: item.querySelector(".entry-title").textContent,
