@@ -4,7 +4,7 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "cloudflare", "indieweb", "linkedom"},
  :published "2025-01-02T14:51:00.000"
- :syndication []}
+ :syndication ["https://indieweb.social/@alesroubicek/113759139772100764"]}
 ---
 
 Irča:[https://www.izatlouk.cz] má svoje stránky hostovaný na solidpixels:[https://www.solidpixels.com/].
@@ -67,7 +67,7 @@ Nic složitého. Worker jsem vypublikoval pomocí příkazu `wrangler deploy`.
 Deploy script vypíše i URL, na které můžeme worker otestovat. Kliknu, mám feed. Super.
 
 Tahle adresa ale není moc hezká a nijak moc nekeresponduje s Irči webem.
-Takže jsem administračním rozhraní Cloudflare pro doménu `izatlouk.cz` vytvořil Worker Route `izatlouk.cz/pisu/articles.rss`,
+Takže jsem v administračním rozhraní Cloudflare pro doménu `izatlouk.cz` vytvořil Worker Route `izatlouk.cz/pisu/articles.rss`,
 která využije námi vytvořený Worker. A tak tu máme "RSS feed iZatlouk Píše":[https://izatlouk.cz/pisu/articles.rss].
 Můžete si ho hned přidat do čtečky.
 
