@@ -118,9 +118,9 @@ export default {
 };
 \--code
 
-Pokud je cesta požadavku `/pisu/articles.rss` vratíme RSS feed, jinak si `fetch`neme  odpověď z Origin
-a pokud je to HTML, tak do jeho `<head>` vložíme autodiscovery odkaz.
-Jinak vrátíme odpověď z Origin - v tomto případě ze solidpixels.
+Pokud je cesta požadavku `/pisu/articles.rss`, vratím RSS feed, jinak si `fetch`nu odpověď z Origin
+a pokud je to HTML, tak do jeho `<head>` vložím autodiscovery odkaz.
+Jinak vrátím odpověď z Origin - v tomto případě ze solidpixels.
 
 V administraci Cloudflare jsem předělal routy na následující pravidla:
 
@@ -136,7 +136,7 @@ pro odběr RSS přímo v browseru nebo když se vloží URL blogu do čtečky.
 ## Přepis URL
 
 V předchozích pravidlech si můžete všimnout, že Irči blog je sice na adrese `www.izatlouk.cz/pisu`,
-ale jednotlivé články mají prefix `www.izatlouk.cz/pise/`. Když člověk ručně urpaví URL a odmaže adresu po lomítko,
+ale jednotlivé články mají prefix `www.izatlouk.cz/pise/`. Když člověk ručně upraví URL a odmaže adresu po lomítko,
 dostane se na neexistující stránku. To je detail, který triggeruje moje OCD, takže jsem ještě worker doplnil
 o přesměrování na očekávaný výpis článků:
 
