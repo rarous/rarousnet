@@ -1,0 +1,172 @@
+---
+{:title "Rozšiřování funkcionality existujících webů pomocí Cloudflare Workers",
+ :description "Jak jsem doplnil Irči blog o RSS feed a jeho autodiscovery bez zásahů do stávajícího CMS pomocí Cloudflare Workers.",
+ :author "Aleš Roubíček",
+ :tags #{"moje práce", "cloudflare", "indieweb", "linkedom"},
+ :published "2025-01-02T14:51:00.000"
+ :syndication []}
+---
+
+Irča:[https://www.izatlouk.cz] má svoje stránky hostovaný na solidpixels:[https://www.solidpixels.com/].
+Systém umožňuje psát si blog, ale chybí zásadní vlastnost a to je možnost se k odběru článků přihlásit pomocí RSS.
+
+Naštěstí má své DNS v mojí správě přes Cloudflare a tak jsem mohl její web o chybějící funkcionalitu rychle obohatit.
+
+## Tvorba RSS feedu
+
+Nejprve jsem se pustil do tvorby samotného feedu. Vytvořil jsem Worker pomocí příkazu `wrangler init`:[https://developers.cloudflare.com/workers/get-started/guide/#1-create-a-new-worker-project].
+Tento Worker pomocí knihovny `linkedom`:[/weblog/tag/linkedom] načte seznam článků a pomocí knihovny
+`feed`:[https://github.com/jpmonette/feed] jej serializuje do formátu RSS((Really Simple Syndication)) 2.0:
+
+/--code javascript
+import { Feed } from "feed";
+import { parseHTML } from "linkedom/cached";
+import { parseSrcset } from "srcset";
+
+async function rssFeed() {
+  const resp = await fetch("https://www.izatlouk.cz/pisu/");
+  const html = await resp.text();
+  const { document } = parseHTML(html);
+  const items = document.querySelectorAll(".entry-articles");
+  const feed = new Feed({
+    id: "https://www.izatlouk.cz/pisu/",
+    title: "izatlouk.cz - Píšu - Guiding your communication for change",
+    link: "https://www.izatlouk.cz/pisu/",
+    description: "Přijměte pozvánku na exkurz do mojí hlavy. Sdílím kus sebe a svého know-how i zkušeností. A to pomocí písmenek.",
+    copyright: `© 2015 - ${new Date().getFullYear()} Irena Zatloukalová. All rights reserved`,
+    generator: "iZatlouk Tools",
+    language: "cs-CZ"
+  });
+  for (const item of items) {
+    let image = parseSrcset(item.querySelector(".entry-media img").dataset.srcset)?.at(2)?.url;
+    feed.addItem({
+      author: [{ email: "noreply@example.com", name: "Irena Zatloukalová" }],
+      title: item.querySelector(".entry-title").textContent,
+      link: item.querySelector(".entry-title a").href,
+      description: item.querySelector(".entry-body__text").textContent,
+      enclosure: image ? ({ url: image }) : undefined
+    });
+  }
+  return new Response(feed.rss2(), {
+    headers: {
+      "Content-Type": "application/rss+xml;charset=utf-8",
+      "Cache-Control": "max-age=3600"
+    }
+  });
+}
+
+export default {
+  async fetch(request) {
+    return rssFeed();
+  }
+}
+\--code
+
+Nic složitého. Worker jsem vypublikoval pomocí příkazu `wrangler deploy`.
+
+Deploy script vypíše i URL, na které můžeme worker otestovat. Kliknu, mám feed. Super.
+
+Tahle adresa ale není moc hezká a nijak moc nekeresponduje s Irči webem.
+Takže jsem administračním rozhraní Cloudflare pro doménu `izatlouk.cz` vytvořil Worker Route `izatlouk.cz/pisu/articles.rss`,
+která využije námi vytvořený Worker. A tak tu máme "RSS feed iZatlouk Píše":[https://izatlouk.cz/pisu/articles.rss].
+Můžete si ho hned přidat do čtečky.
+
+## Autodiscovery RSS Feedu
+
+Irča si hned odkaz přidala na konec stránky svého blogu, ale aby vše fungovalo jak jsme zvyklí, je potřeba ještě přidat autodiscovery.
+To se provede pomocí elementu `<link rel="alternate" type="application/rss+xml" href="https://izatlouk.cz/pise/articles.rss">`,
+který přidáme do `<head>` stránky. Teda, kdyby to v solidpixels šlo...
+
+Když to nejde v CMS, tak to půjde ve workeru!
+
+Cloudflare podporuje efektivní manipulaci s HTML přímo ve Workerech pomocí objektu
+"HTMLRewriter":[https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/].
+Takže jsem funkčnost workeru rozšířil o manipulaci stránek publikovaných v solidpixels:
+
+/--code javascript
+class HeadHandler {
+  element(el) {
+    el.append(`<link rel="alternate" type="application/rss+xml" href="https://izatlouk.cz/pisu/articles.rss">`, { html: true });
+  }
+}
+
+async function addRssAutodiscovery(request) {
+  const rewriter = new HTMLRewriter().on("head", new HeadHandler());
+  const resp = await fetch(request);
+  const contentType = resp.headers.get("Content-Type");
+  if (contentType.startsWith("text/html")) {
+    return rewriter.transform(resp);
+  } else {
+    return resp;
+  }
+}
+
+export default {
+  async fetch(request, env, ctx) {
+    const { pathname } = new URL(request.url);
+    switch (pathname) {
+      case "/pisu/articles.rss":
+        return rssFeed();
+      default:
+        return addRssAutodiscovery(request);
+    }
+  }
+};
+\--code
+
+Pokud je cesta požadavku `/pisu/articles.rss` vratíme RSS feed, jinak si `fetch`neme  odpověď z Origin
+a pokud je to HTML, tak do jeho `<head>` vložíme autodiscovery odkaz.
+Jinak vrátíme odpověď z Origin - v tomto případě ze solidpixels.
+
+V administraci Cloudflare jsem předělal routy na následující pravidla:
+
+/--code
+www.izatlouk.cz/pise/*
+www.izatlouk.cz/pisu
+izatlouk.cz/pisu/*
+\--code
+
+Na všechny je pověšený ten samý Worker. A rázem máme funkční autodiscovery a začnou fungovat extenze
+pro odběr RSS přímo v browseru nebo když se vloží URL blogu do čtečky.
+
+## Přepis URL
+
+V předchozích pravidlech si můžete všimnout, že Irči blog je sice na adrese `www.izatlouk.cz/pisu`,
+ale jednotlivé články mají prefix `www.izatlouk.cz/pise/`. Když člověk ručně urpaví URL a odmaže adresu po lomítko,
+dostane se na neexistující stránku. To je detail, který triggeruje moje OCD, takže jsem ještě worker doplnil
+o přesměrování na očekávaný výpis článků:
+
+/--code javascript
+function redirectToBlogRoot() {
+  return new Response(null, {
+    status: 301,
+    headers: { Location: "/pisu" }
+  });
+}
+
+export default {
+  async fetch(request, env, ctx) {
+    const { pathname } = new URL(request.url);
+    switch (pathname) {
+      case "/pisu/articles.rss":
+        return rssFeed();
+      case "/pise":
+      case "/pise/":
+        return redirectToBlogRoot();
+      default:
+        return addRssAutodiscovery(request);
+    }
+  }
+};
+\--code
+
+A prozatím mám hotovo.
+
+## Závěr
+
+Cloudflare Workers jsou švýcarským nožíkem webového vývojáře. Můžete využít sílu Edge Computingu,
+abyste hravě doplnili chybějící funkcionalitu CMS systémů. Stačilo mít DNS ve správě u Cloudflare,
+75 řádků moderního JavaScriptu a za dvě hodiny jsme měl v produkci užitečnou funkcionalitu a tenhle blog post.
+
+Tuhle techniku můžete klidně použít i na "renderování webových komponent":[/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech],
+aniž byste potřebovali mít váš web staticky hostovaný v Cloudflare Pages. Nebo na cokoliv, co vás napadne.

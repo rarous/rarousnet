@@ -2,7 +2,7 @@
 {:title "FrontKon - Serverless renderování Webových komponent",
  :description "Záznam a prezentace z mé přednášky na FrontKonu.",
  :author "Aleš Roubíček",
- :tags #{"webcomponents", "frontkon", "prezentace", "serverless", "cloudflare", "webperf"},
+ :tags #{"webcomponents", "frontkon", "prezentace", "serverless", "cloudflare", "webperf", "linkedom"},
  :published "2024-11-07T14:08:00.000"
  :syndication
   ["https://indieweb.social/@alesroubicek/113441386059916139"
