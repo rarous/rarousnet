@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "EUPL-1.2",
   "dependencies": {
-    "@pulumi/cloudflare": "5.45.0",
+    "@pulumi/cloudflare": "5.46.0",
     "@pulumi/pulumi": "3.144.1",
     "esbuild": "0.24.2"
   }
