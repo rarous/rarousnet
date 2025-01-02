@@ -4,11 +4,14 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "cloudflare", "indieweb", "linkedom"},
  :published "2025-01-02T14:51:00.000"
- :syndication ["https://indieweb.social/@alesroubicek/113759139772100764"]}
+ :syndication
+ ["https://indieweb.social/@alesroubicek/113759139772100764"
+  "https://bsky.app/profile/alesroubicek.indieweb.social.ap.brid.gy/post/3leranxeneuy2"]}
 ---
 
 Irča:[https://www.izatlouk.cz] má svoje stránky hostovaný na solidpixels:[https://www.solidpixels.com/].
-Systém umožňuje psát si blog, ale chybí zásadní vlastnost a to je možnost se k odběru článků přihlásit pomocí RSS.
+Systém umožňuje psát si blog, ale chybí zásadní vlastnost a to je možnost se k odběru článků přihlásit
+pomocí RSS((Really Simple Syndication)).
 
 Naštěstí má své DNS v mojí správě přes Cloudflare a tak jsem mohl její web o chybějící funkcionalitu rychle obohatit.
 
@@ -16,7 +19,7 @@ Naštěstí má své DNS v mojí správě přes Cloudflare a tak jsem mohl její
 
 Nejprve jsem se pustil do tvorby samotného feedu. Vytvořil jsem Worker pomocí příkazu `wrangler init`:[https://developers.cloudflare.com/workers/get-started/guide/#1-create-a-new-worker-project].
 Tento Worker pomocí knihovny `linkedom`:[/weblog/tag/linkedom] načte seznam článků a pomocí knihovny
-`feed`:[https://github.com/jpmonette/feed] jej serializuje do formátu RSS((Really Simple Syndication)) 2.0:
+`feed`:[https://github.com/jpmonette/feed] jej serializuje do formátu "RSS 2.0":[https://www.rssboard.org/rss-specification]:
 
 /--code javascript
 import { Feed } from "feed";
@@ -164,9 +167,9 @@ A prozatím mám hotovo.
 
 ## Závěr
 
-Cloudflare Workers jsou švýcarským nožíkem webového vývojáře. Můžete využít sílu Edge Computingu,
+"Cloudflare Workers":[https://workers.dev/] jsou švýcarským nožíkem webového vývojáře. Můžete využít sílu Edge Computingu,
 abyste hravě doplnili chybějící funkcionalitu CMS systémů. Stačilo mít DNS ve správě u Cloudflare,
 75 řádků moderního JavaScriptu a za dvě hodiny jsme měl v produkci užitečnou funkcionalitu a tenhle blog post.
 
 Tuhle techniku můžete klidně použít i na "renderování webových komponent":[/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech],
-aniž byste potřebovali mít váš web staticky hostovaný v Cloudflare Pages. Nebo na cokoliv, co vás napadne.
+aniž byste potřebovali mít váš web staticky hostovaný v "Cloudflare Pages":[https://pages.dev/]. Nebo na cokoliv, co vás napadne.
