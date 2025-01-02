@@ -9,8 +9,9 @@ async function main({ token }) {
   const {
     default: { included },
   } = await import("./data/li-likes.json", { with: { type: "json" } });
-  const target = "https://www.rarous.net/weblog/2024/11/19/generator-og-image-pomoci-cloudflare-workers.html";
-  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7264614592171929600/";
+  const target =
+    "https://www.rarous.net/weblog/2025/01/02/rozsirovani-funkcionality-existujicich-webu-pomoci-cloudflare-workers.html";
+  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7280589762602622976/";
   const reactions = included.filter(x => x["$type"] === "com.linkedin.voyager.dash.social.Reaction");
   for (const reaction of reactions) {
     const userId = reaction.actorUrn;
