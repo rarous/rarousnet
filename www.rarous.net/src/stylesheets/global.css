@@ -185,7 +185,7 @@ h3 {
   font-size: var(--font-size-fluid-1);
   font-variation-settings: "wdth" 60, "opsz" 20, "GRAD" 500, "YAXS" 1000;
   font-feature-settings: "ss10";
-  margin-block: 1.5em 0.25em;
+  margin-block: 1.5lh 0.25lh;
 }
 
 h4 {
@@ -196,14 +196,14 @@ h4 {
   line-height: 1.25;
   font-variation-settings: "opsz" 20, "GRAD" 400, "YAXS" 1000;
   font-feature-settings: "ss10";
-  margin-block: 1.5em 0.25em;
+  margin-block: 1.5lh 0.25lh;
 }
 
 p, ul, ol, dl {
   font-family: var(--content-font);
   line-height: 1.5;
   text-wrap: pretty;
-  margin: 0.125em 0 1em;
+  margin: 0.125lh 0 1lh;
   padding: 0;
   max-width: 48rem;
 }
@@ -250,11 +250,11 @@ acronym {
 }
 
 figure {
-  margin: 1rem 0 1.5rem;
+  margin: 1lh 0 1.5lh;
 
   figcaption {
     max-width: 80%;
-    margin: 1em auto 0;
+    margin: 1lh auto 0;
     text-align: center;
     text-wrap: balance;
   }
@@ -278,8 +278,8 @@ code {
 
 pre {
   border: 1px solid oklch(0.845 0 89.876);
-  margin: 1em 0;
-  padding: 0.5em;
+  margin-block: 1lh;
+  padding: 0.5lh;
   overflow: auto;
 }
 
@@ -443,7 +443,7 @@ dialog {
   }
 
   fieldset {
-    margin-block: 1em;
+    margin-block: 1lh;
   }
 
   ul {

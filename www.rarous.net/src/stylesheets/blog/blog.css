@@ -49,7 +49,7 @@ blockquote p {
 }
 
 aside {
-  margin: 0 4em;
+  margin-inline: 4em;
 }
 
 aside p {
@@ -100,8 +100,7 @@ code[class*="language-"] ::selection {
 }
 
 pre:has(> code) {
-  padding: 1em;
-  margin: 0.5em 0;
+  padding: 1lh;
   overflow: auto;
 }
 
@@ -195,7 +194,7 @@ pre:has(> code.language-php) {
 div.image {
   border: 1px solid oklch(0.845 0 89.876);
   padding: 4px;
-  margin: 1em 0;
+  margin-block: 1lh;
   overflow: auto;
 }
 
@@ -235,8 +234,8 @@ iframe.player {
 
 #content:not(.category-listing) article {
   border-block-end: 6px solid oklch(0.45 0 89.876);
-  padding-block-end: 1em;
-  margin-block-end: 3em;
+  padding-block-end: 0.5lh;
+  margin-block-end: 3lh;
 }
 
 article .info {
@@ -245,7 +244,7 @@ article .info {
   font-feature-settings: "ss09";
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-block: 0.5em 1em;
+  margin-block: 0.5lh 1lh;
 }
 
 @supports (initial-letter: 1) {
@@ -264,8 +263,8 @@ article img {
 
 article footer {
   border-block-start: var(--border-width) solid oklch(0.45 0 89.876);
-  padding-block-start: 1em;
-  margin-block-start: 2em;
+  padding-block-start: 0.5lh;
+  margin-block-start: 2lh;
 }
 
 .breadcrumbs,
@@ -285,7 +284,7 @@ article footer {
   font-family: var(--heading-font);
 
   h2 {
-    margin-block-end: 1em;
+    margin-block-end: 1lh;
     font-feature-settings: "ss11";
   }
 
@@ -339,9 +338,9 @@ article footer {
   .items > li {
     counter-increment: --comment;
     position: relative;
-    scroll-margin-block-start: 1em;
+    scroll-margin-block-start: 1lh;
     border-block-end: 1px solid var(--border-color);
-    margin-block-start: 2em;
+    margin-block-start: 2lh;
   }
 
   [rel="bookmark"]::after {
@@ -403,11 +402,11 @@ article footer {
   }
 
   .footer__inner {
-    padding-block: 1em;
+    padding-block: 1lh;
   }
 
   .footer__copyright {
-    padding-block: 0.25em;
+    padding-block: 0.25lh;
     box-sizing: border-box;
   }
 }
@@ -416,7 +415,7 @@ article footer {
   position: relative;
 
   @media (min-width: 600px) {
-    padding-block-end: 2em;
+    padding-block-end: 2lh;
   }
 }
 
@@ -461,14 +460,14 @@ article footer {
 }
 
 #novy-komentar {
-  margin-block-start: 4em;
+  margin-block-start: 4lh;
 
   form {
-    margin-block-start: 2em;
+    margin-block-start: 2lh;
   }
 
   fieldset > div + div {
-    margin-block-start: 1em;
+    margin-block-start: 1lh;
   }
 
   label {
@@ -483,6 +482,11 @@ article footer {
     border-radius: var(--border-radius, 0);
   }
 
+  input {
+    width: 100%;
+    max-width: 32ch;
+  }
+
   input[name="name"] {
     font-family: var(--main-font);
     font-weight: 600;
@@ -491,7 +495,7 @@ article footer {
   textarea {
     font-family: var(--content-font);
     width: 100%;
-    max-width: 40em;
+    max-width: 60ch;
     box-sizing: border-box;
   }
 
@@ -514,7 +518,7 @@ article footer {
 
 @media screen and (min-width: 481px) and (max-width: 760px) {
   .footer .footer__inner {
-    padding-block: 1em;
+    padding-block: 1lh;
     display: grid;
     grid-gap: 1.5em;
 
@@ -528,7 +532,7 @@ article footer {
   }
 
   .footer .footer__inner {
-    padding-block: 1em;
+    padding-block: 1lh;
     display: grid;
     grid-gap: 1.5em;
 
@@ -536,10 +540,10 @@ article footer {
   }
 
   #content {
-    padding-block: 2em;
+    padding-block: 2lh;
   }
 
   #content:not(.category-listing) article + article {
-    margin-block-start: 8rem;
+    margin-block-start: 8lh;
   }
 }
