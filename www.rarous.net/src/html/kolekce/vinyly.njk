@@ -1,7 +1,7 @@
 {% extends "layouts/common-layout.njk" %}
 {% set title = "Vinyly Aleše Roubíčka" %}
 {% set description = "Sbírka gramofonových desek Aleše Roubíčka." %}
-{% set contentSchema = "Collection" %}
+{% set contentSchema = "CollectionPage" %}
 {% set canonicalUrl = "https://www.rarous.net/kolekce/vinyly" %}
 {% set images = true %}
 
@@ -42,7 +42,7 @@
         </a>
       </li>
     </template>
-    <section class="collection">
+    <section itemprop="mainEntity" itemscope itemtype="https://schema.org/Collection" class="collection">
       <h1 itemprop="name">Kolekce vinylů</h1>
       <p>Desky jsem začal sbírat na jaře 2013, když vyšly <a href="https://daftpunk.lnk.to/RAM_Originals">Random Access
           Memories</a>. To byl první kousek v&nbsp;mé kolekci. Trvalo další rok, než jsem si pořídil

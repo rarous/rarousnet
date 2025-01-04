@@ -108,29 +108,29 @@
       <h2>Komentáře</h2>
       <section class="comments">
         <p>
-          Okomentováno&nbsp;<data value=""></data>
+          Okomentováno&nbsp;<data itemprop="commentCount" value=""></data>
         </p>
         <ol class="items h-feed">
         </ol>
       </section>
       <template>
-        <li id="komentar-" class="p-comment h-entry">
-          <header class="p-author h-card">
+        <li id="komentar-" class="p-comment h-entry" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+          <header itemprop="author" itemscope itemtype="https://schema.org/Person" class="p-author h-card">
             <div class="avatar">
-              <a class="u-url" rel="nofollow">
-                <img alt="" src="" width="32" height="32"
+              <a itemprop="url" class="u-url" rel="nofollow">
+                <img itemprop="image" alt="" src="" width="32" height="32"
                      loading="lazy" decoding="async"
                      class="u-photo">
               </a>
             </div>
-            <h3 class="p-name"></h3>
+            <h3 itemprop="name" class="p-name"></h3>
           </header>
-          <div class="e-content"></div>
+          <div itemprop="text" class="e-content"></div>
           <footer>
             <p class="info">
-              <a href="" class="u-url" title="Trvalý odkaz na komentář" rel="bookmark">#</a>
+              <a href="" itemprop="url" class="u-url" title="Trvalý odkaz na komentář" rel="bookmark">#</a>
               | okomentováno
-              <time class="dt-published"></time>
+              <time itemprop="dateCreated" class="dt-published"></time>
             </p>
           </footer>
         </li>
