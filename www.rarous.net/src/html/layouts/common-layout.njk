@@ -57,7 +57,7 @@
       </ul>
     </nav>
   </header>
-  <main itemscope itemtype="https://schema.org/{{ contentSchema or "https://schema.org/WebPage" }}" id="content"
+  <main itemscope itemtype="https://schema.org/{{ contentSchema or "WebPage" }}" id="content"
         {% if contentRole %}role="{{ contentRole }}"{% endif %}
     {% if contentClass %}class="{{ contentClass }}"{% endif %}>
     {% block content %}{% endblock %}
