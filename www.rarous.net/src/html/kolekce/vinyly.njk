@@ -1,7 +1,7 @@
 {% extends "layouts/common-layout.njk" %}
 {% set title = "Vinyly Aleše Roubíčka" %}
 {% set description = "Sbírka gramofonových desek Aleše Roubíčka." %}
-{% set contentSchema = "Collection" %}
+{% set contentSchema = "https://schema.org/Collection" %}
 {% set canonicalUrl = "https://www.rarous.net/kolekce/vinyly" %}
 {% set images = true %}
 
@@ -25,17 +25,17 @@
 {% block content %}
   <rarous-discogs api-endpoint="https://www.rarous.net/api/v1/collections/vinyls">
     <template>
-      <li class="album" property="hasPart" typeof="MusicAlbum">
-        <a href="https://www.discogs.com/release/" property="sameAs">
+      <li class="album" itemprop="hasPart" itemscope itemtype="https://schema.org/MusicAlbum">
+        <a href="https://www.discogs.com/release/" itemprop="sameAs">
           <div>
             <img
               alt="Obal desky"
               src="https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/"
-              property="image" width="400" height="400" sizes="auto" loading="lazy">
+              itemprop="image" width="400" height="400" sizes="auto" loading="lazy">
             <hgroup>
-              <h2 property="name"></h2>
-              <h3 property="byArtist"></h3>
-              <p property="copyrightYear"></p>
+              <h2 itemprop="name"></h2>
+              <h3 itemprop="byArtist"></h3>
+              <p itemprop="copyrightYear"></p>
             </hgroup>
             <button>Přehrát na spotify</button>
           </div>
@@ -43,7 +43,7 @@
       </li>
     </template>
     <section class="collection">
-      <h1 property="name">Kolekce vinylů</h1>
+      <h1 itemprop="name">Kolekce vinylů</h1>
       <p>Desky jsem začal sbírat na jaře 2013, když vyšly <a href="https://daftpunk.lnk.to/RAM_Originals">Random Access
           Memories</a>. To byl první kousek v&nbsp;mé kolekci. Trvalo další rok, než jsem si pořídil
         vlastní gramofon <a
@@ -51,7 +51,7 @@
           ELEMENTAL</a>. Časem jsem přebral kus kolekce od rodičů, kteří už si je
         nemají na čem pouštět.</p>
       <p>Počet katalogizovaných desek v kolekci:
-        <data property="collectionSize" value=""></data>
+        <data itemprop="collectionSize" value=""></data>
       </p>
       <ul class="items"></ul>
       <p>Zdrojem dat je <a href="https://www.discogs.com/user/rarous/collection">moje kolekce na Discogs</a>.</p>

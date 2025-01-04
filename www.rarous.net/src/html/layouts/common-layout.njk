@@ -57,7 +57,7 @@
       </ul>
     </nav>
   </header>
-  <main typeof="{{ contentSchema or "WebPage" }}" vocab="https://schema.org/" id="content"
+  <main itemscope itemtype="https://schema.org/{{ contentSchema or "https://schema.org/WebPage" }}" id="content"
         {% if contentRole %}role="{{ contentRole }}"{% endif %}
     {% if contentClass %}class="{{ contentClass }}"{% endif %}>
     {% block content %}{% endblock %}
@@ -69,9 +69,9 @@
           webu</a>,
         běží na <a href="https://pages.dev">Cloudflare Pages</a> a kód je hostován
         <a href="https://github.com/rarous/rarousnet">na Githubu</a>.
-      <p property="copyrightNotice">© 2004&ndash;<span class="year">{{ currentYear }}</span>
+      <p itemprop="copyrightNotice">© 2004&ndash;<span class="year">{{ currentYear }}</span>
         <span translate="no">Aleš Roubíček</span>.
-        Publikováno pod licencí <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
+        Publikováno pod licencí <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC 4.0 BY-SA</a>.
     </div>
   </footer>
   <dialog id="menuDialog" onclick="event.target === this && this.close()">

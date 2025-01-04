@@ -1,7 +1,7 @@
 {% extends "layouts/common-layout.njk" %}
 {% set title = "W3B - Výběr z článků - čtení doporučené Alešem Roubíčkem" %}
 {% set description = "Výběr z článků, které stojí za to si přečíst. Ručně vybíráno Alešem Roubíčkem" %}
-{% set contentSchema = "Collection" %}
+{% set contentSchema = "https://schema.org/Collection" %}
 {% set canonicalUrl = "https://www.rarous.net/w3b/" %}
 {% set images = true %}
 
@@ -62,7 +62,7 @@
 
   <articles-feed endpoint="https://www.rarous.net/api/v1/w3b/">
     <template>
-      <article typeof="BlogPosting" class="h-entry">
+      <article itemscope itemtype="https://schema.org/BlogPosting" class="h-entry">
         <h2 itemprop="headline" class="p-name" lang="en"><a itemprop="sameAs" class="u-url" href=""></a></h2>
         <p>Přidáno
           <time class="dt-published"></time>

@@ -69,13 +69,13 @@ export function defDiscogs({ HTMLElement, customElements }) {
         // TODO: chose value depending on media query
         if (index < 1) img.removeAttribute("loading");
 
-        const name = content.querySelector("[property=name]");
+        const name = content.querySelector("[itemprop=name]");
         name.textContent = item.title;
 
-        const byArtist = content.querySelector("[property=byArtist]");
+        const byArtist = content.querySelector("[itemprop=byArtist]");
         byArtist.textContent = item.artist.name;
 
-        const copyrightYear = content.querySelector("[property=copyrightYear]");
+        const copyrightYear = content.querySelector("[itemprop=copyrightYear]");
         copyrightYear.textContent = item.year;
 
         const button = content.querySelector("button");

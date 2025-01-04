@@ -128,8 +128,8 @@
       padding-left: 1em
     }
 
-    [property="telephone"]:before,
-    [property="email"]:before,
+    [itemprop="telephone"]:before,
+    [itemprop="email"]:before,
     .bank-account-number:before,
     .identification-number:before {
       content: "✆";
@@ -137,7 +137,7 @@
       padding-right: 1ex
     }
 
-    [property="email"]:before {
+    [itemprop="email"]:before {
       content: "✉"
     }
 
@@ -149,7 +149,7 @@
       content: "#"
     }
 
-    [property="address"], .qr-code {
+    [itemprop="address"], .qr-code {
       display: none
     }
 
@@ -291,46 +291,46 @@
     <img alt="" class="logo" src="/assets/logo.svg" width="60" height="43">
     <h1 lang="en">Software for the Masses</h1>
   </header>
-  <section id="kontakt" vocab="https://schema.org/" typeof="Person" class="vcard">
+  <section id="kontakt"  itemscope itemtype="https://schema.org/Person" class="vcard">
     <div class="qr-code">
       <img alt="QR kód s kontaktem"
            src="https://www.rarous.net/api/v1/qr?{{ searchParams({ t: meCard(contact) }) }}"
            title="Oskenuj si kontakt do mobilu" width="200" height="200">
     </div>
     <hgroup>
-      <h1 property="name" class="fn" translate="no">Aleš Roubíček</h1>
-      <h2 property="jobTitle" class="job" lang="en">web developer</h2>
+      <h1 itemprop="name" class="fn" translate="no">Aleš Roubíček</h1>
+      <h2 itemprop="jobTitle" class="job" lang="en">web developer</h2>
     </hgroup>
     <dl>
       <dt>E-mail:</dt>
-      <dd property="email" translate="no">
+      <dd itemprop="email" translate="no">
         <a href="mailto:ales&#64;roubicek.name" title="E-mail, Live ID" class="email">ales&#64;<!-- -->roubicek.name</a>
       </dd>
       <dt>Telefon:</dt>
-      <dd property="telephone"><a href="tel:+420737461283" class="tel">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
+      <dd itemprop="telephone"><a href="tel:+420737461283" class="tel">+420&thinsp;737&thinsp;461&thinsp;283</a></dd>
       <dt>Banka:</dt>
       <dd class="bank-account-number" title="číslu účtu">237716453/0600</dd>
       <dt>IČ:</dt>
-      <dd property="identifier" class="identification-number">88707253</dd>
+      <dd itemprop="identifier" class="identification-number">88707253</dd>
       <dt>Adresa:</dt>
-      <dd property="address" typeof="PostalAddress" class="addr">
-        <span property="streetAddress" class="street-address" translate="no">Hartigova 31/27</span><br>
-        <span property="postalCode" class="postal-code">130 00</span>,
-        <span property="addressLocality" class="locality">Praha 3</span>
+      <dd itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" class="addr">
+        <span itemprop="streetAddress" class="street-address" translate="no">Hartigova 31/27</span><br>
+        <span itemprop="postalCode" class="postal-code">130 00</span>,
+        <span itemprop="addressLocality" class="locality">Praha 3</span>
       </dd>
     </dl>
   </section>
   <nav id="links">
     <ul>
       <li><a href="/weblog/" rel="me">weblog</a></li>
-      <li><a property="sameAs" href="https://indieweb.social/@alesroubicek" rel="me">mastodon</a></li>
-      <li><a property="sameAs" href="https://github.com/rarous" rel="me">github</a></li>
-      <li><a property="sameAs" href="https://instagram.com/alesroubicek" rel="me">instagram</a></li>
-      <li><a property="sameAs" href="https://mixcloud.com/alessiobusta" rel="me">mixcloud</a></li>
-      <li><a property="sameAs" href="https://linkedin.com/in/rarous" rel="me">linkedin</a></li>
-      <li><a property="sameAs" href="https://speakerdeck.com/rarous" rel="me">speakerdeck</a></li>
-      <li><a property="sameAs" href="https://www.goodreads.com/rarous" rel="me">goodreads</a></li>
-      <li><a property="sameAs" href="https://youtube.com/@rarous" rel="me">youtube</a></li>
+      <li><a itemprop="sameAs" href="https://indieweb.social/@alesroubicek" rel="me">mastodon</a></li>
+      <li><a itemprop="sameAs" href="https://github.com/rarous" rel="me">github</a></li>
+      <li><a itemprop="sameAs" href="https://instagram.com/alesroubicek" rel="me">instagram</a></li>
+      <li><a itemprop="sameAs" href="https://mixcloud.com/alessiobusta" rel="me">mixcloud</a></li>
+      <li><a itemprop="sameAs" href="https://linkedin.com/in/rarous" rel="me">linkedin</a></li>
+      <li><a itemprop="sameAs" href="https://speakerdeck.com/rarous" rel="me">speakerdeck</a></li>
+      <li><a itemprop="sameAs" href="https://www.goodreads.com/rarous" rel="me">goodreads</a></li>
+      <li><a itemprop="sameAs" href="https://youtube.com/@rarous" rel="me">youtube</a></li>
     </ul>
   </nav>
 </div>

@@ -1,7 +1,7 @@
 {% extends "layouts/weblog.njk" %}
 
 {% set canonicalUrl = weblog.url %}
-{% set contentSchema = "Blog" %}
+{% set contentSchema = "https://schema.org/Blog" %}
 
 {% block head %}
   {{ super() }}
@@ -13,24 +13,24 @@
 
 {% block content %}
   <div class="feed" role="feed">
-    <article property="blogPost" typeof="BlogPosting">
-      <link property="image" href="">
+    <article itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+      <link itemprop="image" href="">
       <header>
-        <h2 property="headline"><a property="sameAs" href=""></a></h2>
+        <h2 itemprop="headline"><a itemprop="sameAs" href=""></a></h2>
         <p class="info">
-      <span typeof="Person" property="author">
-        <strong property="name">Aleš Roubíček</strong>
+      <span itemscope itemtype="https://schema.org/Person" itemprop="author">
+        <strong itemprop="name">Aleš Roubíček</strong>
       </span>
           |
-          <time datetime="" property="datePublished"></time>
+          <time datetime="" itemprop="datePublished"></time>
         </p>
       </header>
-      <div property="articleBody"></div>
+      <div itemprop="articleBody"></div>
       <footer data-pagefind-ignore="all">
         Označeno štítky:&nbsp;
         <nav class="tags" aria-label="Štítky">
           <ul>
-            <li><a class="p-category" property="articleSection" rel="tag" href="" data-pagefind-filter="tag"></a>
+            <li><a class="p-category" itemprop="articleSection" rel="tag" href="" data-pagefind-filter="tag"></a>
             </li>
           </ul>
         </nav>
@@ -56,7 +56,7 @@
 
   <div>
     <p>Přihlaš se k odběru:
-      <a property="webFeed" href="{{ weblog.articlesFeedUrl }}" type="application/rss+xml">RSS Feed</a>
+      <a itemprop="webFeed" href="{{ weblog.articlesFeedUrl }}" type="application/rss+xml">RSS Feed</a>
       · <a href="/weblog/feed/" rel="feed">HTML Feed</a>
     </p>
   </div>

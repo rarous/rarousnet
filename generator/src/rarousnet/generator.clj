@@ -100,6 +100,14 @@
 (defn- rdfa
    ([type prop] [(typeof type) (property prop)])
    ([type subtype prop] [(typeof type) (typeof subtype) (property prop)]))
+(defn- itemprop [name] (html/attr= :itemprop name))
+(defn- itemtype [name] (html/attr= :itemtype name))
+(defn- microdata
+  ([type prop] [(itemtype type) (itemprop prop)])
+  ([type subtype prop] [(itemtype type) (itemtype subtype) (itemprop prop)]))
+(defn- schema-org
+  ([type prop] [(itemtype (str "https://schema.org/" type)) (itemprop prop)])
+  ([type subtype prop] [(itemtype (str "https://schema.org/" type)) (itemtype (str "https://schema.org/" subtype)) (itemprop prop)]))
 (defn- link [rel] [:link (html/attr= :rel rel)])
 (defn- script [src] [:script (html/attr= :src src)])
 (defn- input [name] [:input (html/attr= :name name)])
@@ -113,17 +121,17 @@
 
 (defsnippet article-listing "weblog/index.html" [:.feed :article]
   [{:keys [title author category html published tags] :as article}]
-  (conj (rdfa "BlogPosting" "headline") :a) (html/do->
+  (conj (schema-org "BlogPosting" "headline") :a) (html/do->
                                                    (html/content (process-typo title))
                                                    (html/set-attr :href (rel-link article)))
-  (rdfa "BlogPosting" "datePublished") (html/do->
+  (schema-org "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date-time published))
                                               (html/set-attr :datetime (iso-date published)))
-  (rdfa "BlogPosting" "articleSection") (html/content category)
-  (rdfa "BlogPosting" "articleBody") (html/html-content html)
-  (rdfa "BlogPosting" "Person" "name") (html/content author)
-  (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
-  (rdfa "BlogPosting" "url") (html/set-attr :href (rel-link article))
+  (schema-org "BlogPosting" "articleSection") (html/content category)
+  (schema-org "BlogPosting" "articleBody") (html/html-content html)
+  (schema-org "BlogPosting" "Person" "name") (html/content author)
+  (schema-org "BlogPosting" "image") (html/set-attr :href (card-image article))
+  (schema-org "BlogPosting" "url") (html/set-attr :href (rel-link article))
   [:gryphoon-weblog] (html/set-attr :href (permalink article))
   [:article :.tags] (html/substitute (article-tags tags)))
 
@@ -138,15 +146,15 @@
 
 (defsnippet article-detail "weblog/blogpost.html" [:article]
   [{:keys [title author category html published] :as article}]
-  (rdfa "BlogPosting" "headline") (html/content (process-typo title))
-  (rdfa "BlogPosting" "datePublished") (html/do->
+  (schema-org "BlogPosting" "headline") (html/content (process-typo title))
+  (schema-org "BlogPosting" "datePublished") (html/do->
                                               (html/content (long-date-time published))
                                               (html/set-attr :datetime (iso-date published)))
-  (rdfa "BlogPosting" "articleSection") (html/content category)
-  (rdfa "BlogPosting" "articleBody") (html/html-content html)
-  (rdfa "BlogPosting" "Person" "name") (html/content author)
-  (rdfa "BlogPosting" "image") (html/set-attr :href (card-image article))
-  (rdfa "BlogPosting" "url") (html/set-attr :href (permalink article)))
+  (schema-org "BlogPosting" "articleSection") (html/content category)
+  (schema-org "BlogPosting" "articleBody") (html/html-content html)
+  (schema-org "BlogPosting" "Person" "name") (html/content author)
+  (schema-org "BlogPosting" "image") (html/set-attr :href (card-image article))
+  (schema-org "BlogPosting" "url") (html/set-attr :href (permalink article)))
 
 (defsnippet article-breadcrumbs "weblog/blogpost.html" [:.breadcrumbs]
   [{:keys [year month month-name day]}]
