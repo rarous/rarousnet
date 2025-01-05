@@ -175,6 +175,8 @@
   [(meta-n "twitter:description")] (html/set-attr :content description)
   [(meta-n "twitter:image")] (html/set-attr :content (card-image article))
   [(meta-p "article:published_time")] (html/set-attr :content (iso-date published))
+  [(meta-p "article:author")] (html/set-attr :content author)
+  [(meta-p "article:tag")] (html/clone-for [tag tags] (html/set-attr :content tag))
   [(meta-n "fediverse:creator")] (html/set-attr :content (author-fediverse article))
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "syndication")] (if syndication
