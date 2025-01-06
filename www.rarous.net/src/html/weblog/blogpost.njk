@@ -1,5 +1,5 @@
 {% extends "layouts/weblog.njk" %}
-{% set prefix= "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" %}
+{% set prefix= "og: http://ogp.me/ns# article: http://ogp.me/ns/article#" %}
 {% set contentSchema = "ItemPage" %}
 
 {% block head %}
@@ -7,7 +7,6 @@
   <link rel="home" href="/weblog/">
   {{ super() }}
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="rarouš.weblog">
   <meta property="article:published_time" content="">
   <meta property="article:author" content="">
   <meta property="article:tag" content="">

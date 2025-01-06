@@ -1,5 +1,4 @@
 {% extends "layouts/common-layout.njk" %}
-{% set prefix = "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#" %}
 {% set images = true %}
 {% set title= "rarouš.weblog" %}
 {% set description = "Aleš Roubíček píše o webdesignu a čistém kódu." %}
@@ -39,6 +38,8 @@
         title="rarouš.weblog - komentáře k článkům">
   <link rel="alternate" type="application/atom+xml" href="https://feeds.feedburner.com/rarous/w3b"
         title="rarouš.w3b - doporučené čtení">
+  <meta property="og:site_name" content="rarouš.weblog">
+  <meta property="og:locale" content="cs_CZ">
 {% endblock %}
 
 {% set headerId = "head" %}
