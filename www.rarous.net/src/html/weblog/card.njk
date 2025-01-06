@@ -3,10 +3,11 @@
 {% block head_stylesheets %}
   <style>
     body {
-      font-size: 2.5em;
+      display: block
     }
 
     h1 {
+      font-size: 3em;
       font-weight: 900;
       margin-bottom: 0;
       text-wrap: balance;
@@ -24,22 +25,23 @@
     }
 
     #card {
-      width: 1920px;
-      height: 1003px;
+      width: 1200px;
+      height: 630px;
       display: grid;
+      box-sizing: border-box;
       grid-template-rows: auto 1fr;
-      padding: 2em 4em;
     }
 
     .inner {
       place-self: center left;
+      padding: 2em 4em;
     }
 
     header {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 2em;
-      align-content: center;
+      align-items: center;
     }
 
     header h2 {
@@ -50,7 +52,7 @@
     }
 
     .logo {
-      width: 180px;
+      width: 60px;
       height: auto;
     }
   </style>

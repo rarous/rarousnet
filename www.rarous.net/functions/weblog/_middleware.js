@@ -87,6 +87,7 @@ async function renderSocialMediaImages({ next, request, env }) {
   const screenshotterParams = new URLSearchParams({
     url: `https://www.rarous.net/weblog/card?${params}`,
     selector: "#card",
+    dpr: 2,
     type: "png",
     token: env.SCREENSHOTTER_SECRET,
   });
