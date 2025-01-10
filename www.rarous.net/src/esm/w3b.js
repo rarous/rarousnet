@@ -80,8 +80,10 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
       }
 
       const a = item.querySelector("[itemprop=url]");
-      a.href = entry.link ?? entry.url;
-      a.textContent = processTypo(entry.title);
+      if (a) {
+        a.href = entry.link ?? entry.url;
+        a.textContent = processTypo(entry.title);
+      }
 
       const published = item.querySelector("[itemprop=published]");
       if (published) {
