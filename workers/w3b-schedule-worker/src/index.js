@@ -49,6 +49,64 @@ async function updateArticlesFeed(env) {
   await env.w3b.put("/latest", JSON.stringify(result));
 }
 
+function processExtractedData(data) {
+  console.log("Extracted data:", data);
+  let image = data.metatags["twitter:image"]?.[0] ?? data.metatags["og:image"]?.[0] ?? "";
+  if (image && !image.startsWith("http")) {
+    image = new URL(image, data.url).href;
+  }
+  return {
+    url: data.url,
+    lang: data.lang,
+    title: data.metatags["twitter:title"]?.[0] ?? data.metatags["og:title"]?.[0] ?? data.title,
+    description: data.metatags["twitter:description"]?.[0] ?? data.metatags["og:description"]?.[0] ?? data.metatags["description"]?.[0] ?? "",
+    author: data.metatags["article:author"]?.[0] ?? data.metatags["author"]?.[0] ?? "",
+    tags: data.metatags["article:tag"]?.join(", ") ?? data.metatags["keywords"]?.[0] ?? "",
+    image
+  }
+}
+
+function mergeData(entry, extractedData) {
+  const data = processExtractedData(extractedData);
+  return {
+    link: entry.link,
+    lang: data.lang,
+    title: data.title || entry.title,
+    description: data.description,
+    author: data.author || entry.author,
+    tags: data.tags,
+    image: data.image,
+    hostname: entry.hostname,
+    published: entry.published,
+  }
+}
+
+async function extractMetadata(entry, env) {
+  const params = new URLSearchParams({
+    url: entry.link,
+    token: env.SEMANTIC_EXTRACTOR_SECRET
+  });
+  const resp = await env.extractor.fetch(`https://w3blogy.cz/?${params}`);
+  return resp.json();
+}
+
+/**
+ * @param {Env} env
+ */
+async function updateArticlesFeedWithScrapedData(env) {
+  const current = await env.w3b.get("/latest", "json");
+  const data = new Map(Object.entries(current));
+  for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
+    const extractedData = await extractMetadata(entry, env);
+    data.set(entry.link, {
+      entry: mergeData(entry, extractedData),
+      stats: data[entry.link]?.stats ?? { clicks: 0, likes: 0 }
+    });
+  }
+  const result = Object.fromEntries(data);
+  await env.w3b.put("/latest", JSON.stringify(result));
+}
+
 export default {
   /**
    * @param {ScheduledEvent} event
@@ -60,7 +118,7 @@ export default {
   },
 
   async fetch(request, env, ctx) {
-    await updateArticlesFeed(env);
+    await updateArticlesFeedWithScrapedData(env);
     return new Response(null, { status: 202 });
   },
 };

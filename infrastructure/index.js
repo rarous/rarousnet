@@ -166,7 +166,9 @@ const w3bScheduleWorker = new cloudflare.WorkerScript("w3b-schedule-worker", {
   content: buildAsset("w3b-schedule-worker/src/index.js"),
   compatibilityDate: "2024-11-18",
   module: true,
+  secretTextBindings: [{ name: "SEMANTIC_EXTRACTOR_SECRET", text: config.require("semantic-extractor-secret") }],
   kvNamespaceBindings: [{ name: "w3b", namespaceId: w3bNS.id }],
+  serviceBindings: [{ name: "extractor", service: "hckr-semantic-extractor" }],
 });
 const w3bScheduleTrigger = new cloudflare.WorkerCronTrigger("w3b-schedule-trigger", {
   accountId: account.id,

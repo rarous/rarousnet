@@ -10,3 +10,5 @@ config:
     secure: AAABAPUMti3n0lkVWaFF6cgCIzbVA9P7369ij1K3o05TNPgPtZ76JtdYb07lmix4ufWaUf9YChnFOM22kCrRoPrD1eiSppo7D7KW/GQABACTVQ==
   rarousnet:screenshotter-secret:
     secure: AAABAI7bY3VE5h7lYuhqG/iTGlunLJjFyaz69IE7qKlxoL7/Kw41ZInblVeuryvjL5rEEvU0ztNmA/8hUaPrPAPu6yh2/tov5AEO+GOwEImpKA==
+  rarousnet:semantic-extractor-secret:
+    secure: AAABAJ0K+ceDmeXH6d1sgcxbScW3a/+J7iWmWX5BIKh9Ui9NnFVAuXTCbEw6zuBkiznqMu3DlzXy1v4exQVDhVe0BW1PN6j5aynAJjrecvwkLyGVw4vowXW0+01qSL3G
