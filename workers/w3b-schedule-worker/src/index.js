@@ -49,8 +49,11 @@ async function updateArticlesFeed(env) {
   await env.w3b.put("/latest", JSON.stringify(result));
 }
 
+// TODO: move into KV
 const authorsIgnoreList = new Set(["solidpixels., https://www.solidpixels.com"]);
-const authorsMap = new Map([]);
+const authorsMap = new Map([
+  ["noreply@example.com (Irena Zatloukalová)", "Irena Zatloukalová"]
+]);
 
 function processExtractedData(data) {
   console.log("Extracted data:", data);
