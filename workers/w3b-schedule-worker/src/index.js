@@ -49,18 +49,25 @@ async function updateArticlesFeed(env) {
   await env.w3b.put("/latest", JSON.stringify(result));
 }
 
+const authorsIgnoreList = new Set(["solidpixels., https://www.solidpixels.com"]);
+const authorsMap = new Map([]);
+
 function processExtractedData(data) {
   console.log("Extracted data:", data);
   let image = data.metatags["twitter:image"]?.[0] ?? data.metatags["og:image"]?.[0] ?? "";
   if (image && !image.startsWith("http")) {
     image = new URL(image, data.url).href;
   }
+  let author = data.metatags["article:author"]?.[0] ?? data.metatags["author"]?.[0] ?? "";
+  if (authorsIgnoreList.has(author)) {
+    author = null;
+  }
   return {
     url: data.url,
     lang: data.lang,
     title: data.metatags["twitter:title"]?.[0] ?? data.metatags["og:title"]?.[0] ?? data.title,
     description: data.metatags["twitter:description"]?.[0] ?? data.metatags["og:description"]?.[0] ?? data.metatags["description"]?.[0] ?? "",
-    author: data.metatags["article:author"]?.[0] ?? data.metatags["author"]?.[0] ?? "",
+    author: author,
     tags: data.metatags["article:tag"]?.join(", ") ?? data.metatags["keywords"]?.[0] ?? "",
     image
   }
@@ -73,7 +80,7 @@ function mergeData(entry, extractedData) {
     lang: data.lang,
     title: data.title || entry.title,
     description: data.description,
-    author: data.author || entry.author,
+    author: data.author || (authorsMap.get(entry.author) ?? entry.author),
     tags: data.tags,
     image: data.image,
     hostname: entry.hostname,
