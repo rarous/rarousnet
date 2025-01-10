@@ -141,7 +141,7 @@ const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
   projectName: weblogPages.name,
 });
 
-const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-worker", {
+const discogsScheduleWorker = new cloudflare.WorkersScript("discogs-schedule-worker", {
   accountId: account.id,
   name: "discogs-schedule-worker",
   content: buildAsset("discogs-schedule-worker/src/index.js"),
@@ -154,13 +154,13 @@ const discogsScheduleWorker = new cloudflare.WorkerScript("discogs-schedule-work
     { name: "SPOTIFY_CLIENT_SECRET", text: config.require("spotify-clientSecret") },
   ],
 });
-const discogsScheduleTrigger = new cloudflare.WorkerCronTrigger("discogs-schedule-trigger", {
+const discogsScheduleTrigger = new cloudflare.WorkersCronTrigger("discogs-schedule-trigger", {
   accountId: account.id,
   scriptName: discogsScheduleWorker.name,
   schedules: ["0 0 * * *"],
 });
 
-const w3bScheduleWorker = new cloudflare.WorkerScript("w3b-schedule-worker", {
+const w3bScheduleWorker = new cloudflare.WorkersScript("w3b-schedule-worker", {
   accountId: account.id,
   name: "w3b-schedule-worker",
   content: buildAsset("w3b-schedule-worker/src/index.js"),
@@ -170,7 +170,7 @@ const w3bScheduleWorker = new cloudflare.WorkerScript("w3b-schedule-worker", {
   kvNamespaceBindings: [{ name: "w3b", namespaceId: w3bNS.id }],
   serviceBindings: [{ name: "extractor", service: "hckr-semantic-extractor" }],
 });
-const w3bScheduleTrigger = new cloudflare.WorkerCronTrigger("w3b-schedule-trigger", {
+const w3bScheduleTrigger = new cloudflare.WorkersCronTrigger("w3b-schedule-trigger", {
   accountId: account.id,
   scriptName: w3bScheduleWorker.name,
   schedules: ["0 * * * *"],
