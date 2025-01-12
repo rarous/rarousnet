@@ -111,11 +111,12 @@ async function updateArticlesFeed(env) {
 async function updateArticlesFeedWithScrapedData(env) {
   const current = await env.w3b.get("/latest", "json");
   const data = new Map(Object.entries(current));
-  for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
+  const notEnhanced = Array.from(data.values()).filter(x => !x.entry.description);
+  for (const { entry, stats } of notEnhanced) {
     const extractedData = await extractMetadata(entry, env);
     data.set(entry.link, {
       entry: mergeData(entry, extractedData),
-      stats: data[entry.link]?.stats ?? { clicks: 0, likes: 0 }
+      stats: stats ?? { clicks: 0, likes: 0 }
     });
   }
   const result = Object.fromEntries(data);
