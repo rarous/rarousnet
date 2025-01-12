@@ -35,19 +35,6 @@ async function* getEntries(url) {
   }
 }
 
-/**
- * @param {Env} env
- */
-async function updateArticlesFeed(env) {
-  const current = await env.w3b.get("/latest", "json");
-  const data = new Map(Object.entries(current));
-  for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
-    if (data.has(entry.link)) continue;
-    data.set(entry.link, { entry, stats: { clicks: 0, likes: 0 } });
-  }
-  const result = Object.fromEntries(data);
-  await env.w3b.put("/latest", JSON.stringify(result));
-}
 
 // TODO: move into KV
 const authorsIgnoreList = new Set(["solidpixels., https://www.solidpixels.com"]);
@@ -98,6 +85,24 @@ async function extractMetadata(entry, env) {
   });
   const resp = await env.extractor.fetch(`https://w3blogy.cz/?${params}`);
   return resp.json();
+}
+
+/**
+ * @param {Env} env
+ */
+async function updateArticlesFeed(env) {
+  const current = await env.w3b.get("/latest", "json");
+  const data = new Map(Object.entries(current));
+  for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
+    if (data.has(entry.link)) continue;
+    const extractedData = await extractMetadata(entry, env);
+    data.set(entry.link, {
+      entry: mergeData(entry, extractedData),
+      stats: { clicks: 0, likes: 0 }
+    });
+  }
+  const result = Object.fromEntries(data);
+  await env.w3b.put("/latest", JSON.stringify(result));
 }
 
 /**
