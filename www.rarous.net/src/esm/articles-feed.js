@@ -72,6 +72,7 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
     filterData(data) {
       const tag = this.dataset.tag;
       if (tag) {
+        console.log({ tag });
         const byTag = new Map();
         for (const { entry, stats } of data) {
           const tags = entry.tags?.split(",")?.map(x => x.trim().toLowerCase()) ?? [];
@@ -81,7 +82,7 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
             byTag.set(tag, items);
           }
         }
-        data = byTag.get(tag);
+        data = byTag.get(tag) ?? [];
       }
 
       const sortKey = this.dataset.sortBy ?? "published";
@@ -145,7 +146,7 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
       const description = item.querySelector("[itemprop=abstract]");
       if (description) {
         if (entry.description) {
-          description.textContent = processTypo(entry.description, {locale});
+          description.textContent = processTypo(entry.description, { locale });
         } else {
           description.remove();
         }
