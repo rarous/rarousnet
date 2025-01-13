@@ -4,8 +4,9 @@ import { parseHTML } from "linkedom";
 /**
  * @param {EventContext<Env>} context
  */
-export async function onRequestGet({ env, next }) {
+export async function onRequestGet({ request, env, next }) {
   const resp = await next();
+  const { searchParams } = new URL(request.url);
   const contentType = resp.headers.get("content-type");
   if (resp.ok && contentType?.startsWith("text/html")) {
     const html = await resp.text();
@@ -14,6 +15,7 @@ export async function onRequestGet({ env, next }) {
     ArticlesFeed.register();
     const el = window.document.querySelector(ArticlesFeed.tagName);
     if (el) {
+      el.dataset.tag = searchParams.get("tag");
       const data = await env.w3b.get("/latest", "json");
       el.data = Object.values(data).sort((a, b) => -1 * a.entry.published.localeCompare(b.entry.published));
     }
