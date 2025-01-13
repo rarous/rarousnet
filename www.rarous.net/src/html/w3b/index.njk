@@ -47,11 +47,10 @@
     .tags li {
       display: inline;
       text-transform: lowercase;
-
-      &:not(:last-of-type):after {
-        content: ", ";
-        color: var(--text-color);
-      }
+    }
+    .tags li:not(:last-of-type)::after {
+      content: ", ";
+      color: var(--text-color);
     }
   </style>
 {% endblock %}
