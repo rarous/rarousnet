@@ -1,4 +1,4 @@
-import { defArticlesFeed } from "@rarousnet/website/w3b.js";
+import { defArticlesFeed } from "@rarousnet/website/articles-feed.js";
 import { parseHTML } from "linkedom";
 
 /**
