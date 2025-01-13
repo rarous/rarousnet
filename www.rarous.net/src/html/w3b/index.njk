@@ -29,9 +29,29 @@
       margin-block: 0;
       text-wrap: balance;
     }
+    article h2 + p {
+      margin-block-start: 0;
+    }
 
     article p {
-      margin-block: 0;
+      margin-block: 0.5lh;
+    }
+
+    .tags ul {
+      display: inline;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li {
+      display: inline;
+      text-transform: lowercase;
+
+      &:not(:last-of-type):after {
+        content: ", ";
+        color: var(--text-color);
+      }
     }
   </style>
 {% endblock %}
@@ -64,24 +84,26 @@
     <template>
       <article itemscope itemtype="https://schema.org/BlogPosting" class="h-entry">
         <h2 itemprop="headline" class="p-name" lang="en"><a itemprop="url" class="u-url" href=""></a></h2>
+        <p><span class="p-author" itemprop="author" itemscope itemtype="https://schema.org/Person"><strong
+              itemprop="name"></strong></span> @ <code></code></p>
         <p itemprop="abstract"></p>
-        <p>Přidáno
-          <time itemprop="published" class="dt-published"></time>
-          z webu <code></code>.
-        </p>
+        <nav class="tags" aria-label="tags">
+          Přidáno
+          <time itemprop="published" class="dt-published"></time>.
+          Označeno štítky:
+          <ul>
+            <li itemprop="articleSection"><a class="p-category" rel="tag" href="?tag="></a></li>
+          </ul>
+        </nav>
       </article>
     </template>
   </articles-feed>
 
-  <p>Na stránce se pracuje. Můžete se
+  <p>Můžete se
     <a href="https://feeds2.feedburner.com/rarous/w3b" type="application/atom+xml"
        title="Přihlásit se k odběru pomocí RSS">přihlásit k odběru článků pomocí RSS</a>.</p>
 {% endblock %}
 
 {% block scripts %}
-  <script type="module">
-    import "{{ "w3b.js" | assetUrl("esm") }}";
-    const feed = document.querySelector("articles-feed");
-    await feed.loadDataFromApi();
-  </script>
+  <script type="module" src="{{ "w3b.js" | assetUrl("esm") }}"></script>
 {% endblock %}

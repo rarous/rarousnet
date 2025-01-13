@@ -42,23 +42,30 @@ const authorsMap = new Map([
   ["noreply@example.com (Irena Zatloukalová)", "Irena Zatloukalová"]
 ]);
 
+function val(prop) {
+  if (Array.isArray(prop)) return prop[0];
+  return prop;
+}
+
 function processExtractedData(data) {
   console.log("Extracted data:", data);
-  let image = data.metatags["twitter:image"]?.[0] ?? data.metatags["og:image"]?.[0] ?? "";
+  const { lang, jsonld, metatags, title, url } = data;
+  const article =  val(jsonld.NewsArticle) ?? val(jsonld.Article) ?? val(jsonld.BlogPosting);
+  let image = val(val(article.image)?.url) ?? val(article.image) ?? val(metatags["twitter:image"]) ?? val(metatags["og:image"]) ?? "";
   if (image && !image.startsWith("http")) {
-    image = new URL(image, data.url).href;
+    image = new URL(image, url).href;
   }
-  let author = data.metatags["article:author"]?.[0] ?? data.metatags["author"]?.[0] ?? "";
+  let author = val(article?.author?.name) ?? val(metatags["article:author"]) ?? val(metatags["author"]) ?? "";
   if (authorsIgnoreList.has(author)) {
     author = null;
   }
   return {
-    url: data.url,
-    lang: data.lang,
-    title: data.metatags["twitter:title"]?.[0] ?? data.metatags["og:title"]?.[0] ?? data.title,
-    description: data.metatags["twitter:description"]?.[0] ?? data.metatags["og:description"]?.[0] ?? data.metatags["description"]?.[0] ?? "",
-    author: author,
-    tags: data.metatags["article:tag"]?.join(", ") ?? data.metatags["keywords"]?.[0] ?? "",
+    url,
+    lang,
+    title: val(article?.headline) ?? val(metatags["twitter:title"]) ?? val(metatags["og:title"]) ?? title,
+    description: val(metatags["twitter:description"]) ?? val(metatags["og:description"]) ?? val(metatags["description"]) ?? "",
+    author,
+    tags: val(article?.keywords) ?? metatags["article:tag"]?.join(", ") ?? val(metatags["keywords"]) ?? "",
     image
   }
 }
