@@ -4,6 +4,9 @@
   "exports": {
     "./*.js": "./src/esm/*.js"
   },
+  "dependencies": {
+    "@thi.ng/transducers": "9.2.12"
+  },
   "devDependencies": {
     "@hckr_/blendid": "9.1.2",
     "@types/gulp": "4.0.17",
