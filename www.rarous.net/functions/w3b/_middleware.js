@@ -15,7 +15,9 @@ export async function onRequestGet({ request, env, next }) {
     ArticlesFeed.register();
     const el = window.document.querySelector(ArticlesFeed.tagName);
     if (el) {
-      el.dataset.tag = searchParams.get("tag");
+      if (searchParams.has("tag")) {
+        el.dataset.tag = searchParams.get("tag");
+      }
       const data = await env.w3b.get("/latest", "json");
       el.data = Object.values(data).sort((a, b) => -1 * a.entry.published.localeCompare(b.entry.published));
     }

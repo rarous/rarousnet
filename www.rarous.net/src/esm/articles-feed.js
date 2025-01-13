@@ -72,7 +72,6 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
     filterData(data) {
       const tag = this.dataset.tag;
       if (tag) {
-        console.log({ tag });
         const byTag = new Map();
         for (const { entry, stats } of data) {
           const tags = entry.tags?.split(",")?.map(x => x.trim().toLowerCase()) ?? [];
