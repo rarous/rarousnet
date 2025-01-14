@@ -35,12 +35,9 @@ async function* getEntries(url) {
   }
 }
 
-
 // TODO: move into KV
 const authorsIgnoreList = new Set(["solidpixels., https://www.solidpixels.com"]);
-const authorsMap = new Map([
-  ["noreply@example.com (Irena Zatloukalová)", "Irena Zatloukalová"]
-]);
+const authorsMap = new Map([["noreply@example.com (Irena Zatloukalová)", "Irena Zatloukalová"]]);
 
 function val(prop) {
   if (Array.isArray(prop)) return prop[0];
@@ -50,8 +47,13 @@ function val(prop) {
 function processExtractedData(data) {
   console.log("Extracted data:", data);
   const { lang, jsonld, metatags, title, url } = data;
-  const article =  val(jsonld.NewsArticle) ?? val(jsonld.Article) ?? val(jsonld.BlogPosting);
-  let image = val(val(article.image)?.url) ?? val(article.image) ?? val(metatags["twitter:image"]) ?? val(metatags["og:image"]) ?? "";
+  const article = val(jsonld.NewsArticle) ?? val(jsonld.Article) ?? val(jsonld.BlogPosting);
+  let image =
+    val(val(article?.image)?.url) ??
+    val(article?.image) ??
+    val(metatags["twitter:image"]) ??
+    val(metatags["og:image"]) ??
+    "";
   if (image && !image.startsWith("http")) {
     image = new URL(image, url).href;
   }
@@ -63,11 +65,12 @@ function processExtractedData(data) {
     url,
     lang,
     title: val(article?.headline) ?? val(metatags["twitter:title"]) ?? val(metatags["og:title"]) ?? title,
-    description: val(metatags["twitter:description"]) ?? val(metatags["og:description"]) ?? val(metatags["description"]) ?? "",
+    description:
+      val(metatags["twitter:description"]) ?? val(metatags["og:description"]) ?? val(metatags["description"]) ?? "",
     author,
     tags: val(article?.keywords) ?? metatags["article:tag"]?.join(", ") ?? val(metatags["keywords"]) ?? "",
-    image
-  }
+    image,
+  };
 }
 
 function mergeData(entry, extractedData) {
@@ -82,13 +85,13 @@ function mergeData(entry, extractedData) {
     image: data.image,
     hostname: entry.hostname,
     published: entry.published,
-  }
+  };
 }
 
 async function extractMetadata(entry, env) {
   const params = new URLSearchParams({
     url: entry.link,
-    token: env.SEMANTIC_EXTRACTOR_SECRET
+    token: env.SEMANTIC_EXTRACTOR_SECRET,
   });
   const resp = await env.extractor.fetch(`https://w3blogy.cz/?${params}`);
   return resp.json();
@@ -105,7 +108,7 @@ async function updateArticlesFeed(env) {
     const extractedData = await extractMetadata(entry, env);
     data.set(entry.link, {
       entry: mergeData(entry, extractedData),
-      stats: { clicks: 0, likes: 0 }
+      stats: { clicks: 0, likes: 0 },
     });
   }
   const result = Object.fromEntries(data);
@@ -123,7 +126,7 @@ async function updateArticlesFeedWithScrapedData(env) {
     const extractedData = await extractMetadata(entry, env);
     data.set(entry.link, {
       entry: mergeData(entry, extractedData),
-      stats: stats ?? { clicks: 0, likes: 0 }
+      stats: stats ?? { clicks: 0, likes: 0 },
     });
   }
   const result = Object.fromEntries(data);
