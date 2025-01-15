@@ -34,8 +34,6 @@ export function defFeedPagination({ HTMLElement, customElements }) {
       const prevPage = Math.max(0, pageIndex - 1);
       const nextPage = Math.min(lastPage, pageIndex + 1);
 
-      console.log({ pageSize, itemsCount, totalPages, pageIndex, prevPage, nextPage, lastPage });
-
       if (pageIndex === 0) {
         this.firstLink.setAttribute("disabled", "disabled");
         this.prevLink.setAttribute("disabled", "disabled");
