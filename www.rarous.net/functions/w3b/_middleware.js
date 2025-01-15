@@ -35,12 +35,8 @@ export async function onRequestGet({ request, env, next }) {
     FeedPagination.register();
     const pagination = document.querySelector(FeedPagination.tagName);
     if (pagination) {
-      if (searchParams.has("page")) {
-        pagination.dataset.currentPage = searchParams.get("page");
-      }
-      if (feed) {
-        pagination.dataset.itemsCount = itemsCount;
-      }
+      pagination.dataset.currentPage = searchParams.get("page") ?? 0;
+      pagination.dataset.itemsCount = itemsCount;
     }
 
     return new Response(document.toString(), resp);
