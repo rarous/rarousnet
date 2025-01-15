@@ -11,7 +11,7 @@ export async function onRequestGet({ request, env, next }) {
   const contentType = resp.headers.get("content-type");
   if (resp.ok && contentType?.startsWith("text/html")) {
     const html = await resp.text();
-    const { document, window } = parseHTML(html);
+    const { document, window } = parseHTML(html, { location: new URL(request.url) });
     const ArticlesFeed = defArticlesFeed(window);
     const FeedPagination = defFeedPagination(window);
     ArticlesFeed.register();
