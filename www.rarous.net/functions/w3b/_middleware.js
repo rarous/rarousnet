@@ -13,6 +13,7 @@ export async function onRequestGet({ request, env, next }) {
     const html = await resp.text();
     const { document, window } = parseHTML(html);
     document.location = new URL(request.url);
+    let itemsCount;
 
     const ArticlesFeed = defArticlesFeed(window);
     ArticlesFeed.register();
@@ -25,7 +26,9 @@ export async function onRequestGet({ request, env, next }) {
         feed.dataset.tag = searchParams.get("tag");
       }
       const data = await env.w3b.get("/latest", "json");
-      feed.data = Object.values(data).sort((a, b) => -1 * a.entry.published.localeCompare(b.entry.published));
+      const items = Object.values(data).sort((a, b) => -1 * a.entry.published.localeCompare(b.entry.published));
+      feed.data = items;
+      itemsCount = items.length;
     }
 
     const FeedPagination = defFeedPagination(window);
@@ -36,7 +39,7 @@ export async function onRequestGet({ request, env, next }) {
         pagination.dataset.currentPage = searchParams.get("page");
       }
       if (feed) {
-        pagination.dataset.itemsCount = feed.itemsCount;
+        pagination.dataset.itemsCount = itemsCount;
       }
     }
 
