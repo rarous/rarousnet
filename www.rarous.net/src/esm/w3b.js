@@ -17,7 +17,9 @@ async function main() {
   }
 
   await feed.loadDataFromApi();
-  pagination.dataset.itemsCount = feed.itemsCount;
+  if (!pagination.dataset.itemsCount) {
+    pagination.dataset.itemsCount = feed.itemsCount;
+  }
 }
 
 main();
