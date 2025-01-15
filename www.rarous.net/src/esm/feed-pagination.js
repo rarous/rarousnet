@@ -29,16 +29,17 @@ export function defFeedPagination({ HTMLElement, customElements }) {
       const { pageSize, itemsCount, currentPage } = this.dataset;
       if (!(itemsCount || currentPage)) return;
       const totalPages = Math.ceil(itemsCount / pageSize);
+      const pageIndex = Number.parseInt(currentPage, 10);
       const lastPage = totalPages - 1;
-      const prevPage = Math.max(0, currentPage - 1);
-      const nextPage = Math.min(lastPage, currentPage + 1);
+      const prevPage = Math.max(0, pageIndex - 1);
+      const nextPage = Math.min(lastPage, pageIndex + 1);
 
-      console.log({ pageSize, itemsCount, totalPages, currentPage, prevPage, nextPage, lastPage });
+      console.log({ pageSize, itemsCount, totalPages, pageIndex, prevPage, nextPage, lastPage });
 
-      if (currentPage == 0) {
+      if (pageIndex === 0) {
         this.firstLink.setAttribute("disabled", "disabled");
         this.prevLink.setAttribute("disabled", "disabled");
-      } else if (currentPage == lastPage) {
+      } else if (pageIndex === lastPage) {
         this.lastLink.setAttribute("disabled", "disabled");
         this.nextLink.setAttribute("disabled", "disabled");
       }
