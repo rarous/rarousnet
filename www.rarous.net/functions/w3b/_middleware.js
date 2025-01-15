@@ -13,10 +13,9 @@ export async function onRequestGet({ request, env, next }) {
     const html = await resp.text();
     const { document, window } = parseHTML(html);
     document.location = new URL(request.url);
+
     const ArticlesFeed = defArticlesFeed(window);
-    const FeedPagination = defFeedPagination(window);
     ArticlesFeed.register();
-    FeedPagination.register();
     const feed = document.querySelector(ArticlesFeed.tagName);
     if (feed) {
       if (searchParams.has("page")) {
@@ -28,6 +27,9 @@ export async function onRequestGet({ request, env, next }) {
       const data = await env.w3b.get("/latest", "json");
       feed.data = Object.values(data).sort((a, b) => -1 * a.entry.published.localeCompare(b.entry.published));
     }
+
+    const FeedPagination = defFeedPagination(window);
+    FeedPagination.register();
     const pagination = document.querySelector(FeedPagination.tagName);
     if (pagination) {
       if (searchParams.has("page")) {
@@ -37,6 +39,7 @@ export async function onRequestGet({ request, env, next }) {
         pagination.dataset.itemsCount = feed.itemsCount;
       }
     }
+
     return new Response(document.toString(), resp);
   }
   return resp;

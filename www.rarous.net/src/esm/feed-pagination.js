@@ -33,6 +33,8 @@ export function defFeedPagination({ HTMLElement, customElements }) {
       const prevPage = Math.max(0, currentPage - 1);
       const nextPage = Math.min(lastPage, currentPage + 1);
 
+      console.log({ pageSize, itemsCount, totalPages, currentPage, prevPage, nextPage, lastPage });
+
       if (currentPage == 0) {
         this.firstLink.setAttribute("disabled", "disabled");
         this.prevLink.setAttribute("disabled", "disabled");
