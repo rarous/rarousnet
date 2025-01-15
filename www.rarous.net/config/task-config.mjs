@@ -15,6 +15,7 @@ export default {
   cloudinary: false,
   fonts: true,
   svgSprite: true,
+  esbuild: true,
 
   static: {
     srcConfig: {

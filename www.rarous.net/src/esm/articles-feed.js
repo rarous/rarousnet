@@ -32,6 +32,7 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
 
     set data(data) {
       if (this.loaded) return;
+      this.itemsCount = data.length;
       this.appendChild(this.renderFeed(data));
       this.loaded = true;
     }
@@ -89,13 +90,7 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
       const dir = sortDirection === "desc" ? -1 : 1;
       const filteredData = data.sort((a, b) => dir * a.entry[sortKey].localeCompare(b.entry[sortKey]));
       if (!this.pageSize) return filteredData;
-      return iterator(
-        comp(
-          drop(this.pageIndex * this.pageSize),
-          take(this.pageSize)
-        ),
-        filteredData
-      );
+      return iterator(comp(drop(this.pageIndex * this.pageSize), take(this.pageSize)), filteredData);
     }
 
     renderFeed(data) {

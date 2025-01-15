@@ -29,6 +29,7 @@
       margin-block: 0;
       text-wrap: balance;
     }
+
     article h2 + p {
       margin-block-start: 0;
     }
@@ -48,6 +49,7 @@
       display: inline;
       text-transform: lowercase;
     }
+
     .tags li:not(:last-of-type)::after {
       content: ", ";
       color: var(--text-color);
@@ -79,7 +81,7 @@
     <p>Ručně vybíráno Alešem Roubíčkem</p>
   </hgroup>
 
-  <articles-feed endpoint="https://www.rarous.net/api/v1/w3b/">
+  <articles-feed endpoint="https://www.rarous.net/api/v1/w3b/" data-page-size="24">
     <template>
       <article itemscope itemtype="https://schema.org/BlogPosting" class="h-entry">
         <h2 itemprop="headline" class="p-name" lang="en"><a itemprop="url" class="u-url" href=""></a></h2>
@@ -88,7 +90,8 @@
         <p itemprop="abstract"></p>
         <nav class="tags" aria-label="tags">
           Přidáno
-          <time itemprop="published" class="dt-published"></time>.
+          <time itemprop="published" class="dt-published"></time>
+          .
           Označeno štítky:
           <ul>
             <li itemprop="articleSection"><a class="p-category" rel="tag" href="?tag="></a></li>
@@ -97,6 +100,15 @@
       </article>
     </template>
   </articles-feed>
+
+  <nav aria-label="Stránkování">
+    <feed-pagination data-page-size="24">
+      <a href="?page=0" class="first" aria-label="přejít na první stránku">⏮️</a>
+      <a href="?page=0" class="prev" aria-label="přejít na předchozí stránku">⏪</a>
+      <a href="?page=1" class="next" aria-label="přejít na následující stránku">⏩</a>
+      <a href="?page=8" class="last" aria-label="přejít na poslední stránku">⏭️</a>
+    </feed-pagination>
+  </nav>
 
   <p>Můžete se
     <a href="https://feeds2.feedburner.com/rarous/w3b" type="application/atom+xml"
