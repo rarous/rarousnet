@@ -1968,9 +1968,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.145.0":
-  version: 3.145.0
-  resolution: "@pulumi/pulumi@npm:3.145.0"
+"@pulumi/pulumi@npm:3.146.0":
+  version: 3.146.0
+  resolution: "@pulumi/pulumi@npm:3.146.0"
   dependencies:
     "@grpc/grpc-js": "npm:^1.10.1"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -2010,7 +2010,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/c58b5e9034dc0987b147d5a515de1df1e0e633513c8b8965ff581d7caab7ce7d71c26523d52f3d5e1bd86a1983c85cdc9f854595ffbb3794c2bd17aae038b049
+  checksum: 10c0/432a4df8ef70a4bcddf7285ba5e90782ba20aad794340fe53742cc97c6780f8f65aaa63af44bf609a478f086687119f8948b7b30f34995d741c4fec671b2f8bf
   languageName: node
   linkType: hard
 
@@ -2110,7 +2110,7 @@ __metadata:
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
     "@pulumi/cloudflare": "npm:5.47.0"
-    "@pulumi/pulumi": "npm:3.145.0"
+    "@pulumi/pulumi": "npm:3.146.0"
     esbuild: "npm:0.24.2"
   languageName: unknown
   linkType: soft
