@@ -72,6 +72,9 @@ function searchParams(obj) {
 }
 
 export default {
+  meta: {
+    lang: "cs",
+  },
   currentYear: new Date().getFullYear(),
   contact: {
     name: "Roubíček,Aleš",

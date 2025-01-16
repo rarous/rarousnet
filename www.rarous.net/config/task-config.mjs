@@ -31,6 +31,7 @@ export default {
 
   html: {
     markedExtensions: [texyTypography("cs")],
+    data: { collections: [] },
     htmlmin: {
       collapseBooleanAttributes: true,
       collapseWhitespace: true,

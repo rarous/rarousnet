@@ -121,9 +121,22 @@ __metadata:
   dependencies:
     error-stack-parser: "npm:2.1.4"
     rollbar: "npm:2.26.4"
-    wrangler: "npm:3.102.0"
+    wrangler: "npm:3.103.0"
   languageName: unknown
   linkType: soft
+
+"@cloudflare/unenv-preset@npm:1.x":
+  version: 1.0.0
+  resolution: "@cloudflare/unenv-preset@npm:1.0.0"
+  peerDependencies:
+    unenv: "*"
+    workerd: ^1.20241230.0
+  peerDependenciesMeta:
+    workerd:
+      optional: true
+  checksum: 10c0/766e6b25948b7aecd960d935ba59114ecbef19cb55e05a06044a0bcf4b916fac9419be168e24ae3b14d1cbf75d146b0fdc98fe7f5458a48b9fbac212485b4f03
+  languageName: node
+  linkType: hard
 
 "@cloudflare/workerd-darwin-64@npm:1.20241230.0":
   version: 1.20241230.0
@@ -1129,9 +1142,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:9.1.2":
-  version: 9.1.2
-  resolution: "@hckr_/blendid@npm:9.1.2"
+"@hckr_/blendid@npm:9.2.0":
+  version: 9.2.0
+  resolution: "@hckr_/blendid@npm:9.2.0"
   dependencies:
     "@csstools/postcss-gamut-mapping": "npm:2.0.7"
     "@vitejs/plugin-basic-ssl": "npm:1.2.0"
@@ -1158,7 +1171,7 @@ __metadata:
     gulp-svgstore: "npm:9.0.0"
     gulplog: "npm:2.2.0"
     lodash-es: "npm:4.17.21"
-    marked: "npm:15.0.4"
+    marked: "npm:15.0.6"
     marked-gfm-heading-id: "npm:4.1.1"
     marked-highlight: "npm:2.2.1"
     marked-mangle: "npm:1.1.10"
@@ -1166,7 +1179,7 @@ __metadata:
     nunjucks: "npm:3.2.4"
     nunjucks-markdown: "npm:2.0.1"
     plugin-error: "npm:2.0.1"
-    postcss: "npm:8.4.49"
+    postcss: "npm:8.5.1"
     postcss-functions: "npm:4.0.2"
     postcss-import: "npm:16.1.0"
     postcss-preset-env: "npm:10.1.3"
@@ -1177,10 +1190,10 @@ __metadata:
     undertaker-registry: "npm:2.0.0"
     vinyl: "npm:3.0.0"
     vinyl-file: "npm:5.0.0"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
   bin:
     blendid: bin/blendid.js
-  checksum: 10c0/142416fba23d44246c7468b18e5f99693faee2bf78c0e348c6dbccc744d5c40c903845d712410b268d840435c1545fec44c0c57a267994cc2ff07e44ab2ae49e
+  checksum: 10c0/35766673b9bbaa3ece998dc689600e174ddc0d52135e8438553e3817cfac1eb97d29267bd05794806eb307826e263c90c8e351bc7916a2bf7e1ffbe8c74a268f
   languageName: node
   linkType: hard
 
@@ -2090,7 +2103,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250109.0"
-    wrangler: "npm:3.102.0"
+    wrangler: "npm:3.103.0"
   languageName: unknown
   linkType: soft
 
@@ -2132,7 +2145,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250109.0"
     linkedom: "npm:0.18.6"
-    wrangler: "npm:3.102.0"
+    wrangler: "npm:3.103.0"
   languageName: unknown
   linkType: soft
 
@@ -2140,7 +2153,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
-    "@hckr_/blendid": "npm:9.1.2"
+    "@hckr_/blendid": "npm:9.2.0"
     "@thi.ng/transducers": "npm:9.2.13"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
@@ -8873,12 +8886,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:15.0.4":
-  version: 15.0.4
-  resolution: "marked@npm:15.0.4"
+"marked@npm:15.0.6":
+  version: 15.0.6
+  resolution: "marked@npm:15.0.6"
   bin:
     marked: bin/marked.js
-  checksum: 10c0/e2bfd9178e5242cc814aaf8020f3c2e954c047652c498dac0732f4b711d5e3ab80dbc54b964799d80470d6c515a24905e554c4a40f87b05dedc26e4e36cfdfdb
+  checksum: 10c0/8f30972ac5fdf879353484bdd7717409c241d15031a58bbc483070dedb58e4b314c41c0b59b78e536658907c02ee149eaf4b9be221f198df97beae703f529d40
   languageName: node
   linkType: hard
 
@@ -9299,7 +9312,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.7":
+"nanoid@npm:^3.3.7, nanoid@npm:^3.3.8":
   version: 3.3.8
   resolution: "nanoid@npm:3.3.8"
   bin:
@@ -11116,7 +11129,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.49, postcss@npm:^8.4.49":
+"postcss@npm:8.5.1":
+  version: 8.5.1
+  resolution: "postcss@npm:8.5.1"
+  dependencies:
+    nanoid: "npm:^3.3.8"
+    picocolors: "npm:^1.1.1"
+    source-map-js: "npm:^1.2.1"
+  checksum: 10c0/c4d90c59c98e8a0c102b77d3f4cac190f883b42d63dc60e2f3ed840f16197c0c8e25a4327d2e9a847b45a985612317dc0534178feeebd0a1cf3eb0eecf75cae4
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.4.49":
   version: 8.4.49
   resolution: "postcss@npm:8.4.49"
   dependencies:
@@ -11420,7 +11444,7 @@ __metadata:
     npm-run-all2: "npm:7.0.2"
     pagefind: "npm:1.3.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.102.0"
+    wrangler: "npm:3.103.0"
   languageName: unknown
   linkType: soft
 
@@ -13528,16 +13552,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unenv@npm:unenv-nightly@2.0.0-20241218-183400-5d6aec3":
-  version: 2.0.0-20241218-183400-5d6aec3
-  resolution: "unenv-nightly@npm:2.0.0-20241218-183400-5d6aec3"
+"unenv@npm:unenv-nightly@2.0.0-20250109-100802-88ad671":
+  version: 2.0.0-20250109-100802-88ad671
+  resolution: "unenv-nightly@npm:2.0.0-20250109-100802-88ad671"
   dependencies:
     defu: "npm:^6.1.4"
     mlly: "npm:^1.7.3"
     ohash: "npm:^1.1.4"
     pathe: "npm:^1.1.2"
     ufo: "npm:^1.5.4"
-  checksum: 10c0/139b3c55ffc921b8e8c6055339d17a71b9ef1c4b8411a19d4882dcb78d39791a9a0ec969792230aca339d57551dd6ba6a3cec1aa553800b51b63aeea452aaad5
+  checksum: 10c0/5be53a823cc27902fc774176d1899013c9748b6c715f8ba3bc78f7cea122700c06e1861d1face2735aaf8f3b9e66f983254e3d3da007333ca910036a638ac967
   languageName: node
   linkType: hard
 
@@ -13853,9 +13877,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:6.0.6":
-  version: 6.0.6
-  resolution: "vite@npm:6.0.6"
+"vite@npm:6.0.7":
+  version: 6.0.7
+  resolution: "vite@npm:6.0.7"
   dependencies:
     esbuild: "npm:^0.24.2"
     fsevents: "npm:~2.3.3"
@@ -13901,7 +13925,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/144c3f80a7920a4b2fa14f00f99b58ece246455ca9313561a67a227b45dadac3343e406d3c1dbfafa79992ac88f54cb2b040b229997e432daf47594fe8cacec2
+  checksum: 10c0/ae81047b4290a7206b9394a39a782d509e9610462e7946422ba22d5bc615b5a322c07e33d7bf9dd0b3312ec3f5c63353b725913d1519324bfdf539b4f1e03f52
   languageName: node
   linkType: hard
 
@@ -14071,11 +14095,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.102.0":
-  version: 3.102.0
-  resolution: "wrangler@npm:3.102.0"
+"wrangler@npm:3.103.0":
+  version: 3.103.0
+  resolution: "wrangler@npm:3.103.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
+    "@cloudflare/unenv-preset": "npm:1.x"
     "@esbuild-plugins/node-globals-polyfill": "npm:0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:0.2.2"
     blake3-wasm: "npm:2.1.5"
@@ -14083,7 +14108,7 @@ __metadata:
     fsevents: "npm:~2.3.2"
     miniflare: "npm:3.20241230.2"
     path-to-regexp: "npm:6.3.0"
-    unenv: "npm:unenv-nightly@2.0.0-20241218-183400-5d6aec3"
+    unenv: "npm:unenv-nightly@2.0.0-20250109-100802-88ad671"
     workerd: "npm:1.20241230.0"
   peerDependencies:
     "@cloudflare/workers-types": ^4.20241230.0
@@ -14096,7 +14121,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/4ab327ad8e7f8657728324352706b76df46cbef9dad5a251c30a10cfeb504ffb8e3285947f60f596b000cbb9924e1728033531dfe91b7abe17c9da5412b5bb4c
+  checksum: 10c0/8476f29c056e812f3d9b861013d9775bbd15f62e02e0839bc97a996d983a6917e0d39c9b3b081051f3df5015772f65c13842f7056be68e622fdbc2cccf9b81d8
   languageName: node
   linkType: hard
 
