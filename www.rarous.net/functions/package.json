@@ -4,7 +4,9 @@
   "type": "module",
   "license": "EUPL-1.2",
   "dependencies": {
+    "cookie": "^1.0.2",
     "feed": "4.2.2",
+    "jose": "^5.9.6",
     "linkedom": "0.18.6",
     "qreator": "9.7.0"
   },

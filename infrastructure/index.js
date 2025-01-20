@@ -104,11 +104,17 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
     production: {
       compatibilityDate: "2024-11-18",
       compatibilityFlags: ["nodejs_compat"],
+      environmentVariables: {
+        domain: "hckr.studio",
+        HOSTNAME: domain,
+        clientId: config.require("google-auth-clientId"),
+      },
       secrets: {
+        PRIVATE_KEY: config.require("private-key"),
         RAROUS_WEBLOG_CARDS_SECRET: config.require("weblog-cards-secret"),
+        SCREENSHOTTER_SECRET: config.require("screenshotter-secret"),
         TURNSTILE_SECRET_KEY: turnstile.secret,
         WEBMENTIONS_WEBHOOK_SECRET: config.require("webhook-secret"),
-        SCREENSHOTTER_SECRET: config.require("screenshotter-secret"),
       },
       kvNamespaces: {
         weblog: weblogNS.id,

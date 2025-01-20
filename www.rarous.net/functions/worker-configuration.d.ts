@@ -1,10 +1,13 @@
 export interface Env {
-  storage: R2Bucket;
-  weblog: KVNamespace;
-  w3b: KVNamespace;
+  domain: string;
   screenshotter: Service;
-  TURNSTILE_SECRET_KEY: string;
-  WEBMENTIONS_WEBHOOK_SECRET: string;
+  storage: R2Bucket;
+  w3b: KVNamespace;
+  weblog: KVNamespace;
+  HOSTNAME: string;
+  PRIVATE_KEY: string;
   RAROUS_WEBLOG_CARDS_SECRET: string;
   SCREENSHOTTER_SECRET: string;
+  TURNSTILE_SECRET_KEY: string;
+  WEBMENTIONS_WEBHOOK_SECRET: string;
 }
