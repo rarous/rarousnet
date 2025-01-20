@@ -70,7 +70,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
-          override-ci-command: yarn workspaces focus rarousnet @rarousnet/website
+          override-ci-command: yarn workspaces focus @rarousnet/website
       - php/install-packages:
           app-dir: ~/project/generator
           install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
