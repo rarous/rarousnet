@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "blendid build --production",
+    "build:index": "pagefind --site ../.gryphoon/dist",
     "start": "blendid"
   }
 }

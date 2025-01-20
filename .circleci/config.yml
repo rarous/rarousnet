@@ -81,10 +81,9 @@ jobs:
       - run:
           name: Build website
           working_directory: www.rarous.net
-          command: blendid build --production
-      - run:
-          name: Build search index
-          command: pagefind --site ./.gryphoon/dist
+          command: |
+            yarn build
+            yarn build:index
       - save_cache:
           name: Store deps cache
           key: v4-dependencies-{{ checksum "generator/deps.edn" }}
