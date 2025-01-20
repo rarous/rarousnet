@@ -12,6 +12,12 @@
   X-Robots-Tag: nosnippet
   ! Delegate-CH
 
+/assets/esm/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Headers: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Access-Control-Max-Age: 86400
+
 /kolekce/vinyly
   Cache-Control: public, max-age=3600
 
