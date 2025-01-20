@@ -15,6 +15,9 @@
     "postcss-jit-props": "1.0.15",
     "undertaker-registry": "2.0.0"
   },
+  "resolutions": {
+    "esbuild": "0.24.2"
+  },
   "scripts": {
     "build": "blendid build --production",
     "start": "blendid"
