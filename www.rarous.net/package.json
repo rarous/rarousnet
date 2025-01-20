@@ -5,10 +5,10 @@
     "./*.js": "./src/esm/*.js"
   },
   "dependencies": {
-    "@thi.ng/transducers": "9.2.13"
+    "@thi.ng/transducers": "9.2.14"
   },
   "devDependencies": {
-    "@hckr_/blendid": "9.2.0",
+    "@hckr_/blendid": "9.2.2",
     "@types/gulp": "4.0.17",
     "@types/undertaker-registry": "1.0.4",
     "open-props": "1.7.10",

@@ -12,7 +12,7 @@
     "rollbar": "2.26.4"
   },
   "devDependencies": {
-    "wrangler": "3.103.0"
+    "wrangler": "3.103.2"
   },
   "scripts": {
     "build": "wrangler pages functions build --plugin --outdir=dist",

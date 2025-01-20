@@ -121,22 +121,9 @@ __metadata:
   dependencies:
     error-stack-parser: "npm:2.1.4"
     rollbar: "npm:2.26.4"
-    wrangler: "npm:3.103.0"
+    wrangler: "npm:3.103.2"
   languageName: unknown
   linkType: soft
-
-"@cloudflare/unenv-preset@npm:1.x":
-  version: 1.0.0
-  resolution: "@cloudflare/unenv-preset@npm:1.0.0"
-  peerDependencies:
-    unenv: "*"
-    workerd: ^1.20241230.0
-  peerDependenciesMeta:
-    workerd:
-      optional: true
-  checksum: 10c0/766e6b25948b7aecd960d935ba59114ecbef19cb55e05a06044a0bcf4b916fac9419be168e24ae3b14d1cbf75d146b0fdc98fe7f5458a48b9fbac212485b4f03
-  languageName: node
-  linkType: hard
 
 "@cloudflare/workerd-darwin-64@npm:1.20241230.0":
   version: 1.20241230.0
@@ -1142,9 +1129,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:9.2.0":
-  version: 9.2.0
-  resolution: "@hckr_/blendid@npm:9.2.0"
+"@hckr_/blendid@npm:9.2.2":
+  version: 9.2.2
+  resolution: "@hckr_/blendid@npm:9.2.2"
   dependencies:
     "@csstools/postcss-gamut-mapping": "npm:2.0.7"
     "@vitejs/plugin-basic-ssl": "npm:1.2.0"
@@ -1190,10 +1177,10 @@ __metadata:
     undertaker-registry: "npm:2.0.0"
     vinyl: "npm:3.0.0"
     vinyl-file: "npm:5.0.0"
-    vite: "npm:6.0.7"
+    vite: "npm:6.0.9"
   bin:
     blendid: bin/blendid.js
-  checksum: 10c0/35766673b9bbaa3ece998dc689600e174ddc0d52135e8438553e3817cfac1eb97d29267bd05794806eb307826e263c90c8e351bc7916a2bf7e1ffbe8c74a268f
+  checksum: 10c0/cf5f8672c41904bbeb252d68835468775bf2e82a6ca2de304209839c188804f683ce1ac594fb5de9b4d32953d45386b5e775b6ba5943cf17f5085bda4072905d
   languageName: node
   linkType: hard
 
@@ -1972,12 +1959,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/cloudflare@npm:5.47.0":
-  version: 5.47.0
-  resolution: "@pulumi/cloudflare@npm:5.47.0"
+"@pulumi/cloudflare@npm:5.48.0":
+  version: 5.48.0
+  resolution: "@pulumi/cloudflare@npm:5.48.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.142.0"
-  checksum: 10c0/322c14b7b7e0cd66087ae5567a0d894a24ce2abe73c8285f97dd55c90c9138812a32d5a59b7a96813f0e234459fa0408988b982b8a5b5df5b80043c5b2bb9d85
+  checksum: 10c0/08d040e3ffa053e6fcf1aa1791c6c4e0d31193d7e02984c4f9ef21527d12b066583347c6535cb1025560d7f955d0ef0eceb5711942256edb4298958a2760713c
   languageName: node
   linkType: hard
 
@@ -2103,7 +2090,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250109.0"
-    wrangler: "npm:3.103.0"
+    wrangler: "npm:3.103.2"
   languageName: unknown
   linkType: soft
 
@@ -2122,7 +2109,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@pulumi/cloudflare": "npm:5.47.0"
+    "@pulumi/cloudflare": "npm:5.48.0"
     "@pulumi/pulumi": "npm:3.146.0"
     esbuild: "npm:0.24.2"
   languageName: unknown
@@ -2132,7 +2119,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@thi.ng/transducers": "npm:9.2.13"
+    "@thi.ng/transducers": "npm:9.2.14"
     csv-parse: "npm:5.6.0"
     linkedom: "npm:0.18.6"
     schema-dts: "npm:1.1.2"
@@ -2145,7 +2132,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250109.0"
     linkedom: "npm:0.18.6"
-    wrangler: "npm:3.103.0"
+    wrangler: "npm:3.103.2"
   languageName: unknown
   linkType: soft
 
@@ -2153,8 +2140,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
-    "@hckr_/blendid": "npm:9.2.0"
-    "@thi.ng/transducers": "npm:9.2.13"
+    "@hckr_/blendid": "npm:9.2.2"
+    "@thi.ng/transducers": "npm:9.2.14"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
     open-props: "npm:1.7.10"
@@ -2455,9 +2442,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/arrays@npm:^2.10.10":
-  version: 2.10.10
-  resolution: "@thi.ng/arrays@npm:2.10.10"
+"@thi.ng/arrays@npm:^2.10.11":
+  version: 2.10.11
+  resolution: "@thi.ng/arrays@npm:2.10.11"
   dependencies:
     "@thi.ng/api": "npm:^8.11.16"
     "@thi.ng/checks": "npm:^3.6.19"
@@ -2465,7 +2452,7 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.72"
     "@thi.ng/errors": "npm:^2.5.22"
     "@thi.ng/random": "npm:^4.1.7"
-  checksum: 10c0/1c9d72b08250813a4cbaff6d0a3d15ea4e094aa139bd56aec84c36388bb4d01f709d8dd8304826ba1223cc485104a7f69d1579e5fae3047a642ad2fdb9ce4e5c
+  checksum: 10c0/34ff48b653ae921420d5e373b4d582b12c72317bc8d6cf906b5af573b6508badd9b40d27d9b9c0c4e15d77ebd748003261c609a109dc49203dad495dee8c5f45
   languageName: node
   linkType: hard
 
@@ -2537,12 +2524,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/transducers@npm:9.2.13":
-  version: 9.2.13
-  resolution: "@thi.ng/transducers@npm:9.2.13"
+"@thi.ng/transducers@npm:9.2.14":
+  version: 9.2.14
+  resolution: "@thi.ng/transducers@npm:9.2.14"
   dependencies:
     "@thi.ng/api": "npm:^8.11.16"
-    "@thi.ng/arrays": "npm:^2.10.10"
+    "@thi.ng/arrays": "npm:^2.10.11"
     "@thi.ng/checks": "npm:^3.6.19"
     "@thi.ng/compare": "npm:^2.4.8"
     "@thi.ng/compose": "npm:^3.0.19"
@@ -2550,7 +2537,7 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.16"
     "@thi.ng/random": "npm:^4.1.7"
     "@thi.ng/timestamp": "npm:^1.1.1"
-  checksum: 10c0/e1f200ec67683291192d0504d215d945237188a3060a4819427b3f8fa4ddc7b6cae9f492e96cc5db07b4ad4760fac2a69e79ae123baf0ff0c5e9e44db051441d
+  checksum: 10c0/b1ccd0b0af47b3c57c20a7143eb8c7390fbebe05c956068c99f62d71459171b013481334a18ac036101ba3a855dca2f6b274eba97bd0a534edeba0e5acb636fd
   languageName: node
   linkType: hard
 
@@ -11444,7 +11431,7 @@ __metadata:
     npm-run-all2: "npm:7.0.2"
     pagefind: "npm:1.3.0"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.103.0"
+    wrangler: "npm:3.103.2"
   languageName: unknown
   linkType: soft
 
@@ -13877,9 +13864,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:6.0.7":
-  version: 6.0.7
-  resolution: "vite@npm:6.0.7"
+"vite@npm:6.0.9":
+  version: 6.0.9
+  resolution: "vite@npm:6.0.9"
   dependencies:
     esbuild: "npm:^0.24.2"
     fsevents: "npm:~2.3.3"
@@ -13925,7 +13912,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/ae81047b4290a7206b9394a39a782d509e9610462e7946422ba22d5bc615b5a322c07e33d7bf9dd0b3312ec3f5c63353b725913d1519324bfdf539b4f1e03f52
+  checksum: 10c0/b36f0f51318d6c33184da31e280862f23ef89712884e088b864c9edf112d65f6cf6795f201916e370a4434575fd3e2868f07f3bd63c6bdd5c2ae2295fa7f6d8a
   languageName: node
   linkType: hard
 
@@ -14095,12 +14082,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.103.0":
-  version: 3.103.0
-  resolution: "wrangler@npm:3.103.0"
+"wrangler@npm:3.103.2":
+  version: 3.103.2
+  resolution: "wrangler@npm:3.103.2"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
-    "@cloudflare/unenv-preset": "npm:1.x"
     "@esbuild-plugins/node-globals-polyfill": "npm:0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:0.2.2"
     blake3-wasm: "npm:2.1.5"
@@ -14121,7 +14107,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/8476f29c056e812f3d9b861013d9775bbd15f62e02e0839bc97a996d983a6917e0d39c9b3b081051f3df5015772f65c13842f7056be68e622fdbc2cccf9b81d8
+  checksum: 10c0/a622ee82329b497fe0b42dd79024639feeff7c1929178418ee7dd35e6a921b339c7759626e15cd3f0c444596c14cfeae0501bfb646d93a8f1dec831ec5ebcf51
   languageName: node
   linkType: hard
 
