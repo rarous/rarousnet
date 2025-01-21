@@ -119,6 +119,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cloudflare/pages-plugin-rollbar@workspace:cloudflare-pages-plugin-rollbar"
   dependencies:
+    error-stack-parser: "npm:^2.1.4"
     rollbar: "npm:2.26.4"
     wrangler: "npm:3.103.2"
   languageName: unknown
@@ -5479,7 +5480,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"error-stack-parser@npm:^2.0.4":
+"error-stack-parser@npm:^2.0.4, error-stack-parser@npm:^2.1.4":
   version: 2.1.4
   resolution: "error-stack-parser@npm:2.1.4"
   dependencies:

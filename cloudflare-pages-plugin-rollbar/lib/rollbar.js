@@ -1,4 +1,14 @@
-import { parse } from "rollbar/src/errorParser.js";
+import ErrorStackParser from "error-stack-parser";
+
+function Frame(stackFrame) {
+  return {
+    filename: stackFrame.fileName,
+    lineno: stackFrame.lineNumber,
+    colno: stackFrame.columnNumber,
+    method: stackFrame.functionName,
+    args: stackFrame.args,
+  };
+}
 
 export async function postItem(token, data) {
   console.log(data)
@@ -52,29 +62,31 @@ export class Rollbar {
       Object.assign({ level, request, uuid, context, custom }, item, {
         environment: CF_PAGES == 1 ? "production" : "development",
         code_version: CF_PAGES_COMMIT_SHA,
-        platform: "cloudflare-pages",
+        platform: "Cloudflare-Workers",
+        framework: "Cloudflare Pages",
         language: "javascript",
         notifier: { name: "Cloudflare Pages Functions" },
       }),
     );
   }
 
-  info(message) {
+  info(message, attributes) {
     return this.log("info", {
       timestamp: Date.now(),
-      body: { message: { body: message } },
+      body: { message: { body: message, ...attributes } },
     });
   }
 
-  error(exception) {
+  error(exception, description) {
     return this.log("error", {
       timestamp: Date.now(),
       body: {
         trace: {
-          frames: parse(exception).stack,
+          frames: ErrorStackParser.parse(exception).map(stackFrame => Frame(stackFrame)),
           exception: {
             class: exception.name,
-            message: exception.message
+            message: exception.message,
+            description: description
           }
         }
       } ,
