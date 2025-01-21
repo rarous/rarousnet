@@ -11,8 +11,9 @@ export async function postItem(token, data) {
     },
     body: JSON.stringify({ data }),
   });
-  if (resp.ok) return resp.json();
-  console.error(await resp.json());
+  const message = await resp.json();
+  console.log(message);
+  return message;
 }
 
 /**
