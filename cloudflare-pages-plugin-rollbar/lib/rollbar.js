@@ -40,14 +40,20 @@ export class Rollbar {
   }
 
   log(level, item) {
-    console[level]?.(item);
+    console[level]?.(item.body.message?.body ?? item.body.trace.exception.message);
     const request = dumpRequest(this.context.request, this.context.params);
     const uuid = crypto.randomUUID();
     const context = this.context.functionPath;
     const custom = { cf: this.context.request.cf };
+    console.log({ env: this.context.env });
+    console.log({ global: globalThis })
+    console.log({ context: this.context })
     return postItem(
       this.token,
       Object.assign({ level, request, uuid, context, custom }, item, {
+        environment: this.context.env.CF_PAGES == 1 ? "production" : "development",
+        code_version: this.context.env.CF_PAGES_COMMIT_SHA,
+        platform: "cloudflare-pages",
         language: "javascript",
         notifier: { name: "Cloudflare Pages Functions" },
       }),
