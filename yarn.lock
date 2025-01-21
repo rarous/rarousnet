@@ -119,8 +119,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cloudflare/pages-plugin-rollbar@workspace:cloudflare-pages-plugin-rollbar"
   dependencies:
-    error-stack-parser: "npm:^2.1.4"
-    rollbar: "npm:2.26.4"
+    "@cloudflare/workers-types": "npm:4.20250109.0"
+    error-stack-parser: "npm:2.1.4"
     wrangler: "npm:3.103.2"
   languageName: unknown
   linkType: soft
@@ -3274,13 +3274,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:~3.2.3":
-  version: 3.2.6
-  resolution: "async@npm:3.2.6"
-  checksum: 10c0/36484bb15ceddf07078688d95e27076379cc2f87b10c03b6dd8a83e89475a3c8df5848859dd06a4c95af1e4c16fc973de0171a77f18ea00be899aca2a4f85e70
-  languageName: node
-  linkType: hard
-
 "asynckit@npm:^0.4.0":
   version: 0.4.0
   resolution: "asynckit@npm:0.4.0"
@@ -4567,13 +4560,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"console-polyfill@npm:0.3.0":
-  version: 0.3.0
-  resolution: "console-polyfill@npm:0.3.0"
-  checksum: 10c0/c68dc48f6592300989e8011b2ca26bc02fb641ecb15b5d3b136f9c79dacbac11fc04c1929c86c56fe55b6d0f1e9198011d63931ef3bbc3489cbf8180c0f529c0
-  languageName: node
-  linkType: hard
-
 "content-disposition@npm:0.5.4, content-disposition@npm:~0.5.2":
   version: 0.5.4
   resolution: "content-disposition@npm:0.5.4"
@@ -5007,15 +4993,6 @@ __metadata:
   dependencies:
     ms: "npm:^2.1.1"
   checksum: 10c0/37d96ae42cbc71c14844d2ae3ba55adf462ec89fd3a999459dec3833944cd999af6007ff29c780f1c61153bcaaf2c842d1e4ce1ec621e4fc4923244942e4a02a
-  languageName: node
-  linkType: hard
-
-"decache@npm:^3.0.5":
-  version: 3.1.0
-  resolution: "decache@npm:3.1.0"
-  dependencies:
-    find: "npm:^0.2.4"
-  checksum: 10c0/8c024016a59fee4e0c8ae5cf2934e77729295685f7012dfe19a324f493dca4bb870e27750379f31537ac43ea4395ef24a5b1e67d3ea8d001fd73ca40d45b5cec
   languageName: node
   linkType: hard
 
@@ -5480,7 +5457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"error-stack-parser@npm:^2.0.4, error-stack-parser@npm:^2.1.4":
+"error-stack-parser@npm:2.1.4":
   version: 2.1.4
   resolution: "error-stack-parser@npm:2.1.4"
   dependencies:
@@ -6153,15 +6130,6 @@ __metadata:
     locate-path: "npm:^7.1.0"
     path-exists: "npm:^5.0.0"
   checksum: 10c0/07e0314362d316b2b13f7f11ea4692d5191e718ca3f7264110127520f3347996349bf9e16805abae3e196805814bc66ef4bff2b8904dc4a6476085fc9b0eba07
-  languageName: node
-  linkType: hard
-
-"find@npm:^0.2.4":
-  version: 0.2.9
-  resolution: "find@npm:0.2.9"
-  dependencies:
-    traverse-chain: "npm:~0.1.0"
-  checksum: 10c0/7c6beae9b966c2aa40ebabfed38a5f1e9cd5dc6706c0855b11d39ad5bc3770b0027ead6205e9a07d39ccecbe3b17390792014a67f0a6e4d1637d0a897e7af288
   languageName: node
   linkType: hard
 
@@ -7976,7 +7944,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-stringify-safe@npm:5, json-stringify-safe@npm:~5.0.0, json-stringify-safe@npm:~5.0.1":
+"json-stringify-safe@npm:5, json-stringify-safe@npm:~5.0.1":
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
   checksum: 10c0/7dbf35cd0411d1d648dceb6d59ce5857ec939e52e4afc37601aa3da611f0987d5cee5b38d58329ceddf3ed48bd7215229c8d52059ab01f2444a338bf24ed0f37
@@ -8584,13 +8552,6 @@ __metadata:
   version: 7.18.3
   resolution: "lru-cache@npm:7.18.3"
   checksum: 10c0/b3a452b491433db885beed95041eb104c157ef7794b9c9b4d647be503be91769d11206bb573849a16b4cc0d03cbd15ffd22df7960997788b74c1d399ac7a4fed
-  languageName: node
-  linkType: hard
-
-"lru-cache@npm:~2.2.1":
-  version: 2.2.4
-  resolution: "lru-cache@npm:2.2.4"
-  checksum: 10c0/fe4fe01febc81fd6f2872a39c5292314bcb7db298af5cd4029da666facbc91e20e8daa7cdaed58adf153065078b1ae61550d84494f0650e38bdee7b0dcc9f49d
   languageName: node
   linkType: hard
 
@@ -11654,13 +11615,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"request-ip@npm:~3.3.0":
-  version: 3.3.0
-  resolution: "request-ip@npm:3.3.0"
-  checksum: 10c0/35ab5fcb29408cb72629b53207f00a443a60fe881ffb63e3b08a06c07dae3eee617522741bd0b035492153d6c9babe7f8d9f79c008d493d1e6638b0bd92cb02b
-  languageName: node
-  linkType: hard
-
 "request@npm:^2.88.0":
   version: 2.88.2
   resolution: "request@npm:2.88.2"
@@ -11893,25 +11847,6 @@ __metadata:
     stream-combiner: "npm:^0.2.1"
     through: "npm:^2.3.4"
   checksum: 10c0/acbd8f2bfea71fa1e049543dc3dd7de554233c88231f54458ee95adbced7411356f13f6205c42923b8e515041f4730e0a8356ec89bb522e640b5dffd47fc2b33
-  languageName: node
-  linkType: hard
-
-"rollbar@npm:2.26.4":
-  version: 2.26.4
-  resolution: "rollbar@npm:2.26.4"
-  dependencies:
-    async: "npm:~3.2.3"
-    console-polyfill: "npm:0.3.0"
-    decache: "npm:^3.0.5"
-    error-stack-parser: "npm:^2.0.4"
-    json-stringify-safe: "npm:~5.0.0"
-    lru-cache: "npm:~2.2.1"
-    request-ip: "npm:~3.3.0"
-    source-map: "npm:^0.5.7"
-  dependenciesMeta:
-    decache:
-      optional: true
-  checksum: 10c0/46403936c191776702aff9a34844d36aa377979313faf78a6a065358fd9e849fbf2dff526a01403cf2d74d15f2c6c2fdb3e1d579ce7575ade57cd0663546ad22
   languageName: node
   linkType: hard
 
@@ -12494,7 +12429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.5.1, source-map@npm:^0.5.7":
+"source-map@npm:^0.5.1":
   version: 0.5.7
   resolution: "source-map@npm:0.5.7"
   checksum: 10c0/904e767bb9c494929be013017380cbba013637da1b28e5943b566031e29df04fba57edf3f093e0914be094648b577372bd8ad247fa98cfba9c600794cd16b599
@@ -13435,13 +13370,6 @@ __metadata:
   version: 0.0.3
   resolution: "tr46@npm:0.0.3"
   checksum: 10c0/047cb209a6b60c742f05c9d3ace8fa510bff609995c129a37ace03476a9b12db4dbf975e74600830ef0796e18882b2381fb5fb1f6b4f96b832c374de3ab91a11
-  languageName: node
-  linkType: hard
-
-"traverse-chain@npm:~0.1.0":
-  version: 0.1.0
-  resolution: "traverse-chain@npm:0.1.0"
-  checksum: 10c0/2b4fc19b52692c4970a18a777ba19ecbc1664f25b33815a5e5f06d0311e9e6a65ad2511b86e4ff0f0211ca0bf242a8ec3a902d8893c9d6a8f9d3ef4e658e2b24
   languageName: node
   linkType: hard
 
