@@ -38,8 +38,9 @@ function dumpRequest(request, params) {
     headers: Object.fromEntries(request.headers),
     params,
     GET: Object.fromEntries(searchParams),
-    query_string: searchParams.toString()
+    query_string: searchParams.toString(),
     // TODO: POST, body
+    user_ip: request.headers.get("CF-Connecting-IP"),
   };
 }
 
