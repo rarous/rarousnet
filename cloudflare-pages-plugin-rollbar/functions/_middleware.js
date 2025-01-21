@@ -11,7 +11,7 @@ export async function onRequest(context) {
   try {
     return await context.next();
   } catch (thrown) {
-    context.data.rollbar.error(thrown);
+    await context.data.rollbar.error(thrown);
     throw thrown;
   }
 }

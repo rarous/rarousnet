@@ -55,14 +55,14 @@ export class Rollbar {
   }
 
   info(message) {
-    this.log("info", {
+    return this.log("info", {
       timestamp: Date.now(),
       body: { message: { body: message } },
     });
   }
 
   error(exception) {
-    this.log("error", {
+    return this.log("error", {
       timestamp: Date.now(),
       body: {
         trace:{
