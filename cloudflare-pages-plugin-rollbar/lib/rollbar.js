@@ -1,6 +1,7 @@
 import {parse} from "rollbar/src/errorParser.js";
 
 export async function postItem(token, data) {
+  console.log(data)
   const resp = await fetch("https://api.rollbar.com/api/1/item/", {
     method: "POST",
     headers: {
@@ -10,7 +11,8 @@ export async function postItem(token, data) {
     },
     body: JSON.stringify({ data }),
   });
-  return resp.json();
+  if (resp.ok) return resp.json();
+  console.error(await resp.json());
 }
 
 /**
