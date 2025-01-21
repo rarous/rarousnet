@@ -7,7 +7,7 @@ import rollbarPlugin from "@cloudflare/pages-plugin-rollbar";
 export async function rollbar(context) {
   return rollbarPlugin({
     token: context.env.ROLLBAR_TOKEN,
-    custom: { global: Object.keys(globalThis), context: Object.keys(context) },
+    custom: { origin: globalThis.origin, navigator: globalThis.navigator, process: globalThis.process },
   })(context);
 }
 
