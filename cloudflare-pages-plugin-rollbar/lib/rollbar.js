@@ -66,7 +66,7 @@ export class Rollbar {
       timestamp: Date.now(),
       body: {
         trace:{
-          frames:parse(exception),
+          frames: parse(exception).stack,
           exception: {
             class: exception.name,
             message: exception.message
