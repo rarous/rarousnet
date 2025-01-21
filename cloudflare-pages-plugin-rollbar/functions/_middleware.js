@@ -6,10 +6,7 @@ import { Rollbar } from "../lib/rollbar.js";
  */
 export async function onRequest(context) {
   const { pluginArgs, ...ctx } = context;
-  context.data.rollbar = new Rollbar({
-    context: ctx,
-    pluginArgs,
-  });
+  context.data.rollbar = new Rollbar({ context: ctx, ...pluginArgs });
 
   try {
     return await context.next();

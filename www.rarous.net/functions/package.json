@@ -4,7 +4,8 @@
   "type": "module",
   "license": "EUPL-1.2",
   "dependencies": {
-    "@cloudflare/pages-plugin-turnstile": "^1.0.2",
+    "@cloudflare/pages-plugin-rollbar": "workspace:*",
+    "@cloudflare/pages-plugin-turnstile": "1.0.2",
     "@rarousnet/website": "workspace:*",
     "cookie": "1.0.2",
     "feed": "4.2.2",

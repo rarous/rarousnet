@@ -13,8 +13,21 @@ export async function postItem(token, data) {
   return resp.json();
 }
 
-function dumpRequest(request) {
-  return undefined;
+/**
+ * @param {Request} request
+ * @param {Params} params
+ */
+function dumpRequest(request, params) {
+  const { searchParams } = new URL(request.url);
+  return {
+    url: request.url,
+    method: request.method,
+    headers: Object.fromEntries(request.headers),
+    params,
+    GET: Object.fromEntries(searchParams),
+    query_string: searchParams.toString()
+    // TODO: POST, body
+  };
 }
 
 export class Rollbar {
@@ -25,14 +38,14 @@ export class Rollbar {
 
   log(level, item) {
     console[level]?.(item);
-    const request = dumpRequest(this.context.request);
+    const request = dumpRequest(this.context.request, this.context.params);
     const uuid = crypto.randomUUID();
+    const context = this.context.functionPath;
+    const custom = { cf: this.context.request.cf };
     return postItem(
       this.token,
-      // TODO: transform context to something usable
-      Object.assign({ level, request, uuid }, item, {
+      Object.assign({ level, request, uuid, context, custom }, item, {
         language: "javascript",
-        framework: "",
         notifier: { name: "Cloudflare Pages Functions" },
       }),
     );
@@ -48,7 +61,15 @@ export class Rollbar {
   error(exception) {
     this.log("error", {
       timestamp: Date.now(),
-      stackInfo: parse(exception),
+      body: {
+        trace:{
+          frames:parse(exception),
+          exception: {
+            class: exception.name,
+            message: exception.message
+          }
+        }
+      } ,
     });
   }
 }

@@ -5,6 +5,7 @@ environment:
 config:
   rarousnet:domain: www.rarous.net
   rarousnet:google-auth-clientId: 218256334208-115s3k0ciq53s7fj5u7k8hg70oqfu9j5.apps.googleusercontent.com
+  rarousnet:rollbar-token: 16eb2b188b784fada411b451d37848ee
   rarousnet:webhook-secret:
     secure: AAABAMDlnk5eyssfU+XvFCw8R3vZApfj1ZWdi/i8J7VlS9h0tF+tnLWhPBwcSSvvE/JYyX0FOtufVrx2jOOkiwEgY06mxmw86yTLLf43ZInf7Q==
   rarousnet:weblog-cards-secret:

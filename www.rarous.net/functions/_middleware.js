@@ -1,3 +1,13 @@
+import rollbarPlugin from "@cloudflare/pages-plugin-rollbar";
+
+/**
+ * @param {EventContext<Env>} context
+ * @returns {Promise<Response>}
+ */
+export async function rollbar(context) {
+  return rollbarPlugin({ token: context.env.ROLLBAR_TOKEN })(context);
+}
+
 function getKeyWithHtml(key) {
   return `${key}${key.endsWith("/") ? "" : "/"}index.html`;
 }
@@ -5,7 +15,7 @@ function getKeyWithHtml(key) {
 /**
  * @param {EventContext<Env>} context
  */
-export async function onRequest({ env, next, request }) {
+export async function r2Fallback({ env, next, request }) {
   // Try to serve Pages content
   const resp = await next();
   if (resp.status === 200) return resp;
@@ -29,3 +39,5 @@ export async function onRequest({ env, next, request }) {
   // Let Cloudflare decide what to do - most likely 404
   return resp;
 }
+
+export const onRequest = [rollbar, r2Fallback];

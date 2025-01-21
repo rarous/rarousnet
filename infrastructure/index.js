@@ -108,6 +108,7 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
         domain: "hckr.studio",
         HOSTNAME: domain,
         clientId: config.require("google-auth-clientId"),
+        ROLLBAR_TOKEN: config.require("rollbar-token"),
       },
       secrets: {
         PRIVATE_KEY: config.require("private-key"),

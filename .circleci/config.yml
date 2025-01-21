@@ -152,7 +152,11 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
-          override-ci-command: yarn workspaces focus rarousnet @rarousnet/website @rarousnet/functions
+          override-ci-command: yarn workspaces focus rarousnet @rarousnet/website @rarousnet/functions @cloudflare/pages-plugin-rollbar
+      - run:
+          name: Build Rollbar Plugin
+          working_directory: cloudflare-pages-plugin-rollbar
+          command: yarn build
       - run:
           name: Publish to Cloudflare Pages
           working_directory: www.rarous.net

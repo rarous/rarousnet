@@ -1,14 +1,10 @@
 {
   "name": "@cloudflare/pages-plugin-rollbar",
   "main": "dist/index.js",
-  "types": "index.d.ts",
   "files": [
-    "dist",
-    "index.d.ts",
-    "tsconfig.json"
+    "dist"
   ],
   "dependencies": {
-    "error-stack-parser": "2.1.4",
     "rollbar": "2.26.4"
   },
   "devDependencies": {
