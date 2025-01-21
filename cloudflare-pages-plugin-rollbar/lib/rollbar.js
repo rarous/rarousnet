@@ -1,4 +1,4 @@
-import {parse} from "rollbar/src/errorParser.js";
+import { parse } from "rollbar/src/errorParser.js";
 
 export async function postItem(token, data) {
   console.log(data)
@@ -34,9 +34,10 @@ function dumpRequest(request, params) {
 }
 
 export class Rollbar {
-  constructor({ context, token }) {
+  constructor({ context, token, custom }) {
     this.token = token;
     this.context = context;
+    this.custom = custom;
   }
 
   log(level, item) {
@@ -44,15 +45,13 @@ export class Rollbar {
     const request = dumpRequest(this.context.request, this.context.params);
     const uuid = crypto.randomUUID();
     const context = this.context.functionPath;
-    const custom = { cf: this.context.request.cf };
-    console.log({ env: this.context.env });
-    console.log({ global: globalThis })
-    console.log({ context: this.context })
+    const custom = Object.assign({ cf: this.context.request.cf }, this.custom);
+    const { CF_PAGES, CF_PAGES_COMMIT_SHA } = this.context.env;
     return postItem(
       this.token,
       Object.assign({ level, request, uuid, context, custom }, item, {
-        environment: this.context.env.CF_PAGES == 1 ? "production" : "development",
-        code_version: this.context.env.CF_PAGES_COMMIT_SHA,
+        environment: CF_PAGES == 1 ? "production" : "development",
+        code_version: CF_PAGES_COMMIT_SHA,
         platform: "cloudflare-pages",
         language: "javascript",
         notifier: { name: "Cloudflare Pages Functions" },
@@ -71,7 +70,7 @@ export class Rollbar {
     return this.log("error", {
       timestamp: Date.now(),
       body: {
-        trace:{
+        trace: {
           frames: parse(exception).stack,
           exception: {
             class: exception.name,

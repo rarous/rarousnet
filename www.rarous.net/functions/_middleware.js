@@ -5,7 +5,10 @@ import rollbarPlugin from "@cloudflare/pages-plugin-rollbar";
  * @returns {Promise<Response>}
  */
 export async function rollbar(context) {
-  return rollbarPlugin({ token: context.env.ROLLBAR_TOKEN })(context);
+  return rollbarPlugin({
+    token: context.env.ROLLBAR_TOKEN,
+    custom: { global: globalThis },
+  })(context);
 }
 
 function getKeyWithHtml(key) {
