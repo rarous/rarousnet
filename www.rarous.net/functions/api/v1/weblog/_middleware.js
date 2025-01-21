@@ -1,23 +1,9 @@
+import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
+
 /**
  * @param {EventContext<Env>} context
  */
-export async function onRequestPost({ env, request, next }) {
-  if (request.headers.get("content-type") === "application/json") return next();
-  const body = await request.formData();
-  const token = body.get("cf-turnstile-response");
-  const ip = request.headers.get("CF-Connecting-IP");
-
-  const formData = new FormData();
-  formData.append("secret", env.TURNSTILE_SECRET_KEY);
-  formData.append("response", token);
-  formData.append("remoteip", ip);
-
-  const result = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    body: formData,
-  });
-
-  const outcome = await result.json();
-  if (!outcome.success) return new Response(null, { status: 403 });
-  return next();
+export async function onRequestPost(context) {
+  if (context.request.headers.get("content-type") === "application/json") return context.next();
+  return turnstilePlugin({ secret: context.env.TURNSTILE_SECRET_KEY })(context);
 }
