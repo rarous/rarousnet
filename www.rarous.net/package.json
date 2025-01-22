@@ -14,7 +14,8 @@
     "open-props": "1.7.10",
     "pagefind": "1.3.0",
     "postcss-jit-props": "1.0.15",
-    "undertaker-registry": "2.0.0"
+    "undertaker-registry": "2.0.0",
+    "wrangler": "3.103.2"
   },
   "resolutions": {
     "esbuild": "0.24.2"
@@ -22,6 +23,7 @@
   "scripts": {
     "build": "blendid build --production",
     "build:index": "pagefind --site ../.gryphoon/dist",
-    "start": "blendid"
+    "start": "blendid",
+    "deploy": "wrangler pages deploy ../.gryphoon/dist --project=rarousnet --environment=production --upload-source-maps"
   }
 }

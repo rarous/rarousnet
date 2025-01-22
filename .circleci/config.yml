@@ -160,7 +160,7 @@ jobs:
       - run:
           name: Publish to Cloudflare Pages
           working_directory: www.rarous.net
-          command: npx wrangler pages deploy ../.gryphoon/dist --project-name=rarousnet --upload-source-maps
+          command: yarn deploy
       - slack/notify:
           event: fail
           template: basic_fail_1

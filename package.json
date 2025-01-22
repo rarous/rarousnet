@@ -19,6 +19,9 @@
     "tap-xunit": "2.4.1",
     "wrangler": "3.103.2"
   },
+  "resolutions": {
+    "esbuild": "0.24.2"
+  },
   "scripts": {
     "build:website": "yarn workspace @rarousnet/website build",
     "build:index": "yarn workspace @rarousnet/website build:index",
@@ -27,7 +30,7 @@
     "generate": "cd generator && clojure -M -m rarousnet.generator ../",
     "serve": "ws --compress --http2 -d ./.gryphoon/dist",
     "start": "yarn workspace @rarousnet/website start",
-    "sync": "wrangler pages deploy ./.gryphoon/dist --project=rarousnet --environment=production",
+    "sync": "yarn workspace @rarousnet/website deploy",
     "test:lighthouse:init": "mkdir ./results",
     "test:lighthouse:root": "lighthouse https://localhost:8000/ --config-path .lighthouse.json --output json --output html --output-path ./results/root.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
     "test:lighthouse:weblog": "lighthouse https://localhost:8000/weblog/ --config-path .lighthouse.json --output json --output html --output-path ./results/weblog.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
