@@ -24,6 +24,6 @@
     "build": "blendid build --production",
     "build:index": "pagefind --site ../.gryphoon/dist",
     "start": "blendid",
-    "deploy": "wrangler pages deploy ../.gryphoon/dist --project=rarousnet --environment=production --upload-source-maps"
+    "deploy": "wrangler pages deploy ../.gryphoon/dist --project-name=rarousnet --upload-source-maps"
   }
 }
