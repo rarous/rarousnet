@@ -1028,12 +1028,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/cloudflare-pages-plugin-rollbar@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@hckr_/cloudflare-pages-plugin-rollbar@npm:1.1.1"
+"@hckr_/cloudflare-pages-plugin-rollbar@npm:1.1.4":
+  version: 1.1.4
+  resolution: "@hckr_/cloudflare-pages-plugin-rollbar@npm:1.1.4"
   dependencies:
     error-stack-parser: "npm:2.1.4"
-  checksum: 10c0/911cdf06531a952bc677833cf7979e4505bf26f1201d95b9a1e2c69f4c5f2bdc41c39eaad001408ccb258482008b1bb0bf5240285193829c0f98c77d2b631492
+  checksum: 10c0/9715361cc372cc6192b07e908db62bfd3d114fa4f4d78f1ae1c052796cca1e1c08cddca6b7e40574c82c180af75c4b5ec2cab3d87349a2a2ee53fe7c75379827
   languageName: node
   linkType: hard
 
@@ -1936,7 +1936,7 @@ __metadata:
   dependencies:
     "@cloudflare/pages-plugin-turnstile": "npm:1.0.2"
     "@cloudflare/workers-types": "npm:4.20250109.0"
-    "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.1"
+    "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.4"
     "@rarousnet/website": "workspace:*"
     cookie: "npm:1.0.2"
     feed: "npm:4.2.2"
