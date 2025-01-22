@@ -1,4 +1,4 @@
-import rollbarPlugin from "@cloudflare/pages-plugin-rollbar";
+import rollbarPlugin from "@hckr_/cloudflare-pages-plugin-rollbar";
 
 /**
  * @param {EventContext<Env>} context

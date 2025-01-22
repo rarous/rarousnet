@@ -41,8 +41,7 @@
     "scripts",
     "workers/*",
     "www.rarous.net",
-    "www.rarous.net/functions",
-    "cloudflare-pages-plugin-rollbar"
+    "www.rarous.net/functions"
   ],
   "packageManager": "yarn@4.6.0"
 }
