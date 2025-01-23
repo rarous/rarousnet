@@ -1972,7 +1972,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250121.0"
-    wrangler: "npm:3.103.2"
+    wrangler: "npm:3.105.0"
   languageName: unknown
   linkType: soft
 
@@ -2019,7 +2019,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250121.0"
     linkedom: "npm:0.18.7"
-    wrangler: "npm:3.103.2"
+    wrangler: "npm:3.105.0"
   languageName: unknown
   linkType: soft
 
@@ -2035,7 +2035,7 @@ __metadata:
     pagefind: "npm:1.3.0"
     postcss-jit-props: "npm:1.0.15"
     undertaker-registry: "npm:2.0.0"
-    wrangler: "npm:3.103.2"
+    wrangler: "npm:3.105.0"
   languageName: unknown
   linkType: soft
 
@@ -9036,7 +9036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mlly@npm:^1.7.3, mlly@npm:^1.7.4":
+"mlly@npm:^1.7.4":
   version: 1.7.4
   resolution: "mlly@npm:1.7.4"
   dependencies:
@@ -11254,7 +11254,7 @@ __metadata:
     local-web-server: "npm:5.4.0"
     npm-run-all2: "npm:7.0.2"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.103.2"
+    wrangler: "npm:3.105.0"
   languageName: unknown
   linkType: soft
 
@@ -13379,16 +13379,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unenv@npm:unenv-nightly@2.0.0-20250109-100802-88ad671":
-  version: 2.0.0-20250109-100802-88ad671
-  resolution: "unenv-nightly@npm:2.0.0-20250109-100802-88ad671"
+"unenv@npm:2.0.0-rc.0":
+  version: 2.0.0-rc.0
+  resolution: "unenv@npm:2.0.0-rc.0"
   dependencies:
     defu: "npm:^6.1.4"
-    mlly: "npm:^1.7.3"
+    mlly: "npm:^1.7.4"
     ohash: "npm:^1.1.4"
     pathe: "npm:^1.1.2"
     ufo: "npm:^1.5.4"
-  checksum: 10c0/5be53a823cc27902fc774176d1899013c9748b6c715f8ba3bc78f7cea122700c06e1861d1face2735aaf8f3b9e66f983254e3d3da007333ca910036a638ac967
+  checksum: 10c0/87e2d8485ce17ba8342cbd65072c3ed5b19aea695bff4033bd3e1bc673aa9a8f9aec3ebf5a396be70953a948a269da1ad01935c7d89f1a3c392105447dd4a8aa
   languageName: node
   linkType: hard
 
@@ -13917,9 +13917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.103.2":
-  version: 3.103.2
-  resolution: "wrangler@npm:3.103.2"
+"wrangler@npm:3.105.0":
+  version: 3.105.0
+  resolution: "wrangler@npm:3.105.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
     "@esbuild-plugins/node-globals-polyfill": "npm:0.2.3"
@@ -13929,7 +13929,7 @@ __metadata:
     fsevents: "npm:~2.3.2"
     miniflare: "npm:3.20241230.2"
     path-to-regexp: "npm:6.3.0"
-    unenv: "npm:unenv-nightly@2.0.0-20250109-100802-88ad671"
+    unenv: "npm:2.0.0-rc.0"
     workerd: "npm:1.20241230.0"
   peerDependencies:
     "@cloudflare/workers-types": ^4.20241230.0
@@ -13942,7 +13942,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/a622ee82329b497fe0b42dd79024639feeff7c1929178418ee7dd35e6a921b339c7759626e15cd3f0c444596c14cfeae0501bfb646d93a8f1dec831ec5ebcf51
+  checksum: 10c0/4e9a049feceedf149fd519b917c63d085aa96f61f4384eef3ebeb13d84cc8b8f8da66239055d9e109ddbdfb05c251a1dff0640cd7be4abd51b7fbb22c56bed39
   languageName: node
   linkType: hard
 
