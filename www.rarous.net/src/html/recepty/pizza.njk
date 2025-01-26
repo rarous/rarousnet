@@ -8,12 +8,15 @@
       display: block;
       line-height: 2;
     }
-    fieldset+fieldset {
+
+    fieldset + fieldset {
       margin-block-start: 1em;
     }
-    fieldset+p {
+
+    fieldset + p {
       margin-block-start: 2em;
     }
+
     label:has(input[type=number]) {
       display: grid;
       grid-template-columns: 10ch 6ch 1fr;
@@ -36,6 +39,9 @@
 
   <form name="recipe">
     <fieldset>
+      <label><input type="checkbox" switch id="cookingSwitch"> Vařím (neusínej)</label>
+    </fieldset>
+    <fieldset>
       <legend>preference</legend>
       <label>Počet porcí <input type="number" name="pizzas" value="4" min="1"></label>
       <label>Semolina <input type="number" name="semolinaRatio" value="0.2" step="0.1" min="0" max="0.2"></label>
@@ -47,22 +53,33 @@
     </fieldset>
 
     <p>Do
-      <output name="water">368</output> ml vlažné
-      vody o teplotě <output name="waterTemp">42</output>°C
-      přidáme <output name="yeast">3,5</output> g kvasnic.
+      <output name="water">368</output>
+       ml vlažné
+      vody o teplotě 
+      <output name="waterTemp">42</output>
+      °C
+      přidáme 
+      <output name="yeast">3,5</output>
+       g kvasnic.
       Na hladině by se po chvíli měly objevovat bublinky = kvasinky makaj.
     </p>
 
-    <p>V míse smícháme mouku a sůl (<output name="salt">18</output> g). Váha postupně po přidání ukazuje:</p>
+    <p>V míse smícháme mouku a sůl (
+      <output name="salt">18</output>
+       g). Váha postupně po přidání ukazuje:
+    </p>
     <ol>
       <li><span>Semolina</span>
-        <output name="semolina">122,5</output> g
+        <output name="semolina">122,5</output>
+         g
       </li>
       <li><span>Mouka <q>00</q></span>
-        <output name="flour">613</output> g
+        <output name="flour">613</output>
+         g
       </li>
       <li><span>Sůl</span>
-        <output name="total">631</output> g
+        <output name="total">631</output>
+         g
       </li>
     </ol>
 
@@ -77,7 +94,8 @@
 
       Po dvou hodinách by mělo těsto nakynout na dvounásobnou velikost.
 
-      Těsto rozdělím na <output name="pizzas">4</output> kusy. Každý kus ještě zvlášť prohnětu
+      Těsto rozdělím na 
+      <output name="pizzas">4</output> kusy. Každý kus ještě zvlášť prohnětu
       a vytvořím z něj hladkou količku. Kuličky vložím do fermentovací nádoby, kterou jsem předtím
       lehce vysypal Semolinou. Kuličky popráším semolinou, zavřu nádobu a nechám kynout zhruba 30 minut.
 
@@ -97,6 +115,9 @@
       Po vyndání pizzy z pece je potřeba přiložit, aby byla rozehřátá na další kus.
     {% endmarkdown %}
   </form>
+{% endblock %}
+
+{% block scripts %}
   <script type="module">
     const form = document.forms.recipe;
     const ingredients = new Map([
@@ -129,6 +150,30 @@
       const semolinaRation = Number.parseFloat(data.get("semolinaRatio"));
       const yeastType = data.get("yeastType");
       update(pizzas, semolinaRation, yeastType);
+    });
+  </script>
+  <script type="module">
+    const wakeLockOffButton = document.getElementById("cookingSwitch");
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request("screen");
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    wakeLockOffButton.addEventListener("change", () => {
+      if (wakeLock !== null) return;
+      requestWakeLock();
+    });
+
+    wakeLockOffButton.addEventListener("click", () => {
+      if (wakeLock === null) return;
+      wakeLock.release().then(() => {
+        wakeLock = null;
+      });
     });
   </script>
 {% endblock %}
