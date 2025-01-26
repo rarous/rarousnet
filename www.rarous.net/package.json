@@ -2,7 +2,7 @@
   "name": "@rarousnet/website",
   "packageManager": "yarn@4.6.0",
   "exports": {
-    "./*.js": "./src/esm/*.js"
+    "./*": "./src/esm/*"
   },
   "dependencies": {
     "@thi.ng/transducers": "9.2.16"
