@@ -18,6 +18,8 @@ export function defFeedPagination({ HTMLElement, customElements }) {
       this.lastLink = this.querySelector(".last");
       this.nextLink = this.querySelector(".next");
       this.prevLink = this.querySelector(".prev");
+      this.currentLabel = this.querySelector(".current");
+      this.totalLabel = this.querySelector(".total");
       this.updatePaginationLinks();
     }
 
@@ -60,6 +62,16 @@ export function defFeedPagination({ HTMLElement, customElements }) {
         const lastParams = new URLSearchParams(search);
         lastParams.set("page", lastPage);
         this.lastLink.href = `?${lastParams}`;
+      }
+
+      if (this.currentLabel) {
+        this.currentLabel.value = pageIndex + 1;
+        this.currentLabel.textContent = pageIndex + 1;
+      }
+
+      if (this.totalLabel) {
+        this.totalLabel.value = total;
+        this.totalLabel.textContent = total;
       }
     }
   }
