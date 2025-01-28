@@ -8,6 +8,7 @@ import { comp, drop, iterator, take } from "@thi.ng/transducers";
 export function defArticlesFeed({ HTMLElement, customElements }) {
   class ArticlesFeed extends HTMLElement {
     #itemTemplate;
+    #itemsCount;
 
     static register(tagName = "articles-feed") {
       this.tagName = tagName;
@@ -32,7 +33,6 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
 
     set data(data) {
       if (this.loaded) return;
-      this.itemsCount = data.length;
       this.appendChild(this.renderFeed(data));
       this.loaded = true;
     }
@@ -70,6 +70,10 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
       return Number.parseInt(val, 10);
     }
 
+    get itemsCount() {
+      return this.#itemsCount;
+    }
+
     filterData(data) {
       const tag = this.dataset.tag;
       if (tag) {
@@ -89,6 +93,7 @@ export function defArticlesFeed({ HTMLElement, customElements }) {
       const sortDirection = this.dataset.sortDir ?? "desc";
       const dir = sortDirection === "desc" ? -1 : 1;
       const filteredData = data.sort((a, b) => dir * a.entry[sortKey].localeCompare(b.entry[sortKey]));
+      this.#itemsCount = filteredData.length;
       if (!this.pageSize) return filteredData;
       return iterator(comp(drop(this.pageIndex * this.pageSize), take(this.pageSize)), filteredData);
     }

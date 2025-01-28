@@ -35,25 +35,32 @@ export function defFeedPagination({ HTMLElement, customElements }) {
       const nextPage = Math.min(lastPage, pageIndex + 1);
 
       if (pageIndex === 0) {
-        this.firstLink.setAttribute("disabled", "disabled");
-        this.prevLink.setAttribute("disabled", "disabled");
-      } else if (pageIndex === lastPage) {
-        this.lastLink.setAttribute("disabled", "disabled");
-        this.nextLink.setAttribute("disabled", "disabled");
+        this.firstLink?.setAttribute("disabled", "disabled");
+        this.prevLink?.setAttribute("disabled", "disabled");
+      }
+      if (pageIndex === lastPage) {
+        this.lastLink?.setAttribute("disabled", "disabled");
+        this.nextLink?.setAttribute("disabled", "disabled");
       }
 
       const { search } = new URL(this.ownerDocument.location.href);
-      const prevParams = new URLSearchParams(search);
-      prevParams.set("page", prevPage);
-      this.prevLink.href = `?${prevParams}`;
+      if (this.prevLink) {
+        const prevParams = new URLSearchParams(search);
+        prevParams.set("page", prevPage);
+        this.prevLink.href = `?${prevParams}`;
+      }
 
-      const nextParams = new URLSearchParams(search);
-      nextParams.set("page", nextPage);
-      this.nextLink.href = `?${nextParams}`;
+      if (this.nextLink) {
+        const nextParams = new URLSearchParams(search);
+        nextParams.set("page", nextPage);
+        this.nextLink.href = `?${nextParams}`;
+      }
 
-      const lastParams = new URLSearchParams(search);
-      lastParams.set("page", lastPage);
-      this.lastLink.href = `?${lastParams}`;
+      if (this.lastLink) {
+        const lastParams = new URLSearchParams(search);
+        lastParams.set("page", lastPage);
+        this.lastLink.href = `?${lastParams}`;
+      }
     }
   }
 
