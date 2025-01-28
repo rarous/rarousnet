@@ -54,6 +54,20 @@
       content: ", ";
       color: var(--text-color);
     }
+
+    feed-pagination {
+      display: inline flex;
+    }
+
+    feed-pagination a:has(svg) {
+      text-decoration: none;
+      display: inline flex;
+
+      &:hover {
+        --icon-color: var(--text-color-on-primary);
+        border-radius: 4px;
+      }
+    }
   </style>
 {% endblock %}
 
@@ -102,8 +116,9 @@
   </articles-feed>
 
   <nav aria-label="Stránkování">
-    <p>Stránkování: 
+    <p>Stránka 
       <feed-pagination data-page-size="24">
+        <data class="current"></data> z <data class="total"></data> 
         <a href="?page=0" class="first" aria-label="přejít na první stránku">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                fill="var(--icon-color)">
@@ -118,7 +133,6 @@
             <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
           </svg>
         </a>
-         <data class="current"></data> z <data class="total"></data> 
         <a href="?page=1" class="next" aria-label="přejít na následující stránku">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                fill="var(--icon-color)">
