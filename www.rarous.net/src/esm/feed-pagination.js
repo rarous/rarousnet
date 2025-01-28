@@ -70,8 +70,8 @@ export function defFeedPagination({ HTMLElement, customElements }) {
       }
 
       if (this.totalLabel) {
-        this.totalLabel.value = total;
-        this.totalLabel.textContent = total;
+        this.totalLabel.value = totalPages;
+        this.totalLabel.textContent = totalPages;
       }
     }
   }
