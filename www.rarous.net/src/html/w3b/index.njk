@@ -55,6 +55,16 @@
       color: var(--text-color);
     }
 
+    nav:has(feed-pagination) {
+      border-block-start: var(--border-width) solid oklch(0.45 0 89.876);
+      border-block-end: 6px solid oklch(0.45 0 89.876);
+      margin-block-end: 2lh;
+
+      p {
+        margin-block: 0.25lh;
+      }
+    }
+
     feed-pagination {
       display: inline flex;
     }
