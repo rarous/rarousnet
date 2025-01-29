@@ -56,10 +56,11 @@
     }
 
     nav:has(feed-pagination) {
-      border-block-start: var(--border-width) solid oklch(0.45 0 89.876);
-      border-block-end: 6px solid oklch(0.45 0 89.876);
+      border-block: var(--border-width) solid oklch(0.45 0 89.876);
+      border-block-end-width: calc(2 * var(--border-width));
       margin-block-end: 2lh;
     }
+
     nav:has(feed-pagination) p {
       margin-block: 0.25lh;
     }
@@ -72,6 +73,7 @@
       text-decoration: none;
       display: inline-flex;
     }
+
     feed-pagination a:has(svg):hover {
       --icon-color: var(--text-color-on-primary);
       border-radius: 4px;
