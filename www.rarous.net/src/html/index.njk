@@ -294,7 +294,7 @@
   <section id="kontakt"  itemscope itemtype="https://schema.org/Person" class="vcard">
     <div class="qr-code">
       <img alt="QR kód s kontaktem"
-           src="https://www.rarous.net/api/v1/qr?{{ searchParams({ t: meCard(contact) }) }}"
+           src="https://www.rarous.net/api/v1/qr?{{ { t: meCard(contact) } | urlencode }}"
            title="Oskenuj si kontakt do mobilu" width="200" height="200">
     </div>
     <hgroup>

@@ -12,6 +12,7 @@ let meCardTags = new Map([
 ]);
 
 function formatAddress(contact) {
+  if (!contact.city) return undefined;
   if (contact.address) return contact.address;
   return [
     contact.POBox,
@@ -67,10 +68,6 @@ function meCard(contact) {
   return builder.join(";");
 }
 
-function searchParams(obj) {
-  return new URLSearchParams(obj).toString();
-}
-
 export default {
   meta: {
     lang: "cs",
@@ -88,5 +85,4 @@ export default {
     articlesFeedUrl: "https://feeds.feedburner.com/rarous-weblog",
   },
   meCard,
-  searchParams,
 };
