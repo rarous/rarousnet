@@ -42,7 +42,6 @@ export async function onRequestPost(context) {
         },
       ]);
     const textResult = processText(comment.get("text"), references);
-    const isEnabled = true; // TODO: check for spam, hate etc. -> isEnabled = false;
     const created = now.toISOString();
     const author = {
       name: comment.get("name"),
@@ -50,6 +49,7 @@ export async function onRequestPost(context) {
       web: comment.get("web"),
     };
     const text = await textResult;
+    const isEnabled = !(text.includes(".ru/") || text.includes(".su/") || author.web?.includes(".ru")); // TODO: check for spam, hate etc. -> isEnabled = false;
     const insert = { author, created, text, isEnabled };
     comments.push(insert);
 
