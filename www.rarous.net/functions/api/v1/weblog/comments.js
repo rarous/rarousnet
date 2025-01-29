@@ -49,7 +49,12 @@ export async function onRequestPost(context) {
       web: comment.get("web"),
     };
     const text = await textResult;
-    const isEnabled = !(text.includes(".ru/") || text.includes(".su/") || author.web?.includes(".ru")); // TODO: check for spam, hate etc. -> isEnabled = false;
+    const isEnabled = !(
+      text.includes("Coinbase") ||
+      text.includes(".ru/") ||
+      text.includes(".su/") ||
+      author.web?.includes(".ru")
+    ); // TODO: check for spam, hate etc. -> isEnabled = false;
     const insert = { author, created, text, isEnabled };
     comments.push(insert);
 
