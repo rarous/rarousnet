@@ -6,7 +6,7 @@ import { getSVG } from "qreator/lib/svg";
  * @returns {Promise<Response>}
  */
 
-export async function onRequestGet({ request }) {
+export async function onRequestGet({ request, env }) {
   const { searchParams } = new URL(request.url);
   const text = searchParams.get("t") ?? searchParams.get("text");
   if (!text) return new Response("Missing required parameter: text", { status: 400 });
@@ -19,7 +19,7 @@ export async function onRequestGet({ request }) {
     status: 200,
     headers: {
       "Content-Type": "image/svg+xml",
-      "Access-Control-Allow-Origin": "www.rarous.net",
+      "Access-Control-Allow-Origin": env.HOSTNAME,
     },
   });
 }
