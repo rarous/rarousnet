@@ -60,7 +60,7 @@ export async function onRequestPost(context) {
     lastComments.push(
       Object.assign(
         {
-          href: target + `#komentar-${now.valueOf()}`,
+          href: `${target}#komentar-${now.valueOf()}`,
           article: { title: comment.get("article-title") ?? "" },
         },
         insert,
