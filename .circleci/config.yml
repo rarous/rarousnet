@@ -100,7 +100,7 @@ jobs:
   test:
     resource_class: large
     docker:
-      - image: cimg/node:23.6.1-browsers
+      - image: cimg/node:23.7.0-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -141,7 +141,7 @@ jobs:
           template: basic_fail_1
   pages_deploy:
     docker:
-      - image: cimg/node:23.6.1
+      - image: cimg/node:23.7.0
     resource_class: arm.large
     steps:
       - checkout
