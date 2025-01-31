@@ -2031,7 +2031,7 @@ __metadata:
     "@thi.ng/transducers": "npm:9.2.17"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
-    open-props: "npm:1.7.10"
+    open-props: "npm:1.7.12"
     pagefind: "npm:1.3.0"
     postcss-jit-props: "npm:1.0.15"
     undertaker-registry: "npm:2.0.0"
@@ -9585,10 +9585,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open-props@npm:1.7.10":
-  version: 1.7.10
-  resolution: "open-props@npm:1.7.10"
-  checksum: 10c0/e48189db041a1fab5b50c073e5c2b43d4b89182a8bb31a94118137946a27fc1b1f061cbd67edcb37edd8cb30c9ed2622c4d8da1957b4ed5578525269e3f7ee41
+"open-props@npm:1.7.12":
+  version: 1.7.12
+  resolution: "open-props@npm:1.7.12"
+  checksum: 10c0/3154f3523c4d0ec7acd6604a830538f5e66a9735ab65c6a9697c052eec9929d28ad5557809ad125f8694e317065977fdd612955102ea62ddfcbb21ccdb51ec9e
   languageName: node
   linkType: hard
 
