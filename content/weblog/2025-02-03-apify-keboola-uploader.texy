@@ -1,6 +1,6 @@
 ---
 {:title "Apify actor: Keboola Uploader",
- :description "Keboola Uploader je rychlý a spolehlivý Apify actor, který přesune vaše nascapovaná data k dalšímu zpracování do Kebooly. Čerpá z mnohaletých zkušeností na projektu Hlídač shopů a dalších zákazníků, kteří zpracovávají data ve velkém scale.",
+ :description "Keboola Uploader je rychlý a spolehlivý Apify actor, který přesune vaše nascrapovaná data k dalšímu zpracování do Kebooly. Čerpá z mnohaletých zkušeností na projektu Hlídač shopů a dalších zákazníků, kteří zpracovávají data ve velkém scale.",
  :author "Aleš Roubíček",
  :tags #{"moje práce" "apify" "keboola" "hlídač shopů"},
  :published "2025-02-03T08:44:38+00:00"
@@ -10,7 +10,7 @@
   "https://bsky.app/profile/hckr.studio/post/3lhb3upuwsc2v"]}
 ---
 
-[keboola-uploader] je actor na platformě Apify, který slouží ke spolehlivému uploadu velkého množství nascapeovaných dat
+[keboola-uploader] je actor na platformě Apify, který slouží ke spolehlivému uploadu velkého množství nascrapeovaných dat
 k dalšímu zpracování do Keboola Connection. Vnikl na základě mnohaletých zkušeností z provozu
 "Hlídače Shopů":[https://www.hlidacshopu.cz/] a dalších klientů, pro které jsme dělali datové pipeliny ve velkém scale.
 
