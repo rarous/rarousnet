@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1bd956af80289cd5ff1d85d9259b9c3e",
+    "content-hash": "2868143b8d52a95c7d8ec33c413083eb",
     "packages": [
         {
             "name": "texy/texy",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/texy.git",
-                "reference": "a441883938f1ab79f4e22c949e6a1169a119a078"
+                "reference": "33593d96e507c1b03584443f3eaadc80e3920838"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/texy/zipball/a441883938f1ab79f4e22c949e6a1169a119a078",
-                "reference": "a441883938f1ab79f4e22c949e6a1169a119a078",
+                "url": "https://api.github.com/repos/dg/texy/zipball/33593d96e507c1b03584443f3eaadc80e3920838",
+                "reference": "33593d96e507c1b03584443f3eaadc80e3920838",
                 "shasum": ""
             },
             "require": {
@@ -71,9 +71,9 @@
                 "wiki"
             ],
             "support": {
-                "source": "https://github.com/dg/texy/tree/v3.2.3"
+                "source": "https://github.com/dg/texy/tree/v3.2.4"
             },
-            "time": "2024-10-05T15:06:56+00:00"
+            "time": "2025-02-03T02:50:30+00:00"
         }
     ],
     "packages-dev": [],
