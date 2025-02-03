@@ -29,6 +29,10 @@ export async function onRequestPost(context) {
     const { env, request } = context;
     const url = new URL(request.url);
     const target = url.searchParams.get("url");
+    if (target.startsWith("https:/www.rarous.net")) {
+      // spam
+      return new Response(null, { status: 451 });
+    }
     const [detail, comment] = await Promise.all([getDetail(env.weblog, target), request.formData()]);
     // TODO: validate comment
     const comments = detail?.comments ?? [];
