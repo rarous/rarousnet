@@ -4,8 +4,8 @@ async function main({ token }) {
   const { default: data } = await import("./data/twitter-retweets.json", {
     with: { type: "json" },
   });
-  const target = "https://www.rarous.net/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech";
-  const source = "https://x.com/alesroubicek/status/1845893549554045241";
+  const target = "https://www.rarous.net/weblog/2025/02/03/apify-keboola-uploader";
+  const source = "https://x.com/alesroubicek/status/1886325417142796452";
   const { entries } = data.retweeters_timeline.timeline.instructions[0];
   const users = entries
     .filter(x => x.content.entryType === "TimelineTimelineItem")
