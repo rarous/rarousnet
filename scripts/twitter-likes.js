@@ -4,8 +4,8 @@ async function main({ token }) {
   const { default: data } = await import("./data/twitter-likes.json", {
     with: { type: "json" },
   });
-  const target = "https://www.rarous.net/weblog/2024/09/25/hckr-radio-omnious-morning";
-  const source = "https://x.com/alessiobusta/status/1838898608050970854";
+  const target = "https://www.rarous.net/weblog/2025/02/03/apify-keboola-uploader.html";
+  const source = "https://x.com/alesroubicek/status/1886325417142796452";
   const { entries } = data.favoriters_timeline.timeline.instructions[0];
   const users = entries
     .filter(x => x.content.entryType === "TimelineTimelineItem")
@@ -27,7 +27,7 @@ async function main({ token }) {
             url: `https://x.com/${user.screen_name}`,
           },
           url: `${source}#favorited-by-${rest_id}`,
-          published: null,
+          published: new Date().toISOString(),
           name: `like of ${source}`,
           "like-of": source,
           "wm-property": "like-of",

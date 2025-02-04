@@ -23,12 +23,16 @@ Migrace zastaví aktuální běh actora a spustí ho v jiném kontejneru. *Keboo
 pokračuje v uploadu dat, která ještě uploadována nebyla. Nebude celý upload opakovat od začátku, ale plynule naváže tam,
 kde byl přerušený - tzn. opakuje jen nedokončenou dávku, která byla přerušená.
 
+[* https://res.cloudinary.com/rarous/image/upload/dpr_auto,f_auto,q_auto,w_auto:100:800/v1738652223/weblog/keboola-uploader-integration.jpg .(Keboola Uploader Integration) *]
+
 Keboola Uploader podporuje "Apify Integration":[https://docs.apify.com/platform/integrations/actors/integration-ready-actors]
 a tak ho lze snadno zařadit do vašeho workflow. Nebo ho můžete volat přímo z vašich actorů a využít plný potenciál jeho možností.
 
 Můžete explicitně vybrat, jaké sloupečky se z vašich dat použijí, nebo to nechat na uploaderu, který vezme názvy sloupečků
 z první položky v Datasetu. Pokud máte ve vašich datech složitější strukturovaná data, dojde k jejich serializaci do
 formátu JSON, aby je šlo "zpracovávat ve Snowflake transformacích":[https://docs.snowflake.com/en/user-guide/querying-semistructured].
+
+[* https://res.cloudinary.com/rarous/image/upload/dpr_auto,f_auto,q_auto,w_auto:100:800/v1738652210/weblog/keboola-uploader-throughput-tuning.png .(Keboola Uploader - Variace v době běhu v závislosti na velikosti batche) *]
 
 [keboola-uploader] mi umožňuje ladit workflows, aby měly co nejlepší propustnost vzhledem k povaze dat.
 To má vliv nejen na to, jak rychle má zákazník důležitá data, ale i kolik to ve výsledku stojí peněz.
