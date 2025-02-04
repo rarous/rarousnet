@@ -25,7 +25,7 @@ async function main({ token }) {
           type: "entry",
           author: {
             name: user.displayName,
-            photo: user.avatar,
+            photo: `https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto/${user.avatar}`,
             url: `https://bsky.app/profile/${user.handle}`,
           },
           url: `${source}#liked-by-${userId}`,
