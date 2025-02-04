@@ -32,7 +32,10 @@ Můžete explicitně vybrat, jaké sloupečky se z vašich dat použijí, nebo t
 z první položky v Datasetu. Pokud máte ve vašich datech složitější strukturovaná data, dojde k jejich serializaci do
 formátu JSON, aby je šlo "zpracovávat ve Snowflake transformacích":[https://docs.snowflake.com/en/user-guide/querying-semistructured].
 
+<figure>
 [* https://res.cloudinary.com/rarous/image/upload/dpr_auto,f_auto,q_auto,w_auto:100:800/v1738652210/weblog/keboola-uploader-throughput-tuning.png .(Keboola Uploader - Variace v době běhu v závislosti na velikosti batche) *]
+<figcaption>Ukázka dopadu ladění velikosti batche na dobu uploadu a její variabilitu</figcaption>
+</figure>
 
 [keboola-uploader] mi umožňuje ladit workflows, aby měly co nejlepší propustnost vzhledem k povaze dat.
 To má vliv nejen na to, jak rychle má zákazník důležitá data, ale i kolik to ve výsledku stojí peněz.
