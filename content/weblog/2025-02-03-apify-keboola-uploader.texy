@@ -2,7 +2,7 @@
 {:title "Apify actor: Keboola Uploader",
  :description "Keboola Uploader je rychlý a spolehlivý Apify actor, který přesune vaše nascrapovaná data k dalšímu zpracování do Kebooly. Čerpá z mnohaletých zkušeností na projektu Hlídač shopů a dalších zákazníků, kteří zpracovávají data ve velkém scale.",
  :author "Aleš Roubíček",
- :tags #{"moje práce" "apify" "keboola" "hlídač shopů"},
+ :tags #{"moje práce" "apify" "keboola" "hlidac shopu"},
  :published "2025-02-03T08:44:38+00:00"
  :syndication
  ["https://www.linkedin.com/feed/update/urn:li:activity:7292087767142916097/"
