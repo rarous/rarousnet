@@ -4,7 +4,7 @@
   "type": "module",
   "license": "EUPL-1.2",
   "dependencies": {
-    "linkedom": "0.18.7"
+    "linkedom": "0.18.9"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20250204.0",
