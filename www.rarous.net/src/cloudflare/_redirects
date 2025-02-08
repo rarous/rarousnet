@@ -1,5 +1,4 @@
-/.well-known/avatar https://2.gravatar.com/avatar/21e10a848a947b1aebfa98d07edf47131bf5373873e1240a21e2aaa2f8c3b648?size=512
-/.well-known/avatar.png /.well-known/avatar
+/.well-known/avatar https://cdn.masto.host/indiewebsocial/accounts/avatars/110/139/507/743/366/264/original/5256bfde6f4dd39a.webp
 /about /o-mne
 /avatar /.well-known/avatar
 /clanek/:slug /weblog/:slug 301
