@@ -3,6 +3,6 @@
   "require": {
     "php": "8.4.4",
     "texy/texy": "3.2.4",
-    "rollbar/rollbar": "4.0.2"
+    "rollbar/rollbar": "4.1.0"
   }
 }
