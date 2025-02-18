@@ -2033,7 +2033,7 @@ __metadata:
     "@types/undertaker-registry": "npm:1.0.4"
     open-props: "npm:1.7.12"
     pagefind: "npm:1.3.0"
-    postcss-jit-props: "npm:1.0.15"
+    postcss-jit-props: "npm:1.0.16"
     undertaker-registry: "npm:2.0.0"
     wrangler: "npm:3.109.1"
   languageName: unknown
@@ -10486,14 +10486,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-jit-props@npm:1.0.15":
-  version: 1.0.15
-  resolution: "postcss-jit-props@npm:1.0.15"
+"postcss-jit-props@npm:1.0.16":
+  version: 1.0.16
+  resolution: "postcss-jit-props@npm:1.0.16"
   dependencies:
     tiny-glob: "npm:^0.2.9"
   peerDependencies:
     postcss: ^8.2.8
-  checksum: 10c0/30d040e6f075e2a783c0dbd30d37a2fd98ad0ce16fe6fae4013a9acb0ddbf59b5550a4703e41965c5bb368e151262580338745eb5c96927a70a122ac6e76592f
+  checksum: 10c0/4f5bf3d42f248647622ac0202166a8f0c6b59ab2b61f8eb3af507d41c44714b8133116bee44cbdd38568eb28057cb92a48bafb219756a457e8a72a8f4a6968f6
   languageName: node
   linkType: hard
 
