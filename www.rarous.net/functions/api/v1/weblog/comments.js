@@ -40,7 +40,7 @@ export const onRequestPost = [
 
       const [detail, comment] = await Promise.all([getDetail(env.weblog, target), request.formData()]);
       // TODO: validate comment
-      if (/^\p{Script=Cyrillic}+$/u.test(comment)) {
+      if (/^\p{Script=Cyrillic}+$/u.test(comment.get("text"))) {
         // russian spam
         return new Response(null, { status: 451 });
       }
