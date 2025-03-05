@@ -214,6 +214,10 @@ iframe.player {
   aspect-ratio: 4 / 3;
 }
 
+.mixcloud-player {
+  width: 100%;
+}
+
 #content {
   --body-column: extra;
   display: block grid;
