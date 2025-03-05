@@ -81,6 +81,9 @@
     min(var(--gap) * 6, 20vmin)
   );
 
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
   font-size: 100%;
   color-scheme: light dark;
   interpolate-size: allow-keywords;
@@ -127,7 +130,6 @@ body {
   font-kerning: normal;
   font-variant-numeric: lining-nums slashed-zero;
   font-variant-ligatures: common-ligatures contextual;
-  -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
