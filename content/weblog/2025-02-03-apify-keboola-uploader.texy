@@ -11,7 +11,7 @@
 ---
 
 [keboola-uploader] je actor na platformě Apify, který slouží ke spolehlivému uploadu velkého množství nascrapeovaných dat
-k dalšímu zpracování do Keboola Connection. Vnikl na základě mnohaletých zkušeností z provozu
+k dalšímu zpracování do Keboola Connection. Vznikl na základě mnohaletých zkušeností z provozu
 "Hlídače Shopů":[https://www.hlidacshopu.cz/] a dalších klientů, pro které jsme dělali datové pipeliny ve velkém scale.
 
 Hlavní rysy jsou **rychlost a spolehlivost**. Actor umožňuje odladit správně velké *dávky pro upload* do Kebooly, aby
