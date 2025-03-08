@@ -94,7 +94,7 @@ jobs:
   test:
     resource_class: large
     docker:
-      - image: cimg/node:22.11.0-browsers
+      - image: cimg/node:22.14.0-browsers
     steps:
       - checkout
       - attach_workspace:
