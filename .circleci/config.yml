@@ -9,11 +9,6 @@ orbs:
   pulumi: pulumi/pulumi@2.1.0
   slack: circleci/slack@5.1.1
 
-executors:
-  pw-focal-development:
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
-
 commands:
   install_browsers:
     steps:
@@ -33,13 +28,14 @@ commands:
 
 jobs:
   provision:
-    docker:
-      - image: cimg/node:current
+    executor:
+      name: node/default
     resource_class: arm.large
     steps:
       - checkout
       - pulumi/login
-      - node/install-yarn
+      - node/install:
+          install-yarn: true
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
@@ -62,8 +58,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - node/install
-      - node/install-yarn
+      - node/install:
+          install-yarn: true
       - php/install-php:
           version: "$(jq --raw-data '.platform.php' generator/composer.lock)"
       - php/install-composer
@@ -81,9 +77,7 @@ jobs:
       - run:
           name: Build website
           working_directory: www.rarous.net
-          command: |
-            yarn build
-            yarn build:index
+          command: yarn build
       - save_cache:
           name: Store deps cache
           key: v4-dependencies-{{ checksum "generator/deps.edn" }}
@@ -100,7 +94,7 @@ jobs:
   test:
     resource_class: large
     docker:
-      - image: cimg/node:23.9.0-browsers
+      - image: cimg/node:22.11.0-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -109,8 +103,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install libnss3-tools
       - browser-tools/install-chrome
-      - node/install
-      - node/install-yarn
+      - node/install:
+          install-yarn: true
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
@@ -140,15 +134,15 @@ jobs:
           event: fail
           template: basic_fail_1
   pages_deploy:
-    docker:
-      - image: cimg/node:23.9.0
+    executor:
+      name: node/default
     resource_class: arm.large
     steps:
       - checkout
       - attach_workspace:
           at: .
-      - node/install
-      - node/install-yarn
+      - node/install:
+          install-yarn: true
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
