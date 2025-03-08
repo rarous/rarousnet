@@ -1021,9 +1021,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:9.3.1":
-  version: 9.3.1
-  resolution: "@hckr_/blendid@npm:9.3.1"
+"@hckr_/blendid@npm:9.3.2":
+  version: 9.3.2
+  resolution: "@hckr_/blendid@npm:9.3.2"
   dependencies:
     "@csstools/postcss-gamut-mapping": "npm:2.0.8"
     "@vitejs/plugin-basic-ssl": "npm:2.0.0"
@@ -1072,7 +1072,7 @@ __metadata:
     vite: "npm:6.2.1"
   bin:
     blendid: bin/blendid.js
-  checksum: 10c0/99bf85c3385bcc4620f7dd505ac164eec6a0f1e9f4bad99731d5c98b788628edd0a51802ca8a3dbfa103197731e5716f966082a7f1a3b8a98f283f4ebe53bc9d
+  checksum: 10c0/bc305281a32c5f0df4ccbbd83a7949acf54f0f8f5c0c03f2eb4bdad600930f3ba4ab62607f261a09c8029887f97faf5c0b90234db293e48562ff121411a5f04e
   languageName: node
   linkType: hard
 
@@ -2073,7 +2073,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
-    "@hckr_/blendid": "npm:9.3.1"
+    "@hckr_/blendid": "npm:9.3.2"
     "@thi.ng/transducers": "npm:9.2.21"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
