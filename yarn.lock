@@ -11349,7 +11349,7 @@ __metadata:
     local-web-server: "npm:5.4.0"
     npm-run-all2: "npm:7.0.2"
     tap-xunit: "npm:2.4.1"
-    wrangler: "npm:3.112.0"
+    wrangler: "npm:3.114.0"
   languageName: unknown
   linkType: soft
 
