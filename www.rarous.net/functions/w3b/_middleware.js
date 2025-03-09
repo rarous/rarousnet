@@ -1,6 +1,6 @@
 import { defArticlesFeed } from "@rarousnet/website/articles-feed.js";
 import { defFeedPagination } from "@rarousnet/website/feed-pagination.js";
-import { parseHTML } from "linkedom";
+import { parseHTML } from "linkedom/worker";
 
 /**
  * @param {EventContext<Env>} context
