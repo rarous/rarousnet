@@ -11,7 +11,7 @@
     "feed": "4.2.2",
     "jose": "6.0.9",
     "linkedom": "0.18.9",
-    "qreator": "9.7.0"
+    "qreator": "9.7.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20250310.0"
