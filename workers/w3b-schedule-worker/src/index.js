@@ -115,7 +115,7 @@ function mergeData(entry, extractedData) {
     link: entry.link,
     lang: data.lang,
     title: data.title || entry.title,
-    description: data.description,
+    description: data.description || entry.description,
     author: data.author || (authorsMap.get(entry.author) ?? entry.author),
     tags: data.tags,
     image: data.image,
