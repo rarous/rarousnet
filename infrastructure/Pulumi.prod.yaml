@@ -17,3 +17,4 @@ config:
     secure: AAABAJ0K+ceDmeXH6d1sgcxbScW3a/+J7iWmWX5BIKh9Ui9NnFVAuXTCbEw6zuBkiznqMu3DlzXy1v4exQVDhVe0BW1PN6j5aynAJjrecvwkLyGVw4vowXW0+01qSL3G
   rarousnet:private-key:
     secure: AAABAJR+7mKJfEMhRDhwQ/n4u/JQxNTKqRZQ4LpUvTF361fbkjyCpjqlleD3ugwyUapRhQU9YiDzNy7XFLq82SbLuxtA5DBts8rCyT21sb0L2Bux5tmq/qYNlieQ7vQ+
+  rarousnet:w3b-feed-url: https://feeds.feedburner.com/rarous/w3b

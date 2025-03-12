@@ -173,6 +173,7 @@ const w3bScheduleWorker = new cloudflare.WorkersScript("w3b-schedule-worker", {
   content: buildAsset("w3b-schedule-worker/src/index.js"),
   compatibilityDate: "2024-11-18",
   module: true,
+  plainTextBindings: [{ name: "FEED_URL", text: config.require("w3b-feed-url") }],
   secretTextBindings: [{ name: "SEMANTIC_EXTRACTOR_SECRET", text: config.require("semantic-extractor-secret") }],
   kvNamespaceBindings: [{ name: "w3b", namespaceId: w3bNS.id }],
   serviceBindings: [{ name: "extractor", service: "hckr-semantic-extractor" }],

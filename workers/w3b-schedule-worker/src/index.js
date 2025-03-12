@@ -139,7 +139,7 @@ async function extractMetadata(entry, env) {
 async function updateArticlesFeed(env) {
   const current = await env.w3b.get("/latest", "json");
   const data = new Map(Object.entries(current));
-  for await (const entry of getEntries("https://feeds.feedburner.com/rarous/w3b")) {
+  for await (const entry of getEntries(env.FEED_URL)) {
     if (data.has(entry.link)) continue;
     const extractedData = await extractMetadata(entry, env);
     data.set(entry.link, {
