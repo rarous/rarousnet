@@ -1,4 +1,4 @@
-import { DOMParser } from "linkedom";
+import { DOMParser } from "linkedom/worker";
 
 async function getFeed(url) {
   const resp = await fetch(url);
@@ -16,7 +16,7 @@ function parseEntry(entry) {
   const link = entry.querySelector("link").getAttribute("href");
   const hostname = new URL(link).hostname;
   const author = getAuthor(entry);
-  const title = entry.querySelector("title").textContent;
+  const title = entry.querySelector("title").innerText;
   const published = entry.querySelector("published").textContent;
   return {
     author,
@@ -46,6 +46,7 @@ function val(prop) {
 
 function processExtractedData(data) {
   console.log("Extracted data:", data);
+  // TODO: use also microdata, they are the same format as JSONLD now
   const { lang, jsonld, metatags, title, url } = data;
   const article = val(jsonld.NewsArticle) ?? val(jsonld.Article) ?? val(jsonld.BlogPosting);
   let image =
@@ -133,6 +134,25 @@ async function updateArticlesFeedWithScrapedData(env) {
   await env.w3b.put("/latest", JSON.stringify(result));
 }
 
+/**
+ * @param {Env} env
+ */
+async function extractStructuredData(env) {
+  const current = await env.w3b.get("/latest", "json");
+  const data = new Map(Object.entries(current));
+  const notEnhanced = Array.from(data.values());
+  for (const { entry, stats } of notEnhanced) {
+    const extractedData = await extractMetadata(entry, env);
+    data.set(entry.link, {
+      entry: mergeData(entry, extractedData),
+      extractedData,
+      stats: stats ?? { clicks: 0, likes: 0 },
+    });
+  }
+  const result = Object.fromEntries(data);
+  return result;
+}
+
 export default {
   /**
    * @param {ScheduledEvent} event
@@ -144,7 +164,7 @@ export default {
   },
 
   async fetch(request, env, ctx) {
-    await updateArticlesFeedWithScrapedData(env);
-    return new Response(null, { status: 202 });
+    const result = await extractStructuredData(env);
+    return Response.json(result);
   },
 };
