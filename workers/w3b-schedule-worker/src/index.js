@@ -3,7 +3,7 @@ import { DOMParser } from "linkedom/worker";
 async function getFeed(url) {
   const resp = await fetch(url);
   const text = await resp.text();
-  return new DOMParser().parseFromString(text, "text/xml");
+  return new DOMParser().parseFromString(text, "text/xml", { location: new URL(url) });
 }
 
 function getAuthor(entry) {
@@ -177,8 +177,7 @@ async function updateArticlesFeedWithScrapedData(env) {
 async function extractStructuredData(env) {
   const current = await env.w3b.get("/latest", "json");
   const data = new Map(Object.entries(current));
-  const notEnhanced = Array.from(data.values());
-  for (const { entry, stats } of notEnhanced) {
+  for (const { entry, stats } of Array.from(data.values())) {
     const extractedData = await extractMetadata(entry, env);
     data.set(entry.link, {
       entry: mergeData(entry, extractedData),
@@ -186,8 +185,7 @@ async function extractStructuredData(env) {
       stats: stats ?? { clicks: 0, likes: 0 },
     });
   }
-  const result = Object.fromEntries(data);
-  return result;
+  return Object.fromEntries(data);
 }
 
 export default {
