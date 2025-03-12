@@ -18,13 +18,7 @@ function parseEntry(entry) {
   const author = getAuthor(entry);
   const title = entry.querySelector("title").innerText;
   const published = entry.querySelector("published").textContent;
-  return {
-    author,
-    title,
-    link,
-    hostname,
-    published,
-  };
+  return { author, title, link, hostname, published };
 }
 
 async function* getEntries(url) {
@@ -60,7 +54,7 @@ function getByType({ jsonld, microdata }, types) {
 
 function processExtractedData(data) {
   console.log("Extracted data:", data);
-  const { lang, metatags, title, url } = data;
+  const { lang, metatags, title: docTitle, url } = data;
   const article = getByType(data, [
     "NewsArticle",
     "Article",
@@ -95,20 +89,14 @@ function processExtractedData(data) {
     val(metatags["og:description"]) ??
     val(metatags["description"]) ??
     "";
-  return {
-    url,
-    lang,
-    title:
-      val(article?.headline) ??
-      val(article?.name) ??
-      val(metatags["twitter:title"]) ??
-      val(metatags["og:title"]) ??
-      title,
-    description,
-    author,
-    tags: kw(article?.keywords) ?? kw(metatags["article:tag"]) ?? val(metatags["keywords"]) ?? "",
-    image,
-  };
+  const tags = kw(article?.keywords) ?? kw(metatags["article:tag"]) ?? val(metatags["keywords"]) ?? "";
+  const title =
+    val(article?.headline) ??
+    val(article?.name) ??
+    val(metatags["twitter:title"]) ??
+    val(metatags["og:title"]) ??
+    docTitle;
+  return { url, lang, title, description, author, tags, image };
 }
 
 function mergeData(entry, extractedData) {
@@ -126,10 +114,11 @@ function mergeData(entry, extractedData) {
   };
 }
 
-async function extractMetadata(entry, env) {
+async function extractMetadata(entry, env, { nodeObjects } = {}) {
   const params = new URLSearchParams({
     url: entry.link,
     token: env.SEMANTIC_EXTRACTOR_SECRET,
+    nodeObjects,
   });
   const resp = await env.extractor.fetch(`https://w3blogy.cz/?${params}`);
   return resp.json();
@@ -178,7 +167,7 @@ async function extractStructuredData(env) {
   const current = await env.w3b.get("/latest", "json");
   const data = new Map(Object.entries(current));
   for (const { entry, stats } of Array.from(data.values())) {
-    const extractedData = await extractMetadata(entry, env);
+    const extractedData = await extractMetadata(entry, env, { nodeObjects: 1 });
     data.set(entry.link, {
       entry: mergeData(entry, extractedData),
       extractedData,
