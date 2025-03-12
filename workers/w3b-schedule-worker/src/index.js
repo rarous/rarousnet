@@ -49,26 +49,27 @@ function kw(kw) {
   return kw;
 }
 
+function getByType({ jsonld, microdata }, types) {
+  for (const type of types) {
+    const result =
+      val(jsonld[type]) ?? val(microdata[`http://schema.org/${type}`]) ?? val(microdata[`https://schema.org/${type}`]);
+    if (result) return result;
+  }
+  return null;
+}
+
 function processExtractedData(data) {
   console.log("Extracted data:", data);
-  // TODO: use also microdata and RDFa, they are the same format as JSONLD now
-  const { lang, jsonld, microdata, metatags, title, url } = data;
-  const article =
-    val(jsonld.NewsArticle) ??
-    val(jsonld.Article) ??
-    val(jsonld.BlogPosting) ??
-    val(jsonld.Blog) ??
-    val(jsonld.VideoObject) ??
-    val(jsonld.PresentationDigitalDocument) ??
-    val(microdata["https://schema.org/NewsArticle"]) ??
-    val(microdata["http://schema.org/NewsArticle"]) ??
-    val(microdata["https://schema.org/Article"]) ??
-    val(microdata["http://schema.org/Article"]) ??
-    val(microdata["https://schema.org/BlogPosting"]) ??
-    val(microdata["http://schema.org/BlogPosting"]) ??
-    val(microdata["https://schema.org/VideoObject"]) ??
-    val(microdata["http://schema.org/VideoObject"]) ??
-    val(microdata["http://schema.org/SoftwareSourceCode"]);
+  const { lang, metatags, title, url } = data;
+  const article = getByType(data, [
+    "NewsArticle",
+    "Article",
+    "BlogPosting",
+    "Blog",
+    "VideoObject",
+    "PresentationDigitalDocument",
+    "SoftwareSourceCode",
+  ]);
   let image =
     val(val(article?.image)?.url) ??
     val(article?.image) ??
@@ -87,6 +88,13 @@ function processExtractedData(data) {
   if (authorsIgnoreList.has(author)) {
     author = null;
   }
+  const description =
+    val(article?.abstract) ??
+    val(article?.description) ??
+    val(metatags["twitter:description"]) ??
+    val(metatags["og:description"]) ??
+    val(metatags["description"]) ??
+    "";
   return {
     url,
     lang,
@@ -96,13 +104,7 @@ function processExtractedData(data) {
       val(metatags["twitter:title"]) ??
       val(metatags["og:title"]) ??
       title,
-    description:
-      val(article?.abstract) ??
-      val(article?.description) ??
-      val(metatags["twitter:description"]) ??
-      val(metatags["og:description"]) ??
-      val(metatags["description"]) ??
-      "",
+    description,
     author,
     tags: kw(article?.keywords) ?? kw(metatags["article:tag"]) ?? val(metatags["keywords"]) ?? "",
     image,
