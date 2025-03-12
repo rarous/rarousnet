@@ -44,11 +44,31 @@ function val(prop) {
   return prop;
 }
 
+function kw(kw) {
+  if (Array.isArray(kw)) return kw.join(", ");
+  return kw;
+}
+
 function processExtractedData(data) {
   console.log("Extracted data:", data);
-  // TODO: use also microdata, they are the same format as JSONLD now
-  const { lang, jsonld, metatags, title, url } = data;
-  const article = val(jsonld.NewsArticle) ?? val(jsonld.Article) ?? val(jsonld.BlogPosting);
+  // TODO: use also microdata and RDFa, they are the same format as JSONLD now
+  const { lang, jsonld, microdata, metatags, title, url } = data;
+  const article =
+    val(jsonld.NewsArticle) ??
+    val(jsonld.Article) ??
+    val(jsonld.BlogPosting) ??
+    val(jsonld.Blog) ??
+    val(jsonld.VideoObject) ??
+    val(jsonld.PresentationDigitalDocument) ??
+    val(microdata["https://schema.org/NewsArticle"]) ??
+    val(microdata["http://schema.org/NewsArticle"]) ??
+    val(microdata["https://schema.org/Article"]) ??
+    val(microdata["http://schema.org/Article"]) ??
+    val(microdata["https://schema.org/BlogPosting"]) ??
+    val(microdata["http://schema.org/BlogPosting"]) ??
+    val(microdata["https://schema.org/VideoObject"]) ??
+    val(microdata["http://schema.org/VideoObject"]) ??
+    val(microdata["http://schema.org/SoftwareSourceCode"]);
   let image =
     val(val(article?.image)?.url) ??
     val(article?.image) ??
@@ -58,18 +78,33 @@ function processExtractedData(data) {
   if (image && !image.startsWith("http")) {
     image = new URL(image, url).href;
   }
-  let author = val(article?.author?.name) ?? val(metatags["article:author"]) ?? val(metatags["author"]) ?? "";
+  let author =
+    val(article?.author?.name) ??
+    val(article?.author) ??
+    val(metatags["article:author"]) ??
+    val(metatags["author"]) ??
+    "";
   if (authorsIgnoreList.has(author)) {
     author = null;
   }
   return {
     url,
     lang,
-    title: val(article?.headline) ?? val(metatags["twitter:title"]) ?? val(metatags["og:title"]) ?? title,
+    title:
+      val(article?.headline) ??
+      val(article?.name) ??
+      val(metatags["twitter:title"]) ??
+      val(metatags["og:title"]) ??
+      title,
     description:
-      val(metatags["twitter:description"]) ?? val(metatags["og:description"]) ?? val(metatags["description"]) ?? "",
+      val(article?.abstract) ??
+      val(article?.description) ??
+      val(metatags["twitter:description"]) ??
+      val(metatags["og:description"]) ??
+      val(metatags["description"]) ??
+      "",
     author,
-    tags: val(article?.keywords) ?? metatags["article:tag"]?.join(", ") ?? val(metatags["keywords"]) ?? "",
+    tags: kw(article?.keywords) ?? kw(metatags["article:tag"]) ?? val(metatags["keywords"]) ?? "",
     image,
   };
 }
