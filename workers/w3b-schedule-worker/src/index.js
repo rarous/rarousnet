@@ -46,7 +46,9 @@ function kw(kw) {
 function getByType({ jsonld, microdata }, types) {
   for (const type of types) {
     const result =
-      val(jsonld[type]) ?? val(microdata[`http://schema.org/${type}`]) ?? val(microdata[`https://schema.org/${type}`]);
+      val(jsonld?.[type]) ??
+      val(microdata?.[`http://schema.org/${type}`]) ??
+      val(microdata?.[`https://schema.org/${type}`]);
     if (result) return result;
   }
   return null;
