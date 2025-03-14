@@ -113,11 +113,11 @@ function mergeData(entry, extractedData) {
   };
 }
 
-async function extractMetadata(entry, env, { nodeObjects } = {}) {
+async function extractMetadata(entry, env, parameters) {
   const params = new URLSearchParams({
     url: entry.link,
     token: env.SEMANTIC_EXTRACTOR_SECRET,
-    nodeObjects,
+    ...parameters,
   });
   const resp = await env.extractor.fetch(`https://w3blogy.cz/?${params}`);
   return resp.json();
