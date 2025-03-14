@@ -165,14 +165,17 @@ async function updateArticlesFeedWithScrapedData(env) {
 async function extractStructuredData(env) {
   const current = await env.w3b.get("/latest", "json");
   const data = new Map(Object.entries(current));
+  const promises = [];
   for (const { entry, stats } of Array.from(data.values())) {
-    const extractedData = await extractMetadata(entry, env, { nodeObjects: 1 });
+    const { linkedom, ...extractedData } = await extractMetadata(entry, env, { nodeObjects: 1, includeDOM: 1 });
     data.set(entry.link, {
       entry: mergeData(entry, extractedData),
       extractedData,
       stats: stats ?? { clicks: 0, likes: 0 },
     });
+    promises.push(env.w3b.put(entry.link, JSON.stringify({ linkedom, ...extractedData })));
   }
+  await Promise.allSettled(promises);
   return Object.fromEntries(data);
 }
 
