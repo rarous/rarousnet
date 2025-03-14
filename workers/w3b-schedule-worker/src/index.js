@@ -52,7 +52,6 @@ function getByType({ jsonld, microdata }, types) {
 }
 
 function processExtractedData(data) {
-  console.log("Extracted data:", data);
   const { lang, metatags, title: docTitle, url } = data;
   const article = getByType(data, [
     "NewsArticle",
