@@ -101,12 +101,12 @@ function mergeData(entry, extractedData) {
   const data = processExtractedData(extractedData);
   return {
     link: entry.link,
-    lang: data.lang,
+    lang: data.lang || entry.lang,
     title: data.title || entry.title,
     description: data.description || entry.description,
     author: data.author || (authorsMap.get(entry.author) ?? entry.author),
-    tags: data.tags,
-    image: data.image,
+    tags: data.tags || entry.tags,
+    image: data.image || entry.image,
     hostname: entry.hostname,
     published: entry.published,
   };
@@ -172,7 +172,7 @@ async function extractStructuredData(env) {
       extractedData,
       stats: stats ?? { clicks: 0, likes: 0 },
     });
-    promises.push(env.w3b.put(entry.link, JSON.stringify({ linkedom, ...extractedData })));
+    promises.push(env.w3b.put(entry.link, JSON.stringify(Object.assign({}, extractedData, { linkedom }))));
   }
   await Promise.allSettled(promises);
   return Object.fromEntries(data);
