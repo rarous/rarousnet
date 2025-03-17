@@ -1,0 +1,41 @@
+{% extends "layouts/common-layout.njk" %}
+{% set title = "Gryphoon" %}
+{% set lang = "en" %}
+{% set canonicalUrl = "https://www.rarous.net/gryphoon/" %}
+{% set images = true %}
+
+{% block head_preload %}
+  <link rel="preload" href="https://accounts.google.com/gsi/client?hl=cs" as="script">
+{% endblock %}
+
+{% block head %}
+  <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block head_stylesheets %}
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+  <h1>Gryphoon</h1>
+  <div id="g_id_onload"
+       data-client_id="{{ google.auth.client_id }}"
+       data-login_uri="{{ meta.url }}auth/"
+       data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"
+       data-type="standard"
+       data-size="large"
+       data-theme="outline"
+       data-text="sign_in_with"
+       data-shape="rectangular"
+       data-logo_alignment="left"
+       data-locale="en">
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://accounts.google.com/gsi/client?hl=en" async></script>
+{% endblock %}

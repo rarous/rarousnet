@@ -71,6 +71,7 @@ function meCard(contact) {
 export default {
   meta: {
     lang: "cs",
+    url: "https://www.rarous.net/",
   },
   currentYear: new Date().getFullYear(),
   contact: {
@@ -85,4 +86,9 @@ export default {
     articlesFeedUrl: "https://feeds.feedburner.com/rarous-weblog",
   },
   meCard,
+  google: {
+    auth: {
+      client_id: "218256334208-115s3k0ciq53s7fj5u7k8hg70oqfu9j5.apps.googleusercontent.com",
+    },
+  },
 };
