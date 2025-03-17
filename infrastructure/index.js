@@ -105,9 +105,9 @@ const weblogPages = new cloudflare.PagesProject("weblog", {
       compatibilityDate: "2024-11-18",
       compatibilityFlags: ["nodejs_compat"],
       environmentVariables: {
+        clientId: config.require("google-auth-clientId"),
         domain: "hckr.studio",
         HOSTNAME: domain,
-        clientId: config.require("google-auth-clientId"),
         ROLLBAR_TOKEN: config.require("rollbar-token"),
       },
       secrets: {
