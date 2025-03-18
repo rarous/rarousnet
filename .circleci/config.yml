@@ -126,6 +126,7 @@ jobs:
           command: |
             yarn test:lighthouse
             yarn test:ava
+            yarn test:vitest
       - store_artifacts:
           path: ./results
       - store_test_results:

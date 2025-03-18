@@ -11,12 +11,14 @@
   ],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@vitest/ui": "3.0.9",
     "ava": "6.2.0",
     "broken-link-checker-local": "0.2.1",
     "lighthouse": "12.4.0",
     "local-web-server": "5.4.0",
     "npm-run-all2": "7.0.2",
     "tap-xunit": "2.4.1",
+    "vitest": "3.0.9",
     "wrangler": "4.0.0"
   },
   "resolutions": {
@@ -37,6 +39,7 @@
     "test:lighthouse:vinyly": "lighthouse https://localhost:8000/kolekce/vinyly.html --config-path .lighthouse.json --output json --output html --output-path ./results/kolekce.vinyly.html --chrome-flags=\"--headless --ignore-certificate-errors\"",
     "test:lighthouse": "run-s 'test:lighthouse:*'",
     "test:ava": "ava | tap-xunit > ./results/ava.xml",
+    "test:vitest": "vitest run --reporter=default --reporter=junit --outputFile.junit=./results/vite.xml --reporter=html --outputFile.html=./results/vite.html",
     "test:broken-links": "blcl ./.gryphoon/dist -ro"
   },
   "workspaces": [
