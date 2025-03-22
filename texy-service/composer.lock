@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb88c1344408dd5fb1b3d5c9c37fc3b2",
+    "content-hash": "e500cc067827156d5c0c80ed8c1beed5",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -161,16 +161,16 @@
         },
         {
             "name": "rollbar/rollbar",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rollbar/rollbar-php.git",
-                "reference": "3dc630adbaa1fc85fb6c97aba5bd71f4893745e0"
+                "reference": "146216bbfde503632c6969a7c334c8a63c98f50e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rollbar/rollbar-php/zipball/3dc630adbaa1fc85fb6c97aba5bd71f4893745e0",
-                "reference": "3dc630adbaa1fc85fb6c97aba5bd71f4893745e0",
+                "url": "https://api.github.com/repos/rollbar/rollbar-php/zipball/146216bbfde503632c6969a7c334c8a63c98f50e",
+                "reference": "146216bbfde503632c6969a7c334c8a63c98f50e",
                 "shasum": ""
             },
             "require": {
@@ -218,9 +218,9 @@
             "support": {
                 "email": "support@rollbar.com",
                 "issues": "https://github.com/rollbar/rollbar-php/issues",
-                "source": "https://github.com/rollbar/rollbar-php/tree/v4.1.0"
+                "source": "https://github.com/rollbar/rollbar-php/tree/v4.1.1"
             },
-            "time": "2025-02-16T19:30:06+00:00"
+            "time": "2025-03-21T19:07:30+00:00"
         },
         {
             "name": "texy/texy",
