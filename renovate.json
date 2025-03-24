@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     "group:postcss",
     ":dependencyDashboard",
     "customManagers:biomeVersions"
@@ -11,7 +11,9 @@
   "packageRules": [
     {
       "groupName": "pulumi",
-      "matchPackagePrefixes": ["@pulumi/"]
+      "matchPackageNames": [
+        "@pulumi/{/,}**"
+      ]
     }
   ]
 }
