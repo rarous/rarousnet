@@ -1,6 +1,6 @@
 {
   "name": "@rarousnet/website",
-  "packageManager": "yarn@4.7.0",
+  "packageManager": "yarn@4.8.0",
   "exports": {
     "./*": "./src/esm/*"
   },
