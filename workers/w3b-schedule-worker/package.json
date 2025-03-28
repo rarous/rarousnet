@@ -8,6 +8,6 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20250327.0",
-    "wrangler": "4.5.1"
+    "wrangler": "4.6.0"
   }
 }
