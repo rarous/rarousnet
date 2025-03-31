@@ -46,6 +46,7 @@
   --code-font: var(--iosevka), var(--font-mono);
   --content-font: var(--main-font);
 
+  /* https://huetone.ardov.me/?palette=N4IgdghgtgpiBcIBOEkHsCuhDQAHRhgC4gA0IAFhjAM4IDaoksCIA4kjAJ4kgDGaANmiQ14tEAGIAZgDYZM7uJgBGZcoUAjACZatCiEv36FADgBMZswumnr1hQBYA7E6cLTATg8eFS4798gALoAvsQM0HCIAPIoYADmcKR8gsJ0EpIZ9pIADAoZmu48mnk8EO7GknmajjwArADMCjA89urZuaTi6vb1ju0m1n0dErVKSvb9nfX12e79IWHgEcwAQvyU3MlCImKKMJIVlZ11MIcKjrWlkokSprVtkrUKo%2B6apQrt0gU8H9m12Y5Gp12qYYPYnsDskp1KZ1EFgoFSAQ0PgdiB-twlJMQKZsTNhhNhv9htJsUNuMZ5sEgA */
   --primary-hue: 38.139;
   --secondary-hue: 237.043;
 
@@ -54,10 +55,13 @@
   --background-color: #fff;
   --background-color: light-dark(oklch(1 0 89.876), oklch(23.9% 0.019 var(--primary-hue)));
 
+  --primary-color: #f77146;
   --primary-color: oklch(70.3% 0.175 var(--primary-hue));
+  --primary-dark-color: #be4213;
   --primary-dark-color: oklch(54.7% 0.168 var(--primary-hue));
   --text-color-on-primary: oklch(100% 0 89.876);
   --secondary-color: #33779e;
+  --secondary-color: light-dark(#33779e, #519dca);
   --secondary-color: light-dark(oklch(54.3% 0.091 var(--secondary-hue)), oklch(66.6% 0.101 var(--secondary-hue)));
   --secondary-dark-color: oklch(39.2% 0.088 238.557);
 
