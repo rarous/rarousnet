@@ -3,3 +3,4 @@
 /avatar /.well-known/avatar
 /clanek/:slug /weblog/:slug 301
 /clanek.aspx/:slug /weblog/:slug.aspx 301
+/webdesign/ https://hckr.studio/
