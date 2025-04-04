@@ -1968,7 +1968,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250404.0"
-    wrangler: "npm:4.7.0"
+    wrangler: "npm:4.7.1"
   languageName: unknown
   linkType: soft
 
@@ -2015,7 +2015,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250404.0"
     linkedom: "npm:0.18.9"
-    wrangler: "npm:4.7.0"
+    wrangler: "npm:4.7.1"
   languageName: unknown
   linkType: soft
 
@@ -2032,7 +2032,7 @@ __metadata:
     postcss-jit-props: "npm:1.0.16"
     undertaker-registry: "npm:2.0.0"
     vitest: "npm:3.1.1"
-    wrangler: "npm:4.7.0"
+    wrangler: "npm:4.7.1"
   languageName: unknown
   linkType: soft
 
@@ -4631,10 +4631,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "cookie@npm:0.5.0"
-  checksum: 10c0/c01ca3ef8d7b8187bae434434582288681273b5a9ed27521d4d7f9f7928fe0c920df0decd9f9d3bbd2d14ac432b8c8cf42b98b3bdd5bfe0e6edddeebebe8b61d
+"cookie@npm:^0.7.1":
+  version: 0.7.2
+  resolution: "cookie@npm:0.7.2"
+  checksum: 10c0/9596e8ccdbf1a3a88ae02cf5ee80c1c50959423e1022e4e60b91dd87c622af1da309253d8abdb258fb5e3eacb4f08e579dc58b4897b8087574eee0fd35dfa5d2
   languageName: node
   linkType: hard
 
@@ -9035,9 +9035,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:4.20250321.1":
-  version: 4.20250321.1
-  resolution: "miniflare@npm:4.20250321.1"
+"miniflare@npm:4.20250321.2":
+  version: 4.20250321.2
+  resolution: "miniflare@npm:4.20250321.2"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     acorn: "npm:8.14.0"
@@ -9048,11 +9048,11 @@ __metadata:
     undici: "npm:^5.28.5"
     workerd: "npm:1.20250321.0"
     ws: "npm:8.18.0"
-    youch: "npm:3.2.3"
+    youch: "npm:3.3.4"
     zod: "npm:3.22.3"
   bin:
     miniflare: bootstrap.js
-  checksum: 10c0/ffe12b324d0f7929fd727ba2e8bc48dabeb5c02971413d4ef9f092a3ca0787da736d709522a13b8d3dadfaf9d8a955c417f4bfd6f099831887917ea44248a488
+  checksum: 10c0/995c16b421af115a7e4ed586af978a46a2e139808f80aee914c1d9d7f9b14cd374f2cb6d154491c0429ac4a99783cd22c0f5733a272f24da160dc1f425f0b399
   languageName: node
   linkType: hard
 
@@ -11410,7 +11410,7 @@ __metadata:
     npm-run-all2: "npm:7.0.2"
     tap-xunit: "npm:2.4.1"
     vitest: "npm:3.1.1"
-    wrangler: "npm:4.7.0"
+    wrangler: "npm:4.7.1"
   languageName: unknown
   linkType: soft
 
@@ -14170,16 +14170,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:4.7.0":
-  version: 4.7.0
-  resolution: "wrangler@npm:4.7.0"
+"wrangler@npm:4.7.1":
+  version: 4.7.1
+  resolution: "wrangler@npm:4.7.1"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.4.0"
     "@cloudflare/unenv-preset": "npm:2.3.1"
     blake3-wasm: "npm:2.1.5"
     esbuild: "npm:0.24.2"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:4.20250321.1"
+    miniflare: "npm:4.20250321.2"
     path-to-regexp: "npm:6.3.0"
     sharp: "npm:^0.33.5"
     unenv: "npm:2.0.0-rc.15"
@@ -14197,7 +14197,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/0e56b11e9f4cdee795b701e28d698ef23f3ea1e795514af1a3344162643029686743859802b334a69424affae30dbef9512cb16ec666a68f72a8a5ce1f920fdb
+  checksum: 10c0/c2e563312bf6f39342922152046473b5da004f81e68c1f45326d2c27b279124cef9d8032d22c5020398755d9305db64fe8f7b891e09eb7ef0d56ce08efb933c5
   languageName: node
   linkType: hard
 
@@ -14506,14 +14506,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"youch@npm:3.2.3":
-  version: 3.2.3
-  resolution: "youch@npm:3.2.3"
+"youch@npm:3.3.4":
+  version: 3.3.4
+  resolution: "youch@npm:3.3.4"
   dependencies:
-    cookie: "npm:^0.5.0"
+    cookie: "npm:^0.7.1"
     mustache: "npm:^4.2.0"
     stacktracey: "npm:^2.1.8"
-  checksum: 10c0/a6992afaa15d0ea3a4cc42b71fd20d21c7368e07da6f9de45d4d3b9e1bb0f1d74f51105a720419bc71ae8691f49ed33b6d17631c66a3b0be669a964f0dd0f1a0
+  checksum: 10c0/ab573c7dccebdaf2d6b084d262d5bfb22ad5c049fb1ad3e2d6a840af851042dd3a8a072665c5a5ee73c75bbc1618fbc08f1371ac896e54556bced0ddf996b026
   languageName: node
   linkType: hard
 
