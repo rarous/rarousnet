@@ -21,6 +21,28 @@
       display: grid;
       grid-template-columns: 10ch 6ch 1fr;
     }
+
+    .cooking {
+      font-size: xx-large;
+    }
+
+    table {
+      width: 100%;
+      margin-block-start: 2em;
+      line-height: 1.5;
+    }
+    thead {
+      border-bottom: 1px solid;
+      margin-block-end: 0.25lh;
+    }
+    th[scope=row] {
+      text-align: left;
+      font-weight: normal;
+    }
+    td {
+      text-align: right;
+      font-weight: 500;
+    }
   </style>
 {% endblock %}
 
@@ -40,6 +62,7 @@
   <form name="recipe">
     <fieldset>
       <label><input type="checkbox" switch id="cookingSwitch"> Vařím (neusínej)</label>
+      <label><input type="checkbox" switch id="shortSwitch">Postup už znám (zkrať to)</label>
     </fieldset>
     <fieldset>
       <legend>preference</legend>
@@ -52,68 +75,123 @@
       <label><input type="radio" name="yeastType" value="active"> droždí</label>
     </fieldset>
 
-    <p>Do
-      <output name="water">368</output>
-       ml vlažné
-      vody o teplotě 
-      <output name="waterTemp">42</output>
-      °C
-      přidáme 
-      <output name="yeast">3,5</output>
-       g kvasnic.
-      Na hladině by se po chvíli měly objevovat bublinky = kvasinky makaj.
-    </p>
+    <section id="long-version">
+      <p>Do
+        <output name="water">368</output>
+         ml vlažné
+        vody o teplotě 
+        <output name="waterTemp">42</output>
+        °C
+        přidáme 
+        <output name="yeast">3,5</output>
+         g kvasnic.
+        Na hladině by se po chvíli měly objevovat bublinky = kvasinky makaj.
+      </p>
 
-    <p>V míse smícháme mouku a sůl (
-      <output name="salt">18</output>
-       g). Váha postupně po přidání ukazuje:
-    </p>
-    <ol>
-      <li><span>Semolina</span>
-        <output name="semolina">122,5</output>
-         g
-      </li>
-      <li><span>Mouka <q>00</q></span>
-        <output name="flour">613</output>
-         g
-      </li>
-      <li><span>Sůl</span>
-        <output name="total">631</output>
-         g
-      </li>
-    </ol>
+      <p>V míse smícháme mouku a sůl (
+        <output name="salt">18</output>
+         g). Váha postupně po přidání ukazuje:
+      </p>
+      <ol>
+        <li><span>Semolina</span>
+          <output name="semolina">122,5</output>
+           g
+        </li>
+        <li><span>Mouka <q>00</q></span>
+          <output name="flour">613</output>
+           g
+        </li>
+        <li><span>Sůl</span>
+          <output name="total">631</output>
+           g
+        </li>
+      </ol>
 
-    {% markdown %}
-      Do mísy nalijeme vodu s kvasnicema a mícháme vařečkou než se začně tvořit těsto.
-      potom těsto vyklopíme na pracovní desku a hněteme - zhruba deset minut.
-      Používat techniku nátáhnout a přeložit - jednou rukou si chytnu těsto, druhou
-      přidržím na desce a táhnu. Přeložím zpět a zápěstím zmáčknu. Otočím o 90° a proces opakuju.
+      {% markdown %}
+        Do mísy nalijeme vodu s kvasnicema a mícháme vařečkou než se začně tvořit těsto.
+        potom těsto vyklopíme na pracovní desku a hněteme - zhruba deset minut.
+        Používat techniku nátáhnout a přeložit - jednou rukou si chytnu těsto, druhou
+        přidržím na desce a táhnu. Přeložím zpět a zápěstím zmáčknu. Otočím o 90° a proces opakuju.
 
-      Z těsta vytvořím kuličku a potřu ji lžičkou olivovýho oleje. Těsto vrátím do mísy,
-      zakryju mokrou utěrkou a nechám 2 hodiny kynout při teplotě 27-32°C.
+        Z těsta vytvořím kuličku a potřu ji lžičkou olivovýho oleje. Těsto vrátím do mísy,
+        zakryju mokrou utěrkou a nechám 2 hodiny kynout při teplotě 27-32°C.
 
-      Po dvou hodinách by mělo těsto nakynout na dvounásobnou velikost.
+        Po dvou hodinách by mělo těsto nakynout na dvounásobnou velikost.
 
-      Těsto rozdělím na 
-      <output name="pizzas">4</output> kusy. Každý kus ještě zvlášť prohnětu
-      a vytvořím z něj hladkou količku. Kuličky vložím do fermentovací nádoby, kterou jsem předtím
-      lehce vysypal Semolinou. Kuličky popráším semolinou, zavřu nádobu a nechám kynout zhruba 30 minut.
+        Těsto rozdělím na 
+        <output name="pizzas">4</output> kusy. Každý kus ještě zvlášť prohnětu
+        a vytvořím z něj hladkou količku. Kuličky vložím do fermentovací nádoby, kterou jsem předtím
+        lehce vysypal Semolinou. Kuličky popráším semolinou, zavřu nádobu a nechám kynout zhruba 30 minut.
 
-      Během těch 30 minut roztopím pec na 350-400°C na kameni (ručička teploměru zhruba na 12 h).
+        Během těch 30 minut roztopím pec na 350-400°C na kameni (ručička teploměru zhruba na 12 h).
 
-      Těsto položím na pracovní desku a pěstí ho veprostřed rozmáčknu. Potom ručkuju, jedu prastama podle okrajů
-      a nechám gravitací těsto vytahovat. Snažím se o udržení kruhové symetrie.
+        Těsto položím na pracovní desku a pěstí ho veprostřed rozmáčknu. Potom ručkuju, jedu prastama podle okrajů
+        a nechám gravitací těsto vytahovat. Snažím se o udržení kruhové symetrie.
 
-      Pokud se v těstě udělá díra, uždibnu z kraje kus těsta a díru jím zalepím.
+        Pokud se v těstě udělá díra, uždibnu z kraje kus těsta a díru jím zalepím.
 
-      Na těsto dám jednu lžíci suga a řádně rozetřu po celé ploše tenké části těsta.
-      Sugo pokapu trochou panenského olivového oleje - spojuje chuti. Přidám oregano, nastrouhanou mozarellu a další
-      obklad dle chuti.
+        Na těsto dám jednu lžíci suga a řádně rozetřu po celé ploše tenké části těsta.
+        Sugo pokapu trochou panenského olivového oleje - spojuje chuti. Přidám oregano, nastrouhanou mozarellu a další
+        obklad dle chuti.
 
-      Pizza se peče kolem 2 minut. Je potřeba ji párkrát otočit, aby se propekla rovnoměrně.
+        Pizza se peče kolem 2 minut. Je potřeba ji párkrát otočit, aby se propekla rovnoměrně.
 
-      Po vyndání pizzy z pece je potřeba přiložit, aby byla rozehřátá na další kus.
-    {% endmarkdown %}
+        Po vyndání pizzy z pece je potřeba přiložit, aby byla rozehřátá na další kus.
+      {% endmarkdown %}
+    </section>
+
+    <section id="short-version" hidden>
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">surovina</th>
+          <th scope="col">množství</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">Voda
+            <output name="waterTemp">42</output>
+             °C
+          </th>
+          <td>
+            <output name="water">368</output>
+             ml
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Kvasnice</th>
+          <td>
+            <output name="yeast">3,5</output>
+             g
+          </td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr>
+          <th scope="row">Semolina</th>
+          <td>
+            <output name="semolina">122,5</output>
+             g
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Mouka <q>00</q></th>
+          <td>
+            <output name="flour">613</output>
+             g
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Sůl</th>
+          <td>
+            <output name="total">631</output>
+             g
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
   </form>
 {% endblock %}
 
@@ -154,6 +232,7 @@
   </script>
   <script type="module">
     const wakeLockOffButton = document.getElementById("cookingSwitch");
+    const shortVersion = document.getElementById("short-version");
     let wakeLock = null;
 
     async function requestWakeLock() {
@@ -165,6 +244,7 @@
     }
 
     wakeLockOffButton.addEventListener("change", () => {
+      shortVersion.classList.toggle("cooking");
       if (wakeLock !== null) return;
       requestWakeLock();
     });
@@ -174,6 +254,15 @@
       wakeLock.release().then(() => {
         wakeLock = null;
       });
+    });
+  </script>
+  <script type="module">
+    const shortVersion = document.getElementById("short-version");
+    const longVersion = document.getElementById("long-version");
+    const switcher = document.getElementById("shortSwitch");
+    switcher.addEventListener("change", () => {
+      shortVersion.hidden = !shortVersion.hidden;
+      longVersion.hidden = !shortVersion.hidden;
     });
   </script>
 {% endblock %}
