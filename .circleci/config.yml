@@ -27,6 +27,25 @@ commands:
             - ~/.cache/ms-playwright
 
 jobs:
+  pre-provision:
+    executor:
+      name: node/default
+    resource_class: arm.large
+    steps:
+      - checkout
+      - pulumi/login
+      - node/install:
+          install-yarn: true
+      - node/install-packages:
+          pkg-manager: yarn-berry
+          with-cache: false
+          override-ci-command: yarn workspaces focus @rarousnet/infrastructure @rarousnet/w3b-schedule-worker
+      - pulumi/preview:
+          working_directory: infrastructure
+          stack: prod
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
   provision:
     executor:
       name: node/default
@@ -162,6 +181,11 @@ workflows:
   build_and_deploy:
     jobs:
       - generate
+      - pre-provision:
+          context: aws
+          filters:
+            branches:
+              ignore: trunk
       - provision:
           context: aws
           filters:
