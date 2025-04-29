@@ -22,26 +22,53 @@
       grid-template-columns: 10ch 6ch 1fr;
     }
 
-    .cooking {
-      font-size: xx-large;
-    }
-
     table {
       width: 100%;
-      margin-block-start: 2em;
-      line-height: 1.5;
+      margin-block: 2em;
+      line-height: 1.75;
+      border-collapse: collapse;
+      border-spacing: 0;
     }
+
     thead {
-      border-bottom: 1px solid;
       margin-block-end: 0.25lh;
     }
+    thead th {
+      border-bottom: 5px double;
+      text-align: left;
+    }
+    thead th:last-of-type {
+      text-align: right;
+    }
+
+    tbody tr :is(td, th) {
+      border-block: 1px solid;
+    }
+
     th[scope=row] {
       text-align: left;
       font-weight: normal;
     }
+
     td {
       text-align: right;
       font-weight: 500;
+    }
+
+
+    #short-version {
+      display: none;
+    }
+
+    :has(#cookingSwitch:checked) #short-version {
+      font-size: xx-large;
+    }
+
+    :has(#shortSwitch:checked) #short-version {
+      display: block;
+    }
+    :has(#shortSwitch:checked) #long-version {
+      display: none;
     }
   </style>
 {% endblock %}
@@ -140,7 +167,7 @@
       {% endmarkdown %}
     </section>
 
-    <section id="short-version" hidden>
+    <section id="short-version">
       <table>
         <thead>
         <tr>
@@ -212,14 +239,24 @@
 
     const { water, waterTemp, salt, yeast, semolina, flour, total } = form.elements;
 
+    function setValue(el, value) {
+      if (el instanceof RadioNodeList) {
+        for (const x of el) {
+          x.value = value;
+        }
+      } else {
+        el.value = value;
+      }
+    }
+
     function update(pizzas, semolinaRatio, yeastType) {
-      water.value = Math.round(pizzas * ingredients.get("water"));
-      waterTemp.value = waterTemps.get(yeastType);
-      salt.value = (pizzas * ingredients.get("salt")).toFixed(1);
-      yeast.value = (pizzas * ingredients.get(`${yeastType}-yeast`)).toFixed(1);
-      semolina.value = (pizzas * semolinaRatio * ingredients.get("flour")).toFixed(1);
-      flour.value = Math.round(pizzas * ingredients.get("flour"));
-      total.value = Math.round(pizzas * ingredients.get("salt") + pizzas * ingredients.get("flour"))
+      setValue(water, Math.round(pizzas * ingredients.get("water")));
+      setValue(waterTemp, waterTemps.get(yeastType));
+      setValue(salt, (pizzas * ingredients.get("salt")).toFixed(1));
+      setValue(yeast, (pizzas * ingredients.get(`${yeastType}-yeast`)).toFixed(1));
+      setValue(semolina, (pizzas * semolinaRatio * ingredients.get("flour")).toFixed(1));
+      setValue(flour, Math.round(pizzas * ingredients.get("flour")));
+      setValue(total, Math.round(pizzas * ingredients.get("salt") + pizzas * ingredients.get("flour")));
     }
 
     form.addEventListener("change", e => {
@@ -243,8 +280,7 @@
       }
     }
 
-    wakeLockOffButton.addEventListener("change", () => {
-      shortVersion.classList.toggle("cooking");
+    wakeLockOffButton.addEventListener("change", e => {
       if (wakeLock !== null) return;
       requestWakeLock();
     });
@@ -254,15 +290,6 @@
       wakeLock.release().then(() => {
         wakeLock = null;
       });
-    });
-  </script>
-  <script type="module">
-    const shortVersion = document.getElementById("short-version");
-    const longVersion = document.getElementById("long-version");
-    const switcher = document.getElementById("shortSwitch");
-    switcher.addEventListener("change", () => {
-      shortVersion.hidden = !shortVersion.hidden;
-      longVersion.hidden = !shortVersion.hidden;
     });
   </script>
 {% endblock %}
