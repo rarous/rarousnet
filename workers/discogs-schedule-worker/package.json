@@ -5,6 +5,6 @@
   "license": "EUPL-1.2",
   "devDependencies": {
     "@cloudflare/workers-types": "4.20250429.0",
-    "wrangler": "4.13.2"
+    "wrangler": "4.14.0"
   }
 }
