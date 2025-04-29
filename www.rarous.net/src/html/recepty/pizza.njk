@@ -33,10 +33,12 @@
     thead {
       margin-block-end: 0.25lh;
     }
+
     thead th {
       border-bottom: 5px double;
       text-align: left;
     }
+
     thead th:last-of-type {
       text-align: right;
     }
@@ -67,6 +69,7 @@
     :has(#shortSwitch:checked) #short-version {
       display: block;
     }
+
     :has(#shortSwitch:checked) #long-version {
       display: none;
     }
@@ -224,7 +227,6 @@
 
 {% block scripts %}
   <script type="module">
-    const form = document.forms.recipe;
     const ingredients = new Map([
       ["water", 87],
       ["salt", 4.5],
@@ -237,8 +239,6 @@
       ["active", 32],
     ]);
 
-    const { water, waterTemp, salt, yeast, semolina, flour, total } = form.elements;
-
     function setValue(el, value) {
       if (el instanceof RadioNodeList) {
         for (const x of el) {
@@ -249,7 +249,8 @@
       }
     }
 
-    function update(pizzas, semolinaRatio, yeastType) {
+    function update(recipe, pizzas, semolinaRatio, yeastType) {
+      const { water, waterTemp, salt, yeast, semolina, flour, total } = recipe.elements;
       setValue(water, Math.round(pizzas * ingredients.get("water")));
       setValue(waterTemp, waterTemps.get(yeastType));
       setValue(salt, (pizzas * ingredients.get("salt")).toFixed(1));
@@ -259,17 +260,17 @@
       setValue(total, Math.round(pizzas * ingredients.get("salt") + pizzas * ingredients.get("flour")));
     }
 
-    form.addEventListener("change", e => {
+    document.forms.recipe.addEventListener("change", e => {
       const data = new FormData(e.target.form);
       const pizzas = Number.parseInt(data.get("pizzas"), 10);
       const semolinaRation = Number.parseFloat(data.get("semolinaRatio"));
       const yeastType = data.get("yeastType");
-      update(pizzas, semolinaRation, yeastType);
+      update(e.target.form, pizzas, semolinaRation, yeastType);
     });
   </script>
+
   <script type="module">
     const wakeLockOffButton = document.getElementById("cookingSwitch");
-    const shortVersion = document.getElementById("short-version");
     let wakeLock = null;
 
     async function requestWakeLock() {
