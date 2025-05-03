@@ -9,7 +9,7 @@ async function getReleases(page, token) {
     per_page: 100,
     sort: "artist",
   });
-  const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/1/releases?${params}`, {
+  const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/0/releases?${params}`, {
     headers: {
       Accept: "application/json",
       Authorization: `Discogs token=${token}`,
