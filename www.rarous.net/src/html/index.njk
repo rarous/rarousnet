@@ -85,7 +85,7 @@
       background-size: 100%;
     }
 
-    #header h1 {
+    #header p {
       color: #555;
       font-size: 1.2em;
       font-weight: 300;
@@ -97,13 +97,10 @@
       border: 1px solid #fff;
     }
 
-    #kontakt hgroup {
-      padding-left: 1em
-    }
-
     #kontakt h1 {
       margin-bottom: 0;
       font-weight: 400;
+      padding-left: 1rem;
     }
 
     #kontakt h2 {
@@ -112,6 +109,7 @@
       font-style: italic;
       font-weight: 400;
       margin-top: 0;
+      padding-left: 1rem;
     }
 
     #kontakt dl {
@@ -289,19 +287,17 @@
 <div id="top">
   <header id="header">
     <img alt="" class="logo" src="/assets/logo.svg" width="60" height="43">
-    <h1 lang="en">Software for the Masses</h1>
+    <p lang="en">Software for the Masses</p>
   </header>
-  <section id="kontakt"  itemscope itemtype="https://schema.org/Person" class="vcard">
+  <section id="kontakt" itemscope itemtype="https://schema.org/Person" class="vcard">
     <div class="qr-code">
       <img alt="QR kód s kontaktem"
            src="https://www.rarous.net/api/v1/qr?{{ { t: meCard(contact) } | urlencode }}"
            aria-label="Oskenuj si kontakt do mobilu"
            title="Oskenuj si kontakt do mobilu" width="200" height="200">
     </div>
-    <hgroup>
-      <h1 itemprop="name" class="fn" translate="no">Aleš Roubíček</h1>
-      <h2 itemprop="jobTitle" class="job" lang="en">web developer</h2>
-    </hgroup>
+    <h1 itemprop="name" class="fn" translate="no">Aleš Roubíček</h1>
+    <h2 itemprop="jobTitle" class="job" lang="en">web developer</h2>
     <dl>
       <dt>E-mail:</dt>
       <dd itemprop="email" translate="no">
