@@ -47,7 +47,7 @@ Nebo zrušit cachování hlavního scriptu, což se mi taky nechtělo.
 Řešení které jsem zvolil, není tak čisté jako přepsat `gulp-rev`, ale využívá flexibility, kterou Blendid! nabízí.
 
 Zkrátka, potřeboval jsem měnit obsah hlavního scriptu, aby se problém neopakoval. Udělal jsem to tak, že jsem
-do kódu `admin.js` vložil tento kód:
+do `admin.js` vložil tento kód:
 
 /--code javascript
 // HACK: This is here to force gulp-rev to change hash for each build even if there are no changes in this file.
