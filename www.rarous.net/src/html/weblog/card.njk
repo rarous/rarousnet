@@ -91,9 +91,10 @@
   </main>
 
   <script type="module">
+    import { processTypo } from "{{ "texy.js" | assetUrl("esm") }}"
     const formatter = new Intl.DateTimeFormat("cs", { day: "numeric", month: "long", year: "numeric" });
     const params = new URLSearchParams(location.search);
-    document.getElementById("title").textContent = params.get("title");
+    document.getElementById("title").textContent = processTypo(params.get("title"));
     document.getElementById("name").textContent = params.get("name");
     const date = document.getElementById("date");
     date.datetime = params.get("date");

@@ -1,11 +1,13 @@
 import { processTypo } from "@hckr_/blendid/lib/texy.mjs";
 
+export { processTypo };
+
 /**
  *
  * @param {Window} globalScope
  * @returns {typeof TexyTypography}
  */
-export function defTexyTypography({ HTMLElement, customElements, document }) {
+export function defTexyTypography({ HTMLElement, customElements }) {
   class TexyTypography extends HTMLElement {
     static register(tagName = "texy-typo") {
       this.tagName = tagName;
@@ -13,7 +15,7 @@ export function defTexyTypography({ HTMLElement, customElements, document }) {
     }
 
     get lang() {
-      return this.getAttribute("lang") ?? document?.documentElement?.lang ?? "cs";
+      return this.getAttribute("lang") ?? this.ownerDocument?.documentElement?.lang ?? "cs";
     }
 
     connectedCallback() {
