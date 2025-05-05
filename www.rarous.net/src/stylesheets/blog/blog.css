@@ -48,6 +48,11 @@ blockquote p {
   font-size: 1.5rem;
 }
 
+blockquote:has(> big) {
+  text-align: center;
+  text-wrap: balance;
+}
+
 aside {
   margin-inline: 4em;
 }
