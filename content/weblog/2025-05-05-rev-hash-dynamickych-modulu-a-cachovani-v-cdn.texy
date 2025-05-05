@@ -33,7 +33,7 @@ Problém jsem nakonec identifikoval v tom, že hlavní script má v sobě odkazy
 i když jsem je evidentně měnil. Může za to algoritmus, který přejmenovává scripty v buildu. Funguje totiž na více
 průchodů. Nejprve vypočítá hashe souborů a pak v nich mění odkazy na další assety. Takže když se změní hash
 nějakého submodulu, nemá to vliv na hash nadřazeného modulu. Je to kvůli tomu, aby se to nezacycklilo
-(a nemusel se kvůli udržovat strom závislostí).
+(a nemusel se udržovat strom závislostí).
 
 V 99 % případů to funguje dobře, ale tady jsme narazili na to, že v CDN je nacachovaný soubor, který má stejný název,
 ale odkazuje se na jiné veze souborů. Jak z toho ven?
@@ -49,23 +49,23 @@ Nebo zrušit cachování hlavního scriptu, což se mi taky nechtělo.
 Zkrátka, potřeboval jsem měnit obsah hlavního scriptu, aby se problém neopakoval. Udělal jsem to tak, že jsem
 do kódu `admin.js` vložil tento kód:
 
-```javascript
+/--code javascript
 // HACK: This is here to force gulp-rev to change hash for each build even if there are no changes in this file.
 // The reason is we are importing modules that can be changed, but the revision will be staled here.
 // The `__BUILD_ID__` symbol is defined in esbuild config (@see task-config.mjs).
 const buildId = __BUILD_ID__;
-```
+\---code
 
 A potom jsem upravil nastavení `esbuild`u v souboru `task-config.mjs`, aby definoval symbol `__BUILD_ID__`,
 který se v době buildu nahradí textovým literálem s číslem buildu:
 
-```javascript
+/--code javascript
 esbuild: {
   options: {
     define: { __BUILD_ID__: `"${process.env.CIRCLE_BUILD_NUM ?? "HEAD"}"` },
   }
 }
-```
+\--code
 
 Tím se při každém buildu změní obsah a tudíž i hash v názvu souboru.
 
