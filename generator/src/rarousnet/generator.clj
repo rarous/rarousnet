@@ -94,8 +94,8 @@
   (string/replace (permalink article) #"\.html" ".png"))
 
 (defn- meta-n [name] [:meta (html/attr= :name name)])
-(defn- meta-p [name] [:meta (html/attr= :property name)])
 (defn- property [name] (html/attr= :property name))
+(defn- meta-p [name] [:meta (property name)])
 (defn- typeof [name] (html/attr= :typeof name))
 (defn- rdfa
    ([type prop] [(typeof type) (property prop)])
@@ -159,11 +159,11 @@
 (defsnippet article-breadcrumbs "weblog/blogpost.html" [:.breadcrumbs]
   [{:keys [year month month-name day]}]
   [:.year] (html/set-attr :href (str blog-relative-url year "/"))
-  [:.year (html/attr= :property "name")] (html/content (str year))
+  [:.year (itemprop "name")] (html/content (str year))
   [:.month] (html/set-attr :href (str blog-relative-url year "/" month "/"))
-  [:.month (html/attr= :property "name")] (html/content month-name)
+  [:.month (itemprop "name")] (html/content month-name)
   [:.day] (html/set-attr :href (str blog-relative-url year "/" month "/" day "/"))
-  [:.day (html/attr= :property "name")] (html/content (str day)))
+  [:.day (itemprop "name")] (html/content (str day)))
 
 (deftemplate blogpost-template "weblog/blogpost.html"
   [{:keys [title author description published tags syndication] :as article}]
