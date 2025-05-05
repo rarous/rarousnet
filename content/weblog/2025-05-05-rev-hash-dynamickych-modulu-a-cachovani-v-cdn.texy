@@ -15,6 +15,8 @@ asi stojí za to se podělit o jeho řešení.
 >
 > -- **Leon Bambrick**
 
+## Problém
+
 Na Hacker Campu máme administraci, která je dělaná jako Single Page Application (SPA).
 
 Používáme vzor Application Shell, kdy hlavní script zavádí jednotlivé moduly dynamicky, podle aktuální potřeby.
@@ -37,6 +39,8 @@ nějakého submodulu, nemá to vliv na hash nadřazeného modulu. Je to kvůli t
 
 V 99 % případů to funguje dobře, ale tady jsme narazili na to, že v CDN je nacachovaný soubor, který má stejný název,
 ale odkazuje se na jiné veze souborů. Jak z toho ven?
+
+## Řešení
 
 První rychlý workaround byl přidat do URL importu `?v20250502` a tím se změnil obsah modulu a do produkce
 protekla nová vlastnost. Což bylo fajn, ale úplně to neřeší problém, jen ho odsouvá.
