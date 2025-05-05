@@ -97,6 +97,10 @@ jobs:
           name: Build website
           working_directory: www.rarous.net
           command: yarn build
+      - run:
+          name: Build search index
+          working_directory: www.rarous.net
+          command: yarn build:index
       - save_cache:
           name: Store deps cache
           key: v4-dependencies-{{ checksum "generator/deps.edn" }}
