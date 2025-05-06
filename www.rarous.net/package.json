@@ -19,7 +19,7 @@
     "wrangler": "4.14.1"
   },
   "resolutions": {
-    "esbuild": "0.25.3"
+    "esbuild": "0.25.4"
   },
   "scripts": {
     "build": "blendid build --production",
