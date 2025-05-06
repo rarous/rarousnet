@@ -4,8 +4,7 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce" "blendid" "esbuild"},
  :published "2025-05-05T07:34:38+00:00"
- :syndication
- []}
+ :syndication ["https://www.linkedin.com/feed/update/urn:li:activity:7325065856218980354/"]}
 ---
 
 Řešil jsem teď takový zajímavý edge case a protože obshahuje oba nejtěžší problémy Computer Science,
