@@ -21,5 +21,8 @@
 /kolekce/vinyly
   Cache-Control: public, max-age=3600
 
+/weblog/articles.rss
+  Content-Type: application/rss+xml; charset=utf-8
+
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
