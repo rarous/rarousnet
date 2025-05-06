@@ -9,8 +9,8 @@ async function main({ token }) {
   const {
     default: { included },
   } = await import("./data/li-likes.json", { with: { type: "json" } });
-  const target = "https://www.rarous.net/weblog/2025/02/03/apify-keboola-uploader.html";
-  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7292087767142916097/";
+  const target = "https://www.rarous.net/weblog/2025/05/05/rev-hash-dynamickych-modulu-a-cachovani-v-cdn.html";
+  const source = "https://www.linkedin.com/feed/update/urn:li:activity:7325065856218980354/";
   const reactions = included.filter(x => x["$type"] === "com.linkedin.voyager.dash.social.Reaction");
   for (const reaction of reactions) {
     const userId = reaction.actorUrn;
