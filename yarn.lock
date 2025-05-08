@@ -1968,7 +1968,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250508.0"
-    wrangler: "npm:4.14.3"
+    wrangler: "npm:4.14.4"
   languageName: unknown
   linkType: soft
 
@@ -2015,7 +2015,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250508.0"
     linkedom: "npm:0.18.10"
-    wrangler: "npm:4.14.3"
+    wrangler: "npm:4.14.4"
   languageName: unknown
   linkType: soft
 
@@ -2032,7 +2032,7 @@ __metadata:
     postcss-jit-props: "npm:1.0.16"
     undertaker-registry: "npm:2.0.0"
     vitest: "npm:3.1.3"
-    wrangler: "npm:4.14.3"
+    wrangler: "npm:4.14.4"
   languageName: unknown
   linkType: soft
 
@@ -11569,7 +11569,7 @@ __metadata:
     npm-run-all2: "npm:7.0.2"
     tap-xunit: "npm:2.4.1"
     vitest: "npm:3.1.3"
-    wrangler: "npm:4.14.3"
+    wrangler: "npm:4.14.4"
   languageName: unknown
   linkType: soft
 
@@ -14467,9 +14467,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:4.14.3":
-  version: 4.14.3
-  resolution: "wrangler@npm:4.14.3"
+"wrangler@npm:4.14.4":
+  version: 4.14.4
+  resolution: "wrangler@npm:4.14.4"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.4.0"
     "@cloudflare/unenv-preset": "npm:2.3.1"
@@ -14494,7 +14494,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/80b958285a1d92cf8851f80e837d9ec1ebdbd3b7c05c11158636585e3c691390c98b95c45bfa6c789bcec8182103ba6608c756bdc7903f34741ee28b297c45df
+  checksum: 10c0/ab1a3beccc115a5c7e7fabec08038bcd13ee1aab375aa12681e0aab0ab0785714d57979de65ac8139ce696f2208c0dfdbe572a7c5b1f6c5b4c5e772c38fb19f2
   languageName: node
   linkType: hard
 
