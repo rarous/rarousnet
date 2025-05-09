@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "842c0eafa81cb1f95f6f5db65511204a",
+    "content-hash": "a0ce62cc617dcff267bf50ac484442cd",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -299,7 +299,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "8.4.6"
+        "php": "8.4.7"
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
