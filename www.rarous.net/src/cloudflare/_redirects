@@ -3,4 +3,10 @@
 /avatar /.well-known/avatar
 /clanek/:slug /weblog/:slug 301
 /clanek.aspx/:slug /weblog/:slug.aspx 301
+/weblog/tag/:tag.aspx /weblog/tag/:tag 301
+/weblog/:tag.aspx /weblog/tag/:tag 301
+/weblog/:slug.aspx/ /weblog/:slug.aspx 301
+/weblog/2024/11/07/weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech /weblog/2024/10/14/renderovani-webovych-komponent-ve-workerech 301
+/default.aspx / 301
+/weblog/weblog/feed/ /weblog/feed/ 301
 /webdesign/ https://hckr.studio/

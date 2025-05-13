@@ -464,7 +464,7 @@
                 :file/content html}))))
 
 (def weblog-pattern
-  #(str "/weblog/" (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"html" "aspx")))
+  #(str "/weblog/" (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"\.html" ".aspx")))
 
 (defn redirects [{:keys [articles]} write-file-ch]
   (let [redirects (into []
