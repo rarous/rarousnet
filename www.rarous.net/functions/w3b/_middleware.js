@@ -36,6 +36,7 @@ export async function onRequestGet({ request, env, next }) {
       pagination.dataset.itemsCount = feed.itemsCount;
     }
 
+    document.querySelector("link[rel=canonical]").href = request.url;
     return new Response(document.toString(), resp);
   }
   return resp;
