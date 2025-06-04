@@ -1998,7 +1998,7 @@ __metadata:
     cookie: "npm:1.0.2"
     feed: "npm:5.1.0"
     jose: "npm:6.0.11"
-    linkedom: "npm:0.18.10"
+    linkedom: "npm:0.18.11"
     qreator: "npm:9.7.1"
   languageName: unknown
   linkType: soft
@@ -2019,7 +2019,7 @@ __metadata:
   dependencies:
     "@thi.ng/transducers": "npm:9.3.1"
     csv-parse: "npm:5.6.0"
-    linkedom: "npm:0.18.10"
+    linkedom: "npm:0.18.11"
     schema-dts: "npm:1.1.5"
   languageName: unknown
   linkType: soft
@@ -2029,7 +2029,7 @@ __metadata:
   resolution: "@rarousnet/w3b-schedule-worker@workspace:workers/w3b-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250604.0"
-    linkedom: "npm:0.18.10"
+    linkedom: "npm:0.18.11"
     wrangler: "npm:4.19.1"
   languageName: unknown
   linkType: soft
@@ -8537,16 +8537,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"linkedom@npm:0.18.10":
-  version: 0.18.10
-  resolution: "linkedom@npm:0.18.10"
+"linkedom@npm:0.18.11":
+  version: 0.18.11
+  resolution: "linkedom@npm:0.18.11"
   dependencies:
     css-select: "npm:^5.1.0"
     cssom: "npm:^0.5.0"
     html-escaper: "npm:^3.0.3"
     htmlparser2: "npm:^10.0.0"
     uhyphen: "npm:^0.2.0"
-  checksum: 10c0/cbc60aa9db83e2a34e5af9934b736cd5fe6aba84b65ac72fbaddbaa22ad13d8f5000939495199a13fc2869f6bc03efa33c9e589d5626521be94be73373a37f53
+  checksum: 10c0/20bd02f77bd35609185c578d5e14c4f6754894dfec17d5d1df2756c18314e4250cebc6521f9bdf437c4e94b61b5f7c2fa52af98f805c6b0ec459ec05d7f70756
   languageName: node
   linkType: hard
 
