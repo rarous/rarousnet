@@ -11,14 +11,14 @@
   ],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@vitest/ui": "3.2.2",
+    "@vitest/ui": "3.2.3",
     "ava": "6.4.0",
     "broken-link-checker-local": "0.2.1",
     "lighthouse": "12.6.1",
     "local-web-server": "5.4.0",
     "npm-run-all2": "8.0.4",
     "tap-xunit": "2.4.1",
-    "vitest": "3.2.2",
+    "vitest": "3.2.3",
     "wrangler": "4.19.1"
   },
   "resolutions": {
