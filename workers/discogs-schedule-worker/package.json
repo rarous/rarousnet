@@ -4,7 +4,7 @@
   "type": "module",
   "license": "EUPL-1.2",
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20250614.0",
+    "@cloudflare/workers-types": "4.20250617.0",
     "wrangler": "4.20.0"
   }
 }
