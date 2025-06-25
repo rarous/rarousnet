@@ -19,7 +19,7 @@
     "npm-run-all2": "8.0.4",
     "tap-xunit": "2.4.1",
     "vitest": "3.2.4",
-    "wrangler": "4.21.1"
+    "wrangler": "4.21.2"
   },
   "resolutions": {
     "esbuild": "0.25.5"
