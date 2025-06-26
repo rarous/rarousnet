@@ -16,7 +16,7 @@
     "postcss-jit-props": "1.0.16",
     "undertaker-registry": "2.0.0",
     "vitest": "3.2.4",
-    "wrangler": "4.21.2"
+    "wrangler": "4.22.0"
   },
   "resolutions": {
     "esbuild": "0.25.5"
