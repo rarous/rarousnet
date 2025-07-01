@@ -1,4 +1,6 @@
 {% extends "layouts/common-layout.njk" %}
+{% from "macros/helpers.njk" import sprite %}
+
 {% set title = "W3B - Výběr z článků - čtení doporučené Alešem Roubíčkem" %}
 {% set description = "Výběr z článků, které stojí za to si přečíst. Ručně vybíráno Alešem Roubíčkem" %}
 {% set contentSchema = "Collection" %}
@@ -67,11 +69,18 @@
 
     feed-pagination {
       display: inline-flex;
+      gap: 0.5ch;
+      align-items: center;
+      --icon-size: 20px;
+      --icon-color: var(--text-color);
     }
 
     feed-pagination a:has(svg) {
       text-decoration: none;
-      display: inline-flex;
+      display: inline flex;
+      place-items: center;
+      width: calc(var(--icon-size) + 8px);
+      height: calc(var(--icon-size) + 8px);
     }
 
     feed-pagination a:has(svg):hover {
@@ -87,13 +96,7 @@
       href="https://feeds2.feedburner.com/rarous/w3b"
       type="application/atom+xml"
       title="Přihlásit se k odběru pomocí RSS">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-           fill="var(--icon-color)">
-        <path d="M0 0h24v24H0z" fill="none"/>
-        <circle cx="6.18" cy="17.82" r="2.18"/>
-        <path
-          d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
-      </svg>
+      {{ sprite("rss", "Syndikace", "0 0 24 24", "feather feather-rss") }}
     </a>
   </li>
 {% endblock %}
@@ -126,37 +129,19 @@
   </articles-feed>
 
   <nav aria-label="Stránkování">
-    <p>Stránka 
+    <p>
       <feed-pagination data-page-size="24">
-        <data class="current"></data> z <data class="total"></data> 
         <a href="?page=0" class="first" aria-label="přejít na první stránku">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-               fill="var(--icon-color)">
-            <title>První</title>
-            <path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/>
-          </svg>
-          ️</a>
+          {{ sprite("skip-back", "První", "0 0 24 24", "feather feather-skip-back") }}️</a>
         <a href="?page=0" class="prev" aria-label="přejít na předchozí stránku">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-               fill="var(--icon-color)">
-            <title>Předchozí</title>
-            <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
-          </svg>
-        </a>
+          {{ sprite("chevron-left", "Předchozí", "0 0 24 24", "feather feather-chevron-left") }}</a>
+        <span>
+          Stránka <data class="current"></data> z <data class="total"></data>
+        </span>
         <a href="?page=1" class="next" aria-label="přejít na následující stránku">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-               fill="var(--icon-color)">
-            <title>Další</title>
-            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
-          </svg>
-        </a>
+          {{ sprite("chevron-right", "Další", "0 0 24 24", "feather feather-chevron-right") }}</a>
         <a href="?page=8" class="last" aria-label="přejít na poslední stránku">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-               fill="var(--icon-color)">
-            <title>Poslední</title>
-            <path d="m280-240-56-56 184-184-184-184 56-56 240 240-240 240Zm360 0v-480h80v480h-80Z"/>
-          </svg>
-        </a>
+          {{ sprite("skip-forward", "Poslední", "0 0 24 24", "feather feather-skip-forward") }}</a>
       </feed-pagination>
     </p>
   </nav>

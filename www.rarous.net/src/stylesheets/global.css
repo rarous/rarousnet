@@ -363,15 +363,19 @@ header > nav {
     }
 
     svg:not(.logo) {
-      width: var(--icon-size);
-      height: var(--icon-size);
-      fill: var(--icon-color);
+      scale: 0.8;
     }
   }
 }
 
 body > footer {
   --body-column: wide;
+}
+
+.feather {
+  color: var(--icon-color);
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 @media (prefers-reduced-motion: no-preference) {

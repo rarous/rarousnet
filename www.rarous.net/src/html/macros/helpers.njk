@@ -1,0 +1,20 @@
+{% macro sprite(id, altText, viewBox, classes) %}
+  {% set viewBox = viewBox or "0 0 1 1"%}
+  <svg class='sprite sprite--{{id}} {{classes}}' viewBox="{{viewBox}}">
+    <title>{{altText}}</title>
+    <use href='#{{id}}'></use>
+  </svg>
+{% endmacro %}
+
+{% macro spriteTarget() %}
+  <div hidden>
+    <!-- inject:svg --><!-- endinject -->
+  </div>
+{% endmacro %}
+
+{% macro importmapTarget() %}
+  <script async src="https://ga.jspm.io/npm:es-module-shims@2.6.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+    <!-- inject:importmap --><!-- endinject -->
+  </script>
+{% endmacro %}

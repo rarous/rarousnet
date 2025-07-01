@@ -1,4 +1,5 @@
 {% extends "layouts/common-layout.njk" %}
+{% from "macros/helpers.njk" import sprite %}
 
 {% set images = true %}
 {% set title = weblog.title %}
@@ -53,16 +54,10 @@
 {% block navbar %}
   <li>
     <a
-      href="#search"
+      href="#hledani"
       title="Hledat na blogu"
       onclick="event.preventDefault();searchDialog.showModal()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-           fill="var(--icon-color)">
-        <title>Hledat</title>
-        <path d="M0 0h24v24H0z" fill="none"/>
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-      </svg>
+      {{ sprite("search", "Hledat", "0 0 24 24", "feather feather-search") }}
     </a>
   </li>
   <li>
@@ -70,21 +65,14 @@
       href="{{ weblog.articlesFeedUrl }}"
       type="application/rss+xml"
       title="Přihlásit se k odběru pomocí RSS">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-           fill="var(--icon-color)">
-        <title>Syndikace</title>
-        <path d="M0 0h24v24H0z" fill="none"/>
-        <circle cx="6.18" cy="17.82" r="2.18"/>
-        <path
-          d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
-      </svg>
+      {{ sprite("rss", "Syndikace", "0 0 24 24", "feather feather-rss") }}
     </a>
   </li>
 {% endblock %}
 
 {% block dialogs %}
   <dialog id="searchDialog" onclick="event.target === this && this.close()">
-    <div id="search"></div>
+    <div id="hledani"></div>
   </dialog>
 {% endblock %}
 
@@ -201,7 +189,7 @@
   <script>
     /// <reference types="pagefind" />
     new PagefindUI({
-      element: "#search",
+      element: "#hledani",
       showImages: false,
       autofocus: true,
       translations: {
