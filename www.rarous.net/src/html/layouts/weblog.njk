@@ -1,8 +1,9 @@
 {% extends "layouts/common-layout.njk" %}
+
 {% set images = true %}
-{% set title= "rarouš.weblog" %}
-{% set description = "Aleš Roubíček píše o webdesignu a čistém kódu." %}
-{% set generator = "Gryphoon 3.5 - static site generator" %}
+{% set title = weblog.title %}
+{% set description = weblog.description %}
+{% set generator = weblog.generator %}
 {% set bodyId = "rarous" %}
 
 {% block head_preconnect %}

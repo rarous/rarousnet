@@ -6,6 +6,11 @@ import { GryphoonRegistry } from "./gryphoon-registry.mjs";
 /** @typedef {import("@types/nunjucks").Environment} Environment */
 /** @typedef {import("@types/gulp").Gulp} Gulp */
 
+/**
+ * @param {Record<string, *>} pathConfig
+ * @param {{development: function(): boolean, production: function(): boolean}} mode
+ * @param {Boolean} verbose
+ */
 export default function (pathConfig, mode, verbose) {
   return {
     images: true,

@@ -2,7 +2,7 @@
 {% set title = "Vinyly Aleše Roubíčka" %}
 {% set description = "Sbírka gramofonových desek Aleše Roubíčka." %}
 {% set contentSchema = "CollectionPage" %}
-{% set canonicalUrl = "https://www.rarous.net/kolekce/vinyly" %}
+{% set canonicalUrl = "/kolekce/vinyly" | resolveUrl(meta.url) %}
 {% set images = true %}
 
 {% block head_preconnect %}
@@ -96,8 +96,8 @@
   </dialog>
 
   <script type="module">
-    import "/assets/esm/gryphoon.js";
-    import "/assets/esm/discogs.js";
+    import {{ "gryphoon.js" | assetUrl("esm") }};
+    import {{  "discogs.js" | assetUrl("esm") }};
 
     const discogs = document.querySelector("rarous-discogs");
 

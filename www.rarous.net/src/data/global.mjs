@@ -84,6 +84,9 @@ export default {
     url: "https://www.rarous.net/weblog/",
     apiEndpoint: "https://www.rarous.net/api/v1/weblog",
     articlesFeedUrl: "https://feeds.feedburner.com/rarous-weblog",
+    title: "rarouš.weblog",
+    description: "Aleš Roubíček píše o webdesignu a čistém kódu.",
+    generator: "Gryphoon 3.5 - static site generator",
   },
   meCard,
   google: {
