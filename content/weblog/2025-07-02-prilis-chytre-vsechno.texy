@@ -1,0 +1,27 @@
+---
+{:title "Příliš chytré všechno",
+ :description "Obsese dělat všechno strašně chytré vás může stát zákazníky.",
+ :author "Aleš Roubíček",
+ :tags #{"jen tak"},
+ :published "2025-07-02T11:24:38+02:00"
+ :syndication []}
+---
+
+Za poslední týden se mi dvakrát stalo, že díky příliš „chytrému“ checkout processu,
+jsem se odradil od nákupu nebo musel řešit s podporou úpravy dodací adresy a stejně je to problém.
+
+Problém u prvního obchodníka byl v tom, že po zadání platební metody změnil jméno na dodací adrese.
+A protože šlo o dárek k narozeninám mé milé sestře, který jde do Holandska, tak jsem to nechtěl riskovat, že nedojde.
+Dvakrát jsem se snažil dododací adresu opravit, tím se odpojila platební metoda, musel jsem ji zadat znova
+a tím se oprava přepsala. Nasr*t! Šel jsem k jinému ochodníkovi, který umožňuje neplatit PayPalem a nemění zadaná data.
+
+Další příběh je dost podobný. Praskl mi kámen v pizza peci, tak jsem využil narozeninový kredit a pořídil nový.
+Rovnou jsem si ho nechal poslat na chatu. Po zaplacení koukám, že v dodací adrese je „130 00, Praha 3“.
+Ulice byla správně, takže nesmyslná adresa. Hned jsme psal na support, aby to změnili. Na supportu to odbavili,
+že by to ve warehousu mělo být změněný. No a dneska mi přišla notfikace o problému na straně dopravce,
+že tam bylo špatný PSČ...
+
+Když už potřebujete měnit data za uživatele na základě platebních údajů, nešahejte na doručovací adresu,
+ale na fakturační. Raději to ale nedělejte vůbec, protože místo lepší Customer Experience docílíte
+akorát potenciální ztráty zákazníka.
+
