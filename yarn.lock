@@ -8779,9 +8779,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lighthouse@npm:12.7.0":
-  version: 12.7.0
-  resolution: "lighthouse@npm:12.7.0"
+"lighthouse@npm:12.7.1":
+  version: 12.7.1
+  resolution: "lighthouse@npm:12.7.1"
   dependencies:
     "@paulirish/trace_engine": "npm:0.0.56"
     "@sentry/node": "npm:^9.28.1"
@@ -8815,7 +8815,7 @@ __metadata:
     chrome-debug: core/scripts/manual-chrome-launcher.js
     lighthouse: cli/index.js
     smokehouse: cli/test/smokehouse/frontends/smokehouse-bin.js
-  checksum: 10c0/94e6cb6d88a369f353773f99dece78ce23d23193b00cca409f6080b9a24ecb40346e557ff5def267518c935f81d536117cb3a74c1cdcec829f33869b82767458
+  checksum: 10c0/5c5696dd41ad4e7156678e360c7f121711aecec99f9222d477c7cfc9c4ab04224e9d55f41c0fa8158e271792dce52237159672309557bf1ac360baf64fcb7344
   languageName: node
   linkType: hard
 
@@ -12001,7 +12001,7 @@ __metadata:
     "@vitest/ui": "npm:3.2.4"
     ava: "npm:6.4.0"
     broken-link-checker-local: "npm:0.2.1"
-    lighthouse: "npm:12.7.0"
+    lighthouse: "npm:12.7.1"
     local-web-server: "npm:5.4.0"
     npm-run-all2: "npm:8.0.4"
     tap-xunit: "npm:2.4.1"
