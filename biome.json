@@ -6,9 +6,16 @@
     "useIgnoreFile": true
   },
   "files": {
-    "include": ["infrastructure", "scripts", "tests", "workers", "www.rarous.net"],
-    "ignoreUnknown": false,
-    "ignore": ["www.rarous.net/src/static/assets/js/prism.js", "www.rarous.net/src/esm/sha256.js"]
+    "includes": [
+      "**/infrastructure/**",
+      "**/scripts/**",
+      "**/tests/**",
+      "**/workers/**",
+      "**/www.rarous.net",
+      "!**/www.rarous.net/src/static/assets/js/prism.js",
+      "!**/www.rarous.net/src/esm/sha256.js"
+    ],
+    "ignoreUnknown": false
   },
   "formatter": {
     "enabled": true,
@@ -17,9 +24,7 @@
     "attributePosition": "auto",
     "useEditorconfig": true
   },
-  "organizeImports": {
-    "enabled": true
-  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {

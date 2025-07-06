@@ -9,13 +9,16 @@ async function getReleases(page, token) {
     per_page: 100,
     sort: "artist",
   });
-  const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/0/releases?${params}`, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Discogs token=${token}`,
-      "User-Agent": "rarous.net vinyl collection",
+  const resp = await fetch(
+    `https://api.discogs.com/users/rarous/collection/folders/0/releases?${params}`,
+    {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Discogs token=${token}`,
+        "User-Agent": "rarous.net vinyl collection",
+      },
     },
-  });
+  );
   return resp.json();
 }
 
@@ -37,37 +40,6 @@ function cleanArtistName(name) {
   return name.replace(/\s\(\d+\)$/, "");
 }
 
-async function searchAlbumOnSpotify(q, spotifyToken) {
-  const params = new URLSearchParams({
-    q,
-    type: "album,track",
-    limit: 1,
-  });
-  const resp = await fetch(`https://api.spotify.com/v1/search?${params}`, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${spotifyToken}`,
-      "User-Agent": "rarous.net vinyl collection",
-    },
-  });
-  const { albums } = await resp.json();
-  return albums;
-}
-
-async function authSpotify({ clientId, clientSecret }) {
-  const resp = await fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-      "Content-type": "application/x-www-form-urlencoded",
-      "User-Agent": "rarous.net vinyl collection",
-    },
-    body: new URLSearchParams({ grant_type: "client_credentials" }),
-  });
-  return resp.json();
-}
-
 function byArtistAndYear(a, b) {
   const comparison = a.artist?.name.localeCompare(b.artist?.name);
   if (comparison !== 0) return comparison;
@@ -78,50 +50,29 @@ function byArtistAndYear(a, b) {
  * @param {Env} env
  */
 async function updateDiscogsCollection(env) {
-  const current = await env.weblog.get("/kolekce/vinyly", "json");
-  const knownSpotifyIds = new Map(current.map(x => [x.id, x.spotifyUri]));
+  const _current = await env.weblog.get("/kolekce/vinyly", "json");
 
   const result = [];
   for await (const releases of getAllReleases(env.DISCOGS_TOKEN)) {
     const items = releases
-      .map(x => x.basic_information)
-      .map(x => ({
-        id: x.id,
-        title: x.title,
-        image: x.cover_image,
-        year: x.year,
-        artist: { id: x.artists[0].id, name: cleanArtistName(x.artists[0].name) },
-      }));
+    .map((x) => x.basic_information)
+    .map((x) => ({
+      id: x.id,
+      title: x.title,
+      image: x.cover_image,
+      year: x.year,
+      artist: {
+        id: x.artists[0].id,
+        name: cleanArtistName(x.artists[0].name),
+      },
+    }));
     result.push(...items);
   }
 
-  const { error, access_token: spotifyToken } = await authSpotify({
-    clientId: env.SPOTIFY_CLIENT_ID,
-    clientSecret: env.SPOTIFY_CLIENT_SECRET,
-  });
-
-  for (const item of result) {
-    if (error) {
-      console.error(error);
-      break;
-    }
-    if (knownSpotifyIds.has(item.id)) {
-      // skip already known album uris
-      item.spotifyUri = knownSpotifyIds.get(item.id);
-      continue;
-    }
-    let albums = await searchAlbumOnSpotify(
-      `artist:${item.artist.name} album:${item.title} year:${item.year}`,
-      spotifyToken,
-    );
-    if (!albums?.items?.length) {
-      // if we don't find album for exact release year, try to search for any year
-      albums = await searchAlbumOnSpotify(`artist:${item.artist.name} album:${item.title}`, spotifyToken);
-    }
-    item.spotifyUri = albums?.items?.[0]?.uri;
-  }
-
-  await env.weblog.put("/kolekce/vinyly", JSON.stringify(result.sort(byArtistAndYear)));
+  await env.weblog.put(
+    "/kolekce/vinyly",
+    JSON.stringify(result.sort(byArtistAndYear)),
+  );
 }
 
 export default {
@@ -130,7 +81,7 @@ export default {
    * @param {Env} env
    * @param {ExecutionContext} ctx
    */
-  async scheduled(event, env, ctx) {
+  async scheduled(_event, env, ctx) {
     ctx.waitUntil(updateDiscogsCollection(env));
   },
 };

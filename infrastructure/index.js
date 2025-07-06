@@ -142,7 +142,7 @@ const wwwRecord = new cloudflare.Record(`${domain}/dns-record`, {
   ttl: 1,
   proxied: true,
 });
-const weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
+const _weblogPagesDomain = new cloudflare.PagesDomain("weblog-domain", {
   accountId: account.id,
   domain: wwwRecord.hostname,
   projectName: weblogPages.name,
@@ -155,13 +155,9 @@ const discogsScheduleWorker = new cloudflare.WorkersScript("discogs-schedule-wor
   compatibilityDate: "2024-11-18",
   module: true,
   kvNamespaceBindings: [{ name: "weblog", namespaceId: weblogNS.id }],
-  plainTextBindings: [{ name: "SPOTIFY_CLIENT_ID", text: config.require("spotify-clientId") }],
-  secretTextBindings: [
-    { name: "DISCOGS_TOKEN", text: config.require("discogs-apiToken") },
-    { name: "SPOTIFY_CLIENT_SECRET", text: config.require("spotify-clientSecret") },
-  ],
+  secretTextBindings: [{ name: "DISCOGS_TOKEN", text: config.require("discogs-apiToken") }],
 });
-const discogsScheduleTrigger = new cloudflare.WorkersCronTrigger("discogs-schedule-trigger", {
+const _discogsScheduleTrigger = new cloudflare.WorkersCronTrigger("discogs-schedule-trigger", {
   accountId: account.id,
   scriptName: discogsScheduleWorker.name,
   schedules: ["0 0 * * *"],
@@ -174,11 +170,16 @@ const w3bScheduleWorker = new cloudflare.WorkersScript("w3b-schedule-worker", {
   compatibilityDate: "2024-11-18",
   module: true,
   plainTextBindings: [{ name: "FEED_URL", text: config.require("w3b-feed-url") }],
-  secretTextBindings: [{ name: "SEMANTIC_EXTRACTOR_SECRET", text: config.require("semantic-extractor-secret") }],
+  secretTextBindings: [
+    {
+      name: "SEMANTIC_EXTRACTOR_SECRET",
+      text: config.require("semantic-extractor-secret"),
+    },
+  ],
   kvNamespaceBindings: [{ name: "w3b", namespaceId: w3bNS.id }],
   serviceBindings: [{ name: "extractor", service: "hckr-semantic-extractor" }],
 });
-const w3bScheduleTrigger = new cloudflare.WorkersCronTrigger("w3b-schedule-trigger", {
+const _w3bScheduleTrigger = new cloudflare.WorkersCronTrigger("w3b-schedule-trigger", {
   accountId: account.id,
   scriptName: w3bScheduleWorker.name,
   schedules: ["0 * * * *"],

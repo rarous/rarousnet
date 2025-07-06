@@ -61,36 +61,5 @@ body > footer {
     :is(h2, h3, p) {
       margin: 0;
     }
-
-    button {
-      font: 700 1rem / 2 var(--main-font);
-      border: none;
-      border-radius: 24px;
-      margin-block-start: 1em;
-      padding-inline: 2em;
-      color: white;
-      background-color: #1db954;
-    }
   }
-}
-
-#player {
-  overflow: hidden;
-  min-width: 19rem;
-  max-width: 60rem;
-
-  @media screen and (orientation: landscape) {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-  }
-
-  @media screen and (orientation: portrait) {
-    aspect-ratio: initial;
-    width: 84dvw;
-    height: 84dvh;
-  }
-}
-
-#player::backdrop {
-  backdrop-filter: blur(4px);
 }

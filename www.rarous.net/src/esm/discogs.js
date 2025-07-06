@@ -3,10 +3,10 @@
  * @param {Number} itemsLength
  */
 function itemsCounter(section, itemsLength) {
-	const counter = section.querySelector("data");
-	counter.value = itemsLength;
-	counter.textContent = itemsLength;
-	return counter;
+  const counter = section.querySelector("data");
+  counter.value = itemsLength;
+  counter.textContent = itemsLength;
+  return counter;
 }
 
 /**
@@ -16,17 +16,17 @@ function itemsCounter(section, itemsLength) {
  * @param {Function} applyTemplate
  */
 function injectItems(section, template, items, applyTemplate) {
-	if (!items?.length) return section.remove();
+  if (!items?.length) return section.remove();
 
-	itemsCounter(section, items.length);
-	const list = section.querySelector(".items");
-	const listItems = section.ownerDocument.createDocumentFragment();
-	for (const [index, item] of items.entries()) {
-		const { content } = template.cloneNode(true);
-		applyTemplate(content, item, section, index);
-		listItems.appendChild(content);
-	}
-	list.replaceChildren(listItems);
+  itemsCounter(section, items.length);
+  const list = section.querySelector(".items");
+  const listItems = section.ownerDocument.createDocumentFragment();
+  for (const [index, item] of items.entries()) {
+    const { content } = template.cloneNode(true);
+    applyTemplate(content, item, section, index);
+    listItems.appendChild(content);
+  }
+  list.replaceChildren(listItems);
 }
 
 /**
@@ -34,67 +34,67 @@ function injectItems(section, template, items, applyTemplate) {
  * @return {typeof Discogs}
  */
 export function defDiscogs({ HTMLElement, customElements }) {
-	class Discogs extends HTMLElement {
-		static register(tagName = "rarous-discogs") {
-			Discogs.tagName = tagName;
-			customElements.define(tagName, Discogs);
-		}
+  class Discogs extends HTMLElement {
+    static register(tagName = "rarous-discogs") {
+      Discogs.tagName = tagName;
+      customElements.define(tagName, Discogs);
+    }
 
-		get endpoint() {
-			return this.getAttribute("api-endpoint") ?? "/api/v1/collections/vinyls";
-		}
+    get endpoint() {
+      return this.getAttribute("api-endpoint") ?? "/api/v1/collections/vinyls";
+    }
 
-		get loaded() {
-			return this.hasAttribute("loaded");
-		}
+    get loaded() {
+      return this.hasAttribute("loaded");
+    }
 
-		set loaded(isLoaded) {
-			this.toggleAttribute("loaded", Boolean(isLoaded));
-		}
+    set loaded(isLoaded) {
+      this.toggleAttribute("loaded", Boolean(isLoaded));
+    }
 
-		set data(albums) {
-			if (!albums?.length) return;
-			this.loaded = true;
+    set data(albums) {
+      if (!albums?.length) return;
+      this.loaded = true;
 
-			const template = this.querySelector("template");
-			const collection = this.querySelector("section");
+      const template = this.querySelector("template");
+      const collection = this.querySelector("section");
 
-			function itemTemplate(content, item, _section, index) {
-				const link = content.querySelector("a");
-				link.href = link.href + item.id;
+      function itemTemplate(content, item, _section, index) {
+        const link = content.querySelector("a");
+        link.href = link.href + item.id;
 
-				const img = content.querySelector("img");
-				img.src += item.image;
-				img.alt += ` ${item.artist.name} - ${item.title} (${item.year})`;
-				// TODO: chose value depending on media query
-				if (index < 1) img.removeAttribute("loading");
+        const img = content.querySelector("img");
+        img.src += item.image;
+        img.alt += ` ${item.artist.name} - ${item.title} (${item.year})`;
+        // TODO: chose value depending on media query
+        if (index < 1) img.removeAttribute("loading");
 
-				const name = content.querySelector("[itemprop=name]");
-				name.textContent = item.title;
+        const name = content.querySelector("[itemprop=name]");
+        name.textContent = item.title;
 
-				const byArtist = content.querySelector("[itemprop=byArtist]");
-				byArtist.textContent = item.artist.name;
+        const byArtist = content.querySelector("[itemprop=byArtist]");
+        byArtist.textContent = item.artist.name;
 
-				const copyrightYear = content.querySelector("[itemprop=copyrightYear]");
-				copyrightYear.textContent = item.year;
-			}
+        const copyrightYear = content.querySelector("[itemprop=copyrightYear]");
+        copyrightYear.textContent = item.year;
+      }
 
-			injectItems(collection, template, albums, itemTemplate);
-		}
+      injectItems(collection, template, albums, itemTemplate);
+    }
 
-		async loadDataFromApi(url) {
-			if (this.loaded) return;
-			const resp = await fetch(url ?? this.endpoint, {
-				headers: { Accept: "application/json" },
-			});
-			this.data = await resp.json();
-		}
-	}
+    async loadDataFromApi(url) {
+      if (this.loaded) return;
+      const resp = await fetch(url ?? this.endpoint, {
+        headers: { Accept: "application/json" },
+      });
+      this.data = await resp.json();
+    }
+  }
 
-	return Discogs;
+  return Discogs;
 }
 
 // auto-register component when in browser env with customElements support
 if (globalThis.window?.customElements) {
-	defDiscogs(window).register();
+  defDiscogs(window).register();
 }
