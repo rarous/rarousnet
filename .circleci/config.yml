@@ -80,8 +80,7 @@ jobs:
       - node/install:
           install-yarn: true
       - php/install_php:
-          version: |
-            `jq -r '.platform.php' generator/composer.lock`
+          version: '`jq -r \'.platform.php\' generator/composer.lock`'
       - php/install_composer
       - node/install-packages:
           pkg-manager: yarn-berry
