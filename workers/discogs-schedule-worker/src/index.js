@@ -86,7 +86,7 @@ async function getAlbumLinks(itunesId) {
   const { document } = parseHTML(html);
   return Array.from(document.querySelectorAll("main>div:nth-of-type(2)>div:nth-of-type(2)>a"), x => ({
     link: x.href,
-    title: x.querySelector("svg+div").textContent,
+    title: x.querySelector("svg~div").textContent,
     label: x.getAttribute("aria-label"),
     icon: x.querySelector("svg").toString(),
   }));
