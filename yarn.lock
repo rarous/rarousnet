@@ -3452,6 +3452,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250705.0"
+    linkedom: "npm:0.18.11"
     wrangler: "npm:4.23.0"
   languageName: unknown
   linkType: soft
