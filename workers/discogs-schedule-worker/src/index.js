@@ -46,16 +46,26 @@ function byArtistAndYear(a, b) {
 }
 
 async function findItunesId(name, title) {
+  console.log({ event: "search itunes id", name, title });
   const resp = await fetch(
     `https://itunes.apple.com/search?term=${encodeURIComponent(name)}+${encodeURIComponent(title)}&entity=album`,
   );
+  if (!resp.ok) {
+    console.log({ event: "search album failed", name, title, status: resp.status, response: await resp.text() });
+    return null;
+  }
   const data = await resp.json();
   if (data.resultCount === 0) return null;
   return data.results[0].collectionId;
 }
 
 async function getAlbumLinks(itunesId) {
+  console.log({ event: "fetch album links", itunesId });
   const resp = await fetch(`https://album.link/i/${itunesId}`);
+  if (!resp.ok) {
+    console.log({ event: "fetch album links failed", itunesId, status: resp.status, response: await resp.text() });
+    return null;
+  }
   const html = await resp.text();
   const { document } = parseHTML(html);
   return Array.from(document.querySelectorAll("main>div:nth-of-type(2)>div:nth-of-type(2)>a"), x => ({
@@ -94,8 +104,12 @@ async function updateDiscogsCollection(env) {
   }
 
   for (const item of result) {
-    if (!item.itunesId) item.itunesId = await findItunesId(item.artist.name, item.title);
-    if (!item.links && item.itunesId) item.links = await getAlbumLinks(item.itunesId);
+    try {
+      if (!item.itunesId) item.itunesId = await findItunesId(item.artist.name, item.title);
+    } catch (err) {}
+    try {
+      if (!item.links && item.itunesId) item.links = await getAlbumLinks(item.itunesId);
+    } catch (err) {}
   }
 
   await env.weblog.put("/kolekce/vinyly", JSON.stringify(result.sort(byArtistAndYear)));
