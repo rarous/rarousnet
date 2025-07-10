@@ -60,9 +60,22 @@ export function defDiscogs({ HTMLElement, customElements }) {
       const collection = this.querySelector("section");
 
       function itemTemplate(content, item, _section, index) {
+        const li = content.querySelector("li");
+        li.dataset.itunesId = item.itunesId;
+        if (item.links?.length) {
+          const links = document.createDocumentFragment();
+          for (const link of item.links) {
+            const el = document.createElement("link");
+            el.href = link.link;
+            el.title = link.title;
+            el.setAttribute("itemprop", "sameAs");
+            links.appendChild(el);
+          }
+          li.insertAdjacentElement("afterbegin", links);
+        }
+
         const link = content.querySelector("a");
         link.href = link.href + item.id;
-        link.dataset.itunesId = item.itunesId;
 
         const img = content.querySelector("img");
         img.src += item.image;
