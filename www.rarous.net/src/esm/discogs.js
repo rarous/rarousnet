@@ -62,6 +62,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
       function itemTemplate(content, item, _section, index) {
         const link = content.querySelector("a");
         link.href = link.href + item.id;
+        link.dataset.itunesId = item.itunesId;
 
         const img = content.querySelector("img");
         img.src += item.image;
