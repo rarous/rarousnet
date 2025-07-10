@@ -110,4 +110,9 @@ export default {
   async scheduled(_event, env, ctx) {
     ctx.waitUntil(updateDiscogsCollection(env));
   },
+
+  async fetch(request, env, ctx) {
+    await updateDiscogsCollection(env);
+    return Response.json({ done: true });
+  },
 };
