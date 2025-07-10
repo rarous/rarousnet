@@ -124,7 +124,7 @@ async function updateDiscogsCollection(env) {
       if (!item.itunesId) item.itunesId = await findItunesId(item.artist.name, item.title);
     } catch (err) {}
     try {
-      if (/*!item.links &&*/ item.itunesId) item.links = await getAlbumLinks(item.itunesId);
+      if (!item.links && item.itunesId) item.links = await getAlbumLinks(item.itunesId);
     } catch (err) {}
   }
 
