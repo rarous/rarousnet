@@ -1,5 +1,7 @@
 import { parseHTML } from "linkedom/worker";
 
+const USER_AGENT = "rarous.net vinyl collection";
+
 /**
  * @param {string} page
  * @param {string} token
@@ -15,7 +17,7 @@ async function getReleases(page, token) {
     headers: {
       Accept: "application/json",
       Authorization: `Discogs token=${token}`,
-      "User-Agent": "rarous.net vinyl collection",
+      "User-Agent": USER_AGENT,
     },
   });
   return resp.json();
@@ -53,8 +55,7 @@ async function findItunesId(name, title) {
       headers: {
         Accept: "application/json",
         "Accept-Language": "en",
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+        "User-Agent": USER_AGENT,
       },
     },
   );
@@ -73,8 +74,7 @@ async function getAlbumLinks(itunesId) {
     headers: {
       Accept: "text/html",
       "Accept-Language": "en",
-      "User-Agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+      "User-Agent": USER_AGENT,
     },
   });
   if (!resp.ok) {
@@ -136,11 +136,12 @@ export default {
    * @param {Env} env
    * @param {ExecutionContext} ctx
    */
-  async scheduled(_event, env, ctx) {
+  async scheduled(event, env, ctx) {
     ctx.waitUntil(updateDiscogsCollection(env));
   },
 
   async fetch(request, env, ctx) {
+    if (new URLPattern({ pathname: "/favicon.ico" }).test(request.url)) return new Response(null, { status: 404 });
     await updateDiscogsCollection(env);
     return Response.json({ done: true });
   },
