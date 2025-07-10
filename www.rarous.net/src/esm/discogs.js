@@ -59,13 +59,13 @@ export function defDiscogs({ HTMLElement, customElements }) {
       const template = this.querySelector("template");
       const collection = this.querySelector("section");
 
-      function itemTemplate(content, item, _section, index) {
+      function itemTemplate(content, item, section, index) {
         const li = content.querySelector("li");
         li.dataset.itunesId = item.itunesId;
         if (item.links?.length) {
-          const links = document.createDocumentFragment();
+          const links = section.ownerDocument.createDocumentFragment();
           for (const link of item.links) {
-            const el = document.createElement("link");
+            const el = section.ownerDocument.createElement("link");
             el.href = link.link;
             el.title = link.title;
             el.setAttribute("itemprop", "sameAs");
