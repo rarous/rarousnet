@@ -59,7 +59,7 @@ async function findItunesId(name, title) {
     },
   );
   if (!resp.ok) {
-    console.log({ event: "search album failed", name, title, status: resp.status, response: await resp.text() });
+    console.error({ event: "search album failed", name, title, status: resp.status, response: await resp.text() });
     return null;
   }
   const data = await resp.json();
@@ -69,9 +69,16 @@ async function findItunesId(name, title) {
 
 async function getAlbumLinks(itunesId) {
   console.log({ event: "fetch album links", itunesId });
-  const resp = await fetch(`https://album.link/i/${itunesId}`);
+  const resp = await fetch(`https://album.link/i/${itunesId}`, {
+    headers: {
+      Accept: "text/html",
+      "Accept-Language": "en",
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+    },
+  });
   if (!resp.ok) {
-    console.log({ event: "fetch album links failed", itunesId, status: resp.status, response: await resp.text() });
+    console.error({ event: "fetch album links failed", itunesId, status: resp.status, response: await resp.text() });
     return null;
   }
   const html = await resp.text();
