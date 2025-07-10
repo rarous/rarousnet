@@ -1,6 +1,7 @@
 import { getSha256 } from "./sha256";
 
 function groupByType(webmentions) {
+  if (typeof Map.groupBy === "function") return Map.groupBy(webmentions, x => x["wm-property"]);
   const byType = new Map();
   for (const post of webmentions) {
     const key = post["wm-property"];
@@ -12,6 +13,7 @@ function groupByType(webmentions) {
 }
 
 function transform(el, transformations) {
+  if(!el) return;
   for (const [selector, props] of Object.entries(transformations)) {
     const target = el.querySelector(selector);
     if (typeof props === "function") {
