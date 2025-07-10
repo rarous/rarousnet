@@ -49,6 +49,14 @@ async function findItunesId(name, title) {
   console.log({ event: "search itunes id", name, title });
   const resp = await fetch(
     `https://itunes.apple.com/search?term=${encodeURIComponent(name)}+${encodeURIComponent(title)}&entity=album`,
+    {
+      headers: {
+        Accept: "application/json",
+        "Accept-Language": "en",
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+      },
+    },
   );
   if (!resp.ok) {
     console.log({ event: "search album failed", name, title, status: resp.status, response: await resp.text() });
