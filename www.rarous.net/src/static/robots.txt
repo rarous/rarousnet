@@ -1,6 +1,6 @@
 Sitemap: https://www.rarous.net/sitemap.xml
 User-agent: *
-Disallow:
+Disallow: /cdn-cgi/
 
 # Dark Visitors Robots.txt
 
