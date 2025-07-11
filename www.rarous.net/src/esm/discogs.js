@@ -61,7 +61,7 @@ export function defDiscogs({ HTMLElement, customElements }) {
 
       function itemTemplate(content, item, section, index) {
         const li = content.querySelector("li");
-        li.dataset.itunesId = item.itunesId;
+        if (item.itunesId) li.dataset.itunesId = item.itunesId;
         if (item.links?.length) {
           const links = section.ownerDocument.createDocumentFragment();
           for (const link of item.links) {
