@@ -3515,7 +3515,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/scripts@workspace:scripts"
   dependencies:
-    "@thi.ng/transducers": "npm:9.5.1"
+    "@thi.ng/transducers": "npm:9.6.0"
     csv-parse: "npm:6.0.0"
     linkedom: "npm:0.18.11"
     schema-dts: "npm:1.1.5"
@@ -3537,7 +3537,7 @@ __metadata:
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
     "@hckr_/blendid": "npm:9.6.0"
-    "@thi.ng/transducers": "npm:9.5.1"
+    "@thi.ng/transducers": "npm:9.6.0"
     "@types/gulp": "npm:4.0.17"
     "@types/undertaker-registry": "npm:1.0.4"
     open-props: "npm:1.7.16"
@@ -3972,9 +3972,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/transducers@npm:9.5.1":
-  version: 9.5.1
-  resolution: "@thi.ng/transducers@npm:9.5.1"
+"@thi.ng/transducers@npm:9.6.0":
+  version: 9.6.0
+  resolution: "@thi.ng/transducers@npm:9.6.0"
   dependencies:
     "@thi.ng/api": "npm:^8.11.30"
     "@thi.ng/arrays": "npm:^2.13.2"
@@ -3985,7 +3985,7 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.30"
     "@thi.ng/random": "npm:^4.1.21"
     "@thi.ng/timestamp": "npm:^1.1.15"
-  checksum: 10c0/3da8b5fe65d0b7ed37ff3739ee0ae1850134c7b6337b88a46dfb1286bcbbf4abbdb7679434adf00d450695f41a5b4e23e0857777392f9424cd45e1f5f68a9e2a
+  checksum: 10c0/55dbc3a8a6b5efed9d273682af403e1a91976a7f934278f1eaf7ba2b592dfe924f86b5bbd136ea07a42cf8e28583552c53544fe7a1144ba789f5dd33b07c568d
   languageName: node
   linkType: hard
 
