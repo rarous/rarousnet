@@ -1,5 +1,5 @@
 /*
-  Delegate-CH: sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;
+  Permissions-Policy: sec-ch-width="res.cloudinary.com", sec-ch-dpr="res.cloudinary.com", sec-ch-viewport-width="res.cloudinary.com"
 
 /api/*
   Access-Control-Allow-Origin: *
@@ -10,7 +10,7 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: nosnippet
-  ! Delegate-CH
+  ! Permissions-Policy
 
 /assets/esm/*
   Access-Control-Allow-Origin: *
