@@ -3,6 +3,10 @@
 <head prefix="{{ prefix or "og: http://ogp.me/ns#" }}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  {% if images %}
+  <meta http-equiv="Delegate-CH"
+        content="sec-ch-width https://res.cloudinary.com; sec-ch-dpr https://res.cloudinary.com; sec-ch-viewport-width https://res.cloudinary.com;">
+  {% endif %}
   {% block head_pragma %}{% endblock %}
   <title>{% block title %}{{ title or meta.title }}{% endblock %}</title>
   {% if images %}<link rel="preconnect" href="https://res.cloudinary.com">{% endif %}
