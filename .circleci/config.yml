@@ -5,7 +5,7 @@ version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@2.2.0
   node: circleci/node@7.1.0
-  php: circleci/php@1.1.0
+  php: circleci/php@2.0.0
   pulumi: pulumi/pulumi@2.1.0
   slack: circleci/slack@5.1.1
 
@@ -79,16 +79,16 @@ jobs:
           at: .
       - node/install:
           install-yarn: true
-      - php/install-php:
+      - php/install_php:
           version: "8.4"
-      - php/install-composer
+      - php/install_composer
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
           override-ci-command: yarn workspaces focus @rarousnet/website
-      - php/install-packages:
-          app-dir: ~/project/generator
-          install-flags: --ignore-platform-reqs --no-interaction --prefer-dist
+      - php/install_packages:
+          app_dir: ~/project/generator
+          install_flags: --ignore-platform-reqs --no-interaction --prefer-dist
       - restore_cache:
           name: Restore deps cache
           keys:
