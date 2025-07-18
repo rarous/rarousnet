@@ -10,7 +10,7 @@
   "https://bsky.app/profile/hckr.studio/post/3lhb3upuwsc2v"]}
 ---
 
-[keboola-uploader] je actor na platformě Apify, který slouží ke spolehlivému uploadu velkého množství nascrapeovaných dat
+[keboola-uploader] je actor na platformě [apify], který slouží ke spolehlivému uploadu velkého množství nascrapeovaných dat
 k dalšímu zpracování do Keboola Connection. Vznikl na základě mnohaletých zkušeností z provozu
 "Hlídače Shopů":[https://www.hlidacshopu.cz/] a dalších klientů, pro které jsme dělali datové pipeliny ve velkém scale.
 
@@ -18,12 +18,12 @@ Hlavní rysy jsou **rychlost a spolehlivost**. Actor umožňuje odladit správn�
 byl provoz co nejplynulejší. V případě chyb je na místě *retry policy*, která se chytře snaží nepovedený upload opakovat.
 
 Pokud uploadujete velké množství dat, může celý proces trvat i desítky minut nebo hodiny. A tak můžete narazit na
-"migrace Apify actorů":[https://docs.apify.com/academy/expert-scraping-with-apify/migrations-maintaining-state].
+"migrace Apify actorů":[https://docs.apify.com/academy/expert-scraping-with-apify/migrations-maintaining-state?fpr=rarous].
 Migrace zastaví aktuální běh actora a spustí ho v jiném kontejneru. *Keboola Uploader s migracemi počítá* a po migraci
 pokračuje v uploadu dat, která ještě uploadována nebyla. Nebude celý upload opakovat od začátku, ale plynule naváže tam,
 kde byl přerušený - tzn. opakuje jen nedokončenou dávku, která byla přerušená.
 
-Keboola Uploader podporuje "Apify Integration":[https://docs.apify.com/platform/integrations/actors/integration-ready-actors]
+Keboola Uploader podporuje "Apify Integration":[https://docs.apify.com/platform/integrations/actors/integration-ready-actors?fpr=rarous]
 a tak ho lze snadno zařadit do vašeho workflow. Nebo ho můžete volat přímo z vašich actorů a využít plný potenciál jeho možností.
 
 [* https://res.cloudinary.com/rarous/image/upload/dpr_auto,f_auto,q_auto,w_auto:100:800/v1738652223/weblog/keboola-uploader-integration.jpg .(Keboola Uploader Integration) *]
@@ -47,6 +47,7 @@ Pokud chcete Hlídače shopů podpořit ještě víc, **můžete si mne najmout*
 
 Napiště mi na ales.roubicek@hckr.studio. Rád vám pomůžu.
 
-[keboola-uploader]: https://apify.com/hckr-studio/keboola-uploader Keboola Uploader
+[apify]: https://apify.com?fpr=rarous Apify
+[keboola-uploader]: https://apify.com/hckr-studio/keboola-uploader?fpr=rarous Keboola Uploader
 
 

@@ -17,7 +17,7 @@ ze kterých milé e-shopy nevyšly bez ztráty kytičky.
 
 První verze rozšíření se zaměřila na trojlístek největších e-shopů Alzu, CZC a Mall.
 Lidé si ale žádali víc! Protože nákupní sezóna už je tu a kvapem se blíží svátek všech konzumentů
-— Black Friday, tak jsme si s Apify:[https://apify.com/] a Keboolou:[https://www.keboola.com/] řekli,
+— Black Friday, tak jsme si s Apify:[https://apify.com/?fpr=rarous] a Keboolou:[https://www.keboola.com/] řekli,
 že na tom trochu zamakáme. Pustili jsme se do práce a začali sbírat data z dalších 10 oblíbených e-shopů.
 A kvůli tomu jsme museli změnit architekturu celého řešení, které původně vzniklo na hackatonu…
 

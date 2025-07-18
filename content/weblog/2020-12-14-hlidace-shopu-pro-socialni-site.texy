@@ -28,7 +28,7 @@ Jak jsem se tím pral, se teprve chystám napsat.
 Pro krásný bohatý náhled je potřeba obrázek, který zaujme. Nejprve jsme připravili de facto screenshot widgetu,
 který vkládáme extenzí do stránek e-shopů. Jak si takový screenshot připravit jsem popsal
 v článku "Generování Twitter Card obrázků":[/weblog/2019/01/28/generovani-twitter-card-obrazku.html].
-K naší implementaci jsme využili "platformu Apify":[https://apify.com/], která je na automatizaci
+K naší implementaci jsme využili "platformu Apify":[https://apify.com/?fpr=rarous], která je na automatizaci
 takových věcí stvořená.
 
 <figure>
