@@ -49,6 +49,7 @@ function imagehandler(Texy\HandlerInvocation $invocation, Texy\Image $image, ?Te
 {
   $el = $invocation->proceed();
   // enables automatic resizing on cloudinary via Client Hints
+  $el->setAttribute('loading', 'lazy');
   return $el->setAttribute('sizes', '100vw');
 }
 
