@@ -3745,7 +3745,7 @@ __metadata:
     jose: "npm:6.0.12"
     linkedom: "npm:0.18.11"
     php-wasm: "npm:0.0.8"
-    qreator: "npm:9.7.1"
+    qreator: "npm:9.7.2"
   languageName: unknown
   linkType: soft
 
@@ -13446,15 +13446,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qreator@npm:9.7.1":
-  version: 9.7.1
-  resolution: "qreator@npm:9.7.1"
+"qreator@npm:9.7.2":
+  version: 9.7.2
+  resolution: "qreator@npm:9.7.2"
   dependencies:
     color-string: "npm:^1.9.1"
     js-base64: "npm:^3.7.7"
     pdf-lib: "npm:^1.17.1"
-    sharp: "npm:^0.33.5"
-  checksum: 10c0/0fb372762774d4fbe699d2aa03e9728baf98141498ed65332ffab05324d982c894fcdcad9d21392b6b12853149f7571ff8de3247b143380aa9a46364fe896351
+    sharp: "npm:^0.34.3"
+  checksum: 10c0/290fa6b10022b3011a3c2ff53df6ce55949cfc94929b03ccbd458f1ffb1bb06884c358f3315dc2f4c04fc99c4bfa5a3d7efa0c803c3bbdeb65deae8cebdc5664
   languageName: node
   linkType: hard
 
@@ -14215,7 +14215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:0.34.3, sharp@npm:^0.34.0":
+"sharp@npm:0.34.3, sharp@npm:^0.34.0, sharp@npm:^0.34.3":
   version: 0.34.3
   resolution: "sharp@npm:0.34.3"
   dependencies:
