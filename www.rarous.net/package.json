@@ -5,7 +5,7 @@
     "./*": "./src/esm/*"
   },
   "dependencies": {
-    "@thi.ng/transducers": "9.6.4"
+    "@thi.ng/transducers": "9.6.6"
   },
   "devDependencies": {
     "@hckr_/blendid": "9.6.2",
