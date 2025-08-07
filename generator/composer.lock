@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b50186532db37803a7d5c6ce0ae7ae82",
+    "content-hash": "8955a8bfaf1f044a9de182e23f33b980",
     "packages": [
         {
             "name": "texy/texy",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/texy.git",
-                "reference": "7304cb98b72958f0847375bc4d5a15086dbda3c7"
+                "reference": "ce49fed7129e9fbd0245b45dc0738ad8b5313afd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/texy/zipball/7304cb98b72958f0847375bc4d5a15086dbda3c7",
-                "reference": "7304cb98b72958f0847375bc4d5a15086dbda3c7",
+                "url": "https://api.github.com/repos/dg/texy/zipball/ce49fed7129e9fbd0245b45dc0738ad8b5313afd",
+                "reference": "ce49fed7129e9fbd0245b45dc0738ad8b5313afd",
                 "shasum": ""
             },
             "require": {
-                "php": "8.1 - 8.4"
+                "php": "8.1 - 8.5"
             },
             "conflict": {
                 "latte/latte": ">=3.0.0 <3.0.14"
@@ -30,9 +30,9 @@
                 "dg/texy": "*"
             },
             "require-dev": {
-                "latte/latte": "^2.6 || ^3.0.14",
+                "latte/latte": "^3.0.14",
                 "nette/tester": "^2.5",
-                "phpstan/phpstan": "^1",
+                "phpstan/phpstan-nette": "^2.0@stable",
                 "tracy/tracy": "^2.9"
             },
             "type": "library",
@@ -42,6 +42,9 @@
                 }
             },
             "autoload": {
+                "psr-4": {
+                    "Texy\\": "src/Texy"
+                },
                 "classmap": [
                     "src/"
                 ]
@@ -71,9 +74,9 @@
                 "wiki"
             ],
             "support": {
-                "source": "https://github.com/dg/texy/tree/v3.2.5"
+                "source": "https://github.com/dg/texy/tree/v3.2.6"
             },
-            "time": "2025-04-28T14:37:04+00:00"
+            "time": "2025-08-06T22:41:15+00:00"
         }
     ],
     "packages-dev": [],

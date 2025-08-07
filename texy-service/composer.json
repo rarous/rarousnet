@@ -2,7 +2,7 @@
   "type": "project",
   "require": {
     "php": "8.4.11",
-    "texy/texy": "3.2.5",
+    "texy/texy": "3.2.6",
     "rollbar/rollbar": "4.1.3"
   }
 }
