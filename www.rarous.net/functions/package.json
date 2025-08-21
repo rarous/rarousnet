@@ -10,7 +10,7 @@
     "cookie": "1.0.2",
     "feed": "5.1.0",
     "jose": "6.0.12",
-    "linkedom": "0.18.11",
+    "linkedom": "0.18.12",
     "php-wasm": "0.0.8",
     "qreator": "9.7.2"
   },

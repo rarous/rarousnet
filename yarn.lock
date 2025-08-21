@@ -3727,7 +3727,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250821.0"
-    linkedom: "npm:0.18.11"
+    linkedom: "npm:0.18.12"
     wrangler: "npm:4.31.0"
   languageName: unknown
   linkType: soft
@@ -3743,7 +3743,7 @@ __metadata:
     cookie: "npm:1.0.2"
     feed: "npm:5.1.0"
     jose: "npm:6.0.12"
-    linkedom: "npm:0.18.11"
+    linkedom: "npm:0.18.12"
     php-wasm: "npm:0.0.8"
     qreator: "npm:9.7.2"
   languageName: unknown
@@ -3765,7 +3765,7 @@ __metadata:
   dependencies:
     "@thi.ng/transducers": "npm:9.6.8"
     csv-parse: "npm:6.1.0"
-    linkedom: "npm:0.18.11"
+    linkedom: "npm:0.18.12"
     schema-dts: "npm:1.1.5"
   languageName: unknown
   linkType: soft
@@ -3775,7 +3775,7 @@ __metadata:
   resolution: "@rarousnet/w3b-schedule-worker@workspace:workers/w3b-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250821.0"
-    linkedom: "npm:0.18.11"
+    linkedom: "npm:0.18.12"
     wrangler: "npm:4.31.0"
   languageName: unknown
   linkType: soft
@@ -10427,16 +10427,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"linkedom@npm:0.18.11":
-  version: 0.18.11
-  resolution: "linkedom@npm:0.18.11"
+"linkedom@npm:0.18.12":
+  version: 0.18.12
+  resolution: "linkedom@npm:0.18.12"
   dependencies:
     css-select: "npm:^5.1.0"
     cssom: "npm:^0.5.0"
     html-escaper: "npm:^3.0.3"
     htmlparser2: "npm:^10.0.0"
     uhyphen: "npm:^0.2.0"
-  checksum: 10c0/20bd02f77bd35609185c578d5e14c4f6754894dfec17d5d1df2756c18314e4250cebc6521f9bdf437c4e94b61b5f7c2fa52af98f805c6b0ec459ec05d7f70756
+  peerDependencies:
+    canvas: ">= 2"
+  peerDependenciesMeta:
+    canvas:
+      optional: true
+  checksum: 10c0/d7e4f9f40e02da81effa4d462a1ea9e23c0ed2d478aa2f0a96279cf2b51b77e3e637d074c9d5d92877816ab9f4c098bcf5151c8ceb82855b60e9dbba2f91b143
   languageName: node
   linkType: hard
 
