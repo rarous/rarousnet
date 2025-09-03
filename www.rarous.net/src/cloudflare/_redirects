@@ -1,4 +1,7 @@
 /.well-known/avatar https://cdn.masto.host/indiewebsocial/accounts/avatars/110/139/507/743/366/264/original/5256bfde6f4dd39a.webp
+/.well-known/avatar.png /.well-known/avatar
+/.well-known/avatar.webp /.well-known/avatar
+/.well-known/avatar.jpg /.well-known/avatar
 /about /o-mne
 /avatar /.well-known/avatar
 /clanek/:slug /weblog/:slug 301
