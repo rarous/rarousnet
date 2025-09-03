@@ -139,7 +139,6 @@ const weblogPages = new cloudflare.PagesProject(
         r2Buckets: {
           storage: {
             name: weblogBucket.name,
-            jurisdiction: weblogBucket.jurisdiction,
           },
         },
         services: {
