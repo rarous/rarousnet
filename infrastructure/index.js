@@ -31,25 +31,63 @@ const zone = new cloudflare.Zone(
   { protect: true },
 );
 
-// new cloudflare.ZoneDnsSettings(`${domain}/zone-settings`, {
-//   zoneId: zone.id,
-//   settings: {
-//     alwaysUseHttps: "on",
-//     automaticHttpsRewrites: "on",
-//     minTlsVersion: "1.2",
-//     http3: "on",
-//     zeroRtt: "on",
-//     ipv6: "on",
-//     brotli: "on",
-//     securityHeader: {
-//       enabled: true,
-//       includeSubdomains: true,
-//       nosniff: true,
-//       preload: true,
-//       maxAge: 31536000,
-//     },
-//   },
-// });
+new cloudflare.ZoneSetting(`${domain}/zone-setting-https`, {
+  zoneId: zone.id,
+  settingId: "always_use_https",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-https-rewrites`, {
+  zoneId: zone.id,
+  settingId: "automatic_https_rewrites",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-http3`, {
+  zoneId: zone.id,
+  settingId: "http3",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-zero-rtt`, {
+  zoneId: zone.id,
+  settingId: "0rtt",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-ipv6`, {
+  zoneId: zone.id,
+  settingId: "ipv6",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-brotli`, {
+  zoneId: zone.id,
+  settingId: "brotli",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-tls13`, {
+  zoneId: zone.id,
+  settingId: "tls_1_3",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-security-header`, {
+  zoneId: zone.id,
+  settingId: "security_header",
+  value: {
+    strict_transport_security: {
+      enabled: true,
+      include_subdomains: true,
+      nosniff: true,
+      preload: true,
+      maxAge: 31536000,
+    },
+  },
+});
+
+// for more settings @see https://developers.cloudflare.com/api/resources/zones/subresources/settings/models/font_settings/#(schema)
 
 new cloudflare.DnsRecord(`${domain}/dns-record-keybase`, {
   zoneId: zone.id,
@@ -104,48 +142,25 @@ const weblogPages = new cloudflare.PagesProject(
         compatibilityDate: "2025-09-01",
         compatibilityFlags: ["nodejs_compat"],
         envVars: {
-          clientId: {
-            value: config.require("google-auth-clientId"),
-            type: "plain_text",
-          },
-          domain: { value: "hckr.studio", type: "plain_text" },
-          HOSTNAME: { value: domain, type: "plain_text" },
-          ROLLBAR_TOKEN: {
-            value: config.require("rollbar-token"),
-            type: "plain_text",
-          },
-          PRIVATE_KEY: {
-            value: config.require("private-key"),
-            type: "secret_text",
-          },
-          RAROUS_WEBLOG_CARDS_SECRET: {
-            value: config.require("weblog-cards-secret"),
-            type: "plain_text",
-          },
-          SCREENSHOTTER_SECRET: {
-            value: config.require("screenshotter-secret"),
-            type: "plain_text",
-          },
-          TURNSTILE_SECRET_KEY: { value: turnstile.secret, type: "secret_text" },
-          WEBMENTIONS_WEBHOOK_SECRET: {
-            value: config.require("webhook-secret"),
-            type: "plain_text",
-          },
+          clientId: { type: "plain_text", value: config.require("google-auth-clientId") },
+          domain: { type: "plain_text", value: "hckr.studio" },
+          HOSTNAME: { type: "plain_text", value: domain },
+          ROLLBAR_TOKEN: { type: "plain_text", value: config.require("rollbar-token") },
+          PRIVATE_KEY: { type: "secret_text", value: config.require("private-key") },
+          RAROUS_WEBLOG_CARDS_SECRET: { type: "plain_text", value: config.require("weblog-cards-secret") },
+          SCREENSHOTTER_SECRET: { type: "plain_text", value: config.require("screenshotter-secret") },
+          TURNSTILE_SECRET_KEY: { type: "secret_text", value: turnstile.secret },
+          WEBMENTIONS_WEBHOOK_SECRET: { type: "plain_text", value: config.require("webhook-secret") },
         },
         kvNamespaces: {
           weblog: { namespaceId: weblogNS.id },
           w3b: { namespaceId: w3bNS.id },
         },
         r2Buckets: {
-          storage: {
-            name: weblogBucket.name,
-          },
+          storage: { name: weblogBucket.name },
         },
         services: {
-          screenshotter: {
-            service: "hckr-screenshotter",
-            environment: "production",
-          },
+          screenshotter: { service: "hckr-screenshotter", environment: "production" },
         },
       },
     },
@@ -184,8 +199,8 @@ const discogsScheduleWorker = new cloudflare.WorkersScript(
     compatibilityDate: "2025-09-01",
     mainModule: "index.js",
     bindings: [
-      { name: "DISCOGS_TOKEN", type: "secret_text", text: config.require("discogs-apiToken") },
-      { name: "weblog", type: "kv_namespace", namespaceId: weblogNS.id },
+      { type: "secret_text", name: "DISCOGS_TOKEN", text: config.require("discogs-apiToken") },
+      { type: "kv_namespace", name: "weblog", namespaceId: weblogNS.id },
     ],
   },
   { dependsOn: [account, weblogNS] },
@@ -209,10 +224,10 @@ const w3bScheduleWorker = new cloudflare.WorkersScript(
     content: buildAsset("w3b-schedule-worker/src/index.js"),
     compatibilityDate: "2025-09-01",
     bindings: [
-      { name: "FEED_URL", type: "plain_text", text: config.require("w3b-feed-url") },
-      { name: "SEMANTIC_EXTRACTOR_SECRET", type: "secret_text", text: config.require("semantic-extractor-secret") },
-      { name: "w3b", type: "kv_namespace", namespaceId: w3bNS.id },
-      { name: "extractor", type: "service", service: "hckr-semantic-extractor", environment: "production" },
+      { type: "plain_text", name: "FEED_URL", text: config.require("w3b-feed-url") },
+      { type: "secret_text", name: "SEMANTIC_EXTRACTOR_SECRET", text: config.require("semantic-extractor-secret") },
+      { type: "kv_namespace", name: "w3b", namespaceId: w3bNS.id },
+      { type: "service", name: "extractor", service: "hckr-semantic-extractor", environment: "production" },
     ],
   },
   { dependsOn: [account, w3bNS] },
