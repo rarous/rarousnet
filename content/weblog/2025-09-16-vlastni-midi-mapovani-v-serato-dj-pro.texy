@@ -1,0 +1,204 @@
+---
+{:title "Vlastní MIDI mapování v Serato DJ Pro",
+ :description "Vlastní MIDI mapování v Serato DJ Pro je celkem zajímavá disciplína. Nezdokumentované XML, které se mění mezi jednotlivýma verzema, je jen taková třešnička na dortu.",
+ :author "Alessio Busta",
+ :tags #{"muzika", "serato", "midi mapping"},
+ :published "2025-09-016T16:17:38+02:00"
+ :syndication []}
+---
+
+Vlastní MIDI mapování v Serato DJ Pro je celkem zajímavá disciplína.
+
+Samotné UI vás nechá "namapovat základní věci":[https://support.serato.com/hc/en-us/articles/209377487-MIDI-mapping-with-Serato-DJ-Pro],
+relativně snadno, ale i tak je to dost nepřehledné - nedá se vůbec srovnávat
+s "Mapping browser v Ableton Live":[https://www.ableton.com/en/manual/midi-and-key-remote-control/#29-2-the-mapping-browser].
+Tooltipy vám moc nepomáhají, protože v MIDI módu nefungují a tak střílíte odboku
+na slepo na nějaké UI prvky, které vidíte poprvé v životě a nevíte, co od nich úplně čekat.
+
+Výsledek vašeho snažení se pak serializuje do nezdokumentovaného XML formátu, který se mezi jednotlivými verzemi mění.
+Pokud chcete pokročilé mapování, neobejdete se bez ručních zásahů do XML, protože přes UI se moc daleko nedostanete.
+Dobrým odrazovým můstkem jsou dva články na DJ Techtools: "Hacking Serato DJ’s MIDI Mapping":[https://djtechtools.com/2018/04/11/hacking-serato-djs-midi-mapping-jogwheels-touchstrips-and-modifiers/]
+a "Even More Serato DJ Pro MIDI Hacking":[https://djtechtools.com/2018/10/29/even-more-serato-dj-pro-midi-hacking-deleting-cue-points-tone-play-multiple-modifiers/].
+
+My Serato DJ Mapping
+====================
+
+Před lety jsem si pro snažší debugování vlastního mapování dvou "XONE K2":[https://www.allen-heath.com/hardware/xone-series/xonek2/]
+kontrolerů udělal nástroj "My Serato DJ Mapping":[https://serato.rarousmusic.com/].
+Ten mi trochu supluje chybějící Mapping Browser a rovnou vizualizuje na grafice HW, co je kde namapovaný, nebo naopak
+jak to můžu namapovat. Fajn na tom je, že si můžu vzít aktuální mapování v podobě XML souboru a hned vidím.
+(Mapování je zatím natvrdo v kódu, ale na možnosti uploadovat XML pomocí drag'n'drop se pomalu pracuje.)
+
+Všiml jsem si taky, že Serato rádo definice načtené z XML duplikuje a při dalším uložení vytvoří v XML pěkný bordel.
+Což není úplně nejlepšejší věc, když se to snažíte udržovat ručně. Proto mám v plánu zapracovat i automatickou deduplikaci definic.
+
+U definic taky často záleží na pořadí, obvzlášť pokud chcete mít na XONE K2 různé barvy tlačítek - je to tam řešený
+pomocí vrstev, které ve výsledku mají pro každou barvu jinou notu. Základní je červená barva a žlutá nebo zelená musí
+být v XML víc nahoře, aby přepsala červenou. Což funguje jen občas. Asi XML zpracovávají paralelně a interpretace raceuje, nebo nevim...
+
+Serato DJ 4.0
+=============
+
+Beta verze Serato DJ Pro 4.0 už je nějakou dobu venku a krom přepracované knihovny (fakt super posun) se taky rozbilo i mé
+dosavadní mapování, které nejde do 4.0 načíst, protože se změnil nezdokumentovaný formát XML. Co se změnilo se nikde nedočtete.
+
+Tak jsem se pustil do nové verze mapování, do které jsem chtěl promítnout i nějaké nápady na zlepšení, co jsem za poslední
+roky hraní dostal.
+
+Můj layout
+-----------
+
+První věc, co bych fakt chtěl, je automaticky přepnout Serato do "Stack" layoutu, otevřít widget s FX a Samplerem a zapnout Quatization.
+Zatím jsem nepřišel na to jak, toho docílit pouhým připojením HW. Ale našel jsem způsob jak toho dosáhnout zmáčknutím tlačítka.
+
+Konkrétně zmáčknutím tlačítka FX na mém mixu "Rane MP2015":[https://www.rane.com/mp2015.html],
+které stejně musím zmáčknout, aby se routoval signál do exteního efektu. V control panelu Rane MP2015, jsem musel
+zapnout MIDI port, čímž všechna kroutítka a tlačítka začnou vysílat MIDI signály.
+A rovnou jsem ho nastavil na MIDI kanál 13, protože XONE K2 mám na 14 a 15. Ať jsou blízko u sebe.
+
+Tlačítko FX je nota 7. V Seratu je pak potřeba povolit MIDI mapování u Rane MP2015 a můžeme definovat:
+
+/--code xml
+<control channel="13" event_type="Note On" control="7">
+    <userio event="click">
+      <layout_mode deck_set="Default" deck_id="0" slot_id="0">
+        <translation action_on="press" behaviour="toggle">
+          <alias name="Stack" value="0"/>
+          <alias name="Stack" value="127"/>
+        </translation>
+      </layout_mode>
+      <quantize deck_set="Default" deck_id="0" slot_id="0">
+        <translation action_on="press" behaviour="toggle"/>
+      </quantize>
+      <quantize deck_set="Default" deck_id="1" slot_id="0">
+        <translation action_on="press" behaviour="toggle"/>
+      </quantize>
+      <quantize deck_set="Default" deck_id="2" slot_id="0">
+        <translation action_on="press" behaviour="toggle"/>
+      </quantize>
+      <quantize deck_set="Default" deck_id="3" slot_id="0">
+        <translation action_on="press" behaviour="toggle"/>
+      </quantize>
+      <widget_mode deck_set="Default" deck_id="0" slot_id="4">
+        <translation action_on="press" behaviour="toggle"/>
+      </widget_mode>
+      <widget_mode deck_set="Default" deck_id="0" slot_id="3">
+        <translation action_on="press" behaviour="toggle"/>
+      </widget_mode>
+    </userio>
+    <userio event="output">
+      <widget_mode deck_set="Default" deck_id="0" slot_id="3">
+        <translation action_on="any">
+          <alias name="off" value="0"/>
+          <alias name="on" value="127"/>
+        </translation>
+      </widget_mode>
+    </userio>
+  </control>
+\--code xml
+
+`layout_mode` umožňuje cyklické přepínání layoutů Serata. Já jsem zkusil naaliasovat "Stack" na oba stavy přepínače.
+Tím pádem se přepíná mezi Stackem a Stackem = prostě se nastaví a drží. Tohle v UI naklikat nejde a název jsem
+vyzobal pomcí HEX editu z binárky Serata a alias "Stack" odtušil z UI. Další věci už jsou z klikání v UI.
+
+`quantize` je pro každý deck samostatně, ikdyž je v UI právě jedno globální tlačítko.
+
+`widget_mode` přepíná zobrazování panelů a já chici slot 3 - FX panel - a 4 - Sampler.
+
+Nakonec rozsvítíme/zhasneme LEDku tlačítka v závislosti na stavu FX panelu.
+
+Krása, ani to moc nebolelo.
+
+Přepínání velikosti Beat Jump Steps
+-----------------------------------
+V předchozím mapování jsem měl na každé šavli dedikovaná 3 tlačítka pro explicitní nastavení velikosti skoku.
+V nové verzi jsem chtěl docílit chování podobné jako na "Pioneer DDJ-1000SRT":[https://serato.com/dj/hardware/pioneer-ddj-1000srt],
+kde se to mění pomocí dvou tlačítek - jedním interval půlíté, druhým násobíte dvěma. Tohle opět nejde v UI naklikat -
+max dostanete koordináty jednotlivých tlačítek, což je dobrý začátek pro tvorbu stavového automatu.
+
+Stavový automat v Serato DJ Pro XML se dělá pomocí `case` a `conditional` elementů, pokud je `conditional` vyhodnocený
+pravdivě, tak se použije právě jeho `case`.
+
+Step Down automat vypadá tak:
+
+/--code xml
+<case>
+  <condition>
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="6" operator="equal" cmp_value="on"/>
+  </condition>
+  <userio event="click">
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="5">
+      <translation action_on="press" behaviour="explicit"/>
+    </beat_jump_step>
+  </userio>
+</case>
+<case>
+  <condition>
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="7" operator="equal" cmp_value="on"/>
+  </condition>
+  <userio event="click">
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="6">
+      <translation action_on="press" behaviour="explicit"/>
+    </beat_jump_step>
+  </userio>
+</case>
+<case>
+  <condition>
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="8" operator="equal" cmp_value="on"/>
+  </condition>
+  <userio event="click">
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="7">
+      <translation action_on="press" behaviour="explicit"/>
+    </beat_jump_step>
+  </userio>
+</case>
+<case>
+  <condition>
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="9" operator="equal" cmp_value="on"/>
+  </condition>
+  <userio event="click">
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="8">
+      <translation action_on="press" behaviour="explicit"/>
+    </beat_jump_step>
+  </userio>
+</case>
+<case>
+  <condition>
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="10" operator="equal" cmp_value="on"/>
+  </condition>
+  <userio event="click">
+    <beat_jump_step deck_set="Default" deck_id="0" slot_id="9">
+      <translation action_on="press" behaviour="explicit"/>
+    </beat_jump_step>
+  </userio>
+</case>
+\--code
+
+Slot 5 je velikost 1 beat. Šlo by jít i níž, ale u beat jumpu mi to nedává smysl skákat po zlomcích beatu.
+Step Up je analogický, jen se prohodí pořadí slotu v podmínce a cílovýho slotu.
+
+Mám rozpracovaný i stavový automat na světelnou zpětnou vazbu, jak velký skok je, aby to člověk nemusel hledat na
+displayi, ale zatím si nejsem jistý, jak snadný to bude dekódovat během hraní - mám k dispozici tři barvy a tmu na dvou
+tlačítkách.
+
+Sync
+----
+Serato má zvlášť tlačítka Sync a Sync Off, protože Sync není jen toggle, ale můžete ho mačkat víckrát za sebou - chování
+se v závislosti na konfiguraci mění. Mě trochu mrzí, že mi to bere dvě tlačítka na každý šavli a chtěl bych to mít třeba
+přes "Shift", jako je to na Pioneer DDJ-1000SRT, ale zatím se mi nedaří úspěšně pracovat s `modifier_x`, který by měl
+sloužit jako proxy signál k přepínání duálních akcí. Takže to zatím nechávám jak to je, ale budu to zkoušet dál.
+
+Budoucnost
+==========
+Do budoucna bych chtěl svůj nástroj rozšířit o možnost uploadu XML souboru pomocí drag'n'drop, deduplikaci definic
+a možnost exportu. Pak možnost definice přesouvat nahoru dolu, aby se dalo opravit špatné pořadí a asi i
+možnost definice odebírat a přidávat nové.
+
+Další věc, co mě napadla, je programový generator mapování. Ukázky výše jsou potenciální funkce, které můžu aplikovat
+v různých místech controlleru. To, že se spousta věcí opakuje pro každou šavli znovu, dává prostor pro generátor
+na základě dat.
+
+Díky změnám se uvolnilo několik tlačítek, pro které zatím nemám využití. Teď je ale potřeba otestovat nové mapování v praxi.
+Změny jsou jen evoluční a třeba se nějaká nová potřeba vyklube.
+
+
