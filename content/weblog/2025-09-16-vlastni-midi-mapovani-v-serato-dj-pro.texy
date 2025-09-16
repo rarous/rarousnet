@@ -60,54 +60,54 @@ Tlačítko FX je nota 7. V Seratu je pak potřeba povolit MIDI mapování u Rane
 
 /--code xml
 <control channel="13" event_type="Note On" control="7">
-    <userio event="click">
-      <layout_mode deck_set="Default" deck_id="0" slot_id="0">
-        <translation action_on="press" behaviour="toggle">
-          <alias name="Stack" value="0"/>
-          <alias name="Stack" value="127"/>
-        </translation>
-      </layout_mode>
-      <quantize deck_set="Default" deck_id="0" slot_id="0">
-        <translation action_on="press" behaviour="toggle"/>
-      </quantize>
-      <quantize deck_set="Default" deck_id="1" slot_id="0">
-        <translation action_on="press" behaviour="toggle"/>
-      </quantize>
-      <quantize deck_set="Default" deck_id="2" slot_id="0">
-        <translation action_on="press" behaviour="toggle"/>
-      </quantize>
-      <quantize deck_set="Default" deck_id="3" slot_id="0">
-        <translation action_on="press" behaviour="toggle"/>
-      </quantize>
-      <widget_mode deck_set="Default" deck_id="0" slot_id="4">
-        <translation action_on="press" behaviour="toggle"/>
-      </widget_mode>
-      <widget_mode deck_set="Default" deck_id="0" slot_id="3">
-        <translation action_on="press" behaviour="toggle"/>
-      </widget_mode>
-    </userio>
-    <userio event="output">
-      <widget_mode deck_set="Default" deck_id="0" slot_id="3">
-        <translation action_on="any">
-          <alias name="off" value="0"/>
-          <alias name="on" value="127"/>
-        </translation>
-      </widget_mode>
-    </userio>
-  </control>
+  <userio event="click">
+    <layout_mode deck_set="Default" deck_id="0" slot_id="0">
+      <translation action_on="press" behaviour="toggle">
+        <alias name="Stack" value="0"/>
+        <alias name="Stack" value="127"/>
+      </translation>
+    </layout_mode>
+    <quantize deck_set="Default" deck_id="0" slot_id="0">
+      <translation action_on="press" behaviour="toggle"/>
+    </quantize>
+    <quantize deck_set="Default" deck_id="1" slot_id="0">
+      <translation action_on="press" behaviour="toggle"/>
+    </quantize>
+    <quantize deck_set="Default" deck_id="2" slot_id="0">
+      <translation action_on="press" behaviour="toggle"/>
+    </quantize>
+    <quantize deck_set="Default" deck_id="3" slot_id="0">
+      <translation action_on="press" behaviour="toggle"/>
+    </quantize>
+    <widget_mode deck_set="Default" deck_id="0" slot_id="4">
+      <translation action_on="press" behaviour="toggle"/>
+    </widget_mode>
+    <widget_mode deck_set="Default" deck_id="0" slot_id="3">
+      <translation action_on="press" behaviour="toggle"/>
+    </widget_mode>
+  </userio>
+  <userio event="output">
+    <widget_mode deck_set="Default" deck_id="0" slot_id="3">
+      <translation action_on="any">
+        <alias name="off" value="0"/>
+        <alias name="on" value="127"/>
+      </translation>
+    </widget_mode>
+  </userio>
+</control>
 \--code xml
 
 `layout_mode` umožňuje cyklické přepínání layoutů Serata. Já jsem zkusil naaliasovat "Stack" na oba stavy přepínače.
 Tím pádem se přepíná mezi Stackem a Stackem = prostě se nastaví a drží. Tohle v UI naklikat nejde a název jsem
-vyzobal pomcí HEX editu z binárky Serata a alias "Stack" odtušil z UI. Další věci už jsou z klikání v UI.
+vyzobal pomocí HEX editu z binárky Serata a alias "Stack" odtušil z UI. Další věci už jsou z klikání v UI.
 
-`quantize` je pro každý deck samostatně, ikdyž je v UI právě jedno globální tlačítko.
+`quantize` je pro každý deck samostatně i když je v UI právě jedno globální tlačítko.
 
 `widget_mode` přepíná zobrazování panelů a já chici slot 3 - FX panel - a 4 - Sampler.
 
 Nakonec rozsvítíme/zhasneme LEDku tlačítka v závislosti na stavu FX panelu.
 
-Krása, ani to moc nebolelo.
+Krása. Ani to moc nebolelo.
 
 Přepínání velikosti Beat Jump Steps
 -----------------------------------
@@ -116,10 +116,10 @@ V nové verzi jsem chtěl docílit chování podobné jako na "Pioneer DDJ-1000S
 kde se to mění pomocí dvou tlačítek - jedním interval půlíté, druhým násobíte dvěma. Tohle opět nejde v UI naklikat -
 max dostanete koordináty jednotlivých tlačítek, což je dobrý začátek pro tvorbu stavového automatu.
 
-Stavový automat v Serato DJ Pro XML se dělá pomocí `case` a `conditional` elementů, pokud je `conditional` vyhodnocený
-pravdivě, tak se použije právě jeho `case`.
+Stavový automat v Serato DJ Pro XML se dělá pomocí `case` a `condition` elementů, pokud je `condition` vyhodnocená
+pravdivě, tak se použije právě její `case`.
 
-Step Down automat vypadá tak:
+**Step Down** automat vypadá tak:
 
 /--code xml
 <case>
@@ -175,7 +175,7 @@ Step Down automat vypadá tak:
 \--code
 
 Slot 5 je velikost 1 beat. Šlo by jít i níž, ale u beat jumpu mi to nedává smysl skákat po zlomcích beatu.
-Step Up je analogický, jen se prohodí pořadí slotu v podmínce a cílovýho slotu.
+**Step Up** je analogický, jen se prohodí pořadí slotu v podmínce a cílovýho slotu.
 
 Mám rozpracovaný i stavový automat na světelnou zpětnou vazbu, jak velký skok je, aby to člověk nemusel hledat na
 displayi, ale zatím si nejsem jistý, jak snadný to bude dekódovat během hraní - mám k dispozici tři barvy a tmu na dvou
@@ -183,9 +183,9 @@ tlačítkách.
 
 Sync
 ----
-Serato má zvlášť tlačítka Sync a Sync Off, protože Sync není jen toggle, ale můžete ho mačkat víckrát za sebou - chování
+Serato má zvlášť tlačítka `Sync` a `Sync Off`, protože Sync není jen toggle, ale můžete ho mačkat víckrát za sebou - chování
 se v závislosti na konfiguraci mění. Mě trochu mrzí, že mi to bere dvě tlačítka na každý šavli a chtěl bych to mít třeba
-přes "Shift", jako je to na Pioneer DDJ-1000SRT, ale zatím se mi nedaří úspěšně pracovat s `modifier_x`, který by měl
+přes `Shift`, jako je to na Pioneer DDJ-1000SRT, ale zatím se mi nedaří úspěšně pracovat s `modifier_x`, který by měl
 sloužit jako proxy signál k přepínání duálních akcí. Takže to zatím nechávám jak to je, ale budu to zkoušet dál.
 
 Budoucnost
