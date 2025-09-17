@@ -7,9 +7,8 @@
  :syndication ["https://indieweb.social/@alesroubicek/115214831447861026"]}
 ---
 
-Vlastní MIDI mapování v Serato DJ Pro je celkem zajímavá disciplína.
-
-Samotné UI vás nechá "namapovat základní věci":[https://support.serato.com/hc/en-us/articles/209377487-MIDI-mapping-with-Serato-DJ-Pro],
+Vlastní MIDI mapování v Serato DJ Pro je celkem zajímavá disciplína. Samotné UI vás nechá
+"namapovat základní věci":[https://support.serato.com/hc/en-us/articles/209377487-MIDI-mapping-with-Serato-DJ-Pro]
 relativně snadno, ale i tak je to dost nepřehledné - nedá se vůbec srovnávat
 s "Mapping browser v Ableton Live":[https://www.ableton.com/en/manual/midi-and-key-remote-control/#29-2-the-mapping-browser].
 Tooltipy vám moc nepomáhají, protože v MIDI módu nefungují a tak střílíte odboku
@@ -17,7 +16,8 @@ na slepo na nějaké UI prvky, které vidíte poprvé v životě a nevíte, co o
 
 Výsledek vašeho snažení se pak serializuje do nezdokumentovaného XML formátu, který se mezi jednotlivými verzemi mění.
 Pokud chcete pokročilé mapování, neobejdete se bez ručních zásahů do XML, protože přes UI se moc daleko nedostanete.
-Dobrým odrazovým můstkem jsou dva články na DJ Techtools: "Hacking Serato DJ’s MIDI Mapping":[https://djtechtools.com/2018/04/11/hacking-serato-djs-midi-mapping-jogwheels-touchstrips-and-modifiers/]
+Dobrým odrazovým můstkem jsou dva články na DJ Techtools:
+"Hacking Serato DJ’s MIDI Mapping":[https://djtechtools.com/2018/04/11/hacking-serato-djs-midi-mapping-jogwheels-touchstrips-and-modifiers/]
 a "Even More Serato DJ Pro MIDI Hacking":[https://djtechtools.com/2018/10/29/even-more-serato-dj-pro-midi-hacking-deleting-cue-points-tone-play-multiple-modifiers/].
 
 My Serato DJ Mapping
