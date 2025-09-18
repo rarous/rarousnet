@@ -4,7 +4,9 @@
  :author "Alessio Busta",
  :tags #{"muzika", "serato", "midi mapping"},
  :published "2025-09-16T16:17:38+02:00"
- :syndication ["https://indieweb.social/@alesroubicek/115214831447861026"]}
+ :syndication
+ ["https://indieweb.social/@alesroubicek/115214831447861026"
+  "https://x.com/alessiobusta/status/1968581533905662404"]}
 ---
 
 Vlastní MIDI mapování v Serato DJ Pro je celkem zajímavá disciplína. Samotné UI vás nechá
