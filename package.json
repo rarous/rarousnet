@@ -49,5 +49,5 @@
     "www.rarous.net",
     "www.rarous.net/functions"
   ],
-  "packageManager": "yarn@4.9.4"
+  "packageManager": "yarn@4.10.0"
 }
