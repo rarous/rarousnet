@@ -8,7 +8,7 @@
     "@thi.ng/transducers": "9.6.10"
   },
   "devDependencies": {
-    "@hckr_/blendid": "9.6.4",
+    "@hckr_/blendid": "9.6.5",
     "@types/gulp": "4.0.17",
     "@types/undertaker-registry": "1.0.4",
     "open-props": "1.7.16",
