@@ -7,6 +7,6 @@
   "dependencies": {
     "@pulumi/cloudflare": "6.10.0",
     "@pulumi/pulumi": "3.202.0",
-    "esbuild": "0.25.10"
+    "esbuild": "0.25.11"
   }
 }
