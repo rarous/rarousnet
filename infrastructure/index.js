@@ -61,15 +61,21 @@ new cloudflare.ZoneSetting(`${domain}/zone-setting-ipv6`, {
   value: "on",
 });
 
-new cloudflare.ZoneSetting(`${domain}/zone-setting-brotli`, {
+new cloudflare.ZoneSetting(`${domain}/zone-setting-min-tls`, {
   zoneId: zone.id,
-  settingId: "brotli",
-  value: "on",
+  settingId: "min_tls_version",
+  value: "1.2",
 });
 
 new cloudflare.ZoneSetting(`${domain}/zone-setting-tls13`, {
   zoneId: zone.id,
   settingId: "tls_1_3",
+  value: "on",
+});
+
+new cloudflare.ZoneSetting(`${domain}/zone-setting-brotli`, {
+  zoneId: zone.id,
+  settingId: "brotli",
   value: "on",
 });
 
