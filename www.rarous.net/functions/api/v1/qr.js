@@ -1,7 +1,7 @@
 import { getSVG } from "qreator/lib/svg";
 
 /**
- * Generates QR code for given `text`. `color`, `bgColor` and `borderRadius` can be changed via GET parameters.
+ * Generates QR code for a given `text`. `color`, `bgColor` and `borderRadius` can be changed via GET parameters.
  * @param {EventContext<Env>} context
  * @returns {Promise<Response>}
  */
