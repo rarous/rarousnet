@@ -11,7 +11,7 @@ export async function onRequestGet({ env }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(entry)
+      body: JSON.stringify(Object.assign(entry, { link: undefined, url: entry.link }))
     });
   }
   return new Response();
