@@ -4055,7 +4055,7 @@ __metadata:
   dependencies:
     "@hckr_/blendid": "npm:9.6.5"
     "@thi.ng/transducers": "npm:9.6.10"
-    "@types/gulp": "npm:4.0.17"
+    "@types/gulp": "npm:4.0.18"
     "@types/undertaker-registry": "npm:1.0.4"
     open-props: "npm:1.7.16"
     pagefind: "npm:1.4.0"
@@ -4753,15 +4753,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/gulp@npm:4.0.17":
-  version: 4.0.17
-  resolution: "@types/gulp@npm:4.0.17"
+"@types/gulp@npm:4.0.18":
+  version: 4.0.18
+  resolution: "@types/gulp@npm:4.0.18"
   dependencies:
     "@types/node": "npm:*"
     "@types/undertaker": "npm:>=1.2.6"
     "@types/vinyl-fs": "npm:*"
     chokidar: "npm:^3.3.1"
-  checksum: 10c0/20c196cd30321619e6b43a30bd6b3f9d92ed367adf4ace5c880f6bcb9e525bbf10a5dcc4957f3be8690c3b87a8cf19d9f7c2ef61c4d29a1d9371f4ceefbd800a
+  checksum: 10c0/fab2adc1d71e69347f846413f8f2f234f01b8d27ebbd7275b3645a33e83edfc2592632e4b3c57fbef3e3c6e1221d33b898086a5e552be950117f6359a3d9adac
   languageName: node
   linkType: hard
 
