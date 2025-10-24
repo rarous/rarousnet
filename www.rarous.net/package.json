@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@hckr_/blendid": "9.6.5",
-    "@types/gulp": "4.0.17",
+    "@types/gulp": "4.0.18",
     "@types/undertaker-registry": "1.0.4",
     "open-props": "1.7.16",
     "pagefind": "1.4.0",
