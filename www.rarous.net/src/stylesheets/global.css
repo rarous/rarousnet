@@ -205,6 +205,11 @@ h4 {
   margin-block: 1.5lh 0.25lh;
 }
 
+:is(h1, h2, h3, h4) em {
+  font-variation-settings: "ital" 10;
+  font-weight: 400;
+}
+
 p, ul, ol, dl {
   font-family: var(--content-font);
   line-height: 1.5;
