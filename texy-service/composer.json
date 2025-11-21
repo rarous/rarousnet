@@ -1,7 +1,7 @@
 {
   "type": "project",
   "require": {
-    "php": "8.4.14",
+    "php": "8.5.0",
     "texy/texy": "3.2.6",
     "rollbar/rollbar": "4.1.4"
   }
