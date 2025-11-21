@@ -1317,10 +1317,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:4.20251120.0":
-  version: 4.20251120.0
-  resolution: "@cloudflare/workers-types@npm:4.20251120.0"
-  checksum: 10c0/9a14d3caff3aa69175948afb94d71fd22fef65310e6224485a7c1ce412912f3e8df7b7970cc8783085047e26209966981b02105b89a049c75c6feb29fea01c1a
+"@cloudflare/workers-types@npm:4.20251121.0":
+  version: 4.20251121.0
+  resolution: "@cloudflare/workers-types@npm:4.20251121.0"
+  checksum: 10c0/8d6423ed0e293820ef34d8294ca7be38d48347bd2c660a863b3f88ff147e9e12ac37e86a9df7542f6ec40011c0b48d8c927a4d96d11eeb4844556e99005acaaf
   languageName: node
   linkType: hard
 
@@ -3995,7 +3995,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20251120.0"
+    "@cloudflare/workers-types": "npm:4.20251121.0"
     linkedom: "npm:0.18.12"
     wrangler: "npm:4.49.1"
   languageName: unknown
@@ -4006,7 +4006,7 @@ __metadata:
   resolution: "@rarousnet/functions@workspace:www.rarous.net/functions"
   dependencies:
     "@cloudflare/pages-plugin-turnstile": "npm:1.0.2"
-    "@cloudflare/workers-types": "npm:4.20251120.0"
+    "@cloudflare/workers-types": "npm:4.20251121.0"
     "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.4"
     "@rarousnet/website": "workspace:*"
     cookie: "npm:1.0.2"
@@ -4043,7 +4043,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/w3b-schedule-worker@workspace:workers/w3b-schedule-worker"
   dependencies:
-    "@cloudflare/workers-types": "npm:4.20251120.0"
+    "@cloudflare/workers-types": "npm:4.20251121.0"
     linkedom: "npm:0.18.12"
     wrangler: "npm:4.49.1"
   languageName: unknown
