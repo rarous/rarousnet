@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "450b98b6e85d6f12183cac930e1efac6",
+    "content-hash": "d31ff0798bf4d05949f124c784f55cd6",
     "packages": [
         {
             "name": "texy/texy",
-            "version": "v3.2.6",
+            "version": "v3.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/texy.git",
-                "reference": "ce49fed7129e9fbd0245b45dc0738ad8b5313afd"
+                "reference": "b2983ca40a29e8420d53cfd48a3a262d4283d501"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/texy/zipball/ce49fed7129e9fbd0245b45dc0738ad8b5313afd",
-                "reference": "ce49fed7129e9fbd0245b45dc0738ad8b5313afd",
+                "url": "https://api.github.com/repos/dg/texy/zipball/b2983ca40a29e8420d53cfd48a3a262d4283d501",
+                "reference": "b2983ca40a29e8420d53cfd48a3a262d4283d501",
                 "shasum": ""
             },
             "require": {
@@ -62,7 +62,7 @@
                 }
             ],
             "description": "Texy converts plain text in easy to read Texy syntax into structurally valid (X)HTML. It supports adding of images, links, nested lists, tables and has full support for CSS. Texy supports hyphenation of long words (which reflects language rules), clickable emails and URL (emails are obfuscated against spambots), national typographic single and double quotation marks, ellipses, em dashes, dimension sign, nonbreakable spaces (e.g. in phone numbers), acronyms, arrows and many others. Texy code can optionally contain HTML tags.",
-            "homepage": "https://texy.info",
+            "homepage": "https://texy.nette.org",
             "keywords": [
                 "html",
                 "markdown",
@@ -74,9 +74,9 @@
                 "wiki"
             ],
             "support": {
-                "source": "https://github.com/dg/texy/tree/v3.2.6"
+                "source": "https://github.com/dg/texy/tree/v3.2.7"
             },
-            "time": "2025-08-06T22:41:15+00:00"
+            "time": "2025-11-23T20:42:31+00:00"
         }
     ],
     "packages-dev": [],
