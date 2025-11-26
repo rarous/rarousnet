@@ -3886,9 +3886,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.208.0":
-  version: 3.208.0
-  resolution: "@pulumi/pulumi@npm:3.208.0"
+"@pulumi/pulumi@npm:3.209.0":
+  version: 3.209.0
+  resolution: "@pulumi/pulumi@npm:3.209.0"
   dependencies:
     "@grpc/grpc-js": "npm:^1.10.1"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -3908,7 +3908,7 @@ __metadata:
     google-protobuf: "npm:^3.21.4"
     got: "npm:^11.8.6"
     ini: "npm:^2.0.0"
-    js-yaml: "npm:^3.14.0"
+    js-yaml: "npm:^3.14.2"
     minimist: "npm:^1.2.6"
     normalize-package-data: "npm:^6.0.0"
     picomatch: "npm:^3.0.1"
@@ -3926,7 +3926,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/4371124ffd592596685e4acec90dd616f1981903ffcab52447887d3ffb9c7febaf627c6c2b61a0ce8243b948c461a5c829543bcdc8365583944e1ada28da89b1
+  checksum: 10c0/9f9958feecd488143c9cd2797f191a9e93af86d079df9de8e94002b6eb22953e435a84107c7bc7b257ad4b8dae2f0a293c518e5f4ea367197a2ce27a5fabf867
   languageName: node
   linkType: hard
 
@@ -4023,7 +4023,7 @@ __metadata:
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
     "@pulumi/cloudflare": "npm:6.11.0"
-    "@pulumi/pulumi": "npm:3.208.0"
+    "@pulumi/pulumi": "npm:3.209.0"
     esbuild: "npm:0.27.0"
   languageName: unknown
   linkType: soft
@@ -10304,6 +10304,18 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: 10c0/6746baaaeac312c4db8e75fa22331d9a04cccb7792d126ed8ce6a0bbcfef0cedaddd0c5098fade53db067c09fe00aa1c957674b4765610a8b06a5a189e46433b
+  languageName: node
+  linkType: hard
+
+"js-yaml@npm:^3.14.2":
+  version: 3.14.2
+  resolution: "js-yaml@npm:3.14.2"
+  dependencies:
+    argparse: "npm:^1.0.7"
+    esprima: "npm:^4.0.0"
+  bin:
+    js-yaml: bin/js-yaml.js
+  checksum: 10c0/3261f25912f5dd76605e5993d0a126c2b6c346311885d3c483706cd722efe34f697ea0331f654ce27c00a42b426e524518ec89d65ed02ea47df8ad26dcc8ce69
   languageName: node
   linkType: hard
 
