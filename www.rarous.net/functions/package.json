@@ -7,7 +7,7 @@
     "@cloudflare/pages-plugin-turnstile": "1.0.2",
     "@hckr_/cloudflare-pages-plugin-rollbar": "1.1.4",
     "@rarousnet/website": "workspace:*",
-    "cookie": "1.1.0",
+    "cookie": "1.1.1",
     "feed": "5.1.0",
     "jose": "6.1.2",
     "linkedom": "0.18.12",
