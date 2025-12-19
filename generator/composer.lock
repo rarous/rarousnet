@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d31ff0798bf4d05949f124c784f55cd6",
+    "content-hash": "3897cf5eab03fc3c693d1ef9ffd934b7",
     "packages": [
         {
             "name": "texy/texy",
@@ -86,7 +86,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "8.5.0"
+        "php": "8.5.1"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
