@@ -144,8 +144,9 @@ const weblogPages = new cloudflare.PagesProject(
       destinationDir: "../.gryphoon/dist",
     },
     deploymentConfigs: {
+      preview: {},
       production: {
-        compatibilityDate: "2025-09-01",
+        compatibilityDate: "2026-01-01",
         compatibilityFlags: ["nodejs_compat"],
         envVars: {
           clientId: { type: "plain_text", value: config.require("google-auth-clientId") },
