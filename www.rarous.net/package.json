@@ -8,7 +8,7 @@
     "@thi.ng/transducers": "9.6.20"
   },
   "devDependencies": {
-    "@hckr_/blendid": "9.6.7",
+    "@hckr_/blendid": "9.6.8",
     "@types/gulp": "4.0.18",
     "@types/undertaker-registry": "1.0.4",
     "open-props": "1.7.17",
@@ -16,7 +16,7 @@
     "postcss-jit-props": "1.0.16",
     "undertaker-registry": "2.0.0",
     "vitest": "4.0.16",
-    "wrangler": "4.54.0"
+    "wrangler": "4.57.0"
   },
   "resolutions": {
     "esbuild": "0.27.2"
