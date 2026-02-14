@@ -1,7 +1,7 @@
 {
   "type": "project",
   "require": {
-    "php": "8.5.2",
+    "php": "8.5.3",
     "texy/texy": "3.2.7"
   }
 }
