@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f4dfa6147b64f9f80e0affcf0c701ad",
+    "content-hash": "e291eff31a1ba2c09e948ad6cee37086",
     "packages": [
         {
             "name": "texy/texy",
-            "version": "v3.2.7",
+            "version": "v3.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/texy.git",
-                "reference": "b2983ca40a29e8420d53cfd48a3a262d4283d501"
+                "reference": "77daa3f6d881d86bf0901472c1c4299cdca85a2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/texy/zipball/b2983ca40a29e8420d53cfd48a3a262d4283d501",
-                "reference": "b2983ca40a29e8420d53cfd48a3a262d4283d501",
+                "url": "https://api.github.com/repos/dg/texy/zipball/77daa3f6d881d86bf0901472c1c4299cdca85a2d",
+                "reference": "77daa3f6d881d86bf0901472c1c4299cdca85a2d",
                 "shasum": ""
             },
             "require": {
@@ -31,8 +31,10 @@
             },
             "require-dev": {
                 "latte/latte": "^3.0.14",
+                "nette/phpstan-rules": "^1.0",
                 "nette/tester": "^2.5",
-                "phpstan/phpstan-nette": "^2.0@stable",
+                "phpstan/extension-installer": "^1.4@stable",
+                "phpstan/phpstan": "^2.1@stable",
                 "tracy/tracy": "^2.9"
             },
             "type": "library",
@@ -74,9 +76,9 @@
                 "wiki"
             ],
             "support": {
-                "source": "https://github.com/dg/texy/tree/v3.2.7"
+                "source": "https://github.com/dg/texy/tree/v3.2.8"
             },
-            "time": "2025-11-23T20:42:31+00:00"
+            "time": "2026-02-23T02:30:07+00:00"
         }
     ],
     "packages-dev": [],
