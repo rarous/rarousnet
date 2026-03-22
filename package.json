@@ -12,7 +12,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.8",
     "@vitest/ui": "4.0.18",
-    "ava": "6.4.1",
+    "ava": "7.0.0",
     "broken-link-checker-local": "0.2.1",
     "lighthouse": "13.0.3",
     "local-web-server": "5.4.0",
