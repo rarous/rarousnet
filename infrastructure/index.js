@@ -144,8 +144,9 @@ const weblogPages = new cloudflare.PagesProject(
       destinationDir: "../.gryphoon/dist",
     },
     deploymentConfigs: {
-      preview: {},
+      preview: { failOpen: false },
       production: {
+        failOpen: false,
         compatibilityDate: "2026-01-01",
         compatibilityFlags: ["nodejs_compat"],
         envVars: {
