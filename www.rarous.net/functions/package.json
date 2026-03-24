@@ -12,7 +12,7 @@
     "jose": "6.2.2",
     "linkedom": "0.18.12",
     "php-wasm": "0.0.8",
-    "qreator": "9.7.2"
+    "qreator": "9.9.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20260317.1"

@@ -4298,7 +4298,7 @@ __metadata:
     jose: "npm:6.2.2"
     linkedom: "npm:0.18.12"
     php-wasm: "npm:0.0.8"
-    qreator: "npm:9.7.2"
+    qreator: "npm:9.9.0"
   languageName: unknown
   linkType: soft
 
@@ -14791,15 +14791,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qreator@npm:9.7.2":
-  version: 9.7.2
-  resolution: "qreator@npm:9.7.2"
+"qreator@npm:9.9.0":
+  version: 9.9.0
+  resolution: "qreator@npm:9.9.0"
   dependencies:
     color-string: "npm:^1.9.1"
     js-base64: "npm:^3.7.7"
     pdf-lib: "npm:^1.17.1"
     sharp: "npm:^0.34.3"
-  checksum: 10c0/290fa6b10022b3011a3c2ff53df6ce55949cfc94929b03ccbd458f1ffb1bb06884c358f3315dc2f4c04fc99c4bfa5a3d7efa0c803c3bbdeb65deae8cebdc5664
+  checksum: 10c0/e1cc442763723d4dc1a424ec94f5d92ae03c65c5330bc1507f1c24e8412e9f18a9b7205430e9e30cadedbf44422b76d2ebc2effb107845f27426678388aec0d8
   languageName: node
   linkType: hard
 
