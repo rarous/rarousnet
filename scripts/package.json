@@ -6,7 +6,7 @@
   "dependencies": {
     "@thi.ng/transducers": "9.6.30",
     "linkedom": "0.18.12",
-    "schema-dts": "1.1.5"
+    "schema-dts": "2.0.0"
   },
   "devDependencies": {
     "csv-parse": "6.2.1"
