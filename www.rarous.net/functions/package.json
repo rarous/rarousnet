@@ -8,7 +8,7 @@
     "@hckr_/cloudflare-pages-plugin-rollbar": "1.1.4",
     "@rarousnet/website": "workspace:*",
     "cookie": "1.1.1",
-    "feed": "5.2.0",
+    "feed": "5.2.1",
     "jose": "6.2.2",
     "linkedom": "0.18.12",
     "php-wasm": "0.0.8",
