@@ -18,7 +18,9 @@ body > footer {
 
   @media (hover: hover) {
     filter: saturate(0.2);
-    transition: filter 200ms var(--ease-in-out-3);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: filter 200ms var(--ease-in-out-3);
+    }
 
     &:hover,
     &:focus {

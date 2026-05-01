@@ -12,7 +12,9 @@
   padding: 0;
   will-change: translate;
   translate: 0 0;
-  transition: translate 800ms var(--ease-bounce-3);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: translate 800ms var(--ease-bounce-3);
+  }
 
   &:hover {
     translate: 0 -7px;

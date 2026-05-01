@@ -446,7 +446,9 @@ article footer {
     text-align: left;
     z-index: 0;
     translate: 2rem calc(var(--boost) * 1.75rem);
-    transition: translate 350ms var(--ease-spring-3);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: translate 350ms var(--ease-spring-3);
+    }
 
     &:hover {
       translate: 2rem 1rem;
