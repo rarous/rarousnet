@@ -4196,18 +4196,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/cloudflare@npm:6.13.0":
-  version: 6.13.0
-  resolution: "@pulumi/cloudflare@npm:6.13.0"
+"@pulumi/cloudflare@npm:6.15.0":
+  version: 6.15.0
+  resolution: "@pulumi/cloudflare@npm:6.15.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.142.0"
-  checksum: 10c0/cd81609e2d37f798b64507591b819218598cbbd599da15f0676b5ddd5d0a48cfd385d918a7971f726d2a2232f12df68d0614595301bfc87a8091f2baaea6b7fe
+  checksum: 10c0/209792534bfdbaf264af2386aa0c9c59640d99a84ff55c03e7f2556f59bbc328a7a88a7e48fe6e27bbafc8fade9309b06f6ea8c9635dfeb88598f63a30b17981
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.228.0":
-  version: 3.228.0
-  resolution: "@pulumi/pulumi@npm:3.228.0"
+"@pulumi/pulumi@npm:3.234.0":
+  version: 3.234.0
+  resolution: "@pulumi/pulumi@npm:3.234.0"
   dependencies:
     "@grpc/grpc-js": "npm:^1.10.1"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -4226,13 +4226,11 @@ __metadata:
     execa: "npm:^5.1.0"
     fdir: "npm:^6.5.0"
     google-protobuf: "npm:^3.21.4"
-    got: "npm:^11.8.6"
     ini: "npm:^2.0.0"
     js-yaml: "npm:^3.14.2"
     minimist: "npm:^1.2.6"
     normalize-package-data: "npm:^6.0.0"
-    package-directory: "npm:^8.1.0"
-    picomatch: "npm:^3.0.1"
+    picomatch: "npm:^4.0.0"
     require-from-string: "npm:^2.0.1"
     semver: "npm:^7.5.2"
     source-map-support: "npm:^0.5.6"
@@ -4240,13 +4238,13 @@ __metadata:
     upath: "npm:^1.1.0"
   peerDependencies:
     ts-node: ">= 7.0.1 < 12"
-    typescript: ">= 3.8.3 < 6"
+    typescript: ">= 3.8.3 < 7"
   peerDependenciesMeta:
     ts-node:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/363fa9ba818330dd63cbc516b67865b031e7e4bf20e153b54ef9f464b6afc6bfb47f404d8d6751118be2101df09b9703548a34590a735efc9d355c8f848f1a0b
+  checksum: 10c0/ad7f0eb21050744e858b2fe0780c7530173c31cc6ca701f5c9c29fd6168489ee793672968cc92d444e16bc9369d2bfd44a3d8ed171b69b0ff30d243f32edc9bb
   languageName: node
   linkType: hard
 
@@ -4342,8 +4340,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@pulumi/cloudflare": "npm:6.13.0"
-    "@pulumi/pulumi": "npm:3.228.0"
+    "@pulumi/cloudflare": "npm:6.15.0"
+    "@pulumi/pulumi": "npm:3.234.0"
     esbuild: "npm:0.27.4"
   languageName: unknown
   linkType: soft
@@ -13252,15 +13250,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"package-directory@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "package-directory@npm:8.1.0"
-  dependencies:
-    find-up-simple: "npm:^1.0.0"
-  checksum: 10c0/29eee99ac9979dc852bbaab64968123ba44abaa8f2d49add065101612db81f3d4ac1eb27df3b1893878cd67dd8b5c36186876a139ec4fdd6a755abc810ce2749
-  languageName: node
-  linkType: hard
-
 "package-json-from-dist@npm:^1.0.0":
   version: 1.0.1
   resolution: "package-json-from-dist@npm:1.0.1"
@@ -13691,6 +13680,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"picomatch@npm:^4.0.0, picomatch@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "picomatch@npm:4.0.4"
+  checksum: 10c0/e2c6023372cc7b5764719a5ffb9da0f8e781212fa7ca4bd0562db929df8e117460f00dff3cb7509dacfc06b86de924b247f504d0ce1806a37fac4633081466b0
+  languageName: node
+  linkType: hard
+
 "picomatch@npm:^4.0.2":
   version: 4.0.2
   resolution: "picomatch@npm:4.0.2"
@@ -13702,13 +13698,6 @@ __metadata:
   version: 4.0.3
   resolution: "picomatch@npm:4.0.3"
   checksum: 10c0/9582c951e95eebee5434f59e426cddd228a7b97a0161a375aed4be244bd3fe8e3a31b846808ea14ef2c8a2527a6eeab7b3946a67d5979e81694654f939473ae2
-  languageName: node
-  linkType: hard
-
-"picomatch@npm:^4.0.4":
-  version: 4.0.4
-  resolution: "picomatch@npm:4.0.4"
-  checksum: 10c0/e2c6023372cc7b5764719a5ffb9da0f8e781212fa7ca4bd0562db929df8e117460f00dff3cb7509dacfc06b86de924b247f504d0ce1806a37fac4633081466b0
   languageName: node
   linkType: hard
 
