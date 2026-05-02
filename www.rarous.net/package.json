@@ -12,7 +12,7 @@
     "@types/gulp": "4.0.18",
     "@types/undertaker-registry": "1.0.4",
     "open-props": "1.7.23",
-    "pagefind": "1.4.0",
+    "pagefind": "1.5.2",
     "postcss-jit-props": "1.0.16",
     "undertaker-registry": "2.0.0",
     "vitest": "4.1.4",
