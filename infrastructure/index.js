@@ -16,7 +16,6 @@ const account = new cloudflare.Account(
     accountId: config.require("cloudflare-accountId"),
     name: "rarous",
     enforceTwofactor: true,
-    type: "standard",
   },
   { protect: true },
 );
