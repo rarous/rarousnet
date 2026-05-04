@@ -15,7 +15,7 @@
     "pagefind": "1.5.2",
     "postcss-jit-props": "1.0.16",
     "undertaker-registry": "2.0.0",
-    "vitest": "4.1.4",
+    "vitest": "4.1.5",
     "wrangler": "4.87.0"
   },
   "resolutions": {
