@@ -11,7 +11,6 @@
     "feed": "5.2.1",
     "jose": "6.2.3",
     "linkedom": "0.18.12",
-    "php-wasm": "0.0.8",
     "qreator": "10.0.2"
   },
   "devDependencies": {
