@@ -10,7 +10,7 @@
     "last 4 versions"
   ],
   "devDependencies": {
-    "@biomejs/biome": "2.4.14",
+    "@biomejs/biome": "2.4.15",
     "@vitest/ui": "4.1.6",
     "ava": "8.0.0",
     "broken-link-checker-local": "0.2.1",
