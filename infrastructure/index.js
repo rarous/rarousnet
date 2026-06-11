@@ -5,6 +5,9 @@ import { build } from "./worker-builder.js";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
+const cloudflareInfraConfig = new pulumi.Config("cloudflare-infra");
+const redirectIPv4 = cloudflareInfraConfig.require("redirect-ipv4");
+const redirectIPv6 = cloudflareInfraConfig.require("redirect-ipv6");
 
 function buildAsset(fileName) {
   return build(path.join(import.meta.dirname, "../workers", fileName), true);
@@ -93,6 +96,24 @@ new cloudflare.ZoneSetting(`${domain}/zone-setting-security-header`, {
 });
 
 // for more settings @see https://developers.cloudflare.com/api/resources/zones/subresources/settings/models/font_settings/#(schema)
+// APEX records for redirect to www (redirect is currently handled in hckr.studio/webs stack)
+new cloudflare.DnsRecord(`${domain}/apex-dns-record`, {
+  zoneId: zone.id,
+  name: "@",
+  type: "A",
+  content: redirectIPv4,
+  ttl: 1,
+  proxied: true,
+});
+
+new cloudflare.DnsRecord(`${domain}/apex-ipv6-dns-record`, {
+  zoneId: zone.id,
+  name: "@",
+  type: "AAAA",
+  content: redirectIPv6,
+  ttl: 1,
+  proxied: true,
+});
 
 new cloudflare.DnsRecord(`${domain}/dns-record-keybase`, {
   zoneId: zone.id,
