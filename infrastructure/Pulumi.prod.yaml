@@ -2,6 +2,7 @@ environment:
   - rarous-cloudflare
   - rarous-discogs
 config:
+  cloudflare-pages:compatibility-date: "2026-06-01"
   rarousnet:domain: www.rarous.net
   rarousnet:google-auth-clientId: 218256334208-115s3k0ciq53s7fj5u7k8hg70oqfu9j5.apps.googleusercontent.com
   rarousnet:rollbar-token:

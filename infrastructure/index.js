@@ -5,6 +5,8 @@ import { build } from "./worker-builder.js";
 
 const config = new pulumi.Config();
 const domain = config.require("domain");
+const cloudflarePagesConfig = new pulumi.Config("cloudflare-pages");
+const compatibilityDate = cloudflarePagesConfig.require("compatibility-date");
 const cloudflareInfraConfig = new pulumi.Config("cloudflare-infra");
 const redirectIPv4 = cloudflareInfraConfig.require("redirect-ipv4");
 const redirectIPv6 = cloudflareInfraConfig.require("redirect-ipv6");
@@ -167,7 +169,7 @@ const weblogPages = new cloudflare.PagesProject(
       preview: { failOpen: false },
       production: {
         failOpen: false,
-        compatibilityDate: "2026-01-01",
+        compatibilityDate,
         compatibilityFlags: ["nodejs_compat"],
         envVars: {
           clientId: { type: "plain_text", value: config.require("google-auth-clientId") },
@@ -224,7 +226,7 @@ const discogsScheduleWorker = new cloudflare.WorkersScript(
     accountId: account.id,
     scriptName: "discogs-schedule-worker",
     content: buildAsset("discogs-schedule-worker/src/index.js"),
-    compatibilityDate: "2025-09-01",
+    compatibilityDate,
     mainModule: "index.js",
     bindings: [
       { type: "secret_text", name: "DISCOGS_TOKEN", text: config.require("discogs-apiToken") },
@@ -250,7 +252,7 @@ const w3bScheduleWorker = new cloudflare.WorkersScript(
     scriptName: "w3b-schedule-worker",
     mainModule: "index.js",
     content: buildAsset("w3b-schedule-worker/src/index.js"),
-    compatibilityDate: "2025-09-01",
+    compatibilityDate,
     bindings: [
       { type: "plain_text", name: "FEED_URL", text: config.require("w3b-feed-url") },
       { type: "secret_text", name: "SEMANTIC_EXTRACTOR_SECRET", text: config.require("semantic-extractor-secret") },
