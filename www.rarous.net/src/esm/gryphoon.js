@@ -143,6 +143,8 @@ export function defComments({ HTMLElement, customElements, document }) {
       const section = this.querySelector(".comments");
       const locale = this.lang;
 
+      const formatter = new Intl.DateTimeFormat(locale, {timeStyle: "short", dateStyle: "long"});
+
       function itemTemplate(content, item, section) {
         const date = new Date(item.created);
 
@@ -170,7 +172,7 @@ export function defComments({ HTMLElement, customElements, document }) {
           ".e-content": { innerHTML: item.text },
           ".dt-published": {
             datetime: item.created,
-            textContent: `${date.toLocaleDateString(locale)} v ${date.toLocaleTimeString(locale)}`,
+            textContent: formatter.format(date),
           },
         });
       }
