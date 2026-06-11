@@ -11590,9 +11590,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all2@npm:9.0.0":
-  version: 9.0.0
-  resolution: "npm-run-all2@npm:9.0.0"
+"npm-run-all2@npm:9.0.1":
+  version: 9.0.1
+  resolution: "npm-run-all2@npm:9.0.1"
   dependencies:
     ansi-styles: "npm:^6.2.1"
     cross-spawn: "npm:^7.0.6"
@@ -11607,7 +11607,7 @@ __metadata:
     npm-run-all2: bin/npm-run-all/index.js
     run-p: bin/run-p/index.js
     run-s: bin/run-s/index.js
-  checksum: 10c0/96368c5df6ede7e0fed895a64df0b40df68c31fb9fc8e31321e23163f1a2244c17c80b61b7d7069465eaa7f31d91ef0b7d3fb465b252803da13eb535f3b42759
+  checksum: 10c0/5a512231d34311b99e0c0b522cdda92db4a091486e5a743e15006e7384ce59f629192d7071816c4db66fb991a1e37394d7a3f19cbc8af8eb7cde77cd3c704197
   languageName: node
   linkType: hard
 
@@ -13594,7 +13594,7 @@ __metadata:
     broken-link-checker-local: "npm:0.2.1"
     lighthouse: "npm:13.3.0"
     local-web-server: "npm:5.4.0"
-    npm-run-all2: "npm:9.0.0"
+    npm-run-all2: "npm:9.0.1"
     tap-xunit: "npm:2.4.1"
     vitest: "npm:4.1.8"
     wrangler: "npm:4.95.0"
