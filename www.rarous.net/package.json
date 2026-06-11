@@ -8,6 +8,7 @@
     "@thi.ng/transducers": "9.6.36"
   },
   "devDependencies": {
+    "@gryphoon/texy": "1.0.0",
     "@hckr_/blendid": "9.6.13",
     "@types/gulp": "4.0.18",
     "@types/undertaker-registry": "1.0.4",

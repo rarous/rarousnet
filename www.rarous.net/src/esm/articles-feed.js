@@ -1,4 +1,4 @@
-import { processTypo } from "@hckr_/blendid/lib/texy.mjs";
+import { processTypo } from "@gryphoon/texy";
 import { comp, drop, iterator, take } from "@thi.ng/transducers";
 
 /**

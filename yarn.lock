@@ -1177,6 +1177,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gryphoon/texy@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@gryphoon/texy@npm:1.0.0"
+  checksum: 10c0/9c08d7d8e6da0238bb3c7827ad754addd8760de98eabc474fe75e9e12360e4903540bae73ea07a8dd11f5283a3374237db6388d4cba69dfc176bb81f370ac161
+  languageName: node
+  linkType: hard
+
 "@gulpjs/messages@npm:^1.1.0":
   version: 1.1.0
   resolution: "@gulpjs/messages@npm:1.1.0"
@@ -3203,6 +3210,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
+    "@gryphoon/texy": "npm:1.0.0"
     "@hckr_/blendid": "npm:9.6.13"
     "@thi.ng/transducers": "npm:9.6.36"
     "@types/gulp": "npm:4.0.18"
