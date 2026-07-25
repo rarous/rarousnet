@@ -5,7 +5,7 @@
     "./*": "./src/esm/*"
   },
   "dependencies": {
-    "@thi.ng/transducers": "9.6.36"
+    "@thi.ng/transducers": "9.6.42"
   },
   "devDependencies": {
     "@gryphoon/texy": "1.0.0",
