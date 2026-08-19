@@ -14,7 +14,7 @@
     "@vitest/ui": "4.1.9",
     "ava": "8.0.1",
     "broken-link-checker-local": "0.2.1",
-    "lighthouse": "13.4.0",
+    "lighthouse": "13.4.1",
     "local-web-server": "5.4.0",
     "npm-run-all2": "9.0.3",
     "tap-xunit": "2.4.1",
