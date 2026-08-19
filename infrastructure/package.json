@@ -6,7 +6,7 @@
   "license": "EUPL-1.2",
   "dependencies": {
     "@pulumi/cloudflare": "6.14.0",
-    "@pulumi/pulumi": "3.234.0",
-    "esbuild": "0.28.0"
+    "@pulumi/pulumi": "3.258.0",
+    "esbuild": "0.28.2"
   }
 }

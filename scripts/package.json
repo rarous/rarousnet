@@ -5,10 +5,10 @@
   "license": "EUPL-1.2",
   "dependencies": {
     "@thi.ng/transducers": "9.6.42",
-    "linkedom": "0.18.12",
+    "linkedom": "0.18.13",
     "schema-dts": "2.0.0"
   },
   "devDependencies": {
-    "csv-parse": "6.2.1"
+    "csv-parse": "7.0.2"
   }
 }

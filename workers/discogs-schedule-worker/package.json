@@ -4,10 +4,10 @@
   "type": "module",
   "license": "EUPL-1.2",
   "dependencies": {
-    "linkedom": "0.18.12"
+    "linkedom": "0.18.13"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "5.20260817.1",
-    "wrangler": "4.107.0"
+    "@cloudflare/workers-types": "5.20260819.1",
+    "wrangler": "4.124.0"
   }
 }

@@ -1,4 +1,4 @@
-import { parse, serialize } from "cookie";
+import { parseCookie, stringifySetCookie } from "cookie";
 import { SignJWT } from "jose/jwt/sign";
 import { jwtVerify } from "jose/jwt/verify";
 
@@ -43,7 +43,7 @@ export async function validateToken(token, secret) {
 
 export function getCookies(headers) {
   const cookie = headers.get("cookie");
-  if (cookie) return parse(cookie);
+  if (cookie) return parseCookie(cookie);
   return null;
 }
 
@@ -67,5 +67,5 @@ export function getToken(headers) {
  * @return {string}
  */
 export function createCookie(idToken, options) {
-  return serialize(COOKIE_NAME, idToken, options);
+  return stringifySetCookie({ name:COOKIE_NAME, value: idToken, ...options });
 }
