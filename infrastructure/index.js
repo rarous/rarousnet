@@ -228,6 +228,7 @@ const discogsScheduleWorker = new cloudflare.WorkersScript(
     content: buildAsset("discogs-schedule-worker/src/index.js"),
     compatibilityDate,
     mainModule: "index.js",
+    observability: { enabled: true },
     bindings: [
       { type: "secret_text", name: "DISCOGS_TOKEN", text: config.require("discogs-apiToken") },
       { type: "kv_namespace", name: "weblog", namespaceId: weblogNS.id },
@@ -253,6 +254,7 @@ const w3bScheduleWorker = new cloudflare.WorkersScript(
     mainModule: "index.js",
     content: buildAsset("w3b-schedule-worker/src/index.js"),
     compatibilityDate,
+    observability: { enabled: true },
     bindings: [
       { type: "plain_text", name: "FEED_URL", text: config.require("w3b-feed-url") },
       { type: "secret_text", name: "SEMANTIC_EXTRACTOR_SECRET", text: config.require("semantic-extractor-secret") },
