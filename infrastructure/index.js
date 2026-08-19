@@ -87,9 +87,9 @@ new cloudflare.ZoneSetting(`${domain}/zone-setting-security-header`, {
   zoneId: zone.id,
   settingId: "security_header",
   value: {
-    strict_transport_security: {
+    strictTransportSecurity: {
       enabled: true,
-      include_subdomains: true,
+      includeSubdomains: true,
       nosniff: true,
       preload: true,
       maxAge: 31536000,
@@ -255,6 +255,7 @@ const w3bScheduleWorker = new cloudflare.WorkersScript(
     content: buildAsset("w3b-schedule-worker/src/index.js"),
     compatibilityDate,
     observability: { enabled: true },
+
     bindings: [
       { type: "plain_text", name: "FEED_URL", text: config.require("w3b-feed-url") },
       { type: "secret_text", name: "SEMANTIC_EXTRACTOR_SECRET", text: config.require("semantic-extractor-secret") },
