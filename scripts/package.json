@@ -9,6 +9,6 @@
     "schema-dts": "2.0.0"
   },
   "devDependencies": {
-    "csv-parse": "6.2.1"
+    "csv-parse": "7.0.2"
   }
 }
