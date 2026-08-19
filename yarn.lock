@@ -3195,7 +3195,7 @@ __metadata:
     "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.4"
     "@rarousnet/website": "workspace:*"
     cookie: "npm:1.1.1"
-    feed: "npm:5.2.1"
+    feed: "npm:6.0.0"
     jose: "npm:6.2.9"
     linkedom: "npm:0.18.12"
     qreator: "npm:10.0.2"
@@ -7534,12 +7534,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"feed@npm:5.2.1":
-  version: 5.2.1
-  resolution: "feed@npm:5.2.1"
+"feed@npm:6.0.0":
+  version: 6.0.0
+  resolution: "feed@npm:6.0.0"
   dependencies:
     xml-js: "npm:^1.6.11"
-  checksum: 10c0/ec9cf762d0c7a2a6368b4a292fe5ac776fa067022de7d960b5ee6a6eb1c555dd49ac2000efff3598dbd7d607c48110e3124febd1ee8dbab712ae3236822797a4
+  checksum: 10c0/0cfabb62037cc97bb935b778a5d98fae808e27d5842173774c0cd07a276e7e881b5f0dccb0575214938218af9a0cad3039a20b48db966799b72d9fde49048cb5
   languageName: node
   linkType: hard
 
