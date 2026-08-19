@@ -22,11 +22,11 @@ async function getReleases(page, token) {
   });
   console.log({ event: "get releases", page, status: resp.status });
   if (!resp.ok) {
-    if (resp.headers.has("Retry-After")) {
-      const retryAfter = Number.parseInt(resp.headers.get("Retry-After"), 10) * 1000;
-      console.log({ event: "retry after", retryAfter });
-      await new Promise(resolve => setTimeout(resolve, retryAfter));
-      return getReleases(page, token);
+    if (resp.status === 429) {
+      const limit = Number.parseInt(resp.headers.get("X-Discogs-Ratelimit"), 10);
+      const used = Number.parseInt(resp.headers.get("X-Discogs-Ratelimit-Used"), 10);
+      const remaining = Number.parseInt(resp.headers.get("X-Discogs-Ratelimit-Remaining"), 10);
+      console.warn({ event: "rate limited", limit, used, remaining });
     }
   }
   return resp.json();
