@@ -65,11 +65,17 @@ async function findItunesId(name, title) {
         Accept: "application/json",
         "Accept-Language": "en",
         "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15",
       },
     },
   );
   if (!resp.ok) {
+    if (resp.headers.has("Retry-After")) {
+      const retryAfter = Number.parseInt(resp.headers.get("Retry-After"), 10);
+      console.warn({ event: "rate limited", retryAfter });
+      await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+      return findItunesId(name, title);
+    }
     console.error({ event: "search album failed", name, title, status: resp.status, response: await resp.text() });
     return null;
   }
