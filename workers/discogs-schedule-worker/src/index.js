@@ -20,6 +20,7 @@ async function getReleases(page, token) {
       "User-Agent": USER_AGENT,
     },
   });
+  console.log({ event: "get releases", page, status: resp.status });
   return resp.json();
 }
 
