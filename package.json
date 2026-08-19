@@ -22,7 +22,7 @@
     "wrangler": "4.124.0"
   },
   "resolutions": {
-    "esbuild": "0.28.0",
+    "esbuild": "0.28.2",
     "lodash": "4.18.1"
   },
   "scripts": {
