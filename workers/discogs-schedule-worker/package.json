@@ -7,7 +7,7 @@
     "linkedom": "0.18.12"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20260519.1",
+    "@cloudflare/workers-types": "4.20260702.1",
     "wrangler": "4.107.0"
   }
 }
