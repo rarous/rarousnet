@@ -21,6 +21,14 @@ async function getReleases(page, token) {
     },
   });
   console.log({ event: "get releases", page, status: resp.status });
+  if (!resp.ok) {
+    if (resp.headers.has("Retry-After")) {
+      const retryAfter = Number.parseInt(resp.headers.get("Retry-After"), 10) * 1000;
+      console.log({ event: "retry after", retryAfter });
+      await new Promise(resolve => setTimeout(resolve, retryAfter));
+      return getReleases(page, token);
+    }
+  }
   return resp.json();
 }
 
