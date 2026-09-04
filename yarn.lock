@@ -3172,18 +3172,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/cloudflare@npm:6.19.0":
-  version: 6.19.0
-  resolution: "@pulumi/cloudflare@npm:6.19.0"
+"@pulumi/cloudflare@npm:6.20.0":
+  version: 6.20.0
+  resolution: "@pulumi/cloudflare@npm:6.20.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.142.0"
-  checksum: 10c0/2e502add8cc5dae0f6faa6c972a9cf1a4696c9628abd825487e0a4ac55cc5999be5e14263aab0cc4fc622bfd2b0cd84c28e31faac29b8a9ecaedc2b95a568df0
+  checksum: 10c0/3eaa45909a15585d2bae75710dfdf2a1fdd107d26811c4b10cb2f4455160375925a3b556c7f0ccb952f321a53776b2f2110a8239f71345ca67d844ba1dcb1578
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.258.0":
-  version: 3.258.0
-  resolution: "@pulumi/pulumi@npm:3.258.0"
+"@pulumi/pulumi@npm:3.261.0":
+  version: 3.261.0
+  resolution: "@pulumi/pulumi@npm:3.261.0"
   dependencies:
     "@grpc/grpc-js": "npm:^1.10.1"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -3218,7 +3218,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/8a904bbcb25243e63f15d444b1f69d742ad100ff5d93d5c2705d228f2ab2d58b9232db1a5b37b9932bdd0ecce4250b2bf05a8eb99c71cbb869fb04145bc7debc
+  checksum: 10c0/5cb0ac610cae537198b42fb110d5dc3834530614cd9ad8f105e177fc1fd21fdf2c663e9eaaf4b292000f64bc62b4fb7ae9fa0f9b5938cb76b4d1618cb2d394a2
   languageName: node
   linkType: hard
 
@@ -3316,8 +3316,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
-    "@pulumi/cloudflare": "npm:6.19.0"
-    "@pulumi/pulumi": "npm:3.258.0"
+    "@pulumi/cloudflare": "npm:6.20.0"
+    "@pulumi/pulumi": "npm:3.261.0"
     esbuild: "npm:0.28.2"
   languageName: unknown
   linkType: soft
