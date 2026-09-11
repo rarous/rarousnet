@@ -9,7 +9,7 @@
     "@rarousnet/website": "workspace:*",
     "cookie": "2.0.1",
     "feed": "6.0.0",
-    "jose": "6.2.9",
+    "jose": "6.2.12",
     "linkedom": "0.18.13",
     "qreator": "10.0.2"
   },
