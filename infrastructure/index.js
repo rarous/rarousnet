@@ -206,7 +206,7 @@ const _weblogPagesDomain = new cloudflare.PagesDomain(
   "weblog-domain",
   {
     accountId: account.id,
-    name: pulumi.interpolate`${wwwRecord.name}.${zone.name}`,
+    name: pulumi.interpolate`${wwwRecord.name}`,
     projectName: weblogPages.name,
   },
   { dependsOn: [account, wwwRecord, weblogPages] },
