@@ -117,14 +117,6 @@ new cloudflare.DnsRecord(`${domain}/apex-ipv6-dns-record`, {
   proxied: true,
 });
 
-new cloudflare.DnsRecord(`${domain}/dns-record-keybase`, {
-  zoneId: zone.id,
-  name: "@",
-  type: "TXT",
-  content: "keybase-site-verification=_lI_PhjeUoBF2OaSpbJaYtzjdKSf2YoPsCcAXBAewbs",
-  ttl: 3600,
-});
-
 const weblogBucket = new cloudflare.R2Bucket(
   "weblog-bucket",
   {
