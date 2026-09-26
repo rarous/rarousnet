@@ -16,13 +16,13 @@ export class GryphoonRegistry extends DefaultRegistry {
    * @param {Gulp} gulp
    */
   init({ task }) {
-    task("generate-content", done => {
+    task("generate-content", async () => {
       const clj = spawn("clojure", ["-M", "-m", "rarousnet.generator", "../"], {
         cwd: projectPath("../generator"),
       });
       clj.stdout.on("data", data => process.stdout.write(data));
       clj.stderr.on("data", data => process.stderr.write(data));
-      clj.on("close", done);
+      return new Promise(resolve => clj.on("close", resolve));
     });
     task("upload-cards", async () => {
       const { default: contents } = await import(this.paths.cards, {

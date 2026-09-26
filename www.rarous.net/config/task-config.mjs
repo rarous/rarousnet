@@ -8,8 +8,9 @@ import { GryphoonRegistry } from "./gryphoon-registry.mjs";
 
 /**
  * @param {Record<string, *>} pathConfig
- * @param {{development: function(): boolean, production: function(): boolean}} mode
+ * @param {{development: () => boolean, production: () => boolean}} mode
  * @param {Boolean} verbose
+ * @return {TaskConfig}
  */
 export default function (pathConfig, mode, verbose) {
   return {
@@ -45,8 +46,6 @@ export default function (pathConfig, mode, verbose) {
         removeComments: true,
         removeOptionalTags: true,
         removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
       },
     },
 
