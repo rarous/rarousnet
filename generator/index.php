@@ -1,4 +1,4 @@
-<?php declare(strict_types=1); error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+<?php declare(strict_types=1); error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
 
 if (@!include __DIR__ . '/vendor/autoload.php') {
   die('Install packages using `composer install`');
