@@ -1210,9 +1210,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:9.7.12":
-  version: 9.7.12
-  resolution: "@hckr_/blendid@npm:9.7.12"
+"@hckr_/blendid@npm:9.7.13":
+  version: 9.7.13
+  resolution: "@hckr_/blendid@npm:9.7.13"
   dependencies:
     "@11ty/nunjucks": "npm:4.0.0-alpha.3"
     "@csstools/postcss-gamut-mapping": "npm:3.0.12"
@@ -1259,7 +1259,7 @@ __metadata:
     vite: "npm:8.3.0"
   bin:
     blendid: bin/blendid.js
-  checksum: 10/79d906d36be7445fcb468ebafc4438bf6fe8daf33f14cd9bc010c2fa4474b442e33786558006e24b7adef963ce3b155c407ddea18d89c79500ba05b8e98747d8
+  checksum: 10/bbe5af8b7998c084465379a1c7ceea17bf138c25e4f86e92969df3b00472a8f5e089db17889e0709ca0cb320755cf9236f1a8cf27bb5ad117e584d236b97fa59
   languageName: node
   linkType: hard
 
@@ -2658,7 +2658,7 @@ __metadata:
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
     "@gryphoon/texy": "npm:1.0.0"
-    "@hckr_/blendid": "npm:9.7.12"
+    "@hckr_/blendid": "npm:9.7.13"
     "@thi.ng/transducers": "npm:9.7.0"
     "@types/gulp": "npm:4.0.18"
     "@types/undertaker-registry": "npm:1.0.4"
