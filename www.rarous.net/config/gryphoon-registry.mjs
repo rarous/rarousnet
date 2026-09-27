@@ -1,8 +1,8 @@
 import { spawn } from "node:child_process";
 import projectPath from "@hckr_/blendid/project-path";
-import DefaultRegistry from "undertaker-registry";
+import { Registry } from "@hckr_/blendid/registry";
 
-export class GryphoonRegistry extends DefaultRegistry {
+export class GryphoonRegistry extends Registry {
   constructor(config, pathConfig, mode) {
     super();
     this.config = config;
