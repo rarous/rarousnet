@@ -58,6 +58,7 @@ export default function (pathConfig, mode, verbose) {
     production: {
       rev: {
         exclude: ["_headers", "_redirects", "weblog/articles.rss", "weblog/sitemap.xml"],
+        importmap: false,
       },
     },
 
