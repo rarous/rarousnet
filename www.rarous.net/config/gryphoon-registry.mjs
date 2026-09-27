@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import projectPath from "@hckr_/blendid/lib/projectPath.mjs";
+import projectPath from "@hckr_/blendid/project-path";
 import DefaultRegistry from "undertaker-registry";
 
 export class GryphoonRegistry extends DefaultRegistry {

@@ -1,4 +1,4 @@
-import { texyTypography } from "@hckr_/blendid/lib/texy.mjs";
+import { texyTypography } from "@hckr_/blendid/texy";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 import { GryphoonRegistry } from "./gryphoon-registry.mjs";
