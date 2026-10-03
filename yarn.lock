@@ -3,7 +3,7 @@
 
 __metadata:
   version: 10
-  cacheKey: 10
+  cacheKey: 10c0
 
 "@11ty/nunjucks@npm:4.0.0-alpha.3":
   version: 4.0.0-alpha.3
@@ -1210,16 +1210,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hckr_/blendid@npm:9.8.1":
-  version: 9.8.1
-  resolution: "@hckr_/blendid@npm:9.8.1"
+"@hckr_/blendid@npm:9.8.2":
+  version: 9.8.2
+  resolution: "@hckr_/blendid@npm:9.8.2"
   dependencies:
     "@11ty/nunjucks": "npm:4.0.0-alpha.3"
     "@csstools/postcss-gamut-mapping": "npm:3.0.12"
     "@gryphoon/texy": "npm:1.0.0"
     "@lokesh.dhakar/quantize": "npm:1.4.0"
     "@vitejs/plugin-basic-ssl": "npm:2.3.0"
-    cli-table: "npm:0.3.11"
     cloudinary: "npm:2.11.0"
     cssnano: "npm:9.0.5"
     del: "npm:8.0.1"
@@ -1243,7 +1242,6 @@ __metadata:
     ndarray-pixels: "npm:5.2.0"
     plugin-error: "npm:2.0.1"
     postcss: "npm:8.5.28"
-    postcss-functions: "npm:4.0.2"
     postcss-import: "npm:17.0.0"
     postcss-preset-env: "npm:11.5.3"
     pretty-bytes: "npm:7.1.3"
@@ -1252,14 +1250,13 @@ __metadata:
     sharp: "npm:0.35.4"
     sort-keys: "npm:6.0.1"
     svgo: "npm:4.1.0"
-    undertaker-registry: "npm:2.0.0"
     vinyl: "npm:3.0.1"
     vinyl-file: "npm:5.0.0"
     vinyl-fs: "npm:4.0.2"
     vite: "npm:8.3.0"
   bin:
     blendid: bin/blendid.js
-  checksum: 10/c245903b000caf9b9abf1d9de0ebecf7a2cb30ae0a5481f1f1cb7c874bd58e4723f9de389ec8ce3b859497cbde6bf8450a1b08d71e52ea58ed3f7b3257e6070d
+  checksum: 10c0/8fa194361f689b4cb45641484c2ee5386c78dc73399ae43cf92885db3cba91d391cf42fcfc794421f0587cf13db21fffb28123c271e3c48fc3b103825a16b741
   languageName: node
   linkType: hard
 
@@ -2657,7 +2654,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rarousnet/website@workspace:www.rarous.net"
   dependencies:
-    "@hckr_/blendid": "npm:9.8.1"
+    "@hckr_/blendid": "npm:9.8.2"
     "@thi.ng/transducers": "npm:9.7.0"
     "@types/gulp": "npm:4.0.18"
     "@types/undertaker-registry": "npm:1.0.4"
@@ -4521,7 +4518,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cli-table@npm:0.3.11, cli-table@npm:~0.3.1":
+"cli-table@npm:~0.3.1":
   version: 0.3.11
   resolution: "cli-table@npm:0.3.11"
   dependencies:
@@ -10000,17 +9997,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-functions@npm:4.0.2":
-  version: 4.0.2
-  resolution: "postcss-functions@npm:4.0.2"
-  dependencies:
-    postcss-value-parser: "npm:^4.0.0"
-  peerDependencies:
-    postcss: ^8.0.0
-  checksum: 10/2768cf1c059fe67a3088f08eeaf1dc649b170a57abe975a55317713160cb4c20d398aefe102651b3ac9c67291f5e2450444f21ca451a677fb0ee5392af8b74da
-  languageName: node
-  linkType: hard
-
 "postcss-gap-properties@npm:^7.0.0":
   version: 7.0.0
   resolution: "postcss-gap-properties@npm:7.0.0"
@@ -12665,7 +12651,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undertaker-registry@npm:2.0.0, undertaker-registry@npm:^2.0.0":
+"undertaker-registry@npm:^2.0.0":
   version: 2.0.0
   resolution: "undertaker-registry@npm:2.0.0"
   checksum: 10/c1ebb4b72eeacf563a583f5928e7cee7a71391b0f33d5bac939fbb4e3ea1f00298850ca2449776f18e4c2eab8c57434327fc826f3ca43061cce22471bdf3604e
