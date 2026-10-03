@@ -3,7 +3,7 @@
 
 __metadata:
   version: 10
-  cacheKey: 10
+  cacheKey: 10c0
 
 "@11ty/nunjucks@npm:4.0.0-alpha.3":
   version: 4.0.0-alpha.3
@@ -2494,9 +2494,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:3.265.0":
-  version: 3.265.0
-  resolution: "@pulumi/pulumi@npm:3.265.0"
+"@pulumi/pulumi@npm:3.267.0":
+  version: 3.267.0
+  resolution: "@pulumi/pulumi@npm:3.267.0"
   dependencies:
     "@grpc/grpc-js": "npm:^1.10.1"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -2531,7 +2531,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10/2263f81e86c988ee94faed2b01206ae102af0841c7350ababcc5c69ec92e3f690649aa3bbf68154599084177037aa17bdc90e44a003ce3dfab987fa7eb039f91
+  checksum: 10c0/7080439e1f6d11503d8871dddfd5a3ad2dc549c0f82dc0329052abb5b156de249361008cf159458dfa37b64c0c06fc9513527a84552ec996a0b7aa9840d425e6
   languageName: node
   linkType: hard
 
@@ -2627,7 +2627,7 @@ __metadata:
   resolution: "@rarousnet/infrastructure@workspace:infrastructure"
   dependencies:
     "@pulumi/cloudflare": "npm:6.21.0"
-    "@pulumi/pulumi": "npm:3.265.0"
+    "@pulumi/pulumi": "npm:3.267.0"
     esbuild: "npm:0.28.2"
   languageName: unknown
   linkType: soft
