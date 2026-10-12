@@ -93,6 +93,9 @@
     (original node)))
 
 (defn blog-texy []
+  (let [original (get (methods render/render-node) :code-block)]
+  (defmethod render/render-node :code-block [node]
+          (prism-code-renderer original node))
   (-> (core/->texy
        {:top 3
         :generate-ids true
@@ -100,4 +103,4 @@
         :phrase-tags (merge render/phrase-tags {"phrase/em" :i})
         :figure-class "image"})
       (core/set-fallback-directive script-handler)
-      (core/add-pass image-handler-pass)))
+      (core/add-pass image-handler-pass))))
