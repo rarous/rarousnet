@@ -10,7 +10,9 @@
     [clojure.string :as string]
     [cheshire.core :as json]
     [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate xml-parser]]
-    [rarousnet.texy :refer [process-typo]])
+    [texy.typography :refer [process-typo]]
+    [texy.core :refer [process]]
+    [rarousnet.texy :refer [blog-texy]])
   (:import
     (java.io File)
     (java.security MessageDigest)
@@ -240,17 +242,12 @@
 (defn date [s]
   (->> s tc/from-string tc/to-date))
 
-(defn texy [data]
-  (let [input (json/generate-string data)
-        {:keys [exit err out] :as result} (sh "php" "index.php" :in input)]
-    (if (zero? exit)
-      (json/parse-string out)
-      (throw (ex-info "Error occurred" result)))))
-
-(defn ->article [input]
-  (let [[_ meta & text] (string/split input #"---")]
+(defn ->article [input texy]
+  (let [[_ meta & text] (string/split input #"---")
+        text (string/join "---" text)]
     (assoc (edn/read-string meta)
-      :texy (-> (string/join "---" text)))))
+      :texy text
+      :html (process texy text))))
 
 (defn file-name [^File f]
   (let [x (fn [y m d & name] (str y "/" m "/" d "/" (string/join "-" name)))
@@ -259,12 +256,12 @@
               (string/split #"-"))]
     (apply x y)))
 
-(defn convert [transform]
+(defn convert [transform texy]
   (fn [^File f]
     (as->
       f article
       (slurp article)
-      (transform article)
+      (transform article texy)
       (assoc article
         :file-name (file-name f)
         :published (-> article :published date))
@@ -277,16 +274,15 @@
 (defn static-content [src dest]
   (io/make-parents dest "."))
 
-(def entries
+(defn entries [texy]
   (comp
     (remove (fn [^File f] (.isDirectory f)))
-    (map (convert ->article))))
+    (map (convert ->article texy))))
 
 (defn read-articles [content]
-  (let [articles (into [] entries (file-seq (io/file (str content "/weblog"))))
-        html (texy (into {} (map #(vector (:file-name %) (:texy %))) articles))
-        with-html #(assoc % :html (-> % :file-name html))]
-    (into [] (map with-html) articles)))
+  (let [texy (blog-texy)
+        articles (file-seq (io/file (str content "/weblog")))]
+    (into [] (entries texy) articles)))
 
 (defn write-file [dist {:file/keys [name dir content append preppend]}]
   (let [file (.getCanonicalFile (io/file dist (or dir ".") name))
