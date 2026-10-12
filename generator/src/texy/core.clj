@@ -52,7 +52,9 @@
   :legacy-references the Texy 3 reference semantics, off by default
                      (the 4-dev reference deprecates them): definition
                      labels/modifiers apply, %s reference URLs, image
-                     definition modifiers on [*img*] targets
+                     definition modifiers on [*img*] targets - implies
+                     the bare [ref] syntax (link/reference), always
+                     allowed in Texy 3
                      (see texy.references-test)
   :typography-locale locale for quote substitution (default \"cs\", like the
                      reference module; unknown falls back to English)

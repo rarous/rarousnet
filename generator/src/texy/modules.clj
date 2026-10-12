@@ -905,12 +905,15 @@
       m-mod-parts (assoc :modifier (mod/parse m-mod-parts)))))
 
 (defn- parse-reference
-  "The opt-in bare [ref] line syntax (the reference link/reference,
-  default off like it): resolves against the link definitions like
-  \"text\":[ref] - including the Texy 3 label semantics when enabled."
+  "The bare [ref] line syntax (the reference link/reference, default
+  off like it): resolves against the link definitions like
+  \"text\":[ref]. Enabled by :legacy-references (the Texy 3 semantics
+  imply it - the syntax was always allowed in Texy 3) or by
+  allowed[\"link/reference\"] explicitly."
   [ctx groups]
   (let [[_ m-ref] groups]
-    (when (get (:allowed ctx) "link/reference")
+    (when (or (get ctx :legacy-references)
+              (get (:allowed ctx) "link/reference"))
       {:type :link :url (str "[" m-ref "]")
        :content [{:type :text :text (html/unescape-html m-ref)}]
        :ref m-ref})))
