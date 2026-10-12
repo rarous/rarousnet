@@ -3,6 +3,9 @@
   "description": "rarous.net Cloudflare Pages Functions",
   "type": "module",
   "license": "EUPL-1.2",
+  "imports": {
+    "#lib/**/*.js": "./lib/**/*.js"
+  },
   "dependencies": {
     "@cloudflare/pages-plugin-turnstile": "1.0.2",
     "@hckr_/cloudflare-pages-plugin-rollbar": "1.1.4",

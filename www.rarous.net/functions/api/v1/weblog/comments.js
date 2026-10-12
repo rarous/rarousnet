@@ -1,16 +1,26 @@
 import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
-
-// TODO: possibly inject this thru ENV from managed vercel Project, or get rid of it and use JS implementation of Texy
-const texyServiceEndpoint = "https://rarousnet.vercel.app/api/index";
+import { Texy } from "#lib/texy/Texy.js";
+import { Configurator } from "#lib/texy/Configurator.js";
+import { Syntax } from "#lib/texy/Syntax.js";
 
 async function processText(text, references) {
-  const resp = await fetch(texyServiceEndpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ text, references: JSON.stringify(references) }),
-  });
-  if (!resp.ok) throw new Error(await resp.text());
-  return resp.text();
+  const texy = new Texy();
+  Configurator.safeMode(texy);
+
+  texy.allowed[Syntax.Inserted] = true;   // phrase/ins
+  texy.allowed[Syntax.Superscript] = true; // phrase/sup
+  texy.allowed[Syntax.Deleted] = true;    // phrase/del
+  texy.allowed[Syntax.Subscript] = true;  // phrase/sub
+
+  texy.htmlPolicy.allowedTags = false;
+  texy.headingModule.top = 4;
+
+  for (const [index, comment] of references.entries()) {
+    if (!('link' in comment)) continue;
+    texy.linkModule.addDefinition(String(index + 1), comment.link, comment.label);
+  }
+
+  return texy.process(text);
 }
 
 /**
