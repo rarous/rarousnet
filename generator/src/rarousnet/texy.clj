@@ -99,6 +99,7 @@
   (-> (core/->texy
        {:top 3
         :generate-ids true
+        :legacy-references true
         :image-root "https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto,q_auto,w_auto:100:800/https://www.rarous.net/data/obrazky/"
         :phrase-tags (merge render/phrase-tags {"phrase/em" :i})
         :figure-class "image"})
