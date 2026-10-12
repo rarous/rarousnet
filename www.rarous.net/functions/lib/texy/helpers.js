@@ -7,18 +7,11 @@
  * and control-character references stay literal (except NUL -> U+FFFD).
  */
 
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
 import { match } from './Regexp.js';
+import entities from './entities.json' with { type: 'json' };
 
 /** Matches one HTML entity reference; shared by languages that treat `&...;` as an entity. */
 export const EntityPattern = '&(?:\\#[0-9]{1,7}|\\#[xX][0-9a-fA-F]{1,6}|[a-zA-Z][a-zA-Z0-9]{1,31});';
-
-const entities = JSON.parse(readFileSync(
-	join(dirname(fileURLToPath(import.meta.url)), 'entities.json'),
-	'utf8',
-));
 
 
 /**
