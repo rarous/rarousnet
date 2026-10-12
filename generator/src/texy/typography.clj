@@ -19,27 +19,34 @@
             [texy.normalize :as norm]))
 
 (def locales
-  "Quotes per locale (the reference TypographyModule::locales): the
-  open/close pair for the nested (single) and primary (double) level.
-  Guillemet languages nest curly quotes inside «»; Japanese uses
-  corner brackets."
+  "Quotes per locale: the open/close pair for the nested (single) and
+  primary (double) level. Guillemet languages nest curly quotes inside
+  «»; Japanese uses corner brackets. The reference
+  TypographyModule::locales catalog, plus sk/nl/da/hr/fi kept in sync
+  with the Node.js port's catalog (the reference itself falls back to
+  English for those)."
   {"bg" {:single-quotes ["\u201A" "\u2018"] :double-quotes ["\u201E" "\u201C"]}
    "cs" {:single-quotes ["\u201A" "\u2018"] :double-quotes ["\u201E" "\u201C"]}
+   "da" {:single-quotes ["\u203A" "\u2039"] :double-quotes ["\u00BB" "\u00AB"]} ; »« with the inner level reversed
    "de" {:single-quotes ["\u201A" "\u2018"] :double-quotes ["\u201E" "\u201C"]}
    ;; languages using guillemets nest the inner level in singleQuotes
    "el" {:single-quotes ["\u201C" "\u201D"] :double-quotes ["\u00AB" "\u00BB"]}
    "en" {:single-quotes ["\u2018" "\u2019"] :double-quotes ["\u201C" "\u201D"]}
    "es" {:single-quotes ["\u201C" "\u201D"] :double-quotes ["\u00AB" "\u00BB"]}
+   "fi" {:single-quotes ["\u2019" "\u2019"] :double-quotes ["\u201D" "\u201D"]}
    "fr" {:single-quotes ["\u2039" "\u203A"] :double-quotes ["\u00AB" "\u00BB"]}
+   "hr" {:single-quotes ["\u201A" "\u2019"] :double-quotes ["\u201E" "\u201D"]}
    "hu" {:single-quotes ["\u201A" "\u2019"] :double-quotes ["\u201E" "\u201D"]}
    "it" {:single-quotes ["\u201C" "\u201D"] :double-quotes ["\u00AB" "\u00BB"]}
    ;; Japanese corner brackets: 「…」 primary, 『…』 nested
    "ja" {:single-quotes ["\u300E" "\u300F"] :double-quotes ["\u300C" "\u300D"]}
+   "nl" {:single-quotes ["\u2018" "\u2019"] :double-quotes ["\u201C" "\u201D"]}
    "pl" {:single-quotes ["\u201A" "\u2019"] :double-quotes ["\u201E" "\u201D"]}
    ;; Brazilian usage, which is what the pt documentation follows
    "pt" {:single-quotes ["\u2018" "\u2019"] :double-quotes ["\u201C" "\u201D"]}
    "ro" {:single-quotes ["\u201A" "\u2019"] :double-quotes ["\u201E" "\u201D"]}
    "ru" {:single-quotes ["\u201E" "\u201C"] :double-quotes ["\u00AB" "\u00BB"]}
+   "sk" {:single-quotes ["\u201A" "\u2018"] :double-quotes ["\u201E" "\u201C"]}
    "sl" {:single-quotes ["\u201A" "\u2018"] :double-quotes ["\u201E" "\u201C"]}
    "tr" {:single-quotes ["\u2018" "\u2019"] :double-quotes ["\u201C" "\u201D"]}
    "uk" {:single-quotes ["\u201E" "\u201C"] :double-quotes ["\u00AB" "\u00BB"]}})
@@ -77,8 +84,16 @@
 
    [#"(?us)(?<=.{50})\s++(?=\x17*\S{1,6}\x17*$)" "\u00A0"]                    ; space before last short word
 
-   ;; nbsp between number (optionally with dot) and word, symbol, punctuation, currency symbol
-   [#"(?mu)(?<=^| |\.|,|-|\+|\x16|\(|\d\x{A0})(\x17*\d++\.?\x17*)\s++(?=\x17*[%\p{L}\p{P}\p{Sc}])"
+   ;; nbsp between number (optionally with dot) and word, symbol,
+   ;; currency symbol - % and letters kept as \p{L} (the long form
+   ;; \p{Letter} is unavailable: java.util.regex has no long category
+   ;; names - the JS sibling uses the full name there; a deliberate
+   ;; extension beyond the reference's legacy A-Za-z/Latin/Greek/Cyrillic
+   ;; ranges: it covers all scripts), plus the reference's
+   ;; U+00B0-U+00BE and U+2020-U+214F symbol blocks (°, …, €, ...) -
+   ;; these have no faithful Unicode class, so they stay ranges
+   ;; (\p{P} would wrongly match ",")
+   [#"(?mu)(?<=^| |\.|,|-|\+|\x16|\(|\d\x{A0})(\x17*\d++\.?\x17*)\s++(?=\x17*[%\p{L}\u00B0-\u00BE\u2020-\u214F])"
     "$1\u00A0"]
    ;; space between preposition and word
    [#"(?mus)(?<=^|[^0-9\p{L}])(\x17*[ksvzouiKSVZOUIA]\x17*)\s++(?=\x17*[0-9\p{L}])"
@@ -208,12 +223,12 @@
             gap))))
 
 (defn- process-segment
-  "Transforms one segment image and plans the writes (nil when nothing
-  to do)."
-  [pieces typo-opts]
+  "Transforms one segment image through the transformers (nil when
+  nothing to do)."
+  [pieces transformers]
   (when (some #(some? (second %)) pieces)
     (let [image (str/join (map first pieces))
-          image' (process-typo image typo-opts)]
+          image' (reduce (fn [s f] (f s)) image transformers)]
       (when-not (= image image')
         (write-back pieces image')))))
 
@@ -228,64 +243,70 @@
         node)))
 
 (defn- process-content
-  "Processes one all-inline children collection as a typographic unit."
-  [children typo-opts]
+  "Processes one all-inline children collection as a text-run unit."
+  [children transformers]
   (let [pieces (collect-children children)
         writes (->> (partition-by #(= :break (first %)) pieces)
                     (remove #(= :break (first (first %))))
-                    (keep #(process-segment % typo-opts))
+                    (keep #(process-segment % transformers))
                     (apply concat)
                     doall)]
     (mapv #(rebuild % writes) children)))
 
 (defn- transform-titles
-  "Typography for isolated strings: modifier titles and the {toc:} label
-  (the reference transformTitle)."
-  [node typo-opts]
+  "Title transformation for isolated strings: modifier titles and the
+  {toc:} label (the reference transformTitle) - typography only, never
+  hyphenation (titles are not line text)."
+  [node title-transformer]
   (cond-> node
-    (string? (get-in node [:modifier :title]))
-    (update-in [:modifier :title] #(process-typo % typo-opts))
+    (and title-transformer (string? (get-in node [:modifier :title])))
+    (update-in [:modifier :title] title-transformer)
 
-    (string? (:title-override node))
-    (update :title-override #(process-typo % typo-opts))))
+    (and title-transformer (string? (:title-override node)))
+    (update :title-override title-transformer)))
 
 (defn- transform-titles-deep
-  [node typo-opts]
-  (let [node (transform-titles node typo-opts)]
+  [node title-transformer]
+  (let [node (transform-titles node title-transformer)]
     (if (contains? collect-types (:type node))
-      (update node :content #(mapv (fn [c] (transform-titles-deep c typo-opts)) %))
+      (update node :content #(mapv (fn [c] (transform-titles-deep c title-transformer)) %))
       node)))
 
 (declare walk)
 
 (defn- walk-children
-  [node typo-opts]
+  [node opts]
   (reduce (fn [node key]
             (let [v (get node key)]
               (cond
                 (nil? v) node
-                (and (map? v) (contains? v :type)) (assoc node key (walk v typo-opts))
-                (sequential? v) (update node key #(mapv (fn [c] (walk c typo-opts)) %))
+                (and (map? v) (contains? v :type)) (assoc node key (walk v opts))
+                (sequential? v) (update node key #(mapv (fn [c] (walk c opts)) %))
                 :else node)))
           node
           [:content :items :caption :image :rows :cells]))
 
 (defn- walk
-  [node typo-opts]
-  (let [node (transform-titles node typo-opts)
+  [node {:keys [transformers title-transformer]}]
+  (let [node (transform-titles node title-transformer)
         content (:content node)]
     (if (and (sequential? content) (seq content)
              (every? (comp inline-types :type) content))
       (assoc node :content
-             (process-content (mapv #(transform-titles-deep % typo-opts) content) typo-opts))
-      (walk-children node typo-opts))))
+             (process-content (mapv #(transform-titles-deep % title-transformer) content)
+                             transformers))
+      (walk-children node {:transformers transformers
+                           :title-transformer title-transformer}))))
 
-(defn typography-pass
-  "Applies process-typo over every inline container of the document
-  (the reference TextRunPass, run by applyAstTypography as parse()'s
-  last step): each container's inline content becomes one text image,
-  block-level passthrough markup splits it into independent segments,
-  and the transformed image is written back into the text nodes.
-  Modifier titles and the {toc:} label transform as isolated strings."
-  [doc typo-opts]
-  (walk doc typo-opts))
+(defn text-run-pass
+  "Runs the text transformers over every inline container of the
+  document (the reference TextRunPass, run by applyAstTypography as
+  parse()'s last step): each container's inline content becomes one
+  text image, block-level passthrough markup splits it into
+  independent segments, and the transformed image is written back into
+  the text nodes. The transformers run in order - typography first,
+  then hyphenation (the reference applyAstTypography order); the
+  title-transformer (typography only) handles modifier titles and the
+  {toc:} label as isolated strings, nil leaves them untouched."
+  [doc {:keys [transformers title-transformer]}]
+  (walk doc {:transformers transformers :title-transformer title-transformer}))

@@ -447,6 +447,11 @@
     :content "\\s\\*" :content-pair "\\*"}
    {:syntax "phrase/em-alt2" :open "\\*" :char "\\*" :guard "\\\\\\\\" :link true :multiline true
     :before-open "[^\\s.,;:<>()\"'\\-]" :after-close "[^\\s.,;:<>()\"'?!\\-]"}
+   {:syntax "phrase/ins" :open "\\+\\+" :char "\\+"}
+   ;; < and > guard the arrows <-- and -->
+   {:syntax "phrase/del" :open "--" :char "\\-" :guard "<" :guard-after ">"}
+   {:syntax "phrase/sup" :open "\\^\\^" :char "\\^"}
+   {:syntax "phrase/sub" :open "__" :char "_"}
    {:syntax "phrase/span" :open "\"" :char "\"" :link true
     :after-open "\\s" :before-close "\\s" :content "\\r \"" :content-pair " "}
    {:syntax "phrase/span-alt" :open "\\~" :char "\\~" :link true
@@ -887,13 +892,35 @@
    :handler parse-table})
 
 ;;----------------------------------------------------------------
-;; Reference definitions ([ref]: url, [*ref*]: url)
+;; Reference definitions ([ref]: url, [*ref*]: url) and the bare [ref]
 
 (defn- parse-link-definition [_ groups]
-  (let [[_ m-ref m-url] groups]
-    {:type :link-definition :reference m-ref :url (strip-shy m-url)}))
+  (let [[_ m-ref m-url m-label m-mod-parts] groups
+        label (some-> m-label str/trim (as-> l (when-not (str/blank? l) l)))]
+    (cond-> {:type :link-definition :reference m-ref :url (strip-shy m-url)}
+      ;; the Texy 3 label and modifier carriers (legacy-references
+      ;; applies them; the label group swallows the modifier when both
+      ;; are present - the shared definition regex shape)
+      label (assoc :label label)
+      m-mod-parts (assoc :modifier (mod/parse m-mod-parts)))))
 
-(defn- parse-image-definition [_ groups]
+(defn- parse-reference
+  "The opt-in bare [ref] line syntax (the reference link/reference,
+  default off like it): resolves against the link definitions like
+  \"text\":[ref] - including the Texy 3 label semantics when enabled."
+  [ctx groups]
+  (let [[_ m-ref] groups]
+    (when (get (:allowed ctx) "link/reference")
+      {:type :link :url (str "[" m-ref "]")
+       :content [{:type :text :text (html/unescape-html m-ref)}]
+       :ref m-ref})))
+
+(defn reference-syntaxes []
+  [{:name "link/reference"
+    :pattern (compile-m "(?<![.\\#\\[])\\[([^\\[\\]*|\\n]++)\\]")
+    :handler parse-reference}])
+
+(defn parse-image-definition [_ groups]
   (let [[_ m-ref m-urls m-mod-parts] groups
         [url width height] (parse-image-content m-urls)]
     {:type :image-definition :reference (str/trim m-ref)
@@ -908,8 +935,13 @@
                              "[ \\t]*(?:" p/modifier ")?\\s*$"))
     :handler parse-image-definition}
    {:name "link-definition"
+    ;; the label group is a LAZY optional with a lazy body (the
+    ;; reference's U-ungreedy flag): the modifier prefers to match,
+    ;; the label only grows when the line cannot anchor otherwise; the
+    ;; modifier's own parts group (like the reference's capture) is
+    ;; group 4, without the leading dot and space
     :pattern (compile-m (str "^\\[([^\\[\\]#?*\\n]{1,100})\\]:[ \\t]++(\\S{1,1000})"
-                             "(?:[ \\t].{1,1000})?(?:" p/modifier ")?\\s*$"))
+                             "(?:([ \\t].{1,1000}?))??(?:" p/modifier ")?\\s*$"))
     :handler parse-link-definition}])
 
 ;;----------------------------------------------------------------
@@ -917,12 +949,15 @@
 
 (defn line-syntaxes []
   ;; the reference's module registration order: directive, html, image,
-  ;; phrases, autolink; emoticons are opt-in (appended in make-context)
+  ;; link references, phrases, autolink; emoticons are opt-in (appended
+  ;; in make-context); the bare [ref] is opt-in too (the handler refuses
+  ;; unless allowed["link/reference"] is set)
   (into []
         cat
         [(directive-syntax)
          (html/html-syntaxes)
          (image-syntax)
+         (reference-syntaxes)
          (phrase-syntaxes)
          (autolink-syntaxes)]))
 
@@ -942,13 +977,19 @@
          (list-syntaxes)]))
 
 (defn make-context [options]
-  (engine/make-context
-    (merge {:gap-handler gap-handler
-            ;; custom syntaxes registered via texy.core/add-line-syntax
-            ;; and add-block-syntax run after the built-ins (collision
-            ;; resolution: longer match wins, then earlier registration)
-            :line-syntaxes (into (into (line-syntaxes) (emoticon-syntax options))
-                                 (:custom-line-syntaxes options []))
-            :block-syntaxes (into (block-syntaxes) (:custom-block-syntaxes options []))
-            :options (merge {:merge-lines true :more-means-higher true} options)}
-           options)))
+  (let [;; the reference's allowed[] defaults: ins/del/sup/sub are
+        ;; opt-in; a caller's :allowed map merges per key over them
+        allowed (merge {"phrase/ins" false "phrase/del" false
+                        "phrase/sup" false "phrase/sub" false}
+                       (:allowed options {}))]
+    (engine/make-context
+      (-> (merge {:gap-handler gap-handler
+                  ;; custom syntaxes registered via texy.core/add-line-syntax
+                  ;; and add-block-syntax run after the built-ins (collision
+                  ;; resolution: longer match wins, then earlier registration)
+                  :line-syntaxes (into (into (line-syntaxes) (emoticon-syntax options))
+                                       (:custom-line-syntaxes options []))
+                  :block-syntaxes (into (block-syntaxes) (:custom-block-syntaxes options []))
+                  :options (merge {:merge-lines true :more-means-higher true} options)}
+                 options)
+          (assoc :allowed allowed)))))

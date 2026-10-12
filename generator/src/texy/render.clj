@@ -11,7 +11,8 @@
             [texy.dom :as dom]
             [texy.engine :as engine]
             [texy.html :as html]
-            [texy.modifier :as mod]))
+            [texy.modifier :as mod]
+            [texy.wellformer :as wellformer]))
 
 (def ^:dynamic *options*
   "Rendering options: :image-root (default \"images/\"), :link-root,
@@ -92,8 +93,18 @@
                     :else [k v]))))
         m))
 
+(defn- decorate
+  "Modifier decoration with the safe-mode gates: :allowed-classes false
+  drops the class and id (the reference allowedClasses = None),
+  :allowed-styles false drops the style (allowedStyles = None)."
+  [modifier]
+  (let [d (or (some-> modifier mod/decorate) {})]
+    (cond-> d
+      (false? (:allowed-classes *options*)) (dissoc :class :id)
+      (false? (:allowed-styles *options*)) (dissoc :style))))
+
 (defn- attrs [node]
-  (-> (or (some-> (:modifier node) mod/decorate) {})
+  (-> (decorate (:modifier node))
       (filter-url-attrs)
       (escape-attrs)))
 
@@ -258,7 +269,12 @@
   reference's WellFormer finalization."
   ([^String content] (render-passthrough content false))
   ([^String content trailing-space?]
-   (let [ctx (engine/make-context {:line-syntaxes (html/html-syntaxes) :options {}})
+   (let [ctx (engine/make-context {:line-syntaxes (html/html-syntaxes)
+                                  ;; the same allowed gating as the main
+                                  ;; parse context (safe mode disables
+                                  ;; comments here too)
+                                  :allowed (:allowed *options*)
+                                  :options *options*})
          nodes (engine/parse-inline ctx content)
          ;; tags the policy rejects become text (the reference's
          ;; transform-time sanitize, re-checked at render time)
@@ -363,7 +379,7 @@
 
 (defmethod render-node :code-block [node]
   (let [style (:style node :code)
-        mod-decorated (or (some-> (:modifier node) mod/decorate) {})]
+        mod-decorated (decorate (:modifier node))]
     (cond
       ;; block/texysource: parse as texy, then display the resulting
       ;; HTML escaped as source code, in <pre class="html ...">
@@ -492,7 +508,7 @@
       (render-children node)
       ;; the nofollow class moves onto rel="nofollow" (the reference
       ;; renderLink); the class list loses it
-      (let [decorated (or (some-> (:modifier node) mod/decorate) {})
+      (let [decorated (decorate (:modifier node))
             classes (-> decorated (:class "") (str/split #"\s+"))
             nofollow? (some #(= "nofollow" %) classes)
             class' (str/trim (str/join " " (remove #(= "nofollow" %) classes)))
@@ -514,13 +530,13 @@
         clear (fn [img] (update img :modifier #(some-> % (dissoc :h-align))))
         image (if (= :link (:type image)) (update image :content #(mapv clear %)) (clear image))
         a (escape-attrs
-            (cond-> (or (some-> (:modifier node) mod/decorate) {})
+            (cond-> (decorate (:modifier node))
               ;; the figure class is appended after the modifier classes
               ;; (:figure-class, the reference Config::figureClass)
-              true (assoc :class (str/trim (str (some-> (:modifier node) mod/decorate :class)
+              true (assoc :class (str/trim (str (some-> (decorate (:modifier node)) :class)
                                                    " " (or (:figure-class *options*) "figure"))))
               ;; no alignClasses configured: alignment becomes a float style
-              h-align (assoc :style (str (when-let [s (:style (mod/decorate (:modifier node)))] (str s ";"))
+              h-align (assoc :style (str (when-let [s (:style (decorate (:modifier node)))] (str s ";"))
                                          "float:" (name h-align)))))]
     [(into [:div a]
            (concat (render-node image)
@@ -534,7 +550,7 @@
   (let [title (get-in node [:modifier :title])
         h-align (get-in node [:modifier :h-align])
         mod* (some-> (:modifier node) (dissoc :title :h-align))
-        decorated (or (some-> mod* mod/decorate) {})
+        decorated (decorate mod*)
         ;; alt is a raw string so that alt="" survives huff's omission of
         ;; empty attribute values (the reference always emits alt)
         a (escape-attrs
@@ -591,8 +607,6 @@
   [^String s]
   (str/replace s #"[ \n]+" " "))
 
-(declare shrink-element)
-
 (defn- drop-prohibited
   "Drops <a>/<button> start tags nested inside an open <a>/<button>, and
   <form> inside <form> (the reference WellFormer's prohibited
@@ -620,34 +634,6 @@
                [form]))
            forms)))
 
-(defn- shrink-children
-  "Shrinks a children sequence: consecutive text strings join into one
-  inter-tag fragment, nested forms recurse."
-  [forms]
-  (->> (partition-by string? forms)
-       (mapcat (fn [group]
-                 (if (string? (first group))
-                   [(shrink-string (apply str group))]
-                   (map shrink-element group))))))
-
-(defn- shrink-element
-  "Walks one rendered element form, shrinking text runs - except inside
-  pre/textarea/code (the reference's preserveSpaces, plus code phrases
-  whose content is raw)."
-  [form]
-  (if (vector? form)
-    (let [[tag & tail] form
-          attrs? (map? (first tail))
-          attrs (when attrs? (first tail))
-          children (if attrs? (rest tail) tail)
-          children' (if (contains? #{:pre :textarea :code} tag)
-                     children
-                     (shrink-children children))]
-      (if attrs?
-        (into [tag attrs] children')
-        (into [tag] children')))
-    form))
-
 (defn render
   "Renders a parsed document to a vector of hiccup forms."
   ([doc] (render doc {}))
@@ -655,43 +641,44 @@
    (binding [*options* options]
      (vec (render-node doc)))))
 
-(defn- serialize-forms
-  "The huff serialization of repaired forms (the shrink pass is part of
-  the reference WellFormer's serialization). Requires
-  huff/*escape?* false."
-  [forms]
-  (str (huff/html (vec (shrink-children forms)))))
-
 (defn- serialize
-  "The shared render-and-serialize pipeline: render the node, drop
-  prohibited nesting (an <a> produced inside a link's content loses
-  its tag), repair the global tag stream through jsoup (the reference
-  WellFormer's stage) unless wellform? is false, shrink text runs,
-  serialize with huff."
-  ([node options] (serialize node options true))
-  ([node options wellform?]
-   (binding [*options* options
+  "The fragment pipeline: render the node's children (for a document,
+  one group per child; anything else is one group), drop prohibited
+  nesting (an <a> produced inside a link's content loses its tag),
+  format through the well-former fragment path (the children separated
+  by text newlines, trimmed at both ends) - no jsoup well-forming, so
+  unclosed author tags stay as written."
+  [node options]
+  (binding [*options* options
             huff/*escape?* false]
-     (let [forms (drop-prohibited (render-node node))]
-       (serialize-forms (if wellform?
-                          (dom/wellform forms escape-html escape-attr)
-                          forms))))))
+    (let [children (if (= :document (:type node)) (:content node) [node])
+          groups (map #(drop-prohibited (render-node %)) children)]
+      (wellformer/serialize-fragment groups options))))
 
 (defn to-html-fragment
   "Serializes a node WITHOUT the jsoup well-forming pass - the
   parse-only fragment path (the /--texysource display, the reference's
   finalizeFragment), where unclosed tags must stay as the author wrote
-  them."
+  them. The WellFormer formatting still applies (the reference
+  finalizeFragment runs the same formatter)."
   ([node] (to-html-fragment node {}))
-  ([node options] (serialize node options false)))
+  ([node options] (serialize node options)))
 
 (defn to-html
-  "Renders a parsed document and serializes with huff2. huff's own
-  escaping is disabled: this port escapes display text and attributes
-  itself, with the reference's exact semantics (text keeps apostrophes
-  literal). The rendered tree is well-formed by jsoup's HTML5 tree
-  construction (texy.dom/wellform, the global tag-stream repair that
-  the reference's WellFormer does at this same stage), then text runs
-  shrink like the reference."
+  "Renders a parsed document and serializes through the well-forming
+  and formatting stage: jsoup's HTML5 tree construction repairs the
+  tag stream (the reference WellFormer's pairing half, texy.dom),
+  then the formatter indents block elements with tabs and wraps
+  lines (the reference WellFormer's formatting half, texy.wellformer).
+  Options :indent (default true), :line-wrap (default 80, 0 disables),
+  :base-indent (default 0); {:indent false :line-wrap 0} selects flat
+  output. huff's own escaping is disabled: this port escapes display
+  text and attributes itself, with the reference's exact semantics
+  (text keeps apostrophes literal)."
   ([doc] (to-html doc {}))
-  ([doc options] (serialize doc options)))
+  ([doc options]
+   (binding [*options* options
+             huff/*escape?* false]
+     (let [forms (drop-prohibited (render-node doc))]
+       (wellformer/serialize (dom/wellform forms escape-html escape-attr)
+                             options)))))

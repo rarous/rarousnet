@@ -97,9 +97,20 @@
 
 (defn make-context
   "context = {:block-parser (atom) :line-syntaxes [...] :block-syntaxes [...]
-              :gap-handler fn(ctx, text) :allowed {...} :options {...}}"
-  [options]
-  (merge {:line-syntaxes [] :block-syntaxes [] :allowed {}} options))
+              :gap-handler fn(ctx, text) :allowed {...} :options {...}}
+
+  The :allowed map gates the registered syntaxes by name (the reference
+  allowed[]): an explicit false drops the syntax from the parse; the
+  gap handler always runs. Everything else parses."
+  [{:keys [allowed] :as options}]
+  (let [gate (fn [syntaxes]
+               (if (seq allowed)
+                 (remove #(false? (get allowed (:name %))) syntaxes)
+                 syntaxes))]
+    (-> {:line-syntaxes [] :block-syntaxes [] :allowed {}}
+        (merge options)
+        (update :line-syntaxes gate)
+        (update :block-syntaxes gate))))
 
 (defn parse-block
   "Parses text as block content with the context's block syntaxes and gap

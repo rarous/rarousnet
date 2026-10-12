@@ -13,7 +13,13 @@
     are not implemented)."
   (:require [clojure.string :as str]))
 
-(def letter "A-Za-z\\x{C0}-\\x{2FF}\\x{370}-\\x{1EFF}")
+(def letter
+  "The reference's Letter ranges (Patterns::Letter): ASCII, Latin
+  Extended and Greek/Cyrillic blocks - deliberately NOT \\p{L}. This is
+  the grammar - what the reference recognizes as syntax (CJK autolinks
+  stay plain text) - so parse patterns keep it faithful; the typography
+  nbsp rule is the deliberate all-scripts extension."
+  "A-Za-z\\x{C0}-\\x{2FF}\\x{370}-\\x{1EFF}")
 
 (def ^:private title-part "\\((?:\\\\\\)|[^)\\n])+\\)")
 (def ^:private class-part "\\[[^\\]\\n]+\\]")

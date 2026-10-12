@@ -10,6 +10,8 @@
   (:require [clojure.string :as str]
             [texy.engine :as engine]
             [texy.html :as html]
+            [texy.hyphenation :as hyphenation]
+            [texy.modifier :as mod]
             [texy.modules :as modules]
             [texy.normalize :as normalize]
             [texy.passes :as passes]
@@ -34,6 +36,24 @@
   :image-pattern     allowed URL scheme regex for images (default allow all)
   :shorten-urls      shorten autolink display text (default true)
   :typography        typographic corrections (default true, the reference default)
+  :hyphenation       soft-hyphen breaking of long words (default true, the
+                     reference default)
+  :word-limit        minimum word length to hyphenate (default 20, like the
+                     reference module's wordLimit)
+  :indent            indent block elements with tabs in the HTML output
+                     (default true, the reference default)
+  :line-wrap        line wrap width of the HTML output, 0 disables
+                     (default 80, the reference default)
+  :base-indent      starting indent level of the HTML output (default 0)
+  :allowed           syntax gating by name, the reference allowed[]
+                     (ins/del/sup/sub phrases are opt-in by default;
+                     \"link/reference\" - the bare [ref] syntax - is
+                     opt-in too); see also safe-mode and add-definition
+  :legacy-references the Texy 3 reference semantics, off by default
+                     (the 4-dev reference deprecates them): definition
+                     labels/modifiers apply, %s reference URLs, image
+                     definition modifiers on [*img*] targets
+                     (see texy.references-test)
   :typography-locale locale for quote substitution (default \"cs\", like the
                      reference module; unknown falls back to English)
   :generate-ids      generate heading ids for a {toc:} (default false)
@@ -146,19 +166,39 @@
       (assoc node :url (str "mailto:" url))
       node)))
 
+(defn- php-urlencode
+  "PHP urlencode(): form encoding - spaces become '+', '*' is percent
+  encoded (java.net.URLEncoder leaves it). Used by the Texy 3 %s
+  reference-URL substitution."
+  ^String [^String s]
+  (str/replace (java.net.URLEncoder/encode s "UTF-8") "*" "%2A"))
+
 (defn- resolve-references
   "The link-reference and image-reference passes: [ref]: url and [*ref*]:
   url definitions are collected and every image, link and [*img*]-link
   reference resolved against them (the #fragment / ?query suffix of a
   reference is carried over to the resolved URL). An unresolved reference
   name becomes the URL itself; e-mail URLs gain the mailto: scheme.
-  Definition nodes stay in the tree but render to nothing."
-  [doc]
+  Definition nodes stay in the tree but render to nothing.
+
+  With :legacy-references true the Texy 3 semantics apply: a %s in a
+  reference URL takes the use-site text (form-url-encoded), the
+  definition's modifier merges under the use-site one, and a bare [ref]
+  use (the opt-in link/reference syntax) shows the definition's label
+  inline-parsed (circular labels render raw - the livelock) or the
+  textual URL as content."
+  [doc {:keys [link-definitions image-definitions legacy-references options]}]
   (let [find (fn [type] (filter #(= type (:type %)) (engine/node-seq doc)))
-        link-defs (into {} (map (fn [n] [(normalize/lower-case (:reference n)) (:url n)]))
-                       (find :link-definition))
-        img-defs (into {} (map (fn [n] [(normalize/lower-case (:reference n)) n]))
-                       (find :image-definition))
+        ;; user definitions (add-definition) come first; document
+        ;; definitions overwrite them, like the reference
+        user-link-defs (or link-definitions {})
+        user-img-defs (or image-definitions {})
+        link-defs (into user-link-defs
+                       (into {} (map (fn [n] [(normalize/lower-case (:reference n)) n]))
+                             (find :link-definition)))
+        img-defs (into user-img-defs
+                       (into {} (map (fn [n] [(normalize/lower-case (:reference n)) n]))
+                             (find :image-definition)))
         resolve-def (fn [identifier]
                       (let [key (normalize/lower-case identifier)
                             hash (str/index-of key "#")
@@ -167,9 +207,8 @@
                                       hash hash
                                       query query)]
                         (or (get link-defs key)
-                            (when (and pos (get link-defs (subs key 0 pos)))
-                              (str (get link-defs (subs key 0 pos))
-                                   (subs identifier pos))))))
+                            (when-let [base (and pos (get link-defs (subs key 0 pos)))]
+                              (assoc base :url (str (:url base) (subs identifier pos)))))))
         resolve-image (fn [node]
                         (let [key (normalize/lower-case (str/trim (:url node)))]
                           (if-some [def (get img-defs key)]
@@ -184,45 +223,102 @@
                                                         (and def-mod (nil? (:title m)))
                                                         (assoc m :title (:title def-mod))
                                                         :else m)))))
-                            node)))]
+                            node)))
+        legacy? legacy-references
+        ;; the label content parses with the same context (custom
+        ;; syntaxes included); the livelock breaks circular labels
+        ctx (when legacy? (modules/make-context options))
+        livelock (atom #{})
+        ;; the use-site text for the %s substitution
+        label-text (fn [node]
+                     (engine/extract-text {:type :document :content (:content node)}))
+        resolve-link (fn resolve-link [node]
+                       (let [apply-legacy (fn [node def bare?]
+                                            (let [node (cond-> node
+                                                        (and (not bare?)
+                                                             (str/includes? (str (:url node)) "%s"))
+                                                        (update :url #(str/replace (str %) "%s"
+                                                                                   (php-urlencode (label-text node))))
+
+                                                        (:modifier def)
+                                                        (update :modifier (fn [m]
+                                                                            (mod/merge-modifiers (:modifier def) m))))]
+                                              (if-not bare?
+                                                node
+                                                (if-some [label (:label def)]
+                                                  (let [key (normalize/lower-case (:reference def))]
+                                                    (if (contains? @livelock key)
+                                                      ;; circular - the raw label text
+                                                      (assoc node :content [{:type :text :text label}])
+                                                      (do (swap! livelock conj key)
+                                                          (let [content (engine/parse-inline ctx label)
+                                                                ;; references inside the label
+                                                                ;; resolve too, recursively
+                                                                content (:content (passes/transform-nodes
+                                                                                    (fn [n] (if (= :link (:type n))
+                                                                                              (resolve-link n)
+                                                                                              n))
+                                                                                    {:type :document :content (vec content)}))]
+                                                            (swap! livelock disj key)
+                                                            (assoc node :content content)))))
+                                                  ;; no label: the textual URL display
+                                                  ;; (the Texy 3 textualUrl) - an autolink
+                                                  ;; node; the well-forming suppresses
+                                                  ;; its nested <a>, leaving the display
+                                                  (assoc node :content [{:type :url :url (str (:url node))}])))))]
+                         (let [raw0 (:url node)
+                               ;; the [*ref*]:: self-link: the link URL equals the
+                               ;; reference of the wrapped image, so it resolves
+                               ;; against the image definitions too (the reference
+                               ;; ImageModule::resolveReferences); the image child
+                               ;; is already resolved (bottom-up) and keeps its
+                               ;; original reference in :ref
+                               self-def (when-let [[img & _] (:content node)]
+                                          (when (= :image (:type img))
+                                            (let [k (normalize/lower-case (str/trim (str raw0)))
+                                                  img-k (normalize/lower-case (str/trim (str (or (:ref img) (:url img)))))]
+                                              (when (and (= k img-k) (get img-defs k))
+                                                (get img-defs k)))))
+                               raw (if self-def (:url self-def) raw0)
+                               node (assoc node :url raw)
+                               len (count raw)
+                               image-link (and (> len 4) (= \[ (first raw)) (= \* (second raw))
+                                               (= \] (last raw))
+                                               (contains? #{\* \< \>} (nth raw (- len 2))))
+                               ref (and (> len 2) (= \[ (first raw)) (= \] (last raw)))]
+                           (cond
+                             ;; [*img*] - resolve against image definitions
+                             image-link
+                             (let [img-ref (str/trim (subs raw 2 (- len 2)))
+                                   def (get img-defs (normalize/lower-case img-ref))
+                                   url (if def (:url def) img-ref)]
+                               (cond-> (assoc node :url url :ref img-ref :image-link true)
+                                 ;; the image definition's modifier applies to the
+                                 ;; <a> too (the Texy 3 factoryLink); %s as above
+                                 (and legacy? def (:modifier def))
+                                 (update :modifier #(mod/merge-modifiers (:modifier def) %))
+
+                                 (and legacy? def (str/includes? (str url) "%s"))
+                                 (assoc :url (str/replace url "%s" (php-urlencode (label-text node))))))
+
+                             ;; [ref] - resolve against link definitions
+                             ref
+                             (let [ref-name (subs raw 1 (dec len))
+                                   ;; the bare [ref] form carries :ref since
+                                   ;; parsing; phrase targets never do
+                                   bare? (contains? node :ref)
+                                   def (resolve-def ref-name)]
+                               (-> (assoc node :url (if def (:url def) ref-name)
+                                          :ref ref-name)
+                                   (cond-> (and legacy? def) (apply-legacy def bare?))
+                                   convert-email-url))
+
+                             :else (convert-email-url node)))))]
     (passes/transform-nodes
       (fn [node]
         (case (:type node)
           :image (resolve-image node)
-          :link (let [raw0 (:url node)
-                      ;; the [*ref*]:: self-link: the link URL equals the
-                      ;; reference of the wrapped image, so it resolves
-                      ;; against the image definitions too (the reference
-                      ;; ImageModule::resolveReferences); the image child
-                      ;; is already resolved (bottom-up) and keeps its
-                      ;; original reference in :ref
-                      self-def (when-let [[img & _] (:content node)]
-                                 (when (= :image (:type img))
-                                   (let [k (normalize/lower-case (str/trim (str raw0)))
-                                         img-k (normalize/lower-case (str/trim (str (or (:ref img) (:url img)))))]
-                                     (when (and (= k img-k) (get img-defs k))
-                                       (get img-defs k)))))
-                      raw (if self-def (:url self-def) raw0)
-                      node (assoc node :url raw)
-                      len (count raw)
-                      image-link (and (> len 4) (= \[ (first raw)) (= \* (second raw))
-                                      (= \] (last raw))
-                                      (contains? #{\* \< \>} (nth raw (- len 2))))
-                      ref (and (> len 2) (= \[ (first raw)) (= \] (last raw)))]
-                  (cond
-                    ;; [*img*] - resolve against image definitions
-                    image-link
-                    (let [img-ref (str/trim (subs raw 2 (- len 2)))
-                          def (get img-defs (normalize/lower-case img-ref))]
-                      (assoc node :url (if def (:url def) img-ref)
-                                 :ref img-ref :image-link true))
-                    ;; [ref] - resolve against link definitions
-                    ref
-                    (let [ref-name (subs raw 1 (dec len))]
-                      (-> (assoc node :url (or (resolve-def ref-name) ref-name)
-                                 :ref ref-name)
-                          convert-email-url))
-                    :else (convert-email-url node)))
+          :link (resolve-link node)
           node))
       doc)))
 
@@ -247,21 +343,35 @@
          doc (html/sanitize-pass doc (:options texy))
          doc (reduce (fn [doc pass] (pass doc))
                      (-> doc
-                         resolve-references
+                         (resolve-references {:link-definitions (get-in texy [:options :link-definitions])
+                                              :image-definitions (get-in texy [:options :image-definitions])
+                                              :legacy-references (get-in texy [:options :legacy-references])
+                                              :options (:options texy)})
                          (passes/balance-headings
                            {:top (get-in texy [:options :top] 1)
                             :dynamic (not (get-in texy [:options :fixed-leveling]))
                             :generate-ids (get-in texy [:options :generate-ids])
                             :id-prefix (get-in texy [:options :id-prefix] "toc-")}))
                      (get-in texy [:options :passes] []))]
-     ;; typography runs as parse()'s last step (the reference
-     ;; applyAstTypography), default on; :meta :typographed marks the
-     ;; document so titles are not transformed twice
-     (if (get-in texy [:options :typography] true)
-       (-> doc
-           (typography/typography-pass {:locale (get-in texy [:options :typography-locale] "cs")})
-           (assoc-in [:meta :typographed] true))
-       doc))))
+     ;; the text-run pass runs as parse()'s last step (the reference
+     ;; applyAstTypography), typography and hyphenation default on;
+     ;; :meta :typographed marks the document so titles are not
+     ;; transformed twice
+     (let [typo (get-in texy [:options :typography] true)
+           hyph (get-in texy [:options :hyphenation] true)
+           word-limit (get-in texy [:options :word-limit] 20)
+           typo-locale (get-in texy [:options :typography-locale] "cs")
+           typo-fn (when typo
+                     #(typography/process-typo % {:locale typo-locale}))]
+       (if (or typo hyph)
+         (-> doc
+             (typography/text-run-pass
+               {:transformers (cond-> []
+                               typo (conj typo-fn)
+                               hyph (conj #(hyphenation/post-line % word-limit)))
+                :title-transformer typo-fn})
+             (assoc-in [:meta :typographed] true))
+         doc)))))
 
 (def ^:private void-elements-regex
   "Void element serializations. Fragments (the /--texysource display)
@@ -269,6 +379,59 @@
   (<br />) would keep its slash; the reference serializes voids
   HTML5-style (<br>) - normalize to match."
   #"(<(?:area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)\b[^>]*?) />")
+
+(def safe-tags
+  "The safe-mode tag whitelist (the reference Configurator::SafeTags):
+  tag => allowed attribute names."
+  {"a" ["href" "title"]
+   "abbr" ["title"]
+   "b" [] "br" [] "cite" [] "code" [] "em" [] "i" [] "strong" [] "sub" []
+   "sup" [] "q" [] "small" []})
+
+(defn safe-mode
+  "Configures the converter for untrusted input (the reference
+  Configurator::safeMode): the safe tag whitelist (with title/lang/dir
+  acceptable on any element), no classes/ids/styles from modifiers, URL
+  schemes restricted, images, [ref]: definitions and HTML comments
+  disabled, rel=nofollow on external links."
+  [^Texy texy]
+  (-> texy
+      (assoc-in [:options :allowed-tags]
+                (merge safe-tags {"*" ["title" "lang" "dir"]}))
+      (assoc-in [:options :allowed-classes] false)
+      (assoc-in [:options :allowed-styles] false)
+      (assoc-in [:options :link-pattern] "https?:|ftp:|mailto:")
+      (assoc-in [:options :image-pattern] "https?:")
+      (assoc-in [:options :link-no-follow] true)
+      (update-in [:options :allowed] merge
+                 {"image" false "link-definition" false "html/comment" false})))
+
+(defn add-definition
+  "Adds a user-defined link reference (the reference
+  LinkReferenceModule::addDefinition): persists across process calls,
+  document [ref]: definitions overwrite it. The label and modifier
+  arities are the Texy 3 Link::$label / Link::$modifier carriers -
+  they apply when :legacy-references is on (a bare [ref] use shows the
+  label as content, the modifier applies to every use site); the
+  modifier string is written as in the text (with or without the
+  leading dot). The 5-arity version adds an image definition."
+  ([^Texy texy name url]
+   (update-in texy [:options :link-definitions]
+              (fnil assoc {}) (normalize/lower-case name)
+              {:reference name :url url}))
+  ([^Texy texy name url label]
+   (add-definition texy name url label nil))
+  ([^Texy texy name url label modifier-text]
+   (update-in texy [:options :link-definitions]
+              (fnil assoc {}) (normalize/lower-case name)
+              (cond-> {:reference name :url url}
+                label (assoc :label label)
+                modifier-text (assoc :modifier (mod/parse (str/replace-first modifier-text #"^\." ""))))))
+  ([^Texy texy name url width height modifier]
+   (update-in texy [:options :image-definitions]
+              (fnil assoc {}) (normalize/lower-case name)
+              {:reference name :url url :width width :height height
+               :modifier modifier})))
 
 (declare fragment-renderer)
 
@@ -289,7 +452,8 @@
 (defn- fragment-renderer
   "Renders a texy fragment for /--texysource: parse phase only (no
   heading balancing or other passes, exactly like the reference's
-  finalizeFragment), children rendered and joined."
+  finalizeFragment), all children through ONE formatter - the
+  reference feeds the whole fragment to the WellFormer."
   [^Texy texy]
   (fn [s]
     (let [text (normalize/normalize s)
@@ -297,9 +461,10 @@
           content (engine/parse-block ctx text)
           opts (render-opts texy)]
       ;; the fragment path skips the jsoup well-forming (the reference
-      ;; finalizeFragment renders fragments unrepaired)
-      (str/trim (str/replace (str/join " " (map #(render/to-html-fragment % opts) content))
-                             void-elements-regex "$1>")))))
+      ;; finalizeFragment renders fragments unrepaired); author-written
+      ;; XHTML voids normalize to the HTML5 style
+      (str/replace (render/to-html-fragment {:type :document :content (vec content)} opts)
+                   void-elements-regex "$1>"))))
 (defn render-hiccup
   "Renders a parsed document to a vector of hiccup forms."
   ([doc] (render-hiccup doc {}))
@@ -322,16 +487,19 @@
 
 (defn apply-typography
   "Makes only typographic corrections to raw text (the reference
-  applyTypography): normalize, then process-typo with spaces preserved.
-  No parsing, no markup handling."
+  applyTypography): normalize, then process-typo with spaces preserved
+  and hyphenation. No parsing, no markup handling."
   ([^Texy texy text] (apply-typography texy text {}))
   ([^Texy texy text {:keys [locale]}]
    (let [text (normalize/normalize text)]
-     (if (get-in texy [:options :typography] true)
-       (typography/process-typo text
-                                {:locale (or locale (get-in texy [:options :typography-locale] "cs"))
-                                 :preserve-spaces true})
-       text))))
+     (cond-> text
+       (get-in texy [:options :typography] true)
+       (typography/process-typo
+         {:locale (or locale (get-in texy [:options :typography-locale] "cs"))
+          :preserve-spaces true})
+
+       (get-in texy [:options :hyphenation] true)
+       (hyphenation/post-line (get-in texy [:options :word-limit] 20))))))
 
 (defn process
   "Converts text to an HTML string. The :image-root / :link-root options
