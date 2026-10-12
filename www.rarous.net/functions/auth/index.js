@@ -1,5 +1,5 @@
-import { createCookie, signJWT } from "#lib/auth.js";
-import { verifyGoogleAuth } from "#lib/gauth.js";
+import { createCookie, signJWT } from "../lib/auth.js";
+import { verifyGoogleAuth } from "../lib/gauth.js";
 
 /**
  * @param {EventContext<Env>} context
