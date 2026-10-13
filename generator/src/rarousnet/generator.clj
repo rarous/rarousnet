@@ -86,11 +86,6 @@
   (str blog-url file-name))
 (defn rel-link [{:keys [file-name]}]
   (str blog-relative-url file-name))
-(defn author-twitter [{:keys [author]}]
-  (case author
-    "Aleš Roubíček" "@alesroubicek"
-    "Alessio Busta" "@alessiobusta"
-    nil))
 (defn author-handle [{:keys [author]}]
   (case author
     "Aleš Roubíček" "@alesroubicek@indieweb.social"
@@ -186,7 +181,6 @@
   [(meta-p "article:published_time")] (html/set-attr :content (iso-date published))
   [(meta-p "article:author")] (html/set-attr :content author)
   [(meta-p "article:tag")] (html/clone-for [tag tags] (html/set-attr :content tag))
-  [(meta-n "twitter:creator")] (html/set-attr :content (author-twitter article))
   [(meta-n "fediverse:creator")] (html/set-attr :content (author-fediverse article))
   [(link "canonical")] (html/set-attr :href (permalink article))
   [(link "syndication")] (if syndication
