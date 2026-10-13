@@ -1,7 +1,7 @@
 import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
-import { Texy } from "../../../lib/texy/Texy.js";
-import { Configurator } from "../../../lib/texy/Configurator.js";
-import { Syntax } from "../../../lib/texy/Syntax.js";
+import { Texy } from "@gryphoon/texy/Texy.js";
+import { Configurator } from "@gryphoon/texy/Configurator.js";
+import { Syntax } from "@gryphoon/texy/Syntax.js";
 
 async function processText(text, references) {
   const texy = new Texy();
