@@ -3,10 +3,9 @@
     [clj-time.core :as time :refer [date-time]]
     [clj-time.coerce :as tc :refer [from-date]]
     [clj-time.format :refer [formatter unparse with-locale formatters]]
-    [clojure.core.async :as async :refer [>!! <!! >! <! go go-loop]]
+    [clojure.core.async :as async :refer [<!! >! <! go go-loop]]
     [clojure.edn :as edn]
     [clojure.java.io :as io]
-    [clojure.java.shell :refer [sh]]
     [clojure.string :as string]
     [cheshire.core :as json]
     [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate xml-parser]]
@@ -22,6 +21,15 @@
 
 (set! *warn-on-reflection* true)
 
+(def ^:private re-html-ext (re-pattern #"\.html$"))
+(def ^:private re-texy-ext (re-pattern #"\.texy$"))
+(def ^:private re-front-matter (re-pattern #"---"))
+(def ^:private re-spaces (re-pattern #"\s+"))
+(def ^:private re-dot (re-pattern #"\."))
+(def ^:private re-hyphen (re-pattern #"-"))
+(def ^:private re-self-closing-tag (re-pattern #"\s/>"))
+(def ^:private re-file-separator (re-pattern #"/"))
+
 (def blog-relative-url "/weblog/")
 (def blog-url (str "https://www.rarous.net" blog-relative-url))
 
@@ -36,8 +44,8 @@
   (-> s
       (.toLowerCase)
       (remove-diacritics)
-      (string/replace #"\." "-")
-      (string/replace #"\s+" "-")))
+      (string/replace re-dot "-")
+      (string/replace re-spaces "-")))
 
 (def cs (Locale. "cs"))
 
@@ -93,7 +101,7 @@
     "Aleš Roubíček" "@alesroubicek@indieweb.social"
     nil))
 (defn card-image [article]
-  (string/replace (permalink article) #"\.html" ".png"))
+  (string/replace (permalink article) re-html-ext ".png"))
 
 (defn- meta-n [name] [:meta (html/attr= :name name)])
 (defn- property [name] (html/attr= :property name))
@@ -243,7 +251,7 @@
   (->> s tc/from-string tc/to-date))
 
 (defn ->article [input texy]
-  (let [[_ meta & text] (string/split input #"---")
+  (let [[_ meta & text] (string/split input re-front-matter)
         text (string/join "---" text)]
     (assoc (edn/read-string meta)
       :texy text
@@ -252,8 +260,8 @@
 (defn file-name [^File f]
   (let [x (fn [y m d & name] (str y "/" m "/" d "/" (string/join "-" name)))
         y (-> (.getName f)
-              (string/replace #"\.texy" ".html")
-              (string/split #"-"))]
+              (string/replace re-texy-ext ".html")
+              (string/split re-hyphen))]
     (apply x y)))
 
 (defn convert [transform texy]
@@ -307,7 +315,8 @@
              :file/content rss}))))
 
 (defn render-html [template]
-  (string/replace (apply str template) #"\s/>" ">"))
+  ;; TODO: fork enlive and make it spit correct self closing tags
+  (string/replace (apply str template) re-self-closing-tag ">"))
 
 (defn page [article]
     {:file/content (render-html (blogpost-template article))
@@ -460,7 +469,7 @@
                 :file/content html}))))
 
 (def weblog-pattern
-  #(str "/weblog/" (:id %) "-" (string/replace (last (string/split (:file-name %) #"/")) #"\.html" ".aspx")))
+  #(str "/weblog/" (:id %) "-" (string/replace (last (string/split (:file-name %) re-file-separator)) re-html-ext ".aspx")))
 
 (defn redirects [{:keys [articles]} write-file-ch]
   (let [redirects (into []
@@ -479,7 +488,7 @@
    :name (author-handle article)
    :date (:published article)
    :tags (:tags article)
-   :url (str blog-url (string/replace (:file-name article) #"\.html$" ".png"))})
+   :url (str blog-url (string/replace (:file-name article) re-html-ext ".png"))})
 
 (defn sha256 [^String string]
   (let [digest (.digest (MessageDigest/getInstance "SHA-256") (.getBytes string "UTF-8"))]
