@@ -11,42 +11,6 @@ export const DontTraverseChildren = 1;
 export const StopTraversal = 2;
 export const RemoveNode = 3;
 
-/**
- * Child slots of every node shape: [container object, property or index].
- * @param {import('../nodes.js').ContentNode} node
- * @returns {Array<{container: Object, key: string|number}>}
- */
-function childSlots(node)
-{
-	switch (node.constructor.name) {
-		case 'DocumentNode':
-			return [{ container: node, key: 'content' }];
-		case 'ContentNode':
-			return node.children.map((child, index) => ({ container: node.children, key: index }));
-		case 'FigureNode':
-			return [
-				{ container: node, key: 'image' },
-				...(node.caption !== null ? [{ container: node, key: 'caption' }] : []),
-			];
-		case 'ListNode':
-		case 'DefinitionListNode':
-			return node.items.map((item, index) => ({ container: node.items, key: index }));
-		case 'TableNode':
-			return [
-				...(node.caption !== null ? [{ container: node, key: 'caption' }] : []),
-				...node.rows.map((row, index) => ({ container: node.rows, key: index })),
-			];
-		case 'TableRowNode':
-			return node.cells.map((cell, index) => ({ container: node.cells, key: index }));
-		default:
-			// most nodes hold their children in `content`
-			return node.content !== undefined
-				? [{ container: node, key: 'content' }]
-				: [];
-	}
-}
-
-
 export class NodeTraverser
 {
 	/**
@@ -70,7 +34,7 @@ export class NodeTraverser
 		let children = true;
 		if (this.enter) {
 			const res = this.enter(node);
-			if (res instanceof Object && res !== null && typeof res.getChildren === 'function') {
+			if (res instanceof Object && typeof res.getChildren === 'function') {
 				node = res;
 			} else if (res === DontTraverseChildren) {
 				children = false;
@@ -83,30 +47,30 @@ export class NodeTraverser
 		}
 
 		if (children) {
-			for (const slot of childSlots(node)) {
-				const subnode = slot.container[slot.key];
-				if (subnode === undefined || subnode === null) continue;
-				const res = this.traverseNode(subnode);
-				if (res !== subnode) {
-					slot.container[slot.key] = res;
-				}
-				if (this.stop) break;
-			}
-			// array containers prune removed items (PHP walk() semantics)
-			for (const array of [node.children, node.items, node.rows, node.cells]) {
-				if (Array.isArray(array)) {
-					const filtered = array.filter(item => item !== null && item !== undefined);
-					if (filtered.length !== array.length) {
-						array.length = 0;
-						array.push(...filtered);
-					}
-				}
+			// dispatch on the child-container shape: the fields are mutually
+			// exclusive per node class (verified against nodes.js), and the
+			// branches preserve the slot order of the reference: for a table
+			// the caption precedes the rows, for a figure the image the caption
+			if (node.children !== undefined) { // ContentNode
+				this.traverseArray(node.children);
+			} else if (node.items !== undefined) { // ListNode, DefinitionListNode
+				this.traverseArray(node.items);
+			} else if (node.cells !== undefined) { // TableRowNode
+				this.traverseArray(node.cells);
+			} else if (node.rows !== undefined) { // TableNode
+				this.traverseChildProperty(node, 'caption');
+				if (!this.stop) this.traverseArray(node.rows);
+			} else if (node.image !== undefined) { // FigureNode
+				this.traverseChildProperty(node, 'image');
+				if (!this.stop) this.traverseChildProperty(node, 'caption');
+			} else if (node.content !== undefined) { // DocumentNode and most nodes
+				this.traverseChildProperty(node, 'content');
 			}
 		}
 
 		if (!this.stop && this.leave) {
 			const res = this.leave(node);
-			if (res instanceof Object && res !== null && typeof res.getChildren === 'function') {
+			if (res instanceof Object && typeof res.getChildren === 'function') {
 				node = res;
 			} else if (res === StopTraversal) {
 				this.stop = true;
@@ -116,5 +80,46 @@ export class NodeTraverser
 		}
 
 		return node;
+	}
+
+
+	/**
+	 * Traverses a child array in place: removed children are written back as
+	 * null and pruned afterwards, compacting in place with no allocation
+	 * (PHP walk() semantics).
+	 * @param {Array} array
+	 */
+	traverseArray(array)
+	{
+		for (const [i, subnode] of array.entries()) {
+			if (!subnode) continue;
+			const res = this.traverseNode(subnode);
+			if (res !== subnode) {
+				array[i] = res;
+			}
+			if (this.stop) break;
+		}
+
+		let w = 0;
+		for (const item of array) {
+			if (item) array[w++] = item;
+		}
+		if (w !== array.length) array.length = w;
+	}
+
+
+	/**
+	 * Traverses one child held in a property, writing a replacement back.
+	 * @param {Object} container
+	 * @param {string} key
+	 */
+	traverseChildProperty(container, key)
+	{
+		const subnode = container[key];
+		if (subnode === undefined || subnode === null) return;
+		const res = this.traverseNode(subnode);
+		if (res !== subnode) {
+			container[key] = res;
+		}
 	}
 }

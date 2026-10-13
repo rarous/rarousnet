@@ -138,9 +138,9 @@ export class HtmlPolicy
 		}
 		tag += node.name;
 		for (const [name, value] of Object.entries(node.attributes)) {
-			tag += ' ' + name;
+			tag += ` ${name}`;
 			if (value !== true) {
-				tag += '="' + value + '"';
+				tag += `="${value}"`;
 			}
 		}
 		if (node.selfClosing) {

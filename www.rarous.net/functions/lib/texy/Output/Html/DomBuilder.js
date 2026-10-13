@@ -18,17 +18,8 @@
  */
 
 import { DOMParser } from 'linkedom';
+import { phpLooseNull } from '../../helpers.js';
 import { Raw } from './Raw.js';
-
-/**
- * PHP `$v == null`: true for null, false, '', 0, '0' and empty arrays.
- * @param {string|number|boolean|null|Array} v
- */
-function phpLooseNull(v)
-{
-	return v == null || v === '' || v === 0 || v === '0' || v === false
-		|| (Array.isArray(v) && v.length === 0);
-}
 
 
 /**
@@ -45,7 +36,7 @@ function compositeValue(key, value)
 		if (phpLooseNull(v)) {
 			continue;
 		}
-		parts.push(/^\d+$/.test(k) ? String(v) : k + ':' + v);
+		parts.push(/^\d+$/.test(k) ? String(v) : `${k}:${v}`);
 	}
 
 	return key === 'style' ? parts.join(';') : parts.join(' ');

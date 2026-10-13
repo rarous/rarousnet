@@ -4,15 +4,26 @@
  */
 
 /**
+ * All nodes the filter accepts, in pre-order. Eagerly collected: the
+ * generator recursion this replaces costs a generator frame per node.
  * @param {Node} node
  * @param {(node: Node) => boolean}filter
- * @returns {Generator<Node>}
+ * @returns {Array<Node>}
  */
-export function* find(node, filter)
+export function find(node, filter)
 {
-	if (filter(node)) yield node;
+	const found = [];
+	collect(node, filter, found);
+	return found;
+}
+
+
+/** @param {Node} node @param {Array<Node>} found */
+function collect(node, filter, found)
+{
+	if (filter(node)) found.push(node);
 	for (const child of node.getChildren()) {
-		yield* find(child, filter);
+		collect(child, filter, found);
 	}
 }
 
@@ -20,17 +31,28 @@ export function* find(node, filter)
 /**
  * @param {Node} node
  * @param {(node: Node) => boolean} filter
- * @returns {?Node}
+ * @returns {Array<Node>}
  */
-export function* findAll(node, filter)
+export function findAll(node, filter)
 {
-	yield* find(node, filter);
+	return find(node, filter);
 }
 
 
+/**
+ * The first node the filter accepts, pre-order; leaves the tree as soon as
+ * one is found.
+ * @param {Node} node
+ * @param {(node: Node) => boolean} filter
+ * @returns {?Node}
+ */
 export function findFirst(node, filter)
 {
-	for (const found of find(node, filter)) return found;
+	if (filter(node)) return node;
+	for (const child of node.getChildren()) {
+		const res = findFirst(child, filter);
+		if (res !== null) return res;
+	}
 	return null;
 }
 

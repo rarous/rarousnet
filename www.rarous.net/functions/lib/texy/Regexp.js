@@ -38,9 +38,23 @@ const MAX_RECURSION_DEPTH = 8;
 const cache = new Map();
 
 
+/** Closing delimiters of the paired PCRE delimiters; the rest close themselves. */
+const patternCloses = new Map([['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]);
+
+/**
+ * The pattern modifiers this port implements: i, m, s pass through to the JS
+ * flags, x and U are translated, A marks the pattern anchored, u (UTF-8) is
+ * always on. PHP-valid-but-unimplemented modifiers are rejected, so a
+ * reference pattern relying on one fails loudly instead of silently.
+ */
+const implementedModifiers = new Set(['i', 'm', 's', 'x', 'u', 'U', 'A']);
+
 /**
  * Splits a PCRE pattern into body and flags. The pattern is expected in the
- * delimiter-wrapped form used by the reference implementation, e.g. `~...~Uix`.
+ * delimiter-wrapped form used by the reference implementation, e.g. `~...~Uix`:
+ * the closing delimiter is its first unescaped occurrence, and only modifier
+ * letters may follow. Like PHP, anything else ("abc~~A~", "abc~A]") is
+ * rejected instead of being silently taken as pattern body.
  * @param {string} pattern
  * @returns {[string, string]}
  */
@@ -51,15 +65,34 @@ export function splitPattern(pattern)
 	}
 
 	const open = pattern[0];
-	const closes = { '(': ')', '[': ']', '{': '}', '<': '>' };
-	const close = closes[open] ?? open;
-
-	const end = pattern.lastIndexOf(close);
-	if (end <= 0) {
+	if (/[a-zA-Z0-9\\\s]/.test(open)) { // PHP: the delimiter must not be alphanumeric, backslash or whitespace
 		throw new Error('Invalid pattern: ' + pattern);
 	}
 
-	return [pattern.slice(1, end), pattern.slice(end + 1)];
+	const close = patternCloses.get(open) ?? open;
+
+	let end = -1;
+	for (let i = 1; i < pattern.length; i++) {
+		if (pattern[i] === '\\') { // escaped character: cannot close the pattern
+			i++;
+		} else if (pattern[i] === close) {
+			end = i;
+			break;
+		}
+	}
+
+	if (end === -1) {
+		throw new Error('Invalid pattern: ' + pattern);
+	}
+
+	const flagStr = pattern.slice(end + 1);
+	for (const ch of flagStr) {
+		if (!implementedModifiers.has(ch)) {
+			throw new Error('Unknown modifier \'' + ch + '\' in: ' + pattern);
+		}
+	}
+
+	return [pattern.slice(1, end), flagStr];
 }
 
 
@@ -151,6 +184,21 @@ class Translator
 	}
 
 
+	/**
+	 * Emulates atomic behavior with the assertion `(?=(?<name>text))\k<name>`:
+	 * an assertion is never re-entered while backtracking, so the text inside
+	 * matches once and is never given up - exactly the semantics of an atomic
+	 * group (kind 'a') or a possessive quantifier (kind 'p'). Each call
+	 * consumes a numbered emulation group name, so emulations cannot collide.
+	 */
+	atomicAssertion(kind, text)
+	{
+		const k = ++this.state.emulationCount;
+		const name = this.namePrefix + kind + k;
+		return '(?=(?<' + name + '>' + text + '))\\k<' + name + '>';
+	}
+
+
 	/** Translates a `\X` escape. Returns [jsText, nextIndex]. */
 	escape(body, i)
 	{
@@ -186,8 +234,7 @@ class Translator
 		if (ch === 'z') return ['(?![\\s\\S])', i + 2];
 		if (ch === 'Z') return ['(?=\\n?(?![\\s\\S]))', i + 2];
 
-		// escapes with identical JS semantics pass through
-		if ('dDwWbBnrtfv0'.includes(ch)) return ['\\' + ch, i + 2];
+		if (identicalEscapes.has(ch)) return ['\\' + ch, i + 2];
 
 		// JS u-mode allows escaping syntax characters only; the rest are literal
 		if (isSyntaxChar(ch)) return ['\\' + ch, i + 2];
@@ -222,8 +269,7 @@ class Translator
 				} else if (c === 'S') {
 					throw new Error('Negated \\S inside a character class is not supported');
 				} else {
-					// escapes with identical JS semantics pass through; the rest are literal
-					out += ('dDwWbBnrtfv0'.includes(c) || isSyntaxChar(c) || c === '-') ? '\\' + c : c;
+					out += (identicalEscapes.has(c) || isSyntaxChar(c) || c === '-') ? '\\' + c : c; // class-range `-` stays escaped
 					j += 2;
 				}
 			} else {
@@ -263,11 +309,10 @@ class Translator
 			return ['(?<' + body[j + 1], j + 2, true, null];
 		}
 
-		if (c === '>') { // atomic group -> (?=(?<aN>inner))\k<aN>
+		if (c === '>') { // atomic group
 			const inner = balancedBody(body, j + 1);
 			const translated = this.translate(inner.text, f);
-			const k = ++this.state.emulationCount;
-			return ['(?=(?<' + this.namePrefix + 'a' + k + '>' + translated + '))\\k<' + this.namePrefix + 'a' + k + '>', inner.end + 1, false, null];
+			return [this.atomicAssertion('a', translated), inner.end + 1, false, null];
 		}
 
 		if (c === '#') { // comment group (?#...)
@@ -299,13 +344,13 @@ class Translator
 	/** Translates a quantifier (`*`, `+`, `?`, `{n,m}`) with lazy/possessive suffixes. */
 	quantifier(body, i, out, atomStart, f)
 	{
-		let q = body[i];
+		let qText = body[i];
 		let j = i + 1;
 
-		if (q === '{') {
+		if (qText === '{') {
 			const m = /^\{\d+(,\d*)?\}/.exec(body.slice(i));
 			if (!m) return [out + '\\{', i + 1]; // PCRE treats a non-interval brace as literal
-			q = m[0];
+			qText = m[0];
 			j = i + m[0].length;
 		}
 
@@ -318,11 +363,10 @@ class Translator
 		const atom = out.slice(atomStart);
 
 		if (possessive) {
-			const k = ++this.state.emulationCount;
-			return [out.slice(0, atomStart) + '(?=(?<' + this.namePrefix + 'p' + k + '>(?:' + atom + ')' + q + '))\\k<' + this.namePrefix + 'p' + k + '>', j];
+			return [out.slice(0, atomStart) + this.atomicAssertion('p', '(?:' + atom + ')' + qText), j];
 		}
 
-		return [out.slice(0, atomStart) + atom + q + (greedy ? '' : '?'), j];
+		return [out.slice(0, atomStart) + atom + qText + (greedy ? '' : '?'), j];
 	}
 }
 
@@ -360,25 +404,26 @@ function isQuantifierStart(body, i)
 }
 
 
+/** PCRE escapes with identical JS semantics (\d, \w, \b, ...): they pass through unchanged. */
+const identicalEscapes = new Set(['d', 'D', 'w', 'W', 'b', 'B', 'n', 'r', 't', 'f', 'v', '0']);
+
+/**
+ * The PCRE syntax characters. JS u-mode allows escaping exactly these; any
+ * other escaped character means its literal self.
+ */
+const syntaxChars = new Set(['^', '$', '\\', '.', '*', '+', '?', '(', ')', '[', ']', '{', '}', '|']);
+
+
 function isSyntaxChar(ch)
 {
-	return '^$\\.*+?()[]{}|'.includes(ch);
+	return syntaxChars.has(ch);
 }
 
 
-/**
- * Compiles a PCRE pattern into a reusable shape:
- * { source, groupCount, anchored, regexp (global), sticky, plain }.
- * Results are cached per pattern string.
- * @param {string} pattern PCRE pattern with delimiters, e.g. `~^abc$~miu`
- */
-export function compile(pattern)
+function compileInner(pattern)
 {
-	let c = cache.get(pattern);
-	if (c) return c;
-
 	const [body, flagStr] = splitPattern(pattern);
-	const flags = { x: flagStr.includes('x'), U: flagStr.includes('U') };
+	const flags = {x: flagStr.includes('x'), U: flagStr.includes('U')};
 
 	const jsFlagList = ['u', 'd'];
 	for (const f of ['i', 'm', 's']) {
@@ -391,25 +436,21 @@ export function compile(pattern)
 	// its own group-name prefix so captures cannot collide, and the innermost
 	// level degrades to a failing branch
 	const expand = (prefix, depth) => {
-		const src = new Translator({ namePrefix: prefix }).translate(body, flags);
+		const src = new Translator({namePrefix: prefix}).translate(body, flags);
 		if (!src.includes(RECURSION)) return src;
 		if (depth >= MAX_RECURSION_DEPTH) return src.split(RECURSION).join('(?!)');
 		return src.split(RECURSION).join(expand('r' + depth + '_', depth + 1));
 	};
 
 	let source = translator.translate(body, flags);
-	while (source.includes(RECURSION)) {
+	while (source.includes(RECURSION)) { // expansion removes all markers in one pass; the loop is defense in depth
 		source = source.split(RECURSION).join(expand('r1_', 2));
-	}
-
-	if (source.includes(RECURSION)) {
-		throw new Error('Recursion expansion failed for: ' + pattern);
 	}
 
 	const flagString = jsFlagList.join('');
 
 	try {
-		c = {
+		return {
 			source,
 			groupCount: translator.state.captureCount,
 			anchored: flagStr.includes('A'),
@@ -420,25 +461,45 @@ export function compile(pattern)
 	} catch (e) {
 		throw new Error('Pattern failed to compile: ' + pattern + '\n  ' + source + '\n  ' + e.message);
 	}
+}
 
-	cache.set(pattern, c);
-	return c;
+/**
+ * Compiles a PCRE pattern into a reusable shape:
+ * { source, groupCount, anchored, regexp (global), sticky, plain }.
+ * Results are cached per pattern string. The returned RegExp objects are
+ * shared by every caller of a pattern; each API entry point (match, matchAll,
+ * replace, split, execCompiled) saves and restores `lastIndex`, so a nested
+ * use of the same pattern - e.g. from inside a replace callback - cannot
+ * corrupt an outer iteration.
+ * @param {string} pattern PCRE pattern with delimiters, e.g. `~^abc$~miu`
+ */
+export function compile(pattern)
+{
+	let compiled = cache.get(pattern);
+	if (compiled) return compiled;
+	compiled = compileInner(pattern);
+	cache.set(pattern, compiled);
+	return compiled;
 }
 
 
 /**
- * Extracts one match into the reference implementation's shape: `matches` and
- * `offsets` arrays indexed by original group number (0 = whole match), with
- * null for groups that did not participate. Offsets are UTF-16 code-unit
- * indices into the subject string.
+ * Extracts one raw match (a RegExp exec array from execCompiled) into the
+ * reference implementation's shape: `matches` and `offsets` arrays indexed
+ * by original group number (0 = whole match), with null for groups that did
+ * not participate. Offsets are UTF-16 code-unit indices into the subject
+ * string. The parsing hot path defers this until the winning match is known.
+ * @param {RegExpExecArray} m
+ * @param {{groupCount: number}} compiled
+ * @param {string} subject
  */
-function toResult(m, c, subject)
+export function toResult(m, compiled, subject)
 {
 	const matches = [m[0]];
 	const offsets = [m.index];
 	const indices = m.indices.groups ?? {};
 
-	for (let n = 1; n <= c.groupCount; n++) {
+	for (let n = 1; n <= compiled.groupCount; n++) {
 		const ind = indices['c' + n];
 		matches.push(ind ? subject.slice(ind[0], ind[1]) : null);
 		offsets.push(ind ? ind[0] : null);
@@ -449,7 +510,36 @@ function toResult(m, c, subject)
 
 
 /**
+ * Searches the subject for the first match of an already-compiled pattern
+ * (compile()'s result) at or after `offset`. Returns the raw RegExp exec
+ * array (with .index), or null - no result-shape allocation, so scanning
+ * through many candidates does not build garbage.
+ * @param {string} subject
+ * @param {{anchored: boolean, regexp: RegExp, sticky: RegExp}} compiled
+ * @param {number} offset
+ * @returns {?RegExpExecArray}
+ */
+export function execCompiled(subject, compiled, offset = 0)
+{
+	if (offset > subject.length) return null;
+
+	const re = compiled.anchored ? compiled.sticky : compiled.regexp;
+	const saved = re.lastIndex; // compiled regexes are shared; save/restore keeps
+	re.lastIndex = offset; // a nested use of the same pattern from corrupting us
+	try {
+		return re.exec(subject);
+	} finally {
+		re.lastIndex = saved;
+	}
+}
+
+
+/**
  * Searches the subject for the first match of the pattern at or after `offset`.
+ * A pattern with the A modifier (anchored) must start exactly at `offset` - the
+ * sticky emulation mirrors PCRE, where an anchored pattern binds to the start
+ * offset; assertions in the pattern (^, \A) still bind to the subject start,
+ * so they never match at a nonzero offset, like in PHP's preg_match.
  * Returns null or { matches, offsets, length, index }.
  * @param {string} subject
  * @param {string} pattern
@@ -457,13 +547,34 @@ function toResult(m, c, subject)
  */
 export function match(subject, pattern, { offset = 0 } = {})
 {
-	if (offset > subject.length) return null;
+	const compiled = compile(pattern);
+	const m = execCompiled(subject, compiled, offset);
+	return m ? { ...toResult(m, compiled, subject), index: m.index } : null;
+}
 
-	const c = compile(pattern);
-	const re = c.anchored ? c.sticky : c.regexp;
-	re.lastIndex = offset;
-	const m = re.exec(subject);
-	return m ? { ...toResult(m, c, subject), index: m.index } : null;
+
+/**
+ * Iterates all matches of the compiled global regexp over the subject starting
+ * at `offset`, bumping lastIndex past empty matches so the loop always
+ * advances. (split keeps its own loop: its empty-match policy is to stop.)
+ * @param {string} subject
+ * @param {RegExp} re global
+ * @param {number} offset
+ * @param {(m: RegExpExecArray) => void} callback
+ */
+function forEachMatch(subject, re, offset, callback)
+{
+	const saved = re.lastIndex; // compiled regexes are shared; save/restore keeps
+	re.lastIndex = offset; // a nested use of the same pattern from corrupting us
+	try {
+		let m;
+		while ((m = re.exec(subject)) !== null) {
+			callback(m);
+			if (m[0] === '') re.lastIndex++;
+		}
+	} finally {
+		re.lastIndex = saved;
+	}
 }
 
 
@@ -477,15 +588,11 @@ export function matchAll(subject, pattern, { offset = 0 } = {})
 {
 	if (offset > subject.length) return [];
 
-	const c = compile(pattern);
-	const re = c.regexp;
-	re.lastIndex = offset;
+	const compiled = compile(pattern);
 	const results = [];
-	let m;
-	while ((m = re.exec(subject)) !== null) {
-		results.push({ ...toResult(m, c, subject), index: m.index });
-		if (m[0] === '') re.lastIndex++;
-	}
+	forEachMatch(subject, compiled.regexp, offset, m => {
+		results.push({ ...toResult(m, compiled, subject), index: m.index });
+	});
 	return results;
 }
 
@@ -493,42 +600,58 @@ export function matchAll(subject, pattern, { offset = 0 } = {})
 /**
  * Splits the subject by the pattern, PHP preg_split style: captured delimiters
  * are returned too (flat list), empty pieces are skipped when `skipEmpty`,
- * `limit` bounds the number of splits. Returns a list of [piece, offset] pairs.
+ * `limit` bounds the number of pieces, and the result is never an empty list.
+ * Deviates from PHP in two ways the port's patterns never rely on: an empty
+ * match stops the splitting (matchAll/replace skip past one instead), and a
+ * trailing delimiter does not add a final empty piece.
+ * Returns a list of [piece, offset] pairs; a null piece is a captured group
+ * that did not participate.
  * @param {string} subject
  * @param {string} pattern
  * @param {{skipEmpty?: boolean, limit?: number}} [options]
  */
 export function split(subject, pattern, { skipEmpty = false, limit = -1 } = {})
 {
-	const c = compile(pattern);
-	const re = c.regexp;
-	re.lastIndex = 0;
+	const compiled = compile(pattern);
+	const re = compiled.regexp;
+	const saved = re.lastIndex; // compiled regexes are shared; save/restore keeps
+	re.lastIndex = 0; // a nested use of the same pattern from corrupting us
+	try {
+		return splitInner(subject, compiled, skipEmpty, limit);
+	} finally {
+		re.lastIndex = saved;
+	}
+}
+
+
+/** @param {string} subject @param {Object} compiled @param {boolean} skipEmpty @param {number} limit */
+function splitInner(subject, compiled, skipEmpty, limit)
+{
+	const re = compiled.regexp;
 
 	const result = [];
 	let pos = 0;
-	let splits = 0;
+	const maxSplits = limit > 0 ? limit - 1 : Infinity; // PHP's limit counts pieces, not delimiters
 
-	for (;;) {
-		if (limit > 0 && splits >= limit - 1) break;
+	for (let splits = 0; splits < maxSplits; splits++) {
 		const m = re.exec(subject);
-		if (!m || m[0] === '') break;
+		if (!m || m[0] === '') break; // stop, not skip: an empty delimiter would loop forever
 
-		if (m.index > pos) result.push([subject.slice(pos, m.index), pos]);
-		else if (!skipEmpty) result.push(['', pos]);
+		result.push([subject.slice(pos, m.index), pos]); // may be empty; skipEmpty filters below
 
-		const indices = m.indices.groups ?? {};
-		for (let n = 1; n <= c.groupCount; n++) {
-			const ind = indices['c' + n];
-			if (ind) result.push([subject.slice(ind[0], ind[1]), ind[0]]);
-			else if (!skipEmpty) result.push([null, null]);
+		const { matches, offsets } = toResult(m, compiled, subject);
+		for (let n = 1; n <= compiled.groupCount; n++) {
+			result.push([matches[n], offsets[n]]); // null for a group that did not participate
 		}
 
 		pos = m.index + m[0].length;
-		splits++;
 	}
 
-	if (pos < subject.length) result.push([subject.slice(pos), pos]);
-	else if (!skipEmpty && result.length === 0) result.push([subject.slice(pos), pos]); // preg_split never returns an empty list
+	// the piece after the last delimiter (empty when the subject ends with one);
+	// preg_split never returns an empty list
+	if (pos < subject.length || result.length === 0) {
+		result.push([subject.slice(pos), pos]);
+	}
 
 	return skipEmpty ? result.filter(([piece]) => piece !== '' && piece !== null) : result;
 }
@@ -544,34 +667,59 @@ export function split(subject, pattern, { skipEmpty = false, limit = -1 } = {})
  */
 export function replace(subject, pattern, replacement = '')
 {
-	const c = compile(pattern);
+	const compiled = compile(pattern);
 
-	if (typeof replacement === 'function') {
-		const re = c.regexp;
-		re.lastIndex = 0;
-		let out = '';
-		let pos = 0;
-		let m;
-		while ((m = re.exec(subject)) !== null) {
-			out += subject.slice(pos, m.index);
-			out += replacement(toResult(m, c, subject).matches);
-			pos = m.index + m[0].length;
-			if (m[0] === '') re.lastIndex++;
+	if (typeof replacement !== 'function') {
+		// preg_replace semantics: $0 is the whole match, $n refers to the longest
+		// (up to two digits) group number that exists; leftover digits stay literal
+		const toJsRef = (digits) => {
+			for (let len = Math.min(digits.length, 2); len >= 1; len--) {
+				const n = Number(digits.slice(0, len));
+				if (n === 0) {
+					return '$&' + digits.slice(len);
+				}
+				if (n <= compiled.groupCount) {
+					return '$<c' + n + '>' + digits.slice(len);
+				}
+			}
+			return '$' + digits; // no valid group: PHP leaves the reference literal
+		};
+
+		const re = compiled.regexp;
+		const saved = re.lastIndex; // a global String.replace resets lastIndex on the shared instance
+		try {
+			return subject.replace(re, replacement.replace(/\$(\d+)/g, (_, digits) => toJsRef(digits))); // global, like preg_replace
+		} finally {
+			re.lastIndex = saved;
 		}
-		return out + subject.slice(pos);
 	}
 
-	return subject.replace(c.regexp, replacement.replace(/\$(\d+)/g, (_, n) => '$<c' + n + '>')); // global, like preg_replace
+	let out = '';
+	let pos = 0;
+	forEachMatch(subject, compiled.regexp, 0, m => {
+		out += subject.slice(pos, m.index);
+		out += replacement(toResult(m, compiled, subject).matches);
+		pos = m.index + m[0].length;
+	});
+	return out + subject.slice(pos); // global, like preg_replace
 }
 
 
 /**
  * Quotes a literal string for inclusion in a pattern body (PCRE extended
- * mode): escapes control/space characters and regex metacharacters.
+ * mode): escapes control/space characters and regex metacharacters; when the
+ * optional `delimiter` is given, that pattern delimiter is escaped too (like
+ * preg_quote's second argument), so quoted text cannot terminate the pattern.
  * @param {string} s
+ * @param {?string} delimiter
  * @returns {string}
  */
-export function quote(s)
+export function quote(s, delimiter = null)
 {
-	return s.replace(/[\x00-\x20\-\.\\+*?\[\]^$(){}=!<>|:#\/]/g, ch => '\\' + ch);
+	const specials = /[\x00-\x20\-\.\+*?\[\]^\$(){}=!<>|:#\/\\]/;
+	let out = '';
+	for (const ch of s) {
+		out += (specials.test(ch) || ch === delimiter) ? '\\' + ch : ch;
+	}
+	return out;
 }

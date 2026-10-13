@@ -1018,14 +1018,14 @@ export class Renderer extends NodeRenderer
 	{
 		for (const node of content) {
 			if (node instanceof HtmlTagNode) {
-				if (!node.closing && !Object.hasOwn(inlineElements, node.name.toLowerCase())) {
+				if (!node.closing && !inlineElements.has(node.name.toLowerCase())) {
 					return true;
 				}
 			} else if (node instanceof HtmlElementNode) {
 				// block element, or a transparent inline wrapper (<a>, <ins>,
 				// ...) holding one
 				if (
-					!Object.hasOwn(inlineElements, node.name.toLowerCase())
+					!inlineElements.has(node.name.toLowerCase())
 					|| this.containsBlockPassthrough(node.content.children)
 				) {
 					return true;
@@ -1060,7 +1060,7 @@ export class Renderer extends NodeRenderer
 				hasMarkup = true;
 
 			} else if (node instanceof HtmlTagNode) {
-				const inlineType = inlineElements[node.name.toLowerCase()] ?? null;
+				const inlineType = inlineElements.get(node.name.toLowerCase()) ?? null;
 				if (inlineType === 1) {
 					hasReplaced = true; // replaced element (img, br, input, ...)
 				} else {
@@ -1068,7 +1068,7 @@ export class Renderer extends NodeRenderer
 				}
 
 			} else if (node instanceof HtmlElementNode) {
-				const inlineType = inlineElements[node.name.toLowerCase()] ?? null;
+				const inlineType = inlineElements.get(node.name.toLowerCase()) ?? null;
 				if (inlineType === 1) {
 					hasReplaced = true; // replaced element (script, object, ...)
 				} else {

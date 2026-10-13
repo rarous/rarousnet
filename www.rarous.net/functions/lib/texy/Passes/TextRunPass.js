@@ -171,7 +171,7 @@ export class TextRunPass
 				pieces.push([Markup, null]);
 
 			} else if (node instanceof HtmlTagNode) {
-				const inlineType = inlineElements[node.name.toLowerCase()] ?? null;
+				const inlineType = inlineElements.get(node.name.toLowerCase()) ?? null;
 				if (inlineType === null) {
 					pieces.push(Break); // block-level tag ends the typographic segment
 				} else {
@@ -179,7 +179,7 @@ export class TextRunPass
 				}
 
 			} else if (node instanceof HtmlElementNode) {
-				const inlineType = inlineElements[node.name.toLowerCase()] ?? null;
+				const inlineType = inlineElements.get(node.name.toLowerCase()) ?? null;
 				const boundary = inlineType === null
 					? Break // block-level element splits the segment
 					: [inlineType === 1 ? Replaced : Markup, null];

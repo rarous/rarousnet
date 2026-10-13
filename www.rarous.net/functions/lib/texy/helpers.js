@@ -150,6 +150,7 @@ export function unfreezeSpaces(s)
  */
 export function escapeHtml(s)
 {
+	if (s.search(/[&<>]/) === -1) return s; // one scan on the common no-specials path
 	return s
 		.replaceAll('&', '&amp;')
 		.replaceAll('<', '&lt;')
@@ -164,6 +165,7 @@ export function escapeHtml(s)
  */
 export function escapeHtmlQuotes(s)
 {
+	if (s.search(/[&"'<>]/) === -1) return s; // one scan on the common no-specials path
 	return s
 		.replaceAll('&', '&amp;')
 		.replaceAll('"', '&quot;')
@@ -181,14 +183,24 @@ const escapeForClass = c => c.replace(/[.*+?^${}()|[\]\\-]/g, '\\' + c);
  */
 const TRIM_CHARS = " \t\n\r\0\x0B";
 
+const TRIM_SET = new Set(TRIM_CHARS.split(''));
+
 
 /**
- * Strips a character list from the end of the string (PHP rtrim).
+ * Strips a character list from the end of the string (PHP rtrim). The default
+ * list scans just the trailing run (no allocation when nothing is trimmed);
+ * custom lists build a character-class regexp, like PHP's byte set.
  * @param {string} s
  * @param {string} chars
  */
 export function phpRtrim(s, chars = TRIM_CHARS)
 {
+	if (chars === TRIM_CHARS) {
+		let end = s.length;
+		while (end > 0 && TRIM_SET.has(s[end - 1])) end--;
+		return end === s.length ? s : s.slice(0, end);
+	}
+
 	return s.replace(new RegExp('[' + chars.split('').map(escapeForClass).join('') + ']+$'), '');
 }
 
@@ -200,6 +212,12 @@ export function phpRtrim(s, chars = TRIM_CHARS)
  */
 export function phpLtrim(s, chars = TRIM_CHARS)
 {
+	if (chars === TRIM_CHARS) {
+		let start = 0;
+		while (start < s.length && TRIM_SET.has(s[start])) start++;
+		return start === 0 ? s : s.slice(start);
+	}
+
 	return s.replace(new RegExp('^[' + chars.split('').map(escapeForClass).join('') + ']+'), '');
 }
 
@@ -212,6 +230,17 @@ export function phpLtrim(s, chars = TRIM_CHARS)
 export function phpTrim(s, chars = TRIM_CHARS)
 {
 	return phpLtrim(phpRtrim(s, chars), chars);
+}
+
+
+/**
+ * PHP `$v == null`: true for null, false, '', 0, '0' and empty arrays.
+ * @param {string|number|boolean|null|Array} v
+ */
+export function phpLooseNull(v)
+{
+	return v == null || v === '' || v === 0 || v === '0' || v === false
+		|| (Array.isArray(v) && v.length === 0);
 }
 
 
@@ -301,59 +330,56 @@ export function shortenUrl(url)
 
 
 /**
- * PHP urlencode(): form encoding - spaces become '+', the extra
- * characters ! ' ( ) * ~ that encodeURIComponent leaves are percent
- * encoded. Used by the Texy 3 %s reference-URL substitution.
+ * application/x-www-form-urlencoded encoding, the platform's native
+ * form-encoder shape: spaces become '+', everything but the safe
+ * characters is percent encoded. One deliberate deviation from the
+ * PHP urlencode() that Texy 3 used for %s reference URLs: '*' stays
+ * literal - it is a valid URL sub-delim (RFC 3986) and %2A decodes to
+ * the same value for every spec-compliant consumer.
  * @param {string} s
  */
-export function phpUrlencode(s)
+export function formUrlencode(s)
 {
 	return encodeURIComponent(String(s))
-		.replace(/[!*'()~]/g, ch => '%' + ch.charCodeAt(0).toString(16).toUpperCase())
+		.replace(/[!'()~]/g, ch => '%' + ch.charCodeAt(0).toString(16).toUpperCase())
 		.replace(/%20/g, '+');
 }
 
 
 /**
- * Transliteration table for the Latin-1/Latin-Extended blocks; used by
- * webalize() for heading ID slugs.
+ * The letters Unicode normalization cannot handle: strokes, slashes
+ * and ligatures have no decomposition, so their ASCII equivalents
+ * (matching the reference's iconv transliteration and Nette's table)
+ * stay as an explicit residual. Every other accented letter comes
+ * from the NFD + combining-mark removal in toAscii(); used by
+ * webalize() for heading ID slugs. A Map, because the lookup key is an
+ * arbitrary runtime string: plain-object keyed loads miss the table
+ * for almost every character and fall back to V8's runtime lookup.
  */
-const asciiTable = {
-	'ä': 'a', 'á': 'a', 'à': 'a', 'â': 'a', 'æ': 'ae', 'ã': 'a', 'å': 'a', 'ā': 'a', 'ą': 'a',
-	'ď': 'd', 'đ': 'd', 'ð': 'd',
-	'ě': 'e', 'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e', 'ė': 'e', 'ę': 'e', 'ē': 'e',
-	'ģ': 'g', 'ğ': 'g', 'ĝ': 'g',
-	'î': 'i', 'ï': 'i', 'í': 'i', 'ì': 'i', 'į': 'i', 'ī': 'i',
-	'ķ': 'k',
-	'ĺ': 'l', 'ļ': 'l', 'ł': 'l',
-	'ñ': 'n', 'ń': 'n', 'ņ': 'n',
-	'ô': 'o', 'ö': 'o', 'ó': 'o', 'ò': 'o', 'ő': 'o', 'ø': 'o', 'õ': 'o', 'ō': 'o', 'œ': 'oe',
-	'ř': 'r', 'ŕ': 'r', 'ŗ': 'r',
-	'š': 's', 'ś': 's', 'ş': 's', 'ș': 's', 'ß': 'ss',
-	'ť': 't', 'ţ': 't', 'þ': 'th',
-	'û': 'u', 'ü': 'u', 'ú': 'u', 'ù': 'u', 'ų': 'u', 'ű': 'u', 'ů': 'u', 'ũ': 'u', 'ū': 'u',
-	'ý': 'y', 'ÿ': 'y', 'ŷ': 'y',
-	'ž': 'z', 'ź': 'z', 'ż': 'z',
-};
-
-const upperAsciiTable = Object.fromEntries(
-	Object.entries(asciiTable).map(([k, v]) => [k.toUpperCase(), v[0].toUpperCase() + v.slice(1)]),
-);
+const nonDecomposables = new Map([
+	['đ', 'd'], ['Đ', 'D'], // D with stroke
+	['ð', 'd'], ['Ð', 'D'], // eth
+	['ł', 'l'], ['Ł', 'L'], // L with stroke
+	['ø', 'o'], ['Ø', 'O'], // O with stroke
+	['þ', 'th'], ['Þ', 'Th'], // thorn
+	['æ', 'ae'], ['Æ', 'Ae'], ['œ', 'oe'], ['Œ', 'Oe'], // ligatures
+	['ß', 'ss'], // sharp s (no uppercase form; ẞ U+1E9E stays literal)
+]);
 
 
 /**
- * Converts UTF-8 to ASCII. The reference falls back to iconv transliteration
- * when nette/utils is absent (whose output is locale-dependent); this port
- * uses a fixed Latin transliteration table.
+ * Converts UTF-8 to ASCII: Unicode normalization (NFD) removes the
+ * accents (every combining mark of every script is stripped), the
+ * residual table maps the letters normalization cannot decompose.
  * @param {string} s
  */
 export function toAscii(s)
 {
 	let out = '';
 	for (const ch of s) {
-		out += upperAsciiTable[ch] ?? asciiTable[ch] ?? ch;
+		out += nonDecomposables.get(ch) ?? ch;
 	}
-	return out.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+	return out.normalize('NFD').replace(/\p{Mark}/gu, '');
 }
 
 

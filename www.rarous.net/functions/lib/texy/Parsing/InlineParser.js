@@ -14,15 +14,18 @@
 
 import { ContentNode, TextNode } from '../nodes.js';
 import { Range } from '../Range.js';
-import { match } from '../Regexp.js';
+import { compile, execCompiled, toResult } from '../Regexp.js';
 
 export class InlineParser
 {
 	/**
-	 * @param {Map<string, {handler: Function, pattern: string}>} patterns
+	 * @param {Map<string, {handler: Function, pattern: string, compiled?: Object}>} patterns
 	 */
 	constructor(patterns = new Map())
 	{
+		for (const info of patterns.values()) {
+			info.compiled ??= compile(info.pattern); // precompiled by the Engine; ad-hoc maps compile here
+		}
 		this.patterns = patterns;
 	}
 
@@ -34,7 +37,7 @@ export class InlineParser
 	 */
 	addPattern(name, pattern, handler)
 	{
-		this.patterns.set(name, { pattern, handler });
+		this.patterns.set(name, { pattern, handler, compiled: compile(pattern) });
 	}
 
 
@@ -66,21 +69,23 @@ export class InlineParser
 	findMatch(text, info, name, offset)
 	{
 		while (offset <= text.length) {
-			const m = match(text, info.pattern, { offset });
+			const m = execCompiled(text, info.compiled, offset);
 			if (m === null) return null;
 
 			// a zero-length match would never move the position forward
-			if (m.length === 0) {
+			if (m[0] === '') {
 				offset = m.index + 1;
 				continue;
 			}
 
+			// the reference matches/offsets shape is materialized only when
+			// this candidate wins (toResult at the handler call in parse())
 			return {
 				name,
 				offset: m.index,
-				length: m.length,
-				match: m.matches,
-				offsets: m.offsets,
+				length: m[0].length,
+				m,
+				compiled: info.compiled,
 				handler: info.handler,
 			};
 		}
@@ -128,11 +133,13 @@ export class InlineParser
 
 			if (best === null) break;
 
+			// materialize the reference shape for the winner only
+			const { matches, offsets } = toResult(best.m, best.compiled, text);
 			// adjust offsets to absolute positions
-			const absoluteOffsets = best.offsets.map(offset => offset !== null ? baseOffset + offset : null);
+			const absoluteOffsets = offsets.map(offset => offset !== null ? baseOffset + offset : null);
 
 			// call handler with absolute offsets
-			const node = best.handler(context, best.match, absoluteOffsets, best.name);
+			const node = best.handler(context, matches, absoluteOffsets, best.name);
 			if (node === null) {
 				// handler rejected - other patterns at this position still get their turn
 				candidates.set(best.name, this.findMatch(text, this.patterns.get(best.name), best.name, best.offset + 1));

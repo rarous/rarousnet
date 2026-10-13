@@ -37,10 +37,10 @@ export class OffsetMap
 	 */
 	constructor(map = {}, skipped = 0)
 	{
-		this.map = {};
-		for (const [local, absolute] of Object.entries(map)) {
-			this.map[local - skipped] = absolute;
-		}
+		/** @type {Array<[number, number]>} local line start => absolute source offset, numerically ascending */
+		this.pairs = Object.entries(map)
+			.map(([local, absolute]) => [Number(local) - skipped, absolute])
+			.sort((a, b) => a[0] - b[0]);
 	}
 
 
@@ -124,21 +124,28 @@ export class OffsetMap
 	 */
 	toAbsolute(local)
 	{
-		let lineStart = null;
-		for (const localLineStart of Object.keys(this.map).map(Number)) {
-			if (localLineStart <= local) {
-				lineStart = localLineStart;
+		const pairs = this.pairs;
+		if (pairs.length === 0) {
+			return local;
+		}
+
+		if (local < pairs[0][0]) { // before the first line start: clamps to it
+			return pairs[0][1];
+		}
+
+		// the last line start <= local; binary search over the ascending pairs
+		let lo = 0, hi = pairs.length - 1;
+		let best = pairs[0];
+		while (lo <= hi) {
+			const mid = (lo + hi) >> 1;
+			if (pairs[mid][0] <= local) {
+				best = pairs[mid];
+				lo = mid + 1;
 			} else {
-				break;
+				hi = mid - 1;
 			}
 		}
-
-		if (lineStart === null) {
-			const values = Object.values(this.map);
-			return values.length === 0 ? local : values[0];
-		}
-
-		return this.map[lineStart] + (local - lineStart);
+		return best[1] + (local - best[0]);
 	}
 
 
@@ -149,8 +156,15 @@ export class OffsetMap
 	 */
 	applyTo(node)
 	{
-		if (Object.keys(this.map).length === 0) return;
+		if (this.pairs.length === 0) return; // the map stays empty for the whole walk
 
+		this.applyToNode(node);
+	}
+
+
+	/** @param {import('../Range.js').Node} node */
+	applyToNode(node)
+	{
 		if (node.range !== null) {
 			node.range = this.rangeToAbsolute(node.range);
 		}
@@ -161,7 +175,7 @@ export class OffsetMap
 		}
 
 		for (const child of node.getChildren()) {
-			this.applyTo(child);
+			this.applyToNode(child);
 		}
 	}
 

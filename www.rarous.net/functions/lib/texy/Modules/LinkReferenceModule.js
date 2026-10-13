@@ -16,7 +16,7 @@ import { Syntax } from '../Syntax.js';
 import { Email, Modifier as ModifierPattern } from '../Patterns.js';
 import { match } from '../Regexp.js';
 import { ContentNode, LinkDefinitionNode, LinkNode, TextNode, UrlNode } from '../nodes.js';
-import { decodeEntities, phpUrlencode, toLower } from '../helpers.js';
+import { decodeEntities, formUrlencode, toLower } from '../helpers.js';
 import { Modifier, mergeModifiers } from '../Modifier.js';
 import { extractText, find } from '../NodeHelpers.js';
 
@@ -186,7 +186,7 @@ export class LinkReferenceModule extends Module
 		// %s substitution - only for use sites with explicit content
 		// (the Texy 3 factoryLink), bare [ref] keeps the %s literal
 		if (!bare && node.url.includes('%s')) {
-			node.url = node.url.replaceAll('%s', phpUrlencode(extractText(node.content)));
+			node.url = node.url.replaceAll('%s', formUrlencode(extractText(node.content)));
 		}
 
 		node.modifier = mergeModifiers(def.modifier, node.modifier);
@@ -250,7 +250,7 @@ export class LinkReferenceModule extends Module
 						node.modifier = mergeModifiers(imgDef.modifier, node.modifier);
 					}
 					if (node.url.includes('%s')) {
-						node.url = node.url.replaceAll('%s', phpUrlencode(extractText(node.content)));
+						node.url = node.url.replaceAll('%s', formUrlencode(extractText(node.content)));
 					}
 				}
 			} else {

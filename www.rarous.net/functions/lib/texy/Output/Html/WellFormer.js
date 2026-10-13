@@ -61,7 +61,7 @@ export class WellFormer
 		this.space = config.baseIndent;
 		/** @type {Object<string, number>} */
 		this.tagUsed = {};
-		/** @type {Array<{tag: string, open: ?string, close: ?string, closeIndent: ?number, dtdContent: Object<string, number>, indent: number}>} newest-first */
+		/** @type {Array<{tag: string, open: ?string, close: ?string, closeIndent: ?number, dtdContent: Map<string, number>, indent: number}>} newest-first */
 		this.tagStack = [];
 		this.baseDTD = flowContent;
 	}
@@ -142,7 +142,7 @@ export class WellFormer
 			if (mComment) {
 				this.comment(mComment);
 			} else if (mTag) {
-				const empty = Boolean(mEmpty) || Object.hasOwn(voidElements, mTag);
+				const empty = Boolean(mEmpty) || voidElements.has(mTag);
 				if (empty && mEnd) { // bad tag (closing a void element); still ends the text fragment
 					this.flushText();
 					this.endFragment();
@@ -196,7 +196,7 @@ export class WellFormer
 
 		this.textBuffer = '';
 		const item = this.tagStack[0];
-		if (item && !Object.hasOwn(item.dtdContent, Text)) { // text not allowed?
+		if (item && !item.dtdContent.has(Text)) { // text not allowed?
 			return;
 		}
 
@@ -241,7 +241,7 @@ export class WellFormer
 
 		// Known HTML tags must respect content model rules
 		dtdContent = this.closeOptionalTags(tag, dtdContent);
-		let allowed = Object.hasOwn(dtdContent, tag);
+		let allowed = dtdContent.has(tag);
 
 		// Deep prohibitions: certain elements cannot be nested anywhere inside
 		// others (e.g., <a> cannot contain <a> or <button> at any depth)
@@ -263,7 +263,7 @@ export class WellFormer
 	 * @param {string} attr
 	 * @param {boolean} empty
 	 * @param {boolean} allowed
-	 * @param {Object<string, number>} dtdContent
+	 * @param {Map<string, number>} dtdContent
 	 */
 	startTagBody(tag, attr, empty, allowed, dtdContent)
 	{
@@ -278,18 +278,18 @@ export class WellFormer
 			if (indent && tag === 'br') {
 				// trim only the current fragment, not previously emitted markup
 				this.stripTail(" \t\n\r\0\x0B", this.fragmentStart);
-				this.append('<' + tag + attr + ">\n" + '\t'.repeat(Math.max(0, this.space - 1)));
+				this.append(`<${tag}${attr}>\n${'\t'.repeat(Math.max(0, this.space - 1))}`);
 				this.eatBarrier();
 
-			} else if (indent && !Object.hasOwn(inlineElements, tag)) {
+			} else if (indent && !inlineElements.has(tag)) {
 				const tabs = '\t'.repeat(this.space);
 				this.softNewline();
-				this.append(tabs + '<' + tag + attr + '>');
+				this.append(`${tabs}<${tag}${attr}>`);
 				this.softNewline();
 				this.append(tabs);
 
 			} else {
-				this.append('<' + tag + attr + '>');
+				this.append(`<${tag}${attr}>`);
 			}
 
 			this.endFragment();
@@ -302,16 +302,16 @@ export class WellFormer
 		let indent = 0;
 
 		if (allowed) {
-			open = '<' + tag + attr + '>';
-			close = '</' + tag + '>';
+			open = `<${tag}${attr}>`;
+			close = `</${tag}>`;
 			dtdContent = isKnown(tag)
 				? childContent(tag, dtdContent)
 				: dtdContent; // unknown tags keep the inherited content model
 
 			// Format output with indentation for block elements
-			if (this.config.indent && !Object.hasOwn(inlineElements, tag)) {
+			if (this.config.indent && !inlineElements.has(tag)) {
 				closeIndent = this.space;
-				this.append("\n" + '\t'.repeat(this.space++) + open);
+				this.append(`\n${'\t'.repeat(this.space++)}${open}`);
 				this.eatBarrier();
 				indent = 1;
 			} else {
@@ -358,7 +358,7 @@ export class WellFormer
 			this.emitClose(item);
 			this.space -= item.indent;
 			this.tagUsed[item.tag]--;
-			back = back && Object.hasOwn(inlineElements, item.tag);
+			back = back && inlineElements.has(item.tag);
 			removed++;
 			if (item.tag === tag) {
 				break;
@@ -376,7 +376,7 @@ export class WellFormer
 		// allowed-check
 		const item = this.tagStack[0];
 		const dtdContent = item ? item.dtdContent : this.baseDTD;
-		if (!Object.hasOwn(dtdContent, tmp[0].tag)) {
+		if (!dtdContent.has(tmp[0].tag)) {
 			return;
 		}
 
@@ -395,7 +395,7 @@ export class WellFormer
 	/**
 	 * Emits the closing tag of a stack frame; block closes eat the preceding
 	 * indentation tab and re-indent for the parent.
-	 * @param {{tag: string, open: ?string, close: ?string, closeIndent: ?number, dtdContent: Object<string, number>, indent: number}} item
+	 * @param {{tag: string, open: ?string, close: ?string, closeIndent: ?number, dtdContent: Map<string, number>, indent: number}} item
 	 */
 	emitClose(item)
 	{
@@ -406,7 +406,7 @@ export class WellFormer
 		if (item.closeIndent !== null) {
 			this.backtabEat();
 			this.segs.push([BarrierClose, '']);
-			this.append(item.close + "\n" + '\t'.repeat(item.closeIndent));
+			this.append(`${item.close}\n${'\t'.repeat(item.closeIndent)}`);
 		} else {
 			this.append(item.close);
 		}
@@ -561,8 +561,8 @@ export class WellFormer
 	 * Closes stack frames whose content model cannot host the incoming tag,
 	 * returning the content model the tag should be checked against.
 	 * @param {string} tag
-	 * @param {Object<string, number>} dtdContent
-	 * @returns {Object<string, number>}
+	 * @param {Map<string, number>} dtdContent
+	 * @returns {Map<string, number>}
 	 */
 	closeOptionalTags(tag, dtdContent)
 	{
@@ -570,14 +570,14 @@ export class WellFormer
 		for (const item of [...this.tagStack]) {
 			// is tag allowed here?
 			dtdContent = item.dtdContent;
-			if (Object.hasOwn(dtdContent, tag)) {
+			if (dtdContent.has(tag)) {
 				break;
 			}
 
 			// auto-close hidden, optional and inline tags
 			if (item.close !== null
 				&& !hasOptionalEnd(item.tag)
-				&& !Object.hasOwn(inlineElements, item.tag)
+				&& !inlineElements.has(item.tag)
 			) {
 				break;
 			}

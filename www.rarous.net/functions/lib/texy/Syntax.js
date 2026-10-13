@@ -1,5 +1,6 @@
 /**
  * Texy syntax identifiers for use with texy.allowed (port of Texy\Syntax).
+ * @enum {string}
  */
 
 export const Syntax = Object.freeze({

@@ -11,13 +11,17 @@
  */
 
 import { BlockNode, ContentNode } from '../nodes.js';
-import { match, matchAll } from '../Regexp.js';
+import { compile, match, toResult } from '../Regexp.js';
 
 export class BlockParser
 {
 	constructor(patterns, gapHandler)
 	{
-		/** @type {Map<string, {handler: Function, pattern: string}>} */
+		for (const info of patterns.values()) {
+			info.compiled ??= compile(info.pattern); // precompiled by the Engine; ad-hoc maps compile here
+		}
+
+		/** @type {Map<string, {handler: Function, pattern: string, compiled?: Object}>} */
 		this.patterns = patterns;
 
 		/** @type {Function} (context, text, offset) => BlockNode[] */
@@ -47,17 +51,17 @@ export class BlockParser
 		this.baseOffset = baseOffset;
 		this.nodes = [];
 
-		const matches = this.matchAll(text, baseOffset);
-		matches.push({ offset: text.length, name: null, match: null, offsets: null }); // terminal sentinel
+		const matches = this.matchAll(text);
+		matches.push({ offset: text.length, name: null }); // terminal sentinel
 		let cursor = 0;
 
 		for (;;) {
 			let mOffset;
 			let mName;
-			let mMatches;
-			let mOffsets;
+			let m;
+			let compiled;
 			do {
-				({ offset: mOffset, name: mName, match: mMatches, offsets: mOffsets } = matches[cursor]);
+				({ offset: mOffset, name: mName, m, compiled } = matches[cursor]);
 				cursor++;
 				if (mName === null || mOffset >= this.offset) break;
 			} while (true);
@@ -70,7 +74,11 @@ export class BlockParser
 
 			if (mName === null) break; // finito
 
-			this.offset = mOffset + mMatches[0].length + 1; // 1 = \n
+			this.offset = mOffset + m[0].length + 1; // 1 = \n
+
+			// materialize the reference shape for the handler consuming the line
+			const { matches: mMatches, offsets } = toResult(m, compiled, this.text);
+			const mOffsets = offsets.map(offset => offset !== null ? baseOffset + offset : null);
 
 			// call handler
 			const node = this.patterns.get(mName).handler(context, mMatches, mOffsets, mName);
@@ -146,19 +154,23 @@ export class BlockParser
 
 	/**
 	 * Collects all matches of all block patterns over the whole text,
-	 * sorted by (offset asc, registration order asc).
+	 * sorted by (offset asc, registration order asc). Raw exec arrays only -
+	 * the reference matches/offsets shape is materialized when the parse
+	 * loop hands a match to its handler.
 	 * @param {string} text
-	 * @param {number} baseOffset
 	 */
-	matchAll(text, baseOffset = 0)
+	matchAll(text)
 	{
 		const matches = [];
 		let priority = 0;
 
 		for (const [name, info] of this.patterns) {
-			for (const m of matchAll(text, info.pattern)) {
-				const offsets = m.offsets.map(offset => offset !== null ? baseOffset + offset : null);
-				matches.push({ offset: m.index, name, match: m.matches, priority, offsets });
+			const re = info.compiled.regexp;
+			re.lastIndex = 0;
+			let m;
+			while ((m = re.exec(text)) !== null) {
+				matches.push({ offset: m.index, name, m, compiled: info.compiled, priority });
+				if (m[0] === '') re.lastIndex++;
 			}
 			priority++;
 		}

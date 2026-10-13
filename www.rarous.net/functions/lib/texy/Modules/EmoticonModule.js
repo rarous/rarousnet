@@ -43,7 +43,7 @@ export class EmoticonModule extends Module
 	{
 		// icons sorted longest-first; the last char may repeat
 		const icons = Object.keys(this.icons).sort((a, b) => (a < b ? 1 : a > b ? -1 : 0)); // krsort: descending key order
-		const pattern = icons.map(key => quote(key) + '+').join('|');
+		const pattern = icons.map(key => quote(key, '~') + '+').join('|');
 
 		this.texy.addLineSyntax(
 			Syntax.Emoticon,

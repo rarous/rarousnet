@@ -13,6 +13,7 @@ import { Node } from './Range.js';
 /** @typedef {Object<string, string>} Meta */ // document-level options from {{texy: ...}}
 
 
+/** @enum {string} */
 export const HeadingType = Object.freeze({ Underlined: 'Underlined', Surrounded: 'Surrounded' });
 
 /** List type: element name (ul/ol) or list-style-type value. */

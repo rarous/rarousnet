@@ -16,6 +16,7 @@
  */
 
 import { ContentNode, DocumentNode } from '../nodes.js';
+import { compile } from '../Regexp.js';
 import { InlineParser } from './InlineParser.js';
 import { BlockParser } from './BlockParser.js';
 import { ParseContext } from './ParseContext.js';
@@ -36,14 +37,15 @@ export class Engine
 
 
 	/**
-	 * Register an inline pattern handler.
+	 * Register an inline pattern handler. The pattern is compiled once here;
+	 * the hot path then matches the compiled object without cache lookups.
 	 * @param {string} name
 	 * @param {string} pattern PCRE pattern with delimiters
 	 * @param {Function} handler (context, matches, offsets, name) => InlineNode|ContentNode|null
 	 */
 	addLineSyntax(name, pattern, handler)
 	{
-		this.linePatterns.set(name, { handler, pattern });
+		this.linePatterns.set(name, { handler, pattern, compiled: compile(pattern) });
 	}
 
 
@@ -55,7 +57,7 @@ export class Engine
 	 */
 	addBlockSyntax(name, pattern, handler)
 	{
-		this.blockPatterns.set(name, { handler, pattern: pattern + 'm' });
+		this.blockPatterns.set(name, { handler, pattern: pattern + 'm', compiled: compile(pattern + 'm') });
 	}
 
 

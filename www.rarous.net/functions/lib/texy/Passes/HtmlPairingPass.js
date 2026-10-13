@@ -39,7 +39,7 @@ export class HtmlPairingPass
 
 			const name = child.name.toLowerCase();
 
-			if (!child.closing && !child.selfClosing && !Object.hasOwn(voidElements, name)) {
+			if (!child.closing && !child.selfClosing && !voidElements.has(name)) {
 				frames.push([child, []]);
 				continue;
 			}
