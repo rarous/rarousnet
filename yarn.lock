@@ -1187,12 +1187,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gryphoon/texy@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@gryphoon/texy@npm:2.0.1"
+"@gryphoon/texy@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@gryphoon/texy@npm:2.0.2"
   dependencies:
     linkedom: "npm:0.18.13"
-  checksum: 10/f8f2d29968ea28f25054ce25e8903b3f15e77f25fbe5add359f6cc721d239edd3af49caa7b4cb3f47aeeb3dfb856af271c0895a3935fb9c83983310d6703f280
+  checksum: 10/7610626f3da403d5ccb67ceefef26f7d27246e41b8f8afd972eb216e0add0df61a7c9e92efae02f2ebed92a1853ca4c52836cbc461ea3e3743dccdc6a238f6a1
   languageName: node
   linkType: hard
 
@@ -2621,7 +2621,7 @@ __metadata:
   dependencies:
     "@cloudflare/pages-plugin-turnstile": "npm:1.0.2"
     "@cloudflare/workers-types": "npm:5.20260926.1"
-    "@gryphoon/texy": "npm:2.0.1"
+    "@gryphoon/texy": "npm:2.0.2"
     "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.4"
     "@rarousnet/website": "workspace:*"
     cookie: "npm:2.0.1"
