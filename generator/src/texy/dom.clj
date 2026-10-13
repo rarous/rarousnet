@@ -54,7 +54,8 @@
   ^String [^String s]
   (String. (.decode b64-decoder s) "UTF-8"))
 
-(def ^:private tag-markup #"</?[a-zA-Z]")
+;; Pre-compiled regex pattern for performance
+(def ^:private ^java.util.regex.Pattern re-tag-markup #"</?[a-zA-Z]")
 
 (defn- protect
   "Walks the rendered tree replacing tag-free raw blobs with
@@ -63,7 +64,7 @@
   stay unprotected: the jsoup repair must see them."
   [form]
   (cond
-    (and (huff/raw-string? form) (not (re-find tag-markup (str form))))
+    (and (huff/raw-string? form) (not (re-find re-tag-markup (str form))))
     (huff/raw (str "<texy-raw data-r=\"" (b64 (str form)) "\"></texy-raw>"))
 
     (vector? form)

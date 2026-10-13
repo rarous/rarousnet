@@ -17,8 +17,12 @@
 (defn- groups
   "Match groups as a vector, nil for groups that did not participate."
   [^java.util.regex.Matcher m]
-  (into [] (map #(try (.group m (int %)) (catch Exception _ nil)))
-        (range (inc (.groupCount m)))))
+  (into [] (map (fn [g]
+                   ;; Matcher.start returns -1 for a group that did not
+                   ;; participate - no exception as control flow
+                   (let [start (.start m (int g))]
+                     (when-not (neg? start) (.group m (int g)))))
+        (range (inc (.groupCount m))))))
 
 (defn match-at
   "Anchored match of pattern at pos of s. Returns [full, groups, end] or

@@ -2,9 +2,10 @@
   "The serialization-time formatting of the reference WellFormer: block
   indentation with tabs, blank lines between block siblings, line
   wrapping at a width (80 by default). The pairing/content-model half
-  of the WellFormer is jsoup's HTML5 tree construction in this port
-  (texy.dom), so this namespace consumes the already well-formed
-  hiccup tree and only formats it.
+  of the WellFormer has two implementations here: jsoup's HTML5 tree
+  construction (texy.dom, the to-html path) and the call-driven driver
+  ported from the Node.js sibling (serialize-direct / to-html-direct,
+  no round-trip).
 
   The output buffer is a list of segments; the whitespace fix-ups the
   reference encoded with control bytes are explicit operations here,
@@ -22,6 +23,15 @@
   (:require [clojure.string :as str]
             [huff2.core :as huff]
             [texy.html :as html]))
+
+;; Pre-compiled regex patterns for performance
+(def ^:private ^java.util.regex.Pattern re-wrap-lines #"(?m)^(\t*)(.*)$")
+(def ^:private ^java.util.regex.Pattern re-leading-spaces #"^ +")
+(def ^:private ^java.util.regex.Pattern re-trailing-tab-spaces #"\t? *$")
+(def ^:private ^java.util.regex.Pattern re-whitespace-runs #"[ \n]+")
+(def ^:private ^java.util.regex.Pattern re-trailing-whitespace-eol #"[\t ]+(?=\n)")
+(def ^:private ^java.util.regex.Pattern re-trailing-whitespace-end #"[\t ]+\z")
+(def ^:private ^java.util.regex.Pattern re-leading-newlines #"^\n+")
 
 (def ^:private preserve-spaces
   "Elements whose content keeps whitespace verbatim (the reference
@@ -116,7 +126,7 @@
     (= "" s) state
 
     (:eat-spaces state)
-    (let [s' (str/replace s #"^ +" "")]
+    (let [s' (str/replace s re-leading-spaces "")]
       (if (= "" s')
         state                                              ; fully eaten, keep eating
         (append (assoc state :eat-spaces false) s')))
@@ -194,7 +204,7 @@
           (recur (dec i))                                       ; transparent
 
           (= type :normal)
-          (assoc-in state [:segs i 1] (str/replace s #"\t? *$" ""))
+          (assoc-in state [:segs i 1] (str/replace s re-trailing-tab-spaces ""))
 
           :else state)))))                                      ; eaten chars are contiguous
 
@@ -235,7 +245,7 @@
       (let [state (assoc state :text "")]
         (if (preserving-open? state)
           (append-pre state s)
-          (append state (str/replace s #"[ \n]+" " ")))))))
+          (append state (str/replace s re-whitespace-runs " ")))))))
 
 (defn- emit-comment
   "An HTML comment: preserved inner content between < and >."
@@ -312,15 +322,19 @@
 
 (defn- emit-close
   "Emits the closing tag of the top stack frame; block closes eat the
-  preceding indentation tab and re-indent for the parent."
+  preceding indentation tab and re-indent for the parent. A nil close
+  (a transparent frame the driver opened for a disallowed tag) emits
+  nothing."
   [state {:keys [tag close close-indent indent]}]
-  (let [state (if close-indent
+  (let [state (cond
+                (nil? close) state
+                close-indent
                 (-> state
                     backtab-eat
                     (update :segs conj [:barrier-close ""])
                     (append (str close "\n" (str/join (repeat close-indent "\t"))))
                     (update :space - indent))
-                (append state close))]
+                :else (append state close))]
     (-> state
         (update-in [:tag-used tag] dec)
         (update :stack rest))))
@@ -417,7 +431,7 @@
   "Wraps every line at the width, repeating its leading tabs on the
   continuation lines (the reference WellFormer::wrap)."
   [^String s width]
-  (str/replace s #"(?m)^(\t*)(.*)$"
+  (str/replace s re-wrap-lines
                (fn [[_ tabs line]]
                  (str tabs (wordwrap line width (str "\n" tabs))))))
 
@@ -432,8 +446,8 @@
             (map-indexed (fn [i [type ^String text]]
                            (case type
                              :pre (if wrap? (freeze-spaces text) text)
-                             :normal (cond-> (str/replace text #"[\t ]+(?=\n)" "")
-                                       (= i (dec (count segs))) (str/replace #"[\t ]+\z" ""))
+                             :normal (cond-> (str/replace text re-trailing-whitespace-eol "")
+                                       (= i (dec (count segs))) (str/replace re-trailing-whitespace-end ""))
                              ""))                           ; barriers contribute nothing
                          segs))
         s (if wrap? (wrap-lines s (get-in state [:config :line-wrap] 80)) s)]
@@ -454,7 +468,7 @@
          state (reduce #(feed %1 %2) state forms)]
      ;; the leading newline of the first block is layout noise - the
      ;; reference Renderer.finalize ltrims it
-     (str/replace (finish state) #"^\n+" ""))))
+     (str/replace (finish state) re-leading-newlines ""))))
 
 (defn serialize-fragment
   "Finalizes a standalone fragment (the reference finalizeFragment):
@@ -472,3 +486,406 @@
                    (let [state (if (pos? gi) (escaped-text state "\n") state)]
                      (recur (inc gi) (reduce feed state (nth groups gi))))))]
      (str/trim (finish state)))))
+
+
+;;----------------------------------------------------------------
+;; the call-driven well-forming half (the Node.js sibling's
+;; WellFormer.js: content models, auto-close of optional-end
+;; containers, prohibited nesting, auto-close-and-reopen on unmatched
+;; end tags). The jsoup path gets this from HTML5 tree construction
+;; (texy.dom); this driver feeds the rendered tree straight into the
+;; formatter with no serialize->parse->convert round-trip.
+
+;; GENERATED by implementations/node.js/tools/dump-schema-clj.mjs - do not edit by hand.
+;; :content - [:phrasing-default] category default is the phrasing-content set;
+;;        [:flow-default] - the flow-content set;
+;;        [:explicit [children...]] - a fixed model (:\%TEXT marks where text is allowed);
+;;        [:transparent [own-additions...]] - inherits the parent model plus these.
+(def ^:private elements*
+{
+	"a" {:inline :inline :void false :optional-end false :content [:transparent []]}
+	"abbr" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"address" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"area" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
+	"article" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"aside" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"audio" {:inline :inline :void false :optional-end false :content [:transparent [:source :track]]}
+	"b" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"base" {:inline :block :void true :optional-end false :content [:flow-default]}
+	"bdi" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"bdo" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"blockquote" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"body" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"br" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+	"button" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"canvas" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"caption" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"cite" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"code" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"col" {:inline :block :void true :optional-end false :content [:flow-default]}
+	"colgroup" {:inline :block :void false :optional-end true :content [:explicit [:col :%TEXT]]}
+	"data" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"datalist" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"dd" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"del" {:inline :inline :void false :optional-end false :content [:transparent []]}
+	"details" {:inline :block :void false :optional-end false :content [:transparent [:summary]]}
+	"dfn" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"div" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"dl" {:inline :block :void false :optional-end false :content [:explicit [:dt :dd :%TEXT]]}
+	"dt" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"em" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"embed" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+	"fieldset" {:inline :block :void false :optional-end false :content [:transparent [:legend]]}
+	"figcaption" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"figure" {:inline :block :void false :optional-end false :content [:transparent [:figcaption]]}
+	"footer" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"form" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"h1" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"h2" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"h3" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"h4" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"h5" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"h6" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"head" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"header" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"hr" {:inline :block :void true :optional-end false :content [:flow-default]}
+	"html" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"i" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"iframe" {:inline :replaced :void false :optional-end false :content [:explicit []]}
+	"img" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+	"input" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+	"ins" {:inline :inline :void false :optional-end false :content [:transparent []]}
+	"kbd" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"label" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"legend" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"li" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"link" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
+	"main" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"map" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"mark" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"math" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"meta" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
+	"meter" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"nav" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"noscript" {:inline :replaced :void false :optional-end false :content [:transparent []]}
+	"object" {:inline :replaced :void false :optional-end false :content [:transparent [:param]]}
+	"ol" {:inline :block :void false :optional-end false :content [:explicit [:li :%TEXT]]}
+	"optgroup" {:inline :block :void false :optional-end false :content [:explicit [:option :%TEXT]]}
+	"option" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"output" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"p" {:inline :block :void false :optional-end true :content [:phrasing-default]}
+	"param" {:inline :block :void true :optional-end false :content [:flow-default]}
+	"picture" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"pre" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"progress" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"q" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"ruby" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"s" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"samp" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"script" {:inline :replaced :void false :optional-end false :content [:explicit [:%TEXT]]}
+	"section" {:inline :block :void false :optional-end false :content [:flow-default]}
+	"select" {:inline :replaced :void false :optional-end false :content [:explicit [:option :optgroup :%TEXT]]}
+	"slot" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"small" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"source" {:inline :block :void true :optional-end false :content [:flow-default]}
+	"span" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"strong" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"style" {:inline :block :void false :optional-end false :content [:explicit [:%TEXT]]}
+	"sub" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"summary" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+	"sup" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"svg" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+	"table" {:inline :block :void false :optional-end false :content [:explicit [:caption :colgroup :thead :tbody :tfoot :tr :%TEXT]]}
+	"tbody" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
+	"td" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"template" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"textarea" {:inline :replaced :void false :optional-end false :content [:explicit [:%TEXT]]}
+	"tfoot" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
+	"th" {:inline :block :void false :optional-end true :content [:flow-default]}
+	"thead" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
+	"time" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"tr" {:inline :block :void false :optional-end true :content [:explicit [:th :td :%TEXT]]}
+	"track" {:inline :block :void true :optional-end false :content [:flow-default]}
+	"u" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"ul" {:inline :block :void false :optional-end false :content [:explicit [:li :%TEXT]]}
+	"var" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+	"video" {:inline :replaced :void false :optional-end false :content [:transparent [:source :track]]}
+	"wbr" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
+})
+(def ^:private phrasing-content*
+  #{:a :abbr :audio :b :bdi :bdo :cite :code :data :datalist :del :dfn :em :i :ins :kbd :label :map :mark :q :ruby :s :samp :slot :small :span :strong :sub :sup :template :time :u :var :area :br :embed :img :input :link :meta :wbr :button :canvas :iframe :math :meter :noscript :object :output :picture :progress :script :select :svg :textarea :video :%TEXT})
+(def ^:private flow-content*
+  #{:a :abbr :audio :b :bdi :bdo :cite :code :data :datalist :del :dfn :em :i :ins :kbd :label :map :mark :q :ruby :s :samp :slot :small :span :strong :sub :sup :template :time :u :var :area :br :embed :img :input :link :meta :wbr :button :canvas :iframe :math :meter :noscript :object :output :picture :progress :script :select :svg :textarea :video :p :h1 :h2 :h3 :h4 :h5 :h6 :pre :address :article :aside :blockquote :details :div :fieldset :figure :footer :form :header :hr :main :nav :section :body :head :html :table :ul :ol :dl :%TEXT})
+(def ^:private prohibited*
+  {"a" #{"a" "button"}
+   "button" #{"a" "button"}
+   "form" #{"form"}})
+
+;; string-keyed views (tags at runtime are strings)
+(def ^:private elements
+  (update-vals elements*
+               #(update % :content (fn [[kind kids]] [kind (mapv name kids)]))))
+(def ^:private phrasing-content (into #{} (map name) phrasing-content*))
+(def ^:private flow-content (into #{} (map name) flow-content*))
+
+
+(defn- child-content
+  "The content model of a known tag in the given parent model (the
+  node sibling's Schema.childContent): transparent elements inherit
+  the parent model plus their own additions."
+  [tag parent-content]
+  (let [[kind kids] (:content (get elements tag))]
+    (case kind
+      :phrasing-default phrasing-content
+      :flow-default flow-content
+      :explicit (into #{} kids)
+      :transparent (into parent-content kids))))
+
+
+(defn- emit-frame
+  "Emits a frame's closing tag WITHOUT popping the stack and WITHOUT
+  adjusting the indent counter - the driven loops do both, like the
+  node sibling's emitClose callers."
+  [state {:keys [close close-indent]}]
+  (cond
+    (nil? close) state
+    close-indent
+    (-> state
+        backtab-eat
+        (update :segs conj [:barrier-close ""])
+        (append (str close "\n" (str/join (repeat close-indent "\t")))))
+    :else (append state close)))
+
+
+(defn- flush-text-driven
+  "Flushes the text buffer; text that the top container's content model
+  does not allow is dropped (the node sibling's %TEXT check)."
+  [state]
+  (let [s (:text state)]
+    (if (= "" s)
+      state
+      (let [top (first (:stack state))]
+        (if (and top (not (contains? (:dtd-content top flow-content) "%TEXT")))
+          (assoc state :text "")
+          (flush-text state))))))
+
+
+
+
+(defn- close-optional-tags
+  "Closes open containers whose content model cannot host the incoming
+  tag: optional-end containers close silently, a locked container stops
+  the walk. Returns [state, the content model to check the tag
+  against] (the node sibling's closeOptionalTags)."
+  [state tag dtd]
+  (loop [frames (seq (:stack state)), removed 0, state state]
+    (if (empty? frames)
+      [(update state :stack (partial drop removed)) flow-content]
+      (let [item (first frames)
+            dtd' (:dtd-content item flow-content)]
+        (if (or (contains? dtd' tag)
+                (and (some? (:close item))
+                     (not (:optional-end (get elements (:tag item))))
+                     (not (html/inline? (:tag item)))))
+          [(update state :stack (partial drop removed)) dtd']
+          (recur (next frames)
+                 (inc removed)
+                 (-> state
+                     (emit-frame item)
+                     (update :space - (:indent item))
+                     (update-in [:tag-used (:tag item)] (fnil dec 0)))))))))
+
+
+(defn- start-tag-body-driven
+  "Emits a start tag through the content-model decision: a disallowed
+  tag opens a transparent frame - its children still render, the tag
+  itself does not (the node sibling's startTagBody)."
+  [state tag attr void? allowed dtd-content]
+  (let [{:keys [config space]} state
+        indent? (and (:indent config) (not (preserving-open? state)))]
+    (if void?
+      (if-not allowed
+        state
+        (-> (cond
+              (and indent? (= tag "br"))
+              ;; <br> ends the line; only the current fragment trims
+              (-> state
+                  (strip-tail " \t\n\r\u0000\u000b" (:fragment-start state))
+                  (append (str "<" tag attr ">\n" (str/join (repeat (max 0 (dec space)) "\t"))))
+                  eat-barrier)
+
+              (and indent? (not (html/inline? tag)))
+              (let [tabs (str/join (repeat space "\t"))]
+                (-> state
+                    soft-newline
+                    (append (str tabs "<" tag attr ">"))
+                    soft-newline
+                    (append tabs)))
+
+              :else
+              (append state (str "<" tag attr ">")))
+            end-fragment))
+
+      (let [block? (and allowed (:indent config) (not (html/inline? tag)))
+            [state open close close-indent indent]
+            (if-not allowed
+              [state nil nil nil 0]
+              (let [open (str "<" tag attr ">")
+                    close (str "</" tag ">")
+                    [state close-indent indent]
+                    (if block?
+                      [(-> state
+                           (append (str "\n" (str/join (repeat space "\t")) open))
+                           eat-barrier
+                           (update :space inc))
+                       space
+                       1]
+                      [(append state open) nil 0])]
+                [state open close close-indent indent]))
+            dtd-content (if (and allowed (contains? elements tag))
+                          (child-content tag dtd-content)
+                          dtd-content)]
+        (-> state
+            (update :stack conj {:tag tag :open open :close close :close-indent close-indent
+                                 :indent indent :dtd-content dtd-content})
+            (update-in [:tag-used tag] (fnil inc 0))
+            end-fragment)))))
+
+
+(defn- start-tag-driven
+  "Feeds a start tag through the driver (the node sibling's startTag):
+  optional-end containers auto-close, prohibited nesting and content
+  models can drop the tag itself (its children still render)."
+  [state tag attr void?]
+  (let [state (flush-text-driven state)]
+    (if-not (contains? elements tag)
+      ;; unknown tags are transparent wrappers: always allowed,
+      ;; inheriting the parent's content model
+      (start-tag-body-driven state tag attr void? true
+                             (or (some-> (:stack state) first :dtd-content)
+                                 flow-content))
+      (let [[state dtd] (close-optional-tags state tag flow-content)
+            prohibited (get prohibited* tag)
+            allowed (and (contains? dtd tag)
+                         (or (nil? prohibited)
+                             (not (some #(pos? (get (:tag-used state) % 0))
+                                        prohibited))))]
+        (start-tag-body-driven state tag attr void? allowed dtd)))))
+
+
+(defn- reopen
+  "Reopens the frames an unmatched end tag interrupted (the node
+  sibling's autoopen): all-inline reopen in document order when the
+  container allows them again."
+  [state tmp back?]
+  (if (or (not back?) (empty? tmp))
+    state
+    (let [dtd (or (some-> (:stack state) first :dtd-content) flow-content)]
+      (if-not (contains? dtd (:tag (first tmp)))
+        state
+        (reduce (fn [state r]
+                  (-> state
+                      (cond-> (:open r) (append (:open r)))
+                      (update :space + (:indent r))
+                      (update-in [:tag-used (:tag r)] (fnil inc 0))
+                      (update :stack conj r)))
+                state
+                tmp)))))
+
+
+(defn- process-end-tag
+  "Closes the stack down to the tag's frame, emitting closes for the
+  elements it interrupts; if those are all inline, they reopen after
+  it (the node sibling's processEndTag)."
+  [state tag]
+  (if-not (pos? (get (:tag-used state) tag 0))
+    state
+    (loop [frames (seq (:stack state)), tmp [], back? true, removed 0, state state]
+      (if (empty? frames)
+        (reopen (update state :stack (partial drop removed)) tmp back?)
+        (let [item (first frames)
+              state' (-> state
+                         (emit-frame item)
+                         (update :space - (:indent item))
+                         (update-in [:tag-used (:tag item)] (fnil dec 0)))
+              back?' (and back? (html/inline? (:tag item)))
+              removed' (inc removed)]
+          (if (= tag (:tag item))
+            (-> (update state' :stack (partial drop removed'))
+                (reopen tmp back?'))
+            (recur (next frames) (into [item] tmp) back?' removed' state')))))))
+
+
+(defn- end-tag-driven
+  [state tag]
+  (-> state flush-text-driven (process-end-tag tag) end-fragment))
+
+
+(defn- feed-raw-driven
+  "Tokenizes a raw HTML fragment through the driver (the node
+  sibling's raw: tags pass the content-model machinery too)."
+  [state ^String s]
+  (let [m (re-matcher raw-token s)
+        matched? (fn [n] (pos? (count (or (.group m n) ""))))]
+    (loop [offset 0, state state]
+      (if-not (.find m)
+        (escaped-text state (subs s offset))
+        (let [start (.start m)
+              gap (subs s offset start)
+              state (if (= "" gap)
+                      state
+                      (-> state flush-text-driven (append gap) end-fragment))
+              text (.group m 1)
+              state (if (= "" text) state (escaped-text state text))
+              cmt (.group m 2)
+              state (if cmt
+                      (emit-comment state cmt)
+                      (let [end? (matched? 3)
+                            tag (.group m 4)
+                            attr (or (.group m 5) "")
+                            empty? (boolean (or (matched? 6) (html/void? tag)))]
+                        (cond
+                          (and empty? end?) (-> state flush-text-driven end-fragment)
+                          end? (end-tag-driven state tag)
+                          :else (start-tag-driven state tag attr empty?))))]
+          (recur (.end m) state))))))
+
+
+(defn- feed-driven
+  "Feeds one rendered form through the driver: elements recurse, text
+  joins the buffer, raw strings tokenize by the reference tag grammar."
+  [state form]
+  (cond
+    (huff/raw-string? form)
+    (feed-raw-driven state (str form))
+
+    (vector? form)
+    (let [[tag & tail] form
+          attrs? (map? (first tail))
+          children (if attrs? (rest tail) tail)
+          tag-name (name tag)
+          void? (html/void? tag-name)]
+      (let [state (start-tag-driven state tag-name (format-attrs (when attrs? (first tail))) void?)]
+        (if void?
+          state
+          (let [state (reduce #(feed-driven %1 %2) state (remove nil? children))]
+            (end-tag-driven state tag-name)))))
+
+    (sequential? form)
+    (reduce #(feed-driven %1 %2) state form)
+
+    :else
+    (escaped-text state (str form))))
+
+
+(defn serialize-direct
+  "Serializes the rendered tree straight through the call-driven
+  well-forming driver - no jsoup serialize->parse->convert round-trip
+  (the node.js sibling's architecture). Same options as serialize."
+  ([forms] (serialize-direct forms {}))
+  ([forms opts]
+   (let [config (merge {:indent true :line-wrap 80 :base-indent 0} opts)
+         state (reduce feed-driven (init-state config) forms)]
+     ;; the leading newline of the first block is layout noise
+     (str/replace (finish state) re-leading-newlines ""))))
+

@@ -14,6 +14,17 @@
             [texy.modifier :as mod]
             [texy.wellformer :as wellformer]))
 
+;; Pre-compiled regex patterns for performance
+(def ^:private ^java.util.regex.Pattern re-url-scheme #"(?is)\s*[a-z][a-z0-9+.-]{0,20}:")
+(def ^:private ^java.util.regex.Pattern re-relative-url #"(?i)\A(?:[a-z][a-z0-9+.-]{0,20}:|[#/?])")
+(def ^:private ^java.util.regex.Pattern re-trailing-slashes #"[/\\]+$")
+(def ^:private ^java.util.regex.Pattern re-url-parts #"^(?:(?<scheme>[a-z]+):)?(?://(?<host>[^/?#]+))?(?:(?<path>(?:/|^(?!//))[^?#]*))?(?:\?(?<query>[^#]*))?(?:\#(?<fragment>.*))?$")
+(def ^:private ^java.util.regex.Pattern re-whitespace-plus #"\s+")
+(def ^:private ^java.util.regex.Pattern re-dashes #"-{2,}")
+(def ^:private ^java.util.regex.Pattern re-dashes-trim #"^-+|-+$")
+(def ^:private ^java.util.regex.Pattern re-html-tag #"<[^<>]*+>")
+(def ^:private ^java.util.regex.Pattern re-whitespace-newlines #"[ \n]+")
+
 (def ^:dynamic *options*
   "Rendering options: :image-root (default \"images/\"), :link-root,
   :link-no-follow."
@@ -65,7 +76,7 @@
 (defn- ^String url-scheme
   "The scheme part of an URL, nil when there is none (a relative URL)."
   [^String url]
-  (re-find #"(?is)\s*[a-z][a-z0-9+.-]{0,20}:" url))
+  (re-find re-url-scheme url))
 
 (defn- url-allowed?
   "The URL scheme policy (the reference UrlPolicy): a nil pattern allows
@@ -124,11 +135,11 @@
   (PCRE's A flag): no scheme, no leading / ? # - a query string does
   not make an URL absolute."
   [url]
-  (nil? (re-find #"(?i)\A(?:[a-z][a-z0-9+.-]{0,20}:|[#/?])" url)))
+  (nil? (re-find re-relative-url url)))
 
 (defn- prepend-root [url root]
   (if (and root (is-relative? url))
-    (str (str/replace root #"[/\\]+$" "") "/" url)
+    (str (str/replace root re-trailing-slashes "") "/" url)
     url))
 
 (defn- normalize-www [url]
@@ -145,9 +156,7 @@
   (let [raw (if (= "www." (norm/lower-case (subs url 0 (min 4 (count url)))))
               (str "none://" url)
               url)
-        m (re-matches
-            #"^(?:(?<scheme>[a-z]+):)?(?://(?<host>[^/?#]+))?(?:(?<path>(?:/|^(?!//))[^?#]*))?(?:\?(?<query>[^#]*))?(?:\#(?<fragment>.*))?$"
-            raw)]
+        m (re-matches re-url-parts raw)]
     (if-not m
       url
       (let [[_ scheme host path query fragment] m
@@ -337,7 +346,7 @@
                       (str/includes? (get (:attrs node) "href") "//"))
                (assoc-in node [:attrs "rel"]
                          (str/join " " (distinct (concat (when-let [rel (get (:attrs node) "rel")]
-                                                           (str/split rel #"\s+"))
+                                                           (str/split rel re-whitespace-plus))
                                                          ["nofollow"]))))
                node)]
     (html-tag-source node)))
@@ -352,8 +361,8 @@
 (defmethod render-node :html-comment [node]
   ;; raw output, not subject to the text shrinking (the reference Raw)
   (let [content (-> (:text node)
-                    (str/replace #"-{2,}" " - ")
-                    (str/replace #"^-+|-+$" ""))]
+                    (str/replace re-dashes " - ")
+                    (str/replace re-dashes-trim ""))]
     [(huff/raw (str "<!--" content "-->"))]))
 
 (defmethod render-node :block-comment [_] [])
@@ -367,7 +376,7 @@
   "Shrinks runs of spaces/newlines in the text between tags, like the
   reference WellFormer's raw() tokenizer."
   [^String s]
-  (let [m (re-matcher #"<[^<>]*+>" s)
+  (let [m (re-matcher re-html-tag s)
         sb (StringBuilder.)]
     (loop [start 0]
       (if (.find m)
@@ -509,7 +518,7 @@
       ;; the nofollow class moves onto rel="nofollow" (the reference
       ;; renderLink); the class list loses it
       (let [decorated (decorate (:modifier node))
-            classes (-> decorated (:class "") (str/split #"\s+"))
+            classes (-> decorated (:class "") (str/split re-whitespace-plus))
             nofollow? (some #(= "nofollow" %) classes)
             class' (str/trim (str/join " " (remove #(= "nofollow" %) classes)))
             base (cond-> decorated
@@ -605,7 +614,7 @@
   "Runs of spaces and newlines shrink to a single space, like the
   reference WellFormer's buffered text (pre/textarea preserve spaces)."
   [^String s]
-  (str/replace s #"[ \n]+" " "))
+  (str/replace s re-whitespace-newlines " "))
 
 (defn- drop-prohibited
   "Drops <a>/<button> start tags nested inside an open <a>/<button>, and
@@ -672,7 +681,11 @@
   lines (the reference WellFormer's formatting half, texy.wellformer).
   Options :indent (default true), :line-wrap (default 80, 0 disables),
   :base-indent (default 0); {:indent false :line-wrap 0} selects flat
-  output. huff's own escaping is disabled: this port escapes display
+  output. :well-forming selects the pairing half: :jsoup (default,
+  HTML5 tree construction, spec-conformant repair of hostile input)
+  or :direct (the node.js sibling's call-driven WellFormer, no
+  round-trip; no implicit <tbody>, bare boolean attributes, ~5%%
+  faster). huff's own escaping is disabled: this port escapes display
   text and attributes itself, with the reference's exact semantics
   (text keeps apostrophes literal)."
   ([doc] (to-html doc {}))
@@ -680,5 +693,16 @@
    (binding [*options* options
              huff/*escape?* false]
      (let [forms (drop-prohibited (render-node doc))]
-       (wellformer/serialize (dom/wellform forms escape-html escape-attr)
-                             options)))))
+       (if (= :direct (:well-forming options))
+         (wellformer/serialize-direct forms options)
+         (wellformer/serialize (dom/wellform forms escape-html escape-attr)
+                               options))))))
+
+
+(defn to-html-direct
+  "to-html with {:well-forming :direct}: the call-driven WellFormer
+  driver (the node.js sibling's architecture), no jsoup
+  serialize->parse->convert round-trip."
+  ([doc] (to-html-direct doc {}))
+  ([doc options]
+   (to-html doc (assoc options :well-forming :direct))))

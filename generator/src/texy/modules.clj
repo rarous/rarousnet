@@ -19,6 +19,70 @@
 (defn compile-m [^String s] (java.util.regex.Pattern/compile s M))
 (defn compile-ci [^String s] (java.util.regex.Pattern/compile s CI))
 
+
+;;----------------------------------------------------------------
+;; Pre-compiled regex patterns
+
+;; Paragraph and line handling
+(def ^:private whitespace-line-re (re-pattern #"[ \t].+"))
+(def ^:private leading-whitespace-re (re-pattern #"^[ \t]+"))
+(def ^:private trailing-whitespace-re (re-pattern #"[ \t]+$"))
+(def ^:private multi-newline-re (re-pattern #"\n{2,}"))
+(def ^:private newline-trim-re (re-pattern #"^\n+|\n+$"))
+(def ^:private hard-break-re (re-pattern #"\r"))
+
+;; HTML element detection
+(def ^:private block-element-re (re-pattern #"(?i)^<([a-z][a-z0-9]*)\b"))
+
+;; List parsing
+(def ^:private digit-re (re-pattern #"\d+"))
+
+;; Code block parsing
+(def ^:private modifier-end-re (re-pattern (str "(?:" p/modifier ")$")))
+(def ^:private info-trim-re (re-pattern #"[ \t]*\.[^\n]*$"))
+(def ^:private whitespace-split-re (re-pattern #"\s+"))
+
+;; Slash block parsing
+(def ^:private open-line-re (re-pattern #"^/--++.*"))
+(def ^:private close-line-re (re-pattern #"^\\--.*"))
+(def ^:private language-check-re (re-pattern #"(?i)^[a-z][a-z0-9_+#-]*$"))
+
+;; Image parsing
+(def ^:private image-dimensions-re (re-pattern #"(.*?) (\d+|\?) ?[xX] ?(\d+|\?) ?"))
+
+;; Directive parsing
+(def ^:private directive-cmd-re (re-pattern #"(?i)^([a-z_][a-z0-9_-]*)\s*(?:\(([^()]*)\)|:(.*))$"))
+
+;; Table parsing
+(def ^:private pipe-in-brackets-re (re-pattern #"(\[[^]]*)\|"))
+(def ^:private pipe-re (re-pattern #"\|"))
+(def ^:private empty-cell-re (re-pattern #"\^[ \t]*"))
+(def ^:private rowspan-re (re-pattern #"\*?(.*?)[ \t]+\^$"))
+
+;; Phrase patterns - pre-compiled from p/ patterns
+(def ^:private modifier-end-full-re (re-pattern (str "(?:" p/modifier ")$")))
+(def ^:private phrase-notexy-re (re-pattern "(?<!')''(?![\\s'])((?:[^\\r\\n']++|')+?)(?<![\\s'])''(?!')"))
+(def ^:private phrase-code-re (re-pattern (str "`(\\S(?:[^\\r\\n `]++|[ `])*?)(?:" p/modifier ")?"
+                                             "(?<!\\s)`(?::(" p/link-url "))?")))
+(def ^:private phrase-quicklink-re (re-pattern (str "([" p/letter "0-9@#$%&.,_-]++):(?=\\[)(" p/link-url ")")))
+(def ^:private phrase-wikilink-re (re-pattern (str "(?<!\\[)\\[(?![\\s*])([^|\\r\\n\\]]++)\\|"
+                                               "((?:[^|\\r\\n \\]]++|[ ])+?)(?:" p/modifier ")?(?<!\\s)](?!])")))
+(def ^:private phrase-markdown-re (re-pattern (str "(?<![\\[.])\\[(?![\\s*])((?:[^|\\r\\n \\]]++|[ ])+?)(?:" p/modifier ")?"
+                                                "(?<!\\s)]\\(((?:[^\\r )]++|[ ])+?)\\)")))
+(def ^:private phrase-escaped-asterix-re (re-pattern "\\\\\\*"))
+
+;; Autolink patterns
+(def ^:private autolink-url-re (re-pattern (str "(?<=^|[\\s(\\[<:])(?:https?://|www\\.|ftp://)[0-9." p/letter "-]"
+                                             "[/\\d" p/letter "+.~%&?@=_:;#$!,*()\\x{ad}-]{1,1000}"
+                                             "[/\\d" p/letter "+~?@=_#$*]")))
+(def ^:private autolink-email-re (re-pattern (str "(?<=^|[\\s(\\[<])" p/email)))
+
+;; Directive and emoticon
+(def ^:private directive-content-re (re-pattern "\\{\\{((?:[^}]++|})+?)}}"))
+
+;; Cell parsing
+(def ^:private cell-modifier-re (re-pattern (str "^[ \t]*(?:" p/modifier-hv ")")))
+
 (defn- strip-shy [s] (str/replace s "\u00AD" ""))
 
 
@@ -50,7 +114,7 @@
       (let [line (first lines)]
         (recur (cond
                  (not merge-lines) (str acc "\r" line)
-                 (re-matches #"[ \t].+" line) (str acc "\r" (str/replace line #"^[ \t]+" ""))
+                 (re-matches whitespace-line-re line) (str acc "\r" (str/replace line leading-whitespace-re ""))
                  :else (str acc " " line))
                (rest lines)))
       acc)))
@@ -62,7 +126,7 @@
   (mapcat (fn [node]
             (cond
               (= :text (:type node))
-              (let [parts (str/split (:text node) #"\r" -1)]
+              (let [parts (str/split (:text node) hard-break-re -1)]
                 (into []
                       (mapcat (fn [[i part]]
                                  (cond-> []
@@ -81,7 +145,7 @@
   "True when the text starts with a known block-level HTML element (not
   an inline one) - the reference startsWithBlockElement."
   [^String text]
-  (when-some [[_ tag] (re-find #"(?i)^<([a-z][a-z0-9]*)\b" text)]
+  (when-some [[_ tag] (re-find block-element-re text)]
     (not (html/inline? (norm/lower-case tag)))))
 
 (defn- contains-block-html-tag?
@@ -111,8 +175,8 @@
 
         :else
         (let [lines (-> lines
-                        (update 0 #(str/replace % #"^[ \t]+" ""))
-                        (update (dec (count lines)) #(str/replace % #"[ \t]+$" "")))
+                        (update 0 #(str/replace % leading-whitespace-re ""))
+                        (update (dec (count lines)) #(str/replace % trailing-whitespace-re "")))
               joined (join-lines lines merge-lines)
               content (vec (expand-line-breaks (engine/parse-inline ctx joined)))
               visible? (fn [n] (if (= :text (:type n)) (not (str/blank? (:text n))) true))]
@@ -121,7 +185,7 @@
               (contains-block-html-tag? content) (assoc :block-html true))))))))
 
 (defn gap-handler [ctx ^String text]
-  (->> (str/split text #"\n{2,}")
+  (->> (str/split text multi-newline-re)
        (keep #(paragraph-node ctx % (get-in ctx [:options :merge-lines] true)))
        vec))
 
@@ -227,7 +291,7 @@
   "The start index of an ordered list when the first item is not the first
   of its series (13) -> 13, b) -> 2)."
   [key ^String bullet]
-  (let [num (re-find #"\d+" bullet)]
+  (let [num (re-find digit-re bullet)]
     (cond
       (and (str/starts-with? key "1") num (> (parse-long num) 1)) (parse-long num)
       (and (= key "a)") (pos? (compare (.charAt bullet 0) \a))) (- (int (.charAt bullet 0)) 96)
@@ -321,10 +385,10 @@
 (defn- parse-fenced [_ groups]
   (let [[_ _ info content] groups
         info' (or info "")
-        [mod-parts info''] (if-let [[_ parts] (re-find (re-pattern (str "(?:" p/modifier ")$")) info')]
-                             [parts (str/replace info' #"[ \t]*\.[^\n]*$" "")]
+        [mod-parts info''] (if-let [[_ parts] (re-find modifier-end-re info')]
+                             [parts (str/replace info' info-trim-re "")]
                              [nil info'])
-        language (-> info'' str/trim (str/split #"\s+") first)]
+        language (-> info'' str/trim (str/split whitespace-split-re) first)]
     {:type :code-block
      :style :code
      :code (subs content 1)                     ; drop the separator \n
@@ -355,7 +419,7 @@
   reference Helpers::outdent)."
   ([^String s] (outdent s false))
   ([^String s first-line]
-   (let [lines (-> (str/replace s #"^\n+|\n+$" "") (str/split #"\n" -1))
+   (let [lines (-> (str/replace s newline-trim-re "") (str/split #"\n" -1))
          lines (reverse (drop-while #(= "" %) (reverse (drop-while #(= "" %) lines))))
          first (or (first lines) "")
          prefix (if first-line
@@ -386,8 +450,6 @@
   (let [[_ m-param m-mod-parts] groups
         parser (:block-parser ctx)
         any-line (compile-m "^(.*)$")
-        open-line #"^/--++.*"
-        close-line #"^\\--.*"
         ;; scan content lines, tracking the block nesting depth
         lines (loop [depth 1 lines []]
                 (if (zero? depth)
@@ -395,14 +457,14 @@
                   (if-some [line (engine/block-next parser any-line)]
                     (let [l (nth (second line) 1)]
                       (cond
-                        (re-matches open-line l) (recur (inc depth) (conj lines l))
-                        (re-matches close-line l) (if (= depth 1)
+                        (re-matches open-line-re l) (recur (inc depth) (conj lines l))
+                        (re-matches close-line-re l) (if (= depth 1)
                                                     (recur (dec depth) lines)  ; the closing line is not content
                                                     (recur (dec depth) (conj lines l)))
                         :else (recur depth (conj lines l))))
                     lines)))
         content (str/join "\n" lines)
-        [type-name param] (str/split (str/trim (or m-param "")) #"\s+" 2)
+        [type-name param] (str/split (str/trim (or m-param "")) whitespace-split-re 2)
         param (when-not (str/blank? (or param "")) param)
         blocktype (if (str/blank? type-name) "block/default" (str "block/" (norm/lower-case type-name)))]
     (letfn [(code-block [style code language]
@@ -414,8 +476,8 @@
         "block/default" (code-block :default (outdent content) param)
         "block/pre" (code-block :pre (outdent content) param)
         "block/comment" (when-not (= "" content) {:type :block-comment :text content})
-        "block/html" (code-block :html (str/replace content #"^\n+|\n+$" "") nil)
-        "block/text" (code-block :text (str/replace content #"^\n+|\n+$" "") nil)
+        "block/html" (code-block :html (str/replace content newline-trim-re "") nil)
+        "block/text" (code-block :text (str/replace content newline-trim-re "") nil)
         "block/div" (let [content' (outdent content true)]
                       (when-not (= "" content')
                         {:type :section :subtype "div"
@@ -425,7 +487,7 @@
         ;; /--php and friends: a code block in that language; anything
         ;; that does not look like a language name refuses and degrades
         ;; to visible text
-        (if (re-matches #"(?i)^[a-z][a-z0-9_+#-]*$" type-name)
+        (if (re-matches language-check-re type-name)
           (code-block :code (outdent content) type-name)
           nil)))))
 
@@ -544,25 +606,22 @@
                                    "(?<!\\s)\"(?!\")\\(\\((.+?)\\)\\)"))
            :handler (partial parse-acronym "phrase/acronym-alt")}
           {:name "phrase/notexy"
-           :pattern (re-pattern "(?<!')''(?![\\s'])((?:[^\\r\\n']++|')+?)(?<![\\s'])''(?!')")
+           :pattern phrase-notexy-re
            :handler parse-no-texy}
           {:name "phrase/code"
-           :pattern (re-pattern (str "`(\\S(?:[^\\r\\n `]++|[ `])*?)(?:" p/modifier ")?"
-                                      "(?<!\\s)`(?::(" p/link-url "))?"))
+           :pattern phrase-code-re
            :handler parse-code-phrase}
           {:name "phrase/quicklink"
-           :pattern (re-pattern (str "([" p/letter "0-9@#$%&.,_-]++):(?=\\[)(" p/link-url ")"))
+           :pattern phrase-quicklink-re
            :handler parse-inline-link}
           {:name "phrase/wikilink"
-           :pattern (re-pattern (str "(?<!\\[)\\[(?![\\s*])([^|\\r\\n\\]]++)\\|"
-                                      "((?:[^|\\r\\n \\]]++|[ ])+?)(?:" p/modifier ")?(?<!\\s)](?!])"))
+           :pattern phrase-wikilink-re
            :handler parse-wikilink}
           {:name "phrase/markdown"
-           :pattern (re-pattern (str "(?<![\\[.])\\[(?![\\s*])((?:[^|\\r\\n \\]]++|[ ])+?)(?:" p/modifier ")?"
-                                      "(?<!\\s)]\\(((?:[^\\r )]++|[ ])+?)\\)"))
+           :pattern phrase-markdown-re
            :handler parse-markdown-link}
           {:name "phrase/escaped-asterix"
-           :pattern (re-pattern "\\\\\\*")
+           :pattern phrase-escaped-asterix-re
            :handler (fn [_ _] {:type :text :text "*"})}]]))
 
 
@@ -572,7 +631,7 @@
 (defn- parse-image-content
   "\"url 100x200\" -> [url width height]; dims may be ?"
   [^String content]
-  (if-let [[_ url w h] (re-matches #"(.*?) (\d+|\?) ?[xX] ?(\d+|\?) ?" content)]
+  (if-let [[_ url w h] (re-matches image-dimensions-re content)]
     [(str/trim url)
      (when (not= w "?") (parse-long w))
      (when (not= h "?") (parse-long h))]
@@ -603,9 +662,11 @@
   (str "\\[\\*[ \t]*+([^\\n]{1,1000}?)(?:" p/modifier ")?[ \t]*+"
        "(\\*|(?<!<)>|<)](?::(" p/link-url "|:))?"))
 
+(def ^:private image-pattern (re-pattern image-core-pattern))
+
 (defn image-syntax []
   [{:name "image"
-    :pattern (re-pattern image-core-pattern)
+    :pattern image-pattern
     :handler parse-image}])
 
 ;;----------------------------------------------------------------
@@ -639,12 +700,10 @@
 
 (defn autolink-syntaxes []
   [{:name "link/url"
-    :pattern (re-pattern (str "(?<=^|[\\s(\\[<:])(?:https?://|www\\.|ftp://)[0-9." p/letter "-]"
-                              "[/\\d" p/letter "+.~%&?@=_:;#$!,*()\\x{ad}-]{1,1000}"
-                              "[/\\d" p/letter "+~?@=_#$*]"))
+    :pattern autolink-url-re
     :handler parse-url}
    {:name "link/email"
-    :pattern (re-pattern (str "(?<=^|[\\s(\\[<])" p/email))
+    :pattern autolink-email-re
     :handler parse-email}])
 
 ;;----------------------------------------------------------------
@@ -657,7 +716,7 @@
 
 (defn directive-syntax []
   [{:name "directive"
-    :pattern (re-pattern "\\{\\{((?:[^}]++|})+?)}}")
+    :pattern directive-content-re
     :handler parse-directive}])
 
 ;;----------------------------------------------------------------
@@ -703,7 +762,7 @@
   ([^String text] (parse-directive-content text ","))
   ([^String text ^String separator]
    (let [cmd (str/trim text)
-         m (re-find #"(?i)^([a-z_][a-z0-9_-]*)\s*(?:\(([^()]*)\)|:(.*))$" cmd)]
+         m (re-find directive-cmd-re cmd)]
      (if m
        (let [value (str/trim (or (nth m 3) (nth m 2) ""))]
          {:name (nth m 1)
@@ -736,8 +795,8 @@
   [^String content]
   (let [protected (-> content
                      (str/replace "\\|" "\u0013")
-                     ((fn [s] (str/replace s #"(\[[^]]*)\|" "$1\u0013"))))]
-    (mapv #(str/replace % "\u0013" "|") (str/split protected #"\|"))))
+                     ((fn [s] (str/replace s pipe-in-brackets-re "$1\u0013"))))]
+    (mapv #(str/replace % "\u0013" "|") (str/split protected pipe-re))))
 
 (defn- parse-cell-parts
   "Cell text into [head? leading-mod-parts trailing-mod content]: the
@@ -750,7 +809,7 @@
   [^String cell]
   (let [head? (str/starts-with? cell "*")
         cell' (if head? (subs cell 1) cell)
-        lead (re-find (re-pattern (str "^[ \t]*(?:" p/modifier-hv ")")) cell')
+        lead (re-find cell-modifier-re cell')
         cell'' (if lead (subs cell' (count (first lead))) cell')
         ;; the reference cell pattern allows [ \t]* between the trailing
         ;; modifier and the $ anchor, so cells keep their trailing whitespace
@@ -805,12 +864,12 @@
                       prev-id (get @prev-row* col')
                       prev-cell (when prev-id (get @cells* prev-id))
                       rowspan-match (and prev-cell
-                                         (or (re-matches #"\^[ \t]*" cell)
-                                             (re-find #"\*?(.*?)[ \t]+\^$" cell)))]
+                                         (or (re-matches empty-cell-re cell)
+                                             (re-find rowspan-re cell)))]
                   (cond
                     ;; rowspan: append text to the cell above
                     rowspan-match
-                    (let [text (or (second (re-find #"\*?(.*?)[ \t]+\^$" cell)) "")]
+                    (let [text (or (second (re-find rowspan-re cell)) "")]
                       (swap! cells* update-in [prev-id :rowspan] inc)
                       (swap! texts* update prev-id conj text)
                       (reset! col (+ col' (or (:colspan prev-cell) 1)))

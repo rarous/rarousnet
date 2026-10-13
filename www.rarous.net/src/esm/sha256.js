@@ -137,6 +137,9 @@ export function getSha256(input) {
   const encoder = new TextEncoder();
   const data = encoder.encode(input);
   const hashBuffer = sha256(data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((x) => x.toString(16).padStart(2, "0")).join("");
+  let out = "";
+  for (const ch of new Uint8Array(hashBuffer)) {
+    out += ch.toString(16).padStart(2, "0");
+  }
+  return out;
 }

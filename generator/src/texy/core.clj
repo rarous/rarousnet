@@ -56,6 +56,12 @@
                      the bare [ref] syntax (link/reference), always
                      allowed in Texy 3
                      (see texy.references-test)
+  :well-forming     the HTML pairing half of the renderer: :jsoup (default,
+                     HTML5 tree construction - spec-conformant, inserts an implicit
+                     <tbody> in passthrough tables, serializes bare boolean
+                     attributes as name=\"\"), or :direct (the call-driven WellFormer
+                     of the node.js sibling - no round-trip, reference behavior
+                     for tbody and bare booleans); may also be given per call
   :typography-locale locale for quote substitution (default \"cs\", like the
                      reference module; unknown falls back to English)
   :generate-ids      generate heading ids for a {toc:} (default false)
@@ -168,12 +174,15 @@
       (assoc node :url (str "mailto:" url))
       node)))
 
-(defn- php-urlencode
-  "PHP urlencode(): form encoding - spaces become '+', '*' is percent
-  encoded (java.net.URLEncoder leaves it). Used by the Texy 3 %s
-  reference-URL substitution."
+(defn- form-urlencode
+  "application/x-www-form-urlencoded encoding - the platform's native
+  form-encoder (spaces become '+'). One deliberate deviation from the
+  PHP urlencode() that Texy 3 used for %s reference URLs: '*' stays
+  literal (URLEncoder leaves it) - it is a valid URL sub-delim (RFC
+  3986) and %2A decodes to the same value for every spec-compliant
+  consumer. Used by the %s reference-URL substitution."
   ^String [^String s]
-  (str/replace (java.net.URLEncoder/encode s "UTF-8") "*" "%2A"))
+  (java.net.URLEncoder/encode s "UTF-8"))
 
 (defn- resolve-references
   "The link-reference and image-reference passes: [ref]: url and [*ref*]:
@@ -240,7 +249,7 @@
                                                         (and (not bare?)
                                                              (str/includes? (str (:url node)) "%s"))
                                                         (update :url #(str/replace (str %) "%s"
-                                                                                   (php-urlencode (label-text node))))
+                                                                                   (form-urlencode (label-text node))))
 
                                                         (:modifier def)
                                                         (update :modifier (fn [m]
@@ -301,7 +310,7 @@
                                  (update :modifier #(mod/merge-modifiers (:modifier def) %))
 
                                  (and legacy? def (str/includes? (str url) "%s"))
-                                 (assoc :url (str/replace url "%s" (php-urlencode (label-text node))))))
+                                 (assoc :url (str/replace url "%s" (form-urlencode (label-text node))))))
 
                              ;; [ref] - resolve against link definitions
                              ref

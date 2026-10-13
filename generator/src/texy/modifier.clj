@@ -9,6 +9,12 @@
             [texy.normalize :as norm]
             [instaparse.core :as insta]))
 
+;; Pre-compiled regex patterns for performance
+(def ^:private ^java.util.regex.Pattern re-colon #":")
+(def ^:private ^java.util.regex.Pattern re-semicolon #";")
+(def ^:private ^java.util.regex.Pattern re-backslash-paren #"\\\)")
+(def ^:private ^java.util.regex.Pattern re-whitespace-plus-mod #"\s+")
+
 (def ^:private grammar
   (insta/parser
     "modifier = part+
@@ -42,7 +48,7 @@
   [content]
   (reduce
     (fn [{:keys [attrs styles] :as acc} decl]
-      (let [[k v] (str/split decl #":" 2)
+      (let [[k v] (str/split decl re-colon 2)
             prop (norm/lower-case (str/trim k))]
         (if (nil? v)
           acc
@@ -56,15 +62,15 @@
               (assoc acc :styles (assoc styles prop v))
               :else acc)))))
     {:attrs {} :styles (array-map)}
-    (str/split content #";")))
+    (str/split content re-semicolon)))
 
 (defn- extent-pattern [bound]
   (re-pattern (str "[ \t]*(?<=[\t ]|^)\\.((?:\\((?:\\\\\\)|[^)\\n])+\\)|\\[[^\\]\\n]+\\]|"
                    "\\{[^}\\n]+\\}|<>|>|=|<|\\^|-|_){1," bound "})$")))
 (defn- part->map [mod [tag content]]
   (case tag
-    :title (assoc mod :title (str/replace (str/trim content) #"\\\)" ")"))
-    :classes (let [tokens (-> (str/replace content "#" " #") (str/split #"\s+"))
+    :title (assoc mod :title (str/replace (str/trim content) re-backslash-paren ")"))
+    :classes (let [tokens (-> (str/replace content "#" " #") (str/split re-whitespace-plus-mod))
                    id (->> tokens (filter #(str/starts-with? % "#")) first)
                    classes (->> tokens (remove #(str/starts-with? % "#")) (remove str/blank?) vec)]
                (cond-> mod

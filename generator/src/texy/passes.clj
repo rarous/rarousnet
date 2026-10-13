@@ -43,17 +43,35 @@
 (defn- collect-headings [doc]
   (into [] (filter #(= :heading (:type %))) (engine/node-seq doc)))
 
-(defn- webalize
-  "Converts to web-safe [a-z0-9-] text (the reference Helpers::webalize;
-  the transliteration approximates Nette's with Unicode decomposition)."
+(def ^:private non-decomposables
+  "The letters Unicode normalization cannot handle: strokes, slashes
+  and ligatures have no decomposition, so their ASCII equivalents
+  (matching the reference's iconv transliteration and Nette's table)
+  stay as an explicit residual. Every other accented letter comes from
+  the NFD + combining-mark removal in to-ascii."
+  {\đ "d" \Đ "D"                     ; D with stroke
+   \ð "d" \Ð "D"                     ; eth
+   \ł "l" \Ł "L"                     ; L with stroke
+   \ø "o" \Ø "O"                     ; O with stroke
+   \þ "th" \Þ "Th"                   ; thorn
+   \æ "ae" \Æ "Ae" \œ "oe" \Œ "Oe"   ; ligatures
+   \ß "ss"})                         ; sharp s (no uppercase form)
+
+(defn- to-ascii
+  "Converts UTF-8 to ASCII: Unicode normalization (NFD) removes the
+  accents (every combining mark of every script is stripped), the
+  residual table maps the letters normalization cannot decompose."
   ^String [^String s]
-  (let [ascii (-> s
-                 (str/replace #"[`'\"^~]" "-")
-                 (java.text.Normalizer/normalize java.text.Normalizer$Form/NFD)
-                 (str/replace #"\p{M}+" ""))]
-    (-> (norm/lower-case ascii)
-        (str/replace #"[^a-z0-9]+" "-")
-        (str/replace #"^-+|-+$" ""))))
+  (-> (str/join (map #(or (get non-decomposables %) %) s))
+      (java.text.Normalizer/normalize java.text.Normalizer$Form/NFD)
+      (str/replace #"\p{M}" "")))
+
+(defn- webalize
+  "Converts to web-safe [a-z0-9-] text (the reference Helpers::webalize)."
+  ^String [^String s]
+  (-> (norm/lower-case (to-ascii s))
+      (str/replace #"[^a-z0-9]+" "-")
+      (str/replace #"^-+|-+$" "")))
 
 (defn- unique-id [id used]
   (if-not (contains? @used id)
