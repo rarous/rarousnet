@@ -34,6 +34,14 @@ export default function (pathConfig, mode, verbose) {
     },
 
     html: {
+      texy: {
+        allowed: {
+          "phrase/ins": true,
+          "phrase/del": true,
+          "phrase/sup": true,
+          "phrase/sub": true,
+        }
+      },
       markedExtensions: [texyTypography("cs")],
       data: { collections: [] },
       htmlmin: {

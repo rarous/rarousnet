@@ -1,4 +1,4 @@
-import { getSha256 } from "./sha256";
+import { getSha256 } from "./sha256.js";
 
 function groupByType(webmentions) {
   if (typeof Map.groupBy === "function") return Map.groupBy(webmentions, x => x["wm-property"]);

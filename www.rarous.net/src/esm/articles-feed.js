@@ -1,4 +1,4 @@
-import { processTypo } from "@gryphoon/texy";
+import { processTypo } from "@gryphoon/texy/Typography.js";
 import { comp, drop, iterator, take } from "@thi.ng/transducers";
 
 /**
