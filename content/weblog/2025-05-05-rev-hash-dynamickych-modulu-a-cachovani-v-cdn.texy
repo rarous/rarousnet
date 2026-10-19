@@ -10,7 +10,7 @@
 Řešil jsem teď takový zajímavý edge case a protože obshahuje oba nejtěžší problémy Computer Science,
 asi stojí za to se podělit o jeho řešení.
 
-> <big>There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors.</big>
+> There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors. .{font-size: larger}
 >
 > — **Leon Bambrick**
 > .<>
