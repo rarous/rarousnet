@@ -10,10 +10,9 @@
 Řešil jsem teď takový zajímavý edge case a protože obshahuje oba nejtěžší problémy Computer Science,
 asi stojí za to se podělit o jeho řešení.
 
-> There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors. .{font-size: larger}
+> There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors. .<>{font-size: larger}
 >
-> — **Leon Bambrick**
-> .<>
+> — **Leon Bambrick** .<>
 
 ## Problém
 
@@ -24,11 +23,11 @@ moduly dynamicky, podle aktuální potřeby. Service Worker se stará o instalov
 který vzniká v integračním buildu. Všechny scripty a styly jsou při buildu přejmenovány, aby obsahovaly //rev hash//
 daného souboru a na serveru jsou cache boostované na rok.
 
-O to všechno se nám stará [Blendid!](https://github.com/hckr-studio/blendid), který používáme na tvorbu většiny
+O to všechno se nám stará "Blendid!":[https://github.com/hckr-studio/blendid], který používáme na tvorbu většiny
 webů za posledních 7 let.
 
 Dělal jsem teď novou vlastnost, která zjednodušuje fakturování - hledá kontakty a vytváří pro ně fakturu přes
-[Fakturoid API](https://www.fakturoid.cz/api/v3). Jenže nová vlastnost se na produkci neukazovala.
+"Fakturoid API":[https://www.fakturoid.cz/api/v3]. Jenže nová vlastnost se na produkci neukazovala.
 V DevTools jsem pořád viděl starou verzi modulu pro registraci, přestože build produkoval všechno správně.
 
 Problém jsem nakonec identifikoval v tom, že hlavní script má v sobě odkazy na staré verze (hashe) submodulů,
