@@ -18,3 +18,37 @@
     <!-- inject:importmap --><!-- endinject -->
   </script>
 {% endmacro %}
+
+{% macro cloudinaryImage(images, image, width, height, alt, style, class='responsive', phoneWidth, phoneHeight, tabletWidth, title) -%}
+  {% set imageUrl = images[image]['public_id'] %}
+  {% set metadata = images[image].metadata %}
+  {% set w = phoneWidth if phoneWidth else width %}
+  {% set h = phoneHeight if phoneHeight else height %}
+<picture>
+  <source media="screen and (max-width: 479px)"
+          srcset="{{ imageUrl | cloudinaryUrl(dpr=1,width=phoneWidth if phoneWidth else width, ar=w/h) }} 1x,
+                    {{ imageUrl | cloudinaryUrl(dpr=1.5,width=phoneWidth if phoneWidth else width, ar=w/h) }} 1.5x,
+                    {{ imageUrl | cloudinaryUrl(dpr=2,width=phoneWidth if phoneWidth else width, ar=w/h) }} 2x">
+  <source media="screen and (min-width: 480px) and (max-width: 839px)"
+          srcset="{{ imageUrl | cloudinaryUrl(dpr=1,width=tabletWidth if tabletWidth else width, ar=w/h) }} 1x,
+                    {{ imageUrl | cloudinaryUrl(dpr=1.5,width=tabletWidth if tabletWidth else width, ar=w/h) }} 1.5x,
+                    {{ imageUrl | cloudinaryUrl(dpr=2,width=tabletWidth if tabletWidth else width, ar=w/h) }} 2x">
+  <source media="screen and (min-width: 840px)"
+          srcset="{{ imageUrl | cloudinaryUrl(dpr=1,width=width, ar=w/h) }} 1x,
+                    {{ imageUrl | cloudinaryUrl(dpr=1.5,width=width, ar=w/h) }} 1.5x,
+                    {{ imageUrl | cloudinaryUrl(dpr=2,width=width, ar=w/h) }} 2x">
+  <img alt="{{ alt }}"
+       loading="lazy"
+       width="{{ w }}"
+       height="{{ h }}"
+       class="{{ class }}"
+       style="{{ style }}{% if metadata.lqip %};--lqip: {{ metadata.lqip }}{% endif %}"
+       {% if title %}title="{{ title }}"{% endif %}
+       src="{{ imageUrl | cloudinaryUrl(dpr='auto',width=w) }}">
+</picture>
+{%- endmacro %}
+
+{% macro ogImage(images, image) -%}
+  {% set publicId = images[image]['public_id'] %}
+  <meta property="og:image" content="{{ publicId | cloudinaryUrl(width=1200, height=630, crop='fill', dpr='1') }}">
+{%- endmacro %}

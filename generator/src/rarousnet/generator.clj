@@ -491,7 +491,7 @@
 (defn hash-content [{:keys [title name date fileName] :as article}]
   (assoc article :hash (sha256 (str title name date fileName))))
 
-(defn twitter-images [{:keys [articles]} write-file-ch]
+(defn og-images [{:keys [articles]} write-file-ch]
   (let [images-meta (into [] (comp (map article->image) (map hash-content)) articles)
         json (json/generate-string images-meta)]
     (go (>! write-file-ch
@@ -500,7 +500,7 @@
              :file/content json}))))
 
 (def generators
-  [twitter-images
+  [og-images
    articles-rss
    sitemap
    syndication-feed
