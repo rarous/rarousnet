@@ -68,7 +68,7 @@ new cloudflare.ZoneSetting(`${domain}/zone-setting-ipv6`, {
 new cloudflare.ZoneSetting(`${domain}/zone-setting-min-tls`, {
   zoneId: zone.id,
   settingId: "min_tls_version",
-  value: "1.2",
+  value: "1.0",
 });
 
 new cloudflare.ZoneSetting(`${domain}/zone-setting-tls13`, {
