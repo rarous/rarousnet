@@ -103,6 +103,7 @@
         :well-forming :direct
         :image-root "https://res.cloudinary.com/rarous/image/fetch/dpr_auto,f_auto,q_auto,w_auto:100:800/https://www.rarous.net/data/obrazky/"
         :phrase-tags (merge render/phrase-tags {"phrase/em" :i})
-        :figure-class "image"})
+        :figure-class "image"
+        :allowed ["phrase/ins" "phrase/del" "phrase/sup" "phrase/sub"] })
       (core/set-fallback-directive script-handler)
       (core/add-pass image-handler-pass))))
