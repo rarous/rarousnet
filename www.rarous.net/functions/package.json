@@ -11,7 +11,7 @@
     "cookie": "2.0.1",
     "feed": "6.0.0",
     "jose": "6.2.13",
-    "linkedom": "0.18.13",
+    "linkedom": "0.18.14",
     "qreator": "10.0.2"
   },
   "devDependencies": {

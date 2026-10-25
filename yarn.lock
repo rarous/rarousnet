@@ -27,6 +27,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@acemir/cssom@npm:^0.9.32":
+  version: 0.9.32
+  resolution: "@acemir/cssom@npm:0.9.32"
+  checksum: 10/ad7d3cdd55fc72b90f535fe5512c00392e72405476ac2a38b5784493aba0819c6050ec465f2da540489fe6d04e19cb817c16e3bcdfd7b3e63717f759ad31a9ca
+  languageName: node
+  linkType: hard
+
 "@biomejs/biome@npm:2.5.15":
   version: 2.5.15
   resolution: "@biomejs/biome@npm:2.5.15"
@@ -2876,7 +2883,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:5.20260926.1"
-    linkedom: "npm:0.18.13"
+    linkedom: "npm:0.18.14"
     wrangler: "npm:4.141.0"
   languageName: unknown
   linkType: soft
@@ -2893,7 +2900,7 @@ __metadata:
     cookie: "npm:2.0.1"
     feed: "npm:6.0.0"
     jose: "npm:6.2.13"
-    linkedom: "npm:0.18.13"
+    linkedom: "npm:0.18.14"
     qreator: "npm:10.0.2"
   languageName: unknown
   linkType: soft
@@ -2914,7 +2921,7 @@ __metadata:
   dependencies:
     "@thi.ng/transducers": "npm:9.7.0"
     csv-parse: "npm:7.0.3"
-    linkedom: "npm:0.18.13"
+    linkedom: "npm:0.18.14"
     schema-dts: "npm:2.0.0"
   languageName: unknown
   linkType: soft
@@ -2924,7 +2931,7 @@ __metadata:
   resolution: "@rarousnet/w3b-schedule-worker@workspace:workers/w3b-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:5.20260926.1"
-    linkedom: "npm:0.18.13"
+    linkedom: "npm:0.18.14"
     wrangler: "npm:4.141.0"
   languageName: unknown
   linkType: soft
@@ -8426,6 +8433,24 @@ __metadata:
     canvas:
       optional: true
   checksum: 10/45304e54cebeae6dab613558f4a6a0af5eb8b9a2cc05e7ab58d4648322c6a9de56f7e4245f8824ba6565e9954556ddd2dc8f75389ddbeee6f39a198ccd831884
+  languageName: node
+  linkType: hard
+
+"linkedom@npm:0.18.14":
+  version: 0.18.14
+  resolution: "linkedom@npm:0.18.14"
+  dependencies:
+    "@acemir/cssom": "npm:^0.9.32"
+    css-select: "npm:^7.0.0"
+    html-escaper: "npm:^3.0.3"
+    htmlparser2: "npm:^10.1.0"
+    uhyphen: "npm:^0.2.0"
+  peerDependencies:
+    canvas: ">= 2"
+  peerDependenciesMeta:
+    canvas:
+      optional: true
+  checksum: 10/bbc21d8597c0e055b4f60b082563cbff8ad536b6ef576326a9b15f050735ffc4ad144a2883c7444bac0b52c346261ffe67dc9def5690b001f5f8248b9cd95c8a
   languageName: node
   linkType: hard
 
