@@ -1,6 +1,34 @@
 import { parseHTML } from "linkedom/worker";
 
 const USER_AGENT = "RarousNetVinylCollection/1.0 +https://www.rarous.net/kolekce/vinyly";
+const requestTimeout = 2400;
+
+/**
+ * Resolves promise after `ms` milliseconds
+ * @param {number} ms
+ * @return {Promise.<string>}
+ */
+export const timeout = ms => new Promise((resolve, reject) => setTimeout(() => resolve("timeout"), ms));
+
+/**
+ * Retries given promise `n` times
+ * @param {number} n
+ * @param {function(): Promise} promiseFactory
+ * @return {Promise}
+ */
+export const retry = async (n, promiseFactory) => {
+  let lastError;
+  for (let i = 0; i < n; i++) {
+    try {
+      const resp = await promiseFactory();
+      if (resp.ok) return resp;
+    } catch (ex) {
+      lastError = ex;
+      await timeout(requestTimeout + requestTimeout * i);
+    }
+  }
+  if (lastError) throw lastError;
+};
 
 /**
  * @param {number} page
@@ -13,22 +41,16 @@ async function getReleases(page, token) {
     per_page: 100,
     sort: "artist",
   });
-  const resp = await fetch(`https://api.discogs.com/users/rarous/collection/folders/0/releases?${params}`, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Discogs token=${token}`,
-      "User-Agent": USER_AGENT,
-    },
-  });
+  const resp = await retry(10, () =>
+    fetch(`https://api.discogs.com/users/rarous/collection/folders/0/releases?${params}`, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Discogs token=${token}`,
+        "User-Agent": USER_AGENT,
+      },
+    }),
+  );
   console.log({ event: "get releases", page, status: resp.status });
-  if (!resp.ok) {
-    if (resp.status === 429) {
-      const limit = Number.parseInt(resp.headers.get("X-Discogs-Ratelimit"), 10);
-      const used = Number.parseInt(resp.headers.get("X-Discogs-Ratelimit-Used"), 10);
-      const remaining = Number.parseInt(resp.headers.get("X-Discogs-Ratelimit-Remaining"), 10);
-      console.warn({ event: "rate limited", limit, used, remaining });
-    }
-  }
   return resp.json();
 }
 
