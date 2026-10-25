@@ -5476,7 +5476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"current-module-paths@npm:^1.1.1, current-module-paths@npm:^1.1.3":
+"current-module-paths@npm:^1.1.3":
   version: 1.1.3
   resolution: "current-module-paths@npm:1.1.3"
   checksum: 10/df275774c78832896c85da509bed7cfb65a32dd6af841655db41a9b8d4c5925f04b321fefd5be10b47175a34edf4a5aefea87ad581222dd9bcc4873fded1afd2
@@ -7191,7 +7191,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:^1.6.3, http-errors@npm:^1.7.3, http-errors@npm:~1.8.0":
+"http-errors@npm:^1.6.3, http-errors@npm:^1.7.3, http-errors@npm:^1.8.1, http-errors@npm:~1.8.0":
   version: 1.8.1
   resolution: "http-errors@npm:1.8.1"
   dependencies:
@@ -7204,19 +7204,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:^2.0.1, http-errors@npm:~2.0.0, http-errors@npm:~2.0.1":
-  version: 2.0.1
-  resolution: "http-errors@npm:2.0.1"
-  dependencies:
-    depd: "npm:~2.0.0"
-    inherits: "npm:~2.0.4"
-    setprototypeof: "npm:~1.2.0"
-    statuses: "npm:~2.0.2"
-    toidentifier: "npm:~1.0.1"
-  checksum: 10/9fe31bc0edf36566c87048aed1d3d0cbe03552564adc3541626a0613f542d753fbcb13bdfcec0a3a530dbe1714bb566c89d46244616b66bddd26ac413b06a207
-  languageName: node
-  linkType: hard
-
 "http-errors@npm:~1.6.2":
   version: 1.6.3
   resolution: "http-errors@npm:1.6.3"
@@ -7226,6 +7213,19 @@ __metadata:
     setprototypeof: "npm:1.1.0"
     statuses: "npm:>= 1.4.0 < 2"
   checksum: 10/e48732657ea0b4a09853d2696a584fa59fa2a8c1ba692af7af3137b5491a997d7f9723f824e7e08eb6a87098532c09ce066966ddf0f9f3dd30905e52301acadb
+  languageName: node
+  linkType: hard
+
+"http-errors@npm:~2.0.0, http-errors@npm:~2.0.1":
+  version: 2.0.1
+  resolution: "http-errors@npm:2.0.1"
+  dependencies:
+    depd: "npm:~2.0.0"
+    inherits: "npm:~2.0.4"
+    setprototypeof: "npm:~1.2.0"
+    statuses: "npm:~2.0.2"
+    toidentifier: "npm:~1.0.1"
+  checksum: 10/9fe31bc0edf36566c87048aed1d3d0cbe03552564adc3541626a0613f542d753fbcb13bdfcec0a3a530dbe1714bb566c89d46244616b66bddd26ac413b06a207
   languageName: node
   linkType: hard
 
@@ -8035,16 +8035,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"koa-compress@npm:^5.0.1":
-  version: 5.2.2
-  resolution: "koa-compress@npm:5.2.2"
+"koa-compress@npm:5.1.1":
+  version: 5.1.1
+  resolution: "koa-compress@npm:5.1.1"
   dependencies:
     bytes: "npm:^3.1.2"
     compressible: "npm:^2.0.18"
-    http-errors: "npm:^2.0.1"
+    http-errors: "npm:^1.8.1"
     koa-is-json: "npm:^1.0.0"
-    negotiator: "npm:^1.0.0"
-  checksum: 10/5e1fd4384b55ea2ee0e5878f178896bf2b383cc89a7a37712ac3a8b8d056d777b673d2ded99a83605c98f51ddec6cd542b1c95d3cfda7aa32f189cd0549a32c7
+  checksum: 10/e768d336756e2009cd65db28c48472827a0eb503cdf3055bdb0af0e5d74b821bb8b9820dfdcb956e359fdea3c302286d2a17eef28bd4683217a6e8d503749e68
   languageName: node
   linkType: hard
 
@@ -8470,18 +8469,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"local-web-server@npm:5.4.0":
-  version: 5.4.0
-  resolution: "local-web-server@npm:5.4.0"
+"local-web-server@npm:5.4.2":
+  version: 5.4.2
+  resolution: "local-web-server@npm:5.4.2"
   dependencies:
-    current-module-paths: "npm:^1.1.1"
-    lws: "npm:^4.1.5"
+    current-module-paths: "npm:^1.1.3"
+    lws: "npm:^4.2.1"
     lws-basic-auth: "npm:^2.0.0"
     lws-blacklist: "npm:^3.0.0"
     lws-body-parser: "npm:^3.0.1"
-    lws-compress: "npm:^3.1.0"
+    lws-compress: "npm:^3.1.1"
     lws-conditional-get: "npm:^3.0.0"
-    lws-cors: "npm:^4.2.1"
+    lws-cors: "npm:^4.2.2"
     lws-index: "npm:^3.1.1"
     lws-json: "npm:^2.0.0"
     lws-log: "npm:^3.0.0"
@@ -8490,10 +8489,10 @@ __metadata:
     lws-request-monitor: "npm:^2.0.0"
     lws-rewrite: "npm:^4.0.0"
     lws-spa: "npm:^4.1.1"
-    lws-static: "npm:^3.1.1"
+    lws-static: "npm:^3.1.2"
   bin:
     ws: bin/cli.js
-  checksum: 10/03c0b1600ca2ca72f8daa1e7323fc5a79a74bd1bb7ebea850574105fba1832c2cdc3934443953bbd64067b9e214eb720b87878dc758650f92ca4440cc10aaf57
+  checksum: 10/4aa311883c7d01406243895c61d1a4fda6ad0db4a87c3a8301cd0d662f1b6e6a2c88d5b406120457cc8eeaa3a8924d31f202ff83edb95a1dd6d4562f7d845b9c
   languageName: node
   linkType: hard
 
@@ -8622,12 +8621,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lws-compress@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "lws-compress@npm:3.1.0"
+"lws-compress@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "lws-compress@npm:3.1.1"
   dependencies:
-    koa-compress: "npm:^5.0.1"
-  checksum: 10/ba78ba07b449266d9f9ff7b217cdb9f75aa4968dbb7d4ee2de2db4cbaf480377a446658031e220783772c221f96894252e819d12bc3e278514380552743fef3f
+    koa-compress: "npm:5.1.1"
+  checksum: 10/fa2577d07c9c55a4dd7eebb1170e00c4e6f0db8a03a32cf82ad20f1e930afb2ff68595fcb5ac7b49d83d6cc5c46325b338eb040d4e416599f92d88c84bdfd2e6
   languageName: node
   linkType: hard
 
@@ -8641,12 +8640,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lws-cors@npm:^4.2.1":
-  version: 4.2.1
-  resolution: "lws-cors@npm:4.2.1"
+"lws-cors@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "lws-cors@npm:4.2.2"
   dependencies:
     "@koa/cors": "npm:^5.0.0"
-  checksum: 10/9cf1a6e3af4d2501a137fde9e142598f02058c27c1c48ab4dcf66e123365025af4f27807f69271873ab9611b44832c57e11a4b59f910fb519398c9eaeec215f7
+  checksum: 10/25e8e8126eb9b5b920998d15c6e442bea8e1ea5057556e7aa2042800bf8245193f19c1ea79393e0087bfd8415baf4113b6dc5d3ce65fbd5e2e5729fbce101df8
   languageName: node
   linkType: hard
 
@@ -8727,16 +8726,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lws-static@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "lws-static@npm:3.1.1"
+"lws-static@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "lws-static@npm:3.1.2"
   dependencies:
+    array-back: "npm:^6.2.3"
     koa-static: "npm:^5.0.0"
-  checksum: 10/8b484ba16d5665ea6ace9af3843a98932f060e02fe98a4e3149dda76d959c286d053b50d2392808ade442fe7e3def698aaef9329d4d8e5821ebc4612c4b4a3ea
+  checksum: 10/f01ad2b61e06e2f2e1eab8e3adf3c8f8ed768e132af64741bd7174a448c83782994522d50fea445442711bd668a7237c4bf4dc4f6c020a0689a34dc34dc5dc40
   languageName: node
   linkType: hard
 
-"lws@npm:^4.1.5":
+"lws@npm:^4.2.1":
   version: 4.2.1
   resolution: "lws@npm:4.2.1"
   dependencies:
@@ -11027,7 +11027,7 @@ __metadata:
     ava: "npm:8.0.1"
     broken-link-checker-local: "npm:0.2.1"
     lighthouse: "npm:13.5.0"
-    local-web-server: "npm:5.4.0"
+    local-web-server: "npm:5.4.2"
     npm-run-all2: "npm:9.0.3"
     tap-xunit: "npm:2.4.1"
     vitest: "npm:4.1.11"
