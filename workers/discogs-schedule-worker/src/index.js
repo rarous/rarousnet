@@ -22,6 +22,7 @@ export const retry = async (n, promiseFactory) => {
     try {
       const resp = await promiseFactory();
       if (resp.ok) return resp;
+      lastError = new Error(`Request failed with status ${resp.status}`);
     } catch (ex) {
       lastError = ex;
       await timeout(requestTimeout + requestTimeout * i);
