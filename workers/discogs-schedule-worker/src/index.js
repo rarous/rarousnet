@@ -1,9 +1,9 @@
 import { parseHTML } from "linkedom/worker";
 
-const USER_AGENT = "rarous.net vinyl collection";
+const USER_AGENT = "RarousNetVinylCollection/1.0 +https://www.rarous.net/kolekce/vinyly";
 
 /**
- * @param {string} page
+ * @param {number} page
  * @param {string} token
  * @returns Promise<DiscogsReleaseResponse>
  */
