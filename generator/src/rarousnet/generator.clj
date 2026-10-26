@@ -365,7 +365,7 @@
             items
             (sort-by (juxt :month :day))
             (reverse))
-          data {:title "Denník"
+          data {:title (str "Denník " (long-date (date-time year month day)))
                 :page-title (str "Denník " (long-date (date-time year month day)))
                 :url file-name
                 :years [{:year year :articles articles}]}
@@ -384,7 +384,7 @@
             (flatten)
             (sort-by (juxt :month :day))
             (reverse))
-          data {:title "Měsíčník"
+          data {:title (str "Měsíčník " (long-month-year (date-time year month)))
                 :page-title (str "Měsíčník " (long-month-year (date-time year month)))
                 :url file-name
                 :years [{:year year :articles articles}]}
