@@ -405,7 +405,7 @@
           (flatten)
           (sort-by (juxt :month :day))
           (reverse))
-        data {:title "Ročenka"
+        data {:title (str "Ročenka " year)
               :page-title (str "Ročenka " year)
               :url file-name
               :years [{:year year :articles articles}]}
