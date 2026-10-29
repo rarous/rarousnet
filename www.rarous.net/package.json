@@ -15,7 +15,7 @@
     "pagefind": "1.5.2",
     "postcss-jit-props": "1.0.16",
     "vitest": "4.1.12",
-    "wrangler": "4.154.0"
+    "wrangler": "4.156.0"
   },
   "resolutions": {
     "esbuild": "0.28.2"
