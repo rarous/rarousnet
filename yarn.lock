@@ -3993,9 +3993,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ava@npm:8.2.0":
-  version: 8.2.0
-  resolution: "ava@npm:8.2.0"
+"ava@npm:8.3.0":
+  version: 8.3.0
+  resolution: "ava@npm:8.3.0"
   dependencies:
     "@vercel/nft": "npm:^1.11.0"
     acorn: "npm:^8.19.0"
@@ -4044,7 +4044,7 @@ __metadata:
       optional: true
   bin:
     ava: ./entrypoints/cli.js
-  checksum: 10/cc361139b75377a9b442282b966eff248278f2b48ef9e46dae9e662c32b47110918f24445c693b160d79477e370ce9c7a743dfedcb45f70cac30950fb340c887
+  checksum: 10/b063294b384b03309530cece5fc2f7e3f4044f21272b5a3e16bf07ec6fc8d6e976120f064d4f93eece3a0dcb66b3bb8a418d4c89d04c6028bfa62fbab8db50d6
   languageName: node
   linkType: hard
 
@@ -11049,7 +11049,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.6.3"
     "@vitest/ui": "npm:4.1.12"
-    ava: "npm:8.2.0"
+    ava: "npm:8.3.0"
     broken-link-checker-local: "npm:0.2.1"
     lighthouse: "npm:13.6.0"
     local-web-server: "npm:5.4.2"
