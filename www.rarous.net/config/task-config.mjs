@@ -1,4 +1,5 @@
 import { texyTypography } from "@hckr_/blendid/texy";
+import { Syntax } from "@gryphoon/texy/Syntax.js";
 import OpenProps from "open-props";
 import jitProps from "postcss-jit-props";
 import { GryphoonRegistry } from "./gryphoon-registry.mjs";
@@ -36,10 +37,10 @@ export default function (pathConfig, mode, verbose) {
     html: {
       texy: {
         allowed: {
-          "phrase/ins": true,
-          "phrase/del": true,
-          "phrase/sup": true,
-          "phrase/sub": true,
+          [Syntax.Inserted]: true,
+          [Syntax.Deleted]: true,
+          [Syntax.Superscript]: true,
+          [Syntax.Subscript]: true,
         }
       },
       markedExtensions: [texyTypography("cs")],
