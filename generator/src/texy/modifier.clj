@@ -33,13 +33,13 @@
   Names that are also CSS properties (width, height, color, border...) are
   omitted on purpose, so the far more common style meaning wins (the
   reference Modifier::ElAttrs)."
-  #{"abbr" "accesskey" "alt" "cite" "colspan" "contenteditable" "crossorigin"
-    "datetime" "decoding" "dir" "download" "draggable" "for" "headers"
+  #{"abbr" "about" "accesskey" "alt" "cite" "colspan" "contenteditable" "crossorigin"
+    "datatype" "datetime" "decoding" "dir" "download" "draggable" "for" "headers"
     "hidden" "href" "hreflang" "id" "inert" "inputmode" "itemid" "itemprop"
-    "itemref" "itemscope" "itemtype" "lang" "loading" "name" "ping"
-    "popover" "referrerpolicy" "rel" "reversed" "role" "rowspan" "scope"
-    "slot" "spellcheck" "src" "srcset" "start" "tabindex" "target" "title"
-    "type" "value"})
+    "itemref" "itemscope" "itemtype" "lang" "loading" "name" "ping" "popover"
+    "prefix" "property" "referrerpolicy" "rel" "resource" "reversed" "role"
+    "rowspan" "scope" "slot" "spellcheck" "src" "srcset" "start" "tabindex"
+    "target" "title" "type" "typeof" "value" "vocab"})
 
 (defn- split-style
   "\"alt: x; color: red\" into attribute and style entries: keys in
