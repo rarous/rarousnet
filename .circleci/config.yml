@@ -33,8 +33,12 @@ jobs:
     steps:
       - checkout
       - pulumi/login
-      - node/install:
-          install-yarn: true
+      - node/install
+      - run:
+          name: Enable Corepack
+          command: |
+            npm install -g corepack
+            corepack enable --install-directory="/home/circleci/bin"
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
@@ -52,8 +56,12 @@ jobs:
     steps:
       - checkout
       - pulumi/login
-      - node/install:
-          install-yarn: true
+      - node/install
+      - run:
+          name: Enable Corepack
+          command: |
+            npm install -g corepack
+            corepack enable --install-directory="/home/circleci/bin"
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
@@ -76,8 +84,12 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - node/install:
-          install-yarn: true
+      - node/install
+      - run:
+          name: Enable Corepack
+          command: |
+            npm install -g corepack
+            corepack enable --install-directory="/home/circleci/bin"
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
@@ -119,8 +131,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install libnss3-tools
       - browser-tools/install_chrome
-      - node/install:
-          install-yarn: true
+      - node/install
+      - run:
+          name: Enable Corepack
+          command: |
+            npm install -g corepack
+            corepack enable --install-directory="/home/circleci/bin"
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
@@ -158,8 +174,12 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - node/install:
-          install-yarn: true
+      - node/install
+      - run:
+          name: Enable Corepack
+          command: |
+            npm install -g corepack
+            corepack enable --install-directory="/home/circleci/bin"
       - node/install-packages:
           pkg-manager: yarn-berry
           with-cache: false
