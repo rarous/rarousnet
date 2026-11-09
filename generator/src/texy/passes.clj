@@ -27,6 +27,24 @@
                      [:content :items :caption :image :rows :cells])]
     (f node)))
 
+(defn transform-nodes-except-code
+  "Like transform-nodes, but never descends into a :code-block node: the
+  pre-parsed content of /--texysource (and other code blocks) keeps its
+  written form, like the reference passes that skip CodeBlockNode."
+  [f node]
+  (if (= :code-block (:type node))
+    node
+    (f (reduce (fn [node key]
+                 (cond
+                   (sequential? (get node key))
+                   (update node key #(filterv some? (map (partial transform-nodes-except-code f) %)))
+                   (and (map? (get node key)) (contains? (get node key) :type))
+                   (let [child (transform-nodes-except-code f (get node key))]
+                     (if (nil? child) (dissoc node key) (assoc node key child)))
+                   :else node))
+               node
+               [:content :items :caption :image :rows :cells]))))
+
 (defn transform-content
   "Applies f to every child collection (:content, :items, :caption) of
   every node, bottom-up: f receives the collection and returns the new
@@ -43,8 +61,21 @@
              [:content :items :caption :rows :cells]))
    doc))
 
-(defn- collect-headings [doc]
-  (into [] (filter #(= :heading (:type %))) (engine/node-seq doc)))
+(defn- collect-headings
+  "All headings outside code blocks (the reference HeadingNode::collectFrom
+  does not traverse into CodeBlockNode, so /--texysource samples keep
+  their written levels)."
+  [doc]
+  (letfn [(walk [node]
+            (if (= :code-block (:type node))
+              []
+              (let [children (concat (get node :content []) (get node :items [])
+                                     (get node :caption []) (get node :rows [])
+                                     (mapcat :cells (get node :rows []))
+                                     (when (map? (get node :image)) [(get node :image)]))]
+                (concat (when (= :heading (:type node)) [node])
+                        (mapcat walk children)))))]
+    (into [] (walk doc))))
 
 (def ^:private non-decomposables
   "The letters Unicode normalization cannot handle: strokes, slashes
@@ -131,7 +162,7 @@
                                                     (+ (get rank (:level node) 0) top))
                                                   (max 1) (min 6))))))
             used-id (atom #{})]
-        (transform-nodes
+        (transform-nodes-except-code
          (fn [node]
            (if (not= :heading (:type node))
              node

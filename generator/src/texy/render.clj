@@ -26,6 +26,8 @@
 (def ^:private ^Pattern re-dashes-trim #"^-+|-+$")
 (def ^:private ^Pattern re-html-tag #"<[^<>]*+>")
 (def ^:private ^Pattern re-whitespace-newlines #"[ \n]+")
+(def ^:private ^Pattern re-url-controls #"[\u0000-\u001F]")
+(def ^:private ^Pattern re-void-elements #"<((?:area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)\b[^>]*?) />")
 
 (def ^:dynamic *options*
   "Rendering options: :image-root (default \"images/\"), :link-root,
@@ -83,11 +85,15 @@
 (defn- url-allowed?
   "The URL scheme policy (the reference UrlPolicy): a nil pattern allows
   everything, scheme-less (relative) URLs always pass, otherwise the
-  pattern (a regex source, e.g. \"https?:|ftp:|mailto:\") must match."
+  pattern (a regex source, e.g. \"https?:|ftp:|mailto:\") must match.
+  Control characters are deleted first, like browsers do, so a scheme
+  hiding behind a TAB (\"java\\tscript:\") is not mistaken for a
+  scheme-less URL."
   [url pattern]
-  (or (nil? pattern)
-      (not (url-scheme url))
-      (boolean (re-find (re-pattern pattern) url))))
+  (let [url (str/replace url re-url-controls "")]
+    (or (nil? pattern)
+        (not (url-scheme url))
+        (boolean (re-find (re-pattern pattern) url)))))
 
 (def ^:private link-url-attrs #{"href" "cite" "ping" "itemid" "itemtype"})
 (def ^:private image-url-attrs #{"src" "srcset"})
@@ -128,6 +134,7 @@
     (into (if (empty? a) [tag] [tag a]) children)))
 
 (declare render-node)
+(declare to-html-fragment)
 
 (defn- render-children [node]
   (mapcat render-node (get node :content [])))
@@ -302,10 +309,13 @@
 
 (defn- format-attrs
   "Attribute map to a string like the reference Element::formatAttrs
-  (\" key=\\\"value\\\"\", boolean attributes bare)."
+  (\" key=\\\"value\\\"\", boolean attributes bare). Values are frozen
+  (spaces as markers) exactly like the node sibling's escapeAttrValue,
+  so the final wrapping pass never breaks a line inside a value - the
+  wellformer unfreezes at the end."
   [attrs]
   (str/join (map (fn [[k v]]
-                   (if (true? v) (str " " k) (str " " k "=\"" (escape-attr v) "\"")))
+                   (if (true? v) (str " " k) (str " " k "=\"" (wellformer/freeze-spaces (escape-attr v)) "\"")))
                  attrs)))
 
 (defn- filter-html-attrs
@@ -391,10 +401,10 @@
   (let [style (:style node :code)
         mod-decorated (decorate (:modifier node))]
     (cond
-      ;; block/texysource: parse as texy, then display the resulting
-      ;; HTML escaped as source code, in <pre class="html ...">
+      ;; block/texysource: the HTML of the pre-parsed demo displayed as
+      ;; source code, in <pre class="html ...">
       (= :texysource style)
-      (let [html' (str/trim ((get *options* :render-texy-fn identity) (:code node)))
+      (let [html' (to-html-fragment {:type :document :content (get node :content [])} *options*)
             ;; the html class is prepended before the modifier classes
             a (assoc mod-decorated :class
                      (str/trim (str "html " (:class mod-decorated))))]
@@ -669,9 +679,11 @@
   parse-only fragment path (the /--texysource display, the reference's
   finalizeFragment), where unclosed tags must stay as the author wrote
   them. The WellFormer formatting still applies (the reference
-  finalizeFragment runs the same formatter)."
+  finalizeFragment runs the same formatter); author-written XHTML voids
+  normalize to the HTML5 style, like the jsoup path would."
   ([node] (to-html-fragment node {}))
-  ([node options] (serialize node options)))
+  ([node options]
+   (str/replace (serialize node options) re-void-elements "<$1>")))
 
 (defn to-html
   "Renders a parsed document and serializes through the well-forming

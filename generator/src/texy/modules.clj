@@ -476,7 +476,13 @@
                         {:type :section :subtype "div"
                          :content (vec (engine/parse-block ctx content'))
                          :modifier (mod/parse m-mod-parts)}))
-        "block/texysource" (code-block :texysource (outdent content) nil)
+        "block/texysource" (let [code (outdent content)]
+                             (when-not (= code "")
+                               ;; parsed as Texy at parse time (like the
+                               ;; reference), its HTML is displayed as source
+                               {:type :code-block :style :texysource :code code
+                                :language nil :modifier (mod/parse m-mod-parts)
+                                :content (vec (engine/parse-block ctx code))}))
         ;; /--php and friends: a code block in that language; anything
         ;; that does not look like a language name refuses and degrades
         ;; to visible text
@@ -527,19 +533,16 @@
            :modifier (mod/parse m-mod-parts)}))
 
       :else
-      (let [content (engine/parse-inline ctx (str/trim m-content))]
+      (let [content (if (= "phrase/code" syntax)
+                       ;; code content is not parsed recursively
+                       [{:type :text :text (str/trim m-content)}]
+                       (engine/parse-inline ctx (str/trim m-content)))]
         (if m-link
           {:type :link :url (strip-shy m-link)
            :content [{:type :phrase :syntax syntax :content content
                       :modifier (mod/parse m-mod-parts)}]}
           {:type :phrase :syntax syntax :content content
            :modifier (mod/parse m-mod-parts)})))))
-
-(defn- parse-code-phrase [_ groups]
-  (let [[_ m-content m-mod-parts] groups]
-    {:type :phrase :syntax "phrase/code"
-     :content [{:type :text :text m-content}]
-     :modifier (mod/parse m-mod-parts)}))
 
 (defn- parse-sup-sub [syntax _ groups]
   (let [[_ m-content] groups
@@ -602,7 +605,7 @@
            :handler parse-no-texy}
           {:name "phrase/code"
            :pattern phrase-code-re
-           :handler parse-code-phrase}
+           :handler (partial parse-phrase "phrase/code")}
           {:name "phrase/quicklink"
            :pattern phrase-quicklink-re
            :handler parse-inline-link}

@@ -10,7 +10,9 @@
    [clojure.string :as str]
    [texy.normalize :as norm]
    [texy.passes :as passes])
-  (:import (org.jsoup.nodes Entities)))
+  (:import
+    (java.util.regex Pattern)
+    (org.jsoup.nodes Entities)))
 
 ;;----------------------------------------------------------------
 ;; Schema data (the reference Output/Html/Schema, extracted via the oracle)
@@ -167,13 +169,21 @@
 ;;----------------------------------------------------------------
 ;; Policy
 
+(def ^:private ^Pattern re-url-controls #"[\u0000-\u001F]")
+
 (defn- url-scheme [^String url]
   (re-find #"(?is)\s*[a-z][a-z0-9+.-]{0,20}:" url))
 
-(defn- url-allowed? [url pattern]
-  (or (nil? pattern)
-      (not (url-scheme url))
-      (boolean (re-find (re-pattern pattern) url))))
+(defn- url-allowed?
+  "Scheme-less (relative) URLs always pass, otherwise the pattern must
+  match. Control characters are deleted first, like browsers do, so a
+  scheme hiding behind a TAB (\"java\\tscript:\") is not mistaken for a
+  scheme-less URL."
+  [url pattern]
+  (let [url (str/replace url re-url-controls "")]
+    (or (nil? pattern)
+        (not (url-scheme url))
+        (boolean (re-find (re-pattern pattern) url)))))
 
 (defn validate-tag
   "Security validation of a tag: true = valid, false = escape as text,

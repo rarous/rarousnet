@@ -386,13 +386,6 @@
              (assoc-in [:meta :typographed] true))
          doc)))))
 
-(def ^:private void-elements-regex
-  "Void element serializations. Fragments (the /--texysource display)
-  skip the jsoup well-forming, so an author-written XHTML-style void
-  (<br />) would keep its slash; the reference serializes voids
-  HTML5-style (<br>) - normalize to match."
-  #"(<(?:area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)\b[^>]*?) />")
-
 (def safe-tags
   "The safe-mode tag whitelist (the reference Configurator::SafeTags):
   tag => allowed attribute names."
@@ -446,38 +439,15 @@
               {:reference name :url url :width width :height height
                :modifier modifier})))
 
-(declare fragment-renderer)
-
 (defn- render-opts
   "The base render options every serialization path gets: the URL roots
-  with their defaults, the nofollow flag and the /--texysource
-  fragment renderer."
+  with their defaults and the nofollow flag."
   [texy]
   (merge (:options texy)
          {:image-root (get-in texy [:options :image-root] "images/")
           :link-root (get-in texy [:options :link-root] nil)
-          :link-no-follow (get-in texy [:options :link-no-follow] nil)
-          ;; renders /--texysource blocks: a parse-only fragment (no
-          ;; transform passes - the reference finalizeFragment),
-          ;; children joined with a space
-          :render-texy-fn (fragment-renderer texy)}))
+          :link-no-follow (get-in texy [:options :link-no-follow] nil)}))
 
-(defn- fragment-renderer
-  "Renders a texy fragment for /--texysource: parse phase only (no
-  heading balancing or other passes, exactly like the reference's
-  finalizeFragment), all children through ONE formatter - the
-  reference feeds the whole fragment to the WellFormer."
-  [^Texy texy]
-  (fn [s]
-    (let [text (normalize/normalize s)
-          ctx (modules/make-context (:options texy))
-          content (engine/parse-block ctx text)
-          opts (render-opts texy)]
-      ;; the fragment path skips the jsoup well-forming (the reference
-      ;; finalizeFragment renders fragments unrepaired); author-written
-      ;; XHTML voids normalize to the HTML5 style
-      (str/replace (render/to-html-fragment {:type :document :content (vec content)} opts)
-                   void-elements-regex "$1>"))))
 (defn render-hiccup
   "Renders a parsed document to a vector of hiccup forms."
   ([doc] (render-hiccup doc {}))

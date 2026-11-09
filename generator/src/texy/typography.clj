@@ -288,15 +288,17 @@
 
 (defn- walk
   [node {:keys [transformers title-transformer]}]
-  (let [node (transform-titles node title-transformer)
-        content (:content node)]
-    (if (and (sequential? content) (seq content)
-             (every? (comp inline-types :type) content))
-      (assoc node :content
-             (process-content (mapv #(transform-titles-deep % title-transformer) content)
-                              transformers))
-      (walk-children node {:transformers transformers
-                           :title-transformer title-transformer}))))
+  (let [node (transform-titles node title-transformer)]
+    (if (= :code-block (:type node))
+      node ; code blocks are protected from typography
+      (let [content (:content node)]
+        (if (and (sequential? content) (seq content)
+                 (every? (comp inline-types :type) content))
+          (assoc node :content
+                 (process-content (mapv #(transform-titles-deep % title-transformer) content)
+                                  transformers))
+          (walk-children node {:transformers transformers
+                               :title-transformer title-transformer}))))))
 
 (defn text-run-pass
   "Runs the text transformers over every inline container of the
