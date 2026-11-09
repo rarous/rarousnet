@@ -6,9 +6,10 @@
   Entity decoding delegates to jsoup's full HTML5 entity table - the
   same table the reference decodes with (html_entity_decode,
   ENT_HTML5)."
-  (:require [clojure.string :as str]
-            [texy.normalize :as norm]
-            [texy.passes :as passes])
+  (:require
+   [clojure.string :as str]
+   [texy.normalize :as norm]
+   [texy.passes :as passes])
   (:import (org.jsoup.nodes Entities)))
 
 ;;----------------------------------------------------------------
@@ -257,7 +258,6 @@
         [out frames] (emit out frames tag)]
     (reduce (fn [[out frames] n] (emit out frames n)) [out frames] children)))
 
-
 (defn- pair-strict
   "The transform-time pairing (the reference HtmlPairingPass): tolerant
   per-container pairing - crossed or unmatched tags stay standalone,
@@ -310,11 +310,10 @@
   (the reference HtmlPairingPass)."
   [doc]
   (passes/transform-content
-    (fn [children] (if (some #(= :html-tag (:type %)) children)
-                     (pair-strict children)
-                     children))
-    doc))
-
+   (fn [children] (if (some #(= :html-tag (:type %)) children)
+                    (pair-strict children)
+                    children))
+   doc))
 
 ;;----------------------------------------------------------------
 ;; Sanitize pass
@@ -340,10 +339,10 @@
                         ;; rejected element: open tag as text, children
                         ;; sanitized and spliced, close tag as text
                         (concat
-                          [(text (select-keys child [:name :attrs :self-closing]))]
-                          (sanitize-children (:content child) options)
-                          [(text {:type :html-tag :name (:name child)
-                                  :attrs {} :closing true :self-closing false})]))
+                         [(text (select-keys child [:name :attrs :self-closing]))]
+                         (sanitize-children (:content child) options)
+                         [(text {:type :html-tag :name (:name child)
+                                 :attrs {} :closing true :self-closing false})]))
 
                       [child])))
           children)))

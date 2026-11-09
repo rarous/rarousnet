@@ -5,25 +5,27 @@
   reference's exact semantics (text: only & < >, ENT_NOQUOTES; attribute
   values: & \" < >); huff's own escaping is disabled - the security
   boundary for display text is escape-html."
-  (:require [clojure.string :as str]
-            [texy.normalize :as norm]
-            [huff2.core :as huff]
-            [texy.dom :as dom]
-            [texy.engine :as engine]
-            [texy.html :as html]
-            [texy.modifier :as mod]
-            [texy.wellformer :as wellformer]))
+  (:require
+   [clojure.string :as str]
+   [texy.normalize :as norm]
+   [huff2.core :as huff]
+   [texy.dom :as dom]
+   [texy.engine :as engine]
+   [texy.html :as html]
+   [texy.modifier :as mod]
+   [texy.wellformer :as wellformer])
+  (:import (java.util.regex Pattern)))
 
 ;; Pre-compiled regex patterns for performance
-(def ^:private ^java.util.regex.Pattern re-url-scheme #"(?is)\s*[a-z][a-z0-9+.-]{0,20}:")
-(def ^:private ^java.util.regex.Pattern re-relative-url #"(?i)\A(?:[a-z][a-z0-9+.-]{0,20}:|[#/?])")
-(def ^:private ^java.util.regex.Pattern re-trailing-slashes #"[/\\]+$")
-(def ^:private ^java.util.regex.Pattern re-url-parts #"^(?:(?<scheme>[a-z]+):)?(?://(?<host>[^/?#]+))?(?:(?<path>(?:/|^(?!//))[^?#]*))?(?:\?(?<query>[^#]*))?(?:\#(?<fragment>.*))?$")
-(def ^:private ^java.util.regex.Pattern re-whitespace-plus #"\s+")
-(def ^:private ^java.util.regex.Pattern re-dashes #"-{2,}")
-(def ^:private ^java.util.regex.Pattern re-dashes-trim #"^-+|-+$")
-(def ^:private ^java.util.regex.Pattern re-html-tag #"<[^<>]*+>")
-(def ^:private ^java.util.regex.Pattern re-whitespace-newlines #"[ \n]+")
+(def ^:private ^Pattern re-url-scheme #"(?is)\s*[a-z][a-z0-9+.-]{0,20}:")
+(def ^:private ^Pattern re-relative-url #"(?i)\A(?:[a-z][a-z0-9+.-]{0,20}:|[#/?])")
+(def ^:private ^Pattern re-trailing-slashes #"[/\\]+$")
+(def ^:private ^Pattern re-url-parts #"^(?:(?<scheme>[a-z]+):)?(?://(?<host>[^/?#]+))?(?:(?<path>(?:/|^(?!//))[^?#]*))?(?:\?(?<query>[^#]*))?(?:\#(?<fragment>.*))?$")
+(def ^:private ^Pattern re-whitespace-plus #"\s+")
+(def ^:private ^Pattern re-dashes #"-{2,}")
+(def ^:private ^Pattern re-dashes-trim #"^-+|-+$")
+(def ^:private ^Pattern re-html-tag #"<[^<>]*+>")
+(def ^:private ^Pattern re-whitespace-newlines #"[ \n]+")
 
 (def ^:dynamic *options*
   "Rendering options: :image-root (default \"images/\"), :link-root,
@@ -73,9 +75,9 @@
   [m]
   (into {} (map (fn [[k v]] (if (huff/raw-string? v) [k v] [k (escape-attr v)]))) m))
 
-(defn- ^String url-scheme
+(defn- url-scheme
   "The scheme part of an URL, nil when there is none (a relative URL)."
-  [^String url]
+  ^String [^String url]
   (re-find re-url-scheme url))
 
 (defn- url-allowed?
@@ -174,7 +176,6 @@
              (or path' path)
              (or tail ""))))))
 
-
 (defmulti render-node
   "Renders an AST node: returns a vector of hiccup forms."
   :type)
@@ -198,26 +199,26 @@
   they are replaced inline elements), everything else counts as other."
   [children]
   (reduce
-    (fn [acc node]
-      (case (:type node)
-        :text (if (str/blank? (:text node)) acc (assoc acc :has-text true))
-        :image (assoc acc :has-replaced true)
-        :html-comment (assoc acc :has-markup true)
-        :html-tag (let [inline-type (get html/inline-elements (norm/lower-case (:name node)))]
-                    (cond-> acc
-                      (= 1 inline-type) (assoc :has-replaced true)
-                      (not= 1 inline-type) (assoc :has-markup true)))
-        :html-element (let [inline-type (get html/inline-elements (norm/lower-case (:name node)))]
-                        (cond-> acc
-                          (= 1 inline-type) (assoc :has-replaced true)
-                          (not= 1 inline-type) (assoc :has-markup true)))
-        :link (let [inner (analyze-content (get node :content []))]
-                (cond-> acc
-                  (or (:has-text inner) (:has-other inner)) (assoc :has-other true)
-                  (:has-replaced inner) (assoc :has-replaced true)))
-        (assoc acc :has-other true)))
-    {:has-text false :has-replaced false :has-markup false :has-other false}
-    children))
+   (fn [acc node]
+     (case (:type node)
+       :text (if (str/blank? (:text node)) acc (assoc acc :has-text true))
+       :image (assoc acc :has-replaced true)
+       :html-comment (assoc acc :has-markup true)
+       :html-tag (let [inline-type (get html/inline-elements (norm/lower-case (:name node)))]
+                   (cond-> acc
+                     (= 1 inline-type) (assoc :has-replaced true)
+                     (not= 1 inline-type) (assoc :has-markup true)))
+       :html-element (let [inline-type (get html/inline-elements (norm/lower-case (:name node)))]
+                       (cond-> acc
+                         (= 1 inline-type) (assoc :has-replaced true)
+                         (not= 1 inline-type) (assoc :has-markup true)))
+       :link (let [inner (analyze-content (get node :content []))]
+               (cond-> acc
+                 (or (:has-text inner) (:has-other inner)) (assoc :has-other true)
+                 (:has-replaced inner) (assoc :has-replaced true)))
+       (assoc acc :has-other true)))
+   {:has-text false :has-replaced false :has-markup false :has-other false}
+   children))
 
 (defn- contains-block-passthrough
   "A top-level block passthrough tag/element (a transparent inline
@@ -282,19 +283,19 @@
                                   ;; the same allowed gating as the main
                                   ;; parse context (safe mode disables
                                   ;; comments here too)
-                                  :allowed (:allowed *options*)
-                                  :options *options*})
+                                   :allowed (:allowed *options*)
+                                   :options *options*})
          nodes (engine/parse-inline ctx content)
          ;; tags the policy rejects become text (the reference's
          ;; transform-time sanitize, re-checked at render time)
          acceptable? (fn [node]
                        (and (html/tag-allowed? (norm/lower-case (:name node)) *options*)
                             (let [v (html/validate-tag (norm/lower-case (:name node))
-                                                        (:attrs node) (:closing node) *options*)]
+                                                       (:attrs node) (:closing node) *options*)]
                               (and (not= false v) (not= :drop v)))))
          nodes (map #(if (and (= :html-tag (:type %)) (not (acceptable? %)))
-                      {:type :text :text (html/unescape-html (html/reconstruct-tag %))}
-                      %)
+                       {:type :text :text (html/unescape-html (html/reconstruct-tag %))}
+                       %)
                     nodes)
          nodes (if trailing-space? (conj (vec nodes) {:type :text :text " "}) (vec nodes))]
      (vec (mapcat render-node nodes)))))
@@ -332,9 +333,9 @@
       (if (:closing node)
         [(huff/raw (str "</" tag ">"))]
         [(huff/raw (str "<" tag
-              (format-attrs (filter-html-attrs tag (:attrs node)))
-              (when (:self-closing node) " /")
-              ">"))]))))
+                        (format-attrs (filter-html-attrs tag (:attrs node)))
+                        (when (:self-closing node) " /")
+                        ">"))]))))
 
 (defmethod render-node :html-tag [node]
   ;; nofollow for passthrough <a href> links
@@ -406,7 +407,7 @@
       ;; block/text - plain text with <br> for newlines (no wrapper)
       (= :text style)
       [(huff/raw (shrink-outside-tags
-                   (str (str/replace (escape-html (:code node)) "\n" "<br>") " ")))]
+                  (str (str/replace (escape-html (:code node)) "\n" "<br>") " ")))]
 
       :else
       (let [inner (if (= :pre style)
@@ -448,7 +449,7 @@
         a (cond-> (attrs node)
             (and (:start node) (> (:start node) 1)) (assoc :start (str (:start node)))
             style (assoc :style (str (when-let [s (:style (attrs node))] (str s ";"))
-                                    "list-style-type:" style)))]
+                                     "list-style-type:" style)))]
     [(into (if (empty? a) [tag] [tag a])
            (map (fn [item] (into [:li (or (attrs item) {})] (unwrap item)))
                 (get node :items [])))]))
@@ -481,16 +482,16 @@
                       []
                       (get node :rows []))
         parts (if (and (= 1 (count parts)) (:header (first parts)))
-               [(update (first parts) :header not)]
-               parts)]
+                [(update (first parts) :header not)]
+                parts)]
     [(element :table node
               (concat
-                (when-some [caption (:caption node)]
-                  [(into [:caption] (mapcat render-node caption))])
-                (map (fn [part]
-                       (into [(if (:header part) :thead :tbody)]
-                             (map row-el (:rows part))))
-                     parts)))]))
+               (when-some [caption (:caption node)]
+                 [(into [:caption] (mapcat render-node caption))])
+               (map (fn [part]
+                      (into [(if (:header part) :thead :tbody)]
+                            (map row-el (:rows part))))
+                    parts)))]))
 (defmethod render-node :phrase [node]
   ;; :phrase-tags replaces the whole tag mapping (the reference
   ;; Config::phraseTags)
@@ -539,14 +540,14 @@
         clear (fn [img] (update img :modifier #(some-> % (dissoc :h-align))))
         image (if (= :link (:type image)) (update image :content #(mapv clear %)) (clear image))
         a (escape-attrs
-            (cond-> (decorate (:modifier node))
+           (cond-> (decorate (:modifier node))
               ;; the figure class is appended after the modifier classes
               ;; (:figure-class, the reference Config::figureClass)
-              true (assoc :class (str/trim (str (some-> (decorate (:modifier node)) :class)
-                                                   " " (or (:figure-class *options*) "figure"))))
+             true (assoc :class (str/trim (str (some-> (decorate (:modifier node)) :class)
+                                               " " (or (:figure-class *options*) "figure"))))
               ;; no alignClasses configured: alignment becomes a float style
-              h-align (assoc :style (str (when-let [s (:style (decorate (:modifier node)))] (str s ";"))
-                                         "float:" (name h-align)))))]
+             h-align (assoc :style (str (when-let [s (:style (decorate (:modifier node)))] (str s ";"))
+                                        "float:" (name h-align)))))]
     [(into [:div a]
            (concat (render-node image)
                    (when-some [caption (:caption node)]
@@ -563,13 +564,13 @@
         ;; alt is a raw string so that alt="" survives huff's omission of
         ;; empty attribute values (the reference always emits alt)
         a (escape-attrs
-            (merge (filter-url-attrs decorated)
-                   (if (url-allowed? (:url node) (:image-pattern *options*))
-                     {:src (prepend-root (:url node) (:image-root *options*))}
-                     {})
-                   {:alt (huff/raw (escape-attr (get decorated :alt (or title ""))))}
-                   (when (:width node) {:width (:width node)})
-                   (when (:height node) {:height (:height node)})))
+           (merge (filter-url-attrs decorated)
+                  (if (url-allowed? (:url node) (:image-pattern *options*))
+                    {:src (prepend-root (:url node) (:image-root *options*))}
+                    {})
+                  {:alt (huff/raw (escape-attr (get decorated :alt (or title ""))))}
+                  (when (:width node) {:width (:width node)})
+                  (when (:height node) {:height (:height node)})))
         a (cond-> a
             h-align (update :style (fn [s] (str (when s (str s ";")) "float:" (name h-align)))))]
     [[:img a]]))
@@ -581,7 +582,7 @@
            (assoc :rel "nofollow"))
        ;; the display text is the (optionally shortened) URL, raw like
        ;; the reference's Raw node
-       (huff/raw (if (:shorten-urls *options* true) (shorten-url (:url node)) (:url node)))]]))
+      (huff/raw (if (:shorten-urls *options* true) (shorten-url (:url node)) (:url node)))]]))
 
 (defmethod render-node :directive [node]
   ;; an unhandled directive stays in the document and renders as the
@@ -605,7 +606,6 @@
 (defmethod render-node :default [node]
   (concat (mapcat render-node (get node :content []))
           (mapcat render-node (get node :items []))))
-
 
 ;;----------------------------------------------------------------
 ;; Entry points
@@ -636,8 +636,8 @@
                  (if prohibited?
                    (drop-prohibited seen children)
                    (let [seen' (if (contains? #{:a :button :form} tag)
-                                (conj seen tag)
-                                seen)]
+                                 (conj seen tag)
+                                 seen)]
                      [(into (if attrs? [tag (first tail)] [tag])
                             (drop-prohibited seen' children))])))
                [form]))
@@ -697,7 +697,6 @@
          (wellformer/serialize-direct forms options)
          (wellformer/serialize (dom/wellform forms escape-html escape-attr)
                                options))))))
-
 
 (defn to-html-direct
   "to-html with {:well-forming :direct}: the call-driven WellFormer

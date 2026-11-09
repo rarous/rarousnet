@@ -8,7 +8,9 @@
   sets a locale, so this port must not depend on the JVM's default
   locale either."
   (:require [clojure.string :as str])
-  (:import (java.util Locale)))
+  (:import
+    (java.util Locale)
+    (java.util.regex Pattern)))
 
 (defn lower-case
   "Lowercases with the Unicode ROOT locale, independent of the JVM's
@@ -23,10 +25,9 @@
   (str/replace s #"[\x00-\x08\x0B-\x1F]+" ""))
 
 (def ^:private line-end-trim
-  (java.util.regex.Pattern/compile "[ \t]+$" java.util.regex.Pattern/MULTILINE))
+  (Pattern/compile "[ \t]+$" Pattern/MULTILINE))
 
-(defn normalize
-  ^String [^String text]
+(defn normalize ^String [^String text]
   (-> text
       (str/replace "\r\n" "\n")
       (str/replace "\r" "\n")

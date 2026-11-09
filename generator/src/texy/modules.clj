@@ -7,18 +7,19 @@
   Syntax ids are the reference's Texy\\Syntax constants. Handlers receive
   (context, groups) and return a node (a map), a vector of nodes (spliced)
   or nil to refuse the match."
-  (:require [clojure.string :as str]
-            [texy.normalize :as norm]
-            [texy.engine :as engine]
-            [texy.html :as html]
-            [texy.modifier :as mod]
-            [texy.patterns :as p]))
+  (:require
+   [clojure.string :as str]
+   [texy.normalize :as norm]
+   [texy.engine :as engine]
+   [texy.html :as html]
+   [texy.modifier :as mod]
+   [texy.patterns :as p])
+  (:import (java.util.regex Pattern)))
 
-(def M java.util.regex.Pattern/MULTILINE)
-(def CI java.util.regex.Pattern/CASE_INSENSITIVE)
-(defn compile-m [^String s] (java.util.regex.Pattern/compile s M))
-(defn compile-ci [^String s] (java.util.regex.Pattern/compile s CI))
-
+(def M Pattern/MULTILINE)
+(def CI Pattern/CASE_INSENSITIVE)
+(defn compile-m [^String s] (Pattern/compile s M))
+(defn compile-ci [^String s] (Pattern/compile s CI))
 
 ;;----------------------------------------------------------------
 ;; Pre-compiled regex patterns
@@ -63,18 +64,18 @@
 (def ^:private modifier-end-full-re (re-pattern (str "(?:" p/modifier ")$")))
 (def ^:private phrase-notexy-re (re-pattern "(?<!')''(?![\\s'])((?:[^\\r\\n']++|')+?)(?<![\\s'])''(?!')"))
 (def ^:private phrase-code-re (re-pattern (str "`(\\S(?:[^\\r\\n `]++|[ `])*?)(?:" p/modifier ")?"
-                                             "(?<!\\s)`(?::(" p/link-url "))?")))
+                                               "(?<!\\s)`(?::(" p/link-url "))?")))
 (def ^:private phrase-quicklink-re (re-pattern (str "([" p/letter "0-9@#$%&.,_-]++):(?=\\[)(" p/link-url ")")))
 (def ^:private phrase-wikilink-re (re-pattern (str "(?<!\\[)\\[(?![\\s*])([^|\\r\\n\\]]++)\\|"
-                                               "((?:[^|\\r\\n \\]]++|[ ])+?)(?:" p/modifier ")?(?<!\\s)](?!])")))
+                                                   "((?:[^|\\r\\n \\]]++|[ ])+?)(?:" p/modifier ")?(?<!\\s)](?!])")))
 (def ^:private phrase-markdown-re (re-pattern (str "(?<![\\[.])\\[(?![\\s*])((?:[^|\\r\\n \\]]++|[ ])+?)(?:" p/modifier ")?"
-                                                "(?<!\\s)]\\(((?:[^\\r )]++|[ ])+?)\\)")))
+                                                   "(?<!\\s)]\\(((?:[^\\r )]++|[ ])+?)\\)")))
 (def ^:private phrase-escaped-asterix-re (re-pattern "\\\\\\*"))
 
 ;; Autolink patterns
 (def ^:private autolink-url-re (re-pattern (str "(?<=^|[\\s(\\[<:])(?:https?://|www\\.|ftp://)[0-9." p/letter "-]"
-                                             "[/\\d" p/letter "+.~%&?@=_:;#$!,*()\\x{ad}-]{1,1000}"
-                                             "[/\\d" p/letter "+~?@=_#$*]")))
+                                                "[/\\d" p/letter "+.~%&?@=_:;#$!,*()\\x{ad}-]{1,1000}"
+                                                "[/\\d" p/letter "+~?@=_#$*]")))
 (def ^:private autolink-email-re (re-pattern (str "(?<=^|[\\s(\\[<])" p/email)))
 
 ;; Directive and emoticon
@@ -84,7 +85,6 @@
 (def ^:private cell-modifier-re (re-pattern (str "^[ \t]*(?:" p/modifier-hv ")")))
 
 (defn- strip-shy [s] (str/replace s "\u00AD" ""))
-
 
 ;;----------------------------------------------------------------
 ;; Paragraph module (the block gap handler)
@@ -129,9 +129,9 @@
               (let [parts (str/split (:text node) hard-break-re -1)]
                 (into []
                       (mapcat (fn [[i part]]
-                                 (cond-> []
-                                   (pos? i) (conj {:type :line-break})
-                                   (not= "" part) (conj {:type :text :text part}))))
+                                (cond-> []
+                                  (pos? i) (conj {:type :line-break})
+                                  (not= "" part) (conj {:type :text :text part}))))
                       (map-indexed vector parts)))
 
               (and (contains? #{:phrase :link} (:type node)) (:content node))
@@ -189,7 +189,6 @@
        (keep #(paragraph-node ctx % (get-in ctx [:options :merge-lines] true)))
        vec))
 
-
 ;;----------------------------------------------------------------
 ;; Heading module
 
@@ -223,7 +222,6 @@
     :pattern (compile-m (str "^((?:\\#{2,}+|={2,}+))(.+?)(?:" p/modifier-h ")?$"))
     :handler heading-surrounded}])
 
-
 ;;----------------------------------------------------------------
 ;; Horizontal rule module
 
@@ -235,7 +233,6 @@
   {:name "horizline"
    :pattern (compile-m (str "^((?:\\*{3,}+|-{3,}+))[ \t]*(?:" p/modifier ")?$"))
    :handler horizontal-rule})
-
 
 ;;----------------------------------------------------------------
 ;; Blockquote module
@@ -260,7 +257,6 @@
   {:name "blockquote"
    :pattern (compile-m (str "^(?:(?:" p/modifier-h ")\\n)?>([ \\t]++|:)(\\S.*+)$"))
    :handler blockquote-handler})
-
 
 ;;----------------------------------------------------------------
 ;; List module
@@ -312,9 +308,9 @@
       (let [indent-str m-indent
             content (loop [content (or m-content "") spaces ""]
                       (if-some [next (engine/block-next
-                                       parser
-                                       (compile-m (str "^(\\n*?)" (java.util.regex.Pattern/quote indent-str)
-                                                       "([ \t]{1," spaces "})(.*?)$")))]
+                                      parser
+                                      (compile-m (str "^(\\n*?)" (Pattern/quote indent-str)
+                                                      "([ \t]{1," spaces "})(.*?)$")))]
                         (let [[_ m-blank m-spaces m-next-content] (second next)]
                           (recur (str content "\n" m-blank m-next-content)
                                  ;; the indent width is fixed after the first
@@ -371,13 +367,12 @@
 (defn list-syntaxes []
   [{:name "list"
     :pattern (compile-m (str "^(?:(?:" p/modifier-h ")\\n)?(" (str/join "|" (map :pattern list-bullets))
-                         ")[ \t]*+\\S.*$"))
+                             ")[ \t]*+\\S.*$"))
     :handler list-handler}
    {:name "list/definition"
     :pattern (compile-m (str "^(?:(?:" p/modifier-h ")\\n)?(\\S.{0,2000}?):[ \t]*(?:" p/modifier-h ")?\\n"
-                         "([ \t]++)(" (ul-patterns) ")[ \t]*+\\S.*$"))
+                             "([ \t]++)(" (ul-patterns) ")[ \t]*+\\S.*$"))
     :handler deflist-handler}])
-
 
 ;;----------------------------------------------------------------
 ;; Block module: ```language fenced code
@@ -399,7 +394,6 @@
   {:name "block/fenced"
    :pattern (compile-m "^(`{3,})[ \t]*+([^\n`]*)((?:\n(?!(?:\\1)`*+[ \t]*+$).*+)*)(?:\n(?:\\1)`*+[ \t]*+$|\\z)")
    :handler parse-fenced})
-
 
 ;;----------------------------------------------------------------
 ;; Block module: /-- code, html, text, div, texysource blocks
@@ -443,8 +437,7 @@
        ;; strip - a first-line prefix can be deeper than a later line's
        ;; indent, e.g. " \--" under a "  " prefix keeps its backslash)
        (str/join "\n"
-                 (map #(subs % (common-prefix-len % prefix)) lines)
-                 )))))
+                 (map #(subs % (common-prefix-len % prefix)) lines))))))
 
 (defn- parse-slash-block [ctx groups]
   (let [[_ m-param m-mod-parts] groups
@@ -459,8 +452,8 @@
                       (cond
                         (re-matches open-line-re l) (recur (inc depth) (conj lines l))
                         (re-matches close-line-re l) (if (= depth 1)
-                                                    (recur (dec depth) lines)  ; the closing line is not content
-                                                    (recur (dec depth) (conj lines l)))
+                                                       (recur (dec depth) lines)  ; the closing line is not content
+                                                       (recur (dec depth) (conj lines l)))
                         :else (recur depth (conj lines l))))
                     lines)))
         content (str/join "\n" lines)
@@ -495,7 +488,6 @@
   {:name "block/slash"
    :pattern (compile-m (str "^/--++[ \\t]*+(.*?)(?:" p/modifier-h ")?$"))
    :handler parse-slash-block})
-
 
 ;;----------------------------------------------------------------
 ;; Phrase module
@@ -539,7 +531,7 @@
         (if m-link
           {:type :link :url (strip-shy m-link)
            :content [{:type :phrase :syntax syntax :content content
-                     :modifier (mod/parse m-mod-parts)}]}
+                      :modifier (mod/parse m-mod-parts)}]}
           {:type :phrase :syntax syntax :content content
            :modifier (mod/parse m-mod-parts)})))))
 
@@ -599,11 +591,11 @@
            :handler (partial parse-sup-sub "phrase/sub-alt")}
           {:name "phrase/acronym"
            :pattern (compile-ci (str "(?<![" p/letter "])((?:[" p/letter "]{2,}))()\\(\\("
-                                   "((?:[^\\n )]++|[ )])+?)\\)\\)"))
+                                     "((?:[^\\n )]++|[ )])+?)\\)\\)"))
            :handler (partial parse-acronym "phrase/acronym")}
           {:name "phrase/acronym-alt"
            :pattern (compile-ci (str "(?<!\")\"(?!\\s)((?:[^\\r\\n \"]++|[ ])+?)(?:" p/modifier ")?"
-                                   "(?<!\\s)\"(?!\")\\(\\((.+?)\\)\\)"))
+                                     "(?<!\\s)\"(?!\")\\(\\((.+?)\\)\\)"))
            :handler (partial parse-acronym "phrase/acronym-alt")}
           {:name "phrase/notexy"
            :pattern phrase-notexy-re
@@ -623,7 +615,6 @@
           {:name "phrase/escaped-asterix"
            :pattern phrase-escaped-asterix-re
            :handler (fn [_ _] {:type :text :text "*"})}]]))
-
 
 ;;----------------------------------------------------------------
 ;; Image module
@@ -688,7 +679,6 @@
                              "(?:[ \t]++\\*\\*\\*[ \t]++(.*?))?(?:" p/modifier-h ")?$"))
     :handler parse-figure}])
 
-
 ;;----------------------------------------------------------------
 ;; Autolink module
 
@@ -739,7 +729,7 @@
           ;; krsort: reverse key order, like the reference
           keys-sorted (sort (fn [a b] (compare b a)) (keys icons))
           pattern (re-pattern (str "(?<=^|[\\x00-\\x20])("
-                                   (str/join "|" (map #(str (java.util.regex.Pattern/quote %) "+")
+                                   (str/join "|" (map #(str (Pattern/quote %) "+")
                                                       keys-sorted))
                                    ")"))]
       [{:name "emoticon"
@@ -768,11 +758,8 @@
          {:name (nth m 1)
           :value (when-not (str/blank? value) value)
           :args (if (str/blank? value) []
-                    (str/split value (re-pattern (str "\\s*"
-                                                      (java.util.regex.Pattern/quote separator)
-                                                      "\\s*"))))})
+                    (str/split value (re-pattern (str "\\s*" (Pattern/quote separator) "\\s*"))))})
        {:name cmd :value nil :args []}))))
-
 
 ;;----------------------------------------------------------------
 ;; Table module
@@ -794,8 +781,8 @@
   uses the same internal byte), then the row splits on |."
   [^String content]
   (let [protected (-> content
-                     (str/replace "\\|" "\u0013")
-                     ((fn [s] (str/replace s pipe-in-brackets-re "$1\u0013"))))]
+                      (str/replace "\\|" "\u0013")
+                      ((fn [s] (str/replace s pipe-in-brackets-re "$1\u0013"))))]
     (mapv #(str/replace % "\u0013" "|") (str/split protected pipe-re))))
 
 (defn- parse-cell-parts
@@ -908,7 +895,7 @@
                   (swap! col inc)))
               (if (seq @row-cells)
                 (do (swap! rows* conj {:cells @row-cells :header @is-head*
-                                        :modifier (mod/parse m-row-mod)})
+                                       :modifier (mod/parse m-row-mod)})
                     (reset! col-counter* @col))
                 ;; redundant row - decrement the pending rowspans
                 (doseq [[_col id] @prev-row*]
@@ -933,8 +920,8 @@
                                                                 (vec (engine/parse-inline ctx (str/triml (first lines))))
                                                                 :else
                                                                 (vec (engine/parse-block
-                                                                       (assoc-in ctx [:options :disable-tables] true)
-                                                                       (outdent (str/join "\n" lines)))))]
+                                                                      (assoc-in ctx [:options :disable-tables] true)
+                                                                      (outdent (str/join "\n" lines)))))]
                                                   ;; an empty cell renders as a non-breaking space
                                                   (if (empty? content)
                                                     [{:type :text :text "\u00A0"}]
@@ -1045,13 +1032,13 @@
                         "phrase/sup" false "phrase/sub" false}
                        (:allowed options {}))]
     (engine/make-context
-      (-> (merge {:gap-handler gap-handler
+     (-> (merge {:gap-handler gap-handler
                   ;; custom syntaxes registered via texy.core/add-line-syntax
                   ;; and add-block-syntax run after the built-ins (collision
                   ;; resolution: longer match wins, then earlier registration)
-                  :line-syntaxes (into (into (line-syntaxes) (emoticon-syntax options))
-                                       (:custom-line-syntaxes options []))
-                  :block-syntaxes (into (block-syntaxes) (:custom-block-syntaxes options []))
-                  :options (merge {:merge-lines true :more-means-higher true} options)}
-                 options)
-          (assoc :allowed allowed)))))
+                 :line-syntaxes (into (into (line-syntaxes) (emoticon-syntax options))
+                                      (:custom-line-syntaxes options []))
+                 :block-syntaxes (into (block-syntaxes) (:custom-block-syntaxes options []))
+                 :options (merge {:merge-lines true :more-means-higher true} options)}
+                options)
+         (assoc :allowed allowed)))))

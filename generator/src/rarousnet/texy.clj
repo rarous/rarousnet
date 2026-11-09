@@ -4,13 +4,14 @@
    [texy.core :as core]
    [texy.modules :as modules]
    [texy.passes :as passes]
-   [texy.render :as render]))
+   [texy.render :as render])
+  (:import (java.net URLEncoder)))
 
 (defn- raw-url-encode
   "PHP rawurlencode: percent encoding with spaces as %20 (URLEncoder is
   form encoding, spaces would come out as +)."
   [s]
-  (str/replace (java.net.URLEncoder/encode s "UTF-8") "+" "%20"))
+  (str/replace (URLEncoder/encode s "UTF-8") "+" "%20"))
 
 (defn- player
   "A player iframe as an AST html-element node: raw markup in the
@@ -19,10 +20,9 @@
   [{:keys [src width height class title allow allowfullscreen data-ratio]}]
   {:type :html-element
    :name "iframe"
-   :attrs (cond-> {"loading" "lazy"
-                   "width" width
-                   "height" height
-                   "src" src}
+   :attrs (cond->
+            {"src" src "loading" "lazy"
+             "width" width "height" height}
             class (assoc "class" class)
             title (assoc "title" title)
             allow (assoc "allow" allow)

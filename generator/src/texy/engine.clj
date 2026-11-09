@@ -12,11 +12,12 @@
   offset prefer the longer match, then earlier registration; block
   matches are ordered by offset, then registration order, and a rejected
   match lets the next one at the same offset run."
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str])
+  (:import (java.util.regex Matcher Pattern)))
 
 (defn- groups
   "Match groups as a vector, nil for groups that did not participate."
-  [^java.util.regex.Matcher m]
+  [^Matcher m]
   (into [] (map (fn [g]
                    ;; Matcher.start returns -1 for a group that did not
                    ;; participate - no exception as control flow
@@ -27,7 +28,7 @@
 (defn match-at
   "Anchored match of pattern at pos of s. Returns [full, groups, end] or
   nil. Uses an anchoring region so `^` anchors at pos."
-  [^java.util.regex.Pattern pattern ^String s pos]
+  [^Pattern pattern ^String s pos]
   (let [m (re-matcher pattern s)]
     (.region m (int pos) (count s))
     (.useAnchoringBounds m true)
@@ -37,7 +38,7 @@
 (defn find-from
   "First match of pattern in s at or after pos. Returns
   [offset, full, groups, end] or nil."
-  [^java.util.regex.Pattern pattern ^String s pos]
+  [^Pattern pattern ^String s pos]
   (let [m (re-matcher pattern s)]
     (when (.find m (int pos))
       [(.start m) (subs s (.start m) (.end m)) (groups m) (.end m)])))
@@ -45,7 +46,7 @@
 (defn match-all
   "All matches of a pattern over the text, as maps with :offset, :match,
   :groups, :end."
-  [^java.util.regex.Pattern pattern ^String s]
+  [^Pattern pattern ^String s]
   (let [m (re-matcher pattern s)]
     (loop [res []]
       (if (.find m)
@@ -68,7 +69,7 @@
 (defn block-next
   "Matches the pattern anchored at the parser position; on success advances
   past the line and returns [full, groups, end]; nil otherwise."
-  [parser ^java.util.regex.Pattern pattern]
+  [parser ^Pattern pattern]
   (let [{:keys [^String text offset]} @parser]
     (when (<= offset (count text))
       (when-let [[full groups end] (match-at pattern text offset)]

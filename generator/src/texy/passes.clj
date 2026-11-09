@@ -1,9 +1,12 @@
 (ns texy.passes
   "Transform passes (port of Texy\\Passes\\* - the ported subset): heading
   level balancing (dynamic or fixed, like HeadingPass)."
-  (:require [clojure.string :as str]
-            [texy.normalize :as norm]
-            [texy.engine :as engine]))
+  (:require
+   [clojure.string :as str]
+   [texy.normalize :as norm]
+   [texy.engine :as engine])
+  (:import
+    (java.text Normalizer Normalizer$Form)))
 
 (defn transform-nodes
   "Applies f to every node bottom-up (children first), rebuilding the
@@ -31,14 +34,14 @@
   content container."
   [f doc]
   (transform-nodes
-    (fn [node]
-      (reduce (fn [node key]
-                (if (sequential? (get node key))
-                  (update node key f)
-                  node))
-              node
-              [:content :items :caption :rows :cells]))
-    doc))
+   (fn [node]
+     (reduce (fn [node key]
+               (if (sequential? (get node key))
+                 (update node key f)
+                 node))
+             node
+             [:content :items :caption :rows :cells]))
+   doc))
 
 (defn- collect-headings [doc]
   (into [] (filter #(= :heading (:type %))) (engine/node-seq doc)))
@@ -63,7 +66,7 @@
   residual table maps the letters normalization cannot decompose."
   ^String [^String s]
   (-> (str/join (map #(or (get non-decomposables %) %) s))
-      (java.text.Normalizer/normalize java.text.Normalizer$Form/NFD)
+      (Normalizer/normalize Normalizer$Form/NFD)
       (str/replace #"\p{M}" "")))
 
 (defn- webalize
@@ -111,7 +114,7 @@
 
   Fixed: every level shifts by `top` and is clamped to 1..6."
   [doc {:keys [top dynamic generate-ids id-prefix]
-    :or {top 1 dynamic true generate-ids false id-prefix "toc-"}}]
+        :or {top 1 dynamic true generate-ids false id-prefix "toc-"}}]
   (let [headings (collect-headings doc)]
     (if (empty? headings)
       doc
@@ -129,16 +132,16 @@
                                                   (max 1) (min 6))))))
             used-id (atom #{})]
         (transform-nodes
-          (fn [node]
-            (if (not= :heading (:type node))
-              node
-              (let [node (hoist-toc (level-fn node))]
-                (if-not generate-ids
-                  node
-                  (let [mod-id (get-in node [:modifier :id])]
-                    (if mod-id
-                      (do (swap! used-id conj mod-id) (assoc node :id mod-id))
-                      (let [id (unique-id (str id-prefix (webalize (heading-title node))) used-id)]
-                        (swap! used-id conj id)
-                        (assoc node :id id))))))))
-          doc)))))
+         (fn [node]
+           (if (not= :heading (:type node))
+             node
+             (let [node (hoist-toc (level-fn node))]
+               (if-not generate-ids
+                 node
+                 (let [mod-id (get-in node [:modifier :id])]
+                   (if mod-id
+                     (do (swap! used-id conj mod-id) (assoc node :id mod-id))
+                     (let [id (unique-id (str id-prefix (webalize (heading-title node))) used-id)]
+                       (swap! used-id conj id)
+                       (assoc node :id id))))))))
+         doc)))))

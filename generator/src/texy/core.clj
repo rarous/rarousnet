@@ -7,18 +7,20 @@
   (texy.core/parse texy \"...\")                       ; -> document (AST as data)
   (texy.core/render doc)                               ; -> hiccup vectors
   </code>"
-  (:require [clojure.string :as str]
-            [texy.engine :as engine]
-            [texy.html :as html]
-            [texy.hyphenation :as hyphenation]
-            [texy.modifier :as mod]
-            [texy.modules :as modules]
-            [texy.normalize :as normalize]
-            [texy.passes :as passes]
-            [texy.patterns :as p]
-            [texy.typography :as typography]
-            [texy.render :as render]
-            [texy.text :as text]))
+  (:require
+   [clojure.string :as str]
+   [texy.engine :as engine]
+   [texy.html :as html]
+   [texy.hyphenation :as hyphenation]
+   [texy.modifier :as mod]
+   [texy.modules :as modules]
+   [texy.normalize :as normalize]
+   [texy.passes :as passes]
+   [texy.patterns :as p]
+   [texy.typography :as typography]
+   [texy.render :as render]
+   [texy.text :as text])
+  (:import (java.net URLEncoder)))
 
 (defrecord Texy [options])
 
@@ -141,23 +143,23 @@
         directives (get-in texy [:options :directives])
         fallback (get-in texy [:options :directive-fallback])
         doc (passes/transform-nodes
-              (fn [node]
-                (loop [node node]
-                  (if (not= :directive (:type node))
-                    node
-                    (let [{:keys [name value args]}
-                          (modules/parse-directive-content (:text node))]
-                      (cond
-                        (and (= "texy" name) (seq args))
-                        (do (doseq [arg args] (swap! meta assoc arg true))
-                            nil)                     ; consumed into :meta
-                        :else
-                        (if-some [handler (or (get directives (normalize/lower-case name))
+             (fn [node]
+               (loop [node node]
+                 (if (not= :directive (:type node))
+                   node
+                   (let [{:keys [name value args]}
+                         (modules/parse-directive-content (:text node))]
+                     (cond
+                       (and (= "texy" name) (seq args))
+                       (do (doseq [arg args] (swap! meta assoc arg true))
+                           nil)                     ; consumed into :meta
+                       :else
+                       (if-some [handler (or (get directives (normalize/lower-case name))
                                              fallback)]
-                          (let [node' (handler value args node)]
-                            (if (= :directive (:type node')) (recur node') node'))
-                          node))))))
-              doc)]
+                         (let [node' (handler value args node)]
+                           (if (= :directive (:type node')) (recur node') node'))
+                         node))))))
+             doc)]
     (if (seq @meta) (assoc doc :meta @meta) doc)))
 
 (defn- convert-email-url
@@ -182,7 +184,7 @@
   3986) and %2A decodes to the same value for every spec-compliant
   consumer. Used by the %s reference-URL substitution."
   ^String [^String s]
-  (java.net.URLEncoder/encode s "UTF-8"))
+  (URLEncoder/encode s "UTF-8"))
 
 (defn- resolve-references
   "The link-reference and image-reference passes: [ref]: url and [*ref*]:
@@ -205,8 +207,8 @@
         user-link-defs (or link-definitions {})
         user-img-defs (or image-definitions {})
         link-defs (into user-link-defs
-                       (into {} (map (fn [n] [(normalize/lower-case (:reference n)) n]))
-                             (find :link-definition)))
+                        (into {} (map (fn [n] [(normalize/lower-case (:reference n)) n]))
+                              (find :link-definition)))
         img-defs (into user-img-defs
                        (into {} (map (fn [n] [(normalize/lower-case (:reference n)) n]))
                              (find :image-definition)))
@@ -225,7 +227,7 @@
                           (if-some [def (get img-defs key)]
                             (let [def-mod (:modifier def)]
                               (-> (assoc node :ref (str/trim (:url node))
-                                          :url (:url def))
+                                         :url (:url def))
                                   (update :width #(or % (:width def)))
                                   (update :height #(or % (:height def)))
                                   (update :modifier (fn [m]
@@ -246,14 +248,14 @@
         resolve-link (fn resolve-link [node]
                        (let [apply-legacy (fn [node def bare?]
                                             (let [node (cond-> node
-                                                        (and (not bare?)
-                                                             (str/includes? (str (:url node)) "%s"))
-                                                        (update :url #(str/replace (str %) "%s"
-                                                                                   (form-urlencode (label-text node))))
+                                                         (and (not bare?)
+                                                              (str/includes? (str (:url node)) "%s"))
+                                                         (update :url #(str/replace (str %) "%s"
+                                                                                    (form-urlencode (label-text node))))
 
-                                                        (:modifier def)
-                                                        (update :modifier (fn [m]
-                                                                            (mod/merge-modifiers (:modifier def) m))))]
+                                                         (:modifier def)
+                                                         (update :modifier (fn [m]
+                                                                             (mod/merge-modifiers (:modifier def) m))))]
                                               (if-not bare?
                                                 node
                                                 (if-some [label (:label def)]
@@ -266,10 +268,10 @@
                                                                 ;; references inside the label
                                                                 ;; resolve too, recursively
                                                                 content (:content (passes/transform-nodes
-                                                                                    (fn [n] (if (= :link (:type n))
-                                                                                              (resolve-link n)
-                                                                                              n))
-                                                                                    {:type :document :content (vec content)}))]
+                                                                                   (fn [n] (if (= :link (:type n))
+                                                                                             (resolve-link n)
+                                                                                             n))
+                                                                                   {:type :document :content (vec content)}))]
                                                             (swap! livelock disj key)
                                                             (assoc node :content content)))))
                                                   ;; no label: the textual URL display
@@ -326,12 +328,12 @@
 
                              :else (convert-email-url node)))))]
     (passes/transform-nodes
-      (fn [node]
-        (case (:type node)
-          :image (resolve-image node)
-          :link (resolve-link node)
-          node))
-      doc)))
+     (fn [node]
+       (case (:type node)
+         :image (resolve-image node)
+         :link (resolve-link node)
+         node))
+     doc)))
 
 (defn parse
   "Parses normalized text into a document (the AST, as plain maps with
@@ -359,10 +361,10 @@
                                               :legacy-references (get-in texy [:options :legacy-references])
                                               :options (:options texy)})
                          (passes/balance-headings
-                           {:top (get-in texy [:options :top] 1)
-                            :dynamic (not (get-in texy [:options :fixed-leveling]))
-                            :generate-ids (get-in texy [:options :generate-ids])
-                            :id-prefix (get-in texy [:options :id-prefix] "toc-")}))
+                          {:top (get-in texy [:options :top] 1)
+                           :dynamic (not (get-in texy [:options :fixed-leveling]))
+                           :generate-ids (get-in texy [:options :generate-ids])
+                           :id-prefix (get-in texy [:options :id-prefix] "toc-")}))
                      (get-in texy [:options :passes] []))]
      ;; the text-run pass runs as parse()'s last step (the reference
      ;; applyAstTypography), typography and hyphenation default on;
@@ -377,10 +379,10 @@
        (if (or typo hyph)
          (-> doc
              (typography/text-run-pass
-               {:transformers (cond-> []
+              {:transformers (cond-> []
                                typo (conj typo-fn)
                                hyph (conj #(hyphenation/post-line % word-limit)))
-                :title-transformer typo-fn})
+               :title-transformer typo-fn})
              (assoc-in [:meta :typographed] true))
          doc)))))
 
@@ -506,8 +508,8 @@
      (cond-> text
        (get-in texy [:options :typography] true)
        (typography/process-typo
-         {:locale (or locale (get-in texy [:options :typography-locale] "cs"))
-          :preserve-spaces true})
+        {:locale (or locale (get-in texy [:options :typography-locale] "cs"))
+         :preserve-spaces true})
 
        (get-in texy [:options :hyphenation] true)
        (hyphenation/post-line (get-in texy [:options :word-limit] 20))))))
@@ -521,5 +523,5 @@
   ([^Texy texy text render-options]
    (render-html (parse texy text (when (:single-line render-options)
                                    {:single-line true}))
-               (merge (render-opts texy) render-options))))
+                (merge (render-opts texy) render-options))))
 

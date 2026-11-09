@@ -5,19 +5,22 @@
   (the reference's `(?:(...)|[...]|\\{...\\}|<>|>|=|<|\\^|-|_){1,n}`), and the
   extracted run is structured by an instaparse grammar - a genuine CFG, the
   natural fit for instaparse among Texy's mostly-regex syntaxes."
-  (:require [clojure.string :as str]
-            [texy.normalize :as norm]
-            [instaparse.core :as insta]))
+  (:require
+   [clojure.string :as str]
+   [texy.normalize :as norm]
+   [instaparse.core :as insta])
+  (:import
+   (java.util.regex Pattern)))
 
 ;; Pre-compiled regex patterns for performance
-(def ^:private ^java.util.regex.Pattern re-colon #":")
-(def ^:private ^java.util.regex.Pattern re-semicolon #";")
-(def ^:private ^java.util.regex.Pattern re-backslash-paren #"\\\)")
-(def ^:private ^java.util.regex.Pattern re-whitespace-plus-mod #"\s+")
+(def ^:private ^Pattern re-colon #":")
+(def ^:private ^Pattern re-semicolon #";")
+(def ^:private ^Pattern re-backslash-paren #"\\\)")
+(def ^:private ^Pattern re-whitespace-plus-mod #"\s+")
 
 (def ^:private grammar
   (insta/parser
-    "modifier = part+
+   "modifier = part+
      <part> = title / classes / styles / halign / valign
      title = <'('> #'(?:\\\\\\)|[^)\\n])+' <')'>
      classes = <'['> #'[^\\]\\n]+' <']'>
@@ -25,8 +28,14 @@
      halign = '<>' / '>' / '=' / '<'
      valign = '^' / '-' / '_'"))
 
-(def ^:private aligns {">" :right, "<" :left, "=" :justify, "<>" :center,
-                       "^" :top, "-" :middle, "_" :bottom})
+(def ^:private aligns
+  {">" :right
+   "<" :left
+   "=" :justify
+   "<>" :center,
+   "^" :top
+   "-" :middle
+   "_" :bottom})
 
 (def ^:private el-attrs
   "Names in {...} treated as HTML attributes; anything else is a CSS style.
@@ -47,22 +56,22 @@
   styles (like the reference parseStyle)."
   [content]
   (reduce
-    (fn [{:keys [attrs styles] :as acc} decl]
-      (let [[k v] (str/split decl re-colon 2)
-            prop (norm/lower-case (str/trim k))]
-        (if (nil? v)
-          acc
-          (let [v (str/trim v)]
-            (cond
-              (or (contains? el-attrs prop)
-                  (str/starts-with? prop "data-")
-                  (str/starts-with? prop "aria-"))
-              (assoc acc :attrs (assoc attrs prop v))
-              (not= "" v)
-              (assoc acc :styles (assoc styles prop v))
-              :else acc)))))
-    {:attrs {} :styles (array-map)}
-    (str/split content re-semicolon)))
+   (fn [{:keys [attrs styles] :as acc} decl]
+     (let [[k v] (str/split decl re-colon 2)
+           prop (norm/lower-case (str/trim k))]
+       (if (nil? v)
+         acc
+         (let [v (str/trim v)]
+           (cond
+             (or (contains? el-attrs prop)
+                 (str/starts-with? prop "data-")
+                 (str/starts-with? prop "aria-"))
+             (assoc acc :attrs (assoc attrs prop v))
+             (not= "" v)
+             (assoc acc :styles (assoc styles prop v))
+             :else acc)))))
+   {:attrs {} :styles (array-map)}
+   (str/split content re-semicolon)))
 
 (defn- extent-pattern [bound]
   (re-pattern (str "[ \t]*(?<=[\t ]|^)\\.((?:\\((?:\\\\\\)|[^)\\n])+\\)|\\[[^\\]\\n]+\\]|"

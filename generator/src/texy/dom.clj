@@ -22,12 +22,14 @@
   parse round trip - jsoup decodes entities - so they travel through
   as base64 <texy-raw data-r=\"...\"> placeholder elements and come
   back verbatim. The texy-raw name is reserved for this purpose."
-  (:require [clojure.string :as str]
-            [huff2.core :as huff])
-  (:import (java.util Base64)
-           (org.jsoup Jsoup)
-           (org.jsoup.nodes Attribute CDataNode Comment DataNode Element
-                            TextNode)))
+  (:require
+   [clojure.string :as str]
+   [huff2.core :as huff])
+  (:import
+   (java.util Base64)
+   (java.util.regex Pattern)
+   (org.jsoup Jsoup)
+   (org.jsoup.nodes Attribute CDataNode Comment DataNode Element TextNode)))
 
 ;; huff serializes void elements XHTML-style (<br />); HTML5 voids
 ;; carry no self-closing slash. huff's emit methods append exactly
@@ -46,16 +48,14 @@
 (def ^:private b64-encoder (Base64/getEncoder))
 (def ^:private b64-decoder (Base64/getDecoder))
 
-(defn- b64
-  ^String [^String s]
+(defn- b64 ^String [^String s]
   (.encodeToString b64-encoder (.getBytes s "UTF-8")))
 
-(defn- unb64
-  ^String [^String s]
+(defn- unb64 ^String [^String s]
   (String. (.decode b64-decoder s) "UTF-8"))
 
 ;; Pre-compiled regex pattern for performance
-(def ^:private ^java.util.regex.Pattern re-tag-markup #"</?[a-zA-Z]")
+(def ^:private ^Pattern re-tag-markup #"</?[a-zA-Z]")
 
 (defn- protect
   "Walks the rendered tree replacing tag-free raw blobs with
@@ -94,8 +94,8 @@
   (if (= "texy-raw" (.nodeName el))
     (huff/raw (unb64 (.attr el "data-r")))
     (let [attrs (into {} (map (fn [^Attribute a]
-                               [(keyword (.getKey a)) (attr-value escape-attr (.getValue a))]))
-                     (.attributes el))
+                                [(keyword (.getKey a)) (attr-value escape-attr (.getValue a))]))
+                      (.attributes el))
           tag (keyword (.nodeName el))]
       (into (if (seq attrs) [tag attrs] [tag])
             (keep #(node->form % escape-html escape-attr) (.childNodes el))))))

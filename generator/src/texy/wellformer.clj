@@ -20,18 +20,20 @@
   Attribute values and preserved text carry their whitespace frozen
   (\\u0001-\\u0004) for the wrapping pass, so a line never breaks
   inside a value - only between attributes; finish unfreezes."
-  (:require [clojure.string :as str]
-            [huff2.core :as huff]
-            [texy.html :as html]))
+  (:require
+   [clojure.string :as str]
+   [huff2.core :as huff]
+   [texy.html :as html])
+  (:import (java.util.regex Pattern)))
 
 ;; Pre-compiled regex patterns for performance
-(def ^:private ^java.util.regex.Pattern re-wrap-lines #"(?m)^(\t*)(.*)$")
-(def ^:private ^java.util.regex.Pattern re-leading-spaces #"^ +")
-(def ^:private ^java.util.regex.Pattern re-trailing-tab-spaces #"\t? *$")
-(def ^:private ^java.util.regex.Pattern re-whitespace-runs #"[ \n]+")
-(def ^:private ^java.util.regex.Pattern re-trailing-whitespace-eol #"[\t ]+(?=\n)")
-(def ^:private ^java.util.regex.Pattern re-trailing-whitespace-end #"[\t ]+\z")
-(def ^:private ^java.util.regex.Pattern re-leading-newlines #"^\n+")
+(def ^:private ^Pattern re-wrap-lines #"(?m)^(\t*)(.*)$")
+(def ^:private ^Pattern re-leading-spaces #"^ +")
+(def ^:private ^Pattern re-trailing-tab-spaces #"\t? *$")
+(def ^:private ^Pattern re-whitespace-runs #"[ \n]+")
+(def ^:private ^Pattern re-trailing-whitespace-eol #"[\t ]+(?=\n)")
+(def ^:private ^Pattern re-trailing-whitespace-end #"[\t ]+\z")
+(def ^:private ^Pattern re-leading-newlines #"^\n+")
 
 (def ^:private preserve-spaces
   "Elements whose content keeps whitespace verbatim (the reference
@@ -90,7 +92,6 @@
                      (.append out brk)
                      (recur (inc i) (inc lastspace) lastspace))
                  (recur (inc i) laststart lastspace))))))))))
-
 
 ;;----------------------------------------------------------------
 ;; the formatting machine state
@@ -257,7 +258,6 @@
       (append ">")
       end-fragment))
 
-
 ;;----------------------------------------------------------------
 ;; tags
 
@@ -346,7 +346,6 @@
       (-> state (emit-close (first (:stack state))) end-fragment)
       (end-fragment state))))
 
-
 ;;----------------------------------------------------------------
 ;; the tree walk
 
@@ -423,7 +422,6 @@
     :else
     (escaped-text state (str form))))
 
-
 ;;----------------------------------------------------------------
 ;; finish
 
@@ -443,13 +441,13 @@
         segs (:segs state)
         wrap? (pos? (get-in state [:config :line-wrap] 80))
         s (str/join
-            (map-indexed (fn [i [type ^String text]]
-                           (case type
-                             :pre (if wrap? (freeze-spaces text) text)
-                             :normal (cond-> (str/replace text re-trailing-whitespace-eol "")
-                                       (= i (dec (count segs))) (str/replace re-trailing-whitespace-end ""))
-                             ""))                           ; barriers contribute nothing
-                         segs))
+           (map-indexed (fn [i [type ^String text]]
+                          (case type
+                            :pre (if wrap? (freeze-spaces text) text)
+                            :normal (cond-> (str/replace text re-trailing-whitespace-eol "")
+                                      (= i (dec (count segs))) (str/replace re-trailing-whitespace-end ""))
+                            ""))                           ; barriers contribute nothing
+                        segs))
         s (if wrap? (wrap-lines s (get-in state [:config :line-wrap] 80)) s)]
     (unfreeze-spaces s)))
 
@@ -487,7 +485,6 @@
                      (recur (inc gi) (reduce feed state (nth groups gi))))))]
      (str/trim (finish state)))))
 
-
 ;;----------------------------------------------------------------
 ;; the call-driven well-forming half (the Node.js sibling's
 ;; WellFormer.js: content models, auto-close of optional-end
@@ -502,116 +499,114 @@
 ;;        [:explicit [children...]] - a fixed model (:\%TEXT marks where text is allowed);
 ;;        [:transparent [own-additions...]] - inherits the parent model plus these.
 (def ^:private elements*
-{
-	"a" {:inline :inline :void false :optional-end false :content [:transparent []]}
-	"abbr" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"address" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"area" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
-	"article" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"aside" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"audio" {:inline :inline :void false :optional-end false :content [:transparent [:source :track]]}
-	"b" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"base" {:inline :block :void true :optional-end false :content [:flow-default]}
-	"bdi" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"bdo" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"blockquote" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"body" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"br" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
-	"button" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"canvas" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"caption" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"cite" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"code" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"col" {:inline :block :void true :optional-end false :content [:flow-default]}
-	"colgroup" {:inline :block :void false :optional-end true :content [:explicit [:col :%TEXT]]}
-	"data" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"datalist" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"dd" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"del" {:inline :inline :void false :optional-end false :content [:transparent []]}
-	"details" {:inline :block :void false :optional-end false :content [:transparent [:summary]]}
-	"dfn" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"div" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"dl" {:inline :block :void false :optional-end false :content [:explicit [:dt :dd :%TEXT]]}
-	"dt" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"em" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"embed" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
-	"fieldset" {:inline :block :void false :optional-end false :content [:transparent [:legend]]}
-	"figcaption" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"figure" {:inline :block :void false :optional-end false :content [:transparent [:figcaption]]}
-	"footer" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"form" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"h1" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"h2" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"h3" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"h4" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"h5" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"h6" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"head" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"header" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"hr" {:inline :block :void true :optional-end false :content [:flow-default]}
-	"html" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"i" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"iframe" {:inline :replaced :void false :optional-end false :content [:explicit []]}
-	"img" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
-	"input" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
-	"ins" {:inline :inline :void false :optional-end false :content [:transparent []]}
-	"kbd" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"label" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"legend" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"li" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"link" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
-	"main" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"map" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"mark" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"math" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"meta" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
-	"meter" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"nav" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"noscript" {:inline :replaced :void false :optional-end false :content [:transparent []]}
-	"object" {:inline :replaced :void false :optional-end false :content [:transparent [:param]]}
-	"ol" {:inline :block :void false :optional-end false :content [:explicit [:li :%TEXT]]}
-	"optgroup" {:inline :block :void false :optional-end false :content [:explicit [:option :%TEXT]]}
-	"option" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"output" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"p" {:inline :block :void false :optional-end true :content [:phrasing-default]}
-	"param" {:inline :block :void true :optional-end false :content [:flow-default]}
-	"picture" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"pre" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"progress" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"q" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"ruby" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"s" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"samp" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"script" {:inline :replaced :void false :optional-end false :content [:explicit [:%TEXT]]}
-	"section" {:inline :block :void false :optional-end false :content [:flow-default]}
-	"select" {:inline :replaced :void false :optional-end false :content [:explicit [:option :optgroup :%TEXT]]}
-	"slot" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"small" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"source" {:inline :block :void true :optional-end false :content [:flow-default]}
-	"span" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"strong" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"style" {:inline :block :void false :optional-end false :content [:explicit [:%TEXT]]}
-	"sub" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"summary" {:inline :block :void false :optional-end false :content [:phrasing-default]}
-	"sup" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"svg" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
-	"table" {:inline :block :void false :optional-end false :content [:explicit [:caption :colgroup :thead :tbody :tfoot :tr :%TEXT]]}
-	"tbody" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
-	"td" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"template" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"textarea" {:inline :replaced :void false :optional-end false :content [:explicit [:%TEXT]]}
-	"tfoot" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
-	"th" {:inline :block :void false :optional-end true :content [:flow-default]}
-	"thead" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
-	"time" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"tr" {:inline :block :void false :optional-end true :content [:explicit [:th :td :%TEXT]]}
-	"track" {:inline :block :void true :optional-end false :content [:flow-default]}
-	"u" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"ul" {:inline :block :void false :optional-end false :content [:explicit [:li :%TEXT]]}
-	"var" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
-	"video" {:inline :replaced :void false :optional-end false :content [:transparent [:source :track]]}
-	"wbr" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
-})
+  {"a" {:inline :inline :void false :optional-end false :content [:transparent []]}
+   "abbr" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "address" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "area" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
+   "article" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "aside" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "audio" {:inline :inline :void false :optional-end false :content [:transparent [:source :track]]}
+   "b" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "base" {:inline :block :void true :optional-end false :content [:flow-default]}
+   "bdi" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "bdo" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "blockquote" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "body" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "br" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+   "button" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "canvas" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "caption" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "cite" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "code" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "col" {:inline :block :void true :optional-end false :content [:flow-default]}
+   "colgroup" {:inline :block :void false :optional-end true :content [:explicit [:col :%TEXT]]}
+   "data" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "datalist" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "dd" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "del" {:inline :inline :void false :optional-end false :content [:transparent []]}
+   "details" {:inline :block :void false :optional-end false :content [:transparent [:summary]]}
+   "dfn" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "div" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "dl" {:inline :block :void false :optional-end false :content [:explicit [:dt :dd :%TEXT]]}
+   "dt" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "em" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "embed" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+   "fieldset" {:inline :block :void false :optional-end false :content [:transparent [:legend]]}
+   "figcaption" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "figure" {:inline :block :void false :optional-end false :content [:transparent [:figcaption]]}
+   "footer" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "form" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "h1" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "h2" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "h3" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "h4" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "h5" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "h6" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "head" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "header" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "hr" {:inline :block :void true :optional-end false :content [:flow-default]}
+   "html" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "i" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "iframe" {:inline :replaced :void false :optional-end false :content [:explicit []]}
+   "img" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+   "input" {:inline :replaced :void true :optional-end false :content [:phrasing-default]}
+   "ins" {:inline :inline :void false :optional-end false :content [:transparent []]}
+   "kbd" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "label" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "legend" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "li" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "link" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
+   "main" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "map" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "mark" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "math" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "meta" {:inline :inline :void true :optional-end false :content [:phrasing-default]}
+   "meter" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "nav" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "noscript" {:inline :replaced :void false :optional-end false :content [:transparent []]}
+   "object" {:inline :replaced :void false :optional-end false :content [:transparent [:param]]}
+   "ol" {:inline :block :void false :optional-end false :content [:explicit [:li :%TEXT]]}
+   "optgroup" {:inline :block :void false :optional-end false :content [:explicit [:option :%TEXT]]}
+   "option" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "output" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "p" {:inline :block :void false :optional-end true :content [:phrasing-default]}
+   "param" {:inline :block :void true :optional-end false :content [:flow-default]}
+   "picture" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "pre" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "progress" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "q" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "ruby" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "s" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "samp" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "script" {:inline :replaced :void false :optional-end false :content [:explicit [:%TEXT]]}
+   "section" {:inline :block :void false :optional-end false :content [:flow-default]}
+   "select" {:inline :replaced :void false :optional-end false :content [:explicit [:option :optgroup :%TEXT]]}
+   "slot" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "small" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "source" {:inline :block :void true :optional-end false :content [:flow-default]}
+   "span" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "strong" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "style" {:inline :block :void false :optional-end false :content [:explicit [:%TEXT]]}
+   "sub" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "summary" {:inline :block :void false :optional-end false :content [:phrasing-default]}
+   "sup" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "svg" {:inline :replaced :void false :optional-end false :content [:phrasing-default]}
+   "table" {:inline :block :void false :optional-end false :content [:explicit [:caption :colgroup :thead :tbody :tfoot :tr :%TEXT]]}
+   "tbody" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
+   "td" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "template" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "textarea" {:inline :replaced :void false :optional-end false :content [:explicit [:%TEXT]]}
+   "tfoot" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
+   "th" {:inline :block :void false :optional-end true :content [:flow-default]}
+   "thead" {:inline :block :void false :optional-end true :content [:explicit [:tr :%TEXT]]}
+   "time" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "tr" {:inline :block :void false :optional-end true :content [:explicit [:th :td :%TEXT]]}
+   "track" {:inline :block :void true :optional-end false :content [:flow-default]}
+   "u" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "ul" {:inline :block :void false :optional-end false :content [:explicit [:li :%TEXT]]}
+   "var" {:inline :inline :void false :optional-end false :content [:phrasing-default]}
+   "video" {:inline :replaced :void false :optional-end false :content [:transparent [:source :track]]}
+   "wbr" {:inline :inline :void true :optional-end false :content [:phrasing-default]}})
 (def ^:private phrasing-content*
   #{:a :abbr :audio :b :bdi :bdo :cite :code :data :datalist :del :dfn :em :i :ins :kbd :label :map :mark :q :ruby :s :samp :slot :small :span :strong :sub :sup :template :time :u :var :area :br :embed :img :input :link :meta :wbr :button :canvas :iframe :math :meter :noscript :object :output :picture :progress :script :select :svg :textarea :video :%TEXT})
 (def ^:private flow-content*
@@ -628,7 +623,6 @@
 (def ^:private phrasing-content (into #{} (map name) phrasing-content*))
 (def ^:private flow-content (into #{} (map name) flow-content*))
 
-
 (defn- child-content
   "The content model of a known tag in the given parent model (the
   node sibling's Schema.childContent): transparent elements inherit
@@ -640,7 +634,6 @@
       :flow-default flow-content
       :explicit (into #{} kids)
       :transparent (into parent-content kids))))
-
 
 (defn- emit-frame
   "Emits a frame's closing tag WITHOUT popping the stack and WITHOUT
@@ -656,7 +649,6 @@
         (append (str close "\n" (str/join (repeat close-indent "\t")))))
     :else (append state close)))
 
-
 (defn- flush-text-driven
   "Flushes the text buffer; text that the top container's content model
   does not allow is dropped (the node sibling's %TEXT check)."
@@ -668,9 +660,6 @@
         (if (and top (not (contains? (:dtd-content top flow-content) "%TEXT")))
           (assoc state :text "")
           (flush-text state))))))
-
-
-
 
 (defn- close-optional-tags
   "Closes open containers whose content model cannot host the incoming
@@ -694,7 +683,6 @@
                      (emit-frame item)
                      (update :space - (:indent item))
                      (update-in [:tag-used (:tag item)] (fnil dec 0)))))))))
-
 
 (defn- start-tag-body-driven
   "Emits a start tag through the content-model decision: a disallowed
@@ -751,7 +739,6 @@
             (update-in [:tag-used tag] (fnil inc 0))
             end-fragment)))))
 
-
 (defn- start-tag-driven
   "Feeds a start tag through the driver (the node sibling's startTag):
   optional-end containers auto-close, prohibited nesting and content
@@ -772,7 +759,6 @@
                                         prohibited))))]
         (start-tag-body-driven state tag attr void? allowed dtd)))))
 
-
 (defn- reopen
   "Reopens the frames an unmatched end tag interrupted (the node
   sibling's autoopen): all-inline reopen in document order when the
@@ -791,7 +777,6 @@
                       (update :stack conj r)))
                 state
                 tmp)))))
-
 
 (defn- process-end-tag
   "Closes the stack down to the tag's frame, emitting closes for the
@@ -815,11 +800,9 @@
                 (reopen tmp back?'))
             (recur (next frames) (into [item] tmp) back?' removed' state')))))))
 
-
 (defn- end-tag-driven
   [state tag]
   (-> state flush-text-driven (process-end-tag tag) end-fragment))
-
 
 (defn- feed-raw-driven
   "Tokenizes a raw HTML fragment through the driver (the node
@@ -850,7 +833,6 @@
                           :else (start-tag-driven state tag attr empty?))))]
           (recur (.end m) state))))))
 
-
 (defn- feed-driven
   "Feeds one rendered form through the driver: elements recurse, text
   joins the buffer, raw strings tokenize by the reference tag grammar."
@@ -876,7 +858,6 @@
 
     :else
     (escaped-text state (str form))))
-
 
 (defn serialize-direct
   "Serializes the rendered tree straight through the call-driven

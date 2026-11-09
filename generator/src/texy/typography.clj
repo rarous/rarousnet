@@ -14,9 +14,10 @@
   (U); Java's (?U) is a different feature, so the ungreedy semantics
   are spelled out with explicit lazy quantifiers (possessives
   unchanged), like the rest of the port."
-  (:require [clojure.string :as str]
-            [texy.html :as html]
-            [texy.normalize :as norm]))
+  (:require
+   [clojure.string :as str]
+   [texy.html :as html]
+   [texy.normalize :as norm]))
 
 (def locales
   "Quotes per locale: the open/close pair for the nested (single) and
@@ -126,7 +127,6 @@
              s
              (patterns quotes)))))
 
-
 ;;----------------------------------------------------------------
 ;; TextRunPass: builds a text image per inline container, transforms it,
 ;; writes the result back (the reference Passes/TextRunPass)
@@ -212,9 +212,9 @@
           (recur (rest pieces) pos (conj gap target) writes)
           (if-some [idx (str/index-of transformed text pos)]
             (let [writes (into writes
-                              (map-indexed (fn [i node]
-                                             [node (if (zero? i) (subs transformed pos idx) "")]))
-                              gap)]
+                               (map-indexed (fn [i node]
+                                              [node (if (zero? i) (subs transformed pos idx) "")]))
+                               gap)]
               (recur (rest pieces) (+ idx (count text)) [] writes))
             nil)))
       (into writes
@@ -294,7 +294,7 @@
              (every? (comp inline-types :type) content))
       (assoc node :content
              (process-content (mapv #(transform-titles-deep % title-transformer) content)
-                             transformers))
+                              transformers))
       (walk-children node {:transformers transformers
                            :title-transformer title-transformer}))))
 
