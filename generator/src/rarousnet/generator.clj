@@ -9,8 +9,8 @@
     [clojure.string :as string]
     [cheshire.core :as json]
     [net.cgrand.enlive-html :as html :refer [defsnippet deftemplate xml-parser]]
-    [texy.typography :refer [process-typo]]
-    [texy.core :refer [process]]
+    [work.gryphoon.texy.typography :refer [process-typo]]
+    [work.gryphoon.texy.core :refer [process]]
     [rarousnet.texy :refer [blog-texy]])
   (:import
     (java.io File)

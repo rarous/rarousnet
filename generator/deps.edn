@@ -3,7 +3,7 @@
         clj-time/clj-time {:mvn/version "0.15.2"}
         enlive/enlive {:mvn/version "1.1.6"}
         cheshire/cheshire {:mvn/version "6.2.0"}
-        io.github.escherize/huff {:mvn/version "0.2.21"}
-        instaparse/instaparse {:mvn/version "1.5.0"}
-        org.jsoup/jsoup {:mvn/version "1.23.2"}}
+        work.gryphoon/texy-clj {:git/url "https://github.com/hckr-studio/gryphoon.git"
+                                :git/sha "f931a61f1a6de88995a937eac00a887a398df8f0"
+                                :deps/root "packages/texy-clj"}}
  :paths ["src" "templates", "../.gryphoon/dist/"]}

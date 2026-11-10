@@ -1,10 +1,10 @@
 (ns rarousnet.texy
   (:require
    [clojure.string :as str]
-   [texy.core :as core]
-   [texy.modules :as modules]
-   [texy.passes :as passes]
-   [texy.render :as render])
+   [work.gryphoon.texy.core :as core]
+   [work.gryphoon.texy.modules :as modules]
+   [work.gryphoon.texy.passes :as passes]
+   [work.gryphoon.texy.render :as render])
   (:import (java.net URLEncoder)))
 
 (defn- raw-url-encode
