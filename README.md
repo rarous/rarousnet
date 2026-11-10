@@ -10,9 +10,7 @@ Sources for https://www.rarous.net/ website.
 
 ## Site generator
 
-Site generator is Clojure program that reads files in `content/weblog` and related templates in `www.rarous.net/src/html/weblog`
-and `generator/templates/weblog` and generates weblog site. Content is Texy with embedded EDN data in header. Texy is PHP library, 
-that is used via CLI from the Clojure program.
+Site generator is a Clojure program in `generator/`, entry point `rarousnet.generator`. It reads files in `content/weblog` and templates in `www.rarous.net/src/html/weblog` and `generator/templates/weblog` and generates the weblog site into `.gryphoon/dist`. Run it with `yarn generate`. See [generator/README.md](generator/README.md) for details.
 
 ## Build
 
