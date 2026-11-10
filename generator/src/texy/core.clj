@@ -56,7 +56,10 @@
                      labels/modifiers apply, %s reference URLs, image
                      definition modifiers on [*img*] targets - implies
                      the bare [ref] syntax (link/reference), always
-                     allowed in Texy 3
+                     allowed in Texy 3; an undefined bare [ref] stays
+                     literal text (Texy 3 without a newReference
+                     handler), the labeled form falls back to the
+                     name as URL
                      (see texy.references-test)
   :well-forming     the HTML pairing half of the renderer: :jsoup (default,
                      HTML5 tree construction - spec-conformant, inserts an implicit
@@ -199,7 +202,9 @@
   definition's modifier merges under the use-site one, and a bare [ref]
   use (the opt-in link/reference syntax) shows the definition's label
   inline-parsed (circular labels render raw - the livelock) or the
-  textual URL as content."
+  textual URL as content. An undefined bare [ref] renders as the
+  literal [ref] text (Texy 3 without a newReference handler); the
+  labeled \"text\":[ref] form still falls back to the name as URL."
   [doc {:keys [link-definitions image-definitions legacy-references options]}]
   (let [find (fn [type] (filter #(= type (:type %)) (engine/node-seq doc)))
         ;; user definitions (add-definition) come first; document
@@ -321,10 +326,18 @@
                                    ;; parsing; phrase targets never do
                                    bare? (contains? node :ref)
                                    def (resolve-def ref-name)]
-                               (-> (assoc node :url (if def (:url def) ref-name)
-                                          :ref ref-name)
-                                   (cond-> (and legacy? def) (apply-legacy def bare?))
-                                   convert-email-url))
+                               (if (and legacy? bare? (not def))
+                                 ;; Texy 3 backward compatibility: an
+                                 ;; undefined bare [ref] is not a link - with
+                                 ;; no newReference handler registered, the
+                                 ;; match renders as the literal [ref] text
+                                 ;; (the labeled "text":[ref] form still
+                                 ;; falls back to the name as URL)
+                                 {:type :text :text (str "[" ref-name "]")}
+                                 (-> (assoc node :url (if def (:url def) ref-name)
+                                            :ref ref-name)
+                                     (cond-> (and legacy? def) (apply-legacy def bare?))
+                                     convert-email-url)))
 
                              :else (convert-email-url node)))))]
     (passes/transform-nodes
