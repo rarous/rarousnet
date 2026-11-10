@@ -30,7 +30,7 @@
     "build:index": "yarn workspace @rarousnet/website build:index",
     "build": "run-s 'build:*'",
     "fmt": "biome format --write",
-    "generate": "cd generator && clojure -M -m rarousnet.generator ../",
+    "generate": "cd generator && clojure -M -m work.gryphoon.weblog.generator",
     "serve": "ws --compress --http2 -d ./.gryphoon/dist",
     "start": "yarn workspace @rarousnet/website start",
     "sync": "yarn workspace @rarousnet/website deploy",

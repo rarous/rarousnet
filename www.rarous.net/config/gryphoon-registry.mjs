@@ -17,7 +17,7 @@ export class GryphoonRegistry extends Registry {
    */
   init({ task }) {
     task("generate-content", async () => {
-      const clj = spawn("clojure", ["-M", "-m", "rarousnet.generator", "../"], {
+      const clj = spawn("clojure", ["-M", "-m", "work.gryphoon.weblog.generator"], {
         cwd: projectPath("../generator"),
       });
       clj.stdout.on("data", data => process.stdout.write(data));

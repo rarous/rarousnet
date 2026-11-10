@@ -1,0 +1,30 @@
+{:theme "rarousnet.weblog"
+ :site {:title "rarouš.weblog"}
+ :weblog {:url "https://www.rarous.net"
+          :path "/weblog/"
+          :section "weblog"
+          :output "weblog"}
+ :paths {:content "content"
+         :dist ".gryphoon/dist"}
+ :locale "cs"
+ :formats {:long-date-time "HH.mm - d. MMMM yyyy"
+           :long-date "d. MMMM yyyy"
+           :long-month-year "MMMM yyyy"
+           :short-month "MMM"
+           :short-date "MMM d"
+           :url-month "MM"
+           :url-day "dd"}
+ :authors {"Aleš Roubíček" {:handle "@alesroubicek@indieweb.social"
+                            :fediverse "@alesroubicek@indieweb.social"}
+           "Alessio Busta" {:handle "@alessiobusta"}}
+ :labels {:tag "Tag" :day "Denník" :month "Měsíčník" :year "Ročenka"}
+ :rss {:limit 10
+       :file "articles.rss"
+       :title "rarouš.weblog"
+       :description "Aleš Roubíček píše o vývoji webových aplikací, čistém kódu a efektivním vývoji."
+       :category "IT/Web Development/Software Development"
+       :copyright "© 2004 - 2025 Aleš Roubíček. All rights reserved."
+       :generator "Gryphoon Weblog v3.5 - static site generator"}
+ :index {:limit 5}
+ :syndication {:title "Syndication feed" :dir "weblog/feed"}
+ :comments {:turnstile-site-key "0x4AAAAAAAOCSb93_fOUweSv"}}

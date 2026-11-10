@@ -10,7 +10,7 @@ Sources for https://www.rarous.net/ website.
 
 ## Site generator
 
-Site generator is a Clojure program in `generator/`, entry point `rarousnet.generator`. It reads files in `content/weblog` and templates in `www.rarous.net/src/html/weblog` and `generator/templates/weblog` and generates the weblog site into `.gryphoon/dist`. Run it with `yarn generate`. See [generator/README.md](generator/README.md) for details.
+Site settings live in `generator/gryphoon.edn`; the generic engine is `work.gryphoon.weblog.generator` (the gryphoon repo's `packages/weblog`), with the site markup in the `rarousnet.weblog` theme. It reads files in `content/weblog` and templates in `www.rarous.net/src/html/weblog` and generates the weblog site into `.gryphoon/dist`. Run it with `yarn generate`. See [generator/README.md](generator/README.md) for details.
 
 ## Build
 

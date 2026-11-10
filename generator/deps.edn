@@ -1,9 +1,5 @@
 {:deps {org.clojure/clojure {:mvn/version "1.12.6"}
-        org.clojure/core.async {:mvn/version "1.9.865"}
-        clj-time/clj-time {:mvn/version "0.15.2"}
-        enlive/enlive {:mvn/version "1.1.6"}
-        cheshire/cheshire {:mvn/version "6.2.0"}
-        work.gryphoon/texy-clj {:git/url "https://github.com/hckr-studio/gryphoon.git"
-                                :git/sha "f931a61f1a6de88995a937eac00a887a398df8f0"
-                                :deps/root "packages/texy-clj"}}
- :paths ["src" "templates", "../.gryphoon/dist/"]}
+        work.gryphoon/weblog {:git/url "https://github.com/hckr-studio/gryphoon.git"
+                              :git/sha "62190f986e69156dc7a777b43ca105b2f51faa1a"
+                              :deps/root "packages/weblog"}}
+ :paths ["src" "../.gryphoon/dist/"]}
