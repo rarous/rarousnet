@@ -16,7 +16,7 @@ Komponenta *MultiView* je novou kompozitní komponentou v ASP.NET 2.0, která je
 
 Tak jsme si teoreticy probrali komponentu MultiView a nyní si ukážeme praktickou ukázku. Takže mějme následující MasterPage:
 
-/---code xml
+/---code aspnet
 <%@ Master Language="C#" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
