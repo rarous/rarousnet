@@ -4,7 +4,7 @@
  :description
  "Firma Developer Express uvolnila sadu vizuálních koponent jak pro WinForms, tak pro WebForms a aby toho nebylo málo, tak i Xpress verzi skvělého CodeRush.",
  :author "Aleš Roubíček",
- :tags #{"webdesign" "vs2008" "coderush" "refactor"},
+ :tags #{"webdesign" "vs2008" "CodeRush" "refactor"},
  :published "2008-11-16T18:53:16.813"}
 ---
 
