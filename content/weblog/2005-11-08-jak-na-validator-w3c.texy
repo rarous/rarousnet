@@ -15,7 +15,7 @@ Striktní výstup dostanou pouze prohlížeče, které mu rozumí (tohle moc nec
 == Update
 Dneska jsem zjistil, že zdrojové stránky asi nefungují, proto tady uvádím zdrojový kód W3CValidator.browser:
 
-/--- code xml
+/--code xml
 <browsers>
     <browser id="W3CValidator" parentID="Mozilla">
         <identification>

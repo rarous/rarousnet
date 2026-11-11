@@ -31,7 +31,7 @@ Postup je jednoduchý. Z [moz-update] si stáhnete rozšíření, které se vám
 
 Výsledná část kódu po editaci bude třeba vypadat následovně:
 
-/---code xml
+/--code xml
 ...
 <em:targetApplication>
     <rdf:Description>

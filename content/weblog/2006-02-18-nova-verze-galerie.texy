@@ -12,7 +12,7 @@ Možná jste si všimli, že mám na svých stránkách fotogalerii:[/galerie.as
 
 Můj plug-in je závislý na výše zmiňované Picase a její exportní šabloně *XML gallery*. Výsledný export se nahraje na ftp, nebo se využije možnost uploadu zazipované galerie přímo přes rozhranní Gryphoonu. Vložení galerie do stránky je stejně tak složité, jako tam vložit obyčejný label :)
 
-/---code xml
+/--code aspnet
 <%@ Register TagPrefix="Gryphoon" TagName="Galerie" Src="~/controls/Galerie.ascx" %>
 …
 <Gryphoon:Galerie ID="Galerie1" runat="server" Folder="~/galerie" ParseDateFromFolder="true">
@@ -27,7 +27,7 @@ U staré verze zde končily možnosti nastavení výsledného vzhledu galerie, p
 
 Poslední věc, která se ještě musí udělat, je svázání dat pomocí příkazu `DataBind()` ve stránce, která má v sobě galerii vloženou.
 
-/---code csharp
+/--code csharp
 void Page_Load(object sender, EventArgs e){
 ...
 DataBind();

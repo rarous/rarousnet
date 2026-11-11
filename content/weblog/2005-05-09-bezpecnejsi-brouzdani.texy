@@ -13,10 +13,10 @@ Pokud používáte systém Windows 2000 nebo XP a brouzdáte Internetem v uživa
 
 Nejprve si vytvořte soubor **prava.reg** a do něho vložte následující řádky:
 
-/--- code
+/--code
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Safer\CodeIdentifiers]
 "Levels"=dword:00020000
-\--- code
+\--code
 
 Uložte ho a potom ho spusťte – zanesete tím novou položku do registrů. Tato položka vám umožní omezit práva některých aplikací. V dalším kroku si spusťte **Místní zásady zabezpečení** (najdete ho v 'Ovládací panely > Nástroje pro správu').
 

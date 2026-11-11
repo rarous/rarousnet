@@ -16,7 +16,7 @@ Chtějme např. z obsahové stránky přidávat do hlavičky stránky **link na 
 
 V prvním kroku si vytvoříme vlastnost, která bude vracet sekci `<head>` výsledné stránky.
 
-/---code csharp
+/--code csharp
 public partial class MyMaster : Master
 {
 	public HtmlHead Head
@@ -29,17 +29,17 @@ public partial class MyMaster : Master
 
 	}
 }
-\---code
+\--code
 
 V druhém kroku nastavíme obsahovým stránkám třídu, která jim má být Mastrem. Každá třída odvozená od Page má vlastnost Master, která je typu Master. Naštěstí se zde používají generika, takže není velkým problémem nastavit si třídu vlastní. Dosáhneme toho vložením následujícího řádku do zdroje obsahové stránky (podobně jako se registrují UserControls).
 
-/---code xml
+/--code aspnet
 <%@ MasterType VirtualPath="~/MyMaster.master" %>
-\---code
+\--code
 
 Pokud by tento řádek v kódu chyběl, museli bychom všude vlastnost Master přetypovat na námi požadovanou třídu, což přináší zbytečné opakování kódu, který není nutné psát. A na konec tu máme malou ukázku toho, jak přidat link na RSS do stránky pomocí vlastnosti Head v našem mástru.
 
-/---code xml
+/--code aspnet
 <%@ Page Language="C#" MasterPageFile="~/MyMaster.master" %>
 <%@ MasterType VirtualPath="~/MyMaster.master" %>
 
@@ -58,4 +58,4 @@ Pokud by tento řádek v kódu chyběl, museli bychom všude vlastnost Master p�
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceholder1" Runat="Server">
 </asp:Content>
-\---code
+\--code

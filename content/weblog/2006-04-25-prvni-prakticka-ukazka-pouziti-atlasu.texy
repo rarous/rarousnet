@@ -13,7 +13,7 @@ takovou pěknou webovou službu, proč ji nevyužít k praktické ukázce využi
 Následůjící kód převádí zadaný text v Texy syntaxu na XHTML a zobrazí ho do stránky
 s polečně s výpisem získaného kódu.
 
-/---code xml
+/--code aspnet
 <%@ Page Language="C#" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

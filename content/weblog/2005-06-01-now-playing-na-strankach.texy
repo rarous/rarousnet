@@ -17,7 +17,7 @@ Zkuzte, jestli je vše správně nakonfigurováno, nejlépe testem přímo na se
 
 Nyní přistoupíme k tvorbě controlu. Předem upozorňuju, že je napsanej v ASP.NET 2 (beta 2), takže nemusí a ani nebude fungovat ve starších verzích.
 
-/--- code csharp
+/--code csharp
 using System;
 using System.Data;
 using System.Configuration;
@@ -77,17 +77,17 @@ public partial class NowPlaying : System.Web.UI.UserControl
     }
   }
 }
-\--- code
+\--code
 
 No a teď prezentační část.
 
-/--- code xml
+/--code aspnet
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="NowPlaying.ascx.cs" Inherits="NowPlaying">
 <div class="box nowplaying">
 <h2>Právě poslouchám</h2>
 <asp:Literal ID="NowPlayingOut" runat="server"></asp:Literal>
 </div>
-\--- code
+\--code
 
 Přeju hodně zábavy.
 

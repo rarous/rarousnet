@@ -23,7 +23,7 @@ k procvičení vzdáleného volání z ASP.NET. Sice to neni tak elegantní ře�
 jako u "Texy WS":[/clanek/64-texy-web-service-ws.aspx], ale je tu další možnost,
 jak Texy do dotnetu implementovat...
 
-/---code csharp
+/--code csharp
 using System;
 using System.IO;
 using System.Net;

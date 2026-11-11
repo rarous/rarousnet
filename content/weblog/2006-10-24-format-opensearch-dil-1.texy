@@ -17,7 +17,7 @@ Pokud máte na svém webu implementováno vyhledávání, můžete svým návšt
 
 Nejprve je nutné napsat OpenSearch Description dokument s definicí  vašeho modulu. Malá ukázka:
 
-/---code xml
+/--code xml
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName>Web Search</ShortName>
@@ -29,18 +29,18 @@ Nejprve je nutné napsat OpenSearch Description dokument s definicí  vašeho mo
   <Url type="application/rss+xml"
        template="http://example.com/?q={searchTerms}&amp;amp;format=rss"/>
 </OpenSearchDescription>
-\---code
+\--code
 
 Ukázka popisuje fiktivní vyhledávač, který poskytuje výsledky hledání ve formě HTML a RSS (dva elementy `Url` s definovaným content-typem), důležitým parametrem je `{searchTerms}`, který klient (např. prohlížeč) nahradí svým dotazem, "další parametry":[http://www.opensearch.org/Specifications/OpenSearch/1.1#OpenSearch_1.1_parameters] . Obsah elementu `ShortName` určuje název vyhledávacího stroje – tento se bude zobrazovat v seznamu vyhledávacích modulů. Další elementy jen přidávají další metadata pro autodiscovery.
 
 Pak stačí přidat do vašich stránek element `link`, který odkazuje na soubor vytvořený v předešlém kroku. Připojení je obdobné s připojováním RSS nebo Atom kanálu. Příklad:
 
-/---code xml
+/--code html
 <link rel="Search"
       href="http://www.example.com/opensearch.xml"
       type="application/opensearchdescription+xml"
       title="Example Search" />
-\---code
+\--code
 
 [* search.png .(rozsvícené tlačítko)[right]*]
 Pokud pak navštívíte takovou stránku, prohlížeč vám dá vědět, že našel modul rozsvícením tlačítka pro výběr modulu.

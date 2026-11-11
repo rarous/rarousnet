@@ -15,7 +15,7 @@ Vytvořil jsem jednoduchou webovou službu, která vrací jména z kalendáře. 
 Jak vidíte jde o velice jednoduchou službu, která se dotazuje do
 databáze svátků. I přes její jednoduchost jsem narazil na zajímavou věc, o které jsem dosud netušil, a to, že pokud službu zavoláte pomocí protokolu HTTP-GET nebo HTTP-POST, tak dojde k chybě, místo vrácení výsledku. Po hodině hledání jsem přišel na to, že ASP.NET 1.1 a novější maj tyto protokoly pro <acronym title="web service" lang="en">WS</acronym> defaultně zablokované. Řešení je ale jednoduché, stačí upravit soubor web.config a vše by mělo fungovat, jak má.
 
-/--- code xml
+/--code xml
 <configuration>
   <system.web>
 
@@ -29,4 +29,4 @@ databáze svátků. I přes její jednoduchost jsem narazil na zajímavou věc, 
 
   </system.web>
 </configuration>
-\--- code
+\--code

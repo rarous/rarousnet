@@ -11,7 +11,7 @@ ASP.NET 2.0 přichází s konceptem SiteMaps spojeným s několika serverovými 
 
 Ve spoustě scénářů to může stačit, ale někdy přijde čas omezit některým uživatelům přístup do některých částí webu. V článku "Creating Menu Based on Role":[http://gridviewguy.com/ArticleDetails.aspx?articleID=165] se autor pokusil nastínit, jak postupovat. Mě se na tom nelíbí jedna věc. Vybírá menu programově podle role. Podle mého skromného názoru je to zbytečná práce, protože ASP.NET 2.0 má v SiteMapu rozlišování rolí zabudované a proto by mělo stačit do web.sitemap souboru přidat omezení na role:
 
-/---code xml
+/--code xml
 <?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode url="~/" title="root" description="Site Map Root">
@@ -19,7 +19,7 @@ Ve spoustě scénářů to může stačit, ale někdy přijde čas omezit někte
         <siteMapNode siteMapFile="~/Navigation/User.sitemap" roles="User" />
     </siteMapNode>
 </siteMap>
-\---code
+\--code
 
 Ale možná se pletu :)
 

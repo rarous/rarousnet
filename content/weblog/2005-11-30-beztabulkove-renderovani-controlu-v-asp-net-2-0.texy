@@ -11,7 +11,7 @@ Již delší dobu jsem se pídil po tom, jak vyřešit takový malý problém s 
 
 Nakonec jsem "našel řešení na jednom blogu":http://blog.dreamprojections.com/archive/2005/04/08/783.aspx a ještě ho trochu poupravil.
 
-/---code csharp
+/--code csharp
 using System;
 using System.Data;
 using System.Configuration;
@@ -127,7 +127,7 @@ namespace PBSoftware.Gryphoon.Controls
 		}
 	}
 }
-\---code
+\--code
 
 --Předem upozorňuju, že tento control musí mít přidělenou nějakou šablonu, jinak nebude fungovat--. Ještě na tom zapracuju, protože se mi nelíbí některé chování.
 

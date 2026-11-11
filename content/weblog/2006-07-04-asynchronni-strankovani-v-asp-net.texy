@@ -16,7 +16,7 @@ Komponenta *MultiView* je novou kompozitní komponentou v ASP.NET 2.0, která je
 
 Tak jsme si teoreticy probrali komponentu MultiView a nyní si ukážeme praktickou ukázku. Takže mějme následující MasterPage:
 
-/---code aspnet
+/--code aspnet
 <%@ Master Language="C#" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -41,7 +41,7 @@ Tak jsme si teoreticy probrali komponentu MultiView a nyní si ukážeme praktic
 
 K ní vytvoříme následující ContentPage:
 
-/---code xml
+/--code aspnet
 <%@ Page Language="C#" MasterPageFile="Atlas.master" Title="Ukázka MultiView" %>
 
 <script runat="server">
@@ -91,7 +91,7 @@ K ní vytvoříme následující ContentPage:
 
 Tato stránka obsahuje dvě tlačítka a jeden MultiView. Tlačítka mají nastarosti přepínat pohledy. Přepínání je prováděno v ovladačích události *Click*. Prozatím nic úchvatného, máme stránku, která umí přepínat svůj obsah, ale stejně se vždy musí poslat požadavek na server, kde se přepne pohled a pak se odešle nová celá stránka. To neřeší náš problém :( Naštěstí konečné řešení je velice blízko :) Stačí oživit stránku pomocí ASP.NET 'Atlas'. Výsledná ContentPage bude vypadat následujícně:
 
-/---code xml
+/--code aspnet
 <%@ Page Language="C#" MasterPageFile="Atlas.master" Title="Ukázka MultiView" %>
 
 <script runat="server">

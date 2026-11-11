@@ -57,7 +57,7 @@ do `admin.js` vložil tento kód:
 // The reason is we are importing modules that can be changed, but the revision will be staled here.
 // The `__BUILD_ID__` symbol is defined in esbuild config (@see task-config.mjs).
 const buildId = __BUILD_ID__;
-\---code
+\--code
 
 A potom jsem upravil nastavení `esbuild`u v souboru `task-config.mjs`, aby definoval symbol `__BUILD_ID__`,
 který se v době buildu nahradí textovým literálem s číslem buildu:

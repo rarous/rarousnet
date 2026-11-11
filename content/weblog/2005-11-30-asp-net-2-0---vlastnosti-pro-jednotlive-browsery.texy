@@ -11,13 +11,13 @@ ASP.NET 2.0 přichází s tzv. deklarativním programováním. V podstatě nemus
 
 Při zkoumání nových vlastností ASP.NET 2.0 jsem narazil na zajímavou fičůrku. Většinu vlastností, které se deklarují v aspx souboru, je možné prefixovat **browser tagem**. Ten vychází ze souboru *.browser, kde je daný prohlížeč definován. Pomocí toho prefixu se dají deklarovat vlastnosti uživatelských prvků pro každý prohlížeč zvlášť. Následující příklad vypíše pozdrav pro daný prohlížeč.
 
-/---code xml
+/--code aspnet
 <asp:Label ID="Label1" runat="server"
         ie:Text="Zdravíme Internet Explorer"
         mozilla:Text="Zdravíme Firefox"
         opera:Text="Zdravíme Operu"
         Text="Zdravíme ostatní" />
-\---code
+\--code
 
 Dokonce to funguje i s odlišováním verzí. Následuje tabulka s několika ukázkovými prohlížeči.
 

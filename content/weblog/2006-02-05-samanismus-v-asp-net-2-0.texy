@@ -17,15 +17,20 @@ Asi první šaman, na kterého narazíte je `asp:CreateUserWizard`, který je so
 
 Krom těchto dvou si můžete přidat libovolné množství vlastních kroků, například krok, ve kterém přidělíme uživateli jeho Role. Každý kontrol, který je odvozený od třídy `Wizard` má vlastnost `WizardSteps`, kam můžete přidávat vlastní kroky šamana. Takže následující kus kódu představuje šamana na vytvoření uživatele s přidělením uživatelské role.
 
-/---code xml
-<asp:CreateUserWizard ID="NovyUzivatelWizard" runat="server" LoginCreatedUser="false" OnActiveStepChanged="NovyUzivatelWizard_ActiveStepChanged" OnContinueButtonClick="NovyUzivatelWizard_ContinueButtonClick">
+/--code aspnet
+<asp:CreateUserWizard ID="NovyUzivatelWizard" runat="server" LoginCreatedUser="false"
+     OnActiveStepChanged="NovyUzivatelWizard_ActiveStepChanged"
+     OnContinueButtonClick="NovyUzivatelWizard_ContinueButtonClick">
     <WizardSteps>
-        <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"                         Title="Vytvořen&#237; nov&#233;ho uživatele"></asp:CreateUserWizardStep>
-        <asp:WizardStep ID="WizardStep1" runat="server" AllowReturn="False"                                     EnableTheming="True" StepType="Step" Title="Role nov&#233;ho uživatele">
+        <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"
+             Title="Vytvořen&#237; nov&#233;ho uživatele"></asp:CreateUserWizardStep>
+        <asp:WizardStep ID="WizardStep1" runat="server" AllowReturn="False"
+             EnableTheming="True" StepType="Step" Title="Role nov&#233;ho uživatele">
             Role nového uživatele<br />
             <asp:CheckBoxList ID="UzivatelskeRoleList" runat="server"></asp:CheckBoxList>
         </asp:WizardStep>
-        <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"                                    Title="Hotovo"><asp:CompleteWizardStep>
+        <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"
+             Title="Hotovo"><asp:CompleteWizardStep>
     </WizardSteps>
 </asp:CreateUserWizard>
 \---
@@ -34,7 +39,7 @@ Jak vidíte, implementace vlastních kroků v designové části není moc náro
 
 Pokud měníte kolekci *WizardSteps*, nezapomeňte na původní kroky, to jen tak pro jistotu :).  A nyní přistoupíme k programové části šamana. Zde musíme ošetřit chování jednotlivých kroků v ovladačích událostí `OnActiveStepChanged` a `OnContinueButtonClick`.
 
-/---code csharp
+/--code csharp
 protected void NovyUzivatelWizard_ActiveStepChanged(object sender, EventArgs e)
 {
 	// pokud je aktivní krok pro výběr rolí

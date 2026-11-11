@@ -58,7 +58,7 @@ Pak tu máme zjevnou duplicitu. Snažíme se převést zadaný kód na souřadni
           col [\1 \2 \3 \4 \5 \6 \7 \8 \9]]
       (if (and (contains? (set row) fst) (contains? (set col) snd))
         [((zipmap row (range 9)) fst) ((zipmap col (range 9))
-\---code
+\--code
 
 Všimněte si, že jsem vynechal vracení keywordu `:error`, místo toho nevrátíme nic. Což je nesmysl. Funkce přece musí něco vracet. Ano, vrací se `nil`. Proč `nil` místo `:error`u? To si povíme za chvíli. Teď se ještě vrátíme k předchozímu kódu. Set v Clojure je speciální verze Mapy, kde klíč i hodnota jsou identické. Funkce `contains?` testuje, zda kolekce obsahuje daný klíč. S touto znalostí, se můžeme Setu s lehkým srdce zbavit úplně:
 

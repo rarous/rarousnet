@@ -10,12 +10,13 @@
   "https://bsky.app/profile/hckr.studio/post/3lhb3upuwsc2v"]}
 ---
 
-[keboola-uploader] je actor na platformě [apify], který slouží ke spolehlivému uploadu velkého množství nascrapeovaných dat
-k dalšímu zpracování do Keboola Connection. Vznikl na základě mnohaletých zkušeností z provozu
-"Hlídače Shopů":[https://www.hlidacshopu.cz/] a dalších klientů, pro které jsme dělali datové pipeliny ve velkém scale.
+[keboola-uploader] je actor na platformě [apify] , který slouží ke spolehlivému uploadu velkého množství nascrapeovaných
+dat k dalšímu zpracování do Keboola Connection. Vznikl na základě mnohaletých zkušeností z provozu [hlidacshopu] a
+dalších klientů, pro které jsme dělali datové pipeliny ve velkém scale.
 
 Hlavní rysy jsou **rychlost a spolehlivost**. Actor umožňuje odladit správně velké *dávky pro upload* do Kebooly, aby
-byl provoz co nejplynulejší. V případě chyb je na místě *retry policy*, která se chytře snaží nepovedený upload opakovat.
+byl provoz co nejplynulejší. V případě chyb je na místě *retry policy*, která se chytře snaží nepovedený upload
+opakovat.
 
 Pokud uploadujete velké množství dat, může celý proces trvat i desítky minut nebo hodiny. A tak můžete narazit na
 "migrace Apify actorů":[https://docs.apify.com/academy/expert-scraping-with-apify/migrations-maintaining-state?fpr=rarous].
@@ -23,31 +24,34 @@ Migrace zastaví aktuální běh actora a spustí ho v jiném kontejneru. *Keboo
 pokračuje v uploadu dat, která ještě uploadována nebyla. Nebude celý upload opakovat od začátku, ale plynule naváže tam,
 kde byl přerušený - tzn. opakuje jen nedokončenou dávku, která byla přerušená.
 
-Keboola Uploader podporuje "Apify Integration":[https://docs.apify.com/platform/integrations/actors/integration-ready-actors?fpr=rarous]
-a tak ho lze snadno zařadit do vašeho workflow. Nebo ho můžete volat přímo z vašich actorů a využít plný potenciál jeho možností.
+Keboola Uploader podporuje
+"Apify Integration":[https://docs.apify.com/platform/integrations/actors/integration-ready-actors?fpr=rarous] a tak ho
+lze snadno zařadit do vašeho workflow. Nebo ho můžete volat přímo z vašich actorů a využít plný potenciál jeho možností.
 
 [* https://res.cloudinary.com/rarous/image/upload/dpr_auto,f_auto,q_auto,w_auto:100:800/v1738652223/weblog/keboola-uploader-integration.jpg .(Keboola Uploader Integration) *]
 
-Můžete explicitně vybrat, jaké sloupečky se z vašich dat použijí, nebo to nechat na uploaderu, který vezme názvy sloupečků
-z první položky v Datasetu. Pokud máte ve vašich datech složitější strukturovaná data, dojde k jejich serializaci do
-formátu JSON, aby je šlo "zpracovávat ve Snowflake transformacích":[https://docs.snowflake.com/en/user-guide/querying-semistructured].
+Můžete explicitně vybrat, jaké sloupečky se z vašich dat použijí, nebo to nechat na uploaderu, který vezme názvy
+sloupečků z první položky v Datasetu. Pokud máte ve vašich datech složitější strukturovaná data, dojde k jejich
+serializaci do formátu JSON, aby je šlo
+"zpracovávat ve Snowflake transformacích":[https://docs.snowflake.com/en/user-guide/querying-semistructured].
 
-[keboola-uploader] mi umožňuje ladit workflows, aby měly co nejlepší propustnost vzhledem k povaze dat.
-To má vliv nejen na to, jak rychle má zákazník důležitá data, ale i kolik to ve výsledku stojí peněz.
+[keboola-uploader] mi umožňuje ladit workflows, aby měly co nejlepší propustnost vzhledem k povaze dat. To má vliv nejen
+na to, jak rychle má zákazník důležitá data, ale i kolik to ve výsledku stojí peněz.
 
 <figure>
 [* https://res.cloudinary.com/rarous/image/upload/dpr_auto,f_auto,q_auto,w_auto:100:800/v1738652210/weblog/keboola-uploader-throughput-tuning.png .(Keboola Uploader - Variace v době běhu v závislosti na velikosti batche) *]
 <figcaption>Ukázka dopadu ladění velikosti batche na dobu uploadu a její variabilitu</figcaption>
 </figure>
 
-Používáním Keboola Uploaderu podpoříte naši práci na neziskovém projektu "Hlídač shopů":[https://www.hlidacshopu.cz/].
+Používáním Keboola Uploaderu podpoříte naši práci na neziskovém projektu [hlidacshopu] .
 
-Pokud chcete Hlídače shopů podpořit ještě víc, **můžete si mne najmout**, abych vám pomohl Keboola Uploader nasadit a/nebo
-**odladit vaše scrapeovací pipeliny**, aby přinášely co nejvíce hodnoty za co nejmíň peněz.
+Pokud chcete Hlídače shopů podpořit ještě víc, **můžete si mne najmout**, abych vám pomohl Keboola Uploader nasadit
+a/nebo **odladit vaše scrapeovací pipeliny**, aby přinášely co nejvíce hodnoty za co nejmíň peněz.
 
 Napiště mi na ales.roubicek@hckr.studio. Rád vám pomůžu.
 
 [apify]: https://apify.com?fpr=rarous Apify
 [keboola-uploader]: https://apify.com/hckr-studio/keboola-uploader?fpr=rarous Keboola Uploader
+[hlidacshopu]: https://www.hlidacshopu.cz/ Hlídače Shopů
 
 

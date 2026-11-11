@@ -21,7 +21,7 @@ Beta 2 respektuje změny v rozhranní "Texy! XML-RPC":[texy-rpc] a již plně po
 Konečně jsem dopsal knihovnu, která zpřístupňuje "Texy!":[texy] pro dotnet 2.0 aplikace. Knihovna interně využívá "Texy! XML-RPC":[texy-rpc] za pomocí knihovny "XML-RPC.net":[rpc-net]. Implementováno je skoro vše, krom GZip komprimace přenosu (v příští verzi přibude možnost přenos komprimovat) --a ještě není plně funkční definování povolených classů, stylů a tagů - konkrétní implementaci musím ještě probrat s DGX:[dgx] :)--
 
 == Ukázka použití
-/---code xml
+/--code aspnet
 <%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,9 +40,9 @@ Konečně jsem dopsal knihovnu, která zpřístupňuje "Texy!":[texy] pro dotnet
     </form>
 </body>
 </html>
-\---code
+\--code
 
-/---code csharp
+/--code csharp
 using System;
 using System.Data;
 using System.Configuration;
@@ -66,7 +66,7 @@ public partial class _Default : System.Web.UI.Page
         Output.Text = texy.ToXhtml(useConfiguration);
     }
 }
-\---code
+\--code
 
 Ukázková stránka obsahuje tlačítko `SubmitButton` po jehož stisknutí dojde k převedení obdahu TextBoxu `Input` pomocí Texy! a výsledek je vypsám pomocí Literalu `Output`.
 

@@ -13,22 +13,22 @@ Když jsem ve verzi 1.x chtěl udělat přístupný formulář, který má popis
 
 Tím prvním je uzavření formulářového prvku přímo do tagu `label`. specifikace toto použití připouští, ale ne vždy je možné ho použít.
 
-/---code xml
+/--code aspnet
 <label>Popiska <asp:TextBox ID="TextBox1" runat="server" /></label>
-\---code
+\--code
 
 V druhém případě se využije atribut `for` elementu `label`, který je referencí na `id` formulářového prvku. Protože se však ID prvků v uživatelských kontrolech, a nejen v nich, mění, nemůžeme napsat obsah atributu `for` natvrdo, ale musíme si pomoci programově. Každý WebControl má vlastnost `ClientID`, která vrací hodnotu atributu `id` po vyrenderování.
 
-/---code xml
+/--code aspnet
 <label for="<%= TextBox1.ClientID %>">Popiska</label>
 <asp:TextBox ID="TextBox1" runat="server" />
-\---code
+\--code
 
 Tak to byl můj starý způsob vytváření formulářových popisků. ASP.NET 2.0 přichází s novinkou. Nyní lze využít `asp:Label` k vytváření formulářových popisků a to pomocí vlastnosti `AssociatedControlID`! Pokud je tato vlastnost vyplněna patřičným ID, dojde k vyrenderování elementu `label` namísto `span`.
 
-/---code xml
+/--code aspnet
 <asp:Label AssociatedControlID="TextBox1" runat="server">Popiska</asp:Label>
 <asp:TextBox ID="TextBox1" runat="server" />
-\---code
+\--code
 
 Sami si vyberte způsob, který vám nejlépe vyhovuje...

@@ -15,7 +15,7 @@ Takže je potřeba v této knihovně udělat několik změn, aby
 správně fungovala čeština. Nejprve je nutné upravit funkci
 **character_data** ve třídě *soap_parser*. Následující kód prostě zakomentujte:
 
-/--- code php
+/--code php
 if($this->decode_utf8) {
   $data = utf8_decode($data);
 }
@@ -24,20 +24,20 @@ if($this->decode_utf8) {
 Dále je potřeba nastavit kódování odchozí zprávy na UTF-8, to se
 dělá v deklaracích třídy *nusoap_base*, řádek
 
-/--- code php
+/--code php
 var $soap_defencoding = 'ISO-8859-1';
 \---
 
 Změňte na:
 
-/--- code php
+/--code php
 var $soap_defencoding = 'UTF-8';
 \---
 
 Tím by měly být problémy se ztrátou českých znaků vyřešeny. Další
 nutnou knihovnou je samotná [texydl]. No a nyní se dostáváme k tomu nejdůležitějšímu - službě samotné.
 
-/--- code php
+/--code php
 <?php
 
 /*  Texy Web Service

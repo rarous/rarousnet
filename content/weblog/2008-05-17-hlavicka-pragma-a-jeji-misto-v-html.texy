@@ -10,7 +10,7 @@
 
 Velmi často se ve zdrojových kódech HTML stránek potkávám se zajímavým mýtem a to s následujícím tagem:
 
-/---code xml
+/--code html
 <meta http-equiv="pragma" content="no-cache">
 \--code
 
