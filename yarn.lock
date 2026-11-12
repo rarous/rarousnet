@@ -1218,6 +1218,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gryphoon/texy@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@gryphoon/texy@npm:2.1.0"
+  dependencies:
+    linkedom: "npm:0.18.14"
+  checksum: 10/20b6c51d708ed4b73b75351c6e2037d286fbfec6128efb9f35f61cac3e32d1bab62d23ccaaa6d0030b716a6311cfc5074d6f7c621cb8c1359e48a997af75b9f0
+  languageName: node
+  linkType: hard
+
 "@gulpjs/messages@npm:^1.1.0":
   version: 1.1.0
   resolution: "@gulpjs/messages@npm:1.1.0"
@@ -2780,7 +2789,7 @@ __metadata:
   dependencies:
     "@cloudflare/pages-plugin-turnstile": "npm:1.0.2"
     "@cloudflare/workers-types": "npm:5.20260926.1"
-    "@gryphoon/texy": "npm:2.0.2"
+    "@gryphoon/texy": "npm:2.1.0"
     "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.4"
     "@rarousnet/website": "workspace:*"
     cookie: "npm:2.0.1"
