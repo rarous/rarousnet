@@ -17,7 +17,8 @@ Rozhodl jsem se pokračovat v započatém stylu, který jsem zvolil pro svoji ho
 
 Musel jsem odladit několik bugů, protože tohle bylo poprvé, co jsem je použil. :) Ale nakonec se z toho vyklubal celkem použitelný a elegantní kus softwaru. Proč elegantní? Líbí se mi "definování validačních pravidel":[clanek(247)] (sice zatím pouze serverových), znovupoužitelnost kódu apod.
 
-== NForms v akci
+NForms v akci
+=============
 
 Když jsem vymýšlel, jak vlastně budu nově komentáře zpracovávat, rozhodl jsem se pro handler, který bude obsluhovat požadavky na akce a zavolá správnou třídu, která má požadavek zpracovat – v tomto případě ukládač komentářů. (Tento model jsem zvolil protože, každá třída by měla dělat pouze jednu věc, proto komentáře nezpracovává ta samá, co prezentuje články.) Jenže teď jsem stál před problémem, že budu muset definovat ten samý formulář na dvou místech. Naštěstí u NForms to není třeba.
 
@@ -81,7 +82,8 @@ namespace Rarous.Net.Components {
 
 Tento formulář pak použivám ve View i handleru. V handleru se vytváří s daty poslanými přes POST, která se pak validují a dále zpracovávají. Líbí se mi, že data se předávají jako `NameValueCollection`, díky tomu se dá bez problému načítat z `Request.Forms`, `Request.QueryString`, nebo z kolekce `Cookies.Values`. Těmi můžu data předvyplňovat, nebo je nechat validovat a tak. V budoucnu by mohlo přibýt i inteligentní vytváření objektů…
 
-== Další featury
+Další featury
+=============
 
 1. U komentářů jsem oprášil Gravatary, které jsem tu už kdysi míval. Použil jsem "implementaci z dotnetKicks":[gravatar], kde se používá lokální cachování.
 2. Bezpečnostní otázka se vyplňuje JavaScriptem, takže už vás nebude otravovat.
@@ -90,7 +92,8 @@ Tento formulář pak použivám ve View i handleru. V handleru se vytváří s d
 
 Jsou to takové drobnosti, ale mám z nich radost, protože jsem je dlouho dobu odbýval.
 
-== Závěrem
+Závěrem
+=======
 
 Ještě mi zbývá pár věcí dopsat, aktualizovat odkazy v článcích na nové URL, ale už jsou to spíš drobnosti (doufám). Ještě bych chtěl závěrem poděkovat Davidovi:[latrine] a Honzovi:[filosof], protože u nich jsem se dost inspiroval. Taky děkuju Exíkovi:[exik] za hodnotné připomínky, Jerrymu:[jerrysohn] za hosting a naší zahradě za příjemné pracovní prostředí atd.
 

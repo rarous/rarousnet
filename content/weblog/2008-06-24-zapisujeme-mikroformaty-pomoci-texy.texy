@@ -17,7 +17,9 @@ O tom, co jsou mikrofomáty se třeba dočtete na [microformats-cz].
 Pokud se vám to nechce dohledávat, tak vězte, že jde o kusy (X)HTML((Hypertext Markup Language))
 kódu, které mají vyšší sémantiku. Začněme tedy s jednoduchými ukázkami.
 
-==rel-design-pattern
+rel-design-pattern
+==================
+
 Jedním z nejjednodušších vzorů je užití atributu `rel` u odkazů. Tento atribut se používá
 k označení vztahu k odkazovanému dokumentu. Odkazy se dají v Texy zapsat několika způsoby,
 já s oblibou využívám reference, které vypisuju na konci dokumentu. Pro mne je to
@@ -32,7 +34,9 @@ pak mnohem přehlednější, mít všechny odkazy na jednom místě.
 
 V předchozí ukázce jsem použil "vzor rel":[rel-pattern] při definici mikroformátů [xfn], [rel-tag] a permalink z HTML4.
 
-==vizitky hCard
+vizitky hCard
+=============
+
 O něco pokročilejším mikroformátem je [hCard].
 
 /--code texy
@@ -55,7 +59,9 @@ Telefon:
 Takto nějak může být v Texy zapsaná vizitka - kontaktní informace. Je to zkrácená verze,
 toho co mám "v kontaktu":[kontakt] na titulce.
 
-==tracklisty hAudio
+tracklisty hAudio
+=================
+
 Dalším mikroformátem, který se může hodit je [hAudio], sloužící k popisu hudebních děl.
 
 /--code texy
@@ -76,14 +82,17 @@ Ke stažení "dj set .[category]" [download] (MP3 128 kbps; 36,4 MiB)
 
 Tohle je například živá ukázka ze včerejšího "vydání setu Seven":[clanek(285)].
 
-==Závěr
+Závěr
+=====
+
 Doufám, že jsem předvedl pár praktických ukázek užití mikroformátů v Texy!
 Nejsem si jistý, zda lze syntaxí Texy pokrýt všechny možné nuance mikroformátu,
 ale ona k tomu ani není přímo určena. Každopádně mnohé lze užívat bez problémů.
 Zajímavým cvičením dnes pro mne bylo, jak v Texy zapisovat Texy :)
 
 /--div .[hslice #related]
-== Související .[entry-title]
+Související .[entry-title]
+===========
 .[entry-content]
 * [clanek(282)]
 * [clanek(267)]

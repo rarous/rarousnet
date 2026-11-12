@@ -31,7 +31,8 @@ Oproti tomu `LayoutTemplate` přichází s tím, že šablona Headeru i Footeru 
 
 Pěkné, že? Někdo se možná zalekne `runat="server"`, že by to třeba mohlo renderovat něco jinýho než by chtěl. Nebude ;)
 
-== Jak to funguje?
+Jak to funguje?
+===============
 Lepší bude si to celé vysvětlit na ukázce kódu. Naimplementujeme si vlastní LayoutTemplateable control. Začneme tím, že si vytvoříme rozhranní `ILayoutTemplateable`.
 
 /--code csharp

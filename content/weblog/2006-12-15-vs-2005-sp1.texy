@@ -12,6 +12,7 @@ Microsoft dnes uvolnil Service Pack 1 pro Visual Studio 2005. Update je jak pro 
 
 Máte už někdo zkušenosti s instalací?
 
-== Update 1
+Update 1
+========
 
 První poznatek z instalace: Nejprve odinstalujte Web Application Project, zkrátíte si tím dobu instalace. A radši pozavírejte všechna okna ať neriskujete jejich zavírání po půl hodině a opětovné nekonečné čekání...

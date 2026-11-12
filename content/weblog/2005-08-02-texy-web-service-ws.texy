@@ -7,13 +7,21 @@
  :published "2005-08-02T18:40:00"}
 ---
 
-Již dlouhou dobu používám [texy] v několika webových projektech, které používají redakční systém [textpattern]. Na syntax Texy! jsem si zvykl a líbí se mi, jak jednoduše dostanu XHTML validní kód. Už v začátku jsem chtěl přepsat Texy! do dotnetu, abych ho mohl použít i v mém redakčním systému Gryphoon. Jenže Texy! má velice rozsáhlé zdrojové kódy a tak se mi do toho moc nechtělo, i když by to byla velice zajímavá zkušenost. Jednoho krásného dne mě však napadlo, že by bylo docela zajímavé udělat z Texy! webovou službu, ke které může přistupovat v podstatě kdokoliv.
+Již dlouhou dobu používám [texy] v několika webových projektech, které používají redakční systém
+[textpattern] . Na syntax Texy! jsem si zvykl a líbí se mi, jak jednoduše dostanu XHTML validní kód.
+Už v začátku jsem chtěl přepsat Texy! do dotnetu, abych ho mohl použít i v mém redakčním systému
+Gryphoon. Jenže Texy! má velice rozsáhlé zdrojové kódy a tak se mi do toho moc nechtělo, i když by
+to byla velice zajímavá zkušenost. Jednoho krásného dne mě však napadlo, že by bylo docela zajímavé
+udělat z Texy! webovou službu, ke které může přistupovat v podstatě kdokoliv.
 
-Nakonec jsem se rozhodl službu napsat sám a něco se přiučit v [php] (né že by to byla moje priorita, ale každá zkušenost dobrá). Zjistil jsem, že PHP 4.x nemá podporu pro [soap] volání, tak jsem našel knihovnu [nusoap]. Knihovna nuSOAP je univerzální knihovnou jak pro WS klienty, tak pro WS servery. Jedinou podivností této knihovny je, že z nějakého zvláštního důvodu převádí UTF-8 na ISO-8859-1 a pak zpět, čímž dojde ke ztrátě znaků s diakritikou.
+Nakonec jsem se rozhodl službu napsat sám a něco se přiučit v [php] (né že by to byla moje priorita,
+ale každá zkušenost dobrá). Zjistil jsem, že PHP 4.x nemá podporu pro [soap] volání, tak jsem našel
+knihovnu [nusoap] . Knihovna nuSOAP je univerzální knihovnou jak pro WS klienty, tak pro WS servery.
+Jedinou podivností této knihovny je, že z nějakého zvláštního důvodu převádí UTF-8 na ISO-8859-1 a
+pak zpět, čímž dojde ke ztrátě znaků s diakritikou.
 
-Takže je potřeba v této knihovně udělat několik změn, aby
-správně fungovala čeština. Nejprve je nutné upravit funkci
-**character_data** ve třídě *soap_parser*. Následující kód prostě zakomentujte:
+Takže je potřeba v této knihovně udělat několik změn, aby správně fungovala čeština. Nejprve je
+nutné upravit funkci **character_data** ve třídě *soap_parser*. Následující kód prostě zakomentujte:
 
 /--code php
 if($this->decode_utf8) {
@@ -21,8 +29,8 @@ if($this->decode_utf8) {
 }
 \---
 
-Dále je potřeba nastavit kódování odchozí zprávy na UTF-8, to se
-dělá v deklaracích třídy *nusoap_base*, řádek
+Dále je potřeba nastavit kódování odchozí zprávy na UTF-8, to se dělá v deklaracích třídy
+*nusoap_base*, řádek
 
 /--code php
 var $soap_defencoding = 'ISO-8859-1';
@@ -34,8 +42,8 @@ Změňte na:
 var $soap_defencoding = 'UTF-8';
 \---
 
-Tím by měly být problémy se ztrátou českých znaků vyřešeny. Další
-nutnou knihovnou je samotná [texydl]. No a nyní se dostáváme k tomu nejdůležitějšímu - službě samotné.
+Tím by měly být problémy se ztrátou českých znaků vyřešeny. Další nutnou knihovnou je samotná
+[texydl] . No a nyní se dostáváme k tomu nejdůležitějšímu - službě samotné.
 
 /--code php
 <?php
@@ -109,8 +117,8 @@ $server->service($HTTP_RAW_POST_DATA);
 ?>
 \---
 
-Toť vše drazí čtenáři. Vlastně ještě ne, tohle je první
-příspěvek na tomhle blogu, který je formátován pomocí Texy!
+Toť vše drazí čtenáři. Vlastně ještě ne, tohle je první příspěvek na tomhle blogu, který je
+formátován pomocí Texy!
 
 [texy]: http://texy.info/ Texy!
 [texydl]: http://www.texy.info/cz/download knihovna Texy!

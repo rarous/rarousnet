@@ -9,7 +9,8 @@
 
 Dnes jsem přidal další box do pravého panelu. Jmenuje se **Právě poslouchám** a zobrazuje aktuální přehrávanou písničku nebo video v mém počítači. Funguje to díky plug-inu [songwriter] pro [wmp] 9 a novější, ten uploaduje přes FTP XML s požadovanými informacemi, a vlastnímu controlu pro výpis těchto informací.
 
-=== Jak na to
+Jak na to
+=========
 
 Nejprve je nutné si nainstalovat plugin SongWriter a nastavit si co a kam se má generovat. Okno s nastavením na vás vyskočí po instalaci pluginu a zapnutí Media Playeru. Pokud by nevyskočilo najdete ho v menu Možnosti \ Nastavení \ Moduly Plug-in, Kategorie: Pozadí, SongWriter Plugin, Vlastnosti. Tady si navolíte vlastnosti, které chcete zobrazit, zvolíte formát XML a nastavíte vlastnosti FTP připojení (cesta nesmí končit lomítkem).
 

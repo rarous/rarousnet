@@ -14,7 +14,9 @@ Kolega Filip – ten, díky němuž jsem šel na školení :) – řeší zajím
 
 Můj odhad je, že služba je napsaná v PHP 5, které má podporu SOAPu, vlastní zkušenosti s tím ale nemám. Na PHP 4 jsem zkoušel framework nuSOAP, který má trochu odlišné výstupy než zmiňovaná služba. PHP 5, tedy přináší možnost vytvářet a konzumovat webové služby běžící na protokolu SOAP, ale jeho výstupy si pravděpodobně neodpovídají. WSDL by totiž měl popisovat, jak bude výsledná SOAP zpráva vypadat a konzument se na to spoléhá, ale výstupní zpráva má úplně jiný formát. To pěkně děkuju. To si mám napsat vlastní WSDLko, abych mohl konzumovat cizí službu, na kterou se nemohu spolehnout, nebo ručně parsovat hodnoty z příchozích zpráv a skládat zprávy odchozí? A co když se za čas služba pozmění? Bodejď by pak WS nebyly považovány za další webovou bublinu, s tímhle přístupem to ani jinak nejde…
 
-== Slovníček
+Slovníček
+=========
+
 SOAP:[http://www.w3.org/TR/soap12-part0/]:
  - Simple Object Access Protocol
  - XML protokol pro podporu komunikace webových služeb nejen přes HTTP

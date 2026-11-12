@@ -12,11 +12,13 @@ Na Codeplexu se objevil nový opensource projekt a není to nic menšího než [
 
 No není to skvělé?
 
-== K čemu je to dobré?
+K čemu je to dobré?
+===================
 
 NForm jsem napsal jako programátorské cvičení. Líbila se mi Davidova:[dgx] myšlenka, chtěl jsem napsat něco v C# 3.0… Jenže je to taky docela užitečná věc. Daj se pomocí toho snadno vytvářet znovupoužitelné formuláře nezávislé na infrastruktuře. Můžete je používat jak v klasickém [aspnet] modelu (můžete použít více než jeden formulář na stránce), tak v MVC:[aspnetmvc] nebo MVP:[mvp] modelu.
 
-== Další vývoj
+Další vývoj
+===========
 
 Aktuálně připravuju podrobnější "dokumentaci na wiki":[nforms], ale pro začátek jistě bude stačit pár mých spotíků tady na blogu, příklady užití najdete v Unit Testech, popřípadě další moudra najdete v nedokonalých XML komentářích v samotném kódu.
 
@@ -24,12 +26,14 @@ Při psaní wiki jsem už našel nějaké možnosti pro vylepšení, tak až bud
 
 Časem bych chtěl přidat podporu validace na straně klienta. Zatím se generují jen některé třídy, na které lze napojit vlastní implementace v JavaScriptu, ale není to nic pro složitější validaci…
 
-== Credits
+Credits
+=======
 
 Musím "poděkovat Davidovi":[davidek] za inspiraci, NForms jsou značně obšlehnuté od "Nette::Forms":[nette] (dříve známé jako NForms), trochu inspirace jsem pobral i u "New Forms z djanga":[django], některé zajímavé nápady, jak využít novinky C# 3.0 pro změnu z [aspnetmvc]. Takže díky!
 
 /--div .[#related hslice]
-==Související .[entry-title]
+Související .[entry-title]
+===========
 .[entry-content]
 * [clanek(245)]
 * [clanek(247)]

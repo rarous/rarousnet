@@ -10,19 +10,25 @@
 O tom, že jsem spustil novýho "rarouše na net":[http://rarous.net], jste se mohli
 dočíst minule:[clanek(257)]. Teď ještě pár postřehů s odstupem času...
 
-== Hledání
+Hledání
+=======
+
 Jednou z plánovaných funkcí je hledání. Používám kustomizované Live Search.
 Stačí mi přidat jen malý formulář, ale zatím se mi nechce.
 Vždyť většina návštěvníků má stejně prohlížeč s hledacím políčkem a může si
 "snadno přidat můj plugin":[clanek(185)].
 
-== Styly
+Styly
+=====
+
 Wow, napsal jsem to celý ve standard modu s CSS 2.1 selektorama a vůbec jsem to
 nikterak neladil a funguje to všude stejně - pokud to teda umí CSS 2.1... ;)
 Pak jsem kolegovi diktoval adresu a najednou se ubjevila nějaká žumpa, heh bylo to v IE6.
 Je to hnus velebnosti, ale upravovat to nebudu.
 
-== Hlavní sloupec
+Hlavní sloupec
+==============
+
 Lukáš Mačí mi jako reakci na mou novou homepage sdělil:
 
 > na muj vkus je docela potlacenej ten hlavni sloupek
@@ -31,7 +37,9 @@ No netušil jsem, kterej hlavní sloupec myslí, já totiž žádnej sloupec za 
 Proto maj oba obsahový boxy přidělenou stejnou část obrazovky.
 
 
-== Agregace
+Agregace
+========
+
 Pro načítání většiny dat na HP je použita agregace z různých kanálů - proto je ta stránka taková sociální.
 Celý kód pro načítání všech boxů je asi na 10 řádek a dost z toho zabíra metoda pro načtení feedu. :)
 Všechno je to úžasně jednoduché, díky novému 3.5 frameworku.
@@ -69,7 +77,9 @@ private static string GetThumbnailUrl(SyndicationItem item) {
 }
 \--code
 
-== Na závěr
+Na závěr
+========
+
 Nakonec jsem se rozhodl, že i na agregovanou HP nasadím [texy]. Zatim tam není,
 ale důvody pro ni jsou jasné: z twittru nechoděj URL jako odkazy, typografický pravidla nejsou vůbec nikde.
 Takže k tomu bude Texy! dobrá. Možná mě to donutí napsat tu novou

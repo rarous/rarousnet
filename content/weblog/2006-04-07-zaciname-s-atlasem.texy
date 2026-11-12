@@ -34,7 +34,8 @@ Základní komponentou je `ScriptManager`, bez něho jsou všechny komponenty mr
 
 Tak a to by pro začátek mohlo stačit. Dnes jsme sfoukli takové uvedení do problematiky, v příštím díle se podíváme na zoubek už praktickým ukázkám a začneme s nejsilnější komponentou - `UpdatePanel`. Ukážeme si, jak se pomocí něho dají snadno převést současné ASP.NET aplikace na AJAXové.
 
-== Zajímavé odkazy
+Zajímavé odkazy
+===============
 * "ASP.NET Atlas":[Atlas] - hlavní stránka projektu
 * "Nikhil Kothari":[Nikhilk] - hlavní architekt Atlasu
 * "Scott Guthrie":[ScottGu] - šéf vývoje ASP.NET, ISS a Visual WebDeveloper

@@ -7,12 +7,16 @@
  :published "2006-04-20T12:35:31.787"}
 ---
 
-== Update 2
+Update 2
+========
+
 Protože se změnil protokol komunikace s Texy RPC a já měl i pár nápdů na vylepšení,
 použijte raději "Texy.net RC1":[/clanek/196-texy-net-release-candidate.aspx],
 je to **jediná funkční** verze ;)
 
-== Update
+Update
+======
+
 *Napsal jsem knihovnu, která zprostředkovává kounikaci s Texy! XML-RPC,
 která je mnohem lepší než toto řešení. Najdete ji v článku "Texy.net 1.0 beta":[/clanek/158-texy-net-1-0-beta.aspx]*
 

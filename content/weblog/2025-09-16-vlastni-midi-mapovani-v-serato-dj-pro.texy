@@ -21,7 +21,8 @@ protože přes UI se moc daleko nedostanete. Dobrým odrazovým můstkem jsou dv
 "Hacking Serato DJ’s MIDI Mapping":[modifiers] a
 "Even More Serato DJ Pro MIDI Hacking":[multi-modifiers].
 
-## My Serato DJ Mapping
+My Serato DJ Mapping
+====================
 
 Před lety jsem si pro snažší debugování vlastního mapování dvou "XONE K2":[xone-k2] kontrolerů
 udělal nástroj "My Serato DJ Mapping":[https://serato.rarousmusic.com/]. Ten mi trochu supluje
@@ -39,7 +40,8 @@ je to tam řešený pomocí vrstev, které ve výsledku mají pro každou barvu 
 červená barva a žlutá nebo zelená musí být v XML víc nahoře, aby přepsala červenou. Což funguje jen
 občas. Asi XML zpracovávají paralelně a interpretace raceuje, nebo nevim...
 
-## Serato DJ 4.0
+Serato DJ 4.0
+=============
 
 Beta verze Serato DJ Pro 4.0 už je nějakou dobu venku a krom přepracované knihovny (fakt super
 posun) se taky rozbilo i mé dosavadní mapování, které nejde do 4.0 načíst, protože se změnil
@@ -48,7 +50,8 @@ nezdokumentovaný formát XML. Co se změnilo se nikde nedočtete.
 Tak jsem se pustil do nové verze mapování, do které jsem chtěl promítnout i nějaké nápady na
 zlepšení, co jsem za poslední roky hraní dostal.
 
-### Můj layout
+Můj layout
+----------
 
 První věc, co bych fakt chtěl, je automaticky přepnout Serato do "Stack" layoutu, otevřít widget s
 FX a Samplerem a zapnout Quatization. Zatím jsem nepřišel na to, jak toho docílit pouhým připojením
@@ -114,7 +117,8 @@ Nakonec rozsvítíme/zhasneme LEDku tlačítka v závislosti na stavu FX panelu.
 
 Krása. Ani to moc nebolelo.
 
-### Přepínání velikosti Beat Jump Steps
+Přepínání velikosti Beat Jump Steps
+-----------------------------------
 
 V předchozím mapování jsem měl na každé šavli dedikovaná 3 tlačítka pro explicitní nastavení
 velikosti skoku. V nové verzi jsem chtěl docílit chování podobné jako na
@@ -187,7 +191,8 @@ Mám rozpracovaný i stavový automat na světelnou zpětnou vazbu, jak velký s
 nemusel hledat na displayi, ale zatím si nejsem jistý, jak snadný to bude dekódovat během hraní -
 mám k dispozici tři barvy a tmu na dvou tlačítkách.
 
-### Sync
+Sync
+----
 
 Serato má zvlášť tlačítka `Sync` a `Sync Off`, protože Sync není jen toggle, ale můžete ho mačkat
 víckrát za sebou - chování se v závislosti na konfiguraci mění. Mě trochu mrzí, že mi to bere dvě
@@ -195,7 +200,8 @@ tlačítka na každý šavli a chtěl bych to mít třeba přes `Shift`, jako je
 ale zatím se mi nedaří úspěšně pracovat s `modifier_x`, který by měl sloužit jako proxy signál k
 přepínání duálních akcí. Takže to zatím nechávám jak to je, ale budu to zkoušet dál.
 
-## Budoucnost
+Budoucnost
+==========
 
 Do budoucna bych chtěl svůj nástroj rozšířit o možnost uploadu XML souboru pomocí drag'n'drop,
 deduplikaci definic a možnost exportu. Pak možnost definice přesouvat nahoru dolu, aby se dalo

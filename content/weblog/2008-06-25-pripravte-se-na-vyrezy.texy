@@ -10,7 +10,8 @@
 
 Včera jsme se podívali na mikroformáty v Texy! Dnes si představíme novinku, kterou přináší Internet Explorer ve verzi 8. Tou novinkou jsou WebSlices – webové výřezy.
 
-==Praktické využítí
+Praktické využítí
+=================
 
 Výřezy umožňují, aby uživatel mohl sledovat změny části webové stránky. Podobně jako u [rss] nebo [atom] jde o syndikaci obsahu malé části webové stránky. Prakticky to může vypadat třeba následovně.
 
@@ -20,13 +21,15 @@ Jiný příklad, který mě napadá. Stránky nějakého hudebního festivalu ob
 
 Uplatnění vidím i jinde.
 
-==Technické zpracování
+Technické zpracování
+====================
 
 Výřezy jsou části stránky označené třídou `hslice` a **nějakým id** a obsahující elementy s třídou `entry-title` a `entry-content` z mikroformátu hAtom:[hatom]. Živý příklad ze "včerejšího článku":[clanek(286)] je lepší než tisíc slov:
 
 /--code texy
   /--div .[#related hslice]
-== Související .[entry-title]
+Související .[entry-title]
+===========
 .[entry-content]
 * [clanek(282)]
 * [clanek(267)]
@@ -43,7 +46,8 @@ Po jeho odsouhlasení se stránka přidá do oblíbených a do feedů. Po rozkli
 
 [* webslice2.png .(náhled výřezu stránky)*] .[image]
 
-==Další možnosti
+Další možnosti
+==============
 
 U výřezů funguje automatické nalezení podobně jako u RSS a Atom feedů, vlastně jsou ve stejné nabídce, ale jsou odlišeny fialovou ikonkou výřezu. Automaticky se vybere první nalezený výřez. Pokud ale chcete nabídnout k přihlášení jako první jiný výřez, lze to ovlivnit vložením `meta` tagu do hlavičky:
 
@@ -61,12 +65,14 @@ Dále je možné omezit platnost výřezu pomocí date-patternu:[clanek(267)] s 
 
 Lze i definovat vzhled výřezu a pracovat s nimi na úrovni JS API, ale to už je mimo rámec tohoto článku.
 
-==Formát hAtom
+Formát hAtom
+============
 
 Jak jsem již psal výše, výřezy jsou z části postavené na mikroformátu hAtom:[hatom]. Ten slouží k definování něčeho jako Atom feed ve stránce. Dají se jím celkem trefně popsat blogové zápisky, protože obsahuje téměř všechny třídy, které se můžou k popisu blogového zápisku hodit. Proto když budete dělat novou šablonu pro svůj blog, zkuste se u tohoto mikroformátu inspirovat.
 
 /--div .[#related hslice]
-==Související .[entry-title]
+Související .[entry-title]
+===========
 .[entry-content]
 * [clanek(286)]
 * [clanek(267)]

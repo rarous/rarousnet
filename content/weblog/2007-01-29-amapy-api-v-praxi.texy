@@ -15,7 +15,8 @@ Teď už možná chápete, k čem je první ukázka dobrá ;)
 
 Happy coding.
 
-== Update
+Update
+======
 
 Množí se případy s hláškou chybný GUID. Proto čtěte pozorně. :) Pro to aby bylo možné
 API používat je nutné si "vygenerovat GUID":[genGUID] pro "konkrétní URL" na stránkách AMapy API.

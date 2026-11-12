@@ -19,7 +19,8 @@ tak i schéma:[schema] pro snadnější editaci konfigurace. Schéma si zkopíru
 `C:\Program Files\Microsoft Visual Studio 8\Xml\Schemas\DotNetConfig.xsd`
 přidejte následující kód: `<xs:include schemaLocation="Custom/GryphoonConfig.xsd" />`.
 
-## Ukázka použití
+Ukázka použití
+==============
 
 **web.config**
 /--code xml
@@ -70,7 +71,8 @@ Doufám, že alespoň někomu to pomůže k snadnějšímu používání Texy! n
 najdete nějakou chybku, neváhejte a sdělte mi ji, ať už v komentářích, nebo na e-mail:[rarous+texy@gmail.com]. Za každý
 feedback budu rád. :)
 
-## Ke stažení
+Ke stažení
+==========
 
 * [texy-net]
 * [schema]

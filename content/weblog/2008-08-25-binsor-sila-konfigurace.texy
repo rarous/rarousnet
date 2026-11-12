@@ -16,11 +16,13 @@ Velice často se můžeme setkat s konfigurací komponent v XML. Ať už je to [
 
 Velkou nevýhodou XML, je jeho omezené výrazivo. Špatně se v něm píše `foreach` nebo `if`. Prostě na složitější konstrukce je potřeba programovací jazyk. A nebo skriptovací!
 
-==Boo na scénu
+Boo na scénu
+============
 
 [boo] je staticky typovaný objektový jazyk nad [cli] (dot net) inspirovaný syntaxí Pythonu:[python]. Jeho hlavní silou je metaprogramování. Na úrovni kompilátoru se snadno dají psát makra. Takových maker lze využít k tvorbě přehledných [dsl] a  jednou z takových je i Binsor.
 
-== Windsor + Boo = Binsor
+Windsor + Boo = Binsor
+======================
 
 [windsor] je "IoC((Inversion of Control)) kontejner":[injection] na platformě dot net a je součástí "opensource projektu Castle":[castle]. Windsor má v základu dvě možnosti jak konfigurovat komponenty.
 
@@ -29,7 +31,8 @@ Velkou nevýhodou XML, je jeho omezené výrazivo. Špatně se v něm píše `fo
 
 XML konfigurace je nejčastěji užívanou možností, kvůli výše popsaným výhodám. V trunku se nedávnou objevila i konfigurace pomocí DSL na principu fluent interface přímo v C#. Taková konfigurace je velice pěkná, ale je tu pořád nutnost při každé změně znova celý projekt kompilovat. Proto je tu [binsor], který si bere sílu programovacího jazyka, efektnost XML konfigurace a navíc jednoduchost a přímočarost syntaxe.
 
-== Konfigurace komponent
+Konfigurace komponent
+=====================
 
 Nejčastější aktivitou s Binsorem nejspíš bude registrace komponent. :)
 
@@ -57,7 +60,8 @@ for type in AllTypesBased of Controller("MyApplication.Web"):
 
 Tento kód zaregistruje všechny controllery (třídy, které jsou potomky třídy `Controller`)  z assembly `MyApplication.Web`.  Krom generické metody `AllTypesBased`, je tu ještě generická metoda `AllTypesWithAttribute` a negenerická `AllTypes`. Všechny mají jako parametr název assembly, jejíž typy procházejí.
 
-== Facility
+Facility
+========
 
 Neméně důležitou součástí konfigurace jsou facility, které dodávají kontejneru nové možnosti a zapouzdřují větší sady komponent do logických jednotek. Pro ukázku konfigurace ActiveRecord komponent pomocí Binsoru:
 
@@ -76,7 +80,8 @@ facility ActiveRecordFacility:
             connection.connection_string = 'connectionString1'
 \--code
 
-== Shrnutí
+Shrnutí
+=======
 
 Osobně se mi možnosti konfigurace přes Binsor velice líbí, ale je celkem možné, že ne každému to může vyhovovat. Pokud ale používáte Windsor a přijde vám XML konfigurace nepřehledná, je toto možná cesta, jak z toho ven. Pokud chcete nějaké lepší příklady, doporučuju si stáhnout SVN repository `https://rhino-tools.svn.sourceforge.net/svnroot/rhino-tools/trunk/rhino-commons` a projít si testy. Jako editor se mi osvědčil [sharpdevelop], který má podporu pro Boo přímo v základu, nebo doinstalovat [boostudio] do Visual Studia.
 

@@ -12,7 +12,8 @@ Zrovna předevčírem jsem měl v plánu napsat tenhle článek, ráno jsem si n
 
 Někdy před rokem jsem publikoval ukázku, jak si vytvořit vlastní kontrol s [clanek(213)]. Před pár týdny zase pomocníka na "vyhledávání komponent ve stránce i mimo jmenný kontejner":[clanek(268)]. To jsou takoví pomocníci, kteří mi usnadňují tvorbu serverových ovládacích prvků. A dneska si ukážeme jejich dalšího bratříčka - **generický kontejner**.
 
-== Kontejner
+Kontejner
+=========
 
 Kontenery se používají u šablonovaných prvků svázaných s daty. Slouží jako držitel dat pro konkrétní instanci šablony. Jistě jste se setkali s **Eval**ováním, když jste prováděli databinding. Problém je v tom, že s sebou přináší značnou režii spojenou s boxingem. Výhodnější je používat plně typový kontejner. Zvýšíte tím nejen výkon stránky, ale i zístkáte vyšší komfort v podobě Intellisense v šabloně.
 
@@ -44,7 +45,8 @@ public class EmptyContainer : Control, INamingContainer {
 
 S těmito kontejnery se dá pokrýt obrovské množství potřeb. Jak je využít v praxi si ukážeme v následující části.
 
-== Generický repeater
+Generický repeater
+==================
 
 Nyní vezmu kostičky naší stavebnice a postavím z nich základ pro vypisovače silně typových dat.
 
