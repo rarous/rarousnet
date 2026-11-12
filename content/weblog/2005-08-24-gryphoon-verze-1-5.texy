@@ -13,7 +13,7 @@ neni zcela dopsaný. Po dokončení úprav administrace dojde k povýšení Gryp
 verzi 2.0 bude verze 1.7 s funkčním Rewritingem adres. Verze 1.8 bude již konečně pracovat u uživatelskými rolemi.
 Finální 2.0 bude podporovat více blogů a odolnější spamfiltering a tu pravděpodobně uvolnim pod GPL.
 
-# Novinky v současné verzi
+## Novinky v současné verzi
 
 - Syndikační služba s podporou RSS 2.0, Atom 1.0 a Google SiteMap
 - TrackBack systém

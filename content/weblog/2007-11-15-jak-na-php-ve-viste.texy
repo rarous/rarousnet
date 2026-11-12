@@ -19,7 +19,7 @@ Microsoft a Zend nedávno podepsali dohodu o vzájemné podpoře, výsledkem je 
 PHP běžet stejně, ne-li lépe než na Apache. Na druhou stranu je tu podpora MS SQL pro PHP. Takže první plody tu máme a
 myslím, že k oboustranné spokojenosti.
 
-# Instalace IIS
+## Instalace IIS
 
 Pokud ještě nemáte na Vistě IIS nainstalované, je tu vhodná chvíle to napravit. Otevřete si *Control panel* \ *Programs*
 a v sekci *Program and Features* klikněte na **Turn Windows features on or off**. Otevře se vám následující okno, kde
@@ -32,7 +32,7 @@ sedmičková. Ale pro náši potřebu není bezpodmínečně nutná.
 
 Po odkliknutí tlačítka **OK** budete pravděpodobně vyzváni k restartu systému.
 
-# Instalace PHP
+## Instalace PHP
 
 Pokud tedy máme IIS nainstalováno, přejdeme k instalaci PHP.
 
@@ -44,7 +44,7 @@ Pokud tedy máme IIS nainstalováno, přejdeme k instalaci PHP.
  -  `extension_dir = "C:\PHP\ext"`
 5. Soubor uložte.
 
-# Instalace FastCGI
+## Instalace FastCGI
 
 FastCGI je novinkou IIS7, ale není ještě ve Vistě (bude až v 2008 Serveru a možná i v Service Packu pro Vistu, který by
 měl vyjít současně se serverem), proto je nutné ho doinstalovat.
