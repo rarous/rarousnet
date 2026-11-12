@@ -2785,7 +2785,7 @@ __metadata:
     "@rarousnet/website": "workspace:*"
     cookie: "npm:2.0.1"
     feed: "npm:6.0.0"
-    jose: "npm:6.2.13"
+    jose: "npm:6.2.17"
     linkedom: "npm:0.18.14"
     qreator: "npm:10.0.2"
   languageName: unknown
@@ -7812,10 +7812,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:6.2.13":
-  version: 6.2.13
-  resolution: "jose@npm:6.2.13"
-  checksum: 10/34e05c0215974798e92d0f82396962b0c9c2b4bca006dab5dece038e93b02ccee4ef6b4d456cfa8d0d4496a1c864d5e5a3b72e7e43bbacc50a25f9e997da2d57
+"jose@npm:6.2.17":
+  version: 6.2.17
+  resolution: "jose@npm:6.2.17"
+  checksum: 10/df6ae5da42e71a4c3bd1483534c5579ed32f5806ec362ea472f309e8e57aef42afa1dbac62289596975d3587f7ac38deefe4313e1434ce76972ea0f029070bc9
   languageName: node
   linkType: hard
 
