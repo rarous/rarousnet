@@ -7,8 +7,8 @@
  :syndication []}
 ---
 
-Dlouho tu byl klid. Nejen proto že se mi nějak nechtělo psát a měl jsem spoustu jinejch věcí, kterým
-jsem se věnoval, ale asi nastal čas o nich začít něco psát. Jednou z těch věcí je Texy 4.0, tedy
+Dlouho tu byl klid. Nejen protože se mi nějak nechtělo psát, a měl jsem i spoustu jinejch věcí, kterým
+jsem se věnoval, ale asi nastal čas o nich začít něco psát. Jednou z těch věcí je **Texy 4.0**, tedy
 její porty do "Node.js":[texy-js] a Clojure:[texy-clj].
 
 Proč zrovna do nich? Protože je používá tento a další weby o které se starám. A já mám v Texy
