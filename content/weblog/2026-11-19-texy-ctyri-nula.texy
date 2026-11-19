@@ -12,21 +12,21 @@ jsem se věnoval, ale asi nastal čas o nich začít něco psát. Jednou z těch
 její porty do "Node.js":[texy-js] a Clojure:[texy-clj].
 
 Proč zrovna do nich? Protože je používá tento a další weby o které se starám. A já mám v Texy
-napsaný všechny články "na tomto blogu":[/weblog/] (přes 20 let obsahu). A taky jsem si říkal že by to mohlo
-přinýst i další benefity. A tejden po tom, co jsem vývojovou verzi nasadil, tak přišel PHP2Shell. Ne
+napsaný všechny články "na tomto blogu":[/weblog/] (přes 20 let obsahu). A taky jsem si říkal, že by to mohlo
+přinýst i další benefity. A tejden po tom, co jsem vývojovou verzi nasadil, přišel PHP2Shell. Ne
 že bych o něm dopředu věděl, ale štěstí přeje připraveným.
 
 Jak to vznikalo?
 ================
 
-Začalo jako cvičení, jak využít LLM, k tomu v čem jsou celkem dobrý, k překladu. Většinu kódu jsme
+Začalo jako cvičení, jak využít LLM k tomu, v čem jsou celkem dobrý - k překladu. Většinu kódu jsme
 vytvořil s pomocí GLM 5.3 hostovaném u [mistral]. Dnešní synchronizaci s upstream
 "PHP Texy 4.0":[texy] už udělal Mistral 4.0 Large. Vyzkoušel jsem si u toho, jak čisté prostředí
 "Mistral Vibe":[mistral-vibe] postupně dostat do stavu, kdy produkuje fungující kód, se kterým jsem spokojený.
 Což se samozřejmě hodí na dalších projektech.
 
-Co jsem si u toho vyzkoušel, je že to, co ze mě dělá zkušeného vývojáře, není schopnost psát kód,
-ale všechny naučený věci okolo, návyky a pohled experta, schopnost chápa systém. Něco z toho stroj
+Co jsem si u toho vyzkoušel je, že to, co ze mě dělá zkušeného vývojáře, není schopnost psát kód,
+ale všechny naučený věci okolo. Návyky a pohled experta, schopnost chápat systém. Něco z toho stroj
 donutíte opakovat, něco nejde. I kdybych dal vzniklé znalosti a skills (Vibe Context) někomu jinýmu,
 nedosáhne stejnýho výsledku, protože nemá moje zkušenosti a v míše zadrátovaný věci co mám já.
 
@@ -36,16 +36,16 @@ Co z toho?
 Když už jsme měl fungující implementaci v Node.js, říkal jsem si, že to pravděpodobně má většinu
 informací, který poslouží použitelnýmu "Language Serveru (LSP)":[lsp]. A tak jsem ho postupně vytvářel z
 role produktového manažera. Pak jsem ještě chtěl podporu zvýrazňování syntaxe a injektovaný code
-fences, refactoring referencí a hlavně hezkou ikonu ve Webstormu a tak jsem nechal vytvořit i "Plugin
+fences, refactoring referencí a hlavně hezkou ikonu ve WebStormu a tak jsem nechal vytvořit i "Plugin
 do WebStorm 2026.3":[gryphoon-texy]. Starší verzi nepoužívám a kompatibilita byla jen spousta problémů, který nestály
-za mizející kredity. Ale já jsem spokojený a tenhle příspěvek nevzniká v Quipu nebo Google Docs, ale
-píšu ho rovnou ve webstormu, využívám nativní přeformátování texu a je to radost zase psát.
+za mizející kredity. Ale já jsem spokojený, a tenhle příspěvek nevzniká v Quipu nebo Google Docs, ale
+píšu ho rovnou ve WebStormu, využívám nativní přeformátování texu a je to radost zase psát.
 
 Node.js implementace by měla být schopná běžet, s lehkými omezeními, ve Workerech (Cloudflare,
-Service...). Rovnou jsme ji integroval i do Blendidu, kde ji lze v Nunjucks použít pomocí bloku
+Service...). Rovnou jsme ji integroval i do Blendidu:[blendid], kde ji lze v Nunjucks použít pomocí bloku
 `{% texy %}{% endtexy %}` nebo jako include `{% texy "muj/roman.texy" %}`. Už dříve jsme tam měl
-zapojenou implementaci Texy typografického modulu, protože je to něco bez čeho si texty na webu
-nedokážu představit vůbec. Tak teď už je tam celá.
+zapojenou implementaci "Texy typografického modulu":[https://texy.deegee.dev/en/syntax#toc-typography],
+protože je to něco bez čeho si texty na webu nedokážu představit vůbec. Tak teď už je tam celá.
 
 Gryphoon Weblog používal PHP Texy přes shell, teď už ji má taky nativně díky Clojure implementaci.
 Komentáře zpracovávala Texy hostovaná na Vercelu, toho jsem se zbavil díky tomu, že Texy.js běží
@@ -70,3 +70,4 @@ Zdrojáky najdete zatím na GitHubu, na "Release page":[gryphoon-texy] najdete, 
 [mistral]: https://mistral.ai Mistral.ai
 [mistral-vibe]: https://github.com/mistralai/mistral-vibe
 [lsp]: https://microsoft.github.io/language-server-protocol/
+[blendid]: https://github.com/hckr-studio/blendid
