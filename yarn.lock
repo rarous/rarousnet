@@ -2783,7 +2783,7 @@ __metadata:
     "@gryphoon/texy": "npm:2.0.2"
     "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.4"
     "@rarousnet/website": "workspace:*"
-    cookie: "npm:2.0.1"
+    cookie: "npm:2.0.2"
     feed: "npm:6.0.0"
     jose: "npm:6.2.13"
     linkedom: "npm:0.18.14"
@@ -5088,10 +5088,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:2.0.1":
-  version: 2.0.1
-  resolution: "cookie@npm:2.0.1"
-  checksum: 10/9fd785e98334f78e6337f4aafd5a3558a2ff49931b92c9cd9f1f3f042819532dc7f0730d55bd1666bb1d82b86090581d690388764aab1b84dfcd47eb0b959361
+"cookie@npm:2.0.2":
+  version: 2.0.2
+  resolution: "cookie@npm:2.0.2"
+  checksum: 10/ce650de56a06afe15bc49c89ec3332c6246942798c06d6e2267172e2b1ba482abacfd580687210378666ba27983362dfdd220b82f28310ea179ea28988e52c1f
   languageName: node
   linkType: hard
 
