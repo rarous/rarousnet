@@ -8,7 +8,7 @@
     "@gryphoon/texy": "2.0.2",
     "@hckr_/cloudflare-pages-plugin-rollbar": "1.1.4",
     "@rarousnet/website": "workspace:*",
-    "cookie": "2.0.1",
+    "cookie": "2.0.2",
     "feed": "6.0.0",
     "jose": "6.2.13",
     "linkedom": "0.18.14",
