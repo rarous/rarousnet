@@ -1283,15 +1283,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gryphoon/texy@npm:2.0.2":
-  version: 2.0.2
-  resolution: "@gryphoon/texy@npm:2.0.2"
-  dependencies:
-    linkedom: "npm:0.18.13"
-  checksum: 10/7610626f3da403d5ccb67ceefef26f7d27246e41b8f8afd972eb216e0add0df61a7c9e92efae02f2ebed92a1853ca4c52836cbc461ea3e3743dccdc6a238f6a1
-  languageName: node
-  linkType: hard
-
 "@gryphoon/texy@npm:2.1.0":
   version: 2.1.0
   resolution: "@gryphoon/texy@npm:2.1.0"
@@ -2882,7 +2873,7 @@ __metadata:
   dependencies:
     "@cloudflare/pages-plugin-turnstile": "npm:1.0.2"
     "@cloudflare/workers-types": "npm:5.20260926.1"
-    "@gryphoon/texy": "npm:2.0.2"
+    "@gryphoon/texy": "npm:2.1.0"
     "@hckr_/cloudflare-pages-plugin-rollbar": "npm:1.1.4"
     "@rarousnet/website": "workspace:*"
     cookie: "npm:2.0.1"
@@ -5552,13 +5543,6 @@ __metadata:
   dependencies:
     css-tree: "npm:~2.2.0"
   checksum: 10/4036fb2b9f8ed6b948349136b39e0b19ffb5edee934893a37b55e9a116186c4ae2a9d3ba66fbdbc07fa44a853fb478cd2d8733e4743473dcd364e7f21444ff34
-  languageName: node
-  linkType: hard
-
-"cssom@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "cssom@npm:0.5.0"
-  checksum: 10/b502a315b1ce020a692036cc38cb36afa44157219b80deadfa040ab800aa9321fcfbecf02fd2e6ec87db169715e27978b4ab3701f916461e9cf7808899f23b54
   languageName: node
   linkType: hard
 
@@ -8575,24 +8559,6 @@ __metadata:
   version: 1.1.0
   resolution: "link-types@npm:1.1.0"
   checksum: 10/76f9fa1d25e6804af6a51ccd86d4a2665e862672bc342948102d93329226395d0f5bd8bd1385d7aa09b041d5e0237554053d980a2d8c15bba86fc1cebf0d3d47
-  languageName: node
-  linkType: hard
-
-"linkedom@npm:0.18.13":
-  version: 0.18.13
-  resolution: "linkedom@npm:0.18.13"
-  dependencies:
-    css-select: "npm:^7.0.0"
-    cssom: "npm:^0.5.0"
-    html-escaper: "npm:^3.0.3"
-    htmlparser2: "npm:^10.1.0"
-    uhyphen: "npm:^0.2.0"
-  peerDependencies:
-    canvas: ">= 2"
-  peerDependenciesMeta:
-    canvas:
-      optional: true
-  checksum: 10/45304e54cebeae6dab613558f4a6a0af5eb8b9a2cc05e7ab58d4648322c6a9de56f7e4245f8824ba6565e9954556ddd2dc8f75389ddbeee6f39a198ccd831884
   languageName: node
   linkType: hard
 
