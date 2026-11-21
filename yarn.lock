@@ -2871,7 +2871,7 @@ __metadata:
   resolution: "@rarousnet/discogs-schedule-worker@workspace:workers/discogs-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:5.20260926.1"
-    linkedom: "npm:0.18.14"
+    linkedom: "npm:0.18.15"
     wrangler: "npm:4.160.1"
   languageName: unknown
   linkType: soft
@@ -2888,7 +2888,7 @@ __metadata:
     cookie: "npm:2.0.1"
     feed: "npm:6.0.0"
     jose: "npm:6.2.13"
-    linkedom: "npm:0.18.14"
+    linkedom: "npm:0.18.15"
     qreator: "npm:10.0.2"
   languageName: unknown
   linkType: soft
@@ -2909,7 +2909,7 @@ __metadata:
   dependencies:
     "@thi.ng/transducers": "npm:9.7.0"
     csv-parse: "npm:7.0.3"
-    linkedom: "npm:0.18.14"
+    linkedom: "npm:0.18.15"
     schema-dts: "npm:2.0.0"
   languageName: unknown
   linkType: soft
@@ -2919,7 +2919,7 @@ __metadata:
   resolution: "@rarousnet/w3b-schedule-worker@workspace:workers/w3b-schedule-worker"
   dependencies:
     "@cloudflare/workers-types": "npm:5.20260926.1"
-    linkedom: "npm:0.18.14"
+    linkedom: "npm:0.18.15"
     wrangler: "npm:4.160.1"
   languageName: unknown
   linkType: soft
