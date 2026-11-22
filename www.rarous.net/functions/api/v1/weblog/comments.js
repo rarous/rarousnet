@@ -1,23 +1,22 @@
 import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
-import { Texy } from "@gryphoon/texy/Texy.js";
-import { Configurator } from "@gryphoon/texy/Configurator.js";
+import { defTexy, Configuration } from "@gryphoon/texy";
 import { Syntax } from "@gryphoon/texy/Syntax.js";
 
 async function processText(text, references) {
-  const texy = new Texy();
-  Configurator.safeMode(texy);
-
-  texy.allowed[Syntax.Inserted] = true;   // phrase/ins
-  texy.allowed[Syntax.Superscript] = true; // phrase/sup
-  texy.allowed[Syntax.Deleted] = true;    // phrase/del
-  texy.allowed[Syntax.Subscript] = true;  // phrase/sub
-
-  texy.htmlPolicy.allowedTags = false;
-  texy.headingModule.top = 4;
+  const texy = defTexy({
+    ...Configuration.safe,
+    allowed: [Syntax.Inserted, Syntax.Deleted, Syntax.Subscript, Syntax.Superscript],
+    htmlPolicy:{
+      allowedTags: false
+    },
+    headingModule: {
+      top: 4
+    }
+  });
 
   for (const [index, comment] of references.entries()) {
-    if (!('link' in comment)) continue;
-    texy.linkModule.addDefinition(String(index + 1), comment.link, comment.label);
+    if (!("link" in comment)) continue;
+    texy.linkModule.addDefinition(`${index + 1}`, comment.link, comment.label);
   }
 
   return texy.process(text);
@@ -28,7 +27,7 @@ async function processText(text, references) {
  * @param {string} url
  */
 async function getDetail(weblog, url) {
-  const payload = (await weblog.get(url, "json")) ?? (await weblog.get(url + ".html", "json"));
+  const payload = (await weblog.get(url, "json")) ?? (await weblog.get(`${url}.html`, "json"));
   return Object.assign({ webmentions: [], comments: [] }, payload);
 }
 
