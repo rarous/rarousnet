@@ -162,7 +162,7 @@ const weblogPages = new cloudflare.PagesProject(
       production: {
         failOpen: false,
         compatibilityDate,
-        compatibilityFlags: ["nodejs_compat"],
+        compatibilityFlags: ["nodejs_compat", "new_module_registry"],
         envVars: {
           clientId: { type: "plain_text", value: config.require("google-auth-clientId") },
           domain: { type: "plain_text", value: "hckr.studio" },
