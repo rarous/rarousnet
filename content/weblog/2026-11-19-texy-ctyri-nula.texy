@@ -4,11 +4,11 @@
  :author "Aleš Roubíček",
  :tags #{"moje práce", "texy", "blendid", "gryphoon"},
  :published "2026-11-19T16:37:38+02:00"
- :syndication []}
+ :syndication ["https://www.linkedin.com/posts/rarous_llmka-jsou-dobr%C3%BD-na-p%C5%99eklady-tak-jsem-p%C5%99elo%C5%BEil-share-7530205687185002496-In5J/"]}
 ---
 
 Dlouho tu byl klid. Nejen protože se mi nějak nechtělo psát, a měl jsem i spoustu jinejch věcí,
-kterým jsem se věnoval, ale asi nastal čas o nich začít něco psát. Jednou z těch věcí je **Texy
+kterým jsem se věnoval. Ale asi nastal čas o nich začít něco psát. Jednou z těch věcí je **Texy
 4.0**, tedy její porty do "Node.js":[texy-js] a Clojure:[texy-clj].
 
 Proč zrovna do nich? Protože je používá tento a další weby o které se starám. A já mám v Texy
@@ -73,7 +73,7 @@ Verze 4.0.1 s upstream opravami je venku a Texy.js 4.0.2 opravuje fungování ve
 [texy-clj]: https://github.com/hckr-studio/gryphoon/tree/trunk/packages/texy-clj
 [texy-lsp]: https://github.com/hckr-studio/gryphoon/tree/trunk/packages/texy-lsp
 [texy-intellij]: https://github.com/hckr-studio/gryphoon/tree/trunk/packages/texy-intellij
-[gryphoon-texy]: https://github.com/hckr-studio/gryphoon/releases/tag/v4.0.0
+[gryphoon-texy]: https://github.com/hckr-studio/gryphoon/releases/tag/v4.0.1
 [gryphoon]: https://github.com/hckr-studio/gryphoon
 [mistral]: https://mistral.ai Mistral.ai
 [mistral-vibe]: https://github.com/mistralai/mistral-vibe
