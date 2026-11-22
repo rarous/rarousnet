@@ -1,29 +1,29 @@
 ---
 {:title "Texy 4.0",
- :description "Nová verze Texy 4.0 přináší nejen plnou podporu syntaxe Markdown, ale in implementace pro Node.js a Clojure, LSP a extenzi do Webstormu",
+ :description "Nová verze Texy 4.0 přináší nejen plnou podporu syntaxe Markdown, ale i implementace pro Node.js a Clojure, LSP a extenzi do Webstormu",
  :author "Aleš Roubíček",
  :tags #{"moje práce", "texy", "blendid", "gryphoon"},
  :published "2026-11-19T16:37:38+02:00"
  :syndication []}
 ---
 
-Dlouho tu byl klid. Nejen protože se mi nějak nechtělo psát, a měl jsem i spoustu jinejch věcí, kterým
-jsem se věnoval, ale asi nastal čas o nich začít něco psát. Jednou z těch věcí je **Texy 4.0**, tedy
-její porty do "Node.js":[texy-js] a Clojure:[texy-clj].
+Dlouho tu byl klid. Nejen protože se mi nějak nechtělo psát, a měl jsem i spoustu jinejch věcí,
+kterým jsem se věnoval, ale asi nastal čas o nich začít něco psát. Jednou z těch věcí je **Texy
+4.0**, tedy její porty do "Node.js":[texy-js] a Clojure:[texy-clj].
 
 Proč zrovna do nich? Protože je používá tento a další weby o které se starám. A já mám v Texy
-napsaný všechny články "na tomto blogu":[/weblog/] (přes 20 let obsahu). A taky jsem si říkal, že by to mohlo
-přinýst i další benefity. A tejden po tom, co jsem vývojovou verzi nasadil, přišel PHP2Shell. Ne
-že bych o něm dopředu věděl, ale štěstí přeje připraveným.
+napsaný všechny články "na tomto blogu":[/weblog/] (přes 20 let obsahu). A taky jsem si říkal, že by
+to mohlo přinýst i další benefity. A tejden po tom, co jsem vývojovou verzi nasadil, přišel
+PHP2Shell. Ne že bych o něm dopředu věděl, ale štěstí přeje připraveným.
 
 Jak to vznikalo?
 ================
 
 Začalo jako cvičení, jak využít LLM k tomu, v čem jsou celkem dobrý - k překladu. Většinu kódu jsme
-vytvořil s pomocí GLM 5.3 hostovaném u [mistral]. Dnešní synchronizaci s upstream
+vytvořil s pomocí GLM 5.3 hostovaném u [mistral] . Dnešní synchronizaci s upstream
 "PHP Texy 4.0":[texy] už udělal Mistral 4.0 Large. Vyzkoušel jsem si u toho, jak čisté prostředí
-"Mistral Vibe":[mistral-vibe] postupně dostat do stavu, kdy produkuje fungující kód, se kterým jsem spokojený.
-Což se samozřejmě hodí na dalších projektech.
+"Mistral Vibe":[mistral-vibe] postupně dostat do stavu, kdy produkuje fungující kód, se kterým jsem
+spokojený. Což se samozřejmě hodí na dalších projektech.
 
 Co jsem si u toho vyzkoušel je, že to, co ze mě dělá zkušeného vývojáře, není schopnost psát kód,
 ale všechny naučený věci okolo. Návyky a pohled experta, schopnost chápat systém. Něco z toho stroj
@@ -34,31 +34,39 @@ Co z toho?
 ==========
 
 Když už jsme měl fungující implementaci v Node.js, říkal jsem si, že to pravděpodobně má většinu
-informací, který poslouží použitelnýmu "Language Serveru (LSP)":[lsp]. A tak jsem ho postupně vytvářel z
-role produktového manažera. Pak jsem ještě chtěl podporu zvýrazňování syntaxe a injektovaný code
-fences, refactoring referencí a hlavně hezkou ikonu ve WebStormu a tak jsem nechal vytvořit i "Plugin
-do WebStorm 2026.3":[gryphoon-texy]. Starší verzi nepoužívám a kompatibilita byla jen spousta problémů, který nestály
-za mizející kredity. Ale já jsem spokojený, a tenhle příspěvek nevzniká v Quipu nebo Google Docs, ale
-píšu ho rovnou ve WebStormu, využívám nativní přeformátování texu a je to radost zase psát.
+informací, který poslouží použitelnýmu "Language Serveru (LSP)":[lsp]. A tak jsem ho postupně
+vytvářel z role produktového manažera. Pak jsem ještě chtěl podporu zvýrazňování syntaxe a
+injektovaný code fences, refactoring referencí a hlavně hezkou ikonu ve WebStormu a tak jsem nechal
+vytvořit i "Plugin do WebStorm 2026.3":[gryphoon-texy]. Starší verzi nepoužívám a kompatibilita byla
+jen spousta problémů, který nestály za mizející kredity. Ale já jsem spokojený, a tenhle příspěvek
+nevzniká v Quipu nebo Google Docs, ale píšu ho rovnou ve WebStormu, využívám nativní přeformátování
+texu a je to radost zase psát.
 
 Node.js implementace by měla být schopná běžet, s lehkými omezeními, ve Workerech (Cloudflare,
-Service...). Rovnou jsme ji integroval i do Blendidu:[blendid], kde ji lze v Nunjucks použít pomocí bloku
-`{% texy %}{% endtexy %}` nebo jako include `{% texy "muj/roman.texy" %}`. Už dříve jsme tam měl
-zapojenou implementaci "Texy typografického modulu":[https://texy.deegee.dev/en/syntax#toc-typography],
-protože je to něco bez čeho si texty na webu nedokážu představit vůbec. Tak teď už je tam celá.
+Service...) - až do verze `4.0.2`. Rovnou jsme ji integroval i do Blendidu:[blendid], kde ji lze v
+Nunjucks použít pomocí bloku `{% texy %}{% endtexy %}` nebo jako include
+`{% texy "muj/roman.texy" %}`. Už dříve jsme tam měl zapojenou implementaci
+"Texy typografického modulu":[https://texy.deegee.dev/en/syntax#toc-typography], protože je to něco
+bez čeho si texty na webu nedokážu představit vůbec. Tak teď už je tam celá.
 
 Gryphoon Weblog používal PHP Texy přes shell, teď už ji má taky nativně díky Clojure implementaci.
-Komentáře zpracovávala Texy hostovaná na Vercelu, toho jsem se zbavil díky tomu, že Texy.js běží
-ve zmiňovaných Cloudflare Workerech.
+Komentáře zpracovávala Texy hostovaná na Vercelu, toho jsem se zbavil díky tomu, že Texy.js běží ve
+zmiňovaných Cloudflare Workerech.
 
 Závěrem
 =======
 
 Bylo to zajímavé cvičení. Naučil jsem se toho hodně a ještě mi vznikla spousta užitečnýho selfware.
-A třeba se najde někdo, pro koho to taky bude užitečný. A taky to snad pomohlo otevřít dveře pro další
-články na blog. Snad tenhle nebude letos jediný.
+A třeba se najde někdo, pro koho to taky bude užitečný. A taky to snad pomohlo otevřít dveře pro
+další články na blog. Snad tenhle nebude letos jediný.
 
-Zdrojáky najdete zatím na GitHubu, na "Release page":[gryphoon-texy] najdete, jak si nainstalovat jednotlivé balíčky a plugin.
+Zdrojáky najdete zatím na GitHubu, na "Release page":[gryphoon-texy] najdete, jak si nainstalovat
+jednotlivé balíčky a plugin.
+
+Aktualizace
+===========
+
+Verze 4.0.1 s upstream opravami je venku a Texy.js 4.0.2 opravuje fungování ve Werkerech.
 
 [texy]: https://texy.deegee.dev/
 [texy-js]: https://github.com/hckr-studio/gryphoon/tree/trunk/packages/texy
