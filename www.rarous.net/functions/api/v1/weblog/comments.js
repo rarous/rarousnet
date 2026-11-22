@@ -39,10 +39,10 @@ export const onRequestPost = [
   async context => {
     const now = new Date();
     const { env, request } = context;
-    if (!request.cf.botManagement.jsDetection.passed) {
-      // CF classified bot, skip
-      return new Response(null, { status: 451 });
-    }
+    // if (!request.cf.botManagement.jsDetection.passed) {
+    //   // CF classified bot, skip
+    //   return new Response(null, { status: 451 });
+    // }
 
     const url = new URL(request.url);
     const target = url.searchParams.get("url");
