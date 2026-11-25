@@ -1,5 +1,5 @@
 {:deps {org.clojure/clojure {:mvn/version "1.12.7"}
         work.gryphoon/weblog {:git/url "https://github.com/hckr-studio/gryphoon.git"
-                              :git/sha "a0bd98cafeb5605449148227a3f9bf69568acb2f"
+                              :git/sha "8ca93655004a8d3643318cd430d350cfa86ba1da"
                               :deps/root "packages/weblog"}}
  :paths ["src" "../.gryphoon/dist/"]}
